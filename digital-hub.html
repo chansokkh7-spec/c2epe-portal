@@ -784,6 +784,42 @@
             color: #ccc;
             cursor: pointer;
         }
+
+        .quiz-q-row {
+            background: #0b1736;
+            border: 1px solid #1d3e80;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .quiz-q-row input[type="text"] {
+            width: 100%;
+            margin-bottom: 6px;
+            padding: 7px 9px;
+            font-size: 0.85rem;
+        }
+
+        .quiz-q-row .quiz-opt-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+
+        .quiz-q-row .quiz-opt-row input[type="text"] {
+            margin-bottom: 0;
+            flex: 1;
+        }
+
+        .quiz-q-row .quiz-remove-btn {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 0.8rem;
+            float: right;
+        }
     </style>
 </head>
 <body>
@@ -819,15 +855,10 @@
                 <button class="filter-btn" id="filterEnglishBtnUI" onclick="filterCategory('english', this)">English</button>
                 <button class="filter-btn" id="filterHealthBtnUI" onclick="filterCategory('health', this)">Health</button>
                 <button class="filter-btn" id="filterTechBtnUI" onclick="filterCategory('tech', this)">Technology</button>
+                <button class="filter-btn" id="filterOnlineBtnUI" onclick="filterCategory('online', this)">Online Class</button>
                 <button class="manage-students-btn admin-only" onclick="openManageStudents()">👥 Manage Students & Access</button>
             </div>
-            <div class="filter-buttons level-filter-buttons" id="levelFilterBar" style="display:none;">
-                <button class="filter-btn level-btn active" onclick="filterLevel('all', this)">All Levels</button>
-                <button class="filter-btn level-btn" onclick="filterLevel('Kindergarten', this)">🎒 Kindergarten</button>
-                <button class="filter-btn level-btn" onclick="filterLevel('Primary', this)">📘 Primary</button>
-                <button class="filter-btn level-btn" onclick="filterLevel('Secondary', this)">📗 Secondary</button>
-                <button class="filter-btn level-btn" onclick="filterLevel('Master Level', this)">🎓 Master Level</button>
-            </div>
+            <div class="filter-buttons level-filter-buttons" id="levelFilterBar" style="display:none;"></div>
         </div>
 
         <div class="grid-container" id="systemGrid"></div>
@@ -857,6 +888,7 @@
                     <option value="english" id="catEnglishOption">English</option>
                     <option value="health" id="catHealthOption">Health</option>
                     <option value="tech" id="catTechOption">Technology</option>
+                    <option value="online" id="catOnlineOption">Online Class</option>
                 </select>
             </div>
 
@@ -887,6 +919,13 @@
             <div class="form-group">
                 <label for="videoUrlInput" id="labelVideo">Video (Video URL Link):</label>
                 <input type="text" id="videoUrlInput" placeholder="https://example.com/video.mp4">
+                <p style="font-size:0.75rem; color:#6b7fae; margin-top:4px;">Students can watch this anytime. Add practice questions below to show right after the video — great for self-paced study.</p>
+            </div>
+
+            <div class="form-group">
+                <label>📝 Practice Questions (optional — shown below the video after it ends)</label>
+                <div id="quizBuilderList"></div>
+                <button type="button" onclick="addQuizQuestionRow()" style="margin-top:8px; background:#132a5a; color:#38bdf8; border:1px solid #1d3e80; border-radius:6px; padding:8px 14px; cursor:pointer; font-weight:600; font-size:0.85rem;">➕ Add Question</button>
             </div>
 
             <div class="tabs">
@@ -1034,40 +1073,69 @@
         let allStudentsCache = {}; // id -> {name, allowedSystems}
         let editingStudentId = null; // which student the admin form is currently editing
 
-        const TOTAL_SYSTEMS = 36; // 12 systems per category (English / Health / Technology)
+        const TOTAL_SYSTEMS = 49; // English 12 + Health 12 + Technology 12 + Online Class 13
 
-        // Blank/unassigned slots default into even thirds — 1-12 English,
-        // 13-24 Health, 25-36 Technology — instead of every empty slot
-        // falling into one category. Admins can still change any system's
-        // category later in its edit modal; this only decides the
-        // starting point before that.
+        // Blank/unassigned slots default into fixed groups — 1-12 English,
+        // 13-24 Health, 25-36 Technology, 37-49 Online Class (13, since
+        // Online Class needed one more slot to fit all 7 of its named
+        // sub-sections). Category is locked to slot position (see the
+        // disabled dropdown in the edit modal) so this grouping can never
+        // drift out of balance.
         function defaultCategoryFor(i) {
             if (i <= 12) return 'english';
             if (i <= 24) return 'health';
-            return 'tech';
+            if (i <= 36) return 'tech';
+            return 'online';
         }
 
-        // English (slots 1-12) is further split into 4 sub-levels of 3
-        // systems each, so students/teachers can find or assign the right
-        // level quickly instead of scanning all 12 at once. Returns null
-        // for Health/Technology slots (no sub-levels there).
+        // English (slots 1-12) is split into 4 sub-levels of 3 systems
+        // each. Online Class (slots 37-49) is split into 7 named
+        // sub-sections with specific real-world titles instead of generic
+        // numbering, since these map to actual textbooks/topics. Both let
+        // students/teachers find or assign the right one quickly instead
+        // of scanning a flat list. Health/Technology have no sub-groups.
         const ENGLISH_LEVELS = ['Kindergarten', 'Primary', 'Secondary', 'Master Level'];
+
+        const ONLINE_CLASS_STRUCTURE = [
+            { group: 'GEP English (Kindergarten — LOOK)', title: 'K0' },
+            { group: 'GEP English (Kindergarten — LOOK)', title: 'K1' },
+            { group: 'GEP English (Kindergarten — LOOK)', title: 'K2' },
+            { group: 'GEP English (Kindergarten — LOOK)', title: 'K3' },
+            { group: 'Primary', title: 'Beehive' },
+            { group: 'Secondary Level', title: 'Upstream' },
+            { group: 'Secondary Level', title: 'Speak Out' },
+            { group: 'Master Level', title: 'Upstream C2' },
+            { group: 'Newspaper Class', title: 'Health' },
+            { group: 'Newspaper Class', title: 'Economic & Business' },
+            { group: 'Newspaper Class', title: 'Politics' },
+            { group: 'Grammar', title: 'Foundation to Master Level' },
+            { group: 'Writing Skill', title: 'Foundation to Master Level' }
+        ];
+        // Sub-filter buttons are generated from this — order follows each
+        // group's first appearance above (Object dedup, not alphabetical).
+        const ONLINE_GROUPS = [...new Set(ONLINE_CLASS_STRUCTURE.map(x => x.group))];
+
         function defaultLevelFor(i) {
-            if (i > 12) return null;
-            return ENGLISH_LEVELS[Math.floor((i - 1) / 3)];
+            if (i <= 12) return ENGLISH_LEVELS[Math.floor((i - 1) / 3)];
+            if (i >= 37 && i <= 49) return ONLINE_CLASS_STRUCTURE[i - 37].group;
+            return null;
         }
 
         // Default title shows a 1-12 number local to its own category
         // (e.g. "Health 1"..."Health 12") until the admin renames it to
-        // something real in the edit modal. For English, it uses the
-        // sub-level name + a 1-3 number local to that level instead
-        // (e.g. "Kindergarten 1", "Primary 2") since that's more useful
-        // than a flat 1-12 count once levels are in play.
+        // something real in the edit modal. English uses its sub-level
+        // name + a 1-3 local number (e.g. "Kindergarten 1"). Online Class
+        // uses the specific real title from the structure above (e.g.
+        // "K0", "Beehive", "Upstream") since those are meaningful on
+        // their own — no extra numbering needed.
         function defaultTitleFor(i) {
-            const level = defaultLevelFor(i);
-            if (level) {
+            if (i <= 12) {
+                const level = defaultLevelFor(i);
                 const localNum = ((i - 1) % 3) + 1;
                 return `${level} ${localNum}`;
+            }
+            if (i >= 37 && i <= 49) {
+                return ONLINE_CLASS_STRUCTURE[i - 37].title;
             }
             const cat = defaultCategoryFor(i);
             const label = cat === 'health' ? 'Health' : 'Technology';
@@ -1133,6 +1201,7 @@
                 filterEnglish: 'ភាសាអង់គ្លេស',
                 filterHealth: 'សុខភាព',
                 filterTech: 'បច្ចេកវិទ្យា',
+                filterOnline: 'ថ្នាក់អនឡាញ',
                 modalTitleEdit: (id) => `រៀបចំ System ${id}`,
                 labelTitle: 'ឈ្មោះ System / Title:',
                 titlePlaceholder: 'បញ្ចូលឈ្មោះប្រព័ន្ធ...',
@@ -1171,6 +1240,7 @@
                 filterEnglish: 'English',
                 filterHealth: 'Health',
                 filterTech: 'Technology',
+                filterOnline: 'Online Class',
                 modalTitleEdit: (id) => `Edit System ${id}`,
                 labelTitle: 'System Name / Title:',
                 titlePlaceholder: 'Enter system name...',
@@ -1218,12 +1288,14 @@
             document.getElementById('filterEnglishBtnUI').textContent = t('filterEnglish');
             document.getElementById('filterHealthBtnUI').textContent = t('filterHealth');
             document.getElementById('filterTechBtnUI').textContent = t('filterTech');
+            document.getElementById('filterOnlineBtnUI').textContent = t('filterOnline');
             document.getElementById('labelTitle').textContent = t('labelTitle');
             document.getElementById('systemTitleInput').placeholder = t('titlePlaceholder');
             document.getElementById('labelCategory').textContent = t('labelCategory');
             document.getElementById('catEnglishOption').textContent = t('filterEnglish');
             document.getElementById('catHealthOption').textContent = t('filterHealth');
             document.getElementById('catTechOption').textContent = t('filterTech');
+            document.getElementById('catOnlineOption').textContent = t('filterOnline');
             document.getElementById('labelDesc').textContent = t('labelDesc');
             document.getElementById('systemDescInput').placeholder = t('descPlaceholder');
             document.getElementById('labelIcon').textContent = t('labelIcon');
@@ -1474,7 +1546,7 @@
                     contentHtml += `<div class="carousel-container" style="display:flex; justify-content:center; align-items:center;"><img src="${iconSrc}" style="width:70px; height:70px; object-fit:contain;" alt="System Icon"></div>`;
                 }
 
-                const catLabel = sys.category === 'english' ? t('filterEnglish') : (sys.category === 'health' ? t('filterHealth') : t('filterTech'));
+                const catLabel = sys.category === 'english' ? t('filterEnglish') : (sys.category === 'health' ? t('filterHealth') : (sys.category === 'tech' ? t('filterTech') : t('filterOnline')));
                 const levelBadge = sysLevel ? ` <span class="level-chip">${escapeHtml(sysLevel)}</span>` : '';
 
                 contentHtml += `
@@ -1505,17 +1577,39 @@
             }
         }
 
+        // Icons are cosmetic only — matched by array position, so if a
+        // group list changes length this just runs out of icons
+        // gracefully (falls back to a generic one) rather than breaking.
+        const LEVEL_ICONS = {
+            'english': ['🎒', '📘', '📗', '🎓'],
+            'online': ['📖', '🐝', '📙', '🎓', '📰', '✍️', '🖊️']
+        };
+
         function filterCategory(category, button) {
             currentCategory = category;
             currentLevel = 'all';
             document.querySelectorAll('.filter-buttons .filter-btn:not(.level-btn)').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
-
-            const levelBar = document.getElementById('levelFilterBar');
-            levelBar.style.display = (category === 'english') ? 'flex' : 'none';
-            levelBar.querySelectorAll('.level-btn').forEach((btn, idx) => btn.classList.toggle('active', idx === 0));
-
+            renderLevelBar(category);
             filterGrid();
+        }
+
+        function renderLevelBar(category) {
+            const levelBar = document.getElementById('levelFilterBar');
+            const groups = category === 'english' ? ENGLISH_LEVELS : (category === 'online' ? ONLINE_GROUPS : null);
+            if (!groups) {
+                levelBar.style.display = 'none';
+                levelBar.innerHTML = '';
+                return;
+            }
+            const icons = LEVEL_ICONS[category] || [];
+            let html = `<button class="filter-btn level-btn active" onclick="filterLevel('all', this)">All</button>`;
+            groups.forEach((g, idx) => {
+                const icon = icons[idx] || '📚';
+                html += `<button class="filter-btn level-btn" onclick="filterLevel('${g.replace(/'/g, "\\'")}', this)">${icon} ${escapeHtml(g)}</button>`;
+            });
+            levelBar.innerHTML = html;
+            levelBar.style.display = 'flex';
         }
 
         function filterLevel(level, button) {
@@ -1566,6 +1660,86 @@
          * `allow-scripts` for untrusted content — that combination is what
          * cancels the isolation out.
          * ----------------------------------------------------------------- */
+        // Builds the full video + practice-quiz page shown to students. It
+        // runs inside the same sandboxed iframe as everything else (see the
+        // security note above openViewer) — scripts here can't reach the
+        // Hub's own DOM/Firebase session, only the video/quiz data passed
+        // in explicitly via JSON.
+        function buildVideoPlayerHtml(sys) {
+            // Guard against a crafted title/question containing a closing
+            // script tag, which would end our inline script early.
+            const quizJson = JSON.stringify(sys.quiz || []).replace(/<\/script/gi, '<\\/script');
+            // Built via concatenation, not written literally, so this source
+            // file never contains an actual opening/closing script tag pair
+            // inside this JS string — that exact text would otherwise
+            // confuse the Hub's own script block while the browser first
+            // parses this HTML file, long before any of this template
+            // literal runs.
+            const SCRIPT_OPEN = '<scr' + 'ipt>';
+            const SCRIPT_CLOSE = '</scr' + 'ipt>';
+            const quizSection = (sys.quiz && sys.quiz.length > 0) ? `
+                <div id="quizWrap" style="max-width:700px;margin:24px auto;font-family:Arial,sans-serif;padding:0 16px;">
+                    <h3 style="color:#0b1736;">📝 Practice Questions</h3>
+                    <p style="color:#666;font-size:0.9rem;">Watch the video above, then try these — <span id="quizScore">0 / ${sys.quiz.length} answered</span></p>
+                    <div id="quizQuestions"></div>
+                </div>
+                ${SCRIPT_OPEN}
+                    var QUIZ = ${quizJson};
+                    var answered = 0, correct = 0;
+                    var wrap = document.getElementById('quizQuestions');
+                    QUIZ.forEach(function(q, qi) {
+                        var box = document.createElement('div');
+                        box.style.cssText = 'background:#f6f7fb;border:1px solid #e0e3ee;border-radius:10px;padding:14px 16px;margin-bottom:12px;';
+                        var title = document.createElement('div');
+                        title.style.cssText = 'font-weight:700;color:#1a1a2e;margin-bottom:10px;';
+                        title.textContent = (qi+1) + '. ' + q.q;
+                        box.appendChild(title);
+                        var fb = document.createElement('div');
+                        fb.style.cssText = 'margin-top:8px;font-weight:700;font-size:0.9rem;min-height:1.2rem;';
+                        (q.options || []).forEach(function(optText, oi) {
+                            if (!optText) return;
+                            var btn = document.createElement('button');
+                            btn.textContent = optText;
+                            btn.style.cssText = 'display:block;width:100%;text-align:left;background:#fff;border:1px solid #d7dbea;border-radius:8px;padding:9px 12px;margin-bottom:6px;cursor:pointer;font-size:0.9rem;';
+                            btn.onclick = function() {
+                                if (box.dataset.done) return;
+                                box.dataset.done = '1';
+                                answered++;
+                                var allBtns = box.querySelectorAll('button');
+                                allBtns.forEach(function(b, bi) {
+                                    if (bi === q.correct) b.style.background = '#dcfce7';
+                                    b.style.cursor = 'default';
+                                });
+                                if (oi === q.correct) {
+                                    correct++;
+                                    btn.style.background = '#dcfce7';
+                                    fb.style.color = '#16a34a';
+                                    fb.textContent = '✓ Correct!';
+                                } else {
+                                    btn.style.background = '#fee2e2';
+                                    fb.style.color = '#dc2626';
+                                    fb.textContent = '✗ Not quite — correct answer is highlighted.';
+                                }
+                                document.getElementById('quizScore').textContent = answered + ' / ' + QUIZ.length + ' answered (' + correct + ' correct)';
+                            };
+                            box.appendChild(btn);
+                        });
+                        box.appendChild(fb);
+                        wrap.appendChild(box);
+                    });
+                ${SCRIPT_CLOSE}
+            ` : '';
+
+            return `
+                <div style="background:#000;padding:16px;">
+                    <video controls autoplay style="max-width:100%;max-height:70vh;display:block;margin:auto;border-radius:6px;">
+                        <source src="${escapeHtml(sys.video)}">
+                    </video>
+                </div>
+                ${quizSection}
+            `;
+        }
+
         function onCardClick(id) {
             const sys = systemsData[id];
             if (!sys || (!sys.content && !sys.video)) {
@@ -1574,7 +1748,7 @@
             }
 
             if (sys.video) {
-                openViewer(sys.title, `<video controls autoplay style="max-width:100%;max-height:100vh;display:block;margin:auto;"><source src="${escapeHtml(sys.video)}"></video>`);
+                openViewer(sys.title, buildVideoPlayerHtml(sys));
             } else if (sys.type === 'url' && sys.content) {
                 if (isSafeUrl(sys.content)) {
                     window.open(sys.content, '_blank', 'noopener,noreferrer');
@@ -1614,11 +1788,64 @@
             document.getElementById('iconFileInput').value = '';
             document.getElementById('sliderFileInput').value = '';
             document.getElementById('videoUrlInput').value = sys.video || '';
+            renderQuizBuilder(sys.quiz || []);
             document.getElementById('restrictedInput').checked = !!sys.restricted;
             toggleAssignedList();
 
             switchTab(sys.type || 'url');
             document.getElementById('modalOverlay').style.display = 'flex';
+        }
+
+        // =================================================================
+        // PRACTICE QUESTIONS builder (admin side) — a small quiz attached
+        // to a system's video, so self-paced students get something to
+        // check their understanding with right after watching.
+        // =================================================================
+        let quizRowCounter = 0;
+
+        function renderQuizBuilder(questions) {
+            const list = document.getElementById('quizBuilderList');
+            list.innerHTML = '';
+            quizRowCounter = 0;
+            (questions || []).forEach(q => addQuizQuestionRow(q));
+        }
+
+        function addQuizQuestionRow(existing) {
+            const rowId = 'quizq_' + (quizRowCounter++);
+            const q = existing || { q: '', options: ['', '', '', ''], correct: 0 };
+            const list = document.getElementById('quizBuilderList');
+            const row = document.createElement('div');
+            row.className = 'quiz-q-row';
+            row.id = rowId;
+            row.innerHTML = `
+                <button type="button" class="quiz-remove-btn" onclick="document.getElementById('${rowId}').remove()">✕ Remove</button>
+                <input type="text" class="quiz-q-text" placeholder="Question text" value="${escapeHtml(q.q || '')}">
+                ${[0, 1, 2, 3].map(idx => `
+                    <div class="quiz-opt-row">
+                        <input type="radio" name="${rowId}_correct" value="${idx}" ${q.correct === idx ? 'checked' : ''} title="Mark as correct answer">
+                        <input type="text" class="quiz-opt-text" placeholder="Option ${idx + 1}" value="${escapeHtml((q.options && q.options[idx]) || '')}">
+                    </div>
+                `).join('')}
+            `;
+            list.appendChild(row);
+        }
+
+        // Reads every question row currently in the builder into a plain
+        // array for saving. Rows with an empty question text are skipped
+        // (so a half-filled leftover row doesn't get saved by accident).
+        function collectQuizQuestions() {
+            const rows = document.querySelectorAll('#quizBuilderList .quiz-q-row');
+            const result = [];
+            rows.forEach(row => {
+                const qText = row.querySelector('.quiz-q-text').value.trim();
+                if (!qText) return;
+                const optInputs = row.querySelectorAll('.quiz-opt-text');
+                const options = Array.from(optInputs).map(inp => inp.value.trim());
+                const checkedRadio = row.querySelector('input[type="radio"]:checked');
+                const correct = checkedRadio ? parseInt(checkedRadio.value) : 0;
+                result.push({ q: qText, options, correct });
+            });
+            return result;
         }
 
         function toggleAssignedList() {
@@ -1702,6 +1929,7 @@
             const iconFile = document.getElementById('iconFileInput').files[0];
             const slideFiles = Array.from(document.getElementById('sliderFileInput').files);
             const videoUrl = document.getElementById('videoUrlInput').value.trim();
+            const quiz = collectQuizQuestions();
             const content = activeTab === 'url' 
                 ? document.getElementById('urlInput').value.trim() 
                 : document.getElementById('codeInput').value.trim();
@@ -1738,6 +1966,7 @@
                     icon: iconBase64,
                     slides: slidesArray,
                     video: videoUrl,
+                    quiz,
                     type: activeTab,
                     content
                 };
@@ -1883,7 +2112,7 @@
                 const checked = checkedIds.includes(i) ? 'checked' : '';
                 const level = defaultLevelFor(i);
                 const cat = defaultCategoryFor(i);
-                const groupLabel = level ? `English — ${level}` : (cat === 'health' ? 'Health' : 'Technology');
+                const groupLabel = level ? (cat === 'english' ? `English — ${level}` : `Online Class — ${level}`) : (cat === 'health' ? 'Health' : (cat === 'tech' ? 'Technology' : 'Online Class'));
                 if (groupLabel !== lastGroup) {
                     html += `<div class="checklist-group-label">${escapeHtml(groupLabel)}</div>`;
                     lastGroup = groupLabel;

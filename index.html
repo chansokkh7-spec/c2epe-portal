@@ -471,6 +471,11 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
       <div id="notif-list" style="max-height:340px;overflow-y:auto;"></div>
     </div>
   </div>
+  <button onclick="openDigitalHubPage()" id="digital-hub-btn"
+    style="background:rgba(212,160,23,.25);color:#FFD700;border:1px solid rgba(255,215,0,.4);padding:4px 10px;
+    border-radius:15px;cursor:pointer;font-size:.75rem;font-weight:700;white-space:nowrap;">
+    🧭 Hub
+  </button>
   <button onclick="openAnnouncePage()" id="parent-announce-btn"
     style="display:none;background:rgba(255,255,255,.15);color:#fff;border:none;padding:4px 10px;
     border-radius:15px;cursor:pointer;font-size:.75rem;font-weight:600;position:relative;">
@@ -1255,6 +1260,14 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
 </div>
 
 <!-- ATTENDANCE PAGE -->
+<div id="digital-hub-page" style="display:none;position:fixed;inset:0;background:#0b1736;z-index:9990;">
+  <div style="background:#000080;color:#FFD700;padding:0 20px;height:56px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.3);">
+    <button onclick="closeDigitalHubPage()" style="background:rgba(255,255,255,.15);color:#fff;border:none;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:.82rem;">← Back</button>
+    <span style="font-weight:800;font-size:1rem;flex:1;">🧭 SEG Digital Hub</span>
+  </div>
+  <iframe id="digital-hub-frame" src="" style="border:none;width:100%;height:calc(100% - 56px);display:block;"></iframe>
+</div>
+
 <div id="attend-page" style="display:none;position:fixed;inset:0;background:#f0f2f5;z-index:9990;overflow-y:auto;">
   <div style="background:#000080;color:#FFD700;padding:0 20px;height:56px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.3);">
     <button onclick="closeAttendPage()" style="background:rgba(255,255,255,.15);color:#fff;border:none;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:.82rem;">← Back</button>
@@ -7520,6 +7533,20 @@ async function deleteStudentPost(id){
 var attendData = {}; // {studentId: status}
 var attendStudents = [];
 var attendDocId = null;
+
+var digitalHubLoaded = false;
+function openDigitalHubPage(){
+  document.getElementById("digital-hub-page").style.display = "block";
+  // Lazy-load: only fetch digital-hub.html the first time it's opened,
+  // not on every Portal page load, since it's a separate ~400KB app.
+  if (!digitalHubLoaded) {
+    document.getElementById("digital-hub-frame").src = "digital-hub.html";
+    digitalHubLoaded = true;
+  }
+}
+function closeDigitalHubPage(){
+  document.getElementById("digital-hub-page").style.display = "none";
+}
 
 function openAttendPage(){
   document.getElementById("attend-page").style.display = "block";

@@ -998,6 +998,17 @@
             return 'tech';
         }
 
+        // Default title shows a 1-12 number local to its own category
+        // (e.g. "Health 1"..."Health 12") instead of the confusing global
+        // slot number (13..24), until the admin renames it to something
+        // real in the edit modal.
+        function defaultTitleFor(i) {
+            const cat = defaultCategoryFor(i);
+            const label = cat === 'english' ? 'English' : cat === 'health' ? 'Health' : 'Technology';
+            const localNum = ((i - 1) % 12) + 1;
+            return `${label} ${localNum}`;
+        }
+
         const defaultMarqueeImages = [
             "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&q=80",
             "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&q=80",
@@ -1236,7 +1247,7 @@
 
                 for (let i = 1; i <= TOTAL_SYSTEMS; i++) {
                     if (!systemsData[i]) {
-                        systemsData[i] = { title: `System ${i}`, category: defaultCategoryFor(i), desc: '', icon: '', slides: [], video: '', type: 'url', content: '' };
+                        systemsData[i] = { title: defaultTitleFor(i), category: defaultCategoryFor(i), desc: '', icon: '', slides: [], video: '', type: 'url', content: '' };
                     }
                 }
                 renderGrid();
@@ -1245,7 +1256,7 @@
                 systemsData = defaultInitialData;
                 for (let i = 1; i <= TOTAL_SYSTEMS; i++) {
                     if (!systemsData[i]) {
-                        systemsData[i] = { title: `System ${i}`, category: defaultCategoryFor(i), desc: '', icon: '', slides: [], video: '', type: 'url', content: '' };
+                        systemsData[i] = { title: defaultTitleFor(i), category: defaultCategoryFor(i), desc: '', icon: '', slides: [], video: '', type: 'url', content: '' };
                     }
                 }
                 renderGrid();
@@ -1360,7 +1371,7 @@
             const searchInput = document.getElementById('searchInput').value.toLowerCase();
 
             for (let i = 1; i <= TOTAL_SYSTEMS; i++) {
-                const sys = systemsData[i] || { title: `System ${i}`, icon: '', category: defaultCategoryFor(i) };
+                const sys = systemsData[i] || { title: defaultTitleFor(i), icon: '', category: defaultCategoryFor(i) };
                 sys._id = i;
                 const iconSrc = sys.icon ? sys.icon : defaultIcon;
 
@@ -1508,7 +1519,7 @@
             const sys = systemsData[id] || {};
 
             document.getElementById('modalTitle').innerText = t('modalTitleEdit')(id);
-            document.getElementById('systemTitleInput').value = sys.title || `System ${id}`;
+            document.getElementById('systemTitleInput').value = sys.title || defaultTitleFor(id);
             document.getElementById('systemCategoryInput').value = sys.category || defaultCategoryFor(id);
             document.getElementById('systemDescInput').value = sys.desc || '';
             document.getElementById('urlInput').value = sys.type === 'url' ? sys.content : '';

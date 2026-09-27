@@ -294,10 +294,28 @@
             transition: transform 0.15s, border-color 0.15s, background 0.15s;
             text-align: center;
         }
-        .app-practice-card:hover {
-            transform: translateY(-3px);
-            border-color: #FFD700;
-            background: #1c2a5e;
+        @media (hover: hover) {
+            .app-practice-card:hover {
+                transform: translateY(-3px);
+                border-color: #FFD700;
+                background: #1c2a5e;
+            }
+        }
+        .app-practice-card:focus-visible { outline: 2px solid #FFD700; outline-offset: 2px; }
+        .app-practice-card[aria-pressed="true"] {
+            border: 2px solid #FFD700;
+            background: #243470;
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, .15);
+        }
+        .app-practice-card[aria-pressed="true"] .app-practice-label { color: #FFD700; }
+        #appPracticesTitle, #appPracticesPick { white-space: nowrap; }
+        #appPracticesPick { font-weight: 700; }
+        #levelFilterBar, #systemGrid { scroll-margin-top: 12px; }
+        @media (max-width: 600px) {
+            .app-practices-body .app-practices-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 8px; }
+            .app-practice-card { padding: 10px 6px; gap: 4px; }
+            .app-practice-icon { font-size: 1.4rem; }
+            .app-practice-label { font-size: 0.7rem; }
         }
         .app-practice-icon {
             font-size: 1.8rem;
@@ -1026,7 +1044,7 @@
                 <button class="filter-btn" id="filterHealthBtnUI" onclick="filterCategory('health', this)">Health</button>
                 <button class="filter-btn" id="filterTechBtnUI" onclick="filterCategory('tech', this)">Technology</button>
                 <button class="filter-btn" id="filterOnlineBtnUI" onclick="filterCategory('online', this)">Online Class</button>
-                <button type="button" class="filter-btn app-practices-toggle" id="appPracticesToggle" aria-expanded="false" aria-controls="appPracticesBody" onclick="toggleAppPractices()"><span id="appPracticesTitle">App Practices</span> <span class="app-practices-chevron" aria-hidden="true">▾</span></button>
+                <button type="button" class="filter-btn app-practices-toggle" id="appPracticesToggle" aria-expanded="false" aria-controls="appPracticesBody" onclick="toggleAppPractices()"><span id="appPracticesTitle">App Practices</span><span id="appPracticesPick"></span> <span class="app-practices-chevron" aria-hidden="true">▾</span></button>
                 <button type="button" class="filter-btn app-practices-toggle" id="speakRoomToggle" aria-expanded="false" aria-controls="speakRoomBody" onclick="toggleSpeakRoom()"><span id="speakRoomTitle">Speak Room</span> <span class="app-practices-chevron" aria-hidden="true">▾</span></button>
                 <button class="manage-students-btn admin-only" onclick="openManageStudents()">👥 Manage Students & Access</button>
                 <button class="manage-students-btn admin-only" onclick="downloadBackup()" title="Download all Hub data as a JSON file">💾 Backup Data</button>
@@ -1036,41 +1054,41 @@
             </div>
             <div class="app-practices-body app-practices-box" id="appPracticesBody" hidden>
             <div class="app-practices-grid">
-                <button class="app-practice-card" onclick="filterCategory('pronunciation', null)">
+                <button class="app-practice-card" data-cat="pronunciation" aria-pressed="false" onclick="filterCategory('pronunciation', null)">
                     <span class="app-practice-icon">🗣️</span>
                     <span class="app-practice-label" id="apLabelPronunciation">Focus: Pronunciation & Speaking</span>
                 </button>
-                <button class="app-practice-card" onclick="filterCategory('listening', null)">
+                <button class="app-practice-card" data-cat="listening" aria-pressed="false" onclick="filterCategory('listening', null)">
                     <span class="app-practice-icon">🎧</span>
                     <span class="app-practice-label" id="apLabelListening">Focus: Listening & Comprehension</span>
                 </button>
-                <button class="app-practice-card" onclick="filterCategory('games', null)">
+                <button class="app-practice-card" data-cat="games" aria-pressed="false" onclick="filterCategory('games', null)">
                     <span class="app-practice-icon">🎮</span>
                     <span class="app-practice-label" id="apLabelGames">Interactive English Games & Practice</span>
                 </button>
-                <button class="app-practice-card" onclick="filterCategory('reading', null)">
+                <button class="app-practice-card" data-cat="reading" aria-pressed="false" onclick="filterCategory('reading', null)">
                     <span class="app-practice-icon">📖</span>
                     <span class="app-practice-label" id="apLabelReading">Reading & Interactive Exercises</span>
                 </button>
-                <button class="app-practice-card" onclick="toggleRPSDSubmenu()">
+                <button class="app-practice-card" data-cat-group="roleplay publicspeaking debate" aria-pressed="false" onclick="toggleRPSDSubmenu()">
                     <span class="app-practice-icon">🎭</span>
                     <span class="app-practice-label" id="apLabelRoleplay">Roleplay / Public Speaking / Debate</span>
                 </button>
-                <button class="app-practice-card" onclick="filterCategory('weeklytest', null)">
+                <button class="app-practice-card" data-cat="weeklytest" aria-pressed="false" onclick="filterCategory('weeklytest', null)">
                     <span class="app-practice-icon">📝</span>
                     <span class="app-practice-label" id="apLabelWeeklyTest">Weekly Mini-Test</span>
                 </button>
             </div>
             <div class="app-practices-submenu" id="rpsd-submenu" style="display:none;">
-                <button class="app-practice-subcard" onclick="filterCategory('roleplay', null)">
+                <button class="app-practice-subcard" data-cat="roleplay" aria-pressed="false" onclick="filterCategory('roleplay', null)">
                     <span class="app-practice-icon">🎭</span>
                     <span class="app-practice-label" id="apLabelRoleplayOnly">Roleplay</span>
                 </button>
-                <button class="app-practice-subcard" onclick="filterCategory('publicspeaking', null)">
+                <button class="app-practice-subcard" data-cat="publicspeaking" aria-pressed="false" onclick="filterCategory('publicspeaking', null)">
                     <span class="app-practice-icon">🎤</span>
                     <span class="app-practice-label" id="apLabelPublicSpeaking">Public Speaking</span>
                 </button>
-                <button class="app-practice-subcard" onclick="filterCategory('debate', null)">
+                <button class="app-practice-subcard" data-cat="debate" aria-pressed="false" onclick="filterCategory('debate', null)">
                     <span class="app-practice-icon">⚖️</span>
                     <span class="app-practice-label" id="apLabelDebate">Debate</span>
                 </button>
@@ -2032,6 +2050,7 @@
             document.getElementById('catDebateOption').textContent = '⚖️ ' + t('filterDebate');
             document.getElementById('catWeeklyTestOption').textContent = '📝 ' + t('filterWeeklyTest');
             document.getElementById('appPracticesTitle').textContent = t('appPracticesTitle');
+            if (typeof updatePracticePick === 'function') updatePracticePick();
             { const el = document.getElementById('speakRoomTitle'); if (el) el.textContent = t('speakRoomTitle'); }
             document.getElementById('apLabelPronunciation').textContent = t('apLabelPronunciation');
             document.getElementById('apLabelListening').textContent = t('apLabelListening');
@@ -2370,8 +2389,29 @@
             if (button) closeAppPractices();
             renderLevelBar(category);
             filterGrid();
-            const grid = document.getElementById('systemGrid');
-            if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            markPracticePick(button ? null : category);
+            if (!button) setPanel('appPracticesToggle', 'appPracticesBody', false);
+            const levelBar = document.getElementById('levelFilterBar');
+            const target = (levelBar && levelBar.style.display !== 'none') ? levelBar : document.getElementById('systemGrid');
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        // Highlights the chosen App Practice and shows its name on the App Practices button
+        let practicePick = null;
+        function markPracticePick(category) {
+            practicePick = category;
+            document.querySelectorAll('#appPracticesBody [data-cat], #appPracticesBody [data-cat-group]').forEach(b => {
+                const on = !!category && (b.dataset.cat === category || (b.dataset.catGroup || '').split(' ').includes(category));
+                b.setAttribute('aria-pressed', on ? 'true' : 'false');
+            });
+            const toggle = document.getElementById('appPracticesToggle');
+            if (toggle) toggle.classList.toggle('active', !!category);
+            updatePracticePick();
+        }
+        const PRACTICE_SHORT = { pronunciation:'Pronunciation', listening:'Listening', games:'Games', reading:'Reading',
+            roleplay:'Roleplay', publicspeaking:'Public Speaking', debate:'Debate', weeklytest:'Mini-Test' };
+        function updatePracticePick() {
+            const out = document.getElementById('appPracticesPick'); if (!out) return;
+            out.textContent = practicePick && PRACTICE_SHORT[practicePick] ? ' · ' + PRACTICE_SHORT[practicePick] : '';
         }
         function setPanel(btnId, bodyId, open) {
             const btn = document.getElementById(btnId);

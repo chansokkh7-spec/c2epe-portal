@@ -578,6 +578,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
         <button onclick="closeToolsMenu();openExamContentPage()" class="tools-item">🎓 <span>Manage Exam Content</span></button>
         <button onclick="closeToolsMenu();openTestLibraryPage()" class="tools-item">📚 <span>Test Library</span></button>
         <button onclick="closeToolsMenu();openExamGradingPage()" class="tools-item">🖋️ <span>Grade Writing &amp; Speaking</span></button>
+        <button onclick="closeToolsMenu();openExamSchedulePage()" class="tools-item">🗓️ <span>Exam Schedule (open/close)</span></button>
         <button onclick="closeToolsMenu();openProctorCodesPage()" class="tools-item">🔒 <span>Proctor Codes</span></button>
         <button onclick="closeToolsMenu();openReportPage()" class="tools-item">📊 <span>Report Cards</span></button>
 
@@ -2578,6 +2579,22 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
   </div>
 </div>
 
+<!-- EXAM SCHEDULE (teacher/admin): decide when students can take each exam -->
+<div id="exam-schedule-page" style="display:none;position:fixed;inset:0;background:#f0f2f5;z-index:9990;overflow-y:auto;">
+  <div style="background:#5e35b1;color:#fff;padding:0 20px;height:56px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.3);">
+    <button onclick="closeExamSchedulePage()" style="background:rgba(255,255,255,.15);color:#fff;border:none;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:.82rem;">← Back</button>
+    <span style="font-weight:800;font-size:1rem;flex:1;">🗓️ Exam Schedule</span>
+  </div>
+  <div style="max-width:560px;margin:0 auto;padding:20px 14px 40px;">
+    <div style="background:#ede7f6;border:1px solid #b39ddb;border-radius:8px;padding:12px 14px;font-size:.8rem;color:#4527a0;line-height:1.6;margin-bottom:16px;">
+      Students can only start an exam when you open it here. Choose <b>Closed</b>, <b>Open now</b>, or <b>Open between two dates</b> (it opens and closes by itself), and which classes it is for. The Final Exam still needs a Proctor Code in the exam room.
+    </div>
+    <div id="exam-schedule-cards"></div>
+    <button onclick="saveExamSchedule()" id="exam-schedule-save" style="width:100%;padding:12px;background:#5e35b1;color:#fff;border:none;border-radius:10px;font-weight:800;font-size:.95rem;cursor:pointer;">💾 Save Exam Schedule</button>
+    <div id="exam-schedule-msg" style="display:none;margin-top:10px;font-size:.82rem;padding:8px 12px;border-radius:7px;"></div>
+  </div>
+</div>
+
 <!-- 4-SKILLS EXAM: Proctor Codes (teacher/admin — Final Exam supervision) -->
 <div id="proctor-codes-page" style="display:none;position:fixed;inset:0;background:#f0f2f5;z-index:9990;overflow-y:auto;">
   <div style="background:#c62828;color:#fff;padding:0 20px;height:56px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.3);">
@@ -4030,6 +4047,7 @@ var currentAdminDeptHead = null; // "finance" | "hr" | "admissions" | null — n
 
 function setTeacherUI(){
   isTeacher = true;
+  if(typeof hideStudentDashboard === 'function') hideStudentDashboard();
   const isAdmin = currentUser && currentUser.email === ADMIN_EMAIL;
   // HR's whole purpose is Teacher Management, which lives inside the
   // Admin Dashboard — this button was only ever shown to the actual
@@ -4095,6 +4113,7 @@ function setParentUI(){
   var infoMenu = document.getElementById('parent-info-menu');
   if(infoMenu) infoMenu.style.display = studentSession ? 'flex' : 'none';
   updateAnnounceBadge();
+  if(studentSession) showStudentDashboard(); else hideStudentDashboard();
 }
 
 function showRoleSelectModal(){
@@ -5921,9 +5940,10 @@ function updateParentBanner(){
   if(isTeacher) return;
   var banner = document.getElementById('role-banner');
   if(studentSession){
-    banner.innerHTML = '👨‍👩‍👧 Viewing for <strong style="color:#1565c0;">'+studentSession.name+'</strong> ('+studentSession.cls+') &nbsp;|&nbsp; <a href="#" onclick="openStudentSharePage()" style="color:#8e24aa;font-weight:700;">📸 Share My Work</a> &nbsp;|&nbsp; <a href="#" onclick="openExamPortalPage()" style="color:#5e35b1;font-weight:700;">🎓 Examination Portal</a> &nbsp;|&nbsp; <a href="#" onclick="openMyTestsPage()" style="color:#00695c;font-weight:700;">📚 My Tests</a> &nbsp;|&nbsp; <a href="#" id="parent-notif-link" onclick="requestNotificationPermission()" style="color:#c65a00;font-weight:700;">🔔 Turn On Notifications</a> &nbsp;|&nbsp; <a href="#" onclick="showParentModal()" style="color:#388e3c;font-weight:700;">Switch child</a> &nbsp;|&nbsp; <a href="#" onclick="logoutStudentSession()" style="color:#e53935;font-weight:700;">Log out</a> &nbsp;|&nbsp; <a href="#" onclick="showAuthModal()" style="color:#1565c0;font-weight:700;">Teacher? Sign in →</a>';
+    banner.innerHTML = '👨‍👩‍👧 Viewing for <strong style="color:#1565c0;">'+studentSession.name+'</strong> ('+studentSession.cls+') &nbsp;|&nbsp; <a href="#" onclick="openStudentSharePage()" style="color:#8e24aa;font-weight:700;">📸 Share My Work</a> &nbsp;|&nbsp; <a href="#" onclick="openExamPortalPage()" style="color:#5e35b1;font-weight:700;">🎓 Examination Portal<span id="exam-link-status"></span></a> &nbsp;|&nbsp; <a href="#" onclick="openMyTestsPage()" style="color:#00695c;font-weight:700;">📚 My Tests</a> &nbsp;|&nbsp; <a href="#" id="parent-notif-link" onclick="requestNotificationPermission()" style="color:#c65a00;font-weight:700;">🔔 Turn On Notifications</a> &nbsp;|&nbsp; <a href="#" onclick="showParentModal()" style="color:#388e3c;font-weight:700;">Switch child</a> &nbsp;|&nbsp; <a href="#" onclick="logoutStudentSession()" style="color:#e53935;font-weight:700;">Log out</a>';
     banner.style.cssText = 'padding:5px 16px;text-align:center;font-size:.8rem;font-weight:600;background:#e8f5e9;border-bottom:2px solid #4caf50;color:#2e7d32;';
     checkFeeDueSoonAlert();
+    refreshExamLinkStatus();
   } else {
     banner.innerHTML = '<a href="#" onclick="openEnrollApplyPage()" style="color:#c65a00;font-weight:700;">📝 New Family? Apply for Enrollment →</a> &nbsp;|&nbsp; <a href="#" onclick="showAuthModal()" style="color:#1565c0;font-weight:700;">Teacher? Sign in →</a>';
     banner.style.cssText = 'padding:5px 16px;text-align:center;font-size:.8rem;font-weight:600;background:#fff3e0;border-bottom:2px solid #FFA726;color:#e65100;';
@@ -11196,7 +11216,144 @@ async function openExamPortalPage(){
     "<div><strong>"+escapeHtml(studentSession.name)+"</strong> — Class: "+escapeHtml(studentSession.cls)+"</div>"
     + "<div style='margin-top:3px;color:#888;'>Exam level: <strong>"+examLevel+"</strong> (Content tier: "+tier.label+")</div>";
   document.getElementById("exam-setup-msg").style.display = "none";
+  await applyExamScheduleToSetup();
 }
+
+// ══════════════════ EXAM SCHEDULE ══════════════════
+// Teachers decide when each exam can be taken (settings/examSchedule):
+//   mode "closed" | "open" | "window" (from–until), and which classes ([] = all classes).
+var examSchedule = null;
+function defaultExamSchedule(){ var o={}; EXAM_TERMS.forEach(function(t){ o[t.id]={mode:"closed",from:"",until:"",classes:[]}; }); return o; }
+async function loadExamSchedule(force){
+  if(examSchedule && !force) return examSchedule;
+  var sched = defaultExamSchedule();
+  try {
+    if(window.location.protocol === "file:" || !window._fb){
+      var saved = JSON.parse(localStorage.getItem("c2epe_exam_schedule")||"null");
+      if(saved) sched = Object.assign(sched, saved);
+    } else {
+      var {db, doc, getDoc} = window._fb;
+      var snap = await getDoc(doc(db,"settings","examSchedule"));
+      if(snap.exists()) sched = Object.assign(sched, snap.data());
+    }
+  } catch(e){ console.error("loadExamSchedule error:", e); }
+  examSchedule = sched;
+  return sched;
+}
+function fmtExamDate(v){ try { return new Date(v).toLocaleString([], {day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}); } catch(e){ return v; } }
+// Is this exam open for this class right now?
+function examTermStatus(termId, cls){
+  var w = (examSchedule||{})[termId] || {mode:"closed"};
+  var classes = w.classes || [];
+  if(classes.length && cls && classes.indexOf(baseLevel(cls)) < 0) return {open:false, text:"not for your class"};
+  var now = Date.now();
+  if(w.mode === "open") return {open:true, text:"open now"};
+  if(w.mode === "window" && w.from && w.until){
+    var f = new Date(w.from).getTime(), u = new Date(w.until).getTime();
+    if(now < f) return {open:false, text:"opens "+fmtExamDate(w.from)};
+    if(now > u) return {open:false, text:"closed"};
+    return {open:true, text:"open until "+fmtExamDate(w.until)};
+  }
+  return {open:false, text:"closed"};
+}
+async function refreshExamLinkStatus(){
+  var el = document.getElementById("exam-link-status");
+  if(!el || !studentSession) return;
+  await loadExamSchedule(true);
+  var anyOpen = EXAM_TERMS.some(function(t){ return examTermStatus(t.id, studentSession.cls).open; });
+  el.textContent = anyOpen ? " 🟢 Open" : " 🔒";
+}
+// Student side: only open exams can be chosen
+async function applyExamScheduleToSetup(){
+  await loadExamSchedule(true);
+  var sel = document.getElementById("exam-term-sel");
+  var firstOpen = null;
+  Array.prototype.forEach.call(sel.options, function(opt){
+    if(!opt.dataset.label) opt.dataset.label = opt.textContent;
+    var st = examTermStatus(opt.value, studentSession && studentSession.cls);
+    opt.disabled = !st.open;
+    opt.textContent = (st.open ? "🟢 " : "🔒 ") + opt.dataset.label + " — " + st.text;
+    if(st.open && !firstOpen) firstOpen = opt.value;
+  });
+  var startBtn = document.getElementById("exam-start-btn");
+  var msg = document.getElementById("exam-setup-msg");
+  if(firstOpen){
+    sel.value = firstOpen;
+    if(typeof onExamTermChange === "function") onExamTermChange();
+    if(startBtn) startBtn.disabled = false;
+  } else {
+    if(startBtn) startBtn.disabled = true;
+    msg.style.cssText = "display:block;background:#ede7f6;color:#4527a0;font-size:.82rem;margin-bottom:10px;padding:10px 12px;border-radius:7px;";
+    msg.textContent = "🔒 No exam is open for your class right now. Your teacher will open it on exam day.";
+  }
+}
+// Teacher side
+async function openExamSchedulePage(){
+  if(!isTeacher){ alert("The Exam Schedule is only available to teachers/admin."); return; }
+  document.getElementById("exam-schedule-page").style.display = "block";
+  document.getElementById("exam-schedule-msg").style.display = "none";
+  await loadExamSchedule(true);
+  renderExamScheduleCards();
+}
+function closeExamSchedulePage(){ document.getElementById("exam-schedule-page").style.display = "none"; }
+function examClassOptions(){
+  var out = [];
+  Array.prototype.forEach.call(document.querySelectorAll("#stu-class option"), function(o){ if(o.value && out.indexOf(o.value)<0) out.push(o.value); });
+  return out;
+}
+function renderExamScheduleCards(){
+  var classes = examClassOptions();
+  document.getElementById("exam-schedule-cards").innerHTML = EXAM_TERMS.map(function(t){
+    var w = examSchedule[t.id] || {mode:"closed",classes:[]};
+    var st = examTermStatus(t.id, null);
+    var chosen = w.classes || [];
+    return "<div style='background:#fff;border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:16px;margin-bottom:14px;'>"
+      + "<div style='display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px;'><strong style='font-size:.95rem;color:#1a1a2e;'>"+t.label+" <span style='font-weight:400;color:#888;font-size:.78rem;'>("+t.minutes+" min"+(t.homeAllowed?"":" · Proctor Code")+")</span></strong>"
+      + "<span style='font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:999px;"+(st.open?"background:#e8f5e9;color:#2e7d32;":"background:#f5f5f5;color:#777;")+"'>"+(st.open?"🟢 ":"🔒 ")+st.text+"</span></div>"
+      + "<select id='es-mode-"+t.id+"' onchange='onExamModeChange(\""+t.id+"\")' style='width:100%;padding:9px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;margin-bottom:8px;font-family:inherit;'>"
+      + "<option value='closed'"+(w.mode==="closed"?" selected":"")+">🔒 Closed</option>"
+      + "<option value='open'"+(w.mode==="open"?" selected":"")+">🟢 Open now (until I close it)</option>"
+      + "<option value='window'"+(w.mode==="window"?" selected":"")+">🗓️ Open between two dates</option></select>"
+      + "<div id='es-dates-"+t.id+"' style='display:"+(w.mode==="window"?"grid":"none")+";grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:8px;'>"
+      + "<label style='font-size:.72rem;color:#555;min-width:0;display:block;'>Opens<input type='datetime-local' id='es-from-"+t.id+"' value='"+(w.from||"")+"' style='width:100%;box-sizing:border-box;padding:7px 4px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.78rem;'></label>"
+      + "<label style='font-size:.72rem;color:#555;min-width:0;display:block;'>Closes<input type='datetime-local' id='es-until-"+t.id+"' value='"+(w.until||"")+"' style='width:100%;box-sizing:border-box;padding:7px 4px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.78rem;'></label></div>"
+      + "<details style='font-size:.8rem;'><summary style='cursor:pointer;color:#5e35b1;font-weight:600;'>Classes: "+(chosen.length?chosen.join(", "):"All classes")+"</summary>"
+      + "<div style='display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;'>"
+      + classes.map(function(c){ return "<label style='display:inline-flex;align-items:center;gap:4px;background:#f5f5f5;border-radius:6px;padding:3px 8px;'><input type='checkbox' class='es-cls-"+t.id+"' value='"+escapeHtml(c)+"'"+(chosen.indexOf(c)>=0?" checked":"")+">"+escapeHtml(c)+"</label>"; }).join("")
+      + "</div><div style='color:#999;font-size:.72rem;margin-top:6px;'>Tick none = all classes.</div></details></div>";
+  }).join("");
+}
+function onExamModeChange(id){ document.getElementById("es-dates-"+id).style.display = document.getElementById("es-mode-"+id).value==="window" ? "grid" : "none"; }
+async function saveExamSchedule(){
+  var msg = document.getElementById("exam-schedule-msg");
+  var data = {};
+  for(var i=0;i<EXAM_TERMS.length;i++){
+    var t = EXAM_TERMS[i];
+    var mode = document.getElementById("es-mode-"+t.id).value;
+    var from = document.getElementById("es-from-"+t.id).value, until = document.getElementById("es-until-"+t.id).value;
+    if(mode==="window" && (!from || !until || new Date(until) <= new Date(from))){
+      msg.style.cssText = "display:block;margin-top:10px;font-size:.82rem;padding:8px 12px;border-radius:7px;background:#ffebee;color:#c62828;";
+      msg.textContent = "⚠️ "+t.label+": please choose an opening time and a later closing time."; return;
+    }
+    data[t.id] = { mode:mode, from:from, until:until,
+      classes: Array.prototype.map.call(document.querySelectorAll(".es-cls-"+t.id+":checked"), function(c){ return c.value; }) };
+  }
+  data.updatedBy = currentTeacherName || ""; data.updatedAt = new Date().toISOString();
+  var btn = document.getElementById("exam-schedule-save"); btn.disabled = true;
+  try {
+    if(window.location.protocol === "file:" || !window._fb){ localStorage.setItem("c2epe_exam_schedule", JSON.stringify(data)); }
+    else { var {db, doc, setDoc} = window._fb; await setDoc(doc(db,"settings","examSchedule"), data); }
+    examSchedule = Object.assign(defaultExamSchedule(), data);
+    renderExamScheduleCards();
+    msg.style.cssText = "display:block;margin-top:10px;font-size:.82rem;padding:8px 12px;border-radius:7px;background:#e8f5e9;color:#2e7d32;";
+    msg.textContent = "✅ Saved. Students see the change the next time they open the Examination Portal.";
+  } catch(e){
+    console.error("saveExamSchedule error:", e);
+    msg.style.cssText = "display:block;margin-top:10px;font-size:.82rem;padding:8px 12px;border-radius:7px;background:#ffebee;color:#c62828;";
+    msg.textContent = "❌ Could not save: " + (e && e.message ? e.message : e);
+  } finally { btn.disabled = false; }
+}
+
 function closeExamPortalPage(){
   document.getElementById("exam-portal-page").style.display = "none";
   stopExamTimer();
@@ -11207,6 +11364,15 @@ async function beginExam(){
   var term = document.getElementById("exam-term-sel").value;
   var termInfo = EXAM_TERMS.find(function(t){ return t.id===term; });
   var msg = document.getElementById("exam-setup-msg");
+  // check the teacher's schedule again at the moment of starting
+  await loadExamSchedule(true);
+  var stNow = examTermStatus(term, studentSession && studentSession.cls);
+  if(!stNow.open){
+    msg.style.cssText = "display:block;background:#ede7f6;color:#4527a0;font-size:.8rem;margin-bottom:10px;padding:8px 12px;border-radius:7px;";
+    msg.textContent = "🔒 This exam is not open right now ("+stNow.text+"). Please wait for your teacher.";
+    applyExamScheduleToSetup();
+    return;
+  }
   examProctorVerified = false;
 
   if(termInfo && !termInfo.homeAllowed){
@@ -14955,5 +15121,240 @@ function aiChatLeaveMessage(prefillText){
   toggleAiChatWidget();
 }
 </script>
+<!-- ═════════ STUDENT / PARENT DASHBOARD — "C2-EPE Passport" (shown after Student ID login) ═════════ -->
+<style>
+#sd{display:none;position:fixed;inset:0;z-index:9000;background:#eef1f7;font-family:inherit;color:#1a1f36;overflow:hidden}
+#sd .sd-top{height:60px;background:#0b1a3b;color:#fff;display:flex;align-items:center;gap:10px;padding:0 14px;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+#sd .sd-brand{display:flex;align-items:center;gap:8px;font-weight:800;letter-spacing:.5px;color:#d6aa4c;font-size:1.05rem;flex:1;min-width:0}
+#sd .sd-brand img{width:38px;height:38px;object-fit:contain}
+#sd .sd-brand small{display:block;font-size:.6rem;letter-spacing:3px;color:#d6aa4c;opacity:.85}
+#sd .sd-icon{background:rgba(255,255,255,.1);border:0;color:#fff;border-radius:50%;width:38px;height:38px;cursor:pointer;font-size:1rem;position:relative;flex-shrink:0}
+#sd .sd-menu-btn{display:none}
+#sd .sd-body{display:flex;height:calc(100% - 60px)}
+#sd .sd-side{width:240px;background:#0b1a3b;color:#cfd6ea;overflow-y:auto;flex-shrink:0;padding:16px 12px 24px}
+#sd .sd-side h4{color:#d6aa4c;font-size:.72rem;letter-spacing:1.5px;margin:14px 8px 8px}
+#sd .sd-side button{display:flex;align-items:center;gap:12px;width:100%;background:none;border:0;color:#e6eaf5;padding:10px 12px;border-radius:10px;cursor:pointer;font-size:.9rem;text-align:left;font-family:inherit}
+#sd .sd-side button:hover{background:rgba(255,255,255,.07)}
+#sd .sd-side button.on{background:#1b2c55;color:#d6aa4c;border-left:3px solid #d6aa4c}
+#sd .sd-ring{margin:18px 6px 0;border:1px solid #233a6b;border-radius:14px;padding:14px;text-align:center;font-size:.75rem;letter-spacing:1px}
+#sd .sd-main{flex:1;overflow-y:auto;padding:18px}
+#sd .sd-wrap{max-width:960px;margin:0 auto}
+#sd .sd-card{background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(16,30,70,.08);padding:18px;margin-bottom:16px}
+#sd .sd-hero{background:linear-gradient(135deg,#0b1a3b,#14295a);color:#fff;border-radius:18px;padding:22px;display:flex;align-items:center;gap:18px;margin-bottom:16px;position:relative;overflow:hidden}
+#sd .sd-hero img{width:86px;height:86px;object-fit:contain;flex-shrink:0}
+#sd .sd-hero h2{margin:0;color:#d6aa4c;font-size:1.5rem;letter-spacing:1px}
+#sd .sd-hero p{margin:4px 0 0;color:#d5dcef;font-size:.9rem}
+#sd .sd-today{margin-left:auto;background:rgba(255,255,255,.07);border:1px solid rgba(214,170,76,.35);border-radius:12px;padding:10px 14px;font-size:.78rem;white-space:nowrap}
+#sd .sd-today b{display:block;color:#d6aa4c;font-size:.95rem}
+#sd .sd-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+#sd .sd-info div{background:#f6f8fc;border:1px solid #e6eaf3;border-radius:10px;padding:10px 12px}
+#sd .sd-info span{display:block;font-size:.7rem;color:#7a84a0;margin-bottom:3px}
+#sd .sd-info b{font-size:.95rem}
+#sd .sd-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+#sd .sd-stat{background:#fff;border-radius:14px;box-shadow:0 2px 12px rgba(16,30,70,.08);padding:14px;cursor:pointer;border:0;text-align:left;font-family:inherit}
+#sd .sd-stat .ic{font-size:1.4rem}
+#sd .sd-stat b{display:block;font-size:1.25rem;margin-top:4px}
+#sd .sd-stat span{font-size:.75rem;color:#7a84a0}
+#sd .sd-row{display:grid;grid-template-columns:52px 1fr 1.4fr 120px;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid #eef1f6}
+#sd .sd-row:last-child{border-bottom:0}
+#sd .sd-badge{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+#sd .sd-bar{height:10px;background:#eef1f6;border-radius:6px;overflow:hidden;position:relative}
+#sd .sd-bar i{display:block;height:100%;border-radius:6px}
+#sd .sd-pct{font-weight:800;font-size:.85rem;text-align:right;margin-bottom:4px}
+#sd .sd-st{font-size:.82rem;font-weight:700}
+#sd .sd-two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+#sd .sd-check li{list-style:none;margin:8px 0;font-size:.9rem}
+#sd .sd-check{padding:0;margin:0}
+#sd .sd-rank{display:flex;align-items:center;gap:16px;justify-content:center}
+#sd .sd-rank .tr{font-size:3.4rem}
+#sd .sd-rank b{display:block;font-size:1.5rem;color:#b8862b}
+#sd .sd-cert{border:1.5px solid #e2c27a;background:#fffaf0;border-radius:16px;padding:18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+#sd .sd-cert .md{font-size:2.6rem}
+#sd .sd-btn{background:#0b1a3b;color:#fff;border:0;border-radius:10px;padding:11px 18px;font-weight:800;cursor:pointer;font-family:inherit}
+#sd .sd-muted{color:#7a84a0;font-size:.82rem}
+#sd .sd-h{font-size:.78rem;font-weight:800;letter-spacing:1px;color:#0b1a3b;margin:0 0 10px}
+#sd-news-btn{display:none;position:fixed;left:14px;bottom:18px;z-index:8999;background:#0b1a3b;color:#d6aa4c;border:1px solid #d6aa4c;border-radius:999px;padding:10px 16px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);font-family:inherit}
+@media (max-width:860px){
+  #sd .sd-menu-btn{display:inline-block}
+  #sd .sd-side{position:fixed;top:60px;bottom:0;left:0;z-index:2;transform:translateX(-105%);transition:transform .2s;box-shadow:4px 0 20px rgba(0,0,0,.35)}
+  #sd.menu-open .sd-side{transform:none}
+  #sd .sd-main{padding:12px}
+  #sd .sd-hero{padding:16px;gap:12px;flex-wrap:wrap}
+  #sd .sd-hero img{width:58px;height:58px}
+  #sd .sd-hero h2{font-size:1.15rem}
+  #sd .sd-today{margin-left:0}
+  #sd .sd-row{grid-template-columns:44px 1fr;gap:6px 12px}
+  #sd .sd-row .sd-barwrap,#sd .sd-row .sd-st{grid-column:2}
+  #sd .sd-badge{width:42px;height:42px}
+  #sd .sd-two{grid-template-columns:1fr}
+}
+</style>
+<div id="sd" aria-label="My Dashboard">
+  <div class="sd-top">
+    <button class="sd-icon sd-menu-btn" onclick="document.getElementById('sd').classList.toggle('menu-open')" aria-label="Menu">☰</button>
+    <div class="sd-brand"><img src="logo.png" alt="" onerror="this.style.display='none'"><div>C2-EPE<small>ACADEMY</small></div></div>
+    <button class="sd-icon" onclick="sdGo(openAnnouncePage)" title="Announcements">🔔</button>
+    <button class="sd-icon" onclick="sdGo(openMsgPage)" title="Messages">💬<span id="sd-msg-dot" style="display:none;position:absolute;top:2px;right:2px;width:9px;height:9px;background:#e53935;border-radius:50%"></span></button>
+  </div>
+  <div class="sd-body">
+    <nav class="sd-side">
+      <h4>MAIN MENU</h4>
+      <button class="on" onclick="sdShowDashboard()">🏠 Dashboard</button>
+      <button onclick="sdGo(openHwPage)">📝 Homework</button>
+      <button onclick="sdGo(openExamPortalPage)">🎓 Examination Portal</button>
+      <button onclick="sdGo(openMyTestsPage)">📚 My Tests</button>
+      <button onclick="sdGo(openQuizPage)">✏️ Quiz &amp; Exams</button>
+      <button onclick="sdGo(openReportPage)">📊 Report Cards</button>
+      <button onclick="sdGo(openAttendPage)">📋 Attendance</button>
+      <button onclick="sdGo(openFeePage)">💰 Fee Payment</button>
+      <button onclick="sdGo(openMsgPage)">💬 Messages</button>
+      <button onclick="sdGo(openAnnouncePage)">📢 Announcements</button>
+      <button onclick="sdGo(openStudentSharePage)">📸 Share My Work</button>
+      <button onclick="sdOpenNews()">📰 School News</button>
+      <h4>ACCOUNT</h4>
+      <button onclick="sdGo(requestNotificationPermission)">🔔 Notifications</button>
+      <button onclick="sdGo(showParentModal)">🔄 Switch child</button>
+      <button onclick="sdLogout()" style="color:#ff8a80">🚪 Log out</button>
+      <div class="sd-ring">YOUR PROGRESS<div id="sd-ring"></div></div>
+    </nav>
+    <main class="sd-main"><div class="sd-wrap" id="sd-content"></div></main>
+  </div>
+</div>
+<button id="sd-news-btn" onclick="showStudentDashboard()">🎓 My Dashboard</button>
+<script>
+// ── Student / Parent dashboard ("C2-EPE Passport") ─────────────────────────
+// Uses the student's REAL records: latest report card (Core, Grammar, Writing,
+// Language skills), attendance, homework, fees and open exams.
+function sdEsc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function sdGo(fn){ document.getElementById('sd').classList.remove('menu-open'); try { fn(); } catch(e){ console.error(e); } }
+function sdOpenNews(){ document.getElementById('sd').style.display='none'; document.getElementById('sd-news-btn').style.display='block'; document.body.style.overflow=''; }
+function sdLogout(){ if(confirm('Log out?')){ hideStudentDashboard(); logoutStudentSession(); } }
+function hideStudentDashboard(){ var d=document.getElementById('sd'); if(d) d.style.display='none'; var b=document.getElementById('sd-news-btn'); if(b) b.style.display='none'; document.body.style.overflow=''; }
+function showStudentDashboard(){
+  if(!studentSession || (typeof isTeacher!=='undefined' && isTeacher)){ hideStudentDashboard(); return; }
+  document.getElementById('sd').style.display='block';
+  document.getElementById('sd-news-btn').style.display='none';
+  document.body.style.overflow='hidden';
+  sdShowDashboard();
+}
+async function sdQueryClass(name, cls){
+  if(window.location.protocol==='file:' || !window._fb) return null;   // local mode handled by caller
+  var {db, collection, query} = window._fb;
+  var {getDocs, where} = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+  var snap = await getDocs(cls ? query(collection(db,name), where('cls','==',cls)) : collection(db,name));
+  return snap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+}
+async function sdLoadData(){
+  if(!studentSession) return {};
+  var cls = studentSession.cls, out = {report:null, att:null, hwDue:0, feesDue:0, feesTotal:0, examsOpen:0};
+  var local = window.location.protocol==='file:' || !window._fb;
+  try {
+    var reports = local ? JSON.parse(localStorage.getItem('c2epe_reports')||'[]') : await sdQueryClass('reports', cls);
+    reports = (reports||[]).filter(ownsReportOrFee);
+    reports.sort(function(a,b){ return String(b.updatedAt||b.createdAt||'').localeCompare(String(a.updatedAt||a.createdAt||'')); });
+    out.report = reports[0] || null;
+  } catch(e){ console.error('dashboard reports', e); }
+  try {
+    var fees = local ? JSON.parse(localStorage.getItem('c2epe_fees')||'[]') : await sdQueryClass('fees', cls);
+    fees = (fees||[]).filter(ownsReportOrFee);
+    out.feesTotal = fees.length; out.feesDue = fees.filter(function(f){ return f.status!=='paid'; }).length;
+  } catch(e){ console.error('dashboard fees', e); }
+  try {
+    var hw = local ? JSON.parse(localStorage.getItem('c2epe_homework')||'[]').filter(function(h){return h.cls===cls;}) : await sdQueryClass('homework', cls);
+    var today = new Date().toISOString().split('T')[0];
+    out.hwDue = (hw||[]).filter(function(h){ return (h.dueDate||'') >= today; }).length;
+  } catch(e){ console.error('dashboard homework', e); }
+  try {
+    var att = local ? JSON.parse(localStorage.getItem('c2epe_attendance')||'[]').filter(function(a){return a.cls===cls;}) : await sdQueryClass('attendance', cls);
+    var c = {attended:0, absent:0, excused:0};
+    (att||[]).forEach(function(a){
+      var r = (a.records||{})[studentSession.docId]; var st = r && r.status;
+      if(st==='present'||st==='late'||st==='leaveEarly') c.attended++; else if(st==='absent') c.absent++; else if(st==='permission') c.excused++;
+    });
+    var counted = c.attended + c.absent;
+    out.att = counted ? Math.round(c.attended*100/counted) : null; out.attDays = counted; out.absent = c.absent;
+  } catch(e){ console.error('dashboard attendance', e); }
+  try {
+    if(typeof loadExamSchedule==='function'){ await loadExamSchedule(true); out.examsOpen = EXAM_TERMS.filter(function(t){ return examTermStatus(t.id, cls).open; }).length; }
+  } catch(e){ console.error('dashboard exams', e); }
+  return out;
+}
+function sdSkill(icon, bg, name, sub, pct, color){
+  var st = !pct ? ['⏳ Not graded yet','#9aa3b8'] : pct>=60 ? ['✅ Passed','#2e7d32'] : ['⚠️ Needs practice','#c65a00'];
+  return "<div class='sd-row'><div class='sd-badge' style='background:"+bg+";color:#fff'>"+icon+"</div>"
+    + "<div><b>"+name+"</b><div class='sd-muted'>"+sub+"</div></div>"
+    + "<div class='sd-barwrap'><div class='sd-pct' style='color:"+color+"'>"+(pct?Math.round(pct)+"%":"—")+"</div><div class='sd-bar'><i style='width:"+Math.min(100,pct||0)+"%;background:"+color+"'></i></div></div>"
+    + "<div class='sd-st' style='color:"+st[1]+"'>"+st[0]+"</div></div>";
+}
+function sdRing(pct){
+  var p = Math.max(0, Math.min(100, Math.round(pct||0))), r=44, c=2*Math.PI*r;
+  return "<svg viewBox='0 0 110 110' width='120' height='120' style='margin:8px auto 0;display:block'><circle cx='55' cy='55' r='"+r+"' fill='none' stroke='#233a6b' stroke-width='9'/>"
+    + "<circle cx='55' cy='55' r='"+r+"' fill='none' stroke='#d6aa4c' stroke-width='9' stroke-linecap='round' stroke-dasharray='"+(c*p/100)+" "+c+"' transform='rotate(-90 55 55)'/>"
+    + "<text x='55' y='62' text-anchor='middle' font-size='22' font-weight='800' fill='#fff'>"+(pct?p+"%":"—")+"</text></svg>"
+    + "<div style='color:#d6aa4c;font-size:.75rem;margin-top:4px'>"+(pct? (p>=90?"Outstanding!":p>=75?"Great work!":p>=60?"Keep going!":"You can do it!") : "No scores yet")+"</div>";
+}
+async function sdShowDashboard(){
+  document.querySelectorAll('#sd .sd-side button').forEach(function(b,i){ b.classList.toggle('on', i===0); });
+  document.getElementById('sd').classList.remove('menu-open');
+  var box = document.getElementById('sd-content');
+  box.innerHTML = "<div class='sd-card' style='text-align:center;color:#7a84a0'>⏳ Loading your dashboard…</div>";
+  var d = await sdLoadData();
+  if(!studentSession || document.getElementById('sd').style.display==='none') return;   // logged out while loading
+  var r = d.report;
+  var core = r ? avgOfFields(CORE_FIELDS, r.core) : 0;
+  var grammar = r ? (parseFloat(r.grammar)||0) : 0;
+  var writing = r ? (parseFloat(r.writing)||0) : 0;
+  var lang = r ? avgOfFields(LANG_FIELDS, r.language) : 0;
+  var parts = [core, grammar, writing, lang].filter(function(v){ return v>0; });
+  var overall = parts.length ? parts.reduce(function(a,b){return a+b;},0)/parts.length : 0;
+  var items = [['Core lessons (homework, quizzes, tests, project)', core], ['Grammar', grammar], ['Writing', writing], ['Language skills (reading, listening, speaking, vocabulary)', lang]];
+  var allPassed = items.every(function(it){ return it[1]>=60; });
+  var cls = scoreToClassification(overall);
+  var today = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('sd-ring').innerHTML = sdRing(overall);
+  var msgDot = document.getElementById('msg-parent-badge');
+  document.getElementById('sd-msg-dot').style.display = (msgDot && msgDot.style.display && msgDot.style.display!=='none') ? 'block' : 'none';
+  box.innerHTML =
+    "<div class='sd-hero'><img src='logo.png' alt='' onerror=\"this.style.display='none'\"><div><h2>C2-EPE PASSPORT</h2><p>Track your progress and achieve excellence</p></div>"
+    + "<div class='sd-today'>📅 Today<b>"+today+"</b></div></div>"
+    + "<div class='sd-card'><div class='sd-info'>"
+    + "<div><span>Student Name</span><b>"+sdEsc(studentSession.name)+"</b></div>"
+    + "<div><span>Student ID</span><b>"+sdEsc(studentSession.studentId)+"</b></div>"
+    + "<div><span>Class</span><b>"+sdEsc(studentSession.cls)+"</b></div>"
+    + "<div><span>Latest report</span><b>"+(r ? sdEsc(r.term||'—') : 'Not yet')+"</b></div></div></div>"
+    + "<div class='sd-stats'>"
+    + "<button class='sd-stat' onclick='sdGo(openAttendPage)'><div class='ic'>📋</div><b>"+(d.att==null?'—':d.att+'%')+"</b><span>Attendance"+(d.attDays?' · '+d.attDays+' days':'')+"</span></button>"
+    + "<button class='sd-stat' onclick='sdGo(openHwPage)'><div class='ic'>📝</div><b>"+d.hwDue+"</b><span>Homework to do</span></button>"
+    + "<button class='sd-stat' onclick='sdGo(openExamPortalPage)'><div class='ic'>🎓</div><b>"+(d.examsOpen? '🟢 '+d.examsOpen : '🔒')+"</b><span>"+(d.examsOpen?'Exam open now':'No exam open')+"</span></button>"
+    + "<button class='sd-stat' onclick='sdGo(openFeePage)'><div class='ic'>💰</div><b>"+(d.feesTotal? (d.feesDue? d.feesDue+' due' : '✅ Paid') : '—')+"</b><span>Fees</span></button></div>"
+    + "<div class='sd-card'>"
+    + sdSkill('📖','#0b1a3b','Core','Homework · Quizzes · Tests · Project', core, '#0b1a3b')
+    + sdSkill('🎓','#d6aa4c','Grammar','Grammar exercises', grammar, '#c9962f')
+    + sdSkill('✏️','#d6aa4c','Writing','Writing tasks', writing, '#c9962f')
+    + sdSkill('🗣️','#14295a','Language Skills','Reading · Listening · Speaking · Vocabulary', lang, '#14295a')
+    + (r ? "" : "<p class='sd-muted' style='margin:10px 0 0'>Your teacher hasn't published a report card yet. Your scores will appear here automatically.</p>")
+    + "</div>"
+    + "<div class='sd-two'><div class='sd-card'><div class='sd-h'>COMPLETION CHECKLIST</div><ul class='sd-check'>"
+    + items.map(function(it){ return "<li>"+(it[1]>=60?'✅':it[1]>0?'⚠️':'⬜')+" "+it[0]+"</li>"; }).join('')
+    + "</ul><div class='sd-muted'>✅ = 60% or more</div></div>"
+    + "<div class='sd-card'><div class='sd-h' style='text-align:center'>OVERALL RANK</div><div class='sd-rank'><div class='tr'>"+(overall>=90?'🏆':overall>=75?'🥇':overall>=60?'🥈':overall?'🌱':'⏳')+"</div>"
+    + "<div><b>"+(overall?cls:'Not ranked yet')+"</b><div>Average: <strong>"+(overall?overall.toFixed(2)+'%':'—')+"</strong></div>"
+    + (overall?"<div class='sd-muted'>CEFR "+scoreToCEFR(overall)+" · GPA "+calcGPA(overall)+"</div>":"")+"</div></div></div></div>"
+    + "<div class='sd-cert'><div class='md'>"+(allPassed?'🏅':'📜')+"</div><div style='flex:1;min-width:200px'><b style='color:#b8862b;font-size:1.05rem'>"+(allPassed?'REPORT CARD READY':'KEEP GOING!')+"</b><div class='sd-muted'>"
+    + (allPassed?'You have met all the requirements!':'Reach 60% in every area to complete your passport.')+"</div></div>"
+    + (r ? "<div style='font-size:.85rem'><div><span class='sd-muted'>Report No.:</span> <b>"+sdEsc(reportDocNo(r))+"</b></div><div><span class='sd-muted'>Term:</span> <b>"+sdEsc(r.term||'—')+"</b></div></div>"
+         + "<div style='text-align:center'><button class='sd-btn' onclick='sdOpenReport()'>🖨️ VIEW &amp; PRINT</button><div class='sd-muted' style='margin-top:4px'>Full report card</div></div>" : "")
+    + "</div>";
+  window.__sdReport = r;
+}
+function sdOpenReport(){
+  var r = window.__sdReport; if(!r) return;
+  document.getElementById('report-page').style.display = 'block';
+  document.getElementById('add-report-btn').style.display = 'none';
+  allReports = [r];
+  viewReport(r.id);
+}
+</script>
+
 </body>
 </html>

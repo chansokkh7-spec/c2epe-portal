@@ -421,6 +421,11 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
   #app-splash-subtitle{font-size:1rem;}
 }
 </style>
+<style>
+/* MSG and My Info now live inside the "My Child" menu, so their own top-bar buttons stay hidden */
+.topbar-hidden-btn{display:none !important;}
+#parent-info-dropdown .tools-item{display:flex;align-items:center;}
+</style>
 </head>
 <body>
 
@@ -503,32 +508,37 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
     border-radius:15px;cursor:pointer;font-size:.75rem;font-weight:600;position:relative;">
     📢<span id="announce-parent-badge" style="display:none;position:absolute;top:-2px;right:-2px;background:#e53935;color:#fff;border-radius:50%;width:14px;height:14px;font-size:.55rem;font-weight:700;line-height:14px;text-align:center;">!</span>
   </button>
-  <button onclick="openMsgPage()" id="parent-msg-btn"
+  <button onclick="openMsgPage()" id="parent-msg-btn" class="topbar-hidden-btn"
     style="display:none;background:rgba(255,255,255,.15);color:#fff;border:none;padding:4px 10px;
     border-radius:15px;cursor:pointer;font-size:.75rem;font-weight:600;position:relative;">
     💬 MSG<span id="msg-parent-badge" style="display:none;position:absolute;top:-2px;right:-2px;background:#e53935;color:#fff;border-radius:50%;width:14px;height:14px;font-size:.55rem;font-weight:700;line-height:14px;text-align:center;">!</span>
   </button>
   <div id="parent-info-menu" style="display:none;align-items:center;position:relative;">
-    <button onclick="toggleParentInfoMenu(event)"
+    <button onclick="toggleParentInfoMenu(event)" class="topbar-hidden-btn"
       style="background:rgba(255,255,255,.15);color:#fff;border:none;padding:4px 10px;
       border-radius:15px;cursor:pointer;font-size:.75rem;font-weight:600;white-space:nowrap;">
       📚 My Info
     </button>
     <div id="parent-info-dropdown" style="display:none;position:fixed;top:56px;right:8px;background:#fff;border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,.3);width:200px;max-width:calc(100vw - 16px);z-index:9500;overflow:hidden;border:1px solid #eee;">
-      <div style="background:#000080;color:#FFD700;padding:10px 14px;font-weight:700;font-size:.82rem;">📚 My Child's Info</div>
+      <div style="background:#000080;color:#FFD700;padding:10px 14px;font-weight:700;font-size:.82rem;">👨‍👩‍👧 <span id="mychild-menu-name">My Child</span></div>
       <div style="padding:6px;">
+        <button onclick="closeParentInfoMenu();openMsgPage()" class="tools-item" style="position:relative;">💬 <span>Messages</span><span id="mychild-msg-dot" style="display:none;margin-left:auto;background:#e53935;color:#fff;border-radius:10px;padding:0 6px;font-size:.65rem;font-weight:700;">new</span></button>
         <button onclick="closeParentInfoMenu();openHwPage()" class="tools-item">📝 <span>Homework</span></button>
         <button onclick="closeParentInfoMenu();openFeePage()" class="tools-item">💰 <span>Fee Payment</span></button>
         <button onclick="closeParentInfoMenu();openReportPage()" class="tools-item">📊 <span>Report Cards</span></button>
         <button onclick="closeParentInfoMenu();openQuizPage()" class="tools-item">📝 <span>Quiz &amp; Exams</span></button>
         <button onclick="closeParentInfoMenu();openAttendPage()" class="tools-item">📋 <span>Attendance</span></button>
       </div>
+      <div style="padding:6px;border-top:1px solid #eee;">
+        <button onclick="closeParentInfoMenu();showParentModal()" class="tools-item">🔄 <span>Switch child</span></button>
+        <button onclick="closeParentInfoMenu();logoutStudentSession()" class="tools-item" style="color:#e53935;">🚪 <span>Log out</span></button>
+      </div>
     </div>
   </div>
-  <button id="parent-filter-btn" onclick="showParentModal()"
+  <button id="parent-filter-btn" onclick="myChildClick(event)"
     style="display:none;background:#388e3c;color:#fff;border:none;padding:4px 10px;
-    border-radius:15px;cursor:pointer;font-size:.75rem;font-weight:600;white-space:nowrap;">
-    👨‍👩‍👧 My Child
+    border-radius:15px;cursor:pointer;font-size:.75rem;font-weight:600;white-space:nowrap;position:relative;">
+    👨‍👩‍👧 My Child<span id="mychild-arrow"></span><span id="mychild-badge" style="display:none;position:absolute;top:-2px;right:-2px;background:#e53935;color:#fff;border-radius:50%;width:14px;height:14px;font-size:.55rem;font-weight:700;line-height:14px;text-align:center;">!</span>
   </button>
   <button id="lang-btn" onclick="toggleLang()" 
     style="background:rgba(255,255,255,.15);color:#fff;border:none;padding:4px 10px;
@@ -6048,6 +6058,32 @@ function toggleParentInfoMenu(e){
   }
   dd.style.display = "block";
 }
+// "My Child": with a child signed in it opens the child's menu (Messages, Homework, Fees, Reports,
+// Exams, Attendance, Switch child, Log out); otherwise it asks for the Student ID.
+function myChildClick(e){
+  if(typeof studentSession !== 'undefined' && studentSession){
+    var n = document.getElementById('mychild-menu-name');
+    if(n) n.textContent = studentSession.name || 'My Child';
+    toggleParentInfoMenu(e);
+  } else {
+    showParentModal();
+  }
+}
+function syncMyChildBadge(){
+  var src = document.getElementById('msg-parent-badge');
+  var on = !!(src && src.style.display && src.style.display !== 'none');
+  var b = document.getElementById('mychild-badge'); if(b) b.style.display = on ? 'block' : 'none';
+  var d = document.getElementById('mychild-msg-dot'); if(d) d.style.display = on ? 'inline-block' : 'none';
+  var a = document.getElementById('mychild-arrow');
+  if(a) a.textContent = (typeof studentSession !== 'undefined' && studentSession) ? ' ▾' : '';
+}
+(function(){
+  var src = document.getElementById('msg-parent-badge');
+  if(src && window.MutationObserver) new MutationObserver(syncMyChildBadge).observe(src, {attributes:true, attributeFilter:['style']});
+  var info = document.getElementById('parent-info-menu');
+  if(info && window.MutationObserver) new MutationObserver(syncMyChildBadge).observe(info, {attributes:true, attributeFilter:['style']});
+  setTimeout(syncMyChildBadge, 0);
+})();
 function closeParentInfoMenu(){
   document.getElementById("parent-info-dropdown").style.display = "none";
 }
@@ -6099,7 +6135,7 @@ document.addEventListener("click", function(e){
   var dd = document.getElementById("parent-info-dropdown");
   var btn = e.target.closest("button");
   if(dd && dd.style.display === "block"){
-    if(!dd.contains(e.target) && !(btn && btn.textContent.includes("My Info"))){
+    if(!dd.contains(e.target) && !(btn && (btn.textContent.includes("My Info") || btn.id === "parent-filter-btn"))){
       dd.style.display = "none";
     }
   }

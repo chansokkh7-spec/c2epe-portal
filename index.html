@@ -13961,6 +13961,13 @@ function scoreToClassification(avg){
 function openReportPage(){
   document.getElementById("report-page").style.display = "block";
   document.getElementById("add-report-btn").style.display = isTeacher ? "inline-block" : "none";
+  // Students/parents only see their own class — the class list is locked to it
+  var rptCls = document.getElementById("rpt-filter-cls");
+  var ownCls = (!isTeacher && studentSession) ? studentSession.cls : "";
+  Array.prototype.forEach.call(rptCls.querySelectorAll("option"), function(o){ o.hidden = !!ownCls && (o.value || o.textContent) !== ownCls; });
+  Array.prototype.forEach.call(rptCls.querySelectorAll("optgroup"), function(g){ g.hidden = !!ownCls && !Array.prototype.some.call(g.querySelectorAll("option"), function(o){ return !o.hidden; }); });
+  rptCls.disabled = !!ownCls;
+  if(ownCls) rptCls.value = ownCls;
   showReportListView();
   if(!isTeacher && parentClass) document.getElementById("rpt-filter-cls").value = parentClass;
   restrictClassDropdown("rpt-filter-cls");
@@ -14285,7 +14292,7 @@ function switchReportTab(tab){
     pBtn.style.background = "#000080"; pBtn.style.color = "#FFD700";
     fBtn.style.background = "#e0e0e0"; fBtn.style.color = "#555";
     document.getElementById("report-print-content").innerHTML = renderPassportHTML(currentViewedReport);
-    renderQRCode("rpt-qr-passport", qrPayload, 56);
+    renderQRCode("rpt-qr-passport", qrPayload, 86);
   } else {
     fBtn.style.background = "#000080"; fBtn.style.color = "#FFD700";
     pBtn.style.background = "#e0e0e0"; pBtn.style.color = "#555";
@@ -14295,127 +14302,97 @@ function switchReportTab(tab){
 }
 
 function renderPassportHTML(r){
+  // Official, printable "Student Academic Passport" (white document layout)
+  var E = function(v){ return escapeHtml(v==null ? "" : String(v)); };
   var avgScore = calcAvgScore(r);
   var hasData = avgScore > 0;
-  var overallGrade = hasData ? scoreToGrade(avgScore,100) : {label:"—",color:"#7986cb"};
+  var overallGrade = hasData ? scoreToGrade(avgScore,100) : {label:"—",color:"#1d3a8a"};
   var gpaVal = hasData ? calcGPA(avgScore) : null;
   var cefr = scoreToCEFR(avgScore);
   var classification = scoreToClassification(avgScore);
   var docNo = reportDocNo(r);
   var issued = new Date(r.updatedAt||r.createdAt||Date.now()).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});
-
-  function sectionHeader(label){
-    return `<div style="font-weight:800;font-size:.85rem;color:#FFD700;margin:16px 0 6px;padding-bottom:4px;border-bottom:1px solid rgba(255,215,0,.4)">${label}</div>`;
+  var PAL = ["#0b1a3b","#b8892b","#1f7a5c","#2557a7","#6b3fa0","#a8432f","#3a6b2a","#8a5a17"];
+  var pct = function(v){ return v ? Math.round(v)+"%" : "—"; };
+  function bar(v, color, thick){
+    return "<div style='height:"+(thick?8:5)+"px;background:#e9ecf2;border-radius:4px;overflow:hidden'><div style='height:100%;width:"+Math.min(100,v||0)+"%;background:"+color+";border-radius:4px'></div></div>";
   }
-  function fieldCell(f, dataObj){
-    var val = (dataObj||{})[f[0]] || 0;
-    var color = val ? "#FFD700" : "#7986cb";
-    var display = val ? val.toFixed(0)+"%" : "—";
-    return `<div style="display:flex;justify-content:space-between;align-items:center">
-      <span style="font-size:.78rem;color:#c5cae9">${f[1]}</span>
-      <span style="font-size:.78rem;font-weight:700;color:${color}">${display}</span>
-    </div>`;
+  function mainRow(label, v, color){
+    return "<div class='pp-row pp-main'><div>"+label+"</div>"+bar(v,color,true)+"<div class='pp-pct'>"+pct(v)+"</div></div>";
   }
-  function fieldPairRows(fields, dataObj){
-    var out = "";
-    for(var i=0;i<fields.length;i+=2){
-      var f1 = fields[i], f2 = fields[i+1];
-      out += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:5px 0;border-bottom:1px dashed rgba(255,255,255,.12)">
-        ${fieldCell(f1, dataObj)}${f2 ? fieldCell(f2, dataObj) : "<div></div>"}
-      </div>`;
-    }
-    return out;
+  function subRows(fields, data){
+    return fields.map(function(f,i){
+      var v = (data||{})[f[0]] || 0;
+      return "<div class='pp-row pp-sub'><div>"+f[1]+"</div>"+bar(v, PAL[(i+1)%PAL.length], false)+"<div class='pp-pct'>"+pct(v)+"</div></div>";
+    }).join("");
   }
-  // Each academic category gets its own bold label + average-score, plus a
-  // slim progress bar (matching the official passport layout), and — only
-  // for categories with several sub-fields — a two-column grid of scores.
-  function categoryBlock(label, avgVal, fieldsHTML){
-    var pct = avgVal || 0;
-    var color = pct ? "#FFD700" : "#7986cb";
-    var display = pct ? pct.toFixed(0)+"%" : "—";
-    return `<div style="margin-top:14px">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
-        <span style="font-weight:700;font-size:.82rem;color:#fff">${label}</span>
-        <span style="font-weight:700;font-size:.8rem;color:${color}">${display}</span>
-      </div>
-      <div style="height:6px;background:rgba(255,255,255,.1);border-radius:4px;overflow:hidden">
-        <div style="height:100%;width:${Math.max(pct,2)}%;background:linear-gradient(90deg,#b8971e,#FFD700);border-radius:4px"></div>
-      </div>
-      ${fieldsHTML ? `<div style="margin-top:8px">${fieldsHTML}</div>` : ""}
-    </div>`;
-  }
-
   var coreAvg = avgOfFields(CORE_FIELDS, r.core);
   var langAvg = avgOfFields(LANG_FIELDS, r.language);
   var lifeAvg = avgOfFields(LIFE_FIELDS, r.life);
-
-  var academicHTML = categoryBlock("Core", coreAvg, fieldPairRows(CORE_FIELDS, r.core||{}))
-    + categoryBlock("Grammar", r.grammar||0, "")
-    + categoryBlock("Writing", r.writing||0, "")
-    + categoryBlock("Language Skills", langAvg, fieldPairRows(LANG_FIELDS, r.language||{}))
-    + categoryBlock("Life Education", lifeAvg, fieldPairRows(LIFE_FIELDS, r.life||{}));
-
-  var skillsRows = SKILLS21_FIELDS.map(function(f){
+  var skills = SKILLS21_FIELDS.map(function(f){
     var n = (r.skills21||{})[f[0]] || 0;
-    var stars = [1,2,3,4,5].map(function(i){
-      var c = i<=n ? "#FFD700" : "#3a3a6a";
-      return `<span style="color:${c}"> ★</span>`;
-    }).join("");
-    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed rgba(255,255,255,.15)">
-      <span style="font-size:.82rem;color:#e0e0f0">${f[1]}</span><span style="font-size:1rem">${stars}</span>
-    </div>`;
+    var stars = [1,2,3,4,5].map(function(i){ return "<span style='color:"+(i<=n?"#d4a72c":"#d6d9e0")+"'>★</span>"; }).join("");
+    return "<div class='pp-skill'><span>"+f[1]+"</span><span style='font-size:1rem;letter-spacing:1px'>"+stars+"</span></div>";
   }).join("");
-
-  return `<div style="background:#0d1642;color:#fff;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.3);font-family:inherit;padding:26px 24px">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
-      <div style="display:flex;align-items:center;gap:10px">
-        <img src="logo.png" alt="C2-EPE Logo" onerror="logoImgError(this)" style="width:40px;height:40px;object-fit:contain">
-        <div>
-          <div style="font-weight:800;font-size:1rem;letter-spacing:.5px">C2-EPE DIGITAL ACADEMY</div>
-          <div style="font-size:.72rem;color:#9fa8da">School Management System</div>
-        </div>
-      </div>
-      <div style="text-align:right;font-size:.7rem;color:#9fa8da">Document No: <span style="color:#FFD700;font-weight:700">${docNo}</span><br>Issued: <strong style="color:#fff">${issued}</strong></div>
-    </div>
-    <div style="text-align:center;margin:22px 0 4px">
-      <div style="font-size:1.3rem;font-weight:800;color:#FFD700;letter-spacing:1px">OFFICIAL STUDENT ACADEMIC PASSPORT</div>
-      <div style="font-size:.76rem;color:#9fa8da;margin-top:4px">This document certifies the academic record held by C2-EPE Digital Academy</div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px;margin:18px 0">
-      <div><div style="font-size:.68rem;color:#9fa8da;text-transform:uppercase">Student Name</div><div style="font-size:.92rem;font-weight:700">${r.student||"—"}</div></div>
-      <div><div style="font-size:.68rem;color:#9fa8da;text-transform:uppercase">Student ID</div><div style="font-size:.92rem;font-weight:700">${r.studentId||"—"}</div></div>
-      <div><div style="font-size:.68rem;color:#9fa8da;text-transform:uppercase">Programme Level</div><div style="font-size:.92rem;font-weight:700">${r.cls||"—"}</div></div>
-      <div><div style="font-size:.68rem;color:#9fa8da;text-transform:uppercase">Gender</div><div style="font-size:.92rem;font-weight:700">${r.gender||"—"}</div></div>
-    </div>
-    ${sectionHeader("ACADEMIC RECORD")}
-    ${academicHTML}
-    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:18px">
-      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:10px 4px;text-align:center"><div style="font-size:1.05rem;font-weight:800;color:${overallGrade.color}">${overallGrade.label}</div><div style="font-size:.56rem;color:#9fa8da;margin-top:2px">LETTER GRADE</div></div>
-      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:10px 4px;text-align:center"><div style="font-size:1.05rem;font-weight:800;color:#FFD700">${gpaVal||"—"}/4.00</div><div style="font-size:.56rem;color:#9fa8da;margin-top:2px">GPA</div></div>
-      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:10px 4px;text-align:center"><div style="font-size:1.05rem;font-weight:800;color:#FFD700">${cefr}</div><div style="font-size:.56rem;color:#9fa8da;margin-top:2px">CEFR</div></div>
-      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:10px 4px;text-align:center"><div style="font-size:1.05rem;font-weight:800;color:#FFD700">${hasData?avgScore.toFixed(0)+"%":"—"}</div><div style="font-size:.56rem;color:#9fa8da;margin-top:2px">AVERAGE</div></div>
-      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:10px 4px;text-align:center;display:flex;flex-direction:column;justify-content:center"><div style="font-size:.72rem;font-weight:800;color:#FFD700;line-height:1.15">${classification}</div><div style="font-size:.56rem;color:#9fa8da;margin-top:2px">CLASSIFICATION</div></div>
-      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:6px;text-align:center;display:flex;align-items:center;justify-content:center"><div id="rpt-qr-passport" style="width:56px;height:56px;background:#fff;border-radius:4px;padding:3px;display:flex;align-items:center;justify-content:center;overflow:hidden"></div></div>
-    </div>
-    <div style="text-align:right;font-size:.62rem;color:#7986cb;margin-top:4px">Scan for verified record — ID: ${r.studentId||"—"}</div>
-    ${r.remarks ? `<div style="background:rgba(255,255,255,.06);border-left:3px solid #FFD700;border-radius:0 8px 8px 0;padding:12px 16px;margin-top:18px">
-      <div style="font-weight:700;font-size:.78rem;color:#FFD700;margin-bottom:5px">📝 Teacher's Remarks</div>
-      <div style="font-size:.82rem;color:#e0e0f0;line-height:1.6">${r.remarks}</div>
-    </div>` : ""}
-    <div style="page-break-before:always;margin-top:26px;padding-top:20px;border-top:2px solid rgba(255,255,255,.15)">
-      ${sectionHeader("21ST CENTURY SKILLS ASSESSMENT")}
-      ${skillsRows}
-      ${sectionHeader("CLASS INFORMATION")}
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px">
-        <div><div style="font-size:.68rem;color:#9fa8da;text-transform:uppercase">Teacher</div><div style="font-size:.85rem;font-weight:700;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:6px;margin-top:2px">${r.teacherName||"—"}</div></div>
-        <div><div style="font-size:.68rem;color:#9fa8da;text-transform:uppercase">Coordinator</div><div style="font-size:.85rem;font-weight:700;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:6px;margin-top:2px">${r.coordinator||"—"}</div></div>
-        <div><div style="font-size:.68rem;color:#9fa8da;text-transform:uppercase">Term</div><div style="font-size:.85rem;font-weight:700;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:6px;margin-top:2px">${r.term||"—"}</div></div>
-        <div><div style="font-size:.68rem;color:#9fa8da;text-transform:uppercase">Status</div><div style="font-size:.85rem;font-weight:700;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:6px;margin-top:2px">${r.status||"—"}</div></div>
-      </div>
-      <div style="text-align:center;font-size:.68rem;color:#FFD700;font-weight:700;margin-top:26px">Generated by C2-EPE Digital Academy · ${issued}</div>
-      <div style="text-align:center;font-size:.6rem;color:#7986cb;margin-top:4px">© ${new Date().getFullYear()} SEG Education Group. All rights reserved.</div>
-    </div>
-  </div>`;
+  var statusColor = /promot|graduat/i.test(r.status||"") ? "#1f7a5c" : /retain/i.test(r.status||"") ? "#a8432f" : "#1a1f36";
+  var teacher = r.teacherName || "";
+  return "<style>"
+    + ".pp{background:#fff;color:#1a1f36;max-width:820px;margin:0 auto;padding:30px 34px;border-radius:6px;box-shadow:0 6px 24px rgba(0,0,0,.12);font-family:inherit;font-size:13px}"
+    + ".pp-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding-bottom:14px;border-bottom:3px solid #0b1a3b}"
+    + ".pp-brand{display:flex;gap:12px;align-items:center}.pp-brand img{width:52px;height:52px;object-fit:contain}"
+    + ".pp-brand b{display:block;font-size:1.15rem;letter-spacing:.5px;color:#0b1a3b}.pp-brand span{font-size:.78rem;color:#5b6478}"
+    + ".pp-doc{text-align:right;font-size:.72rem;color:#5b6478;line-height:1.7}.pp-doc b{color:#1a1f36}"
+    + ".pp-title{text-align:center;margin:20px 0 4px;font-weight:800;letter-spacing:2px;font-size:1rem;color:#0b1a3b}"
+    + ".pp-title+div{text-align:center;font-size:.75rem;color:#7a8296;margin-bottom:16px}"
+    + ".pp-info{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:10px 16px;padding:12px 0;border-top:1px solid #e3e6ee;border-bottom:1px solid #e3e6ee;font-size:.8rem}"
+    + ".pp-info span{color:#7a8296}.pp-info b{font-size:.9rem}"
+    + ".pp-h{font-weight:800;letter-spacing:1px;font-size:.8rem;color:#0b1a3b;margin:20px 0 8px;padding-bottom:6px;border-bottom:2px solid #0b1a3b}"
+    + ".pp-row{display:grid;grid-template-columns:150px 1fr 46px;gap:12px;align-items:center}"
+    + ".pp-main{margin-top:12px;padding-top:8px;border-top:1px solid #eef0f5;font-weight:800;font-size:.85rem}"
+    + ".pp-sub{margin:5px 0 0 14px;padding-left:10px;border-left:2px solid #e3e6ee;font-size:.76rem;color:#3a4256;grid-template-columns:136px 1fr 46px}"
+    + ".pp-pct{text-align:right;font-weight:700}"
+    + ".pp-bottom{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;margin-top:22px}"
+    + ".pp-class{background:#eaf1ff;border:1px solid #c9d8f6;border-radius:10px;padding:14px 18px}"
+    + ".pp-class small{display:block;font-weight:800;letter-spacing:1px;font-size:.7rem;color:#2557a7;margin-bottom:8px}"
+    + ".pp-class .vals{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-end}.pp-class .vals div{font-size:.62rem;color:#5b6478;letter-spacing:.5px}"
+    + ".pp-class .vals b{display:block;font-size:1.25rem;color:#1d3a8a}"
+    + ".pp-qr{text-align:center;font-size:.62rem;color:#7a8296}"
+    + ".pp-skill{display:flex;justify-content:space-between;align-items:center;padding:7px 2px;border-bottom:1px solid #eef0f5;font-size:.82rem}"
+    + ".pp-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:4px}.pp-table td{padding:8px 10px;border-bottom:1px solid #eef0f5}"
+    + ".pp-table td:nth-child(odd){color:#7a8296;font-size:.68rem;letter-spacing:.5px;width:18%;background:#f7f8fb}"
+    + ".pp-fb{background:#fffaf0;border-left:4px solid #d4a72c;padding:12px 16px;margin-top:18px;border-radius:0 8px 8px 0}"
+    + ".pp-fb small{display:block;font-weight:800;letter-spacing:1px;font-size:.7rem;color:#b8892b;margin-bottom:6px}"
+    + ".pp-sign{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:40px;font-size:.72rem;color:#5b6478}"
+    + ".pp-sign div{border-top:1px solid #9aa1b2;padding-top:6px}.pp-sign div:last-child{text-align:right}"
+    + ".pp-foot{text-align:center;font-size:.66rem;color:#7a8296;margin-top:22px;padding-top:12px;border-top:1px solid #e3e6ee;line-height:1.6}"
+    + "@media (max-width:640px){.pp{padding:18px 14px}.pp-info{grid-template-columns:auto 1fr}.pp-row{grid-template-columns:110px 1fr 40px;gap:8px}.pp-sub{grid-template-columns:96px 1fr 40px}.pp-bottom{grid-template-columns:1fr}.pp-sign{gap:20px}}"
+    + "</style>"
+    + "<div class='pp'>"
+    + "<div class='pp-head'><div class='pp-brand'><img src='logo.png' alt='C2-EPE Logo' onerror=\"this.style.display='none'\"><div><b>C2-EPE ACADEMY</b><span>English Proficiency Excellence · Phnom Penh, Cambodia</span></div></div>"
+    + "<div class='pp-doc'>Document No: <b>"+E(docNo)+"</b><br>Issued: <b>"+E(issued)+"</b></div></div>"
+    + "<div class='pp-title'>OFFICIAL STUDENT ACADEMIC PASSPORT</div><div>This document certifies the academic record held by C2-EPE Academy</div>"
+    + "<div class='pp-info'><span>Student name</span><b>"+E(r.student||"—")+"</b><span>Student ID</span><b>"+E(r.studentId||"—")+"</b>"
+    + "<span>Programme level</span><b>"+E(r.cls||"—")+"</b><span>Gender</span><b>"+E(r.gender||"—")+"</b></div>"
+    + "<div class='pp-h'>ACADEMIC RECORD</div>"
+    + mainRow("Core", coreAvg, "#0b1a3b") + subRows(CORE_FIELDS, r.core)
+    + mainRow("Grammar", parseFloat(r.grammar)||0, "#b8892b")
+    + mainRow("Writing", parseFloat(r.writing)||0, "#1f7a5c")
+    + mainRow("Language skills", langAvg, "#2557a7") + subRows(LANG_FIELDS, r.language)
+    + mainRow("Life education", lifeAvg, "#6b3fa0") + subRows(LIFE_FIELDS, r.life)
+    + "<div class='pp-bottom'><div class='pp-class'><small>OVERALL CLASSIFICATION</small><div class='vals'>"
+    + "<div><b style='font-size:1.9rem;color:"+(overallGrade.color||"#1d3a8a")+"'>"+E(overallGrade.label)+"</b>LETTER GRADE</div>"
+    + "<div><b>"+(gpaVal ? gpaVal+" / 4.0" : "—")+"</b>GPA</div><div><b>"+E(cefr)+"</b>CEFR</div>"
+    + "<div><b>"+(hasData ? Math.round(avgScore)+"%" : "—")+"</b>AVERAGE</div><div><b style='font-size:1rem'>"+E(classification)+"</b>CLASSIFICATION</div></div></div>"
+    + "<div class='pp-qr'><div id='rpt-qr-passport' style='width:86px;height:86px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;overflow:hidden'></div>Student ID: "+E(r.studentId||docNo)+"</div></div>"
+    + "<div class='pp-h'>21ST CENTURY SKILLS ASSESSMENT</div>" + skills
+    + "<div class='pp-h'>CLASS INFORMATION</div>"
+    + "<table class='pp-table'><tr><td>TEACHER</td><td><b>"+E(teacher||"—")+"</b></td><td>COORDINATOR</td><td><b>"+E(r.coordinator||"—")+"</b></td></tr>"
+    + "<tr><td>TERM</td><td><b>"+E(r.term||"—")+"</b></td><td>STATUS</td><td><b style='color:"+statusColor+"'>"+E(r.status||"—")+"</b></td></tr></table>"
+    + (r.remarks ? "<div class='pp-fb'><small>TEACHER'S PROFESSIONAL FEEDBACK</small><div style='font-style:italic;line-height:1.6'>“"+E(r.remarks)+"”</div>"+(teacher?"<div style='margin-top:6px;font-size:.75rem;color:#5b6478'>— "+E(teacher)+"</div>":"")+"</div>" : "")
+    + "<div class='pp-sign'><div>Registrar signature</div><div>Official seal</div></div>"
+    + "<div class='pp-foot'>This is a system-generated document and is valid with the signature and official seal of C2-EPE Academy.<br>C2-EPE Academy · Generated "+E(issued)
+    + "<div style='color:#b8892b;font-style:italic;font-weight:700;margin-top:6px'>C2 is not just a level — it's a standard of excellence.</div></div>"
+    + "</div>";
 }
 
 function renderPortfolioHTML(r){

@@ -4080,6 +4080,8 @@ var currentAdminDeptHead = null; // "finance" | "hr" | "admissions" | null — n
 function setTeacherUI(){
   isTeacher = true;
   if(typeof hideStudentDashboard === 'function') hideStudentDashboard();
+  // teachers start on their Dashboard (School News & Posts is one tap away in its menu)
+  setTimeout(function(){ if(typeof showTeacherDashboard === 'function') showTeacherDashboard(); }, 0);
   const isAdmin = currentUser && currentUser.email === ADMIN_EMAIL;
   // HR's whole purpose is Teacher Management, which lives inside the
   // Admin Dashboard — this button was only ever shown to the actual
@@ -4145,6 +4147,8 @@ function setParentUI(){
   var infoMenu = document.getElementById('parent-info-menu');
   if(infoMenu) infoMenu.style.display = studentSession ? 'flex' : 'none';
   updateAnnounceBadge();
+  if(typeof hideTeacherDashboard === 'function') hideTeacherDashboard();
+  sessionStorage.removeItem('td_hidden');
   if(studentSession) showStudentDashboard(); else hideStudentDashboard();
 }
 
@@ -15461,6 +15465,211 @@ function sdOpenReport(){
   document.getElementById('add-report-btn').style.display = 'none';
   allReports = [r];
   viewReport(r.id);
+}
+</script>
+
+<!-- ═════════ TEACHER / ADMIN DASHBOARD (shown after a teacher signs in) ═════════ -->
+<style>
+#td{display:none;position:fixed;inset:0;z-index:9000;background:#f4f6fb;color:#1a1f36;overflow:hidden;font-family:inherit}
+#td .td-body{display:flex;height:100%}
+#td .td-side{width:230px;background:#0b1a3b;color:#e6eaf5;overflow-y:auto;flex-shrink:0;padding:14px 10px 24px}
+#td .td-brand{display:flex;align-items:center;gap:8px;color:#d6aa4c;font-weight:800;padding:4px 8px 12px;border-bottom:1px solid #1d2f5a;margin-bottom:6px}
+#td .td-brand img{width:34px;height:34px;object-fit:contain}
+#td .td-side h4{color:#d6aa4c;font-size:.68rem;letter-spacing:1.5px;margin:14px 8px 6px}
+#td .td-side button{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;color:#e6eaf5;padding:9px 11px;border-radius:9px;cursor:pointer;font-size:.86rem;text-align:left;font-family:inherit}
+#td .td-side button:hover{background:rgba(255,255,255,.07)}
+#td .td-side button.on{background:#1b2c55;color:#d6aa4c;border-left:3px solid #d6aa4c}
+#td .td-main{flex:1;overflow-y:auto;min-width:0}
+#td .td-head{background:#fff;border-bottom:1px solid #e6e9f0;height:56px;display:flex;align-items:center;gap:10px;padding:0 18px;position:sticky;top:0;z-index:3}
+#td .td-head h1{font-size:1.05rem;margin:0;flex:1}
+#td .td-gold{background:#c9a227;color:#fff;border:0;padding:8px 14px;border-radius:20px;font-weight:700;font-size:.8rem;cursor:pointer;white-space:nowrap;font-family:inherit}
+#td .td-menu{display:none;background:#f1f3f8;border:0;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:1rem}
+#td .td-wrap{max-width:1240px;margin:0 auto;padding:16px}
+#td .td-card{background:#fff;border:1px solid #e6e9f0;border-radius:16px;padding:16px;margin-bottom:16px;min-width:0}
+#td .td-card h3{margin:0 0 4px;font-size:.9rem}
+#td .td-sub{color:#8a93a8;font-size:.72rem;margin-bottom:12px}
+#td .td-ann{border:1px solid #e6e9f0;border-radius:12px;padding:12px 14px;margin-bottom:10px}
+#td .td-ann.pin{background:#fbecd9;border-color:#d8a93a}
+#td .td-ann b{font-size:.88rem}
+#td .td-ann .meta{font-size:.7rem;color:#8a93a8;margin:3px 0 6px}
+#td .td-ann p{margin:0;font-size:.82rem;color:#333;white-space:pre-line}
+#td .td-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:16px;margin-bottom:16px}
+#td .td-kpi{background:#fff;border:1px solid #e6e9f0;border-radius:16px;padding:16px;text-align:left;cursor:pointer;font-family:inherit}
+#td .td-kpi .ic{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem}
+#td .td-kpi b{display:block;font-size:1.6rem;margin-top:8px}
+#td .td-kpi span{font-size:.75rem;color:#6b7489}
+#td .td-kpi small{display:block;margin-top:6px;font-size:.7rem;font-weight:700}
+#td .td-charts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+#td .td-chart{display:flex;align-items:flex-end;gap:10px;height:150px;border-bottom:1px solid #e6e9f0;padding:0 4px;position:relative}
+#td .td-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;min-width:0}
+#td .td-col i{display:block;width:100%;max-width:70px;border-radius:6px 6px 0 0;min-height:2px}
+#td .td-col em{font-style:normal;font-size:.68rem;font-weight:700;color:#444;margin-bottom:3px}
+#td .td-labels{display:flex;gap:10px;padding:6px 4px 0}
+#td .td-labels div{flex:1;text-align:center;font-size:.66rem;color:#6b7489;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+#td .td-two{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+#td table{width:100%;border-collapse:collapse;font-size:.8rem}
+#td th{text-align:left;color:#8a93a8;font-weight:600;font-size:.7rem;padding:8px 6px;border-bottom:1px solid #eef0f5}
+#td td{padding:9px 6px;border-bottom:1px solid #f2f3f7}
+#td .td-av{width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.66rem;font-weight:800;vertical-align:middle;margin-right:8px;object-fit:cover}
+#td .td-ghost{background:#fff;border:1px solid #d9dde6;border-radius:16px;padding:5px 12px;font-size:.75rem;cursor:pointer;font-family:inherit}
+#td .td-top li{list-style:none;display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #f2f3f7;font-size:.82rem}
+#td .td-top{padding:0;margin:0}
+#td-back-btn{display:none;position:fixed;left:14px;bottom:18px;z-index:8999;background:#0b1a3b;color:#d6aa4c;border:1px solid #d6aa4c;border-radius:999px;padding:10px 16px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);font-family:inherit}
+@media (max-width:980px){ #td .td-charts{grid-template-columns:1fr} #td .td-two{grid-template-columns:1fr} }
+@media (max-width:860px){
+  #td .td-menu{display:inline-block}
+  #td .td-side{position:fixed;top:0;bottom:0;left:0;z-index:5;transform:translateX(-105%);transition:transform .2s;box-shadow:4px 0 20px rgba(0,0,0,.35)}
+  #td.menu-open .td-side{transform:none}
+  #td .td-wrap{padding:12px}
+  #td .td-kpis{grid-template-columns:1fr 1fr;gap:10px}
+  #td .td-kpi b{font-size:1.3rem}
+}
+</style>
+<div id="td" aria-label="Teacher dashboard">
+  <div class="td-body">
+    <nav class="td-side">
+      <div class="td-brand"><img src="logo.png" alt="" onerror="this.style.display='none'"><span>C2-EPE School</span></div>
+      <h4>MAIN MENU</h4>
+      <button class="on" onclick="tdRefresh()">📊 Dashboard</button>
+      <button onclick="tdGo(openAttendPage)">📋 Attendance</button>
+      <button onclick="tdGo(openStudentPage)">🎒 Students</button>
+      <button onclick="tdGo(openHwPage)">📝 Homework</button>
+      <button onclick="tdGo(openReportPage)">📊 Report Cards</button>
+      <button onclick="tdGo(openQuizPage)">✏️ Quiz &amp; Exams</button>
+      <button onclick="tdGo(openExamSchedulePage)">🗓️ Exam Schedule</button>
+      <button onclick="tdGo(openExamGradingPage)">🖋️ Grade Writing &amp; Speaking</button>
+      <button onclick="tdGo(openTestLibraryPage)">📚 Test Library</button>
+      <h4>COMMUNICATION</h4>
+      <button onclick="tdGo(openAnnouncePage)">📢 Announcements</button>
+      <button onclick="tdGo(openMsgPage)">💬 Messages</button>
+      <button onclick="tdOpenNews()">📰 School News &amp; Posts</button>
+      <h4>MORE</h4>
+      <button onclick="tdAllTools(event)">🛠️ All Tools</button>
+      <button onclick="tdLogout()" style="color:#ff8a80">🚪 Log out</button>
+    </nav>
+    <div class="td-main">
+      <div class="td-head">
+        <button class="td-menu" onclick="document.getElementById('td').classList.toggle('menu-open')" aria-label="Menu">☰</button>
+        <h1>Dashboard</h1>
+        <span id="td-date" style="font-size:.78rem;color:#777;"></span>
+        <button class="td-gold" onclick="tdGo(showAddStudentModal)">+ Add Student</button>
+      </div>
+      <div class="td-wrap" id="td-content"></div>
+    </div>
+  </div>
+</div>
+<button id="td-back-btn" onclick="showTeacherDashboard(true)">📊 Dashboard</button>
+<script>
+// ── Teacher / Admin dashboard: announcements, key numbers, charts, recent students, top performers.
+//    Everything comes from the school's real records and respects each teacher's assigned classes.
+function tdEsc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function tdGo(fn){ document.getElementById('td').classList.remove('menu-open'); try { fn(); } catch(e){ console.error(e); } }
+function tdAllTools(e){ document.getElementById('td').classList.remove('menu-open'); toggleToolsMenu(e); }
+function tdOpenNews(){ sessionStorage.setItem('td_hidden','1'); document.getElementById('td').style.display='none'; document.getElementById('td-back-btn').style.display='block'; document.body.style.overflow=''; }
+function tdLogout(){ hideTeacherDashboard(); doLogout(); }
+function hideTeacherDashboard(){ var d=document.getElementById('td'); if(d) d.style.display='none'; var b=document.getElementById('td-back-btn'); if(b) b.style.display='none'; document.body.style.overflow=''; }
+function showTeacherDashboard(force){
+  if(!(typeof isTeacher!=='undefined' && isTeacher)){ hideTeacherDashboard(); return; }
+  if(force) sessionStorage.removeItem('td_hidden');
+  if(sessionStorage.getItem('td_hidden')){ document.getElementById('td-back-btn').style.display='block'; return; }
+  document.getElementById('td').style.display='block';
+  document.getElementById('td-back-btn').style.display='none';
+  document.body.style.overflow='hidden';
+  tdRefresh();
+}
+async function tdFetch(name, localKey){
+  if(window.location.protocol==='file:' || !window._fb) return JSON.parse(localStorage.getItem(localKey)||'[]');
+  var {db, collection} = window._fb;
+  var {getDocs} = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+  var snap = await getDocs(collection(db, name));
+  return snap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+}
+function tdReportScores(r){
+  var core = avgOfFields(CORE_FIELDS, r.core), grammar = parseFloat(r.grammar)||0, writing = parseFloat(r.writing)||0, lang = avgOfFields(LANG_FIELDS, r.language);
+  var parts = [core, grammar, writing, lang].filter(function(v){ return v>0; });
+  return { core:core, grammar:grammar, writing:writing, lang:lang, overall: parts.length ? parts.reduce(function(a,b){return a+b;},0)/parts.length : 0 };
+}
+function tdBars(items, colors, max){
+  max = max || 100;
+  return "<div class='td-chart'>" + items.map(function(it,i){
+      var h = Math.max(0, Math.min(100, (it[1]/max)*100));
+      return "<div class='td-col' title='"+tdEsc(it[0])+": "+it[2]+"'><em>"+it[2]+"</em><i style='height:"+h+"%;background:"+colors[i%colors.length]+"'></i></div>";
+    }).join("") + "</div><div class='td-labels'>" + items.map(function(it){ return "<div title='"+tdEsc(it[0])+"'>"+tdEsc(it[0])+"</div>"; }).join("") + "</div>";
+}
+function tdPct(v){ return v ? Math.round(v)+'%' : '—'; }
+function tdDate(v){ if(!v) return ''; var d = v.toDate ? v.toDate() : new Date(v); return isNaN(d) ? '' : d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}); }
+var TD_PAL = [["#e3edff","#2f5fd0"],["#fff1df","#b86a00"],["#e3f7ee","#1f8a5c"],["#efe7ff","#6b45c4"],["#ffe6ec","#c2335a"],["#fff6dc","#9a7400"]];
+function tdAvatar(s, i){
+  if(s.photo) return "<img class='td-av' src='"+tdEsc(s.photo)+"' alt=''>";
+  var n = String(s.nameEn||s.nameKm||s.student||'S').trim().split(/\s+/), p = TD_PAL[i%TD_PAL.length];
+  return "<span class='td-av' style='background:"+p[0]+";color:"+p[1]+"'>"+tdEsc(((n[0]||'').charAt(0)+(n.length>1?n[n.length-1].charAt(0):'')).toUpperCase())+"</span>";
+}
+async function tdRefresh(){
+  document.querySelectorAll('#td .td-side button').forEach(function(b,i){ b.classList.toggle('on', i===0); });
+  document.getElementById('td').classList.remove('menu-open');
+  document.getElementById('td-date').textContent = new Date().toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+  var box = document.getElementById('td-content');
+  box.innerHTML = "<div class='td-card' style='text-align:center;color:#8a93a8'>⏳ Loading dashboard…</div>";
+  var students=[], reports=[], anns=[], att=[];
+  try { students = (await tdFetch('students','c2epe_local_students')).map(function(s){ s.cls = baseLevel(s.cls||''); return s; }).filter(function(s){ return teacherCanSeeClass(s.cls); }); } catch(e){ console.error('td students', e); }
+  try { reports = (await tdFetch('reports','c2epe_reports')).filter(function(r){ return teacherCanSeeClass(baseLevel(r.cls||'')); }); } catch(e){ console.error('td reports', e); }
+  try { anns = await tdFetch('announcements','c2epe_announcements'); } catch(e){ console.error('td announcements', e); }
+  try { var today = new Date().toISOString().split('T')[0]; att = (await tdFetch('attendance','c2epe_attendance')).filter(function(a){ return a.date===today && teacherCanSeeClass(a.cls); }); } catch(e){ console.error('td attendance', e); }
+  if(!isTeacher) return;
+  // latest report per student
+  var latest = {};
+  reports.forEach(function(r){ var k = r.studentId || r.student; if(!k) return; var t = String(r.updatedAt||r.createdAt||''); if(!latest[k] || t > String(latest[k].updatedAt||latest[k].createdAt||'')) latest[k] = r; });
+  var scored = Object.keys(latest).map(function(k){ var r = latest[k]; return Object.assign({ r:r }, tdReportScores(r)); }).filter(function(x){ return x.overall>0; });
+  var avg = function(key){ var v = scored.map(function(x){ return x[key]; }).filter(function(n){ return n>0; }); return v.length ? v.reduce(function(a,b){return a+b;},0)/v.length : 0; };
+  var overallAvg = avg('overall');
+  var passed = scored.filter(function(x){ return x.overall>=60; }).length, below = scored.filter(function(x){ return x.overall<60; }).length;
+  var monthStart = new Date(); monthStart.setDate(1); monthStart.setHours(0,0,0,0);
+  var newThisMonth = students.filter(function(s){ var t = s.createdAt||s.enrolledAt||s.registeredAt; var d = t && (t.toDate ? t.toDate() : new Date(t)); return d && d >= monthStart; }).length;
+  // ranks (same thresholds as the report card classification)
+  var ranks = [['Distinction',0,'#1f9d6b'],['Merit',0,'#2f80ed'],['Pass',0,'#f2a33a'],['Needs Work',0,'#e5534b']];
+  scored.forEach(function(x){ ranks[x.overall>=90?0:x.overall>=75?1:x.overall>=60?2:3][1]++; });
+  var maxRank = Math.max.apply(null, ranks.map(function(r){ return r[1]; }).concat([1]));
+  // by level
+  var byLevel = {};
+  scored.forEach(function(x){ var c = baseLevel(x.r.cls||'—'); (byLevel[c] = byLevel[c] || []).push(x.overall); });
+  var levels = Object.keys(byLevel).map(function(c){ var v = byLevel[c]; return [c, v.reduce(function(a,b){return a+b;},0)/v.length]; });
+  // today's attendance
+  var attCount = {present:0, late:0, absent:0, other:0, total:0};
+  att.forEach(function(a){ Object.keys(a.records||{}).forEach(function(k){ var st = a.records[k].status; attCount.total++; if(st==='present'||st==='leaveEarly') attCount.present++; else if(st==='late') attCount.late++; else if(st==='absent') attCount.absent++; else attCount.other++; }); });
+  // announcements
+  anns.sort(function(a,b){ if(!!b.pinned !== !!a.pinned) return (b.pinned?1:0)-(a.pinned?1:0); return String(b.createdAt||'').localeCompare(String(a.createdAt||'')); });
+  var annHTML = anns.slice(0,3).map(function(a){
+    return "<div class='td-ann"+(a.pinned?" pin":"")+"'><b>"+(a.pinned?"📌 ":"")+tdEsc(a.title||'')+"</b><div class='meta'>"+(a.cls?tdEsc(a.cls):'All classes')+" · by "+tdEsc(a.createdBy||'')+" · "+tdDate(a.createdAt)+"</div><p>"+tdEsc(String(a.message||'').slice(0,240))+(String(a.message||'').length>240?'…':'')+"</p></div>";
+  }).join('') || "<div class='td-sub' style='margin:0'>No announcements yet.</div>";
+  var recent = students.slice().sort(function(a,b){ return String(b.createdAt||b.enrolledAt||'').localeCompare(String(a.createdAt||a.enrolledAt||'')); }).slice(0,6);
+  var top = scored.slice().sort(function(a,b){ return b.overall-a.overall; }).slice(0,5);
+  var studentById = {}; students.forEach(function(s){ if(s.studentId) studentById[s.studentId] = s; });
+  box.innerHTML =
+    "<div class='td-card'><div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:10px'><h3>📢 Announcements</h3><button class='td-ghost' onclick='tdGo(openAnnouncePage)'>View all</button></div>"+annHTML+"</div>"
+    + "<div class='td-kpis'>"
+    + "<button class='td-kpi' onclick='tdGo(openStudentPage)'><div class='ic' style='background:#e8f0ff'>👥</div><b>"+students.length+"</b><span>Total Students</span><small style='color:#1f9d6b'>"+(newThisMonth?"▲ "+newThisMonth+" this month":"&nbsp;")+"</small></button>"
+    + "<button class='td-kpi' onclick='tdGo(openReportPage)'><div class='ic' style='background:#fdf2dc'>🏅</div><b>"+passed+"</b><span>Passed (60% or more)</span><small style='color:#8a93a8'>of "+scored.length+" report cards</small></button>"
+    + "<button class='td-kpi' onclick='tdGo(openReportPage)'><div class='ic' style='background:#e5f6ef'>📈</div><b>"+(overallAvg?Math.round(overallAvg)+"%":"—")+"</b><span>Average Score</span><small style='color:#8a93a8'>"+(overallAvg?"CEFR "+scoreToCEFR(overallAvg):"No report cards yet")+"</small></button>"
+    + "<button class='td-kpi' onclick='tdGo(openReportPage)'><div class='ic' style='background:#fde9e8'>⚠️</div><b>"+below+"</b><span>Below 60%</span><small style='color:#e5534b'>"+(below?"▼ needs attention":"&nbsp;")+"</small></button>"
+    + "<button class='td-kpi' onclick='tdGo(openAttendPage)'><div class='ic' style='background:#eef0f5'>📋</div><b>"+(attCount.total?attCount.present+attCount.late+" / "+attCount.total:"—")+"</b><span>Here today</span><small style='color:"+(attCount.total?"#e5534b":"#c9a227")+"'>"+(attCount.total?attCount.absent+" absent · "+attCount.late+" late":"Attendance not taken yet")+"</small></button>"
+    + "</div>"
+    + "<div class='td-charts'>"
+    + "<div class='td-card'><h3>Average score by subject</h3><div class='td-sub'>Core · Grammar · Writing · Language skills</div>"
+    + tdBars([['Core',avg('core'),tdPct(avg('core'))],['Grammar',avg('grammar'),tdPct(avg('grammar'))],['Writing',avg('writing'),tdPct(avg('writing'))],['Language',avg('lang'),tdPct(avg('lang'))]], ['#0b1a3b','#c9a227','#1f9d6b','#2f80ed']) + "</div>"
+    + "<div class='td-card'><h3>Students by rank</h3><div class='td-sub'>Latest report card of each student</div>"
+    + tdBars(ranks.map(function(r){ return [r[0], r[1], r[1]]; }), ranks.map(function(r){ return r[2]; }), maxRank) + "</div>"
+    + "<div class='td-card'><h3>Average score by level</h3><div class='td-sub'>"+(levels.length? levels.length+" levels compared":"No report cards yet")+"</div>"
+    + (levels.length ? tdBars(levels.map(function(l){ return [l[0], l[1], Math.round(l[1])+'%']; }), ['#0b1a3b','#1b2c55','#25407a','#c9a227','#d6aa4c','#e2bb55','#1f9d6b','#26b583']) : "<div class='td-chart'></div>") + "</div>"
+    + "</div>"
+    + "<div class='td-two'>"
+    + "<div class='td-card'><div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:8px'><h3>Recent Students</h3><button class='td-ghost' onclick='tdGo(openStudentPage)'>View all</button></div>"
+    + (recent.length ? "<div style='overflow-x:auto'><table><thead><tr><th>Student</th><th>ID</th><th>Level</th><th>Joined</th></tr></thead><tbody>"
+       + recent.map(function(s,i){ return "<tr><td>"+tdAvatar(s,i)+tdEsc(s.nameEn||s.nameKm||'—')+"</td><td>"+tdEsc(s.studentId||'')+"</td><td>"+tdEsc(s.cls||'')+"</td><td>"+tdDate(s.createdAt||s.enrolledAt)+"</td></tr>"; }).join('')
+       + "</tbody></table></div>" : "<div class='td-sub'>No students yet.</div>")
+    + "</div>"
+    + "<div class='td-card'><h3>🏆 Top Performers</h3><div class='td-sub'>Highest average on the latest report card</div>"
+    + (top.length ? "<ul class='td-top'>" + top.map(function(x,i){ var s = studentById[x.r.studentId] || {nameEn:x.r.student}; return "<li><span style='width:20px;font-weight:800;color:#c9a227'>"+(i+1)+"</span>"+tdAvatar(s,i)+"<span style='flex:1;min-width:0'>"+tdEsc(x.r.student||s.nameEn||'—')+"<br><span style='color:#8a93a8;font-size:.7rem'>"+tdEsc(x.r.cls||'')+"</span></span><b>"+Math.round(x.overall)+"%</b></li>"; }).join('') + "</ul>" : "<div class='td-sub'>Scores appear when report cards are added.</div>")
+    + "</div></div>";
 }
 </script>
 

@@ -1304,19 +1304,61 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
   <iframe id="digital-hub-frame" src="" style="border:none;width:100%;height:calc(100% - 56px);display:block;"></iframe>
 </div>
 
-<div id="attend-page" style="display:none;position:fixed;inset:0;background:#f0f2f5;z-index:9990;overflow-y:auto;">
-  <div style="background:#000080;color:#FFD700;padding:0 20px;height:56px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.3);">
-    <button onclick="closeAttendPage()" style="background:rgba(255,255,255,.15);color:#fff;border:none;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:.82rem;">← Back</button>
-    <span style="font-weight:800;font-size:1rem;flex:1;">📋 Attendance</span>
-    <span id="attend-date-display" style="font-size:.78rem;color:#9fa8da;"></span>
+<div id="attend-page" style="display:none;position:fixed;inset:0;background:#f4f6fb;z-index:9990;overflow-y:auto;">
+  <style>
+    #attend-page .att-head{background:#fff;border-bottom:1px solid #e6e9f0;padding:0 18px;height:56px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+    #attend-page .att-back{background:#f1f3f8;color:#333;border:none;padding:6px 12px;border-radius:20px;cursor:pointer;font-size:.8rem}
+    #attend-page .att-gold{background:#c9a227;color:#fff;border:none;padding:8px 14px;border-radius:20px;font-weight:700;font-size:.8rem;cursor:pointer;white-space:nowrap}
+    #attend-page .att-ghost{background:#fff;color:#333;border:1px solid #d9dde6;padding:8px 14px;border-radius:20px;font-weight:600;font-size:.8rem;cursor:pointer;white-space:nowrap}
+    #attend-page .att-panel{background:#fff;border:1px solid #e6e9f0;border-radius:16px;margin:18px auto;max-width:1240px}
+    #attend-page .att-panel-h{padding:16px 18px;border-bottom:1px solid #eef0f5;font-weight:700;font-size:.95rem;color:#1a1f36}
+    #attend-page .att-ctrl{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid #eef0f5}
+    #attend-page .att-ctrl label{display:block;font-size:.72rem;color:#666;margin-bottom:4px}
+    #attend-page .att-ctrl > div{min-width:0;max-width:100%}
+    #attend-page #att-cls{width:260px;max-width:100%}
+    #attend-page .att-input{padding:8px 11px;border:1px solid #d9dde6;border-radius:10px;font-size:.83rem;font-family:inherit;color:#333;background:#fff;max-width:100%;box-sizing:border-box}
+    #attend-page .att-sum{display:flex;gap:10px;flex-wrap:wrap;font-size:.75rem;font-weight:700;padding:10px 18px;border-bottom:1px solid #eef0f5}
+    #attend-page .att-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;padding:16px 18px}
+    #attend-page .att-card{border:1px solid #e3e6ee;border-radius:14px;padding:14px;background:#fff}
+    #attend-page .att-who{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+    #attend-page .att-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;flex-shrink:0;object-fit:cover}
+    #attend-page .att-photo{position:relative;width:56px;height:56px;flex-shrink:0;border-radius:12px;overflow:visible}
+    #attend-page .att-photo .att-av{width:56px;height:56px;border-radius:12px;font-size:.95rem}
+    #attend-page .att-photo.can-edit{cursor:pointer}
+    #attend-page .att-photo.can-edit .att-av{border:1.5px dashed #c9cfdc}
+    #attend-page .att-photo .att-cam{position:absolute;right:-6px;bottom:-6px;width:24px;height:24px;border-radius:50%;background:#c9a227;color:#fff;border:2px solid #fff;font-size:.7rem;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+    #attend-page .att-photo.saving .att-av{opacity:.4}
+    #attend-page .att-nm{font-weight:800;font-size:.9rem;color:#1a1f36;line-height:1.2}
+    #attend-page .att-id{font-size:.72rem;color:#888}
+    #attend-page .att-st{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+    #attend-page .att-st button{min-height:36px;border:1px solid #d9dde6;background:#fff;color:#555;border-radius:8px;font-size:.74rem;font-weight:600;cursor:pointer;line-height:1.1;padding:4px 2px;font-family:inherit}
+    #attend-page .att-st button.wide{grid-column:1/-1;min-height:28px}
+    #attend-page .att-st button.on-present{background:#1f9d6b;border-color:#1f9d6b;color:#fff}
+    #attend-page .att-st button.on-late{background:#f39c12;border-color:#f39c12;color:#fff}
+    #attend-page .att-st button.on-leaveEarly{background:#8d6e00;border-color:#8d6e00;color:#fff}
+    #attend-page .att-st button.on-permission{background:#1976d2;border-color:#1976d2;color:#fff}
+    #attend-page .att-st button.on-absent{background:#d93025;border-color:#d93025;color:#fff}
+    #attend-page .att-card textarea{width:100%;box-sizing:border-box;margin-top:12px;padding:9px 10px;border:1px solid #e3e6ee;background:#f1f3f7;border-radius:8px;font-size:.78rem;resize:vertical;height:46px;font-family:inherit}
+    #attend-page .att-times{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+    #attend-page .att-times label{font-size:.66rem;letter-spacing:.5px;color:#888;display:block;margin-bottom:3px}
+    #attend-page .att-times input{width:100%;box-sizing:border-box;padding:7px 8px;border:1px solid #d9dde6;border-radius:8px;font-size:.8rem;font-family:inherit}
+    #attend-page .att-ro{font-size:.82rem;font-weight:700}
+  </style>
+  <input type="file" id="att-photo-input" accept="image/*" style="display:none" onchange="attPhotoChosen(this)">
+  <div class="att-head">
+    <button class="att-back" onclick="closeAttendPage()">← Back</button>
+    <span style="font-weight:800;font-size:1.05rem;color:#1a1f36;flex:1;">Attendance</span>
+    <span id="attend-date-display" style="font-size:.78rem;color:#777;"></span>
+    <button id="att-add-student-btn" class="att-gold" onclick="attAddStudent()" style="display:none;">+ Add Student</button>
   </div>
-
-  <div style="max-width:860px;margin:0 auto;padding:16px 12px;">
-
-    <!-- Controls -->
-    <div style="background:#fff;border-radius:10px;padding:12px 14px;box-shadow:0 1px 6px rgba(0,0,0,.08);margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-      <select id="att-cls" onchange="loadAttendance()" style="padding:7px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.83rem;outline:none;font-family:inherit;color:#333;;max-width:100%;box-sizing:border-box;">
-        <option value="">-- Select Class --</option>
+  <div style="padding:0 12px 30px;">
+    <div class="att-panel">
+      <div class="att-panel-h" id="att-panel-title">Take / Edit Attendance</div>
+      <div class="att-ctrl">
+        <div><label for="att-date">Date</label><input type="date" id="att-date" onchange="loadAttendance()" class="att-input"></div>
+        <div><label for="att-cls">Level</label>
+      <select id="att-cls" onchange="loadAttendance()" class="att-input">
+        <option value="__ALL__">All Levels</option>
         <optgroup label="🎒 Kindergarten">
           <option>K0</option>
           <option>K1</option>
@@ -1350,40 +1392,30 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
           <option value="Computer">Computer Class</option>
           <option value="AI">AI Class</option>
         </optgroup>
-      </select>
-      <input type="date" id="att-date" onchange="loadAttendance()"
-        style="padding:7px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.83rem;outline:none;font-family:inherit;">
-      <div id="att-summary" style="font-size:.76rem;color:#555;margin-left:auto;display:flex;gap:9px;flex-wrap:wrap;">
-        <span style="color:#333;font-weight:700;">👥 <span id="att-total-count">0</span> Total</span>
-        <span style="color:#8e24aa;font-weight:700;">♀ <span id="att-female-count">0</span></span>
-        <span style="color:#1565c0;font-weight:700;">♂ <span id="att-male-count">0</span></span>
-        <span style="color:#2e7d32;font-weight:700;">✅ <span id="att-present-count">0</span></span>
-        <span style="color:#f57c00;font-weight:700;">⚠️ <span id="att-late-count">0</span></span>
-        <span style="color:#8d6e00;font-weight:700;">🚪 <span id="att-leaveearly-count">0</span></span>
-        <span style="color:#1976d2;font-weight:700;">📄 <span id="att-permission-count">0</span></span>
-        <span style="color:#c62828;font-weight:700;">❌ <span id="att-absent-count">0</span></span>
+      </select></div>
+        <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;">
+          <button id="att-save-row" class="att-gold" onclick="saveAttendance()" style="display:none;">💾 Save Attendance</button>
+          <button class="att-ghost" onclick="exportAttendanceCSV()">⬇ Export CSV</button>
+        </div>
+      </div>
+      <div id="att-save-msg" style="font-size:.8rem;padding:0 18px;color:#888;"></div>
+      <div class="att-sum" id="att-summary">
+        <span style="color:#333;">👥 <span id="att-total-count">0</span> Total</span>
+        <span style="color:#8e24aa;">♀ <span id="att-female-count">0</span></span>
+        <span style="color:#1565c0;">♂ <span id="att-male-count">0</span></span>
+        <span style="color:#1f9d6b;">✅ Present <span id="att-present-count">0</span></span>
+        <span style="color:#f39c12;">⏰ Late <span id="att-late-count">0</span></span>
+        <span style="color:#8d6e00;">🚪 Leave early <span id="att-leaveearly-count">0</span></span>
+        <span style="color:#1976d2;">📄 Permission <span id="att-permission-count">0</span></span>
+        <span style="color:#d93025;">❌ Absent <span id="att-absent-count">0</span></span>
+      </div>
+      <div id="att-list" class="att-grid">
+        <div style="grid-column:1/-1;text-align:center;padding:40px;color:#bbb;">Choose a date and level to take attendance</div>
       </div>
     </div>
-
-    <!-- Attendance Cards -->
-    <div id="att-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-bottom:14px;">
-      <div style="grid-column:1/-1;text-align:center;padding:40px;color:#ccc;background:#fff;border-radius:10px;">Select a class and date to take attendance</div>
-    </div>
-
-    <!-- Save button (teacher only) -->
-    <div id="att-save-row" style="display:none;text-align:center;">
-      <button onclick="saveAttendance()" style="background:#000080;color:#FFD700;border:none;padding:12px 32px;border-radius:10px;font-weight:700;font-size:.95rem;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,128,.3);">
-        💾 Save Attendance
-      </button>
-      <div id="att-save-msg" style="font-size:.8rem;margin-top:8px;color:#888;"></div>
-    </div>
-
-    <!-- History section -->
-    <div id="att-history-section" style="display:none;margin-top:16px;">
-      <div style="background:#fff;border-radius:10px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:16px;">
-        <h3 style="font-size:.88rem;color:#000080;margin-bottom:12px;">📅 Attendance History (Last 30 days)</h3>
-        <div id="att-history-list" style="font-size:.8rem;"></div>
-      </div>
+    <div id="att-history-section" class="att-panel" style="display:none;padding:16px 18px;">
+      <h3 style="font-size:.9rem;color:#1a1f36;margin:0 0 12px;">📅 Attendance History (Last 30 days)</h3>
+      <div id="att-history-list" style="font-size:.8rem;overflow-x:auto;"></div>
     </div>
   </div>
 </div>
@@ -7687,117 +7719,172 @@ function closeDigitalHubPage(){
 function openAttendPage(){
   document.getElementById("attend-page").style.display = "block";
   restrictClassDropdown("att-cls");
+  var addBtn = document.getElementById("att-add-student-btn");
+  if(addBtn) addBtn.style.display = isTeacher ? "inline-block" : "none";
+  var allOpt = document.querySelector('#att-cls option[value="__ALL__"]');
+  if(!isTeacher && studentSession){
+    // parents/students: only their own child's class (and only their child's card)
+    if(allOpt) allOpt.hidden = true;
+    document.getElementById("att-cls").value = studentSession.cls;
+    document.getElementById("att-panel-title").textContent = "Attendance — " + studentSession.name;
+  } else {
+    if(allOpt) allOpt.hidden = false;
+    document.getElementById("att-panel-title").textContent = "Take / Edit Attendance";
+  }
   // Set today as default date
   var today = new Date().toISOString().split("T")[0];
   document.getElementById("att-date").value = today;
   document.getElementById("attend-date-display").textContent = 
     new Date().toLocaleDateString("en-GB",{weekday:"long",day:"2-digit",month:"long",year:"numeric"});
-  if(isTeacher) document.getElementById("att-save-row").style.display = "block";
+  document.getElementById("att-save-row").style.display = isTeacher ? "inline-block" : "none";
+  loadAttendance();
 }
 function closeAttendPage(){
   document.getElementById("attend-page").style.display = "none";
 }
 
+// ── Attendance: one card per student (Present / Late / Leave Early / Permission / Absent,
+//    reason, check-in and check-out). "All Levels" shows every class the teacher can see and
+//    saves one record per class and date (attendance/<class>_<date>), like before.
+var attendDocsByCls = {};
+function attDocIdFor(cls, date){ return cls.replace(/[^a-zA-Z0-9]/g,"_")+"_"+date; }
+var ATT_PASTELS = [["#e3edff","#2f5fd0"],["#fff1df","#b86a00"],["#e3f7ee","#1f8a5c"],["#efe7ff","#6b45c4"],["#ffe6ec","#c2335a"],["#e6f4ff","#1d6fb8"],["#fff6dc","#9a7400"],["#e8f5f2","#2c7f72"]];
+function attInitials(n){ var p=String(n||"S").trim().split(/\s+/); return ((p[0]||"").charAt(0)+(p.length>1?p[p.length-1].charAt(0):"")).toUpperCase() || "S"; }
 async function loadAttendance(){
   var cls  = document.getElementById("att-cls").value;
   var date = document.getElementById("att-date").value;
   if(!cls || !date){ return; }
-  
   var list = document.getElementById("att-list");
-  list.innerHTML = "<div style=text-align:center;padding:24px;color:#888>Loading...</div>";
-  
+  list.innerHTML = "<div style='grid-column:1/-1;text-align:center;padding:24px;color:#888'>Loading...</div>";
+  document.getElementById("att-save-msg").textContent = "";
+  var all = cls === "__ALL__";
   try {
-    var {db, collection, query} = window._fb;
-    var {getDocs, where, orderBy, doc, getDoc} = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
-    
-    // Load students in this class
-    var sq = query(collection(db,"students"), where("cls","==",cls));
-    var snap = await getDocs(sq);
-    attendStudents = snap.docs.map(d=>({id:d.id,...d.data()}));
-    attendStudents.sort((a,b)=>(a.nameEn||"").localeCompare(b.nameEn||""));
-    
-    // Load existing attendance for this date+class
-    var attId = cls.replace(/[^a-zA-Z0-9]/g,"_")+"_"+date;
-    attendDocId = attId;
-    var attSnap = await getDoc(doc(db,"attendance",attId));
-    attendData = attSnap.exists() ? (attSnap.data().records || {}) : {};
-    
-    // Render
+    var students = [], docs = {};
+    if(window.location.protocol === "file:" || !window._fb){
+      students = JSON.parse(localStorage.getItem("c2epe_local_students")||"[]");
+      JSON.parse(localStorage.getItem("c2epe_attendance")||"[]").forEach(function(a){ if(a.date===date) docs[a.cls]=a; });
+    } else {
+      var {db, collection, query} = window._fb;
+      var {getDocs, where} = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+      var sSnap = await getDocs(all ? collection(db,"students") : query(collection(db,"students"), where("cls","==",cls)));
+      students = sSnap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+      var aSnap = await getDocs(all ? query(collection(db,"attendance"), where("date","==",date)) : query(collection(db,"attendance"), where("cls","==",cls), where("date","==",date)));
+      aSnap.docs.forEach(function(d){ var x=d.data(); docs[x.cls]=x; });
+    }
+    students = students.map(function(s){ s.cls = baseLevel(s.cls||""); return s; });
+    if(!all) students = students.filter(function(s){ return s.cls === cls; });
+    students = students.filter(function(s){ return teacherCanSeeClass(s.cls); });
+    if(!isTeacher && studentSession) students = students.filter(function(s){ return s.id === studentSession.docId || s.studentId === studentSession.studentId; });
+    students.sort(function(a,b){ return (a.cls||"").localeCompare(b.cls||"") || (a.nameEn||a.nameKm||"").localeCompare(b.nameEn||b.nameKm||""); });
+    attendStudents = students;
+    attendDocsByCls = docs;
+    attendDocId = all ? "" : attDocIdFor(cls, date);
+    attendData = {};
+    var hadSaved = Object.keys(docs).length > 0;
+    students.forEach(function(s){
+      var rec = ((docs[s.cls]||{}).records||{})[s.id];
+      // A new day starts with everyone Present (the teacher only changes the exceptions)
+      attendData[s.id] = rec ? Object.assign({}, rec) : (isTeacher && !((docs[s.cls]||{}).records) ? {status:"present"} : {});
+    });
     renderAttendList();
-    loadAttendHistory(cls);
-    document.getElementById("att-history-section").style.display = "block";
-    if(isTeacher) document.getElementById("att-save-row").style.display = "block";
-    
+    document.getElementById("att-save-msg").textContent = isTeacher ? (hadSaved ? "Saved attendance loaded — you can edit and save again." : "New day: everyone starts as Present. Change only the exceptions, then Save.") : "";
+    if(!all){ loadAttendHistory(cls); document.getElementById("att-history-section").style.display = "block"; }
+    else document.getElementById("att-history-section").style.display = "none";
   } catch(e){
-    list.innerHTML = "<div style=text-align:center;padding:24px;color:#e53935>"+e.message+"</div>";
+    list.innerHTML = "<div style='grid-column:1/-1;text-align:center;padding:24px;color:#e53935'>"+e.message+"</div>";
   }
 }
 
+var ATT_STATUSES = [["present","Present"],["late","Late"],["leaveEarly","Leave Early"],["permission","Permission"],["absent","Absent"]];
 function renderAttendList(){
   var list = document.getElementById("att-list");
   if(!attendStudents.length){
-    list.innerHTML = "<div style='grid-column:1/-1;text-align:center;padding:32px;color:#ccc;background:#fff;border-radius:10px;'>No students in this class.<br><small>Add students in Student Profiles first.</small></div>";
-    updateAttSummary();
-    return;
+    list.innerHTML = "<div style='grid-column:1/-1;text-align:center;padding:32px;color:#bbb;'>No students found.<br><small>Students appear here once they are enrolled.</small></div>";
+    updateAttSummary(); return;
   }
-
-  var STATUSES = [
-    ["present","✅ Present","#2e7d32","#e8f5e9"],
-    ["late","⚠️ Late","#f57c00","#fff3e0"],
-    ["leaveEarly","🚪 Leave Early","#8d6e00","#fff8e1"],
-    ["permission","📄 Permission","#1976d2","#e3f2fd"],
-    ["absent","❌ Absent","#c62828","#ffebee"]
-  ];
-
-  list.innerHTML = attendStudents.map(function(s){
-    var rec    = attendData[s.id] || {};
-    var status = rec.status || "";
-    var reason = rec.reason || "";
-    var col     = getColor(s.cls||"");
-    var initial = (s.nameEn||s.nameKm||"S").charAt(0).toUpperCase();
-    var photoHTML = s.photo
-      ? "<img src="+s.photo+" alt='Student photo' style=width:38px;height:38px;border-radius:50%;object-fit:cover>"
-      : "<div style=width:38px;height:38px;border-radius:50%;background:"+col+";color:#fff;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700>"+initial+"</div>";
-
-    var btnsHTML = isTeacher
-      ? STATUSES.map(function(st){
-          var active = status === st[0];
-          return "<button onclick=\"setAttend('"+s.id+"','"+st[0]+"')\" style=\"padding:6px 10px;border-radius:16px;font-size:.74rem;font-weight:700;cursor:pointer;border:1.5px solid "+(active?st[2]:"#e0e0e0")+";background:"+(active?st[2]:"#fff")+";color:"+(active?"#fff":"#666")+";\">"+st[1]+"</button>";
-        }).join("")
-      : (function(){
-          var s2 = STATUSES.find(function(x){return x[0]===status;});
-          return s2 ? "<span style=color:"+s2[2]+";font-weight:700;font-size:.82rem>"+s2[1]+"</span>" : "<span style=color:#ccc>— Not marked</span>";
-        })();
-
-    var reasonHTML = isTeacher
-      ? "<textarea placeholder='Enter reason (optional)' onchange=\"setAttendReason('"+s.id+"',this.value)\" style=\"width:100%;margin-top:10px;padding:7px 9px;border:1.5px solid #eee;border-radius:6px;font-size:.78rem;outline:none;resize:none;height:44px;font-family:inherit;\">"+reason+"</textarea>"
-      : (reason ? "<div style=margin-top:8px;font-size:.76rem;color:#888;font-style:italic>“"+reason+"”</div>" : "");
-
-    var bgTint = status ? STATUSES.find(function(x){return x[0]===status;})[3] : "#fff";
-
-    return "<div style=\"background:"+bgTint+";border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:14px;\">"
-      +"<div style=display:flex;align-items:center;gap:10px;margin-bottom:10px>"
-      +photoHTML
-      +"<div><div style=font-weight:700;font-size:.85rem;color:#1a1a2e>"+(s.nameKm||s.nameEn||"—")+"</div>"
-      +"<div style=font-size:.7rem;color:#aaa>"+(s.studentId||s.nameEn||"")+"</div></div>"
-      +"</div>"
-      +"<div style=display:flex;flex-wrap:wrap;gap:6px>"+btnsHTML+"</div>"
-      +reasonHTML
-      +"</div>";
+  var showLevel = document.getElementById("att-cls").value === "__ALL__";
+  list.innerHTML = attendStudents.map(function(s, i){
+    var rec = attendData[s.id] || {}, status = rec.status || "";
+    var name = s.nameEn || s.nameKm || "—";
+    var pal = ATT_PASTELS[i % ATT_PASTELS.length];
+    var avInner = s.photo ? "<img class='att-av' src='"+escapeHtml(s.photo)+"' alt='Photo of "+escapeHtml(name)+"'>" : "<div class='att-av' style='background:"+pal[0]+";color:"+pal[1]+"'>"+escapeHtml(attInitials(s.nameEn||s.nameKm))+"</div>";
+    // Photo box: teachers tap it to add or change the student's photo (camera or gallery)
+    var av = isTeacher
+      ? "<div class='att-photo can-edit' id='att-photo-"+s.id+"' onclick=\"attPickPhoto('"+s.id+"')\" title='"+(s.photo?"Change photo":"Add photo")+"'>"+avInner+"<span class='att-cam'>📷</span></div>"
+      : "<div class='att-photo'>"+avInner+"</div>";
+    var head = "<div class='att-who'>"+av+"<div style='min-width:0'><div class='att-nm'>"+escapeHtml(name)+"</div><div class='att-id'>"+escapeHtml(s.studentId||"")+(showLevel?" · "+escapeHtml(s.cls||""):"")+(s.nameEn&&s.nameKm?" · "+escapeHtml(s.nameKm):"")+"</div></div></div>";
+    if(!isTeacher){
+      var st = ATT_STATUSES.find(function(x){ return x[0]===status; });
+      return "<div class='att-card'>"+head+"<div class='att-ro'>"+(st?st[1]:"Not marked")+"</div>"
+        + (rec.reason?"<div style='margin-top:6px;font-size:.78rem;color:#777;font-style:italic'>“"+escapeHtml(rec.reason)+"”</div>":"")
+        + ((rec.checkIn||rec.checkOut)?"<div style='margin-top:6px;font-size:.76rem;color:#666'>In "+escapeHtml(rec.checkIn||"—")+" · Out "+escapeHtml(rec.checkOut||"—")+"</div>":"")+"</div>";
+    }
+    var btns = ATT_STATUSES.map(function(st){
+      return "<button class='"+(st[0]==="absent"?"wide ":"")+(status===st[0]?"on-"+st[0]:"")+"' onclick=\"setAttend('"+s.id+"','"+st[0]+"')\">"+st[1]+"</button>";
+    }).join("");
+    return "<div class='att-card'>"+head+"<div class='att-st'>"+btns+"</div>"
+      + "<textarea placeholder='Enter reason (optional)' onchange=\"setAttendField('"+s.id+"','reason',this.value)\">"+escapeHtml(rec.reason||"")+"</textarea>"
+      + "<div class='att-times'><div><label>CHECK-IN</label><input type='time' value='"+escapeHtml(rec.checkIn||"")+"' onchange=\"setAttendField('"+s.id+"','checkIn',this.value)\"></div>"
+      + "<div><label>CHECK-OUT</label><input type='time' value='"+escapeHtml(rec.checkOut||"")+"' onchange=\"setAttendField('"+s.id+"','checkOut',this.value)\"></div></div></div>";
   }).join("");
-
   updateAttSummary();
 }
-
 function setAttend(sid, status){
   if(!attendData[sid]) attendData[sid] = {};
-  attendData[sid].status = (attendData[sid].status === status) ? "" : status;
+  attendData[sid].status = status;
   renderAttendList();
 }
-function setAttendReason(sid, reason){
+function setAttendField(sid, field, value){
   if(!attendData[sid]) attendData[sid] = {};
-  attendData[sid].reason = reason;
+  attendData[sid][field] = value;
 }
+function setAttendReason(sid, reason){ setAttendField(sid, "reason", reason); }
+
+// ── Student photo from the attendance card ──
+// The photo is made small (square, 256 px JPEG) before saving, so the student list stays fast.
+var attPhotoFor = null;
+function attPickPhoto(sid){ attPhotoFor = sid; var inp = document.getElementById("att-photo-input"); inp.value = ""; inp.click(); }
+function attResizePhoto(file){
+  return new Promise(function(resolve, reject){
+    var img = new Image(), url = URL.createObjectURL(file);
+    img.onload = function(){
+      var size = 256, side = Math.min(img.width, img.height);
+      var c = document.createElement("canvas"); c.width = size; c.height = size;
+      c.getContext("2d").drawImage(img, (img.width-side)/2, (img.height-side)/2, side, side, 0, 0, size, size);
+      URL.revokeObjectURL(url);
+      resolve(c.toDataURL("image/jpeg", 0.82));
+    };
+    img.onerror = function(){ URL.revokeObjectURL(url); reject(new Error("This file is not a photo.")); };
+    img.src = url;
+  });
+}
+async function attPhotoChosen(input){
+  var sid = attPhotoFor, file = input.files && input.files[0];
+  if(!sid || !file) return;
+  var box = document.getElementById("att-photo-"+sid);
+  if(box) box.classList.add("saving");
+  var msg = document.getElementById("att-save-msg");
+  try {
+    var photo = await attResizePhoto(file);
+    if(window.location.protocol === "file:" || !window._fb){
+      var list = JSON.parse(localStorage.getItem("c2epe_local_students")||"[]");
+      list.forEach(function(x){ if(x.id===sid) x.photo = photo; });
+      localStorage.setItem("c2epe_local_students", JSON.stringify(list));
+    } else {
+      var m = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+      await m.updateDoc(m.doc(window._fb.db, "students", sid), { photo: photo, photoUpdatedAt: new Date().toISOString() });
+    }
+    attendStudents.forEach(function(x){ if(x.id===sid) x.photo = photo; });
+    renderAttendList();
+    msg.textContent = "📷 Photo saved."; msg.style.color = "#2e7d32";
+  } catch(e){
+    console.error("Student photo error:", e);
+    if(box) box.classList.remove("saving");
+    msg.textContent = "❌ Could not save the photo: " + (e && e.message ? e.message : e); msg.style.color = "#c62828";
+  }
+}
+
+function attAddStudent(){ if(typeof showAddStudentModal === "function") showAddStudentModal(); }
 
 function updateAttSummary(){
   var counts = {present:0, late:0, leaveEarly:0, permission:0, absent:0};
@@ -7805,8 +7892,7 @@ function updateAttSummary(){
   attendStudents.forEach(function(s){
     var st = (attendData[s.id]||{}).status || "";
     if(counts[st] !== undefined) counts[st]++;
-    if((s.gender||"").toLowerCase()==="female") female++;
-    else male++;
+    if((s.gender||"").toLowerCase()==="female") female++; else male++;
   });
   document.getElementById("att-total-count").textContent      = attendStudents.length;
   document.getElementById("att-female-count").textContent     = female;
@@ -7819,37 +7905,59 @@ function updateAttSummary(){
 }
 
 async function saveAttendance(){
-  var cls  = document.getElementById("att-cls").value;
+  var sel  = document.getElementById("att-cls").value;
   var date = document.getElementById("att-date").value;
-  if(!cls||!date){ alert("Please select class and date."); return; }
-  
-  var msg = document.getElementById("att-save-msg");
-  msg.textContent = "Saving..."; msg.style.color="#1565c0";
-  
-  var {db} = window._fb;
-  var {setDoc, doc} = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
-  
+  var msg  = document.getElementById("att-save-msg");
+  if(!sel||!date){ alert("Please select a date and level."); return; }
+  if(!attendStudents.length){ alert("There are no students to save."); return; }
+  msg.textContent = "Saving..."; msg.style.color = "#1565c0";
+  // group the cards by class: one attendance record per class and date
+  var byCls = {};
+  attendStudents.forEach(function(s){ (byCls[s.cls] = byCls[s.cls] || []).push(s); });
   try {
-    var counts = {present:0, late:0, leaveEarly:0, permission:0, absent:0};
-    attendStudents.forEach(function(s){
-      var st = (attendData[s.id]||{}).status || "";
-      if(counts[st] !== undefined) counts[st]++;
-    });
-
-    await setDoc(doc(db,"attendance",attendDocId),{
-      cls, date,
-      records: attendData,
-      summary: {present:counts.present, absent:counts.absent, late:counts.late, leaveEarly:counts.leaveEarly, permission:counts.permission, total:attendStudents.length},
-      savedBy: currentTeacherName,
-      savedAt: new Date().toISOString()
-    });
-    msg.textContent = "✅ Saved! Present:"+counts.present+" | Late:"+counts.late+" | Leave Early:"+counts.leaveEarly+" | Permission:"+counts.permission+" | Absent:"+counts.absent;
+    var local = window.location.protocol === "file:" || !window._fb;
+    var setDoc, docFn, db;
+    if(!local){ db = window._fb.db; var m = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"); setDoc = m.setDoc; docFn = m.doc; }
+    var savedList = local ? JSON.parse(localStorage.getItem("c2epe_attendance")||"[]") : null;
+    var tot = {present:0, late:0, leaveEarly:0, permission:0, absent:0};
+    for(var cls in byCls){
+      var studs = byCls[cls];
+      var records = Object.assign({}, (attendDocsByCls[cls]||{}).records || {});
+      var counts = {present:0, late:0, leaveEarly:0, permission:0, absent:0};
+      studs.forEach(function(s){
+        var r = attendData[s.id] || {};
+        records[s.id] = {status:r.status||"", reason:r.reason||"", checkIn:r.checkIn||"", checkOut:r.checkOut||"", name:s.nameEn||s.nameKm||"", studentId:s.studentId||""};
+        if(counts[r.status] !== undefined){ counts[r.status]++; tot[r.status]++; }
+      });
+      var data = { cls:cls, date:date, records:records,
+        summary:{present:counts.present, absent:counts.absent, late:counts.late, leaveEarly:counts.leaveEarly, permission:counts.permission, total:studs.length},
+        savedBy: currentTeacherName||"", savedAt: new Date().toISOString() };
+      if(local){ savedList = savedList.filter(function(a){ return !(a.cls===cls && a.date===date); }); savedList.push(data); }
+      else await setDoc(docFn(db,"attendance",attDocIdFor(cls,date)), data);
+      attendDocsByCls[cls] = data;
+    }
+    if(local) localStorage.setItem("c2epe_attendance", JSON.stringify(savedList));
+    msg.textContent = "✅ Saved "+Object.keys(byCls).length+" class(es) — Present "+tot.present+" · Late "+tot.late+" · Leave early "+tot.leaveEarly+" · Permission "+tot.permission+" · Absent "+tot.absent;
     msg.style.color = "#2e7d32";
-    loadAttendHistory(cls);
+    if(sel !== "__ALL__") loadAttendHistory(sel);
   } catch(e){
-    msg.textContent = "❌ Error: "+e.message;
-    msg.style.color = "#c62828";
+    msg.textContent = "❌ Error: "+e.message; msg.style.color = "#c62828";
   }
+}
+
+function exportAttendanceCSV(){
+  if(!attendStudents.length){ alert("Nothing to export yet."); return; }
+  var date = document.getElementById("att-date").value;
+  var label = {present:"Present",late:"Late",leaveEarly:"Leave Early",permission:"Permission",absent:"Absent"};
+  var q = function(v){ v = String(v==null?"":v); return /[",\n]/.test(v) ? '"'+v.replace(/"/g,'""')+'"' : v; };
+  var rows = [["Date","Level","Student ID","Name (English)","Name (Khmer)","Status","Reason","Check-in","Check-out"]];
+  attendStudents.forEach(function(s){ var r = attendData[s.id]||{}; rows.push([date, s.cls, s.studentId||"", s.nameEn||"", s.nameKm||"", label[r.status]||"", r.reason||"", r.checkIn||"", r.checkOut||""]); });
+  var csv = "\ufeff" + rows.map(function(r){ return r.map(q).join(","); }).join("\r\n");
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([csv], {type:"text/csv;charset=utf-8"}));
+  var lv = document.getElementById("att-cls").value; lv = lv==="__ALL__" ? "AllLevels" : lv.replace(/[^a-zA-Z0-9]/g,"_");
+  a.download = "Attendance_"+lv+"_"+date+".csv";
+  document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
 }
 
 async function loadAttendHistory(cls){

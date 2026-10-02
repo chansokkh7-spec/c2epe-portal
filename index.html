@@ -953,7 +953,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
       <div id="parent-select-view">
         <p style="font-size:.8rem;color:#666;margin-bottom:10px;">Your child's teacher gave you a unique Student ID. Enter it below to securely view only your own child's posts, homework, report card, and to message the teacher directly.</p>
         <label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">Student ID</label>
-        <input type="text" id="parent-student-id" placeholder="C2-EPE0000" maxlength="12"
+        <input type="text" id="parent-student-id" placeholder="e.g. 482916" inputmode="numeric" maxlength="12"
           style="width:100%;padding:10px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:1rem;font-family:monospace;letter-spacing:1px;text-transform:uppercase;outline:none;margin-bottom:8px;"
           onkeydown="if(event.key==='Enter')loginWithStudentId()">
         <div id="parent-id-err" style="display:none;color:#e53935;font-size:.76rem;margin-bottom:10px;background:#ffebee;padding:7px 10px;border-radius:6px;"></div>
@@ -5994,9 +5994,10 @@ async function loginWithStudentId(){
   var btn   = document.getElementById('parent-id-btn');
   errEl.style.display = 'none';
   if(!raw){ errEl.style.display='block'; errEl.textContent="Please enter the Student ID."; return; }
-  if(!/^C2-EPE\d{4,}$/.test(raw)){
+  // new IDs are 6 digits (e.g. 482916); older test IDs like C2-EPE0001 still work
+  if(!/^(\d{6}|C2-EPE\d{4,})$/.test(raw)){
     errEl.style.display='block';
-    errEl.textContent='Student ID should look like C2-EPE0001.';
+    errEl.textContent='The Student ID is the 6-digit number the school gave you (e.g. 482916).';
     return;
   }
   if(window.location.protocol === 'file:'){
@@ -7035,17 +7036,23 @@ function previewStuPhoto(e){
 function formatStudentId(n){
   return "C2-EPE" + String(n).padStart(4,"0");
 }
+// New Student IDs: 6 random digits (e.g. 482916) — no "C2-EPE" prefix and no counting order,
+// so an ID can't be guessed from another one. Each candidate is checked against every existing
+// student before it is used, so every student gets a different ID.
+function randomStudentId(){
+  var a = new Uint32Array(1);
+  (window.crypto || window.msCrypto).getRandomValues(a);
+  return String(100000 + (a[0] % 900000));
+}
 async function generateNextStudentId(){
-  var {db, collection} = window._fb;
-  var {getDocs} = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
-  var snap = await getDocs(collection(db,"students"));
-  var maxN = 0;
-  snap.docs.forEach(function(d){
-    var sid = d.data().studentId || "";
-    var m = sid.match(/^C2-EPE(\d+)$/);
-    if(m){ var n = parseInt(m[1],10); if(n > maxN) maxN = n; }
-  });
-  return formatStudentId(maxN + 1);
+  var {db, collection, query} = window._fb;
+  var {getDocs, where} = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+  for(var tries=0; tries<25; tries++){
+    var candidate = randomStudentId();
+    var snap = await getDocs(query(collection(db,"students"), where("studentId","==",candidate)));
+    if(snap.empty) return candidate;
+  }
+  throw new Error("Could not create a unique Student ID — please try again.");
 }
 
 async function saveStudent(){
@@ -8083,6 +8090,30 @@ async function loadAttendHistory(cls){
 // ── HOMEWORK ASSIGNMENTS ─────────────────────
 var editingHwId = null;
 
+// Students/parents: the class filter is fixed to the student's own class and replaced by a
+// simple label (no dropdown to open); teachers keep the normal dropdown.
+function studentClassFilter(selectId){
+  var sel = document.getElementById(selectId);
+  if(!sel) return;
+  var chipId = selectId + "-own";
+  var chip = document.getElementById(chipId);
+  var own = (!isTeacher && studentSession) ? (studentSession.cls || parentClass || "") : "";
+  if(!own){
+    sel.style.display = ""; sel.disabled = false;
+    Array.prototype.forEach.call(sel.querySelectorAll("option,optgroup"), function(o){ o.hidden = false; });
+    if(chip) chip.remove();
+    return;
+  }
+  sel.value = own;
+  if(sel.value !== own){ var o = document.createElement("option"); o.value = own; o.textContent = own; sel.appendChild(o); sel.value = own; }
+  sel.style.display = "none";
+  if(!chip){
+    chip = document.createElement("div"); chip.id = chipId;
+    chip.style.cssText = "display:inline-flex;align-items:center;gap:6px;background:#e8eaf6;color:#000080;border-radius:999px;padding:7px 14px;font-weight:700;font-size:.85rem;";
+    sel.parentNode.insertBefore(chip, sel);
+  }
+  chip.textContent = "🎓 " + ((typeof classDisplayLabel === "function" && classDisplayLabel(own)) || own);
+}
 function openHwPage(){
   document.getElementById("hw-page").style.display = "block";
   if(isTeacher) document.getElementById("add-hw-btn").style.display = "inline-block";
@@ -8093,6 +8124,7 @@ function openHwPage(){
   }
   restrictClassDropdown("hw-filter-cls");
   restrictClassDropdown("hw-cls");
+  studentClassFilter("hw-filter-cls");
   loadHomework();
 }
 function closeHwPage(){
@@ -10995,9 +11027,8 @@ async function acceptAndEnrollApplication(id){
 
     if(isLocal || !window._fb){
       var students = JSON.parse(localStorage.getItem("c2epe_local_students")||"[]");
-      var maxN = 0;
-      students.forEach(function(s){ var m=(s.studentId||"").match(/^C2-EPE(\d+)$/); if(m){ var n=parseInt(m[1],10); if(n>maxN) maxN=n; } });
-      studentId = formatStudentId(maxN+1);
+      var usedIds = {}; students.forEach(function(s){ if(s.studentId) usedIds[s.studentId] = 1; });
+      do { studentId = randomStudentId(); } while(usedIds[studentId]);
       studentData.studentId = studentId;
       studentData.id = Date.now().toString();
       students.push(studentData);
@@ -14446,8 +14477,8 @@ function openReportPage(){
   Array.prototype.forEach.call(rptCls.querySelectorAll("optgroup"), function(g){ g.hidden = !!ownCls && !Array.prototype.some.call(g.querySelectorAll("option"), function(o){ return !o.hidden; }); });
   rptCls.disabled = !!ownCls;
   if(ownCls) rptCls.value = ownCls;
+  studentClassFilter("rpt-filter-cls");
   showReportListView();
-  if(!isTeacher && parentClass) document.getElementById("rpt-filter-cls").value = parentClass;
   restrictClassDropdown("rpt-filter-cls");
   loadReports();
 }
@@ -15005,6 +15036,7 @@ function openQuizPage(){
   document.getElementById("add-quiz-btn").style.display = isTeacher ? "inline-block" : "none";
   if(!isTeacher && parentClass) document.getElementById("quiz-filter-cls").value = parentClass;
   restrictClassDropdown("quiz-filter-cls");
+  studentClassFilter("quiz-filter-cls");
   showQuizListView();
 }
 function closeQuizPage(){

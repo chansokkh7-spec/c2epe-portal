@@ -1596,6 +1596,36 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
   </div>
 </div>
 
+<style>
+.hw-type-btn{padding:8px 4px;border:1.5px solid #e0e0e0;background:#fff;border-radius:8px;font-size:.74rem;font-weight:700;color:#555;cursor:pointer;line-height:1.4;font-family:inherit}
+.hw-type-btn.on{border-color:#000080;background:#e8eaf6;color:#000080}
+.hw-act{display:inline-flex;align-items:center;gap:5px;border:none;border-radius:7px;padding:7px 12px;font-size:.76rem;font-weight:700;cursor:pointer;font-family:inherit}
+</style>
+<!-- STUDENT: submit homework (video / photo / audio / file) -->
+<div id="hw-submit-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:10001;align-items:center;justify-content:center;padding:12px;">
+  <div style="background:#fff;border-radius:14px;width:380px;max-width:100%;max-height:92vh;overflow-y:auto;">
+    <div style="background:#000080;color:#FFD700;padding:14px 18px;font-weight:700;display:flex;justify-content:space-between;border-radius:14px 14px 0 0;"><span id="hw-submit-title">📤 Submit Homework</span><button aria-label="Close" onclick="closeHwSubmit()" style="background:none;border:none;color:#FFD700;font-size:1.1rem;cursor:pointer;">✕</button></div>
+    <div style="padding:16px 18px;">
+      <div id="hw-submit-info" style="font-size:.8rem;color:#555;margin-bottom:10px;line-height:1.5;"></div>
+      <input type="file" id="hw-submit-file" style="display:none" onchange="hwSubmitFileChosen(this)">
+      <button type="button" onclick="document.getElementById('hw-submit-file').click()" id="hw-submit-pick" style="width:100%;padding:14px;background:#f0f2f5;color:#000080;border:1.5px dashed #9fa8da;border-radius:10px;font-weight:700;cursor:pointer;font-size:.86rem;">🎬 Record or choose a file</button>
+      <div id="hw-submit-preview" style="margin-top:10px;"></div>
+      <label style="font-size:.74rem;font-weight:600;color:#555;display:block;margin:12px 0 3px;">Message to your teacher (optional)</label>
+      <textarea id="hw-submit-note" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.84rem;height:60px;resize:vertical;font-family:inherit;"></textarea>
+      <div id="hw-submit-progress" style="display:none;height:8px;background:#eee;border-radius:5px;overflow:hidden;margin-top:10px;"><div style="height:100%;width:0;background:#2e7d32;transition:width .2s;"></div></div>
+      <div id="hw-submit-msg" style="display:none;font-size:.78rem;margin-top:10px;padding:7px 10px;border-radius:6px;"></div>
+      <button onclick="sendHwSubmission()" id="hw-submit-btn" style="width:100%;margin-top:12px;padding:11px;background:#2e7d32;color:#fff;border:none;border-radius:8px;font-weight:800;cursor:pointer;font-size:.9rem;">📤 Submit</button>
+    </div>
+  </div>
+</div>
+<!-- TEACHER: see and mark students' submitted work -->
+<div id="hw-subs-page" style="display:none;position:fixed;inset:0;background:#f0f2f5;z-index:10000;overflow-y:auto;">
+  <div style="background:#000080;color:#FFD700;padding:0 18px;height:56px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:2;">
+    <button onclick="document.getElementById('hw-subs-page').style.display='none'" style="background:rgba(255,255,255,.15);color:#fff;border:none;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:.82rem;">← Back</button>
+    <span id="hw-subs-title" style="font-weight:800;font-size:.95rem;flex:1;">📥 Submissions</span>
+  </div>
+  <div id="hw-subs-list" style="max-width:820px;margin:0 auto;padding:14px 12px 40px;"></div>
+</div>
 <!-- ADD/EDIT HOMEWORK MODAL -->
 <div id="hw-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;align-items:center;justify-content:center;">
   <div style="background:#fff;border-radius:14px;width:360px;max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.3);">
@@ -1656,6 +1686,32 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
       <label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">Description</label>
       <textarea id="hw-desc" placeholder="Homework details..."
         style="width:100%;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;outline:none;margin-bottom:10px;font-family:inherit;resize:none;height:80px;"></textarea>
+
+      <!-- Homework type: regular / online test (auto-marked, timed) / students submit a video or file -->
+      <label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:5px;">Homework type</label>
+      <div id="hw-type-group" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">
+        <button type="button" data-type="regular" onclick="setHwType('regular')" class="hw-type-btn">📄<br>Regular</button>
+        <button type="button" data-type="test" onclick="setHwType('test')" class="hw-type-btn">🖥️<br>Online test</button>
+        <button type="button" data-type="submit" onclick="setHwType('submit')" class="hw-type-btn">🎬<br>Video / file</button>
+      </div>
+      <div id="hw-test-box" style="display:none;background:#e0f2f1;border:1px solid #b2dfdb;border-radius:8px;padding:10px;margin-bottom:10px;">
+        <label style="font-size:.72rem;font-weight:600;color:#00695c;display:block;margin-bottom:3px;">Test from the Test Library</label>
+        <select id="hw-test-id" onchange="onHwTestChosen()" style="width:100%;padding:8px 11px;border:1.5px solid #b2dfdb;border-radius:7px;font-size:.82rem;margin-bottom:6px;font-family:inherit;"></select>
+        <button type="button" onclick="closeHwModal();openTestEditorPage()" style="background:none;border:none;color:#00695c;font-size:.75rem;font-weight:700;cursor:pointer;padding:0;margin-bottom:8px;">＋ Create a new test in the Test Library</button>
+        <label style="font-size:.72rem;font-weight:600;color:#00695c;display:block;margin-bottom:3px;">Time limit (minutes)</label>
+        <input type="number" id="hw-time" min="1" max="240" value="20" style="width:100%;padding:8px 11px;border:1.5px solid #b2dfdb;border-radius:7px;font-size:.85rem;font-family:inherit;">
+        <div style="font-size:.7rem;color:#00695c;margin-top:6px;line-height:1.5;">Students take it in the portal — no printing. Multiple-choice is marked automatically; writing and speaking go to “Grade Writing &amp; Speaking”. The test submits itself when time is up.</div>
+      </div>
+      <div id="hw-sub-box" style="display:none;background:#fff8e1;border:1px solid #ffe082;border-radius:8px;padding:10px;margin-bottom:10px;">
+        <label style="display:flex;align-items:center;gap:7px;font-size:.78rem;font-weight:600;color:#8d6e00;cursor:pointer;"><input type="checkbox" id="hw-allow-sub"> Students submit their work online</label>
+        <label style="font-size:.72rem;font-weight:600;color:#8d6e00;display:block;margin:8px 0 3px;">What can they upload?</label>
+        <select id="hw-sub-kind" style="width:100%;padding:8px 11px;border:1.5px solid #ffe082;border-radius:7px;font-size:.82rem;font-family:inherit;">
+          <option value="video">🎬 Video (e.g. a presentation they recorded)</option>
+          <option value="image">📷 Photo (e.g. a photo of their work)</option>
+          <option value="audio">🎙️ Audio recording</option>
+          <option value="any">📎 Video, photo, audio or document (PDF/Word)</option>
+        </select>
+      </div>
 
       <label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">Due Date</label>
       <input type="date" id="hw-due"
@@ -8053,6 +8109,7 @@ async function loadHomework(){
     }
 
     document.getElementById("hw-count").textContent = hws.length + " assignments";
+    await loadMyHwStatus();
     renderHomeworkList(hws, today);
   } catch(e){
     list.innerHTML = "<div style=text-align:center;padding:24px;color:#e53935>"+e.message+"</div>";
@@ -8078,6 +8135,7 @@ function linkOrEmbedHTML(url){
 }
 
 function renderHomeworkList(hws, today){
+  window.__hwList = hws;
   var list = document.getElementById("hw-list");
   if(!hws.length){
     list.innerHTML = "<div style=text-align:center;padding:48px;color:#ccc>📝<br>No assignments found</div>";
@@ -8116,6 +8174,8 @@ function renderHomeworkList(hws, today){
       +(h.desc?"<div style=font-size:.82rem;color:#555;margin-bottom:8px;line-height:1.5>"+escapeHtml(h.desc)+"</div>":"")
       +imgHtml
       +linkHtml
+      +(h.type==="test"?"<div style=font-size:.75rem;color:#00695c;font-weight:700;margin-bottom:6px>🖥️ Online test"+(h.timeLimit?" · ⏱ "+h.timeLimit+" minutes":"")+"</div>":"")
+      +hwActionsHTML(h)
       +"<div style=display:flex;align-items:center;gap:8px;flex-wrap:wrap>"
       +dueTag
       +"<span style=font-size:.72rem;color:#aaa>by "+( h.teacherName||"Teacher")+"</span>"
@@ -8138,6 +8198,10 @@ function showAddHwModal(){
   document.getElementById("hw-modal-msg").style.display = "none";
   document.getElementById("del-hw-btn").style.display = "none";
   removeHwImg();
+  document.getElementById("hw-allow-sub").checked = false;
+  document.getElementById("hw-sub-kind").value = "video";
+  document.getElementById("hw-time").value = 20;
+  setHwType("regular");
   document.getElementById("hw-modal").style.display = "flex";
 }
 
@@ -8183,6 +8247,12 @@ function editHomework(id){
     document.getElementById("hw-desc").value    = h.desc||"";
     document.getElementById("hw-due").value     = h.dueDate||"";
     document.getElementById("hw-link").value    = h.link||"";
+    document.getElementById("hw-allow-sub").checked = !!h.allowSubmission;
+    document.getElementById("hw-sub-kind").value = h.submitKind || "video";
+    document.getElementById("hw-time").value = h.timeLimit || 20;
+    window.__editingHwAssignment = h.testAssignmentId || "";
+    setHwType(h.type || "regular");
+    if(h.type === "test") fillHwTestOptions(h.testId);
     if(h.imageUrl){
       document.getElementById("hw-img-preview-img").src = h.imageUrl;
       document.getElementById("hw-img-preview-img").dataset.existingUrl = h.imageUrl;
@@ -8191,6 +8261,266 @@ function editHomework(id){
     }
     document.getElementById("hw-modal").style.display = "flex";
   })();
+}
+
+
+// ══════════════ HOMEWORK: online tests & submitted work ══════════════
+// type "regular" — as before (optionally students submit online)
+// type "test"    — a Test Library test, taken online with a time limit, marked automatically
+// type "submit"  — students upload a video / photo / audio / document (stored in Cloudinary)
+var hwType = "regular";
+var hwMySubs = {}, hwMyTestSubs = {};
+function setHwType(t){
+  hwType = t;
+  document.querySelectorAll("#hw-type-group .hw-type-btn").forEach(function(b){ b.classList.toggle("on", b.dataset.type===t); });
+  document.getElementById("hw-test-box").style.display = t==="test" ? "block" : "none";
+  document.getElementById("hw-sub-box").style.display = t==="test" ? "none" : "block";
+  if(t==="submit") document.getElementById("hw-allow-sub").checked = true;
+  document.getElementById("hw-allow-sub").disabled = t==="submit";
+  if(t==="test") fillHwTestOptions();
+}
+async function fillHwTestOptions(selected){
+  var sel = document.getElementById("hw-test-id");
+  if(!allTestLibrary || !allTestLibrary.length){ try { await loadTestLibrary(); } catch(e){} }
+  var tests = allTestLibrary || [];
+  sel.innerHTML = tests.length ? tests.map(function(t){
+      var n = (t.sections||[]).reduce(function(a,sec){ return a + (sec.type==="mc" ? (sec.questions||[]).length : (sec.type==="speaking" ? (sec.prompts||[]).length : 1)); }, 0);
+      return "<option value='"+escapeHtml(t.id)+"'>"+escapeHtml(t.title||"Untitled")+" · "+n+" item"+(n===1?"":"s")+"</option>";
+    }).join("") : "<option value=''>No tests yet — create one first</option>";
+  if(selected) sel.value = selected;
+}
+function onHwTestChosen(){
+  var t = (allTestLibrary||[]).find(function(x){ return x.id===document.getElementById("hw-test-id").value; });
+  if(t && !document.getElementById("hw-title").value.trim()) document.getElementById("hw-title").value = t.title||"";
+}
+function hwKindAccept(kind){
+  return kind==="video" ? "video/*" : kind==="image" ? "image/*" : kind==="audio" ? "audio/*" : "video/*,image/*,audio/*,.pdf,.doc,.docx,.ppt,.pptx";
+}
+function hwKindLabel(kind){ return {video:"a video", image:"a photo", audio:"an audio recording", any:"a video, photo, audio or document"}[kind] || "your work"; }
+// Upload any file to Cloudinary (videos & audio -> video, photos -> image, documents -> raw)
+function hwUploadFile(file, onProgress){
+  return new Promise(function(resolve, reject){
+    var kind = file.type.indexOf("video/")===0 ? "video" : file.type.indexOf("audio/")===0 ? "video" : file.type.indexOf("image/")===0 ? "image" : "raw";
+    var fd = new FormData(); fd.append("file", file); fd.append("upload_preset", UPLOAD_PRESET); fd.append("folder", "c2epe_homework");
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://api.cloudinary.com/v1_1/"+CLOUD_NAME+"/"+kind+"/upload");
+    xhr.upload.onprogress = function(e){ if(e.lengthComputable && onProgress) onProgress(e.loaded/e.total); };
+    xhr.onload = function(){ try { var r = JSON.parse(xhr.responseText); if(r.secure_url) resolve({url:r.secure_url, bytes:r.bytes||file.size}); else reject(new Error((r.error&&r.error.message)||"Upload failed")); } catch(e){ reject(e); } };
+    xhr.onerror = function(){ reject(new Error("Network error — check the internet connection.")); };
+    xhr.send(fd);
+  });
+}
+function hwMediaHTML(url, mime, name){
+  if(!url) return "";
+  var u = escapeHtml(url);
+  if(/^video\//.test(mime||"") || /\.(mp4|mov|webm|m4v)(\?|$)/i.test(url)) return "<video src='"+u+"' controls playsinline style='width:100%;max-height:360px;border-radius:8px;background:#000'></video>";
+  if(/^audio\//.test(mime||"") || /\.(mp3|m4a|wav|ogg|webm)(\?|$)/i.test(url)) return "<audio src='"+u+"' controls style='width:100%'></audio>";
+  if(/^image\//.test(mime||"") || /\.(jpe?g|png|gif|webp|heic)(\?|$)/i.test(url)) return "<img src='"+u+"' alt='Submitted work' style='width:100%;max-height:360px;object-fit:contain;border-radius:8px;background:#f0f2f5'>";
+  return "<a href='"+u+"' target='_blank' rel='noopener' style='color:#1565c0;font-weight:700;'>📎 Open "+escapeHtml(name||"file")+"</a>";
+}
+async function hwFetch(coll, localKey, field, value){
+  if(window.location.protocol==="file:" || !window._fb){
+    return JSON.parse(localStorage.getItem(localKey)||"[]").filter(function(x){ return !field || x[field]===value; });
+  }
+  var {db, collection, query} = window._fb;
+  var {getDocs, where} = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+  var snap = await getDocs(field ? query(collection(db,coll), where(field,"==",value)) : collection(db,coll));
+  return snap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+}
+// students: load their own submissions so each card shows its status
+async function loadMyHwStatus(){
+  hwMySubs = {}; hwMyTestSubs = {};
+  if(isTeacher || !studentSession) return;
+  try { (await hwFetch("hwSubmissions","c2epe_hw_submissions","studentId",studentSession.studentId)).forEach(function(x){ hwMySubs[x.hwId] = x; }); } catch(e){ console.error("hwSubmissions", e); }
+  try { (await hwFetch("testSubmissions","c2epe_test_submissions","studentId",studentSession.studentId)).forEach(function(x){ hwMyTestSubs[x.assignmentId] = x; }); } catch(e){ console.error("testSubmissions", e); }
+}
+// buttons on each homework card
+function hwActionsHTML(h){
+  var out = "";
+  if(h.type === "test" && h.testAssignmentId){
+    if(isTeacher){
+      out += "<button class='hw-act' style='background:#e0f2f1;color:#00695c' onclick=\"hwOpenTestResults('"+escapeHtml(h.testId)+"')\">📊 Results</button>";
+    } else if(studentSession){
+      var ts = hwMyTestSubs[h.testAssignmentId];
+      if(ts){
+        var mc = (ts.sections||[]).filter(function(x){ return x.type==="mc"; });
+        var sc = mc.reduce(function(a,x){ return a+x.score; },0), mx = mc.reduce(function(a,x){ return a+x.total; },0);
+        out += "<span class='hw-act' style='background:#e8f5e9;color:#2e7d32;cursor:default'>✅ Done"+(mx?" · Score "+sc+"/"+mx:"")+(ts.gradingStatus==="pending"?" · waiting for teacher":"")+"</span>";
+      } else {
+        out += "<button class='hw-act' style='background:#00695c;color:#fff' onclick=\"hwStartTest('"+escapeHtml(h.testAssignmentId)+"')\">▶️ Start test"+(h.timeLimit?" · ⏱ "+h.timeLimit+" min":"")+"</button>";
+      }
+    }
+  }
+  if(h.type === "submit" || h.allowSubmission){
+    if(isTeacher){
+      out += "<button class='hw-act' style='background:#fff8e1;color:#8d6e00' onclick=\"openHwSubmissions('"+escapeHtml(h.id)+"')\">📥 Submissions</button>";
+    } else if(studentSession){
+      var sub = hwMySubs[h.id];
+      if(sub){
+        out += "<button class='hw-act' style='background:#e8f5e9;color:#2e7d32' onclick=\"openHwSubmit('"+escapeHtml(h.id)+"')\">✅ Submitted"+(sub.score!=null&&sub.score!==""?" · "+escapeHtml(sub.score):"")+" · Change</button>";
+        if(sub.feedback) out += "<div style='width:100%;font-size:.76rem;background:#fffaf0;border-left:3px solid #d4a72c;padding:6px 9px;border-radius:0 6px 6px 0;margin-top:4px'>💬 "+escapeHtml(sub.feedback)+"</div>";
+      } else {
+        out += "<button class='hw-act' style='background:#2e7d32;color:#fff' onclick=\"openHwSubmit('"+escapeHtml(h.id)+"')\">📤 Submit "+(h.submitKind==="video"?"video":"work")+"</button>";
+      }
+    }
+  }
+  return out ? "<div style='display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:8px'>"+out+"</div>" : "";
+}
+// ---- online test from homework ----
+async function hwStartTest(assignmentId){
+  await openMyTestsPage();
+  await startTakingTest(assignmentId);
+}
+async function hwOpenTestResults(testId){
+  if(!allTestLibrary || !allTestLibrary.length){ try { await loadTestLibrary(); } catch(e){} }
+  openTestSubmissionsPage(testId);
+}
+// a real timer for timed tests; the start time is remembered so refreshing doesn't reset it
+var ttTimer = null, ttForceSubmit = false;
+function ttStartKey(a){ return "c2epe_tt_start_"+a.id+"_"+(studentSession?studentSession.studentId:""); }
+function startTakeTimer(a){
+  stopTakeTimer();
+  if(!a || !(a.timeLimit>0)) return;
+  var key = ttStartKey(a), start = parseInt(localStorage.getItem(key)||"0",10);
+  if(!start){ start = Date.now(); localStorage.setItem(key, String(start)); }
+  var end = start + a.timeLimit*60000;
+  var head = document.getElementById("test-take-header");
+  var badge = document.createElement("div");
+  badge.id = "tt-timer";
+  badge.style.cssText = "position:sticky;top:60px;z-index:3;display:inline-block;margin-top:8px;background:#00695c;color:#fff;font-weight:800;padding:6px 14px;border-radius:999px;font-size:.9rem;";
+  head.appendChild(badge);
+  function tick(){
+    var left = Math.round((end - Date.now())/1000);
+    if(left <= 0){
+      badge.textContent = "⏱ Time is up — submitting…"; badge.style.background = "#c62828";
+      stopTakeTimer(); ttForceSubmit = true; submitMyTest(); return;
+    }
+    var m = Math.floor(left/60), sec = left%60;
+    badge.textContent = "⏱ " + (m<10?"0":"")+m + ":" + (sec<10?"0":"")+sec + " left";
+    badge.style.background = left <= 60 ? "#c62828" : left <= 300 ? "#e65100" : "#00695c";
+  }
+  tick(); ttTimer = setInterval(tick, 1000);
+}
+function stopTakeTimer(){ if(ttTimer){ clearInterval(ttTimer); ttTimer = null; } }
+// ---- students submit work ----
+var hwSubmitFor = null, hwSubmitFile = null;
+async function openHwSubmit(hwId){
+  var h = (window.__hwList||[]).find(function(x){ return x.id===hwId; });
+  if(!h || !studentSession) return;
+  hwSubmitFor = h; hwSubmitFile = null;
+  var kind = h.submitKind || (h.type==="submit" ? "video" : "any");
+  document.getElementById("hw-submit-title").textContent = "📤 " + (h.title||"Submit Homework");
+  document.getElementById("hw-submit-info").innerHTML = "Upload <b>"+hwKindLabel(kind)+"</b> for this homework."
+    + (kind==="video" ? "<br>📱 On a phone you can record the video now. Keep it short (under 100 MB, about 3–5 minutes)." : "")
+    + (hwMySubs[h.id] ? "<br><b style='color:#2e7d32'>You already submitted — uploading again replaces it.</b>" : "");
+  var inp = document.getElementById("hw-submit-file"); inp.value = ""; inp.accept = hwKindAccept(kind);
+  document.getElementById("hw-submit-pick").textContent = kind==="video" ? "🎬 Record or choose a video" : kind==="image" ? "📷 Take or choose a photo" : kind==="audio" ? "🎙️ Record or choose audio" : "📎 Choose a file";
+  document.getElementById("hw-submit-preview").innerHTML = hwMySubs[h.id] ? hwMediaHTML(hwMySubs[h.id].url, hwMySubs[h.id].mime, hwMySubs[h.id].fileName) : "";
+  document.getElementById("hw-submit-note").value = hwMySubs[h.id] ? (hwMySubs[h.id].note||"") : "";
+  document.getElementById("hw-submit-msg").style.display = "none";
+  document.getElementById("hw-submit-progress").style.display = "none";
+  document.getElementById("hw-submit-btn").disabled = false;
+  document.getElementById("hw-submit-modal").style.display = "flex";
+}
+function closeHwSubmit(){ document.getElementById("hw-submit-modal").style.display = "none"; }
+function hwSubmitFileChosen(inp){
+  var f = inp.files && inp.files[0]; if(!f) return;
+  var max = f.type.indexOf("video/")===0 ? 100 : 10;
+  var msg = document.getElementById("hw-submit-msg");
+  if(f.size > max*1024*1024){
+    msg.style.cssText = "display:block;background:#ffebee;color:#c62828;font-size:.78rem;margin-top:10px;padding:7px 10px;border-radius:6px;";
+    msg.textContent = "This file is too big ("+(f.size/1048576).toFixed(1)+" MB). The limit is "+max+" MB — please record a shorter video or choose a smaller file.";
+    hwSubmitFile = null; return;
+  }
+  msg.style.display = "none";
+  hwSubmitFile = f;
+  var url = URL.createObjectURL(f);
+  document.getElementById("hw-submit-preview").innerHTML = hwMediaHTML(url, f.type, f.name) + "<div style='font-size:.72rem;color:#888;margin-top:4px'>"+escapeHtml(f.name)+" · "+(f.size/1048576).toFixed(1)+" MB</div>";
+}
+async function sendHwSubmission(){
+  var h = hwSubmitFor, msg = document.getElementById("hw-submit-msg"), btn = document.getElementById("hw-submit-btn");
+  if(!h) return;
+  var prev = hwMySubs[h.id];
+  if(!hwSubmitFile && !prev){
+    msg.style.cssText = "display:block;background:#ffebee;color:#c62828;font-size:.78rem;margin-top:10px;padding:7px 10px;border-radius:6px;";
+    msg.textContent = "Please record or choose a file first."; return;
+  }
+  btn.disabled = true;
+  var bar = document.getElementById("hw-submit-progress"); bar.style.display = "block"; bar.firstElementChild.style.width = "0";
+  msg.style.cssText = "display:block;background:#e3f2fd;color:#1565c0;font-size:.78rem;margin-top:10px;padding:7px 10px;border-radius:6px;";
+  msg.textContent = hwSubmitFile ? "Uploading… please keep this page open." : "Saving…";
+  try {
+    var up = hwSubmitFile ? await hwUploadFile(hwSubmitFile, function(p){ bar.firstElementChild.style.width = Math.round(p*100)+"%"; msg.textContent = "Uploading… "+Math.round(p*100)+"%"; }) : null;
+    var data = { hwId:h.id, hwTitle:h.title||"", cls:studentSession.cls, studentId:studentSession.studentId, studentName:studentSession.name,
+      url: up ? up.url : prev.url, mime: hwSubmitFile ? hwSubmitFile.type : (prev.mime||""), fileName: hwSubmitFile ? hwSubmitFile.name : (prev.fileName||""),
+      note: document.getElementById("hw-submit-note").value.trim(), submittedAt: new Date().toISOString(),
+      late: h.dueDate ? (new Date().toISOString().split("T")[0] > h.dueDate) : false,
+      score: prev ? (prev.score||"") : "", feedback: prev ? (prev.feedback||"") : "" };
+    var id = h.id + "_" + studentSession.studentId.replace(/[^A-Za-z0-9-]/g,"_");
+    if(window.location.protocol==="file:" || !window._fb){
+      var list = JSON.parse(localStorage.getItem("c2epe_hw_submissions")||"[]").filter(function(x){ return x.id!==id; });
+      list.unshift(Object.assign({id:id}, data)); localStorage.setItem("c2epe_hw_submissions", JSON.stringify(list));
+    } else {
+      var m = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+      await m.setDoc(m.doc(window._fb.db, "hwSubmissions", id), data);
+    }
+    hwMySubs[h.id] = Object.assign({id:id}, data);
+    msg.style.cssText = "display:block;background:#e8f5e9;color:#2e7d32;font-size:.78rem;margin-top:10px;padding:7px 10px;border-radius:6px;";
+    msg.textContent = "✅ Submitted! Your teacher can see it now.";
+    if(typeof renderHomeworkList==="function" && window.__hwList) renderHomeworkList(window.__hwList, new Date().toISOString().split("T")[0]);
+    setTimeout(closeHwSubmit, 1200);
+  } catch(e){
+    console.error("Homework submission error:", e);
+    msg.style.cssText = "display:block;background:#ffebee;color:#c62828;font-size:.78rem;margin-top:10px;padding:7px 10px;border-radius:6px;";
+    msg.textContent = "❌ " + (e && e.message ? e.message : e);
+    btn.disabled = false;
+  }
+}
+// ---- teachers review submissions ----
+async function openHwSubmissions(hwId){
+  var h = (window.__hwList||[]).find(function(x){ return x.id===hwId; }) || {id:hwId};
+  document.getElementById("hw-subs-title").textContent = "📥 " + (h.title||"Submissions") + " · " + (h.cls||"");
+  document.getElementById("hw-subs-page").style.display = "block";
+  var box = document.getElementById("hw-subs-list");
+  box.innerHTML = "<div style='text-align:center;padding:30px;color:#888'>Loading…</div>";
+  try {
+    var subs = await hwFetch("hwSubmissions","c2epe_hw_submissions","hwId",hwId);
+    var roster = []; try { roster = (await hwFetch("students","c2epe_local_students","cls",h.cls)); } catch(e){}
+    var done = {}; subs.forEach(function(x){ done[x.studentId] = 1; });
+    var missing = roster.filter(function(st){ return st.studentId && !done[st.studentId]; });
+    subs.sort(function(a,b){ return String(b.submittedAt||"").localeCompare(String(a.submittedAt||"")); });
+    window.__hwSubs = subs;
+    box.innerHTML = "<div style='background:#fff;border-radius:10px;padding:12px 14px;margin-bottom:12px;font-size:.84rem'><b>"+subs.length+"</b> submitted"+(roster.length?" of "+roster.length+" students":"")
+      + (missing.length ? "<div style='color:#c62828;font-size:.76rem;margin-top:6px'>Not submitted yet: "+missing.map(function(m){ return escapeHtml(m.nameEn||m.nameKm||m.studentId); }).join(", ")+"</div>" : "") + "</div>"
+      + (subs.length ? subs.map(function(x,i){
+        return "<div style='background:#fff;border-radius:10px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:14px;margin-bottom:12px'>"
+          + "<div style='display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:8px'><b>"+escapeHtml(x.studentName||"")+" <span style='color:#888;font-weight:400;font-size:.75rem'>"+escapeHtml(x.studentId||"")+"</span></b>"
+          + "<span style='font-size:.72rem;color:"+(x.late?"#c62828":"#2e7d32")+"'>"+(x.late?"⚠️ Late · ":"✅ ")+new Date(x.submittedAt).toLocaleString()+"</span></div>"
+          + hwMediaHTML(x.url, x.mime, x.fileName)
+          + (x.note ? "<div style='font-size:.8rem;color:#555;margin-top:8px'>💬 “"+escapeHtml(x.note)+"”</div>" : "")
+          + "<div style='display:grid;grid-template-columns:110px 1fr auto;gap:8px;margin-top:10px;align-items:start'>"
+          + "<input id='hws-score-"+i+"' placeholder='Score' value='"+escapeHtml(x.score||"")+"' style='padding:8px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.82rem;min-width:0'>"
+          + "<textarea id='hws-fb-"+i+"' placeholder='Feedback for the student' style='padding:8px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.82rem;height:38px;resize:vertical;min-width:0;font-family:inherit'>"+escapeHtml(x.feedback||"")+"</textarea>"
+          + "<button onclick='saveHwFeedback("+i+")' style='background:#000080;color:#FFD700;border:none;border-radius:7px;padding:9px 12px;font-weight:700;cursor:pointer;font-size:.78rem'>Save</button></div>"
+          + "<div id='hws-msg-"+i+"' style='font-size:.72rem;margin-top:4px;color:#2e7d32'></div></div>";
+      }).join("") : "<div style='text-align:center;padding:30px;color:#bbb'>No submissions yet.</div>");
+  } catch(e){ box.innerHTML = "<div style='color:#c62828;padding:20px'>"+escapeHtml(e.message||String(e))+"</div>"; }
+}
+async function saveHwFeedback(i){
+  var x = (window.__hwSubs||[])[i]; if(!x) return;
+  var score = document.getElementById("hws-score-"+i).value.trim(), fb = document.getElementById("hws-fb-"+i).value.trim();
+  var m = document.getElementById("hws-msg-"+i);
+  try {
+    if(window.location.protocol==="file:" || !window._fb){
+      var list = JSON.parse(localStorage.getItem("c2epe_hw_submissions")||"[]");
+      list.forEach(function(y){ if(y.id===x.id){ y.score = score; y.feedback = fb; } });
+      localStorage.setItem("c2epe_hw_submissions", JSON.stringify(list));
+    } else {
+      var mod = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+      await mod.updateDoc(mod.doc(window._fb.db, "hwSubmissions", x.id), { score:score, feedback:fb, gradedBy: currentTeacherName||"", gradedAt: new Date().toISOString() });
+    }
+    x.score = score; x.feedback = fb; m.style.color = "#2e7d32"; m.textContent = "✅ Saved — the student can see it.";
+  } catch(e){ m.style.color = "#c62828"; m.textContent = "❌ " + (e.message||e); }
 }
 
 async function saveHomework(){
@@ -8209,6 +8539,31 @@ async function saveHomework(){
   }
 
   var data = { subject, cls, title, desc, link, dueDate:due, teacherName:currentTeacherName, completed:false, updatedAt:new Date().toISOString() };
+  data.type = hwType;
+  data.allowSubmission = hwType==="submit" || (hwType==="regular" && document.getElementById("hw-allow-sub").checked);
+  data.submitKind = data.allowSubmission ? document.getElementById("hw-sub-kind").value : "";
+  if(hwType === "test"){
+    var testId = document.getElementById("hw-test-id").value;
+    var tl = parseInt(document.getElementById("hw-time").value, 10) || 0;
+    var test = (allTestLibrary||[]).find(function(x){ return x.id===testId; });
+    if(!test){ msg.style.cssText="display:block;background:#ffebee;color:#c62828;padding:6px 10px;border-radius:6px;font-size:.76rem;"; msg.textContent="Please choose a test (or create one in the Test Library first)."; return; }
+    if(tl < 1){ msg.style.cssText="display:block;background:#ffebee;color:#c62828;padding:6px 10px;border-radius:6px;font-size:.76rem;"; msg.textContent="Please set a time limit in minutes."; return; }
+    var aData = { testId:test.id, testTitle:test.title||title, cls:cls, dueDate:due, timeLimit:tl, fromHomework:true, assignedBy:currentTeacherName||"", assignedAt:new Date().toISOString() };
+    try {
+      var aId = editingHwId ? (window.__editingHwAssignment||"") : "";
+      if(window.location.protocol==="file:" || !window._fb){
+        var al = JSON.parse(localStorage.getItem("c2epe_test_assignments")||"[]");
+        if(aId){ al.forEach(function(x){ if(x.id===aId) Object.assign(x, aData); }); }
+        else { aId = "ta"+Date.now(); al.unshift(Object.assign({id:aId}, aData)); }
+        localStorage.setItem("c2epe_test_assignments", JSON.stringify(al));
+      } else {
+        var fm = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+        if(aId) await fm.setDoc(fm.doc(window._fb.db,"testAssignments",aId), aData, {merge:true});
+        else { var ref = await fm.addDoc(fm.collection(window._fb.db,"testAssignments"), aData); aId = ref.id; }
+      }
+      data.testId = test.id; data.timeLimit = tl; data.testAssignmentId = aId;
+    } catch(e){ msg.style.cssText="display:block;background:#ffebee;color:#c62828;padding:6px 10px;border-radius:6px;font-size:.76rem;"; msg.textContent="Could not create the online test: "+e.message; return; }
+  }
 
   if(hwImgFile){
     saveBtn.disabled = true;
@@ -12349,6 +12704,8 @@ async function openMyTestsPage(){
   await loadMyTests();
 }
 function closeMyTestsPage(){
+  if(ttTimer && !confirm("The timer keeps running if you leave. Leave the test?")) return;
+  stopTakeTimer();
   document.getElementById("my-tests-page").style.display = "none";
   stopExamTimer(); // shared timer utility, safe no-op if not running
 }
@@ -12418,6 +12775,8 @@ async function startTakingTest(assignmentId){
   wrap.innerHTML = "";
   (currentTakingTest.sections||[]).forEach(function(sec, si){ renderTestTakeSection(wrap, sec, si); });
   document.getElementById("test-take-msg").style.display = "none";
+  ttForceSubmit = false;
+  startTakeTimer(a);
 }
 
 function renderTestTakeSection(wrap, sec, si){
@@ -12496,8 +12855,8 @@ async function submitMyTest(){
   var msg = document.getElementById("test-take-msg");
   var sections = currentTakingTest.sections || [];
 
-  // Validate every section is complete before submitting.
-  for(var si=0; si<sections.length; si++){
+  // Validate every section is complete before submitting (skipped when the time is up).
+  for(var si=0; si<(ttForceSubmit ? 0 : sections.length); si++){
     var sec = sections[si];
     if(sec.type === "mc"){
       var answered = Object.keys(testTakeAnswers[si]||{}).length;
@@ -12535,7 +12894,7 @@ async function submitMyTest(){
     var sec = sections[si];
     if(sec.type === "mc"){
       var score = 0;
-      (sec.questions||[]).forEach(function(q,qi){ if(testTakeAnswers[si][qi] === q.correct) score++; });
+      (sec.questions||[]).forEach(function(q,qi){ if((testTakeAnswers[si]||{})[qi] === q.correct) score++; });
       resultSections.push({ type:"mc", score:score, total:(sec.questions||[]).length });
     } else if(sec.type === "writing"){
       hasManualSection = true;
@@ -12574,6 +12933,14 @@ async function submitMyTest(){
     gradingStatus: hasManualSection ? "pending" : "auto",
     submittedAt: new Date().toISOString()
   };
+  stopTakeTimer();
+  if(currentTakingAssignment.timeLimit){
+    var ttStart = parseInt(localStorage.getItem(ttStartKey(currentTakingAssignment))||"0",10);
+    data.timeLimit = currentTakingAssignment.timeLimit;
+    data.timeUsedSec = ttStart ? Math.round((Date.now()-ttStart)/1000) : null;
+    data.autoSubmitted = ttForceSubmit;
+    localStorage.removeItem(ttStartKey(currentTakingAssignment));
+  }
 
   var isLocal = window.location.protocol === "file:";
   try {
@@ -15262,6 +15629,7 @@ function aiChatLeaveMessage(prefillText){
 #sd .sd-btn{background:#0b1a3b;color:#fff;border:0;border-radius:10px;padding:11px 18px;font-weight:800;cursor:pointer;font-family:inherit}
 #sd .sd-muted{color:#7a84a0;font-size:.82rem}
 #sd .sd-h{font-size:.78rem;font-weight:800;letter-spacing:1px;color:#0b1a3b;margin:0 0 10px}
+body.dash-open #ai-chat-bubble,body.dash-open #ai-chat-panel{display:none !important}
 #sd-news-btn{display:none;position:fixed;left:14px;bottom:18px;z-index:8999;background:#0b1a3b;color:#d6aa4c;border:1px solid #d6aa4c;border-radius:999px;padding:10px 16px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);font-family:inherit}
 @media (max-width:860px){
   #sd .sd-menu-btn{display:inline-block}
@@ -15316,12 +15684,13 @@ function aiChatLeaveMessage(prefillText){
 // Language skills), attendance, homework, fees and open exams.
 function sdEsc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
 function sdGo(fn){ document.getElementById('sd').classList.remove('menu-open'); try { fn(); } catch(e){ console.error(e); } }
-function sdOpenNews(){ document.getElementById('sd').style.display='none'; document.getElementById('sd-news-btn').style.display='block'; document.body.style.overflow=''; }
+function sdOpenNews(){ document.body.classList.remove('dash-open'); document.getElementById('sd').style.display='none'; document.getElementById('sd-news-btn').style.display='block'; document.body.style.overflow=''; }
 function sdLogout(){ if(confirm('Log out?')){ hideStudentDashboard(); logoutStudentSession(); } }
-function hideStudentDashboard(){ var d=document.getElementById('sd'); if(d) d.style.display='none'; var b=document.getElementById('sd-news-btn'); if(b) b.style.display='none'; document.body.style.overflow=''; }
+function hideStudentDashboard(){ document.body.classList.remove('dash-open'); var d=document.getElementById('sd'); if(d) d.style.display='none'; var b=document.getElementById('sd-news-btn'); if(b) b.style.display='none'; document.body.style.overflow=''; }
 function showStudentDashboard(){
   if(!studentSession || (typeof isTeacher!=='undefined' && isTeacher)){ hideStudentDashboard(); return; }
   document.getElementById('sd').style.display='block';
+  document.body.classList.add('dash-open');
   document.getElementById('sd-news-btn').style.display='none';
   document.body.style.overflow='hidden';
   sdShowDashboard();
@@ -15542,14 +15911,15 @@ function sdOpenReport(){
 function tdEsc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
 function tdGo(fn){ document.getElementById('td').classList.remove('menu-open'); try { fn(); } catch(e){ console.error(e); } }
 function tdAllTools(e){ document.getElementById('td').classList.remove('menu-open'); toggleToolsMenu(e); }
-function tdOpenNews(){ sessionStorage.setItem('td_hidden','1'); document.getElementById('td').style.display='none'; document.getElementById('td-back-btn').style.display='block'; document.body.style.overflow=''; }
+function tdOpenNews(){ sessionStorage.setItem('td_hidden','1'); document.body.classList.remove('dash-open'); document.getElementById('td').style.display='none'; document.getElementById('td-back-btn').style.display='block'; document.body.style.overflow=''; }
 function tdLogout(){ hideTeacherDashboard(); doLogout(); }
-function hideTeacherDashboard(){ var d=document.getElementById('td'); if(d) d.style.display='none'; var b=document.getElementById('td-back-btn'); if(b) b.style.display='none'; document.body.style.overflow=''; }
+function hideTeacherDashboard(){ document.body.classList.remove('dash-open'); var d=document.getElementById('td'); if(d) d.style.display='none'; var b=document.getElementById('td-back-btn'); if(b) b.style.display='none'; document.body.style.overflow=''; }
 function showTeacherDashboard(force){
   if(!(typeof isTeacher!=='undefined' && isTeacher)){ hideTeacherDashboard(); return; }
   if(force) sessionStorage.removeItem('td_hidden');
   if(sessionStorage.getItem('td_hidden')){ document.getElementById('td-back-btn').style.display='block'; return; }
   document.getElementById('td').style.display='block';
+  document.body.classList.add('dash-open');
   document.getElementById('td-back-btn').style.display='none';
   document.body.style.overflow='hidden';
   tdRefresh();

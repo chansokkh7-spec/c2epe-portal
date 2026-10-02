@@ -1930,6 +1930,23 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
       <input type="date" id="fee-due"
         style="width:100%;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;outline:none;margin-bottom:10px;font-family:inherit;">
 
+      <!-- What this payment is for, and the period it covers (shown to the family) -->
+      <div style="background:#f5f7fb;border:1px solid #e3e7f0;border-radius:8px;padding:10px;margin-bottom:10px;">
+        <label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">Paid for (term / course)</label>
+        <select id="fee-term" style="width:100%;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;outline:none;margin-bottom:8px;font-family:inherit;">
+          <option value="">— choose —</option>
+          <option>Term 1</option><option>Term 2</option><option>Term 3</option><option>Term 4</option>
+          <option>Summer Course</option><option>Full Year</option><option>Monthly</option><option>Other</option>
+        </select>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div><label style="font-size:.72rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">Covers from</label>
+            <input type="date" id="fee-period-start" style="width:100%;box-sizing:border-box;padding:7px 8px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.82rem;font-family:inherit;"></div>
+          <div><label style="font-size:.72rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">Valid until</label>
+            <input type="date" id="fee-period-end" style="width:100%;box-sizing:border-box;padding:7px 8px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.82rem;font-family:inherit;"></div>
+        </div>
+        <div style="font-size:.68rem;color:#888;margin-top:6px;">The family sees a countdown when fewer than 7 days are left.</div>
+      </div>
+
       <label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">Note</label>
       <input type="text" id="fee-note" placeholder="Optional note..."
         style="width:100%;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;outline:none;margin-bottom:14px;font-family:inherit;">
@@ -2438,27 +2455,29 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
 <div id="fee-receipt-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;align-items:center;justify-content:center;padding:16px;">
   <div style="background:#fff;border-radius:14px;width:380px;max-width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.3);">
     <div style="background:#000080;padding:14px 18px;color:#FFD700;display:flex;align-items:center;justify-content:space-between;border-radius:14px 14px 0 0;">
-      <span style="font-weight:700;font-size:.92rem;">🧾 Payment Receipt</span>
+      <span style="font-weight:700;font-size:.92rem;" id="fr-modal-title">🧾 Payment Receipt</span>
       <button aria-label="Close" onclick="closeFeeReceiptModal()" style="background:none;border:none;color:#FFD700;font-size:1.15rem;cursor:pointer;">✕</button>
     </div>
     <div id="fee-receipt-print-area" style="padding:26px 24px;">
       <div style="text-align:center;margin-bottom:18px;">
         <div style="font-weight:800;font-size:1.05rem;color:#000080;">C2-EPE Digital Academy</div>
         <div style="font-size:.7rem;color:#888;">015 555 631 · 071 6115 407 · 088 4714 887</div>
-        <div style="font-size:.92rem;font-weight:700;color:#2e7d32;margin-top:12px;letter-spacing:.5px;">✅ PAYMENT RECEIPT</div>
+        <div id="fr-doc-title" style="font-size:.92rem;font-weight:700;color:#2e7d32;margin-top:12px;letter-spacing:.5px;">✅ PAYMENT RECEIPT</div>
       </div>
       <div style="border-top:1.5px dashed #ddd;border-bottom:1.5px dashed #ddd;padding:12px 0;margin-bottom:14px;font-size:.82rem;">
-        <div style="display:flex;justify-content:space-between;margin-bottom:7px;"><span style="color:#888;">Receipt No.</span><span id="fr-receipt-no" style="font-weight:700;"></span></div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:7px;"><span style="color:#888;">Date Paid</span><span id="fr-date"></span></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:7px;"><span style="color:#888;" id="fr-no-label">Receipt No.</span><span id="fr-receipt-no" style="font-weight:700;"></span></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:7px;"><span style="color:#888;" id="fr-date-label">Date Paid</span><span id="fr-date"></span></div>
         <div style="display:flex;justify-content:space-between;margin-bottom:7px;"><span style="color:#888;">Student</span><span id="fr-student" style="font-weight:700;"></span></div>
         <div style="display:flex;justify-content:space-between;margin-bottom:7px;"><span style="color:#888;">Class</span><span id="fr-class"></span></div>
         <div style="display:flex;justify-content:space-between;margin-bottom:7px;"><span style="color:#888;">Fee Type</span><span id="fr-type"></span></div>
+        <div id="fr-term-row" style="display:flex;justify-content:space-between;margin-bottom:7px;"><span style="color:#888;">Paid for</span><span id="fr-term" style="font-weight:700;"></span></div>
+        <div id="fr-period-row" style="display:flex;justify-content:space-between;margin-bottom:7px;"><span style="color:#888;">Valid period</span><span id="fr-period"></span></div>
         <div style="display:flex;justify-content:space-between;"><span style="color:#888;">Payment Method</span><span id="fr-method"></span></div>
       </div>
       <div id="fr-original-row" style="display:none;justify-content:space-between;font-size:.82rem;margin-bottom:6px;color:#888;"><span>Original Amount</span><span id="fr-original"></span></div>
       <div id="fr-discount-row" style="display:none;justify-content:space-between;font-size:.82rem;margin-bottom:6px;color:#c65a00;"><span>🏷️ Discount</span><span id="fr-discount"></span></div>
       <div style="display:flex;justify-content:space-between;font-size:1.15rem;font-weight:800;color:#000080;padding-top:10px;border-top:1.5px solid #eee;margin-top:4px;">
-        <span>Total Paid</span><span id="fr-amount"></span>
+        <span id="fr-total-label">Total Paid</span><span id="fr-amount"></span>
       </div>
       <div style="text-align:center;font-size:.68rem;color:#bbb;margin-top:20px;">Thank you! Generated by the C2-EPE Digital Academy Portal.</div>
     </div>
@@ -8644,6 +8663,9 @@ function openFeePage(){
   document.getElementById("add-fee-btn").style.display = isTeacher ? "inline-block" : "none";
   if(!isTeacher && parentClass) document.getElementById("fee-filter-cls").value = parentClass;
   restrictClassDropdown("fee-filter-cls");
+  // families don't need the class/search filters — they only see their own child's payments
+  var feeFilterBox = document.getElementById("fee-filter-cls").closest("div[style*='border-radius']") || document.getElementById("fee-filter-cls").parentElement;
+  if(feeFilterBox) feeFilterBox.style.display = isTeacher ? "" : "none";
   if(isTeacher) loadPaymentClaimsCount();
   loadFees();
 }
@@ -8692,11 +8714,12 @@ function filterFeeList(){
 function filterAndRenderFees(cls, status, search){
   var today  = new Date().toISOString().split("T")[0];
   var filtered = allFees.filter(function(f){
-    var matchCls = !cls || baseLevel(f.cls) === baseLevel(cls);
+    // families see all of their own child's fees (any class), teachers filter by class
+    var matchCls = !isTeacher || !cls || baseLevel(f.cls) === baseLevel(cls);
     var matchSearch = !search || (f.student||"").toLowerCase().includes(search) || (f.cls||"").toLowerCase().includes(search);
     var fStatus = getFeeStatus(f, today);
     var matchStatus = !status || fStatus === status;
-    var matchOwner = isTeacher || (studentSession && (f.studentId === studentSession.studentId || f.student === studentSession.name));
+    var matchOwner = isTeacher || feeBelongsToStudent(f);
     return matchCls && matchSearch && matchStatus && matchOwner;
   });
   renderFeeList(filtered, today);
@@ -8713,10 +8736,58 @@ function getFeeStatus(f, today){
   return "unpaid";
 }
 
+function feeDate(v){ if(!v) return ""; var d = new Date(String(v).length===10 ? v+"T00:00:00" : v); return isNaN(d) ? v : d.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}); }
+function feeDaysUntil(dateStr, today){ return Math.round((new Date(dateStr+"T00:00:00") - new Date(today+"T00:00:00"))/86400000); }
+// Family view: one clear card per payment
+function renderFamilyFeeCard(f, today){
+  var st = getFeeStatus(f, today), total = parseFloat(f.amount||0), paid = parseFloat(f.paidAmount||0), bal = Math.max(0, total-paid);
+  var what = (f.type||"Fee") + (f.term ? " · " + f.term : "") + (f.cls ? " · " + (classDisplayLabel(f.cls)||f.cls) : "");
+  var head, color, bg, lines = [], banner = "";
+  if(st === "paid"){
+    var left = f.periodEnd ? feeDaysUntil(f.periodEnd, today) : null;
+    if(left !== null && left < 0){
+      color="#c62828"; bg="#ffebee"; head = "⚠️ Your payment for "+escapeHtml(f.term||f.type||"this course")+" has ended";
+      banner = "Ended on "+feeDate(f.periodEnd)+". Please contact the school for the next payment.";
+    } else {
+      color="#2e7d32"; bg="#e8f5e9"; head = "✅ You have paid for "+escapeHtml(f.term||f.type||"this course");
+      if(left !== null && left <= 7) banner = (left===0 ? "⏰ Your paid period ends today" : "⏳ "+left+" day"+(left===1?"":"s")+" left") + " — please prepare the next payment.";
+    }
+    lines.push(["Paid on", f.paidAt ? feeDate(f.paidAt) : "—"]);
+    if(f.periodStart || f.periodEnd) lines.push(["Covers", (f.periodStart?feeDate(f.periodStart):"…")+" → "+(f.periodEnd?feeDate(f.periodEnd):"…")]);
+    if(f.periodEnd) lines.push(["Valid until", feeDate(f.periodEnd) + (left!==null && left>=0 ? " ("+left+" day"+(left===1?"":"s")+" left)" : "")]);
+    lines.push(["Amount paid", "$"+total.toFixed(2)]);
+  } else {
+    var d = f.dueDate ? feeDaysUntil(f.dueDate, today) : null;
+    color = st==="overdue" ? "#c62828" : "#c65a00"; bg = st==="overdue" ? "#ffebee" : "#fff3e0";
+    head = st==="partial" ? "💛 Partly paid — $"+bal.toFixed(2)+" still to pay" : st==="overdue" ? "⚠️ Payment overdue" : "⏳ Payment due";
+    if(d !== null && d <= 7) banner = d < 0 ? "Overdue by "+Math.abs(d)+" day"+(Math.abs(d)===1?"":"s") : d===0 ? "⏰ Due today!" : "⏰ "+d+" day"+(d===1?"":"s")+" left to pay";
+    lines.push(["Amount", "$"+total.toFixed(2)+(f.discountPercent>0?" ("+f.discountPercent+"% discount)":"")]);
+    if(paid>0) lines.push(["Already paid", "$"+paid.toFixed(2)]);
+    lines.push(["Due date", feeDate(f.dueDate)]);
+    if(f.periodStart || f.periodEnd) lines.push(["For the period", (f.periodStart?feeDate(f.periodStart):"…")+" → "+(f.periodEnd?feeDate(f.periodEnd):"…")]);
+  }
+  return "<div style='background:#fff;border-radius:12px;box-shadow:0 1px 8px rgba(0,0,0,.08);margin-bottom:12px;overflow:hidden;border-top:4px solid "+color+"'>"
+    + "<div style='background:"+bg+";color:"+color+";padding:12px 14px;font-weight:800;font-size:.92rem'>"+head+"</div>"
+    + "<div style='padding:12px 14px'>"
+    + "<div style='font-size:.78rem;color:#666;margin-bottom:8px'>"+escapeHtml(what)+"</div>"
+    + lines.map(function(l){ return "<div style='display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px dashed #eee;font-size:.84rem'><span style='color:#888'>"+l[0]+"</span><b style='text-align:right'>"+l[1]+"</b></div>"; }).join("")
+    + (banner ? "<div style='margin-top:10px;background:"+(st==="paid"&&banner.indexOf("ended")<0&&banner.indexOf("Ended")<0?"#fff3e0":"#ffebee")+";color:"+(banner.indexOf("Ended")>=0||banner.indexOf("Overdue")>=0?"#c62828":"#c65a00")+";border-radius:8px;padding:8px 10px;font-size:.8rem;font-weight:700'>"+banner+"</div>" : "")
+    + (f.note ? "<div style='margin-top:8px;font-size:.76rem;color:#777'>📝 "+escapeHtml(f.note)+"</div>" : "")
+    + "<div style='display:flex;gap:8px;flex-wrap:wrap;margin-top:12px'>"
+    + "<button onclick=\"openFeeReceipt("+JSON.stringify(f.id).replace(/"/g,"&quot;")+")\" style='flex:1;min-width:130px;background:#e8eaf6;color:#000080;border:1px solid #c5cae9;border-radius:8px;padding:9px 12px;font-size:.8rem;font-weight:700;cursor:pointer'>"+(st==="paid"?"🧾 View receipt":"🧾 View invoice")+"</button>"
+    + (st!=="paid" && bal>0 ? "<button onclick='openPayNowModal(\""+f.id+"\")' style='flex:1;min-width:130px;background:#7b1fa2;color:#fff;border:none;border-radius:8px;padding:9px 12px;font-size:.8rem;font-weight:700;cursor:pointer'>💳 Pay Now</button>" : "")
+    + "</div></div></div>";
+}
 function renderFeeList(fees, today){
   var list = document.getElementById("fee-list");
   if(!fees.length){
-    list.innerHTML = "<div style=text-align:center;padding:40px;color:#ccc>💰 No fee records found</div>";
+    list.innerHTML = "<div style=text-align:center;padding:40px;color:#ccc>💰 No fee records found"+(isTeacher?"":"<br><small>When the school adds a payment for your child, it appears here.</small>")+"</div>";
+    return;
+  }
+  if(!isTeacher){
+    // newest payments first; the current (unpaid or still valid) ones on top
+    list.innerHTML = fees.slice().sort(function(a,b){ var sa = getFeeStatus(a,today)==="paid"?1:0, sb = getFeeStatus(b,today)==="paid"?1:0; return sa-sb || String(b.periodEnd||b.dueDate||"").localeCompare(String(a.periodEnd||a.dueDate||"")); })
+      .map(function(f){ return renderFamilyFeeCard(f, today); }).join("");
     return;
   }
   list.innerHTML = fees.map(function(f){
@@ -8754,9 +8825,7 @@ function renderFeeList(fees, today){
     // Available to whoever is looking at the record — the family wants
     // proof of payment as much as the school does — as soon as it's
     // actually paid (partial/overdue/unpaid have nothing to receipt yet).
-    var receiptBtn = (fStatus==="paid")
-      ? "<button onclick=\"openFeeReceipt("+JSON.stringify(f.id)+")\" style=background:#e8eaf6;color:#000080;border:1px solid #c5cae9;border-radius:6px;padding:6px 12px;font-size:.76rem;font-weight:700;cursor:pointer;margin-right:5px>🧾 Receipt</button>"
-      : "";
+    var receiptBtn = "<button onclick=\"openFeeReceipt("+JSON.stringify(f.id)+")\" style=background:#e8eaf6;color:#000080;border:1px solid #c5cae9;border-radius:6px;padding:6px 12px;font-size:.76rem;font-weight:700;cursor:pointer;margin-right:5px>🧾 "+(fStatus==="paid"?"Receipt":"Invoice")+"</button>";
 
     // Countdown reminder — shown to parents/students only, when an unpaid
     // fee's due date is within the next 7 days (or already passed).
@@ -8781,7 +8850,7 @@ function renderFeeList(fees, today){
       +"<div style=display:flex;align-items:center;gap:7px;margin-bottom:5px>"
       +"<span style=font-weight:700;font-size:.9rem>"+( f.student||"—")+"</span>"
       +"<span style=background:"+col+";color:#fff;padding:2px 7px;border-radius:7px;font-size:.68rem;font-weight:700>"+f.cls+"</span>"
-      +"<span style=background:#e3f2fd;color:#1565c0;padding:2px 7px;border-radius:7px;font-size:.68rem;font-weight:600>"+( f.type||"Fee")+"</span>"
+      +"<span style=background:#e3f2fd;color:#1565c0;padding:2px 7px;border-radius:7px;font-size:.68rem;font-weight:600>"+( f.type||"Fee")+(f.term?" · "+escapeHtml(f.term):"")+"</span>"
       +discountBadge
       +"</div>"
       +"<div style=display:flex;gap:14px;font-size:.82rem;margin-bottom:4px;flex-wrap:wrap>"
@@ -8791,6 +8860,8 @@ function renderFeeList(fees, today){
       +"</div>"
       +"<div style=display:flex;align-items:center;gap:8px;font-size:.75rem;color:#aaa>"
       +"<span>📅 Due: "+f.dueDate+"</span>"
+      +(f.periodEnd?"<span>🗓️ Valid until "+feeDate(f.periodEnd)+"</span>":"")
+      +(f.paidAt?"<span>💵 Paid "+feeDate(f.paidAt)+"</span>":"")
       +(f.note?"<span>📝 "+f.note+"</span>":"")
       +"</div>"
       +progressBar
@@ -8803,9 +8874,15 @@ function renderFeeList(fees, today){
   }).join("");
 }
 
+function feeBelongsToStudent(f){
+  if(!studentSession) return false;
+  if(f.studentId && studentSession.studentId) return f.studentId === studentSession.studentId;
+  return String(f.student||"").trim().toLowerCase() === String(studentSession.name||"").trim().toLowerCase();
+}
 function updateFeeSummary(today){
   var paid=0, unpaid=0, overdue=0, totalDue=0;
-  allFees.forEach(function(f){
+  // families only count their own fees (not the whole school)
+  (isTeacher ? allFees : allFees.filter(feeBelongsToStudent)).forEach(function(f){
     var s = getFeeStatus(f,today);
     if(s==="paid") paid++;
     else if(s==="overdue"){ overdue++; totalDue+=parseFloat(f.amount||0)-parseFloat(f.paidAmount||0); }
@@ -8851,6 +8928,9 @@ function showAddFeeModal(){
   var nxt = new Date(); nxt.setDate(nxt.getDate()+30);
   document.getElementById("fee-due").value      = nxt.toISOString().split("T")[0];
   document.getElementById("fee-note").value     = "";
+  document.getElementById("fee-term").value = "";
+  document.getElementById("fee-period-start").value = "";
+  document.getElementById("fee-period-end").value = "";
   document.getElementById("fee-modal-msg").style.display = "none";
   document.getElementById("del-fee-btn").style.display   = "none";
   updateFeeDiscountCalc();
@@ -8873,6 +8953,9 @@ async function editFee(id){
   document.getElementById("fee-paid-amount").value  = f.paidAmount||"0";
   document.getElementById("fee-due").value          = f.dueDate||"";
   document.getElementById("fee-note").value         = f.note||"";
+  document.getElementById("fee-term").value         = f.term||"";
+  document.getElementById("fee-period-start").value = f.periodStart||"";
+  document.getElementById("fee-period-end").value   = f.periodEnd||"";
   document.getElementById("fee-modal-msg").style.display = "none";
   updateFeeDiscountCalc();
   document.getElementById("fee-modal").style.display     = "flex";
@@ -8904,7 +8987,16 @@ async function saveFee(){
   var existing = editingFeeId ? allFees.find(function(x){ return x.id===editingFeeId; }) : null;
   var paidAt = isPaid ? (existing && existing.status==="paid" && existing.paidAt ? existing.paidAt : new Date().toISOString()) : null;
 
+  var term = document.getElementById("fee-term").value;
+  var periodStart = document.getElementById("fee-period-start").value, periodEnd = document.getElementById("fee-period-end").value;
+  if(periodStart && periodEnd && periodEnd < periodStart){
+    msg.style.cssText="display:block;background:#ffebee;color:#c62828;padding:6px 10px;border-radius:6px;font-size:.76rem;";
+    msg.textContent="“Valid until” must be after “Covers from”."; return;
+  }
+  // link the record to the student's ID when the name matches an enrolled student
+  var stuMatch = (typeof allStudents!=="undefined" && allStudents || []).find(function(x){ return String(x.nameEn||"").trim().toLowerCase()===student.toLowerCase() || String(x.nameKm||"").trim()===student; });
   var data = { student, cls, type, amount, originalAmount:original, discountPercent:discount, paidAmount:paid, dueDate:due, note,
+    term, periodStart, periodEnd, studentId: (stuMatch && stuMatch.studentId) || (existing && existing.studentId) || "",
     status: isPaid?"paid":"unpaid", paidAt,
     updatedAt: new Date().toISOString(),
     createdBy: currentTeacherName };
@@ -8977,6 +9069,23 @@ function openFeeReceipt(feeId){
     discRow.style.display = "none";
   }
   document.getElementById("fr-amount").textContent = "$" + (parseFloat(f.amount)||0).toFixed(2);
+  // the same window is a RECEIPT once paid and an INVOICE before that
+  var isPaidDoc = getFeeStatus(f, new Date().toISOString().split("T")[0]) === "paid";
+  var bal = Math.max(0, (parseFloat(f.amount)||0) - (parseFloat(f.paidAmount)||0));
+  document.getElementById("fr-modal-title").textContent = isPaidDoc ? "🧾 Payment Receipt" : "🧾 Invoice";
+  var dt = document.getElementById("fr-doc-title");
+  dt.textContent = isPaidDoc ? "✅ PAYMENT RECEIPT" : "INVOICE — AMOUNT DUE"; dt.style.color = isPaidDoc ? "#2e7d32" : "#c65a00";
+  document.getElementById("fr-no-label").textContent = isPaidDoc ? "Receipt No." : "Invoice No.";
+  document.getElementById("fr-receipt-no").textContent = (isPaidDoc ? "C2EPE-" : "INV-") + feeId.slice(-6).toUpperCase();
+  document.getElementById("fr-date-label").textContent = isPaidDoc ? "Date Paid" : "Due Date";
+  if(!isPaidDoc) document.getElementById("fr-date").textContent = f.dueDate ? feeDate(f.dueDate) : "—";
+  document.getElementById("fr-total-label").textContent = isPaidDoc ? "Total Paid" : (parseFloat(f.paidAmount)>0 ? "Balance Due" : "Amount Due");
+  if(!isPaidDoc) document.getElementById("fr-amount").textContent = "$" + bal.toFixed(2);
+  document.getElementById("fr-term-row").style.display = f.term ? "flex" : "none";
+  document.getElementById("fr-term").textContent = f.term || "";
+  document.getElementById("fr-period-row").style.display = (f.periodStart||f.periodEnd) ? "flex" : "none";
+  document.getElementById("fr-period").textContent = (f.periodStart?feeDate(f.periodStart):"…") + " → " + (f.periodEnd?feeDate(f.periodEnd):"…");
+  if(!isPaidDoc) document.getElementById("fr-method").textContent = "—";
 
   document.getElementById("fee-receipt-modal").style.display = "flex";
 }

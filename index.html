@@ -334,6 +334,8 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
 .idc-cards-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
 .idc-card{width:210px;height:336px;border-radius:16px;overflow:hidden;position:relative;font-family:'Rajdhani',sans-serif;box-shadow:0 10px 40px rgba(0,0,0,.4);flex-shrink:0;}
 .idc-card-front,.idc-card-back{background:linear-gradient(170deg,#0d1e3d 0,#142347 55%,#1a2d56 100%);}
+.idc-qr-wrap{background:#fff;border-radius:4px;padding:3px;width:56px;height:56px;margin:2px auto 0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.idc-qr-wrap img,.idc-qr-wrap canvas{width:50px!important;height:50px!important}
 .idc-front-gold-top{background:linear-gradient(135deg,#b8971e 0,#c9a227 20%,#e8c84a 45%,#f5d76e 55%,#e8c84a 75%,#b8971e 100%);height:88px;display:flex;align-items:center;padding:0 10px;}
 .idc-front-logo{width:42px;height:42px;margin-right:8px;flex-shrink:0;object-fit:contain;}
 .idc-front-school-name{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:#0d1e3d;line-height:1.2;}
@@ -3923,15 +3925,10 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
         <input type="text" id="idc-name" placeholder="CHANN SOKLY" oninput="idcUpdate()">
       </div>
       <div class="idc-field">
-        <label>Name in Khmer (ឈ្មោះជាភាសាខ្មែរ)</label>
-        <input type="text" id="idc-namekm" placeholder="e.g. ដារា វិចិត្រ" oninput="idcUpdate()">
-      </div>
-
-      <div class="idc-field">
         <label>Level on the card</label>
         <select id="idc-level" onchange="idcUpdate()">
           <option value="">— choose —</option>
-          <option>Kid</option>
+          <option>Kindergarten</option>
           <option>Primary</option>
           <option>Secondary</option>
           <option>Master Level</option>
@@ -3976,49 +3973,57 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
         <!-- FRONT -->
         <div>
           <p class="idc-section-label">Front</p>
-          <div class="idc-card idc-card-front idv-front">
-            <div class="idv-head">
-              <img src="logo.png" onerror="logoImgError(this)" class="idv-logo" alt="C2 Logo">
-              <div><div class="idv-school">C2-EPE ACADEMY</div><div class="idv-school-sub">Digital Academy · Phnom Penh</div></div>
+          <div class="idc-card idc-card-front">
+            <div class="idc-front-gold-top">
+              <img src="logo.png" onerror="logoImgError(this)" class="idc-front-logo" alt="C2 Logo">
+              <div>
+                <div class="idc-front-school-name">C2-EPE ACADEMY</div>
+                <div class="idc-front-school-sub">PREMIER INTERNATIONAL SMART SCHOOL</div>
+              </div>
             </div>
-            <div class="idv-title"><span class="idv-km">ប័ណ្ណសម្គាល់ខ្លួនសិស្ស</span>STUDENT ID CARD</div>
-            <div class="idv-photo">
-              <img id="idc-card-img" src="" alt="" style="display:none;">
-              <span class="idc-front-photo-placeholder" id="idc-card-placeholder">👤</span>
+            <div class="idc-front-body">
+              <div class="idc-front-photo-ring">
+                <img id="idc-card-img" src="" alt="" style="display:none;">
+                <span class="idc-front-photo-placeholder" id="idc-card-placeholder">👤</span>
+              </div>
+              <div class="idc-front-name" id="idc-d-name">Student Name</div>
+              <div class="idc-front-level" id="idc-d-level">Level</div>
+              <div class="idc-front-info" id="idc-d-dob">Date of Birth</div>
+              <div class="idc-front-info" id="idc-d-valid" style="color:#e2bb55"></div>
+              <div class="idc-front-id-tag" id="idc-d-id">ID: —</div>
+              <span id="idc-d-phone" style="display:none"></span><span id="idc-d-namekm" style="display:none"></span>
             </div>
-            <div class="idv-rows">
-              <div><span>ID</span><b id="idc-d-id">—</b></div>
-              <div><span class="idv-km">ឈ្មោះ</span><b class="idv-km" id="idc-d-namekm"></b></div>
-              <div><span>Name</span><b id="idc-d-name">Student Name</b></div>
-              <div><span>DOB</span><b id="idc-d-dob">Date of Birth</b></div>
-              <div><span>Level</span><b id="idc-d-level">Level</b></div>
-              <div><span>Valid</span><b id="idc-d-valid" style="color:#b8862b"></b></div>
-              <div style="display:none"><span>Tel</span><b id="idc-d-phone">Phone Number</b></div>
-            </div>
-            <div class="idv-foot">Learn Today, Lead Tomorrow</div>
+            <div class="idc-card-footer">PREPARING GLOBAL LEADERS FOR 2030</div>
           </div>
         </div>
 
         <!-- BACK -->
         <div>
           <p class="idc-section-label">Back</p>
-          <div class="idc-card idc-card-back idv-back">
-            <div class="idv-corner tl"></div><div class="idv-corner br"></div>
-            <div class="idv-back-in">
-              <div class="idv-h">About Us</div>
-              <p>Learn Today, Lead Tomorrow. Powered by Technology, Driven by Care — an English academy preparing global leaders for 2030.</p>
-              <div class="idv-h">Our Promise</div>
-              <p>“C2 is not just a level — it’s a standard of excellence.”</p>
-              <div class="idv-h">We Commit To</div>
-              <ul><li>International Curriculum</li><li>AI-Powered Learning</li><li>Caring Teachers</li><li>Leadership Skills</li></ul>
-              <div class="idv-qr-row">
-                <div class="idv-qr-txt"><b>Scan</b>to discover us<div class="idv-emerg">Emergency:<br><span id="idc-d-emerg">—</span></div></div>
-                <div class="idv-qr" id="idc-qr-container"></div>
-              </div>
-              <div class="idv-web">chansokkh7-spec.github.io/c2epe-website</div>
-              <div class="idv-rules">This card belongs to C2-EPE Academy. If found, please return it to the school office. © <span id="idc-copyright-year"></span> SEG Education Group</div>
+          <div class="idc-card idc-card-back">
+            <div class="idc-back-gold-top">
+              <img src="logo.png" onerror="logoImgError(this)" class="idc-back-logo" alt="C2 Logo">
             </div>
-            <div class="idv-foot">C2-EPE is the HOME of EXCELLENCE</div>
+            <div class="idc-back-body">
+              <div class="idc-back-title">STUDENT ID CARD</div>
+              <div class="idc-back-grid">
+                <div class="idc-back-box">
+                  <div class="idc-back-box-lbl">SCAN TO DISCOVER US</div>
+                  <div id="idc-qr-container" class="idc-qr-wrap"></div>
+                </div>
+                <div class="idc-back-box">
+                  <div class="idc-back-box-lbl">EMERGENCY</div>
+                  <div class="idc-back-box-val">In case of emergency, contact:<span class="idc-emerg" id="idc-d-emerg">—</span></div>
+                </div>
+                <div class="idc-back-box full">
+                  <div class="idc-back-box-lbl">CARD RULES</div>
+                  <div class="idc-back-box-val">1. Carry this card at school every day.<br>2. Report a lost card to the school office.<br>3. Valid until the date on the front.</div>
+                </div>
+              </div>
+              <div class="idc-back-url">C2 IS NOT JUST A LEVEL — IT'S A STANDARD OF EXCELLENCE</div>
+              <div class="idc-back-url" style="font-size:5px;color:#7986cb;margin-top:2px;">If found, please return to C2-EPE Academy · © <span id="idc-copyright-year"></span> SEG Education Group</div>
+            </div>
+            <div class="idc-card-footer">C2-EPE PREMIER INTERNATIONAL SMART SCHOOL</div>
           </div>
         </div>
 
@@ -7256,20 +7261,21 @@ async function idcOpenForStudent(studentId){
   if(banner){ banner.className = "idc-source-banner"; banner.textContent = "✅ New student enrolled — the ID card below was filled in automatically. Add a photo if needed, then Print."; }
 }
 // The card shows the programme (lasts for years) instead of the exact class (changes every term):
-//   Kindergarten → Kid · Young Learners → Primary · General English → Secondary
+//   Kindergarten → Kindergarten · Young Learners → Primary · General English → Secondary
 //   Advanced / Academic & Professional → Master Level · other courses → Special Course
 function idcProgramFor(cls){
   cls = String(cls||"").trim(); if(!cls) return "";
-  if(["Kid","Primary","Secondary","Master Level","Special Course"].indexOf(cls) >= 0) return cls;
+  if(cls === "Kid") return "Kindergarten";
+  if(["Kindergarten","Primary","Secondary","Master Level","Special Course"].indexOf(cls) >= 0) return cls;
   var base = (typeof baseLevel === "function") ? baseLevel(cls) : cls;
   var opt = Array.prototype.find.call(document.querySelectorAll("#hw-cls option"), function(o){ return (o.value||o.textContent) === base || o.textContent === cls; });
   var grp = opt && opt.parentNode && opt.parentNode.tagName === "OPTGROUP" ? opt.parentNode.label : "";
-  if(/Kindergarten/i.test(grp)) return "Kid";
+  if(/Kindergarten/i.test(grp)) return "Kindergarten";
   if(/Young Learners/i.test(grp)) return "Primary";
   if(/General English/i.test(grp)) return "Secondary";
   if(/Advanced|Academic/i.test(grp)) return "Master Level";
   if(/Specialized/i.test(grp)) return "Special Course";
-  if(/^K\d/i.test(base)) return "Kid";
+  if(/^K\d/i.test(base)) return "Kindergarten";
   return "";
 }
 function idcLabelFor(s){
@@ -7398,12 +7404,10 @@ function idcUpdate(){
   var emerg = document.getElementById("idc-emerg").value.trim();
   var id    = document.getElementById("idc-id").value.trim();
   var nameKm = (document.getElementById("idc-namekm")||{value:""}).value.trim();
-  document.getElementById("idc-d-namekm").textContent = nameKm;
-  document.getElementById("idc-d-namekm").parentNode.style.display = nameKm ? "" : "none";
 
   var issued = new Date(), until = new Date(issued); until.setFullYear(until.getFullYear()+1); until.setDate(until.getDate()-1);
   window.__idcValidity = { issued: issued.toISOString().split("T")[0], until: until.toISOString().split("T")[0] };
-  document.getElementById("idc-d-valid").textContent = "until " + until.toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});
+  document.getElementById("idc-d-valid").textContent = "Valid until " + until.toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});
   var setTxt = function(id, val, ph){ var el = document.getElementById(id); el.textContent = val || ph; el.classList.toggle("idc-ph", !val); };
   setTxt("idc-d-name", name, "Student Name");
   setTxt("idc-d-level", level, "Level");
@@ -7414,7 +7418,7 @@ function idcUpdate(){
   setTxt("idc-d-phone", phone, "Phone Number");
   // if no emergency number is entered, the school office number is printed
   document.getElementById("idc-d-emerg").textContent = emerg || phone || "School office: 015 555 631";
-  document.getElementById("idc-d-id").textContent    = id || "—";
+  document.getElementById("idc-d-id").textContent    = "ID: " + (id || "—");
 
   var warn = document.getElementById("idc-warn");
   if(!name || !id){
@@ -7485,7 +7489,7 @@ function idcGenerateQR(){
   // identity, the Student ID, and the school website. Safe to scan even if
   // the card is lost, since it reveals nothing personal about the child.
   // "Scan to discover us" — opens the school website (no personal information in the code)
-  renderQRCode("idc-qr-container", "https://chansokkh7-spec.github.io/c2epe-website/", 58, "QR");
+  renderQRCode("idc-qr-container", "https://chansokkh7-spec.github.io/c2epe-website/", 52, "QR");
 }
 
 function idcResetForm(){

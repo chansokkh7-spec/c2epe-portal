@@ -7200,6 +7200,22 @@ var idcStudentMap = {};   // "label" -> student record, used by the search datal
 var idcSelected   = null; // currently-linked student record (null = manual entry)
 var idcPhotoDataUrl = null;
 
+// Opens the ID Card Generator already filled in for one student (used right after enrolment)
+async function idcOpenForStudent(studentId){
+  openIDCardPage();
+  await idcLoadStudents();
+  var label = Object.keys(idcStudentMap).find(function(k){ return idcStudentMap[k].studentId === studentId; });
+  if(!label){ return; }
+  idcResetForm();
+  document.getElementById("idc-search").value = label;
+  idcPickFromSearch();
+  var m = idcStudentMap[label];
+  if(m.parentPhone || m.phone) document.getElementById("idc-phone").value = m.parentPhone || m.phone;
+  if(m.emergencyPhone || m.emergencyContact) document.getElementById("idc-emerg").value = m.emergencyPhone || m.emergencyContact;
+  idcUpdate();
+  var banner = document.getElementById("idc-source-banner");
+  if(banner){ banner.className = "idc-source-banner"; banner.textContent = "✅ New student enrolled — the ID card below was filled in automatically. Add a photo if needed, then Print."; }
+}
 function idcLabelFor(s){
   var idPart = s.studentId ? (" — " + s.studentId) : "";
   return (s.nameEn || s.nameKm || "Unnamed") + " (" + (s.cls || "No class") + ")" + idPart;
@@ -7224,8 +7240,9 @@ async function idcLoadStudents(){
   var list = document.getElementById("idc-student-list");
   var isLocal = window.location.protocol === "file:";
   if(isLocal || !window._fb){
-    list.innerHTML = "";
     idcStudentMap = {};
+    var ls = []; try { ls = JSON.parse(localStorage.getItem("c2epe_local_students")||"[]"); } catch(e){}
+    list.innerHTML = ls.map(function(s){ var label = idcLabelFor(s); idcStudentMap[label] = s; return "<option value=\"" + label.replace(/"/g,"&quot;") + "\"></option>"; }).join("");
     return;
   }
   try {
@@ -11055,6 +11072,10 @@ function openAdmissionsPage(){
     alert("Admissions is only available to the Admin or the Admissions Department Head.");
     return;
   }
+  // always start on "All" with readable chips
+  admissionsStatusFilter = "all";
+  var allChip = document.querySelector(".adm-chip");
+  if(allChip) filterAdmissions("all", allChip);
   document.getElementById("admissions-page").style.display = "block";
   loadAdmissions();
 }
@@ -11072,19 +11093,37 @@ async function loadAdmissions(){
       var {getDocs} = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
       var snap = await getDocs(collection(db,"applications"));
       allApplications = snap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
-    } catch(e){ console.error("loadAdmissions error:", e); allApplications = []; }
+    } catch(e){
+      console.error("loadAdmissions error:", e); allApplications = [];
+      document.getElementById("admissions-list").innerHTML = "<div style='text-align:center;padding:30px;color:#c62828;'>❌ Could not load applications: "+escapeHtml(e.message||String(e))+"</div>";
+      return;
+    }
   }
   allApplications.sort(function(a,b){ return (b.submittedAt||"").localeCompare(a.submittedAt||""); });
+  updateAdmissionChipCounts();
   renderAdmissionsList();
 }
 
 function filterAdmissions(status, btn){
   admissionsStatusFilter = status;
-  document.querySelectorAll(".adm-chip").forEach(function(c){ c.classList.remove("active"); c.style.background="#fff"; });
+  document.querySelectorAll(".adm-chip").forEach(function(c){
+    var col = c.style.borderColor;
+    c.classList.remove("active"); c.style.background = "#fff"; c.style.color = col;   // text back to its own colour
+  });
   btn.classList.add("active");
   btn.style.background = btn.style.borderColor;
   btn.style.color = "#fff";
   renderAdmissionsList();
+}
+// show how many applications each chip has, e.g. "⏳ Pending (2)"
+function updateAdmissionChipCounts(){
+  var counts = {all: allApplications.length};
+  allApplications.forEach(function(a){ var st = a.status || "pending"; counts[st] = (counts[st]||0) + 1; });
+  document.querySelectorAll(".adm-chip").forEach(function(c){
+    var m = (c.getAttribute("onclick")||"").match(/filterAdmissions\('([a-z]+)'/); if(!m) return;
+    if(!c.dataset.base) c.dataset.base = c.textContent.trim();
+    c.textContent = c.dataset.base + " (" + (counts[m[1]]||0) + ")";
+  });
 }
 
 var ADM_STATUS_LABEL = {
@@ -11125,7 +11164,8 @@ function openAppDetailModal(id){
 
   var actionsHTML = "";
   if(a.status === "enrolled"){
-    actionsHTML = "<div style='background:#f3e5f5;color:#6a1b9a;padding:8px 11px;border-radius:7px;font-size:.78rem;text-align:center;'>🎓 Already enrolled as a student.</div>";
+    actionsHTML = "<div style='background:#f3e5f5;color:#6a1b9a;padding:8px 11px;border-radius:7px;font-size:.78rem;text-align:center;'>🎓 Already enrolled as a student"+(a.enrolledStudentId?" — Student ID <b>"+escapeHtml(a.enrolledStudentId)+"</b>":"")+".</div>"
+      + (a.enrolledStudentId && currentUser && currentUser.email === ADMIN_EMAIL ? "<button onclick=\"closeAppDetailModal();idcOpenForStudent('"+escapeHtml(a.enrolledStudentId)+"')\" style='width:100%;margin-top:8px;padding:9px;background:#000080;color:#FFD700;border:none;border-radius:7px;font-weight:700;cursor:pointer;font-size:.8rem;'>🪪 Open Student ID Card</button>" : "");
   } else {
     actionsHTML = "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;'>"
       + "<button onclick=\"setApplicationStatus('"+id+"','reviewing')\" style='padding:8px;background:#e3f2fd;color:#1565c0;border:none;border-radius:7px;font-weight:700;cursor:pointer;font-size:.78rem;'>🔍 Mark Reviewing</button>"
@@ -11241,6 +11281,7 @@ async function acceptAndEnrollApplication(id){
     var studentData = {
       nameKm: a.childNameKm||"", nameEn: a.childNameEn||"", cls: newCls,
       dob: a.dob||"", gender: a.gender||"", parent: a.parentName||"",
+      parentPhone: a.parentPhone||"", parentEmail: a.parentEmail||"", enrolledAt: new Date().toISOString(),
       photo: "", createdAt: new Date().toISOString(), updatedAt: new Date().toISOString()
     };
 
@@ -11293,8 +11334,10 @@ async function acceptAndEnrollApplication(id){
     }
 
     closeAppDetailModal();
-    alert("🎉 Enrolled! Student ID: " + studentId + (tuitionAmount>0 ? "\n💵 First term ($"+tuitionAmount.toFixed(2)+") marked as Paid." : ""));
+    var isAdminUser = currentUser && currentUser.email === ADMIN_EMAIL;
+    alert("🎉 Enrolled! Student ID: " + studentId + (tuitionAmount>0 ? "\n💵 First term ($"+tuitionAmount.toFixed(2)+") marked as Paid." : "") + (isAdminUser ? "\n🪪 The Student ID Card is ready to print." : ""));
     loadAdmissions();
+    if(isAdminUser) idcOpenForStudent(studentId);
   } catch(e){ alert("Error: " + e.message); }
 }
 

@@ -7814,9 +7814,11 @@ function openAttendPage(){
     // parents/students: only their own child's class (and only their child's card)
     if(allOpt) allOpt.hidden = true;
     document.getElementById("att-cls").value = studentSession.cls;
+    studentClassFilter("att-cls");   // fixed class label instead of a dropdown
     document.getElementById("att-panel-title").textContent = "Attendance — " + studentSession.name;
   } else {
     if(allOpt) allOpt.hidden = false;
+    studentClassFilter("att-cls");   // teachers: normal dropdown
     document.getElementById("att-panel-title").textContent = "Take / Edit Attendance";
   }
   // Set today as default date
@@ -7825,6 +7827,9 @@ function openAttendPage(){
   document.getElementById("attend-date-display").textContent = 
     new Date().toLocaleDateString("en-GB",{weekday:"long",day:"2-digit",month:"long",year:"numeric"});
   document.getElementById("att-save-row").style.display = isTeacher ? "inline-block" : "none";
+  document.getElementById("att-summary").style.display = isTeacher ? "" : "none";
+  var csvBtn = document.querySelector('#attend-page button[onclick="exportAttendanceCSV()"]');
+  if(csvBtn) csvBtn.style.display = isTeacher ? "" : "none";
   loadAttendance();
 }
 function closeAttendPage(){
@@ -8048,7 +8053,35 @@ function exportAttendanceCSV(){
   document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
 }
 
+// Parents/students: their own child's attendance, day by day
+async function loadMyAttendHistory(cls){
+  var histEl = document.getElementById("att-history-list");
+  var docs = [];
+  try {
+    if(window.location.protocol === "file:" || !window._fb) docs = JSON.parse(localStorage.getItem("c2epe_attendance")||"[]").filter(function(a){ return a.cls===cls; });
+    else {
+      var {db, collection, query} = window._fb;
+      var {getDocs, where} = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+      docs = (await getDocs(query(collection(db,"attendance"), where("cls","==",cls)))).docs.map(function(d){ return d.data(); });
+    }
+  } catch(e){ histEl.innerHTML = "<div style='color:#e53935;padding:12px'>"+escapeHtml(e.message||String(e))+"</div>"; return; }
+  var label = {present:["✅ Present","#1f9d6b"], late:["⏰ Late","#f39c12"], leaveEarly:["🚪 Left early","#8d6e00"], permission:["📄 Permission","#1976d2"], absent:["❌ Absent","#d93025"]};
+  var rows = docs.map(function(a){ var rec = (a.records||{})[studentSession.docId]; return rec && rec.status ? { date:a.date, rec:rec } : null; })
+    .filter(Boolean).sort(function(a,b){ return String(b.date).localeCompare(String(a.date)); }).slice(0,30);
+  if(!rows.length){ histEl.innerHTML = "<div style='color:#ccc;text-align:center;padding:16px'>No attendance recorded yet</div>"; return; }
+  var came = rows.filter(function(x){ return x.rec.status!=="absent" && x.rec.status!=="permission"; }).length;
+  var counted = rows.filter(function(x){ return x.rec.status!=="permission"; }).length;
+  var rate = counted ? Math.round(came*100/counted) : 0;
+  histEl.innerHTML = "<div style='display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;font-size:.8rem'>"
+    + "<span style='background:"+(rate>=90?"#e8f5e9":rate>=70?"#fff3e0":"#ffebee")+";color:"+(rate>=90?"#2e7d32":rate>=70?"#c65a00":"#c62828")+";padding:5px 12px;border-radius:999px;font-weight:800'>Attendance rate: "+rate+"%</span>"
+    + "<span style='color:#666;padding:5px 0'>"+rows.length+" day"+(rows.length===1?"":"s")+" recorded</span></div>"
+    + rows.map(function(x){ var l = label[x.rec.status] || [x.rec.status, "#555"];
+        return "<div style='display:flex;justify-content:space-between;gap:10px;padding:8px 2px;border-bottom:1px solid #f2f3f7;font-size:.82rem'>"
+          + "<span style='font-weight:600'>"+new Date(x.date+"T00:00:00").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"})+"</span>"
+          + "<span style='text-align:right'><b style='color:"+l[1]+"'>"+l[0]+"</b>"+(x.rec.checkIn?" <span style='color:#888'>· in "+escapeHtml(x.rec.checkIn)+"</span>":"")+(x.rec.reason?"<br><span style='color:#888;font-size:.74rem'>“"+escapeHtml(x.rec.reason)+"”</span>":"")+"</span></div>"; }).join("");
+}
 async function loadAttendHistory(cls){
+  if(!isTeacher && studentSession) return loadMyAttendHistory(cls);
   var {db, collection, query} = window._fb;
   var {getDocs, where, orderBy, limit} = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
   
@@ -14531,7 +14564,78 @@ async function loadReports(){
   }
 }
 
+// ── Teachers: every student of the class, with or without a report card yet ──
+// Same view the student gets: progress %, what is done / still missing, and the passport.
+async function renderTeacherReportRoster(reports){
+  var list = document.getElementById("report-cards-list");
+  var cls = document.getElementById("rpt-filter-cls").value, term = document.getElementById("rpt-filter-term").value;
+  var students = [];
+  try {
+    if(window.location.protocol === "file:" || !window._fb) students = JSON.parse(localStorage.getItem("c2epe_local_students")||"[]");
+    else {
+      var {db, collection} = window._fb;
+      var {getDocs} = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+      students = (await getDocs(collection(db,"students"))).docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+    }
+  } catch(e){ console.error("report roster students", e); }
+  students = students.filter(function(st){ var c = baseLevel(st.cls||""); return teacherCanSeeClass(c) && (!cls || c === baseLevel(cls)); });
+  var norm = function(v){ return String(v||"").trim().toLowerCase(); };
+  var used = {};
+  var rows = students.map(function(st){
+    var mine = reports.filter(function(r){ return (st.studentId && r.studentId === st.studentId) || (!r.studentId && norm(r.student) && (norm(r.student) === norm(st.nameEn) || norm(r.student) === norm(st.nameKm))); })
+      .sort(function(a,b){ return String(b.updatedAt||b.createdAt||"").localeCompare(String(a.updatedAt||a.createdAt||"")); });
+    mine.forEach(function(r){ used[r.id] = 1; });
+    return { st:st, r:mine[0] || null };
+  });
+  reports.forEach(function(r){ if(!used[r.id]) rows.push({ st:{ nameEn:r.student, studentId:r.studentId, cls:r.cls, gender:r.gender }, r:r }); });
+  rows.sort(function(a,b){ return String(a.st.cls||"").localeCompare(String(b.st.cls||"")) || String(a.st.nameEn||a.st.nameKm||"").localeCompare(String(b.st.nameEn||b.st.nameKm||"")); });
+  window.__rptRoster = rows;
+  document.getElementById("rpt-count").textContent = rows.length + " students · " + rows.filter(function(x){ return x.r; }).length + " report cards";
+  if(!rows.length){ list.innerHTML = "<div style=text-align:center;padding:40px;color:#ccc>📊 No students in this class yet</div>"; return; }
+  list.innerHTML = "<div style='display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px'>" + rows.map(function(x, i){
+    var st = x.st, r = x.r, col = getColor(st.cls||"");
+    var items = reportCompletionItems(r || {}), done = items.filter(function(it){ return it[2]; }).length, pct = Math.round(done*100/items.length);
+    var avg = r ? calcAvgScore(r) : 0, grade = avg ? scoreToGrade(avg,100) : null;
+    return "<div style='background:#fff;border-radius:10px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:14px;border-top:4px solid "+col+"'>"
+      + "<div style='font-weight:700;font-size:.9rem;color:#1a1a2e'>"+escapeHtml(st.nameEn||st.nameKm||"—")+"</div>"
+      + "<div style='font-size:.72rem;color:#888;margin:2px 0 8px'>"+escapeHtml(st.studentId||"")+" · <span style='background:"+col+";color:#fff;padding:1px 6px;border-radius:6px;font-weight:700'>"+escapeHtml(st.cls||"")+"</span>"+(r?" · "+escapeHtml(r.term||""):"")+"</div>"
+      + (r ? "<div style='display:flex;align-items:center;gap:8px;margin-bottom:6px'><span style='font-size:1.3rem;font-weight:800;color:"+grade.color+"'>"+grade.label+"</span><span style='font-size:.78rem;color:#888'>Avg: "+avg.toFixed(1)+"%</span></div>"
+           : "<div style='font-size:.78rem;color:#c65a00;font-weight:700;margin-bottom:6px'>⏳ No report card yet"+(term?" for "+escapeHtml(term):"")+"</div>")
+      + "<div style='display:flex;justify-content:space-between;font-size:.7rem;color:#666;margin-bottom:3px'><span>✅ "+done+" done · ⏳ "+(items.length-done)+" missing</span><b>"+pct+"%</b></div>"
+      + "<div style='height:6px;background:#eef0f5;border-radius:4px;overflow:hidden;margin-bottom:10px'><div style='height:100%;width:"+pct+"%;background:linear-gradient(90deg,#c9a227,#2e7d32)'></div></div>"
+      + "<div style='display:flex;gap:6px'>"
+      + "<button onclick='rosterView("+i+")' style='flex:1;background:#000080;color:#FFD700;border:none;padding:6px;border-radius:6px;font-size:.75rem;font-weight:700;cursor:pointer'>👁️ View</button>"
+      + (r ? "<button onclick='editReport("+JSON.stringify(r.id).replace(/'/g,"&#39;")+")' style='background:#f5f5f5;border:1px solid #e0e0e0;border-radius:6px;padding:6px 10px;font-size:.75rem;cursor:pointer'>✏️ Edit</button>"
+           : "<button onclick='rosterCreate("+i+")' style='background:#e8f5e9;color:#2e7d32;border:1px solid #c8e6c9;border-radius:6px;padding:6px 10px;font-size:.75rem;font-weight:700;cursor:pointer'>＋ Create</button>")
+      + "</div></div>";
+  }).join("") + "</div>";
+}
+function rosterView(i){
+  var x = (window.__rptRoster||[])[i]; if(!x) return;
+  if(x.r){ viewReport(x.r.id); return; }
+  var term = document.getElementById("rpt-filter-term").value;
+  var blank = { id:"", student:x.st.nameEn||x.st.nameKm||"", studentId:x.st.studentId||"", cls:x.st.cls||"", gender:x.st.gender||"", term:term };
+  currentViewedReport = blank;
+  document.getElementById("report-list-view").style.display = "none";
+  document.getElementById("report-edit-view").style.display = "none";
+  document.getElementById("report-view-view").style.display = "block";
+  document.getElementById("rpt-term-chips").innerHTML = "";
+  document.getElementById("rpt-back-to-list").style.display = "";
+  switchReportTab("passport");
+  renderReportProgressPanel(blank, "No report card yet"+(term?" for "+escapeHtml(term):"")+". Everything below is still to be graded — press ＋ Create on the list to start it.");
+}
+function rosterCreate(i){
+  var x = (window.__rptRoster||[])[i]; if(!x) return;
+  showAddReportModal();
+  document.getElementById("rpt-student").value = x.st.nameEn || x.st.nameKm || "";
+  document.getElementById("rpt-student-id").value = x.st.studentId || "";
+  if(x.st.gender) document.getElementById("rpt-gender").value = x.st.gender;
+  if(x.st.cls) document.getElementById("rpt-cls").value = baseLevel(x.st.cls);
+  var term = document.getElementById("rpt-filter-term").value;
+  if(term) document.getElementById("rpt-term").value = term;
+}
 function renderReportsList(reports){
+  if(isTeacher){ renderTeacherReportRoster(reports); return; }
   var list = document.getElementById("report-cards-list");
   if(!reports.length){
     list.innerHTML = "<div style=text-align:center;padding:40px;color:#ccc>📊 No report cards found</div>";
@@ -14647,7 +14751,13 @@ function reportDocNo(r){
   return "SE/ACA/"+year+"/"+idPart;
 }
 
+// The report editor's class list was missing many classes (e.g. Movers, Flyers) — use the full school list
+function ensureRptClassOptions(){
+  var r = document.getElementById("rpt-cls"), h = document.getElementById("hw-cls");
+  if(r && h && r.querySelectorAll("option").length < h.querySelectorAll("option").length){ var v = r.value; r.innerHTML = h.innerHTML; r.value = v; }
+}
 function showAddReportModal(){
+  ensureRptClassOptions();
   editingReportId = null;
   document.getElementById("rpt-student").value = "";
   document.getElementById("rpt-student-id").value = "";
@@ -14670,6 +14780,7 @@ function showAddReportModal(){
 }
 
 async function editReport(id){
+  ensureRptClassOptions();
   editingReportId = id;
   var r = allReports.find(function(x){ return x.id===id; });
   if(!r) return;

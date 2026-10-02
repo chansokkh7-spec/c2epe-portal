@@ -16580,13 +16580,7 @@ async function sdShowDashboard(){
   var msgDot = document.getElementById('msg-parent-badge');
   document.getElementById('sd-msg-dot').style.display = (msgDot && msgDot.style.display && msgDot.style.display!=='none') ? 'block' : 'none';
   box.innerHTML =
-    "<div class='sd-hero'><img src='logo.png' alt='' onerror=\"this.style.display='none'\"><div><h2>C2-EPE PASSPORT</h2><p>Track your progress and achieve excellence</p></div>"
-    + "<div class='sd-today'>📅 Today<b>"+today+"</b></div></div>"
-    + "<div class='sd-card'><div class='sd-info'>"
-    + "<div><span>Student Name</span><b>"+sdEsc(studentSession.name)+"</b></div>"
-    + "<div><span>Student ID</span><b>"+sdEsc(studentSession.studentId)+"</b></div>"
-    + "<div><span>Class</span><b>"+sdEsc(studentSession.cls)+"</b></div>"
-    + "<div><span>Latest report</span><b>"+(r ? sdEsc(r.term||'—') : 'Not yet')+"</b></div></div></div>"
+    ""
     + "<div class='sd-stats'>"
     + "<button class='sd-stat' onclick='sdGo(openAttendPage)'><div class='ic'>📋</div><b>"+(d.att==null?'—':d.att+'%')+"</b><span>Attendance"+(d.attDays?' · '+d.attDays+' days':'')+"</span></button>"
     + "<button class='sd-stat' onclick='sdGo(openHwPage)'><div class='ic'>📝</div><b>"+d.hwDue+"</b><span>Homework to do</span></button>"
@@ -16866,7 +16860,7 @@ async function tdRefresh(){
       + "</div>") : "";
   setTimeout(tdEnhance, 0);
   box.innerHTML = admHTML +
-    "<div class='td-card'><div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:10px'><h3>📢 Announcements</h3><button class='td-ghost' onclick='tdGo(openAnnouncePage)'>View all</button></div>"+annHTML+"</div>"
+    "<div class='td-card' id='td-ann-card'><div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:10px'><h3>📢 Announcements</h3><button class='td-ghost' onclick='tdGo(openAnnouncePage)'>View all</button></div>"+annHTML+"</div>"
     + "<div class='td-kpis'>"
     + "<button class='td-kpi' onclick='tdGo(openStudentPage)'><div class='ic' style='background:#e8f0ff'>👥</div><b>"+students.length+"</b><span>Total Students</span><small style='color:#1f9d6b'>"+(newThisMonth?"▲ "+newThisMonth+" this month":"&nbsp;")+"</small></button>"
     + "<button class='td-kpi' onclick='tdGo(openReportPage)'><div class='ic' style='background:#fdf2dc'>🏅</div><b>"+passed+"</b><span>Passed (60% or more)</span><small style='color:#8a93a8'>of "+scored.length+" report cards</small></button>"
@@ -17628,8 +17622,9 @@ async function tdEnhance(){
   var items = await calLoadItems();
   if(!document.getElementById("td-content") || document.getElementById("td").style.display === "none") return;
   var tile = function(ic, label, bg, fn){ return "<button class='dx-tile' style='background:"+bg+"' onclick='tdGo("+fn+")'><span>"+ic+"</span>"+label+"</button>"; };
+  var displayName = (currentTeacherName && currentTeacherName.indexOf("@") < 0) ? currentTeacherName : (isAdm ? "Admin" : "Teacher");
   box.insertAdjacentHTML("afterbegin",
-    "<div class='dx-hello'><div class='av'>👩‍🏫</div><div style='flex:1'><span>"+greetWord()+",</span><b>"+escapeHtml(currentTeacherName||"Teacher")+"</b><span>"+new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})+"</span></div></div>"
+    "<div class='dx-hello'><div class='av'>👩‍🏫</div><div style='flex:1'><span>"+greetWord()+",</span><b>"+escapeHtml(displayName)+"</b><span>"+new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})+"</span></div></div>"
     + "<div class='dx-tiles'>"
     + tile("✅","Attendance","linear-gradient(135deg,#2e7d32,#43a047)","openAttendPage")
     + tile("📝","Homework","linear-gradient(135deg,#00897b,#26a69a)","openHwPage")
@@ -17640,6 +17635,7 @@ async function tdEnhance(){
     + "</div>"
     + "<div class='dx-two'><div class='dx-card'><h3>📚 Today's classes <button onclick='tdGo(openTimetable)'>Timetable ›</button></h3>"+todayClassesHTML(mine, all.length ? "No classes today." : "No timetable yet — open 🗓️ Timetable to add your classes.")+"</div>"
     + "<div class='dx-card'><h3>⏰ Upcoming <button onclick='tdGo(openCalendar)'>＋ Add / Calendar ›</button></h3>"+upcomingHTML(items, "No upcoming events. Add exams, meetings and holidays in the calendar.")+"</div></div>");
+  var ann = document.getElementById("td-ann-card"); if(ann) box.prepend(ann);
 }
 </script>
 

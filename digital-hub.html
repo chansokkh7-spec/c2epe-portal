@@ -1293,7 +1293,7 @@
                 </div>
                 <form id="gateStudentForm" onsubmit="event.preventDefault(); gateStudentLogin();">
                     <label for="gateStudentId">លេខសម្គាល់សិស្ស · Student ID</label>
-                    <input id="gateStudentId" autocomplete="username" placeholder="e.g. C2-EPE0001" required>
+                    <input id="gateStudentId" autocomplete="username" placeholder="e.g. 482916" inputmode="text" required>
                     <button class="go" id="gateStudentBtn" type="submit">ចូល · Sign in</button>
                     <div class="login-err" id="gateStudentErr"></div>
                     <div class="login-note">ប្រើលេខសម្គាល់សិស្ស ដែលសាលាបានផ្តល់ឱ្យ ពេលចុះឈ្មោះចូលរៀនតាម Portal។ មាតាបិតាប្រើលេខសម្គាល់របស់កូន។<br>Use the Student ID you received when registering through the school Portal. Parents use their child's Student ID.</div>
@@ -1550,7 +1550,7 @@
                 <label id="studentFormHeading">➕ Add New Student</label>
                 <label style="display:flex; align-items:center; gap:6px; font-size:0.8rem; color:#9db4de; margin:6px 0; cursor:pointer;">
                     <input type="checkbox" id="isOnlineStudent" onchange="toggleOnlineStudentId()" style="width:auto;">
-                    📹 This is an Online Class student (uses a C2-EPE-ON-#### ID)
+                    📹 This is an Online Class student
                 </label>
                 <input type="text" id="editStudentId" placeholder="Student ID (e.g. C2-0142)" style="margin-bottom:4px;">
                 <p style="font-size:0.75rem; color:#6b7fae; margin-bottom:8px;">💡 Auto-suggested next ID — edit it if you'd rather use your own.</p>
@@ -1646,7 +1646,9 @@
 
         // ---- Per-student access control state ----
         let currentStudent = null;
-        try { currentStudent = JSON.parse(localStorage.getItem('seg_student') || 'null'); } catch (e) { currentStudent = null; }
+        // The sign-in lasts only while this tab is open — closing it (or 30 minutes without activity) signs out,
+        // so the next person on a shared computer must sign in with their own account.
+        try { sessionStorage.removeItem('seg_student'); currentStudent = JSON.parse(sessionStorage.getItem('seg_student') || 'null'); } catch (e) { currentStudent = null; }
         let allStudentsCache = {}; // id -> {name, allowedSystems}
         let editingStudentId = null; // which student the admin form is currently editing
 
@@ -2182,6 +2184,7 @@
 
         function toggleAdminMode() {
             if (auth.currentUser) {
+                sessionStorage.removeItem('hub_staff_ok');
                 auth.signOut();
                 return;
             }
@@ -2283,7 +2286,7 @@
                 if (!found.active) { err.textContent = 'គណនីនេះត្រូវបានបិទ · This account is not active — please contact the school.'; return; }
                 if (auth.currentUser) await auth.signOut();
                 currentStudent = { id: found.id, name: found.name, allowedSystems: found.allowedSystems };
-                localStorage.setItem('seg_student', JSON.stringify(currentStudent));
+                sessionStorage.setItem('seg_student', JSON.stringify(currentStudent));
                 input.value = '';
                 updateStudentIdBtn();
                 renderGrid();
@@ -2302,14 +2305,31 @@
             if (!email || !pw) return;
             btn.disabled = true;
             try {
+                sessionStorage.setItem('hub_staff_ok', '1');   // this sign-in was typed in this tab
                 await auth.signInWithEmailAndPassword(email, pw);
                 document.getElementById('gatePassword').value = '';
                 // the role check happens in onAuthStateChanged
             } catch (e) {
+                sessionStorage.removeItem('hub_staff_ok');
                 console.error('Staff sign-in failed:', e);
                 err.textContent = 'អ៊ីមែល ឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ · Wrong email or password.';
             } finally { btn.disabled = false; }
         }
+        // ================= AUTO SIGN-OUT AFTER 30 MINUTES WITHOUT ACTIVITY =================
+        const IDLE_LIMIT_MS = 30 * 60 * 1000;
+        let lastActivity = Date.now();
+        ['click', 'keydown', 'touchstart', 'scroll', 'mousemove'].forEach(ev => document.addEventListener(ev, () => { lastActivity = Date.now(); }, { passive: true }));
+        setInterval(() => {
+            if (!hasSession() || Date.now() - lastActivity < IDLE_LIMIT_MS) return;
+            lastActivity = Date.now();
+            try { if (typeof toggleSpeakRoom === 'function' && document.getElementById('speakRoomBody') && document.getElementById('speakRoomBody').classList.contains('open')) toggleSpeakRoom(); } catch (e) {}
+            if (currentStudent) { currentStudent = null; sessionStorage.removeItem('seg_student'); updateStudentIdBtn(); renderGrid(); }
+            if (auth.currentUser) { sessionStorage.removeItem('hub_staff_ok'); auth.signOut(); }
+            updateGate();
+            const err = document.getElementById(staffRole ? 'gateStaffErr' : 'gateStudentErr');
+            if (err) err.textContent = 'ចេញដោយស្វ័យប្រវត្តិ ព្រោះគ្មានសកម្មភាព 30 នាទី · Signed out after 30 minutes without activity.';
+        }, 60 * 1000);
+
         // Firebase may be blocked (no internet / ad blocker): show the forms anyway after a few seconds
         setTimeout(() => { if (!authResolved) { authResolved = true; updateGate(); } }, 6000);
 
@@ -2383,7 +2403,14 @@
         // Firebase outage degrades to "can't sign in / can't load systems"
         // instead of a fully broken page.
         try {
+            // Don't keep the staff session after the browser/tab is closed
+            try { if (firebase.auth.Auth && firebase.auth.Auth.Persistence) auth.setPersistence(firebase.auth.Auth.Persistence.SESSION); } catch (e) {}
             auth.onAuthStateChanged(async (user) => {
+                if (user && !sessionStorage.getItem('hub_staff_ok')) {
+                    // a session left signed in earlier (e.g. the Admin forgot to sign out) — require a fresh sign-in
+                    await auth.signOut();
+                    return;
+                }
                 staffRole = await resolveStaffRole(user);
                 if (user && !staffRole) {
                     // a Firebase account that is not the Admin and not an active teacher
@@ -2392,7 +2419,7 @@
                     await auth.signOut();
                     return;
                 }
-                if (staffRole && currentStudent) { currentStudent = null; localStorage.removeItem('seg_student'); updateStudentIdBtn(); }
+                if (staffRole && currentStudent) { currentStudent = null; sessionStorage.removeItem('seg_student'); updateStudentIdBtn(); }
                 document.body.classList.toggle('admin-mode', !!staffRole);      // Admin + Teachers: all systems, Speak Room teacher dashboard
                 document.body.classList.toggle('role-admin', staffRole === 'admin');
                 document.body.classList.toggle('role-teacher', staffRole === 'teacher');
@@ -4072,7 +4099,7 @@
                     return;
                 }
                 currentStudent = { id: found.id, name: found.name, allowedSystems: found.allowedSystems };
-                localStorage.setItem('seg_student', JSON.stringify(currentStudent));
+                sessionStorage.setItem('seg_student', JSON.stringify(currentStudent));
                 updateStudentIdBtn();
                 renderGrid();
                 closeStudentIdModal();
@@ -4085,7 +4112,7 @@
 
         function switchStudent() {
             currentStudent = null;
-            localStorage.removeItem('seg_student');
+            sessionStorage.removeItem('seg_student');
             updateStudentIdBtn();
             renderGrid();
             closeStudentIdModal();
@@ -4174,18 +4201,17 @@
         // one — so the admin doesn't have to remember or count by hand.
         // IDs that don't follow the pattern (custom ones) are ignored for
         // this calculation but are never touched or renumbered.
+        // New Student IDs are 6 random digits (e.g. 482916): no school prefix and no counting
+        // order, so nobody can guess another student's ID. Uniqueness is checked when saving.
+        function randomStudentId() {
+            const a = new Uint32Array(1);
+            (window.crypto || window.msCrypto).getRandomValues(a);
+            return String(100000 + (a[0] % 900000));
+        }
         function suggestNextStudentId() {
-            const prefix = 'C2-EPE';   // same format the school Portal creates (C2-EPE0001)
-            let maxNum = 0;
-            Object.keys(allStudentsCache).forEach(id => {
-                const m = id.match(/^C2-EPE-?(\d{4,})$/i);
-                if (m) {
-                    const n = parseInt(m[1], 10);
-                    if (n > maxNum) maxNum = n;
-                }
-            });
-            const next = String(maxNum + 1).padStart(4, '0');
-            return prefix + next;
+            let id;
+            do { id = randomStudentId(); } while (allStudentsCache[id]);
+            return id;
         }
 
         // Online Class students get a visually distinct ID (C2-EPE-ON-####)
@@ -4193,19 +4219,7 @@
         // glance that this ID belongs to an online-only enrollment, not
         // an on-campus one — the two ID sequences are numbered
         // independently of each other.
-        function suggestNextOnlineStudentId() {
-            const prefix = 'C2-EPE-ON-';
-            let maxNum = 0;
-            Object.keys(allStudentsCache).forEach(id => {
-                const m = id.match(/^C2-EPE-ON-(\d{4,})$/i);
-                if (m) {
-                    const n = parseInt(m[1], 10);
-                    if (n > maxNum) maxNum = n;
-                }
-            });
-            const next = String(maxNum + 1).padStart(4, '0');
-            return prefix + next;
-        }
+        function suggestNextOnlineStudentId() { return suggestNextStudentId(); }   // online students are marked with a flag instead of an ID prefix
 
         function toggleOnlineStudentId() {
             // Only auto-fill when adding a new student (not while editing
@@ -4216,10 +4230,7 @@
             const isOnline = document.getElementById('isOnlineStudent').checked;
             const idField = document.getElementById('editStudentId');
             const current = idField.value.trim();
-            const looksAutoSuggested = /^C2-EPE-?(ON-)?\d{4,}$/i.test(current);
-            if (!current || looksAutoSuggested) {
-                idField.value = isOnline ? suggestNextOnlineStudentId() : suggestNextStudentId();
-            }
+            if (!current) idField.value = suggestNextStudentId();
         }
 
         function resetStudentForm() {
@@ -4237,7 +4248,7 @@
             if (!s) return;
             editingStudentId = id;
             document.getElementById('studentFormHeading').innerText = `✏️ Edit Student: ${id}`;
-            document.getElementById('isOnlineStudent').checked = /^C2-EPE-ON-/i.test(id);
+            document.getElementById('isOnlineStudent').checked = !!s.online || /^C2-EPE-ON-/i.test(id);
             document.getElementById('editStudentId').value = id;
             document.getElementById('editStudentId').disabled = true; // Student ID is the doc key — create a new entry to rename
             document.getElementById('editStudentName').value = s.name || '';
@@ -4250,15 +4261,25 @@
             const name = document.getElementById('editStudentName').value.trim();
             if (!id) { alert('Please enter a Student ID.'); return; }
             const allowedSystems = Array.from(document.querySelectorAll('#studentSystemChecklist input:checked')).map(cb => parseInt(cb.value));
+            const online = document.getElementById('isOnlineStudent').checked;
             try {
-                await studentsCollectionRef.doc(id).set({ name, allowedSystems }, { merge: false });
-                allStudentsCache[id] = { name, allowedSystems };
+                if (!editingStudentId) {
+                    // a Student ID must belong to one student only — never overwrite someone else's
+                    const taken = (await studentsCollectionRef.doc(id).get()).exists || !!(await lookupStudent(id));
+                    if (taken) {
+                        alert('This Student ID is already used by another student. A new one has been suggested — please save again.');
+                        idField.value = suggestNextStudentId();
+                        return;
+                    }
+                }
+                await studentsCollectionRef.doc(id).set({ name, allowedSystems, online }, { merge: false });
+                allStudentsCache[id] = { name, allowedSystems, online };
                 renderStudentList();
                 resetStudentForm();
                 // If this student is the one currently browsing on this device, refresh their live permissions.
                 if (currentStudent && currentStudent.id === id) {
                     currentStudent = { id, name, allowedSystems };
-                    localStorage.setItem('seg_student', JSON.stringify(currentStudent));
+                    sessionStorage.setItem('seg_student', JSON.stringify(currentStudent));
                     updateStudentIdBtn();
                 }
                 renderGrid();

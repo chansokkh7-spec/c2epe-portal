@@ -7339,11 +7339,13 @@ function idcUpdate(){
   var emerg = document.getElementById("idc-emerg").value.trim();
   var id    = document.getElementById("idc-id").value.trim();
 
-  document.getElementById("idc-d-name").textContent  = name  || "Student Name";
-  document.getElementById("idc-d-level").textContent = level || "LEVEL / CLASS";
-  document.getElementById("idc-d-dob").textContent   = dob   || "Date of Birth";
-  document.getElementById("idc-d-phone").textContent = phone || "Phone Number";
-  document.getElementById("idc-d-emerg").textContent = emerg || "—";
+  var setTxt = function(id, val, ph){ var el = document.getElementById(id); el.textContent = val || ph; el.classList.toggle("idc-ph", !val); };
+  setTxt("idc-d-name", name, "Student Name");
+  setTxt("idc-d-level", level, "LEVEL / CLASS");
+  setTxt("idc-d-dob", dob, "Date of Birth");
+  setTxt("idc-d-phone", phone, "Phone Number");
+  // if no emergency number is entered, the school office number is printed
+  document.getElementById("idc-d-emerg").textContent = emerg || phone || "School office: 015 555 631";
   document.getElementById("idc-d-id").textContent    = "ID: " + (id || "—");
 
   var warn = document.getElementById("idc-warn");
@@ -17096,6 +17098,7 @@ async function loadMyCertificates(){
 @media print{
   body.print-one > *:not(#print-host){display:none!important}
   html,body.print-one{background:#fff!important}
+  #print-host .idc-ph{display:none!important}
   #print-host,#print-host *{visibility:visible!important}
   #print-host{display:block!important;position:static!important}
   #print-host .idc-cards-row{display:flex;gap:10mm;justify-content:center;padding:15mm 0}
@@ -17124,7 +17127,14 @@ async function loadMyCertificates(){
     var copy = src.cloneNode(true);
     // canvases (QR codes) don't copy their drawing — swap them for pictures
     var from = src.querySelectorAll("canvas"), to = copy.querySelectorAll("canvas");
-    to.forEach(function(c, i){ try { var img = document.createElement("img"); img.src = from[i].toDataURL("image/png"); img.style.cssText = c.style.cssText; img.width = from[i].width; img.height = from[i].height; c.parentNode.replaceChild(img, c); } catch(e){} });
+    to.forEach(function(c, i){ try {
+      var url = from[i].toDataURL("image/png");
+      // qrcode.js puts the same code in a canvas AND an <img> — keep exactly one picture
+      Array.prototype.forEach.call(c.parentNode.querySelectorAll("img"), function(im){ im.remove(); });
+      var img = document.createElement("img"); img.src = url; img.alt = "QR code";
+      img.style.cssText = "display:block;width:" + (c.style.width || (from[i].clientWidth||from[i].width)+"px") + ";height:auto;image-rendering:pixelated";
+      c.parentNode.replaceChild(img, c);
+    } catch(e){} });
     copy.querySelectorAll("[id]").forEach(function(el){ if(el.id !== "cert-print-area" && el.id !== "fee-receipt-print-area" && el.id !== "report-print-area") el.removeAttribute("id"); });
     host.appendChild(copy);
     document.body.classList.add("print-one");

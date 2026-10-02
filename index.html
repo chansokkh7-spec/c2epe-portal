@@ -463,6 +463,15 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
 .topbar-hidden-btn{display:none !important;}
 #parent-info-dropdown .tools-item{display:flex;align-items:center;}
 </style>
+<script>
+// defined early: logo images can fail before the main script has loaded
+function logoImgError(img){
+  if(img.dataset.fallbackApplied) return; img.dataset.fallbackApplied = "1";
+  var w = img.offsetWidth || 32, span = document.createElement("span"); span.textContent = "C2";
+  span.style.cssText = "display:inline-flex;align-items:center;justify-content:center;width:"+w+"px;height:"+w+"px;border-radius:50%;background:linear-gradient(135deg,#FFD700,#c9a227);color:#000080;font-weight:800;font-size:"+Math.round(w*0.38)+"px;flex-shrink:0;";
+  if(img.parentNode) img.parentNode.replaceChild(span, img);
+}
+</script>
 </head>
 <body>
 
@@ -6998,6 +7007,7 @@ var editingStudentId = null;
 var stuPhotoDataUrl = null;
 
 function openStudentPage(){
+  if(!isTeacher){ alert("This page is for teachers and staff only."); return; }
   document.getElementById("student-page").style.display = "block";
   // Students now enter the roster automatically through Front Desk
   // Registration / the online Enrollment Application → Admissions'
@@ -10598,6 +10608,7 @@ async function loadDailyClosingHistory(){
 // soon, or overdue, cross-referenced from the same `fees` data Finance
 // manages, but deliberately never rendering an amount anywhere.
 async function openPaymentStatusPage(){
+  if(!isTeacher){ alert("This page is for teachers and staff only."); return; }
   document.getElementById("payment-status-page").style.display = "block";
   var sel = document.getElementById("ps-filter-cls");
   sel.innerHTML = "<option value=''>All Classes</option>" + ALL_CLASS_GROUPS.map(function(g){
@@ -12844,6 +12855,7 @@ async function deleteTestLibraryEntry(id){
 
 // ── Teacher: Test Editor ──────────────────
 async function openTestEditorPage(testId){
+  if(!isTeacher){ alert("This page is for teachers and staff only."); return; }
   editingTestId = testId || null;
   document.getElementById("test-editor-page").style.display = "block";
   document.getElementById("te-msg").style.display = "none";
@@ -13085,6 +13097,7 @@ async function confirmAssignTest(){
 
 // ── Teacher: Submissions & grading ──────────────────
 async function openTestSubmissionsPage(testId){
+  if(!isTeacher){ alert("This page is for teachers and staff only."); return; }
   currentSubmissionsTestId = testId;
   var t = allTestLibrary.find(function(x){ return x.id===testId; });
   document.getElementById("test-submissions-title").textContent = "📥 " + (t ? t.title : "Submissions");
@@ -16435,6 +16448,8 @@ body.dash-open #ai-chat-bubble,body.dash-open #ai-chat-panel{display:none !impor
     <nav class="sd-side">
       <h4>MAIN MENU</h4>
       <button class="on" onclick="sdShowDashboard()">🏠 Dashboard</button>
+      <button onclick="sdGo(openTimetable)">📚 My Classes (Timetable)</button>
+      <button onclick="sdGo(openCalendar)">📅 School Calendar</button>
       <button onclick="sdGo(openHwPage)">📝 Homework</button>
       <button onclick="sdGo(openExamPortalPage)">🎓 Examination Portal</button>
       <button onclick="sdGo(openMyTestsPage)">📚 My Tests</button>
@@ -16447,6 +16462,7 @@ body.dash-open #ai-chat-bubble,body.dash-open #ai-chat-panel{display:none !impor
       <button onclick="sdGo(openStudentSharePage)">📸 Share My Work</button>
       <button onclick="sdOpenNews()">📰 School News</button>
       <h4>ACCOUNT</h4>
+      <button onclick="sdProfile()">👤 My Profile</button>
       <button onclick="sdGo(requestNotificationPermission)">🔔 Notifications</button>
       <button onclick="sdGo(showParentModal)">🔄 Switch child</button>
       <button onclick="sdLogout()" style="color:#ff8a80">🚪 Log out</button>
@@ -16506,6 +16522,7 @@ async function sdLoadData(){
     var c = {attended:0, absent:0, excused:0};
     (att||[]).forEach(function(a){
       var r = (a.records||{})[studentSession.docId]; var st = r && r.status;
+      if(st){ out.attMap = out.attMap || {}; out.attMap[a.date] = st; }
       if(st==='present'||st==='late'||st==='leaveEarly') c.attended++; else if(st==='absent') c.absent++; else if(st==='permission') c.excused++;
     });
     var counted = c.attended + c.absent;
@@ -16595,6 +16612,7 @@ async function sdShowDashboard(){
     + "</div>";
   window.__sdReport = r;
   box.insertAdjacentHTML('beforeend', sdTermResultsHTML(d));
+  sdEnhance(d);
   var certs = await loadMyCertificates();
   if(certs.length && document.getElementById('sd').style.display !== 'none'){
     box.insertAdjacentHTML('afterbegin', "<div class='sd-card' style='border:1.5px solid #e2c27a;background:#fffaf0'><div class='sd-h'>🏅 MY CERTIFICATES</div>"
@@ -16697,6 +16715,8 @@ function sdOpenReport(){
       <h4>MAIN MENU</h4>
       <button class="on" onclick="tdRefresh()">📊 Dashboard</button>
       <button onclick="tdGo(openAttendPage)">📋 Attendance</button>
+      <button onclick="tdGo(openTimetable)">🗓️ Timetable</button>
+      <button onclick="tdGo(openCalendar)">📅 School Calendar</button>
       <button onclick="tdGo(openStudentPage)">🎒 Students</button>
       <button onclick="tdGo(openHwPage)">📝 Homework</button>
       <button onclick="tdGo(openReportPage)">📊 Report Cards</button>
@@ -16844,6 +16864,7 @@ async function tdRefresh(){
              return "<tr style='cursor:pointer' onclick='tdGo(openAdmissionsPage)'><td>"+tdEsc(a.childNameEn||a.childNameKm||'—')+"</td><td>"+tdEsc(a.levelApplied||'')+"</td><td>"+tdEsc(a.parentName||'')+"<br><span style='color:#8a93a8'>"+tdEsc(a.parentPhone||'')+"</span></td><td>"+(a.registeredInPerson?"🏫 Front desk":"🌐 Online")+"</td><td>"+tdDate(a.submittedAt)+"</td><td><b style='color:"+st[1]+"'>"+st[0]+"</b></td></tr>"; }).join('')
          + "</tbody></table></div>" : "")
       + "</div>") : "";
+  setTimeout(tdEnhance, 0);
   box.innerHTML = admHTML +
     "<div class='td-card'><div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:10px'><h3>📢 Announcements</h3><button class='td-ghost' onclick='tdGo(openAnnouncePage)'>View all</button></div>"+annHTML+"</div>"
     + "<div class='td-kpis'>"
@@ -17252,5 +17273,375 @@ async function loadMyCertificates(){
   };
 })();
 </script>
+<!-- ═════════ TIMETABLE + SCHOOL CALENDAR + richer dashboards ═════════ -->
+<style>
+#tt-page,#cal-page{display:none;position:fixed;inset:0;background:#f0f2f5;z-index:9990;overflow-y:auto;font-family:inherit}
+.x-bar{background:#000080;color:#FFD700;height:56px;display:flex;align-items:center;gap:12px;padding:0 16px;position:sticky;top:0;z-index:3}
+.x-bar button{background:rgba(255,255,255,.15);color:#fff;border:0;padding:6px 12px;border-radius:20px;cursor:pointer;font-size:.82rem;font-family:inherit}
+.x-wrap{max-width:900px;margin:0 auto;padding:14px 12px 40px}
+.x-card{background:#fff;border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:14px;margin-bottom:12px}
+.x-in{padding:8px 10px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.84rem;font-family:inherit;box-sizing:border-box;max-width:100%}
+.x-btn{background:#000080;color:#FFD700;border:0;border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer;font-size:.8rem;font-family:inherit}
+.x-btn.ghost{background:#fff;color:#000080;border:1.5px solid #c5cae9}
+.tt-day{font-weight:800;color:#000080;font-size:.88rem;margin:4px 0 6px}
+.tt-slot{display:grid;grid-template-columns:96px 1fr auto;gap:10px;align-items:center;padding:9px 10px;border-radius:9px;background:#f5f7fb;margin-bottom:6px;font-size:.83rem}
+.tt-slot.now{background:#fff8e1;border:1.5px solid #e2bb55}
+.tt-time{font-weight:800;color:#1a1a2e;font-size:.8rem}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.cal-grid .h{font-size:.68rem;font-weight:800;color:#7a84a0;padding:4px 0}
+.cal-grid .d{aspect-ratio:1/1;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.8rem;cursor:pointer;position:relative;background:#fff;border:1px solid #eef0f5}
+.cal-grid .d.o{opacity:.35}.cal-grid .d.t{border:2px solid #000080;font-weight:800}.cal-grid .d.s{background:#000080;color:#FFD700}
+.cal-grid .dots{display:flex;gap:2px;position:absolute;bottom:4px}.cal-grid .dots i{width:5px;height:5px;border-radius:50%;display:block}
+.ev-row{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid #f0f2f5;font-size:.83rem}
+.ev-date{min-width:46px;text-align:center;border-radius:8px;padding:4px 2px;font-weight:800;font-size:.72rem;line-height:1.2}
+/* dashboard additions */
+.dx-hello{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#0b1a3b,#1b3570);color:#fff;border-radius:18px;padding:16px;margin-bottom:14px}
+.dx-hello img,.dx-hello .av{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid #d6aa4c;background:#2f55a4;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;flex-shrink:0}
+.dx-hello b{display:block;font-size:1.05rem;color:#d6aa4c}.dx-hello span{font-size:.8rem;color:#cfd6ea}
+.dx-tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:14px}
+.dx-tile{border:0;border-radius:14px;padding:14px 6px;color:#fff;font-weight:700;font-size:.76rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;font-family:inherit;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.dx-tile span{font-size:1.4rem}
+.dx-two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.dx-card{background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(16,30,70,.08);padding:16px;min-width:0}
+.dx-card h3{margin:0 0 10px;font-size:.9rem;display:flex;justify-content:space-between;align-items:center;color:#1a1f36}
+.dx-card h3 button{background:none;border:0;color:#2557a7;font-size:.75rem;font-weight:700;cursor:pointer;font-family:inherit}
+.dx-item{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #f0f2f5;font-size:.82rem}
+.dx-item:last-child{border-bottom:0}
+.dx-ic{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem}
+.dx-muted{color:#8a93a8;font-size:.74rem}
+.dx-legend{display:flex;gap:10px;flex-wrap:wrap;font-size:.7rem;color:#555;margin-top:8px}.dx-legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:3px;vertical-align:middle}
+.dx-bottom{display:none}
+@media (max-width:860px){
+  .dx-tiles{grid-template-columns:repeat(3,1fr)}
+  .dx-two{grid-template-columns:1fr}
+  .dx-bottom{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:4;background:#fff;border-top:1px solid #e6e9f0;justify-content:space-around;padding:6px 0 calc(6px + env(safe-area-inset-bottom,0px));box-shadow:0 -2px 10px rgba(0,0,0,.06)}
+  .dx-bottom button{background:none;border:0;display:flex;flex-direction:column;align-items:center;font-size:.66rem;color:#5b6478;gap:2px;cursor:pointer;font-family:inherit}
+  .dx-bottom button span{font-size:1.2rem}.dx-bottom button.on{color:#000080;font-weight:800}
+  #sd .sd-main{padding-bottom:80px}
+}
+</style>
+
+<!-- Timetable -->
+<div id="tt-page">
+  <div class="x-bar"><button onclick="closeTimetable()">← Back</button><b style="flex:1">🗓️ Class Timetable</b></div>
+  <div class="x-wrap">
+    <div class="x-card" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <select id="tt-cls" class="x-in" onchange="ttLoad()"></select>
+      <span id="tt-cls-own" style="display:none;background:#e8eaf6;color:#000080;border-radius:999px;padding:7px 14px;font-weight:700;font-size:.85rem"></span>
+      <span style="flex:1"></span>
+      <button class="x-btn" id="tt-save" onclick="ttSave()" style="display:none">💾 Save timetable</button>
+    </div>
+    <div class="x-card" id="tt-add" style="display:none">
+      <b style="font-size:.85rem;color:#000080">➕ Add a lesson</b>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:8px">
+        <select id="tt-day" class="x-in"><option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option><option value="7">Sunday</option></select>
+        <input type="time" id="tt-start" class="x-in" value="08:00"><input type="time" id="tt-end" class="x-in" value="09:00">
+        <input id="tt-subject" class="x-in" placeholder="Subject (e.g. Grammar)"><input id="tt-teacher" class="x-in" placeholder="Teacher"><input id="tt-room" class="x-in" placeholder="Room">
+      </div>
+      <button class="x-btn ghost" style="margin-top:8px" onclick="ttAddSlot()">＋ Add to the week</button>
+    </div>
+    <div id="tt-msg" style="font-size:.8rem;margin-bottom:8px"></div>
+    <div id="tt-week"></div>
+  </div>
+</div>
+
+<!-- School calendar -->
+<div id="cal-page">
+  <div class="x-bar"><button onclick="closeCalendar()">← Back</button><b style="flex:1">📅 School Calendar</b><button id="cal-add-btn" onclick="calShowForm()" style="display:none">＋ Add event</button></div>
+  <div class="x-wrap">
+    <div class="x-card" id="cal-form" style="display:none">
+      <b style="font-size:.85rem;color:#000080">➕ New event</b>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:8px">
+        <input id="ev-title" class="x-in" placeholder="Title (e.g. Parent meeting)">
+        <input type="date" id="ev-date" class="x-in"><input type="time" id="ev-time" class="x-in">
+        <select id="ev-type" class="x-in"><option value="event">🎉 School event</option><option value="exam">📝 Exam / test</option><option value="meeting">👥 Meeting</option><option value="holiday">🏖️ Holiday / no class</option></select>
+        <select id="ev-cls" class="x-in"></select>
+      </div>
+      <input id="ev-note" class="x-in" placeholder="Details (optional)" style="width:100%;margin-top:8px">
+      <div style="display:flex;gap:8px;margin-top:8px"><button class="x-btn" onclick="calSaveEvent()">💾 Save event</button><button class="x-btn ghost" onclick="document.getElementById('cal-form').style.display='none'">Cancel</button></div>
+      <div id="ev-msg" style="font-size:.8rem;margin-top:6px"></div>
+    </div>
+    <div class="x-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <button class="x-btn ghost" onclick="calMove(-1)">‹</button><b id="cal-title" style="color:#000080"></b><button class="x-btn ghost" onclick="calMove(1)">›</button>
+      </div>
+      <div class="cal-grid" id="cal-grid"></div>
+      <div class="dx-legend"><span><i style="background:#2557a7"></i>Event</span><span><i style="background:#c62828"></i>Exam</span><span><i style="background:#8d6e00"></i>Meeting</span><span><i style="background:#2e7d32"></i>Holiday</span><span><i style="background:#7b1fa2"></i>Homework due</span></div>
+    </div>
+    <div class="x-card"><b id="cal-day-title" style="font-size:.88rem;color:#000080"></b><div id="cal-day-list"></div></div>
+  </div>
+</div>
+
+<!-- Student profile -->
+<div id="sd-profile" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10001;align-items:center;justify-content:center;padding:14px">
+  <div style="background:#fff;border-radius:16px;width:380px;max-width:100%;overflow:hidden">
+    <div style="background:linear-gradient(135deg,#0b1a3b,#1b3570);color:#fff;padding:20px;text-align:center"><div id="sdp-photo"></div><b id="sdp-name" style="display:block;font-size:1.1rem;color:#d6aa4c;margin-top:8px"></b><span id="sdp-sub" style="font-size:.8rem;color:#cfd6ea"></span></div>
+    <div id="sdp-body" style="padding:14px 18px;font-size:.85rem"></div>
+    <div style="padding:0 18px 16px"><button class="x-btn" style="width:100%" onclick="document.getElementById('sd-profile').style.display='none'">Close</button></div>
+  </div>
+</div>
+
+<script>
+// ══════════════ TIMETABLE (timetables/{class} = {slots:[{day,start,end,subject,teacher,room}]}) ══════════════
+var TT_DAYS = ["","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+var ttSlots = [];
+function xLocal(){ return location.protocol === "file:" || !window._fb; }
+async function xFb(){ return await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"); }
+function todayDayNo(){ var d = new Date().getDay(); return d === 0 ? 7 : d; }
+function nowHM(){ var d = new Date(); return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0"); }
+async function ttGet(cls){
+  if(!cls) return [];
+  if(xLocal()) return (JSON.parse(localStorage.getItem("c2epe_timetables")||"{}")[cls]||{}).slots || [];
+  var m = await xFb(); var snap = await m.getDoc(m.doc(window._fb.db, "timetables", cls.replace(/[\/]/g,"_")));
+  return snap.exists() ? (snap.data().slots||[]) : [];
+}
+async function ttGetAll(){
+  if(xLocal()){ var o = JSON.parse(localStorage.getItem("c2epe_timetables")||"{}"); return Object.keys(o).map(function(k){ return {cls:k, slots:o[k].slots||[]}; }); }
+  var m = await xFb(); return (await m.getDocs(m.collection(window._fb.db, "timetables"))).docs.map(function(d){ var x = d.data(); return {cls:x.cls||d.id, slots:x.slots||[]}; });
+}
+function openTimetable(){
+  var sel = document.getElementById("tt-cls"), own = document.getElementById("tt-cls-own");
+  sel.innerHTML = document.getElementById("hw-cls").innerHTML; sel.querySelector("option").textContent = "Choose a class";
+  if(isTeacher){ restrictClassDropdown("tt-cls"); sel.style.display = ""; own.style.display = "none"; }
+  else if(studentSession){ sel.value = studentSession.cls; if(sel.value !== studentSession.cls){ var o=document.createElement("option"); o.value=o.textContent=studentSession.cls; sel.appendChild(o); sel.value=studentSession.cls; } sel.style.display = "none"; own.style.display = ""; own.textContent = "🎓 " + (classDisplayLabel(studentSession.cls)||studentSession.cls); }
+  document.getElementById("tt-add").style.display = isTeacher ? "" : "none";
+  document.getElementById("tt-save").style.display = isTeacher ? "" : "none";
+  document.getElementById("tt-page").style.display = "block";
+  ttLoad();
+}
+function closeTimetable(){ document.getElementById("tt-page").style.display = "none"; }
+async function ttLoad(){
+  var cls = document.getElementById("tt-cls").value, box = document.getElementById("tt-week");
+  document.getElementById("tt-msg").textContent = "";
+  if(!cls){ box.innerHTML = "<div class='x-card' style='text-align:center;color:#999'>Choose a class to see its timetable.</div>"; ttSlots = []; return; }
+  box.innerHTML = "<div class='x-card' style='text-align:center;color:#999'>Loading…</div>";
+  try { ttSlots = await ttGet(cls); } catch(e){ ttSlots = []; box.innerHTML = "<div class='x-card' style='color:#c62828'>"+escapeHtml(e.message||String(e))+"</div>"; return; }
+  ttRender();
+}
+function ttRender(){
+  var box = document.getElementById("tt-week"), today = todayDayNo(), hm = nowHM();
+  if(!ttSlots.length){ box.innerHTML = "<div class='x-card' style='text-align:center;color:#999'>No lessons in the timetable yet."+(isTeacher?" Add them above, then Save.":"")+"</div>"; return; }
+  var html = "";
+  for(var d=1; d<=7; d++){
+    var day = ttSlots.map(function(s,i){ return Object.assign({i:i}, s); }).filter(function(s){ return +s.day===d; }).sort(function(a,b){ return a.start.localeCompare(b.start); });
+    if(!day.length) continue;
+    html += "<div class='x-card'><div class='tt-day'>"+TT_DAYS[d]+(d===today?" · <span style='color:#c9a227'>Today</span>":"")+"</div>"
+      + day.map(function(s){ var now = d===today && s.start<=hm && hm<s.end;
+          return "<div class='tt-slot"+(now?" now":"")+"'><div class='tt-time'>"+escapeHtml(s.start)+" – "+escapeHtml(s.end)+"</div><div><b>"+escapeHtml(s.subject||"Lesson")+"</b>"+(now?" <span style='color:#c9a227;font-weight:800;font-size:.7rem'>● NOW</span>":"")+"<div class='dx-muted'>"+escapeHtml([s.teacher,s.room?("Room "+s.room):""].filter(Boolean).join(" · "))+"</div></div>"
+            + (isTeacher ? "<button onclick='ttRemove("+s.i+")' style='background:none;border:0;color:#c62828;cursor:pointer'>✕</button>" : "<span></span>") + "</div>"; }).join("") + "</div>";
+  }
+  box.innerHTML = html;
+}
+function ttAddSlot(){
+  var s = { day:+document.getElementById("tt-day").value, start:document.getElementById("tt-start").value, end:document.getElementById("tt-end").value,
+    subject:document.getElementById("tt-subject").value.trim(), teacher:document.getElementById("tt-teacher").value.trim()||currentTeacherName||"", room:document.getElementById("tt-room").value.trim() };
+  var m = document.getElementById("tt-msg");
+  if(!document.getElementById("tt-cls").value){ m.style.color="#c62828"; m.textContent = "Choose a class first."; return; }
+  if(!s.start || !s.end || s.end <= s.start || !s.subject){ m.style.color="#c62828"; m.textContent = "Please enter the subject and a start time before the end time."; return; }
+  ttSlots.push(s); ttRender(); m.style.color="#c65a00"; m.textContent = "Added — press 💾 Save timetable to keep it.";
+  document.getElementById("tt-subject").value = "";
+}
+function ttRemove(i){ ttSlots.splice(i,1); ttRender(); var m = document.getElementById("tt-msg"); m.style.color="#c65a00"; m.textContent = "Removed — press 💾 Save timetable to keep the change."; }
+async function ttSave(){
+  var cls = document.getElementById("tt-cls").value, m = document.getElementById("tt-msg");
+  if(!cls) return;
+  try {
+    if(xLocal()){ var o = JSON.parse(localStorage.getItem("c2epe_timetables")||"{}"); o[cls] = {cls:cls, slots:ttSlots}; localStorage.setItem("c2epe_timetables", JSON.stringify(o)); }
+    else { var f = await xFb(); await f.setDoc(f.doc(window._fb.db, "timetables", cls.replace(/[\/]/g,"_")), {cls:cls, slots:ttSlots, updatedBy:currentTeacherName||"", updatedAt:new Date().toISOString()}); }
+    m.style.color="#2e7d32"; m.textContent = "✅ Timetable saved for "+cls+".";
+  } catch(e){ m.style.color="#c62828"; m.textContent = "❌ "+(e.message||e); }
+}
+
+// ══════════════ SCHOOL CALENDAR (events: {title,date,time,type,cls,note,createdBy}) ══════════════
+var EV_COL = {event:"#2557a7", exam:"#c62828", meeting:"#8d6e00", holiday:"#2e7d32", homework:"#7b1fa2"};
+var EV_IC = {event:"🎉", exam:"📝", meeting:"👥", holiday:"🏖️", homework:"📚"};
+var calMonth = new Date(), calSel = "", calItems = [];
+async function evList(){
+  if(xLocal()) return JSON.parse(localStorage.getItem("c2epe_events")||"[]");
+  var m = await xFb(); return (await m.getDocs(m.collection(window._fb.db, "events"))).docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+}
+function evVisible(e){
+  if(isTeacher) return !e.cls || teacherCanSeeClass(e.cls);
+  return !e.cls || (studentSession && baseLevel(e.cls) === baseLevel(studentSession.cls));
+}
+async function calLoadItems(){
+  var items = [];
+  try { items = (await evList()).filter(evVisible); } catch(e){ console.error("events", e); }
+  // homework due dates appear on the calendar too
+  try {
+    var hw = [];
+    if(xLocal()) hw = JSON.parse(localStorage.getItem("c2epe_homework")||"[]");
+    else { var m = await xFb(); var q = studentSession && !isTeacher ? m.query(m.collection(window._fb.db,"homework"), m.where("cls","==",studentSession.cls)) : m.collection(window._fb.db,"homework"); hw = (await m.getDocs(q)).docs.map(function(d){ return Object.assign({id:d.id}, d.data()); }); }
+    hw.filter(function(h){ return h.dueDate && (isTeacher ? teacherCanSeeClass(baseLevel(h.cls||"")) : studentSession && baseLevel(h.cls||"")===baseLevel(studentSession.cls)); })
+      .forEach(function(h){ items.push({ title:"Homework due: "+(h.title||h.subject||""), date:h.dueDate, type:"homework", cls:h.cls, hw:true }); });
+  } catch(e){ console.error("homework on calendar", e); }
+  return items;
+}
+async function openCalendar(){
+  document.getElementById("cal-page").style.display = "block";
+  document.getElementById("cal-add-btn").style.display = isTeacher ? "" : "none";
+  document.getElementById("cal-form").style.display = "none";
+  var evc = document.getElementById("ev-cls"); evc.innerHTML = document.getElementById("hw-cls").innerHTML; evc.querySelector("option").textContent = "All classes"; evc.querySelector("option").value = "";
+  calMonth = new Date(); calSel = new Date().toISOString().split("T")[0];
+  calItems = await calLoadItems();
+  calRender();
+}
+function closeCalendar(){ document.getElementById("cal-page").style.display = "none"; }
+function calMove(n){ calMonth = new Date(calMonth.getFullYear(), calMonth.getMonth()+n, 1); calRender(); }
+function calRender(){
+  var y = calMonth.getFullYear(), mo = calMonth.getMonth(), first = new Date(y, mo, 1), start = (first.getDay()+6)%7;
+  document.getElementById("cal-title").textContent = first.toLocaleDateString("en-GB",{month:"long",year:"numeric"});
+  var today = new Date().toISOString().split("T")[0], html = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(function(d){ return "<div class='h'>"+d+"</div>"; }).join("");
+  for(var i=0;i<42;i++){
+    var dt = new Date(y, mo, 1 - start + i), ds = dt.getFullYear()+"-"+String(dt.getMonth()+1).padStart(2,"0")+"-"+String(dt.getDate()).padStart(2,"0");
+    var its = calItems.filter(function(e){ return e.date===ds; });
+    html += "<div class='d"+(dt.getMonth()!==mo?" o":"")+(ds===today?" t":"")+(ds===calSel?" s":"")+"' onclick=\"calSel='"+ds+"';calRender()\">"+dt.getDate()
+      + (its.length ? "<div class='dots'>"+its.slice(0,4).map(function(e){ return "<i style='background:"+(EV_COL[e.type]||"#2557a7")+"'></i>"; }).join("")+"</div>" : "") + "</div>";
+    if(i>=34 && dt.getMonth()!==mo) break;
+  }
+  document.getElementById("cal-grid").innerHTML = html;
+  var list = calItems.filter(function(e){ return e.date===calSel; }).sort(function(a,b){ return String(a.time||"").localeCompare(String(b.time||"")); });
+  document.getElementById("cal-day-title").textContent = new Date(calSel+"T00:00:00").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
+  document.getElementById("cal-day-list").innerHTML = list.length ? list.map(function(e){
+    return "<div class='ev-row'><div class='dx-ic' style='background:"+(EV_COL[e.type]||"#2557a7")+"22;color:"+(EV_COL[e.type]||"#2557a7")+"'>"+(EV_IC[e.type]||"🎉")+"</div><div style='flex:1'><b>"+escapeHtml(e.title)+"</b><div class='dx-muted'>"+escapeHtml([e.time, e.cls?classDisplayLabel(e.cls)||e.cls:"All classes", e.note].filter(Boolean).join(" · "))+"</div></div>"
+      + (isTeacher && e.id && !e.hw ? "<button onclick=\"calDelete('"+e.id+"')\" style='background:none;border:0;color:#c62828;cursor:pointer'>✕</button>" : "") + "</div>";
+  }).join("") : "<div class='dx-muted' style='padding:10px 0'>Nothing on this day.</div>";
+}
+function calShowForm(){ document.getElementById("cal-form").style.display = ""; document.getElementById("ev-date").value = calSel; document.getElementById("ev-msg").textContent = ""; }
+async function calSaveEvent(){
+  var e = { title:document.getElementById("ev-title").value.trim(), date:document.getElementById("ev-date").value, time:document.getElementById("ev-time").value,
+    type:document.getElementById("ev-type").value, cls:document.getElementById("ev-cls").value, note:document.getElementById("ev-note").value.trim(), createdBy:currentTeacherName||"", createdAt:new Date().toISOString() };
+  var m = document.getElementById("ev-msg");
+  if(!e.title || !e.date){ m.style.color="#c62828"; m.textContent = "Please enter a title and a date."; return; }
+  try {
+    if(xLocal()){ var l = JSON.parse(localStorage.getItem("c2epe_events")||"[]"); e.id = "ev"+Date.now(); l.push(e); localStorage.setItem("c2epe_events", JSON.stringify(l)); }
+    else { var f = await xFb(); var ref = await f.addDoc(f.collection(window._fb.db,"events"), e); e.id = ref.id; }
+    calItems.push(e); calSel = e.date; calMonth = new Date(e.date+"T00:00:00");
+    ["ev-title","ev-time","ev-note"].forEach(function(id){ document.getElementById(id).value = ""; });
+    document.getElementById("cal-form").style.display = "none"; calRender();
+  } catch(err){ m.style.color="#c62828"; m.textContent = "❌ "+(err.message||err); }
+}
+async function calDelete(id){
+  if(!confirm("Delete this event?")) return;
+  try {
+    if(xLocal()){ localStorage.setItem("c2epe_events", JSON.stringify(JSON.parse(localStorage.getItem("c2epe_events")||"[]").filter(function(x){ return x.id!==id; }))); }
+    else { var f = await xFb(); await f.deleteDoc(f.doc(window._fb.db,"events",id)); }
+    calItems = calItems.filter(function(x){ return x.id!==id; }); calRender();
+  } catch(e){ alert("Could not delete: "+(e.message||e)); }
+}
+
+// ══════════════ DASHBOARD ADDITIONS ══════════════
+function greetWord(){ var h = new Date().getHours(); return h<12 ? "Good morning" : h<17 ? "Good afternoon" : "Good evening"; }
+function upcomingHTML(items, emptyText){
+  var today = new Date().toISOString().split("T")[0];
+  var list = items.filter(function(e){ return e.date >= today; }).sort(function(a,b){ return (a.date+(a.time||"")).localeCompare(b.date+(b.time||"")); }).slice(0,5);
+  if(!list.length) return "<div class='dx-muted'>"+emptyText+"</div>";
+  return list.map(function(e){
+    var d = new Date(e.date+"T00:00:00"), diff = Math.round((d - new Date(today+"T00:00:00"))/86400000);
+    var when = diff===0 ? "Today" : diff===1 ? "Tomorrow" : d.toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"});
+    return "<div class='dx-item'><div class='dx-ic' style='background:"+(EV_COL[e.type]||"#2557a7")+"22;color:"+(EV_COL[e.type]||"#2557a7")+"'>"+(EV_IC[e.type]||"🎉")+"</div><div style='flex:1;min-width:0'><b>"+escapeHtml(e.title)+"</b><div class='dx-muted'>"+when+(e.time?", "+escapeHtml(e.time):"")+(e.cls?" · "+escapeHtml(e.cls):"")+"</div></div></div>";
+  }).join("");
+}
+function todayClassesHTML(entries, emptyText){
+  var hm = nowHM();
+  if(!entries.length) return "<div class='dx-muted'>"+emptyText+"</div>";
+  return entries.sort(function(a,b){ return a.start.localeCompare(b.start); }).map(function(s){
+    var now = s.start<=hm && hm<s.end, done = hm>=s.end;
+    return "<div class='dx-item' style='"+(done?"opacity:.55":"")+"'><div class='dx-ic' style='background:#e8eaf6;color:#000080;font-size:.68rem;font-weight:800;width:auto;padding:0 8px'>"+escapeHtml(s.start)+"</div><div style='flex:1;min-width:0'><b>"+escapeHtml(s.subject||"Lesson")+"</b>"+(now?" <span style='color:#c9a227;font-weight:800;font-size:.7rem'>● NOW</span>":"")+"<div class='dx-muted'>"+escapeHtml([s.start+"–"+s.end, s.cls, s.teacher, s.room?"Room "+s.room:""].filter(Boolean).join(" · "))+"</div></div></div>";
+  }).join("");
+}
+function attCalendarHTML(map){
+  var t = new Date(), y = t.getFullYear(), mo = t.getMonth(), first = new Date(y,mo,1), start = (first.getDay()+6)%7, days = new Date(y,mo+1,0).getDate();
+  var col = {present:"#2e7d32", late:"#f39c12", leaveEarly:"#8d6e00", permission:"#1976d2", absent:"#c62828"};
+  var cnt = {present:0,late:0,absent:0};
+  var html = "<div class='cal-grid' style='gap:3px'>"+["M","T","W","T","F","S","S"].map(function(d){ return "<div class='h'>"+d+"</div>"; }).join("");
+  for(var i=0;i<start;i++) html += "<div></div>";
+  for(var d=1; d<=days; d++){
+    var ds = y+"-"+String(mo+1).padStart(2,"0")+"-"+String(d).padStart(2,"0"), st = map[ds];
+    if(st==="present"||st==="leaveEarly") cnt.present++; else if(st==="late") cnt.late++; else if(st==="absent") cnt.absent++;
+    html += "<div class='d"+(d===t.getDate()?" t":"")+"' style='cursor:default;aspect-ratio:auto;padding:5px 0;"+(st?"background:"+col[st]+";color:#fff;border-color:"+col[st]:"")+"' title='"+(st||"")+"'>"+d+"</div>";
+  }
+  return "<div style='font-weight:700;font-size:.8rem;margin-bottom:6px;color:#555'>"+t.toLocaleDateString("en-GB",{month:"long",year:"numeric"})+"</div>"+html+"</div>"
+    + "<div style='display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px;text-align:center'>"
+    + "<div style='background:#e8f5e9;border-radius:8px;padding:6px'><b style='color:#2e7d32;font-size:1.1rem'>"+cnt.present+"</b><div class='dx-muted'>Present</div></div>"
+    + "<div style='background:#ffebee;border-radius:8px;padding:6px'><b style='color:#c62828;font-size:1.1rem'>"+cnt.absent+"</b><div class='dx-muted'>Absent</div></div>"
+    + "<div style='background:#fff3e0;border-radius:8px;padding:6px'><b style='color:#f39c12;font-size:1.1rem'>"+cnt.late+"</b><div class='dx-muted'>Late</div></div></div>";
+}
+// ---- student ----
+async function sdEnhance(d){
+  var box = document.getElementById("sd-content"); if(!box || !studentSession) return;
+  var me = {};
+  try {
+    if(xLocal()) me = JSON.parse(localStorage.getItem("c2epe_local_students")||"[]").find(function(x){ return x.id===studentSession.docId || x.studentId===studentSession.studentId; }) || {};
+    else if(studentSession.docId){ var f = await xFb(); var sn = await f.getDoc(f.doc(window._fb.db,"students",studentSession.docId)); me = sn.exists() ? sn.data() : {}; }
+  } catch(e){}
+  window.__sdMe = me;
+  var slots = []; try { slots = await ttGet(studentSession.cls); } catch(e){}
+  var today = todayDayNo(), todays = slots.filter(function(s){ return +s.day===today; }).map(function(s){ return Object.assign({}, s); });
+  var items = await calLoadItems();
+  if(d.examsOpen) items.push({ title:"Exam open now — Examination Portal", date:new Date().toISOString().split("T")[0], type:"exam" });
+  if(!document.getElementById("sd-content") || document.getElementById("sd").style.display === "none") return;
+  var initials = String(studentSession.name||"S").split(/\s+/).map(function(w){ return w.charAt(0); }).join("").slice(0,2).toUpperCase();
+  var tile = function(ic, label, bg, fn){ return "<button class='dx-tile' style='background:"+bg+"' onclick='sdGo("+fn+")'><span>"+ic+"</span>"+label+"</button>"; };
+  box.insertAdjacentHTML("afterbegin",
+    "<div class='dx-hello'>"+(me.photo ? "<img src='"+escapeHtml(me.photo)+"' alt=''>" : "<div class='av'>"+escapeHtml(initials)+"</div>")
+    + "<div style='flex:1;min-width:0'><span>"+greetWord()+",</span><b>"+escapeHtml(studentSession.name)+"</b><span>"+escapeHtml(classDisplayLabel(studentSession.cls)||studentSession.cls)+" · ID "+escapeHtml(studentSession.studentId)+"</span></div></div>"
+    + "<div class='dx-tiles'>"
+    + tile("📚","My Classes","linear-gradient(135deg,#3949ab,#5c6bc0)","openTimetable")
+    + tile("📝","Homework","linear-gradient(135deg,#00897b,#26a69a)","openHwPage")
+    + tile("📊","Grades","linear-gradient(135deg,#f57c00,#ffa726)","openReportPage")
+    + tile("✅","Attendance","linear-gradient(135deg,#2e7d32,#43a047)","openAttendPage")
+    + tile("💬","Messages","linear-gradient(135deg,#c2185b,#ec407a)","openMsgPage")
+    + tile("📅","Calendar","linear-gradient(135deg,#1565c0,#42a5f5)","openCalendar")
+    + "</div>"
+    + "<div class='dx-two'><div class='dx-card'><h3>📚 Today's classes <button onclick='sdGo(openTimetable)'>Full week ›</button></h3>"+todayClassesHTML(todays.map(function(s){ s.cls=""; return s; }), slots.length ? "No classes today 🎉" : "Your timetable will appear here when the school adds it.")+"</div>"
+    + "<div class='dx-card'><h3>⏰ Upcoming <button onclick='sdGo(openCalendar)'>Calendar ›</button></h3>"+upcomingHTML(items, "Nothing coming up.")+"</div></div>"
+    + "<div class='dx-two'><div class='dx-card'><h3>✅ Attendance this month <button onclick='sdGo(openAttendPage)'>Details ›</button></h3>"+attCalendarHTML(d.attMap||{})+"</div>"
+    + "<div class='dx-card'><h3>💬 Messages <button onclick='sdGo(openMsgPage)'>Open ›</button></h3><div class='dx-muted'>Chat with your teachers and the school office.</div><button class='sd-btn' style='margin-top:10px' onclick='sdGo(openMsgPage)'>💬 Open messages</button></div></div>");
+  // bottom navigation (phones)
+  if(!document.getElementById("sd-bottom")){
+    document.getElementById("sd").insertAdjacentHTML("beforeend", "<nav class='dx-bottom' id='sd-bottom'>"
+      + "<button class='on' onclick='sdShowDashboard()'><span>🏠</span>Home</button><button onclick='sdGo(openTimetable)'><span>📚</span>Classes</button>"
+      + "<button onclick='sdGo(openMsgPage)'><span>💬</span>Messages</button><button onclick='sdProfile()'><span>👤</span>Profile</button></nav>");
+  }
+}
+function sdProfile(){
+  var me = window.__sdMe || {}, s = studentSession || {};
+  document.getElementById("sdp-photo").innerHTML = me.photo ? "<img src='"+escapeHtml(me.photo)+"' alt='' style='width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid #d6aa4c'>" : "<div style='width:84px;height:84px;border-radius:50%;background:#2f55a4;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:2rem'>👤</div>";
+  document.getElementById("sdp-name").textContent = s.name || "";
+  document.getElementById("sdp-sub").textContent = (classDisplayLabel(s.cls)||s.cls||"") + " · Student ID " + (s.studentId||"");
+  var row = function(k,v){ return v ? "<div style='display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid #f0f2f5'><span style='color:#7a84a0'>"+k+"</span><b style='text-align:right'>"+escapeHtml(v)+"</b></div>" : ""; };
+  var dob = me.dob ? new Date(me.dob+"T00:00:00").toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"}) : "";
+  document.getElementById("sdp-body").innerHTML = row("Name (Khmer)", me.nameKm) + row("Gender", me.gender) + row("Date of birth", dob) + row("Parent", me.parent) + row("Parent phone", me.parentPhone)
+    + row("Studying since", me.enrolledAt||me.createdAt ? new Date(me.enrolledAt||me.createdAt).toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"}) : "")
+    + row("ID card valid until", me.idCardValidUntil) + "<div class='dx-muted' style='margin-top:8px'>To change any of this, please contact the school office.</div>";
+  document.getElementById("sd-profile").style.display = "flex";
+}
+// ---- teacher ----
+async function tdEnhance(){
+  var box = document.getElementById("td-content"); if(!box || !isTeacher) return;
+  var all = []; try { all = await ttGetAll(); } catch(e){}
+  var today = todayDayNo(), mine = [];
+  all.filter(function(t){ return teacherCanSeeClass(baseLevel(t.cls)); }).forEach(function(t){ t.slots.filter(function(s){ return +s.day===today; }).forEach(function(s){ mine.push(Object.assign({cls:t.cls}, s)); }); });
+  var isAdm = currentUser && currentUser.email === ADMIN_EMAIL;
+  if(!isAdm && currentTeacherName){ var own = mine.filter(function(s){ return String(s.teacher||"").toLowerCase()===String(currentTeacherName).toLowerCase(); }); if(own.length) mine = own; }
+  var items = await calLoadItems();
+  if(!document.getElementById("td-content") || document.getElementById("td").style.display === "none") return;
+  var tile = function(ic, label, bg, fn){ return "<button class='dx-tile' style='background:"+bg+"' onclick='tdGo("+fn+")'><span>"+ic+"</span>"+label+"</button>"; };
+  box.insertAdjacentHTML("afterbegin",
+    "<div class='dx-hello'><div class='av'>👩‍🏫</div><div style='flex:1'><span>"+greetWord()+",</span><b>"+escapeHtml(currentTeacherName||"Teacher")+"</b><span>"+new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})+"</span></div></div>"
+    + "<div class='dx-tiles'>"
+    + tile("✅","Attendance","linear-gradient(135deg,#2e7d32,#43a047)","openAttendPage")
+    + tile("📝","Homework","linear-gradient(135deg,#00897b,#26a69a)","openHwPage")
+    + tile("✏️","Quiz","linear-gradient(135deg,#3949ab,#5c6bc0)","openQuizPage")
+    + tile("📊","Grades","linear-gradient(135deg,#f57c00,#ffa726)","openReportPage")
+    + tile("🗓️","Timetable","linear-gradient(135deg,#6a1b9a,#8e24aa)","openTimetable")
+    + tile("📅","Calendar","linear-gradient(135deg,#1565c0,#42a5f5)","openCalendar")
+    + "</div>"
+    + "<div class='dx-two'><div class='dx-card'><h3>📚 Today's classes <button onclick='tdGo(openTimetable)'>Timetable ›</button></h3>"+todayClassesHTML(mine, all.length ? "No classes today." : "No timetable yet — open 🗓️ Timetable to add your classes.")+"</div>"
+    + "<div class='dx-card'><h3>⏰ Upcoming <button onclick='tdGo(openCalendar)'>＋ Add / Calendar ›</button></h3>"+upcomingHTML(items, "No upcoming events. Add exams, meetings and holidays in the calendar.")+"</div></div>");
+}
+</script>
+
 </body>
 </html>

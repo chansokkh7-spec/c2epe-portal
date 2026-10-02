@@ -17090,5 +17090,51 @@ async function loadMyCertificates(){
 }
 </script>
 
+
+<style>
+/* One clean print: only the document being printed is put on the paper (no forms, no blank pages) */
+@media print{
+  body.print-one > *:not(#print-host){display:none!important}
+  html,body.print-one{background:#fff!important}
+  #print-host,#print-host *{visibility:visible!important}
+  #print-host{display:block!important;position:static!important}
+  #print-host .idc-cards-row{display:flex;gap:10mm;justify-content:center;padding:15mm 0}
+  #print-host .idc-card{box-shadow:none!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+#print-host{display:none}
+</style>
+<script>
+// Prints only the right document: the ID card (front + back), receipt/invoice, report card or certificate
+(function(){
+  var nativePrint = window.print.bind(window);
+  var TARGETS = [
+    ["cert-view", "#cert-print-area"],
+    ["fee-receipt-modal", "#fee-receipt-print-area"],
+    ["idc-page", "#idc-page .idc-cards-row"],
+    ["report-page", "#report-print-area"]
+  ];
+  function visible(id){ var el = document.getElementById(id); return el && getComputedStyle(el).display !== "none"; }
+  window.print = function(){
+    var t = TARGETS.find(function(x){ return visible(x[0]) && document.querySelector(x[1]); });
+    if(!t) return nativePrint();
+    var src = document.querySelector(t[1]);
+    var host = document.getElementById("print-host");
+    if(!host){ host = document.createElement("div"); host.id = "print-host"; document.body.appendChild(host); }
+    host.innerHTML = "";
+    var copy = src.cloneNode(true);
+    // canvases (QR codes) don't copy their drawing — swap them for pictures
+    var from = src.querySelectorAll("canvas"), to = copy.querySelectorAll("canvas");
+    to.forEach(function(c, i){ try { var img = document.createElement("img"); img.src = from[i].toDataURL("image/png"); img.style.cssText = c.style.cssText; img.width = from[i].width; img.height = from[i].height; c.parentNode.replaceChild(img, c); } catch(e){} });
+    copy.querySelectorAll("[id]").forEach(function(el){ if(el.id !== "cert-print-area" && el.id !== "fee-receipt-print-area" && el.id !== "report-print-area") el.removeAttribute("id"); });
+    host.appendChild(copy);
+    document.body.classList.add("print-one");
+    var done = function(){ document.body.classList.remove("print-one"); host.innerHTML = ""; window.removeEventListener("afterprint", done); };
+    window.addEventListener("afterprint", done);
+    nativePrint();
+    // some phones don't send "afterprint": clean up at the next tap instead of on a timer (a timer could empty the page mid-print)
+    setTimeout(function(){ document.addEventListener("click", function once(){ if(document.body.classList.contains("print-one")) done(); }, {once:true}); }, 500);
+  };
+})();
+</script>
 </body>
 </html>

@@ -3892,6 +3892,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
     <div class="idc-form-panel">
       <h2>Student Information</h2>
 
+      <div id="idc-renew" style="background:#fffaf0;border:1px solid #f1e6c8;border-radius:8px;padding:10px 12px;margin-bottom:12px"></div>
       <div class="idc-field">
         <label>Find Student (from live records)</label>
         <input type="text" id="idc-search" list="idc-student-list" placeholder="Type name, class or Student ID..." oninput="idcFilterList()" onchange="idcPickFromSearch()">
@@ -3927,8 +3928,15 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
       </div>
 
       <div class="idc-field">
-        <label>Level / Class</label>
-        <input type="text" id="idc-level" placeholder="A2 FLYERS MASTER" oninput="idcUpdate()">
+        <label>Level on the card</label>
+        <select id="idc-level" onchange="idcUpdate()">
+          <option value="">— choose —</option>
+          <option>Kid</option>
+          <option>Primary</option>
+          <option>Secondary</option>
+          <option>Master Level</option>
+          <option>Special Course</option>
+        </select>
       </div>
 
       <div class="idc-field">
@@ -3983,7 +3991,8 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
               <div><span class="idv-km">ឈ្មោះ</span><b class="idv-km" id="idc-d-namekm"></b></div>
               <div><span>Name</span><b id="idc-d-name">Student Name</b></div>
               <div><span>DOB</span><b id="idc-d-dob">Date of Birth</b></div>
-              <div><span>Class</span><b id="idc-d-level">LEVEL / CLASS</b></div>
+              <div><span>Level</span><b id="idc-d-level">Level</b></div>
+              <div><span>Valid</span><b id="idc-d-valid" style="color:#b8862b"></b></div>
               <div style="display:none"><span>Tel</span><b id="idc-d-phone">Phone Number</b></div>
             </div>
             <div class="idv-foot">Learn Today, Lead Tomorrow</div>
@@ -7246,6 +7255,23 @@ async function idcOpenForStudent(studentId){
   var banner = document.getElementById("idc-source-banner");
   if(banner){ banner.className = "idc-source-banner"; banner.textContent = "✅ New student enrolled — the ID card below was filled in automatically. Add a photo if needed, then Print."; }
 }
+// The card shows the programme (lasts for years) instead of the exact class (changes every term):
+//   Kindergarten → Kid · Young Learners → Primary · General English → Secondary
+//   Advanced / Academic & Professional → Master Level · other courses → Special Course
+function idcProgramFor(cls){
+  cls = String(cls||"").trim(); if(!cls) return "";
+  if(["Kid","Primary","Secondary","Master Level","Special Course"].indexOf(cls) >= 0) return cls;
+  var base = (typeof baseLevel === "function") ? baseLevel(cls) : cls;
+  var opt = Array.prototype.find.call(document.querySelectorAll("#hw-cls option"), function(o){ return (o.value||o.textContent) === base || o.textContent === cls; });
+  var grp = opt && opt.parentNode && opt.parentNode.tagName === "OPTGROUP" ? opt.parentNode.label : "";
+  if(/Kindergarten/i.test(grp)) return "Kid";
+  if(/Young Learners/i.test(grp)) return "Primary";
+  if(/General English/i.test(grp)) return "Secondary";
+  if(/Advanced|Academic/i.test(grp)) return "Master Level";
+  if(/Specialized/i.test(grp)) return "Special Course";
+  if(/^K\d/i.test(base)) return "Kid";
+  return "";
+}
 function idcLabelFor(s){
   var idPart = s.studentId ? (" — " + s.studentId) : "";
   return (s.nameEn || s.nameKm || "Unnamed") + " (" + (s.cls || "No class") + ")" + idPart;
@@ -7273,6 +7299,7 @@ async function idcLoadStudents(){
     idcStudentMap = {};
     var ls = []; try { ls = JSON.parse(localStorage.getItem("c2epe_local_students")||"[]"); } catch(e){}
     list.innerHTML = ls.map(function(s){ var label = idcLabelFor(s); idcStudentMap[label] = s; return "<option value=\"" + label.replace(/"/g,"&quot;") + "\"></option>"; }).join("");
+    idcRenderRenewals();
     return;
   }
   try {
@@ -7287,6 +7314,7 @@ async function idcLoadStudents(){
       idcStudentMap[label] = s;
       return "<option value=\"" + label.replace(/"/g,"&quot;") + "\"></option>";
     }).join("");
+    idcRenderRenewals();
   } catch(e){
     console.error("idcLoadStudents error:", e);
   }
@@ -7312,7 +7340,7 @@ function idcPickFromSearch(){
   }
   idcSelected = match;
   document.getElementById("idc-name").value  = match.nameEn || match.nameKm || "";
-  document.getElementById("idc-level").value = match.cls || "";
+  document.getElementById("idc-level").value = idcProgramFor(match.cls);
   document.getElementById("idc-dob").value   = match.dob || "";
   document.getElementById("idc-id").value    = match.studentId || "";
   if(document.getElementById("idc-namekm")) document.getElementById("idc-namekm").value = match.nameKm || "";
@@ -7373,9 +7401,12 @@ function idcUpdate(){
   document.getElementById("idc-d-namekm").textContent = nameKm;
   document.getElementById("idc-d-namekm").parentNode.style.display = nameKm ? "" : "none";
 
+  var issued = new Date(), until = new Date(issued); until.setFullYear(until.getFullYear()+1); until.setDate(until.getDate()-1);
+  window.__idcValidity = { issued: issued.toISOString().split("T")[0], until: until.toISOString().split("T")[0] };
+  document.getElementById("idc-d-valid").textContent = "until " + until.toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});
   var setTxt = function(id, val, ph){ var el = document.getElementById(id); el.textContent = val || ph; el.classList.toggle("idc-ph", !val); };
   setTxt("idc-d-name", name, "Student Name");
-  setTxt("idc-d-level", level, "LEVEL / CLASS");
+  setTxt("idc-d-level", level, "Level");
   // show the date like 02 Jun 2019 (the form keeps the original value)
   var dobShow = dob;
   if(/^\d{4}-\d{2}-\d{2}$/.test(dob)){ var dd = new Date(dob+"T00:00:00"); if(!isNaN(dd)) dobShow = dd.toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"}); }
@@ -7486,6 +7517,40 @@ function idcPrint(){
   }
   idcUpdate(); // make sure the QR/preview reflect the latest values right before printing
   window.print();
+  idcRecordIssue(id);
+}
+// remembers when each card was printed and until when it is valid
+async function idcRecordIssue(studentId){
+  var v = window.__idcValidity; if(!v || !studentId) return;
+  var data = { idCardIssuedAt: v.issued, idCardValidUntil: v.until };
+  try {
+    if(window.location.protocol === "file:" || !window._fb){
+      var l = JSON.parse(localStorage.getItem("c2epe_local_students")||"[]");
+      l.forEach(function(x){ if(x.studentId === studentId) Object.assign(x, data); });
+      localStorage.setItem("c2epe_local_students", JSON.stringify(l));
+    } else {
+      var docId = idcSelected && idcSelected.studentId === studentId ? idcSelected.id : (Object.values(idcStudentMap).find(function(x){ return x.studentId === studentId; })||{}).id;
+      if(!docId) return;
+      var m = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+      await m.updateDoc(m.doc(window._fb.db, "students", docId), data);
+    }
+    Object.values(idcStudentMap).forEach(function(x){ if(x.studentId === studentId) Object.assign(x, data); });
+    idcRenderRenewals();
+  } catch(e){ console.error("Could not save the card date:", e); }
+}
+// "Cards to renew": never printed, expired, or ending within 30 days
+function idcRenderRenewals(){
+  var box = document.getElementById("idc-renew"); if(!box) return;
+  var today = new Date().toISOString().split("T")[0], soon = new Date(); soon.setDate(soon.getDate()+30); soon = soon.toISOString().split("T")[0];
+  var rows = Object.values(idcStudentMap).filter(function(x){ return x.studentId && (!x.idCardValidUntil || x.idCardValidUntil <= soon); })
+    .sort(function(a,b){ return String(a.idCardValidUntil||"").localeCompare(String(b.idCardValidUntil||"")); });
+  box.innerHTML = rows.length
+    ? "<div style='font-weight:800;color:#c65a00;font-size:.85rem;margin-bottom:6px'>🔔 Cards to print or renew ("+rows.length+")</div>"
+      + "<div style='max-height:220px;overflow-y:auto'>" + rows.map(function(x){
+          var st = !x.idCardValidUntil ? "<span style='color:#1565c0'>never printed</span>" : x.idCardValidUntil < today ? "<span style='color:#c62828'>expired "+x.idCardValidUntil+"</span>" : "<span style='color:#c65a00'>ends "+x.idCardValidUntil+"</span>";
+          return "<div style='display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #f1e6c8;font-size:.8rem'><span><b>"+escapeHtml(x.nameEn||x.nameKm||"")+"</b> · "+escapeHtml(x.studentId)+" · "+st+"</span>"
+            + "<button onclick=\"idcOpenForStudent('"+escapeHtml(x.studentId)+"')\" style='background:#000080;color:#FFD700;border:none;border-radius:6px;padding:5px 10px;font-size:.74rem;font-weight:700;cursor:pointer;white-space:nowrap'>🪪 Open</button></div>"; }).join("") + "</div>"
+    : "<div style='color:#2e7d32;font-weight:700;font-size:.82rem'>✅ All student cards are valid.</div>";
 }
 
 

@@ -3614,6 +3614,8 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
 
     <!-- ═══ VIEW 3: Print/Preview Report ═══ -->
     <div id="report-view-view" style="display:none;">
+      <div id="rpt-term-chips" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;"></div>
+      <div id="rpt-progress-panel"></div>
       <div style="display:flex;gap:8px;margin-bottom:12px;">
         <button id="rpt-tab-passport" onclick="switchReportTab('passport')" style="flex:1;padding:9px;background:#000080;color:#FFD700;border:none;border-radius:8px 8px 0 0;font-weight:700;cursor:pointer;font-size:.83rem;">📇 Academic Passport</button>
         <button id="rpt-tab-portfolio" onclick="switchReportTab('portfolio')" style="flex:1;padding:9px;background:#e0e0e0;color:#555;border:none;border-radius:8px 8px 0 0;font-weight:700;cursor:pointer;font-size:.83rem;">🖼️ Portfolio</button>
@@ -3623,7 +3625,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
       </div>
       <div style="display:flex;gap:8px;margin-top:14px;">
         <button onclick="printReport()" style="flex:1;padding:11px;background:#000080;color:#FFD700;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.88rem;">🖨️ Print / Save PDF</button>
-        <button onclick="showReportListView()" style="padding:11px 20px;background:#f5f5f5;color:#555;border:1px solid #e0e0e0;border-radius:8px;font-weight:600;cursor:pointer;font-size:.85rem;">← Back to List</button>
+        <button id="rpt-back-to-list" onclick="showReportListView()" style="padding:11px 20px;background:#f5f5f5;color:#555;border:1px solid #e0e0e0;border-radius:8px;font-weight:600;cursor:pointer;font-size:.85rem;">← Back to List</button>
       </div>
     </div>
 
@@ -14367,6 +14369,7 @@ async function loadReports(){
     var filtered = allReports.filter(function(r){ return (!cls||r.cls===cls) && (!term||r.term===term) && ownsReportOrFee(r); });
     document.getElementById("rpt-count").textContent = filtered.length+" reports";
     renderReportsList(filtered);
+    studentReportAuto(filtered);
     return;
   }
 
@@ -14382,6 +14385,7 @@ async function loadReports(){
     var filtered = allReports.filter(function(r){ return (!term||r.term===term) && ownsReportOrFee(r); });
     document.getElementById("rpt-count").textContent = filtered.length+" reports";
     renderReportsList(filtered);
+    studentReportAuto(filtered);
   } catch(e){
     list.innerHTML = "<div style=text-align:center;padding:24px;color:#e53935>"+e.message+"</div>";
   }
@@ -14636,6 +14640,62 @@ async function deleteReport(){
 var currentViewedReport = null;
 var currentReportTab = "passport";
 
+
+// ── What is completed / still missing on a report card (shown above the passport, not printed) ──
+function reportCompletionItems(r){
+  var items = [];
+  CORE_FIELDS.forEach(function(f){ items.push(["Core", f[1], ((r.core||{})[f[0]]||0) > 0]); });
+  items.push(["Core", "Grammar", (parseFloat(r.grammar)||0) > 0]);
+  items.push(["Core", "Writing", (parseFloat(r.writing)||0) > 0]);
+  LANG_FIELDS.forEach(function(f){ items.push(["Language skills", f[1], ((r.language||{})[f[0]]||0) > 0]); });
+  LIFE_FIELDS.forEach(function(f){ items.push(["Life education", f[1], ((r.life||{})[f[0]]||0) > 0]); });
+  SKILLS21_FIELDS.forEach(function(f){ items.push(["21st century skills", f[1], ((r.skills21||{})[f[0]]||0) > 0]); });
+  items.push(["Teacher", "Teacher's feedback", !!(r.remarks && String(r.remarks).trim())]);
+  return items;
+}
+function renderReportProgressPanel(r, emptyNote){
+  var items = reportCompletionItems(r || {});
+  var done = items.filter(function(x){ return x[2]; }), todo = items.filter(function(x){ return !x[2]; });
+  var pct = Math.round(done.length*100/items.length);
+  var chip = function(x, ok){ return "<span style='display:inline-block;margin:3px 4px 0 0;padding:4px 9px;border-radius:999px;font-size:.72rem;font-weight:600;"+(ok?"background:#e8f5e9;color:#2e7d32;":"background:#fff3e0;color:#c65a00;")+"'>"+(ok?"✅ ":"⏳ ")+escapeHtml(x[1])+"</span>"; };
+  var weak = [];
+  if(done.length){
+    CORE_FIELDS.forEach(function(f){ var v=(r.core||{})[f[0]]||0; if(v>0 && v<60) weak.push(f[1]+" ("+Math.round(v)+"%)"); });
+    [["Grammar",r.grammar],["Writing",r.writing]].forEach(function(f){ var v=parseFloat(f[1])||0; if(v>0 && v<60) weak.push(f[0]+" ("+Math.round(v)+"%)"); });
+    LANG_FIELDS.forEach(function(f){ var v=(r.language||{})[f[0]]||0; if(v>0 && v<60) weak.push(f[1]+" ("+Math.round(v)+"%)"); });
+  }
+  document.getElementById("rpt-progress-panel").innerHTML =
+    "<div style='background:#fff;border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:14px 16px;margin-bottom:12px;'>"
+    + "<div style='display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px'><b style='font-size:.9rem;color:#1a1a2e'>📋 Progress — "+escapeHtml((r||{}).term||"this term")+"</b><b style='color:"+(pct===100?"#2e7d32":"#c65a00")+"'>"+pct+"% complete</b></div>"
+    + "<div style='height:8px;background:#eef0f5;border-radius:5px;overflow:hidden;margin-bottom:10px'><div style='height:100%;width:"+pct+"%;background:linear-gradient(90deg,#c9a227,#2e7d32)'></div></div>"
+    + (emptyNote ? "<div style='font-size:.8rem;color:#555;background:#f5f7fb;border-radius:8px;padding:8px 10px;margin-bottom:8px'>"+emptyNote+"</div>" : "")
+    + (todo.length ? "<div style='font-size:.74rem;font-weight:700;color:#c65a00;margin-top:4px'>Still missing ("+todo.length+")</div><div>"+todo.map(function(x){ return chip(x,false); }).join("")+"</div>" : "<div style='color:#2e7d32;font-weight:700;font-size:.82rem'>🎉 Everything on this report card is complete!</div>")
+    + (done.length ? "<details style='margin-top:8px'><summary style='font-size:.74rem;font-weight:700;color:#2e7d32;cursor:pointer'>Completed ("+done.length+")</summary><div>"+done.map(function(x){ return chip(x,true); }).join("")+"</div></details>" : "")
+    + (weak.length ? "<div style='margin-top:8px;font-size:.76rem;color:#c62828'>⚠️ Needs practice (below 60%): "+weak.map(escapeHtml).join(", ")+"</div>" : "")
+    + "</div>";
+}
+// Students/parents go straight to their own report card (newest first, chips to switch terms)
+function studentReportAuto(reports){
+  if(isTeacher || !studentSession) return;
+  document.getElementById("rpt-back-to-list").style.display = "none";
+  var mine = (reports||[]).slice().sort(function(a,b){ return String(b.updatedAt||b.createdAt||"").localeCompare(String(a.updatedAt||a.createdAt||"")); });
+  var chips = document.getElementById("rpt-term-chips");
+  if(!mine.length){
+    var blank = { id:"", student:studentSession.name, studentId:studentSession.studentId, cls:studentSession.cls, term:"" };
+    currentViewedReport = blank;
+    document.getElementById("report-list-view").style.display = "none";
+    document.getElementById("report-view-view").style.display = "block";
+    chips.innerHTML = "";
+    switchReportTab("passport");
+    renderReportProgressPanel(blank, "Your teacher hasn't published a report card yet. Below is everything that will be graded this term — it fills in as your teacher adds scores.");
+    return;
+  }
+  chips.innerHTML = mine.length > 1 ? mine.map(function(r, i){
+    return "<button onclick=\"viewReport('"+r.id+"')\" data-rid='"+escapeHtml(r.id)+"' class='rpt-chip' style='border:1.5px solid #000080;background:"+(i===0?"#000080":"#fff")+";color:"+(i===0?"#FFD700":"#000080")+";border-radius:999px;padding:5px 12px;font-size:.76rem;font-weight:700;cursor:pointer'>"+escapeHtml(r.term||"Report "+(i+1))+"</button>";
+  }).join("") : "";
+  viewReport(mine[0].id);
+}
+
 function viewReport(id){
   var r = allReports.find(function(x){ return x.id===id; });
   if(!r) return;
@@ -14645,6 +14705,9 @@ function viewReport(id){
   document.getElementById("report-edit-view").style.display = "none";
   document.getElementById("report-view-view").style.display = "block";
   switchReportTab("passport");
+  renderReportProgressPanel(r);
+  document.querySelectorAll("#rpt-term-chips .rpt-chip").forEach(function(b){ var on = b.dataset.rid===id; b.style.background = on?"#000080":"#fff"; b.style.color = on?"#FFD700":"#000080"; });
+  if(isTeacher){ document.getElementById("rpt-term-chips").innerHTML = ""; document.getElementById("rpt-back-to-list").style.display = ""; }
 }
 
 function switchReportTab(tab){
@@ -15624,7 +15687,7 @@ function aiChatLeaveMessage(prefillText){
 #sd .sd-rank{display:flex;align-items:center;gap:16px;justify-content:center}
 #sd .sd-rank .tr{font-size:3.4rem}
 #sd .sd-rank b{display:block;font-size:1.5rem;color:#b8862b}
-#sd .sd-cert{border:1.5px solid #e2c27a;background:#fffaf0;border-radius:16px;padding:18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+#sd .sd-cert{border:1.5px solid #e2c27a;background:#fffaf0;border-radius:16px;padding:18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}
 #sd .sd-cert .md{font-size:2.6rem}
 #sd .sd-btn{background:#0b1a3b;color:#fff;border:0;border-radius:10px;padding:11px 18px;font-weight:800;cursor:pointer;font-family:inherit}
 #sd .sd-muted{color:#7a84a0;font-size:.82rem}
@@ -15711,6 +15774,7 @@ async function sdLoadData(){
     reports = (reports||[]).filter(ownsReportOrFee);
     reports.sort(function(a,b){ return String(b.updatedAt||b.createdAt||'').localeCompare(String(a.updatedAt||a.createdAt||'')); });
     out.report = reports[0] || null;
+    out.reports = reports;
   } catch(e){ console.error('dashboard reports', e); }
   try {
     var fees = local ? JSON.parse(localStorage.getItem('c2epe_fees')||'[]') : await sdQueryClass('fees', cls);
@@ -15732,6 +15796,17 @@ async function sdLoadData(){
     var counted = c.attended + c.absent;
     out.att = counted ? Math.round(c.attended*100/counted) : null; out.attDays = counted; out.absent = c.absent;
   } catch(e){ console.error('dashboard attendance', e); }
+  try {
+    var ex = local ? JSON.parse(localStorage.getItem('c2epe_exam_attempts')||'[]') : null;
+    if(!local){
+      var {db, collection, query} = window._fb;
+      var {getDocs, where} = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+      var es = await getDocs(query(collection(db,'examAttempts'), where('studentId','==',studentSession.studentId)));
+      ex = es.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+    }
+    out.exams = (ex||[]).filter(function(a){ return a.studentId === studentSession.studentId; })
+      .sort(function(a,b){ return String(b.submittedAt||'').localeCompare(String(a.submittedAt||'')); });
+  } catch(e){ console.error('dashboard exam results', e); }
   try {
     if(typeof loadExamSchedule==='function'){ await loadExamSchedule(true); out.examsOpen = EXAM_TERMS.filter(function(t){ return examTermStatus(t.id, cls).open; }).length; }
   } catch(e){ console.error('dashboard exams', e); }
@@ -15804,6 +15879,30 @@ async function sdShowDashboard(){
          + "<div style='text-align:center'><button class='sd-btn' onclick='sdOpenReport()'>🖨️ VIEW &amp; PRINT</button><div class='sd-muted' style='margin-top:4px'>Full report card</div></div>" : "")
     + "</div>";
   window.__sdReport = r;
+  box.insertAdjacentHTML('beforeend', sdTermResultsHTML(d));
+}
+// Monthly, Mid-Term and Final results for each term (from report cards) + online exam results
+function sdTermResultsHTML(d){
+  var cell = function(v){ v = parseFloat(v)||0; return v ? "<b style='color:"+(v>=60?"#1f7a5c":"#c62828")+"'>"+Math.round(v)+"%</b>" : "<span style='color:#9aa3b8'>—</span>"; };
+  var reps = (d.reports||[]).slice().reverse();   // oldest term first
+  var rows = reps.map(function(r){
+    var c = r.core||{}, vals = [c.monthlyQuiz, c.midTerm, c.finalTest].map(function(v){ return parseFloat(v)||0; }).filter(function(v){ return v>0; });
+    var avg = vals.length ? vals.reduce(function(a,b){return a+b;},0)/vals.length : 0;
+    return "<tr><td style='padding:9px 6px;font-weight:700'>"+sdEsc(r.term||'—')+"</td><td style='text-align:center'>"+cell(c.monthlyQuiz)+"</td><td style='text-align:center'>"+cell(c.midTerm)+"</td><td style='text-align:center'>"+cell(c.finalTest)+"</td><td style='text-align:center'>"+cell(avg)+"</td></tr>";
+  }).join('');
+  var names = {monthly:'Monthly Test', midterm:'Mid-Term Exam', final:'Final Exam'};
+  var exRows = (d.exams||[]).slice(0,8).map(function(a){
+    var res;
+    if(a.gradingStatus==='graded' && a.overallPct!=null) res = "<b style='color:"+(a.overallPct>=60?"#1f7a5c":"#c62828")+"'>"+a.overallPct+"%</b> "+(a.overallPass?"✅ Pass":"⚠️ Not yet");
+    else res = (a.totalQuestions ? "Listening + Reading "+a.totalScore+"/"+a.totalQuestions : "") + " <span style='color:#c65a00'>· writing &amp; speaking being marked</span>";
+    return "<div style='display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:9px 0;border-bottom:1px solid #eef1f6;font-size:.84rem'><span><b>"+(names[a.term]||sdEsc(a.term||'Exam'))+"</b> <span class='sd-muted'>"+(a.submittedAt?new Date(a.submittedAt).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'')+"</span></span><span>"+res+"</span></div>";
+  }).join('');
+  return "<div class='sd-card'><div class='sd-h'>📅 RESULTS BY TERM</div>"
+    + (rows ? "<div style='overflow-x:auto'><table style='width:100%;border-collapse:collapse;font-size:.84rem'><thead><tr style='color:#7a84a0;font-size:.72rem;text-align:center'><th style='text-align:left;padding:6px'>Term</th><th>Monthly</th><th>Mid-Term</th><th>Final</th><th>Average</th></tr></thead><tbody>"+rows+"</tbody></table></div>"
+            : "<div class='sd-muted'>Your Monthly, Mid-Term and Final results appear here when your teacher publishes the report card for each term.</div>")
+    + "</div>"
+    + "<div class='sd-card'><div style='display:flex;justify-content:space-between;align-items:center'><div class='sd-h' style='margin:0'>🎓 EXAMINATION PORTAL RESULTS</div><button class='sd-btn' style='padding:7px 12px;font-size:.75rem' onclick='sdGo(openExamPortalPage)'>Open</button></div>"
+    + (exRows || "<div class='sd-muted' style='margin-top:8px'>No online exams taken yet.</div>") + "</div>";
 }
 function sdOpenReport(){
   var r = window.__sdReport; if(!r) return;

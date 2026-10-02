@@ -377,6 +377,41 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
   #all-depts-print-area{position:absolute;top:0;left:0;width:100%;}
 }
 
+
+/* ── Student ID card (portrait CR80, school-ID layout) ── */
+.idv-front,.idv-back{background:#fff!important;color:#0b1a3b;font-family:Arial,'Helvetica Neue',sans-serif;display:flex;flex-direction:column}
+.idv-km{font-family:'Khmer OS Battambang','Khmer OS Siemreap','Noto Sans Khmer','Khmer UI',sans-serif}
+.idv-head{background:linear-gradient(135deg,#0b1a3b,#1b3570);display:flex;align-items:center;gap:7px;padding:10px 9px;border-bottom:3px solid #c9a227}
+.idv-logo{width:34px;height:34px;object-fit:contain;flex-shrink:0}
+.idv-school{color:#e2bb55;font-weight:800;font-size:13px;letter-spacing:.5px;font-family:Georgia,serif}
+.idv-school-sub{color:#cfd6ea;font-size:7px;letter-spacing:.5px;margin-top:1px}
+.idv-title{text-align:center;font-weight:800;font-size:8px;letter-spacing:1px;color:#0b1a3b;margin:7px 0 6px}
+.idv-title .idv-km{display:block;font-size:11px;letter-spacing:0;margin-bottom:1px}
+.idv-photo{width:78px;height:98px;margin:0 auto;border:2px solid #c9a227;background:#2f55a4;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.idv-photo img{width:100%;height:100%;object-fit:cover}
+.idv-photo .idc-front-photo-placeholder{font-size:34px}
+.idv-rows{padding:8px 14px 0;font-size:8.5px;line-height:1.55;flex:1}
+.idv-rows div{display:grid;grid-template-columns:34px 1fr;gap:4px}
+.idv-rows span{color:#5b6478}.idv-rows span::after{content:':';float:right}
+.idv-rows b{color:#0b1a3b;word-break:break-word}
+.idv-rows .idv-km{font-size:9.5px}
+.idv-foot{background:linear-gradient(90deg,#c9a227,#e2bb55,#c9a227);color:#0b1a3b;text-align:center;font-weight:800;font-size:7.5px;letter-spacing:.8px;padding:5px 4px;border-top:2px solid #0b1a3b}
+.idv-back{position:relative}
+.idv-corner{position:absolute;width:44px;height:44px;pointer-events:none}
+.idv-corner.tl{left:0;top:0;background:linear-gradient(135deg,#0b1a3b 0 34%,#c9a227 34% 42%,transparent 42%)}
+.idv-corner.br{right:0;bottom:22px;background:linear-gradient(315deg,#0b1a3b 0 34%,#c9a227 34% 42%,transparent 42%)}
+.idv-back-in{flex:1;padding:16px 13px 4px;font-size:7px;line-height:1.45;color:#2b3550;position:relative}
+.idv-back-in p{margin:0 0 3px;text-align:justify}
+.idv-h{text-align:center;color:#0b1a3b;font-weight:800;font-size:9px;font-family:Georgia,serif;margin:3px 0 2px;border-bottom:1px solid #e2bb55;padding-bottom:1px}
+.idv-back-in ul{margin:0 0 2px;padding-left:12px;columns:2;column-gap:6px}
+.idv-qr-row{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:5px}
+.idv-qr-txt{font-size:7px;text-align:center;flex:1}.idv-qr-txt b{display:block;font-size:10px;color:#0b1a3b}
+.idv-emerg{margin-top:4px;font-size:6.5px;color:#5b6478}.idv-emerg span{color:#0b1a3b;font-weight:800;font-size:7.5px}
+.idv-qr{width:64px;height:64px;background:#fff;border:1.5px solid #0b1a3b;padding:2px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.idv-qr img,.idv-qr canvas{width:58px!important;height:58px!important}
+.idv-web{text-align:center;font-size:6.5px;color:#0b1a3b;font-weight:700;margin-top:3px;word-break:break-all}
+.idv-rules{text-align:center;font-size:5.6px;color:#7a84a0;margin-top:3px}
+
 /* ═══════════ STUDENT SHARE (with content moderation) ═══════════ */
 .sst-tabs{display:flex;gap:6px;padding:10px 12px 0;background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.08);}
 .sst-tab{padding:9px 14px;background:none;border:none;border-bottom:3px solid transparent;font-weight:700;font-size:.82rem;color:#888;cursor:pointer;white-space:nowrap;}
@@ -3886,6 +3921,10 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
         <label>Full Name</label>
         <input type="text" id="idc-name" placeholder="CHANN SOKLY" oninput="idcUpdate()">
       </div>
+      <div class="idc-field">
+        <label>Name in Khmer (ឈ្មោះជាភាសាខ្មែរ)</label>
+        <input type="text" id="idc-namekm" placeholder="e.g. ដារា វិចិត្រ" oninput="idcUpdate()">
+      </div>
 
       <div class="idc-field">
         <label>Level / Class</label>
@@ -3929,57 +3968,48 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
         <!-- FRONT -->
         <div>
           <p class="idc-section-label">Front</p>
-          <div class="idc-card idc-card-front">
-            <div class="idc-front-gold-top">
-              <img src="logo.png" onerror="logoImgError(this)" class="idc-front-logo" alt="C2 Logo">
-              <div>
-                <div class="idc-front-school-name">C2-EPE ACADEMY</div>
-                <div class="idc-front-school-sub">PREMIER INTERNATIONAL SMART SCHOOL</div>
-              </div>
+          <div class="idc-card idc-card-front idv-front">
+            <div class="idv-head">
+              <img src="logo.png" onerror="logoImgError(this)" class="idv-logo" alt="C2 Logo">
+              <div><div class="idv-school">C2-EPE ACADEMY</div><div class="idv-school-sub">Digital Academy · Phnom Penh</div></div>
             </div>
-            <div class="idc-front-body">
-              <div class="idc-front-photo-ring">
-                <img id="idc-card-img" src="" alt="" style="display:none;">
-                <span class="idc-front-photo-placeholder" id="idc-card-placeholder">👤</span>
-              </div>
-              <div class="idc-front-name" id="idc-d-name">Student Name</div>
-              <div class="idc-front-level" id="idc-d-level">LEVEL / CLASS</div>
-              <div class="idc-front-info" id="idc-d-dob">Date of Birth</div>
-              <div class="idc-front-info" id="idc-d-phone">Phone Number</div>
-              <div class="idc-front-id-tag" id="idc-d-id">ID: —</div>
+            <div class="idv-title"><span class="idv-km">ប័ណ្ណសម្គាល់ខ្លួនសិស្ស</span>STUDENT ID CARD</div>
+            <div class="idv-photo">
+              <img id="idc-card-img" src="" alt="" style="display:none;">
+              <span class="idc-front-photo-placeholder" id="idc-card-placeholder">👤</span>
             </div>
-            <div class="idc-card-footer">PREPARING GLOBAL LEADERS FOR 2030</div>
+            <div class="idv-rows">
+              <div><span>ID</span><b id="idc-d-id">—</b></div>
+              <div><span class="idv-km">ឈ្មោះ</span><b class="idv-km" id="idc-d-namekm"></b></div>
+              <div><span>Name</span><b id="idc-d-name">Student Name</b></div>
+              <div><span>DOB</span><b id="idc-d-dob">Date of Birth</b></div>
+              <div><span>Class</span><b id="idc-d-level">LEVEL / CLASS</b></div>
+              <div style="display:none"><span>Tel</span><b id="idc-d-phone">Phone Number</b></div>
+            </div>
+            <div class="idv-foot">Learn Today, Lead Tomorrow</div>
           </div>
         </div>
 
         <!-- BACK -->
         <div>
           <p class="idc-section-label">Back</p>
-          <div class="idc-card idc-card-back">
-            <div class="idc-back-gold-top">
-              <img src="logo.png" onerror="logoImgError(this)" class="idc-back-logo" alt="C2 Logo">
-            </div>
-            <div class="idc-back-body">
-              <div class="idc-back-title">ID CARD BACK</div>
-              <div class="idc-back-grid">
-                <div class="idc-back-box">
-                  <div class="idc-back-box-lbl">QR CODE</div>
-                  <div id="idc-qr-container"></div>
-                  <div class="idc-back-box-val" style="font-size:6.5px;margin-top:2px;">Scan for<br>school &amp; ID info</div>
-                </div>
-                <div class="idc-back-box">
-                  <div class="idc-back-box-lbl">EMERGENCY</div>
-                  <div class="idc-back-box-val">In case of emergency, contact:<span class="idc-emerg" id="idc-d-emerg">—</span></div>
-                </div>
-                <div class="idc-back-box full">
-                  <div class="idc-back-box-lbl">RULES &amp; REGULATIONS</div>
-                  <div class="idc-back-box-val">1. For official use only.<br>2. Report loss immediately.<br>3. Valid for current year only.</div>
-                </div>
+          <div class="idc-card idc-card-back idv-back">
+            <div class="idv-corner tl"></div><div class="idv-corner br"></div>
+            <div class="idv-back-in">
+              <div class="idv-h">About Us</div>
+              <p>Learn Today, Lead Tomorrow. Powered by Technology, Driven by Care — an English academy preparing global leaders for 2030.</p>
+              <div class="idv-h">Our Promise</div>
+              <p>“C2 is not just a level — it’s a standard of excellence.”</p>
+              <div class="idv-h">We Commit To</div>
+              <ul><li>International Curriculum</li><li>AI-Powered Learning</li><li>Caring Teachers</li><li>Leadership Skills</li></ul>
+              <div class="idv-qr-row">
+                <div class="idv-qr-txt"><b>Scan</b>to discover us<div class="idv-emerg">Emergency:<br><span id="idc-d-emerg">—</span></div></div>
+                <div class="idv-qr" id="idc-qr-container"></div>
               </div>
-              <div class="idc-back-url">WWW.C2EPE.ACADEMY</div>
-              <div class="idc-back-url" style="font-size:5px;color:#7986cb;margin-top:2px;">© <span id="idc-copyright-year"></span> SEG Education Group. All rights reserved.</div>
+              <div class="idv-web">chansokkh7-spec.github.io/c2epe-website</div>
+              <div class="idv-rules">This card belongs to C2-EPE Academy. If found, please return it to the school office. © <span id="idc-copyright-year"></span> SEG Education Group</div>
             </div>
-            <div class="idc-card-footer">C2-EPE PREMIER INTERNATIONAL SMART SCHOOL</div>
+            <div class="idv-foot">C2-EPE is the HOME of EXCELLENCE</div>
           </div>
         </div>
 
@@ -7285,6 +7315,7 @@ function idcPickFromSearch(){
   document.getElementById("idc-level").value = match.cls || "";
   document.getElementById("idc-dob").value   = match.dob || "";
   document.getElementById("idc-id").value    = match.studentId || "";
+  if(document.getElementById("idc-namekm")) document.getElementById("idc-namekm").value = match.nameKm || "";
   if(match.photo){
     idcPhotoDataUrl = match.photo;
     document.getElementById("idc-photo-thumb").src = match.photo;
@@ -7338,15 +7369,21 @@ function idcUpdate(){
   var phone = document.getElementById("idc-phone").value.trim();
   var emerg = document.getElementById("idc-emerg").value.trim();
   var id    = document.getElementById("idc-id").value.trim();
+  var nameKm = (document.getElementById("idc-namekm")||{value:""}).value.trim();
+  document.getElementById("idc-d-namekm").textContent = nameKm;
+  document.getElementById("idc-d-namekm").parentNode.style.display = nameKm ? "" : "none";
 
   var setTxt = function(id, val, ph){ var el = document.getElementById(id); el.textContent = val || ph; el.classList.toggle("idc-ph", !val); };
   setTxt("idc-d-name", name, "Student Name");
   setTxt("idc-d-level", level, "LEVEL / CLASS");
-  setTxt("idc-d-dob", dob, "Date of Birth");
+  // show the date like 02 Jun 2019 (the form keeps the original value)
+  var dobShow = dob;
+  if(/^\d{4}-\d{2}-\d{2}$/.test(dob)){ var dd = new Date(dob+"T00:00:00"); if(!isNaN(dd)) dobShow = dd.toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"}); }
+  setTxt("idc-d-dob", dobShow, "Date of Birth");
   setTxt("idc-d-phone", phone, "Phone Number");
   // if no emergency number is entered, the school office number is printed
   document.getElementById("idc-d-emerg").textContent = emerg || phone || "School office: 015 555 631";
-  document.getElementById("idc-d-id").textContent    = "ID: " + (id || "—");
+  document.getElementById("idc-d-id").textContent    = id || "—";
 
   var warn = document.getElementById("idc-warn");
   if(!name || !id){
@@ -7416,16 +7453,16 @@ function idcGenerateQR(){
   // Deliberately does NOT include name, class, or photo — only the school
   // identity, the Student ID, and the school website. Safe to scan even if
   // the card is lost, since it reveals nothing personal about the child.
-  var content = id ? ("C2-EPE Digital Academy\nStudent ID: " + id + "\nwww.c2epe.academy") : "";
-  renderQRCode("idc-qr-container", content, 44, "No ID yet");
+  // "Scan to discover us" — opens the school website (no personal information in the code)
+  renderQRCode("idc-qr-container", "https://chansokkh7-spec.github.io/c2epe-website/", 58, "QR");
 }
 
 function idcResetForm(){
   idcSelected = null;
   idcPhotoDataUrl = null;
   document.getElementById("idc-search").value = "";
-  ["idc-name","idc-level","idc-dob","idc-phone","idc-emerg","idc-id"].forEach(function(id){
-    var el = document.getElementById(id);
+  ["idc-name","idc-namekm","idc-level","idc-dob","idc-phone","idc-emerg","idc-id"].forEach(function(id){
+    var el = document.getElementById(id); if(!el) return;
     el.value = "";
     el.removeAttribute("readonly");
   });

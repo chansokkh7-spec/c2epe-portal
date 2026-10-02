@@ -579,6 +579,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
         <button onclick="closeToolsMenu();openTestLibraryPage()" class="tools-item">📚 <span>Test Library</span></button>
         <button onclick="closeToolsMenu();openExamGradingPage()" class="tools-item">🖋️ <span>Grade Writing &amp; Speaking</span></button>
         <button onclick="closeToolsMenu();openExamSchedulePage()" class="tools-item">🗓️ <span>Exam Schedule (open/close)</span></button>
+        <button onclick="closeToolsMenu();openCertificatesPage()" class="tools-item">🏅 <span>Certificates</span></button>
         <button onclick="closeToolsMenu();openProctorCodesPage()" class="tools-item">🔒 <span>Proctor Codes</span></button>
         <button onclick="closeToolsMenu();openReportPage()" class="tools-item">📊 <span>Report Cards</span></button>
 
@@ -1626,6 +1627,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
   </div>
   <div id="hw-subs-list" style="max-width:820px;margin:0 auto;padding:14px 12px 40px;"></div>
 </div>
+<style>.inv-l{display:block;font-size:.66rem;font-weight:700;color:#555;margin-bottom:2px}.inv-i{width:100%;box-sizing:border-box;padding:6px 7px;border:1.5px solid #e0e0e0;border-radius:6px;font-size:.8rem;font-family:inherit}</style>
 <!-- ADD/EDIT HOMEWORK MODAL -->
 <div id="hw-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;align-items:center;justify-content:center;">
   <div style="background:#fff;border-radius:14px;width:360px;max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.3);">
@@ -1890,6 +1892,32 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
         <option>Other</option>
       </select>
 
+      <!-- Itemized invoice (tuition by term / 6 months / 1 year + Test Fee + Admin Fee + scholarship) -->
+      <div style="background:#f5f7fb;border:1px solid #e3e7f0;border-radius:8px;padding:10px;margin:10px 0;">
+        <div style="font-size:.78rem;font-weight:800;color:#000080;margin-bottom:6px;">🧾 Invoice items <span style="font-weight:400;color:#888;">(fill Tuition to build an itemized invoice)</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">
+          <div><label class="inv-l">Tuition / term (3 mo) $</label><input type="number" id="inv-t3" min="0" step="0.01" class="inv-i" oninput="updateInvoiceCalc()"></div>
+          <div><label class="inv-l">6 months $</label><input type="number" id="inv-t6" min="0" step="0.01" class="inv-i" placeholder="auto ×2" oninput="updateInvoiceCalc()"></div>
+          <div><label class="inv-l">1 year $</label><input type="number" id="inv-t12" min="0" step="0.01" class="inv-i" placeholder="auto ×4" oninput="updateInvoiceCalc()"></div>
+          <div><label class="inv-l">Test fee / term $</label><input type="number" id="inv-test" min="0" step="0.01" value="15" class="inv-i" oninput="updateInvoiceCalc()"></div>
+          <div><label class="inv-l">Admin fee / term $</label><input type="number" id="inv-admin" min="0" step="0.01" value="15" class="inv-i" oninput="updateInvoiceCalc()"></div>
+          <div><label class="inv-l">Paying for</label><select id="inv-plan" class="inv-i" onchange="updateInvoiceCalc()"><option value="3">1 term (3 months)</option><option value="6">6 months (2 terms)</option><option value="12">1 year (4 terms)</option></select></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:6px;">
+          <div><label class="inv-l">Course</label><input id="inv-course" class="inv-i" placeholder="e.g. General English"></div>
+          <div><label class="inv-l">Time</label><input id="inv-time" class="inv-i" placeholder="e.g. 7:30–10:30am"></div>
+          <div><label class="inv-l">Room</label><input id="inv-room" class="inv-i" placeholder="e.g. 001"></div>
+        </div>
+        <label class="inv-l" style="margin-top:6px;">Scholarship reason (if any)</label>
+        <select id="inv-sch-reason" class="inv-i" onchange="updateInvoiceCalc()">
+          <option value="Outstanding academic achievement">Outstanding academic achievement</option>
+          <option value="Competition award">Competition award (contests &amp; events)</option>
+          <option value="Sibling / family support">Sibling / family support</option>
+          <option value="Special scholarship">Special scholarship</option>
+        </select>
+        <div id="inv-preview" style="margin-top:8px;font-size:.74rem;"></div>
+      </div>
+
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
         <div>
           <label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">Original Amount ($)</label>
@@ -1897,14 +1925,15 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
             style="width:100%;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;outline:none;font-family:inherit;">
         </div>
         <div>
-          <label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">🏷️ Discount</label>
+          <label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">🎓 Scholarship</label>
           <select id="fee-discount" onchange="updateFeeDiscountCalc()" style="width:100%;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;outline:none;font-family:inherit;">
-            <option value="0">No Discount</option>
-            <option value="10">10% off</option>
-            <option value="15">15% off</option>
-            <option value="25">25% off</option>
-            <option value="75">75% off</option>
-            <option value="100">100% off (Free)</option>
+            <option value="0">No scholarship</option>
+            <option value="15">15% scholarship</option>
+            <option value="25">25% scholarship</option>
+            <option value="50">50% scholarship</option>
+            <option value="75">75% scholarship</option>
+            <option value="100">100% scholarship (free)</option>
+            <option value="10">10% discount (old)</option>
           </select>
         </div>
       </div>
@@ -2453,7 +2482,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
      family and the school for any fee already marked Paid (cash, bank
      transfer, or QR — the receipt doesn't care which). -->
 <div id="fee-receipt-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;align-items:center;justify-content:center;padding:16px;">
-  <div style="background:#fff;border-radius:14px;width:380px;max-width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.3);">
+  <div style="background:#fff;border-radius:14px;width:820px;max-width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.3);">
     <div style="background:#000080;padding:14px 18px;color:#FFD700;display:flex;align-items:center;justify-content:space-between;border-radius:14px 14px 0 0;">
       <span style="font-weight:700;font-size:.92rem;" id="fr-modal-title">🧾 Payment Receipt</span>
       <button aria-label="Close" onclick="closeFeeReceiptModal()" style="background:none;border:none;color:#FFD700;font-size:1.15rem;cursor:pointer;">✕</button>
@@ -2488,6 +2517,25 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
 </div>
 
 <style>
+.inv-doc{font-family:Arial,sans-serif;color:#1a1a2e;font-size:12.5px}
+.inv-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;padding-bottom:10px;border-bottom:3px solid #000080}
+.inv-brand{display:flex;gap:10px;align-items:center}.inv-brand img{width:56px;height:56px;object-fit:contain}
+.inv-brand b{display:block;font-size:19px;color:#000080}.inv-brand span{font-size:11px;color:#b8862b;letter-spacing:1px}
+.inv-contact{text-align:right;font-size:11px;color:#555;line-height:1.6}
+.inv-date{margin-top:8px;font-weight:700;color:#555}
+.inv-title{text-align:center;font-size:20px;font-weight:800;letter-spacing:3px;color:#000080;margin:4px 0 6px}
+.inv-intro{font-size:11.5px;color:#555;line-height:1.55;margin:0 0 10px}
+.inv-info{display:grid;grid-template-columns:1fr 1fr;gap:5px 18px;margin-bottom:10px;font-size:12px}.inv-info span{color:#777;display:inline-block;min-width:92px}
+.inv-table{width:100%;border-collapse:collapse;font-size:12px;min-width:520px}
+.inv-table th{background:#000080;color:#fff;padding:7px 6px;text-align:left;font-weight:700}
+.inv-table td{border:1px solid #d9dde6;padding:6px}
+.inv-table .inv-on{background:#fff3c4}.inv-table th.inv-on{background:#c9a227;color:#000}
+.inv-tot td{font-weight:800;background:#f5f7fb}
+.inv-sum{margin-top:10px;line-height:1.8}
+.inv-pay{margin-top:8px;font-size:11.5px;color:#444}.inv-pay ol{margin:4px 0 0 18px;padding:0}
+.inv-sign{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:34px;font-size:11px;color:#555}.inv-sign div{border-top:1px solid #999;padding-top:5px;text-align:center}
+.inv-foot{text-align:center;font-size:10px;color:#aaa;margin-top:14px}
+@media (max-width:520px){.inv-info{grid-template-columns:1fr}.inv-head{flex-direction:column}.inv-contact{text-align:left}}
 @media print{
   body *{visibility:hidden;}
   #fee-receipt-print-area,#fee-receipt-print-area *{visibility:visible;}
@@ -8966,6 +9014,7 @@ function updateFeeSummary(today){
 // what actually gets saved as the fee's `amount`, since that's what every
 // other part of the app (balance, paid %, overdue totals) reads from.
 function updateFeeDiscountCalc(){
+  if(document.getElementById("inv-t3") && parseFloat(document.getElementById("inv-t3").value)>0){ updateInvoiceCalc(); return; }
   var original = parseFloat(document.getElementById("fee-amount").value)||0;
   var discount = parseFloat(document.getElementById("fee-discount").value)||0;
   var final    = original * (1 - discount/100);
@@ -8994,6 +9043,7 @@ function showAddFeeModal(){
   document.getElementById("fee-due").value      = nxt.toISOString().split("T")[0];
   document.getElementById("fee-note").value     = "";
   document.getElementById("fee-term").value = "";
+  fillInvoiceForm(null);
   document.getElementById("fee-period-start").value = "";
   document.getElementById("fee-period-end").value = "";
   document.getElementById("fee-modal-msg").style.display = "none";
@@ -9019,6 +9069,7 @@ async function editFee(id){
   document.getElementById("fee-due").value          = f.dueDate||"";
   document.getElementById("fee-note").value         = f.note||"";
   document.getElementById("fee-term").value         = f.term||"";
+  fillInvoiceForm(f.invoice, f);
   document.getElementById("fee-period-start").value = f.periodStart||"";
   document.getElementById("fee-period-end").value   = f.periodEnd||"";
   document.getElementById("fee-modal-msg").style.display = "none";
@@ -9037,6 +9088,8 @@ async function saveFee(){
   var due      = document.getElementById("fee-due").value;
   var note     = document.getElementById("fee-note").value.trim();
   var msg      = document.getElementById("fee-modal-msg");
+  var invoice  = collectInvoice();
+  if(invoice){ original = invoice.gross; amount = invoice.total; discount = invoice.scholarshipPct; }
 
   if(!student||!cls||!original||!due){
     msg.style.cssText="display:block;background:#ffebee;color:#c62828;padding:6px 10px;border-radius:6px;font-size:.76rem;";
@@ -9061,6 +9114,7 @@ async function saveFee(){
   // link the record to the student's ID when the name matches an enrolled student
   var stuMatch = (typeof allStudents!=="undefined" && allStudents || []).find(function(x){ return String(x.nameEn||"").trim().toLowerCase()===student.toLowerCase() || String(x.nameKm||"").trim()===student; });
   var data = { student, cls, type, amount, originalAmount:original, discountPercent:discount, paidAmount:paid, dueDate:due, note,
+    invoice: invoice || null, studentGender: (stuMatch && stuMatch.gender) || (existing && existing.studentGender) || "",
     term, periodStart, periodEnd, studentId: (stuMatch && stuMatch.studentId) || (existing && existing.studentId) || "",
     status: isPaid?"paid":"unpaid", paidAt,
     updatedAt: new Date().toISOString(),
@@ -9106,9 +9160,113 @@ var pendingMarkPaidFeeId = null;
 // bank transfer, and QR alike, since by the time a fee is "paid" all three
 // have already converged into the same record shape (amount, paidAt,
 // paymentMethod) — the receipt just presents what's already there.
-function openFeeReceipt(feeId){
+
+// ══════════════ ITEMIZED INVOICE ══════════════
+var INV_TERMS = {"3":1, "6":2, "12":4};
+function collectInvoice(){
+  var t3 = parseFloat(document.getElementById("inv-t3").value)||0;
+  if(!t3) return null;
+  var t6 = parseFloat(document.getElementById("inv-t6").value)||t3*2, t12 = parseFloat(document.getElementById("inv-t12").value)||t3*4;
+  var test = parseFloat(document.getElementById("inv-test").value)||0, admin = parseFloat(document.getElementById("inv-admin").value)||0;
+  var pct = parseFloat(document.getElementById("fee-discount").value)||0;
+  var plan = document.getElementById("inv-plan").value;
+  var cls = document.getElementById("fee-cls").value;
+  var lvl = (typeof classDisplayLabel==="function" && classDisplayLabel(cls)) || cls;
+  var r2 = function(x){ return Math.round(x*100)/100; };
+  var items = [{ name:"Tuition — "+(lvl||"Course"), desc:document.getElementById("inv-course").value.trim()||lvl, qty:"1", a3:t3, a6:t6, a12:t12 }];
+  if(pct>0) items.push({ name:"Scholarship "+pct+"%", desc:document.getElementById("inv-sch-reason").value, qty:"1", a3:-r2(t3*pct/100), a6:-r2(t6*pct/100), a12:-r2(t12*pct/100), scholarship:true });
+  if(test>0) items.push({ name:"Test Fee", desc:"$"+test.toFixed(2)+" per term", qty:"1 / term", a3:test, a6:test*2, a12:test*4 });
+  if(admin>0) items.push({ name:"Admin Fee", desc:"$"+admin.toFixed(2)+" per term", qty:"1 / term", a3:admin, a6:admin*2, a12:admin*4 });
+  var tot = {a3:0,a6:0,a12:0}, gross = {a3:0,a6:0,a12:0};
+  items.forEach(function(it){ ["a3","a6","a12"].forEach(function(k){ tot[k] = r2(tot[k]+it[k]); if(!it.scholarship) gross[k] = r2(gross[k]+it[k]); }); });
+  var key = "a"+plan;
+  return { items:items, plan:plan, totals:tot, total:tot[key], gross:gross[key], scholarshipPct:pct, scholarshipReason: pct>0 ? document.getElementById("inv-sch-reason").value : "",
+    course:document.getElementById("inv-course").value.trim(), time:document.getElementById("inv-time").value.trim(), room:document.getElementById("inv-room").value.trim(), testFee:test, adminFee:admin };
+}
+function updateInvoiceCalc(){
+  var inv = collectInvoice(), box = document.getElementById("inv-preview"), amt = document.getElementById("fee-amount");
+  if(!inv){ box.innerHTML = ""; amt.readOnly = false; amt.style.background = ""; return; }
+  amt.value = inv.gross.toFixed(2); amt.readOnly = true; amt.style.background = "#f1f3f8";
+  var pct = inv.scholarshipPct;
+  document.getElementById("fee-final-amount").value = inv.total.toFixed(2);
+  var sum = document.getElementById("fee-discount-summary");
+  if(sum){ sum.style.display = pct>0 ? "block" : "none"; document.getElementById("fee-discount-summary-text").textContent = pct>0 ? "🎓 "+pct+"% scholarship on tuition ("+inv.scholarshipReason+") → $"+inv.total.toFixed(2)+" due" : ""; }
+  var col = function(k){ return k===("a"+inv.plan) ? "background:#fff3c4;font-weight:800" : ""; };
+  box.innerHTML = "<table style='width:100%;border-collapse:collapse'><tr style='color:#666'><td></td><td style='text-align:right;"+col("a3")+"'>3 months</td><td style='text-align:right;"+col("a6")+"'>6 months</td><td style='text-align:right;"+col("a12")+"'>1 year</td></tr>"
+    + inv.items.map(function(it){ return "<tr><td>"+escapeHtml(it.name)+"</td>"+["a3","a6","a12"].map(function(k){ return "<td style='text-align:right;"+col(k)+";color:"+(it[k]<0?"#c62828":"#333")+"'>"+(it[k]<0?"−$"+(-it[k]).toFixed(2):"$"+it[k].toFixed(2))+"</td>"; }).join("")+"</tr>"; }).join("")
+    + "<tr style='border-top:1px solid #ccc'><td><b>Total</b></td>"+["a3","a6","a12"].map(function(k){ return "<td style='text-align:right;"+col(k)+"'><b>$"+inv.totals[k].toFixed(2)+"</b></td>"; }).join("")+"</tr></table>"
+    + "<div style='margin-top:4px;color:#000080'>Amount due for the chosen plan: <b>$"+inv.total.toFixed(2)+"</b></div>";
+}
+function fillInvoiceForm(inv, f){
+  inv = inv || {};
+  var it = (inv.items||[])[0] || {};
+  document.getElementById("inv-t3").value = it.a3 || "";
+  document.getElementById("inv-t6").value = it.a6 && it.a3 && it.a6 !== it.a3*2 ? it.a6 : "";
+  document.getElementById("inv-t12").value = it.a12 && it.a3 && it.a12 !== it.a3*4 ? it.a12 : "";
+  document.getElementById("inv-test").value = inv.items ? (inv.testFee||0) : 15;
+  document.getElementById("inv-admin").value = inv.items ? (inv.adminFee||0) : 15;
+  document.getElementById("inv-plan").value = inv.plan || "3";
+  document.getElementById("inv-course").value = inv.course || "";
+  document.getElementById("inv-time").value = inv.time || "";
+  document.getElementById("inv-room").value = inv.room || "";
+  if(inv.scholarshipReason) document.getElementById("inv-sch-reason").value = inv.scholarshipReason;
+  updateInvoiceCalc();
+}
+// The printable invoice / receipt (C2-EPE layout)
+async function renderInvoiceDoc(f, isPaidDoc){
+  var E = function(v){ return escapeHtml(v==null?"":String(v)); };
+  var money = function(v){ v = +v||0; return (v<0?"−$":"$") + Math.abs(v).toFixed(2); };
+  var inv = f.invoice;
+  var no = (isPaidDoc ? "C2EPE-" : "INV-") + String(f.id||"").slice(-6).toUpperCase();
+  var dateStr = feeDate(isPaidDoc && f.paidAt ? f.paidAt : (f.updatedAt||f.createdAt||new Date().toISOString()));
+  var rows, foot, cols;
+  if(inv && inv.items){
+    var hi = function(k){ return k===("a"+inv.plan) ? " class='inv-on'" : ""; };
+    cols = "<th>Item Name</th><th>Item Description</th><th>Qty</th><th"+hi("a3")+">Amount/3Ms</th><th"+hi("a6")+">Amount/6Ms</th><th"+hi("a12")+">Amount/1Yr</th>";
+    rows = inv.items.map(function(it){ return "<tr"+(it.scholarship?" style='color:#c62828'":"")+"><td>"+E(it.name)+"</td><td>"+E(it.desc)+"</td><td style='text-align:center'>"+E(it.qty)+"</td>"
+      + ["a3","a6","a12"].map(function(k){ return "<td style='text-align:right'"+hi(k)+">"+money(it[k])+"</td>"; }).join("")+"</tr>"; }).join("");
+    foot = "<tr class='inv-tot'><td colspan='3' style='text-align:right'>Total :</td>"+["a3","a6","a12"].map(function(k){ return "<td style='text-align:right'"+hi(k)+">"+money(inv.totals[k])+"</td>"; }).join("")+"</tr>";
+  } else {
+    cols = "<th>Item Name</th><th>Item Description</th><th>Qty</th><th>Amount</th>";
+    rows = "<tr><td>"+E(f.type||"Fee")+"</td><td>"+E((f.term?f.term+" · ":"")+(classDisplayLabel(f.cls)||f.cls||""))+"</td><td style='text-align:center'>1</td><td style='text-align:right'>"+money(f.originalAmount!=null?f.originalAmount:f.amount)+"</td></tr>"
+      + (f.discountPercent>0 ? "<tr style='color:#c62828'><td>"+(f.discountPercent===10?"Discount":"Scholarship")+" "+f.discountPercent+"%</td><td></td><td style='text-align:center'>1</td><td style='text-align:right'>"+money(-(parseFloat(f.originalAmount||0)-parseFloat(f.amount||0)))+"</td></tr>" : "");
+    foot = "<tr class='inv-tot'><td colspan='3' style='text-align:right'>Total :</td><td style='text-align:right'>"+money(f.amount)+"</td></tr>";
+  }
+  var paid = parseFloat(f.paidAmount||0), bal = Math.max(0, (parseFloat(f.amount)||0) - paid);
+  var plan = inv && inv.plan ? {"3":"1 term (3 months)","6":"6 months","12":"1 year"}[inv.plan] : "";
+  var info = [["ID / Full Name", (f.studentId?f.studentId+" / ":"")+(f.student||"")], ["Receipt No", no],
+              ["Sex", f.studentGender||"—"], ["Room", (inv&&inv.room)||"—"],
+              ["Course", (inv&&inv.course)||f.type||"—"], ["Level", classDisplayLabel(f.cls)||f.cls||"—"],
+              ["Time", (inv&&inv.time)||"—"], ["Term", (f.term||"—")+(f.periodStart||f.periodEnd?" ("+(f.periodStart?feeDate(f.periodStart):"…")+" – "+(f.periodEnd?feeDate(f.periodEnd):"…")+")":"")]];
+  var banks = [];
+  try { var cfg = await loadPaymentQRConfig(); banks = (cfg && cfg.banks || []).map(function(b){ return b.name || b.bank || ""; }).filter(Boolean); } catch(e){}
+  return "<div class='inv-doc'>"
+    + "<div class='inv-head'><div class='inv-brand'><img src='logo.png' alt='' onerror=\"this.style.display='none'\"><div><b>C2-EPE Digital Academy</b><span>English Proficiency Excellence</span></div></div>"
+    + "<div class='inv-contact'>Phnom Penh, Cambodia<br>Tel: 015 555 631 / 071 6115 407 / 088 4714 887</div></div>"
+    + "<div class='inv-date'>"+E(dateStr)+"</div>"
+    + "<div class='inv-title'>"+(isPaidDoc ? "PAYMENT RECEIPT" : "INVOICE")+"</div>"
+    + "<p class='inv-intro'>Thank you for choosing C2-EPE Digital Academy. Please keep this "+(isPaidDoc?"receipt as proof of payment":"invoice and pay by the due date")+". School fees, once paid, are not refundable. Please bring this document if you have any questions about your payment.</p>"
+    + "<div class='inv-info'>"+info.map(function(x){ return "<div><span>"+x[0]+"</span>: <b>"+E(x[1])+"</b></div>"; }).join("")+"</div>"
+    + "<div style='overflow-x:auto'><table class='inv-table'><thead><tr>"+cols+"</tr></thead><tbody>"+rows+foot+"</tbody></table></div>"
+    + "<div class='inv-sum'>"
+    + (plan ? "<div>Plan chosen: <b>"+plan+"</b></div>" : "")
+    + (f.discountPercent>0 || (inv&&inv.scholarshipPct>0) ? "<div style='color:#c62828'>🎓 Scholarship "+((inv&&inv.scholarshipPct)||f.discountPercent)+"% — "+E((inv&&inv.scholarshipReason)||"")+"</div>" : "")
+    + "<div>Amount: <b>"+money(f.amount)+"</b>"+(paid>0?" · Paid: <b>"+money(paid)+"</b>":"")+(isPaidDoc?" · <b style='color:#2e7d32'>PAID IN FULL</b>":" · Balance due: <b style='color:#c62828'>"+money(bal)+"</b>")+"</div>"
+    + (isPaidDoc ? "<div>Payment method: <b>"+(f.paymentMethod==="cash"?"Cash":f.paymentMethod==="bank"?"Bank transfer / KHQR":"—")+"</b> · Date paid: <b>"+E(feeDate(f.paidAt))+"</b></div>" : "<div>Due date: <b>"+E(feeDate(f.dueDate))+"</b></div>")
+    + "</div>"
+    + "<div class='inv-pay'><b>School fees can also be paid via:</b><ol>"
+    + (banks.length ? banks.map(function(b){ return "<li>"+E(b)+" — scan the KHQR code in the portal (Fee Payment → Pay Now)</li>"; }).join("") : "<li>Bank transfer / KHQR — open Fee Payment → Pay Now in the portal</li>")
+    + "<li>Cash at the school front office</li></ol></div>"
+    + "<div class='inv-sign'><div>Cashier / Accountant</div><div>Parent / Guardian</div></div>"
+    + "<div class='inv-foot'>Generated by the C2-EPE Digital Academy Portal · "+E(no)+"</div></div>";
+}
+
+async function openFeeReceipt(feeId){
   var f = allFees.find(function(x){ return x.id===feeId; });
   if(!f) return;
+  // the print area is replaced by the new invoice layout each time — restore the original fields first
+  var fra = document.getElementById("fee-receipt-print-area");
+  if(!window.__frTemplate) window.__frTemplate = fra.innerHTML; else fra.innerHTML = window.__frTemplate;
 
   document.getElementById("fr-receipt-no").textContent = "C2EPE-" + feeId.slice(-6).toUpperCase();
   document.getElementById("fr-date").textContent = f.paidAt
@@ -9151,6 +9309,7 @@ function openFeeReceipt(feeId){
   document.getElementById("fr-period-row").style.display = (f.periodStart||f.periodEnd) ? "flex" : "none";
   document.getElementById("fr-period").textContent = (f.periodStart?feeDate(f.periodStart):"…") + " → " + (f.periodEnd?feeDate(f.periodEnd):"…");
   if(!isPaidDoc) document.getElementById("fr-method").textContent = "—";
+  document.getElementById("fee-receipt-print-area").innerHTML = await renderInvoiceDoc(f, isPaidDoc);
 
   document.getElementById("fee-receipt-modal").style.display = "flex";
 }
@@ -16132,6 +16291,11 @@ async function sdShowDashboard(){
     + "</div>";
   window.__sdReport = r;
   box.insertAdjacentHTML('beforeend', sdTermResultsHTML(d));
+  var certs = await loadMyCertificates();
+  if(certs.length && document.getElementById('sd').style.display !== 'none'){
+    box.insertAdjacentHTML('afterbegin', "<div class='sd-card' style='border:1.5px solid #e2c27a;background:#fffaf0'><div class='sd-h'>🏅 MY CERTIFICATES</div>"
+      + certs.map(function(c){ return "<div style='display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid #f1e6c8'><div><b>"+sdEsc(c.achievement)+" — "+sdEsc(c.levelLabel||c.level)+"</b><div class='sd-muted'>"+certFmt(c.issueDate)+" · "+sdEsc(c.certId)+"</div></div><button class='sd-btn' onclick=\"viewCertificateById('"+sdEsc(c.certId)+"')\">🏅 View &amp; Print</button></div>"; }).join("") + "</div>");
+  }
 }
 // Monthly, Mid-Term and Final results for each term (from report cards) + online exam results
 function sdTermResultsHTML(d){
@@ -16236,6 +16400,7 @@ function sdOpenReport(){
       <button onclick="tdGo(openExamSchedulePage)">🗓️ Exam Schedule</button>
       <button onclick="tdGo(openExamGradingPage)">🖋️ Grade Writing &amp; Speaking</button>
       <button onclick="tdGo(openTestLibraryPage)">📚 Test Library</button>
+      <button onclick="tdGo(openCertificatesPage)">🏅 Certificates</button>
       <h4>COMMUNICATION</h4>
       <button onclick="tdGo(openAnnouncePage)">📢 Announcements</button>
       <button onclick="tdGo(openMsgPage)">💬 Messages</button>
@@ -16368,6 +16533,331 @@ async function tdRefresh(){
     + "<div class='td-card'><h3>🏆 Top Performers</h3><div class='td-sub'>Highest average on the latest report card</div>"
     + (top.length ? "<ul class='td-top'>" + top.map(function(x,i){ var s = studentById[x.r.studentId] || {nameEn:x.r.student}; return "<li><span style='width:20px;font-weight:800;color:#c9a227'>"+(i+1)+"</span>"+tdAvatar(s,i)+"<span style='flex:1;min-width:0'>"+tdEsc(x.r.student||s.nameEn||'—')+"<br><span style='color:#8a93a8;font-size:.7rem'>"+tdEsc(x.r.cls||'')+"</span></span><b>"+Math.round(x.overall)+"%</b></li>"; }).join('') + "</ul>" : "<div class='td-sub'>Scores appear when report cards are added.</div>")
     + "</div></div>";
+}
+</script>
+
+<!-- ═════════ CERTIFICATES: issue (teachers), view/print (everyone), verify (public via QR) ═════════ -->
+<style>
+#cert-page,#cert-view,#cert-verify{display:none;position:fixed;inset:0;z-index:9995;overflow-y:auto;font-family:inherit}
+#cert-page{background:#f0f2f5}
+#cert-view{background:rgba(10,20,45,.92);z-index:10003;padding:16px}
+#cert-verify{background:#eef1f7;z-index:30000}
+.cert-bar{background:#0b1a3b;color:#d6aa4c;height:56px;display:flex;align-items:center;gap:12px;padding:0 16px;position:sticky;top:0;z-index:3}
+.cert-bar button{background:rgba(255,255,255,.12);color:#fff;border:0;padding:6px 12px;border-radius:20px;cursor:pointer;font-size:.82rem;font-family:inherit}
+.cert-btn{background:#0b1a3b;color:#d6aa4c;border:0;border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer;font-size:.8rem;font-family:inherit}
+.cert-btn.gold{background:#c9a227;color:#fff}.cert-btn.ghost{background:#fff;color:#333;border:1px solid #d9dde6}
+/* the certificate (A4 landscape proportions) */
+.cert{position:relative;width:1060px;max-width:none;aspect-ratio:1.414/1;background:#fbf8f1;margin:0 auto;overflow:hidden;color:#0b1a3b;font-family:Georgia,'Times New Roman',serif;box-shadow:0 10px 40px rgba(0,0,0,.4)}
+.cert-wrap{width:100%;overflow:auto;padding-bottom:6px}
+.cert-scale{transform-origin:top left}
+.cert .frame{position:absolute;inset:14px;border:3px solid #c9a227;outline:1px solid #c9a227;outline-offset:-9px}
+.cert .c-tl{position:absolute;left:0;top:0;width:220px;height:170px;background:linear-gradient(135deg,#0b1a3b 0 46%,#d6aa4c 46% 50%,transparent 50%)}
+.cert .c-br{position:absolute;right:0;bottom:0;width:220px;height:170px;background:linear-gradient(315deg,#0b1a3b 0 46%,#d6aa4c 46% 50%,transparent 50%)}
+.cert .ribbon{position:absolute;right:70px;top:14px;width:150px;height:430px;background:#0b1a3b;border:2px solid #c9a227;border-top:0;clip-path:polygon(0 0,100% 0,100% 100%,50% 90%,0 100%);color:#fff;text-align:center;padding:18px 10px;box-sizing:border-box;font-family:Arial,sans-serif}
+.cert .ribbon .v{color:#d6aa4c;font-size:13px;letter-spacing:1.5px;font-weight:700}
+.cert .ribbon .qr{background:#fff;border-radius:8px;width:116px;height:116px;margin:10px auto;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cert .ribbon small{display:block;font-size:10px;line-height:1.4;color:#e6eaf5}
+.cert .ribbon b{display:block;color:#d6aa4c;font-size:12px;margin-top:6px;word-break:break-all}
+.cert .body{position:absolute;left:150px;right:250px;top:34px;text-align:center}
+.cert .logo{width:92px;height:92px;object-fit:contain}
+.cert .school{font-size:38px;font-weight:800;letter-spacing:1px;margin:2px 0 4px}
+.cert .tag{font-family:Arial,sans-serif;font-size:13px;letter-spacing:6px;font-weight:700;margin:6px 0 4px}
+.cert .title{font-size:78px;line-height:1;font-weight:800;letter-spacing:3px;margin:6px 0 0;text-shadow:0 2px 0 #d6aa4c}
+.cert .sub{font-size:26px;color:#b8862b;font-weight:800;letter-spacing:3px;margin:4px 0 12px}
+.cert .pres{font-size:15px;letter-spacing:2px;margin-bottom:4px}
+.cert .name{font-family:'Brush Script MT','Segoe Script','Lucida Handwriting',cursive;font-size:62px;line-height:1.15;border-bottom:2px solid #c9a227;display:inline-block;padding:0 30px;min-width:60%}
+.cert .km{font-family:'Khmer OS Moul','Khmer OS','Khmer UI',sans-serif;font-size:18px;margin-top:4px}
+.cert .for{font-size:17px;line-height:1.5;margin-top:10px;color:#1d3366}
+.cert .what{font-size:21px;font-weight:800;margin:4px 0;color:#0b1a3b}
+.cert .meta{font-family:Arial,sans-serif;font-size:12.5px;color:#4a5677;margin-top:4px}
+.cert .signs{position:absolute;left:250px;right:240px;bottom:60px;display:grid;grid-template-columns:1fr 130px 1fr;gap:20px;align-items:end;text-align:center;font-family:Arial,sans-serif}
+.cert .signs .ln{border-top:1.5px solid #c9a227;padding-top:6px;font-size:12px;letter-spacing:2px;font-weight:700}
+.cert .signs .nm{font-family:'Brush Script MT','Segoe Script',cursive;font-size:21px;min-height:30px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cert .laurel{font-size:12px;font-weight:700;color:#0b1a3b;border:2px solid #c9a227;border-radius:50%;width:110px;height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto;line-height:1.3}
+.cert .seal{position:absolute;left:58px;bottom:70px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,#0b1a3b 0 58%,#d6aa4c 58% 64%,#0b1a3b 64% 68%,#e2bb55 68%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+.cert .seal img{width:70px;height:70px;object-fit:contain}
+.cert .seal span{color:#d6aa4c;font-size:30px;font-weight:800}
+.cert .date{position:absolute;right:250px;bottom:30px;font-family:Arial,sans-serif;font-size:12px;letter-spacing:1px}
+.cert .date b{border-bottom:1px solid #0b1a3b;padding:0 18px;font-family:Georgia,serif;font-size:14px;letter-spacing:0}
+.cert.revoked::after{content:'REVOKED';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:150px;color:rgba(200,30,30,.25);font-weight:900;transform:rotate(-18deg)}
+@media print{
+  @page{size:A4 landscape;margin:0}
+  body *{visibility:hidden}
+  #cert-print-area,#cert-print-area *{visibility:visible}
+  #cert-print-area{position:fixed;left:0;top:0}
+  #cert-print-area .cert-scale{transform:none!important}
+  #cert-print-area .cert{width:297mm;height:210mm;box-shadow:none}
+}
+.ver-card{max-width:640px;margin:20px auto;background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.08);overflow:hidden}
+.ver-row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #eef0f5;font-size:.88rem}
+.ver-row span{color:#7a84a0}.ver-row b{text-align:right}
+</style>
+
+<!-- Teachers: list of students + issue certificates -->
+<div id="cert-page">
+  <div class="cert-bar"><button onclick="closeCertificatesPage()">← Back</button><b style="flex:1">🏅 Certificates</b></div>
+  <div style="max-width:960px;margin:0 auto;padding:14px 12px 40px">
+    <div style="background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:.8rem;color:#555;line-height:1.6">
+      Students who have studied for <b>one year or more</b> are marked <b style="color:#2e7d32">Eligible</b>. Issuing a certificate saves the student's study record (level, subjects, scores, dates). Anyone who scans the QR code on the certificate sees that record and can check it is real.
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+      <select id="cert-filter" onchange="renderCertRoster()" style="padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:8px;font-family:inherit"><option value="">All students</option><option value="eligible">Eligible (1 year+)</option><option value="issued">Certificate issued</option><option value="notyet">Not yet 1 year</option></select>
+      <input id="cert-search" oninput="renderCertRoster()" placeholder="🔍 Search name or ID" style="flex:1;min-width:160px;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:8px;font-family:inherit">
+    </div>
+    <div id="cert-roster"></div>
+  </div>
+</div>
+
+<!-- Issue form -->
+<div id="cert-issue" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:10002;align-items:center;justify-content:center;padding:12px">
+  <div style="background:#fff;border-radius:14px;width:440px;max-width:100%;max-height:92vh;overflow-y:auto">
+    <div style="background:#0b1a3b;color:#d6aa4c;padding:14px 18px;font-weight:800;display:flex;justify-content:space-between;border-radius:14px 14px 0 0"><span>🏅 Issue Certificate</span><button aria-label="Close" onclick="document.getElementById('cert-issue').style.display='none'" style="background:none;border:0;color:#d6aa4c;font-size:1.1rem;cursor:pointer">✕</button></div>
+    <div style="padding:16px 18px;font-size:.82rem">
+      <div id="ci-student" style="font-weight:800;font-size:.95rem;margin-bottom:10px"></div>
+      <label class="ci-l">Level completed</label><select id="ci-level" class="ci-i"></select>
+      <label class="ci-l">Certificate for</label><input id="ci-what" class="ci-i" placeholder="e.g. One Year of English Study">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div><label class="ci-l">Studied from</label><input type="date" id="ci-from" class="ci-i" onchange="ciPreview()"></div>
+        <div><label class="ci-l">Studied until</label><input type="date" id="ci-to" class="ci-i" onchange="ciPreview()"></div>
+      </div>
+      <div id="ci-preview" style="background:#f5f7fb;border-radius:8px;padding:10px;margin:8px 0;line-height:1.6"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div><label class="ci-l">Academic Director</label><input id="ci-director" class="ci-i" placeholder="Name"></div>
+        <div><label class="ci-l">Principal</label><input id="ci-principal" class="ci-i" placeholder="Name"></div>
+      </div>
+      <div id="ci-msg" style="display:none;margin-top:8px;padding:7px 10px;border-radius:6px"></div>
+      <button class="cert-btn gold" style="width:100%;margin-top:12px;padding:11px" onclick="saveCertificate()" id="ci-save">🏅 Issue Certificate</button>
+    </div>
+  </div>
+</div>
+<style>.ci-l{display:block;font-size:.72rem;font-weight:700;color:#555;margin:8px 0 3px}.ci-i{width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.84rem;font-family:inherit}</style>
+
+<!-- Certificate viewer -->
+<div id="cert-view">
+  <div style="display:flex;gap:8px;justify-content:center;margin-bottom:12px;flex-wrap:wrap">
+    <button class="cert-btn gold" onclick="window.print()">🖨️ Print / Save PDF</button>
+    <button class="cert-btn ghost" onclick="openVerifyById(window.__certShown && window.__certShown.certId)">🔍 What the QR shows</button>
+    <button class="cert-btn ghost" onclick="document.getElementById('cert-view').style.display='none'">✕ Close</button>
+  </div>
+  <div class="cert-wrap" id="cert-print-area"><div class="cert-scale" id="cert-scale"></div></div>
+</div>
+
+<!-- Public verification (opened by the QR code: ?verify=CERT-ID) -->
+<div id="cert-verify">
+  <div class="cert-bar"><button onclick="closeVerify()">← Portal</button><b style="flex:1">🔍 Certificate Verification</b></div>
+  <div id="cert-verify-body" style="padding:12px"></div>
+</div>
+
+<script>
+// ══════════════ CERTIFICATES ══════════════
+// certificates/{certId}: studentId, studentName, level, from/to, months, subjects (with average scores),
+// terms, average, grade, CEFR, classification, issue date, signatories, status (valid / revoked).
+var certStudents = [], certIssued = [];
+function certPortalBase(){ return (location.protocol === "file:") ? "https://chansokkh7-spec.github.io/c2epe-portal/" : (location.origin + location.pathname); }
+function certVerifyUrl(id){ return certPortalBase() + "?verify=" + encodeURIComponent(id); }
+function certFmt(d){ if(!d) return "—"; var x = new Date(String(d).length===10 ? d+"T00:00:00" : d); return isNaN(x) ? d : x.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"}); }
+function certMonths(a, b){ if(!a||!b) return 0; var x = new Date(a), y = new Date(b); return Math.max(0, (y.getFullYear()-x.getFullYear())*12 + (y.getMonth()-x.getMonth()) + (y.getDate()>=x.getDate()?0:-1)); }
+function certDuration(m){ var y = Math.floor(m/12), mo = m%12; return (y? y+" year"+(y>1?"s":"") : "") + (y&&mo?" ":"") + (mo? mo+" month"+(mo>1?"s":"") : "") || "less than 1 month"; }
+async function certFb(){ return await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"); }
+function certLocal(){ return location.protocol === "file:" || !window._fb; }
+async function certGetAll(coll, localKey){
+  if(certLocal()) return JSON.parse(localStorage.getItem(localKey)||"[]");
+  var m = await certFb(); return (await m.getDocs(m.collection(window._fb.db, coll))).docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+}
+async function certGet(id){
+  if(certLocal()) return JSON.parse(localStorage.getItem("c2epe_certificates")||"[]").find(function(c){ return c.certId===id; }) || null;
+  var m = await certFb(); var snap = await m.getDoc(m.doc(window._fb.db, "certificates", id)); return snap.exists() ? snap.data() : null;
+}
+async function certPut(c){
+  if(certLocal()){ var l = JSON.parse(localStorage.getItem("c2epe_certificates")||"[]").filter(function(x){ return x.certId!==c.certId; }); l.unshift(c); localStorage.setItem("c2epe_certificates", JSON.stringify(l)); return; }
+  var m = await certFb(); await m.setDoc(m.doc(window._fb.db, "certificates", c.certId), c);
+}
+function studentStartDate(st){ var v = st.enrolledAt || st.startDate || st.createdAt || st.registeredAt; if(!v) return ""; var d = v.toDate ? v.toDate() : new Date(v); return isNaN(d) ? "" : d.toISOString().split("T")[0]; }
+
+// ---- Teachers ----
+async function openCertificatesPage(){
+  if(!isTeacher){ alert("Certificates are issued by teachers/admin."); return; }
+  document.getElementById("cert-page").style.display = "block";
+  document.getElementById("cert-roster").innerHTML = "<div style='text-align:center;padding:30px;color:#888'>Loading…</div>";
+  try {
+    certStudents = (await certGetAll("students","c2epe_local_students")).filter(function(st){ return teacherCanSeeClass(baseLevel(st.cls||"")); });
+    certIssued = await certGetAll("certificates","c2epe_certificates");
+  } catch(e){ document.getElementById("cert-roster").innerHTML = "<div style='color:#c62828;padding:20px'>"+escapeHtml(e.message||String(e))+"</div>"; return; }
+  renderCertRoster();
+}
+function closeCertificatesPage(){ document.getElementById("cert-page").style.display = "none"; }
+function renderCertRoster(){
+  var f = document.getElementById("cert-filter").value, q = document.getElementById("cert-search").value.trim().toLowerCase();
+  var today = new Date().toISOString().split("T")[0];
+  var rows = certStudents.map(function(st, i){
+    var start = studentStartDate(st), months = start ? certMonths(start, today) : 0;
+    var certs = certIssued.filter(function(c){ return c.studentId && c.studentId===st.studentId && c.status!=="revoked"; }).sort(function(a,b){ return String(b.issueDate).localeCompare(String(a.issueDate)); });
+    return { st:st, i:i, start:start, months:months, certs:certs };
+  }).filter(function(x){
+    var name = (String(x.st.nameEn||"")+" "+String(x.st.nameKm||"")+" "+String(x.st.studentId||"")).toLowerCase();
+    if(q && name.indexOf(q)<0) return false;
+    if(f==="eligible") return x.months>=12 && !x.certs.length;
+    if(f==="issued") return x.certs.length>0;
+    if(f==="notyet") return x.months<12;
+    return true;
+  }).sort(function(a,b){ return (b.months>=12&&!b.certs.length) - (a.months>=12&&!a.certs.length) || String(a.st.nameEn||"").localeCompare(String(b.st.nameEn||"")); });
+  document.getElementById("cert-roster").innerHTML = rows.length ? rows.map(function(x){
+    var st = x.st, badge = x.certs.length ? "<span style='background:#e8f5e9;color:#2e7d32;padding:3px 9px;border-radius:999px;font-size:.7rem;font-weight:800'>🏅 Issued</span>"
+      : x.months>=12 ? "<span style='background:#fff8e1;color:#8d6e00;padding:3px 9px;border-radius:999px;font-size:.7rem;font-weight:800'>⭐ Eligible</span>"
+      : "<span style='background:#f1f3f8;color:#666;padding:3px 9px;border-radius:999px;font-size:.7rem;font-weight:700'>"+(x.start? (12-x.months)+" more month"+(12-x.months===1?"":"s") : "No start date")+"</span>";
+    return "<div style='background:#fff;border-radius:10px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:12px 14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap'>"
+      + "<div style='flex:1;min-width:180px'><b>"+escapeHtml(st.nameEn||st.nameKm||"—")+"</b> "+badge
+      + "<div style='font-size:.74rem;color:#888;margin-top:3px'>"+escapeHtml(st.studentId||"")+" · "+escapeHtml(st.cls||"")+" · studying since "+(x.start?certFmt(x.start):"—")+" ("+certDuration(x.months)+")</div></div>"
+      + x.certs.map(function(c){ return "<button class='cert-btn ghost' onclick=\"viewCertificateById('"+escapeHtml(c.certId)+"')\">👁️ "+escapeHtml(c.certId)+"</button><button class='cert-btn ghost' style='color:#c62828' onclick=\"revokeCertificate('"+escapeHtml(c.certId)+"')\">Revoke</button>"; }).join("")
+      + "<button class='cert-btn"+(x.months>=12&&!x.certs.length?" gold":"")+"' onclick='openIssueCert("+x.i+")'>🏅 Issue</button></div>";
+  }).join("") : "<div style='text-align:center;padding:30px;color:#bbb'>No students match.</div>";
+}
+var ciStudent = null, ciData = null;
+function openIssueCert(i){
+  var st = certStudents[i]; if(!st) return;
+  ciStudent = st;
+  document.getElementById("ci-student").textContent = (st.nameEn||st.nameKm||"") + " · " + (st.studentId||"");
+  var lvl = document.getElementById("ci-level"); lvl.innerHTML = document.getElementById("hw-cls").innerHTML; lvl.value = baseLevel(st.cls||"");
+  document.getElementById("ci-what").value = "One Year of English Study";
+  var today = new Date().toISOString().split("T")[0], start = studentStartDate(st);
+  if(!start){ var d = new Date(); d.setFullYear(d.getFullYear()-1); start = d.toISOString().split("T")[0]; }
+  document.getElementById("ci-from").value = start; document.getElementById("ci-to").value = today;
+  try { var sig = JSON.parse(localStorage.getItem("c2epe_cert_signers")||"{}"); document.getElementById("ci-director").value = sig.director||""; document.getElementById("ci-principal").value = sig.principal||""; } catch(e){}
+  document.getElementById("ci-msg").style.display = "none";
+  document.getElementById("ci-save").disabled = false;
+  document.getElementById("cert-issue").style.display = "flex";
+  ciPreview();
+}
+// The study record saved on the certificate: report cards of this student inside the period
+async function ciPreview(){
+  var st = ciStudent; if(!st) return;
+  var from = document.getElementById("ci-from").value, to = document.getElementById("ci-to").value;
+  var box = document.getElementById("ci-preview"); box.textContent = "Reading the study record…";
+  var reps = [];
+  try { reps = (await certGetAll("reports","c2epe_reports")).filter(function(r){
+      var mine = (st.studentId && r.studentId===st.studentId) || (!r.studentId && String(r.student||"").trim().toLowerCase()===String(st.nameEn||"").trim().toLowerCase());
+      var d = String(r.createdAt||r.updatedAt||"").slice(0,10);
+      return mine && (!d || ((!from || d>=from) && (!to || d<=to)));
+    }); } catch(e){}
+  var avgOf = function(vals){ vals = vals.filter(function(v){ return v>0; }); return vals.length ? vals.reduce(function(a,b){return a+b;},0)/vals.length : 0; };
+  var subjects = [
+    ["Core (homework, quizzes, tests, project)", avgOf(reps.map(function(r){ return avgOfFields(CORE_FIELDS, r.core); }))],
+    ["Grammar", avgOf(reps.map(function(r){ return parseFloat(r.grammar)||0; }))],
+    ["Writing", avgOf(reps.map(function(r){ return parseFloat(r.writing)||0; }))],
+    ["Reading, Listening, Speaking & Vocabulary", avgOf(reps.map(function(r){ return avgOfFields(LANG_FIELDS, r.language); }))],
+    ["Life Education (AI & ICT, Financial, Leadership, Health, Life Skills)", avgOf(reps.map(function(r){ return avgOfFields(LIFE_FIELDS, r.life); }))]
+  ].filter(function(x){ return x[1]>0; });
+  var avg = avgOf(subjects.map(function(x){ return x[1]; }));
+  ciData = { subjects: subjects.map(function(x){ return {name:x[0], score:Math.round(x[1])}; }), terms: reps.map(function(r){ return r.term; }).filter(Boolean), average: Math.round(avg) };
+  var months = certMonths(from, to);
+  box.innerHTML = "<b>Duration:</b> "+certDuration(months)+(months<12?" <span style='color:#c65a00'>(less than one year)</span>":"")
+    + "<br><b>Report cards found:</b> "+reps.length+(ciData.terms.length?" ("+escapeHtml(ciData.terms.join(", "))+")":"")
+    + (subjects.length ? "<br><b>Subjects:</b> "+subjects.map(function(x){ return escapeHtml(x[0].split(" (")[0])+" "+Math.round(x[1])+"%"; }).join(" · ")+"<br><b>Average:</b> "+Math.round(avg)+"% · "+scoreToGrade(avg,100).label+" · CEFR "+scoreToCEFR(avg)
+       : "<br><span style='color:#c65a00'>No scores in this period — the certificate will list the level and dates only.</span>");
+}
+function newCertId(){ var a = new Uint32Array(1); crypto.getRandomValues(a); return "C2-" + new Date().getFullYear() + "-" + String(a[0] % 100000000).padStart(8,"0"); }
+async function saveCertificate(){
+  var st = ciStudent, msg = document.getElementById("ci-msg"), btn = document.getElementById("ci-save");
+  var from = document.getElementById("ci-from").value, to = document.getElementById("ci-to").value;
+  if(!from || !to || to < from){ msg.style.cssText="display:block;background:#ffebee;color:#c62828;margin-top:8px;padding:7px 10px;border-radius:6px"; msg.textContent="Please choose a valid study period."; return; }
+  btn.disabled = true;
+  try {
+    var id; do { id = newCertId(); } while(await certGet(id));
+    var director = document.getElementById("ci-director").value.trim(), principal = document.getElementById("ci-principal").value.trim();
+    localStorage.setItem("c2epe_cert_signers", JSON.stringify({director:director, principal:principal}));
+    var lvlSel = document.getElementById("ci-level"), lvlLabel = lvlSel.options[lvlSel.selectedIndex] ? lvlSel.options[lvlSel.selectedIndex].textContent : lvlSel.value;
+    var avg = (ciData && ciData.average) || 0;
+    var c = { certId:id, studentId:st.studentId||"", studentName:st.nameEn||st.nameKm||"", studentNameKm:st.nameKm||"",
+      level:lvlSel.value, levelLabel:lvlLabel, achievement:document.getElementById("ci-what").value.trim()||"One Year of English Study",
+      from:from, to:to, months:certMonths(from,to), terms:(ciData&&ciData.terms)||[], subjects:(ciData&&ciData.subjects)||[],
+      average:avg, grade: avg ? scoreToGrade(avg,100).label : "", cefr: avg ? scoreToCEFR(avg) : "", classification: avg ? scoreToClassification(avg) : "",
+      director:director, principal:principal, issueDate:new Date().toISOString().split("T")[0], issuedBy:currentTeacherName||"", status:"valid", createdAt:new Date().toISOString() };
+    await certPut(c);
+    certIssued.unshift(c);
+    document.getElementById("cert-issue").style.display = "none";
+    renderCertRoster();
+    showCertificate(c);
+  } catch(e){ msg.style.cssText="display:block;background:#ffebee;color:#c62828;margin-top:8px;padding:7px 10px;border-radius:6px"; msg.textContent="❌ "+(e.message||e); btn.disabled = false; }
+}
+async function revokeCertificate(id){
+  if(!confirm("Revoke certificate "+id+"? Scanning it will then show that it is no longer valid.")) return;
+  var c = await certGet(id); if(!c) return;
+  c.status = "revoked"; c.revokedAt = new Date().toISOString(); c.revokedBy = currentTeacherName||"";
+  await certPut(c);
+  certIssued = certIssued.map(function(x){ return x.certId===id ? c : x; });
+  renderCertRoster();
+}
+
+// ---- The certificate ----
+async function viewCertificateById(id){ var c = await certGet(id); if(c) showCertificate(c); }
+function showCertificate(c){
+  window.__certShown = c;
+  var E = function(v){ return escapeHtml(v==null?"":String(v)); };
+  document.getElementById("cert-scale").innerHTML =
+    "<div class='cert"+(c.status==="revoked"?" revoked":"")+"' id='cert-doc'>"
+    + "<div class='c-tl'></div><div class='c-br'></div><div class='frame'></div>"
+    + "<div class='ribbon'><div style='font-size:22px'>👑</div><div class='v'>VERIFY</div><small>THIS CERTIFICATE</small><div class='qr' id='cert-qr'></div>"
+    + "<small>Scan the QR code to see the student's study record</small><b>"+E(c.certId)+"</b></div>"
+    + "<div class='body'><img class='logo' src='logo.png' alt='' onerror=\"this.style.display='none'\">"
+    + "<div class='school'>C2-EPE DIGITAL ACADEMY</div><div style='height:2px;width:60%;margin:0 auto;background:#c9a227'></div>"
+    + "<div class='tag'>LEARN · GROW · ACHIEVE</div><div class='title'>CERTIFICATE</div><div class='sub'>OF ACHIEVEMENT</div>"
+    + "<div class='pres'>THIS CERTIFICATE IS PROUDLY PRESENTED TO</div>"
+    + "<div class='name'>"+E(c.studentName)+"</div>"+(c.studentNameKm && c.studentNameKm!==c.studentName?"<div class='km'>"+E(c.studentNameKm)+"</div>":"")
+    + "<div class='for'>for successfully completing</div><div class='what'>"+E(c.achievement)+" — "+E(c.levelLabel||c.level)+"</div>"
+    + "<div class='meta'>"+E(certFmt(c.from))+" – "+E(certFmt(c.to))+" ("+E(certDuration(c.months||0))+")"+(c.average?" · Average "+E(c.average)+"% · Grade "+E(c.grade)+" · CEFR "+E(c.cefr):"")+"</div>"
+    + "<div class='for' style='margin-top:8px'>We are proud of your accomplishments.</div></div>"
+    + "<div class='seal'><img src='logo.png' alt='' onerror=\"this.outerHTML='<span>C2</span>'\"></div>"
+    + "<div class='signs'><div><div class='nm'>"+E(c.director)+"</div><div class='ln'>ACADEMIC DIRECTOR</div></div>"
+    + "<div class='laurel'>🏆<br>EXCELLENCE<br>IN EDUCATION<br>★ ★ ★</div>"
+    + "<div><div class='nm'>"+E(c.principal)+"</div><div class='ln'>PRINCIPAL</div></div></div>"
+    + "<div class='date'>DATE: <b>"+E(certFmt(c.issueDate))+"</b></div></div>";
+  document.getElementById("cert-view").style.display = "block";
+  renderQRCode("cert-qr", certVerifyUrl(c.certId), 108);
+  certFit();
+}
+function certFit(){
+  var sc = document.getElementById("cert-scale"), avail = document.getElementById("cert-print-area").clientWidth || window.innerWidth - 32;
+  var k = Math.min(1, avail / 1060);
+  sc.style.transform = "scale("+k+")"; sc.style.width = "1060px"; sc.style.height = (1060/1.414*k)+"px";
+}
+window.addEventListener("resize", function(){ if(document.getElementById("cert-view").style.display==="block") certFit(); });
+
+// ---- Public verification (QR) ----
+function openVerifyById(id){ if(!id) return; history.replaceState(null, "", "?verify="+encodeURIComponent(id)); showVerify(id); }
+function closeVerify(){ document.getElementById("cert-verify").style.display = "none"; history.replaceState(null, "", location.pathname); }
+async function showVerify(id){
+  var box = document.getElementById("cert-verify-body");
+  document.getElementById("cert-verify").style.display = "block";
+  box.innerHTML = "<div class='ver-card' style='padding:30px;text-align:center;color:#888'>Checking certificate "+escapeHtml(id)+"…</div>";
+  var c = null; try { c = await certGet(id); } catch(e){}
+  if(!c){ box.innerHTML = "<div class='ver-card' style='padding:26px;text-align:center'><div style='font-size:3rem'>❌</div><h2 style='color:#c62828;margin:6px 0'>Certificate not found</h2><p style='color:#666'>No certificate with the ID <b>"+escapeHtml(id)+"</b> was issued by C2-EPE Digital Academy. Please check the ID or contact the school.</p></div>"; return; }
+  var ok = c.status !== "revoked";
+  box.innerHTML = "<div class='ver-card'>"
+    + "<div style='background:"+(ok?"linear-gradient(135deg,#0b1a3b,#1b3570)":"#7f1d1d")+";color:#fff;padding:22px;text-align:center'>"
+    + "<div style='font-size:2.6rem'>"+(ok?"✅":"⛔")+"</div><div style='font-size:1.2rem;font-weight:800;color:"+(ok?"#d6aa4c":"#fff")+"'>"+(ok?"VERIFIED CERTIFICATE":"CERTIFICATE REVOKED")+"</div>"
+    + "<div style='font-size:.8rem;opacity:.85;margin-top:4px'>Issued by C2-EPE Digital Academy · Phnom Penh, Cambodia</div></div>"
+    + "<div style='padding:18px 20px'>"
+    + (ok ? "" : "<p style='color:#c62828;font-weight:700'>This certificate is no longer valid"+(c.revokedAt?" (revoked on "+certFmt(c.revokedAt)+")":"")+".</p>")
+    + "<div class='ver-row'><span>Student</span><b>"+escapeHtml(c.studentName)+(c.studentNameKm&&c.studentNameKm!==c.studentName?"<br>"+escapeHtml(c.studentNameKm):"")+"</b></div>"
+    + "<div class='ver-row'><span>Level completed</span><b>"+escapeHtml(c.levelLabel||c.level)+"</b></div>"
+    + "<div class='ver-row'><span>Programme</span><b>"+escapeHtml(c.achievement)+"</b></div>"
+    + "<div class='ver-row'><span>Period of study</span><b>"+certFmt(c.from)+" – "+certFmt(c.to)+"</b></div>"
+    + "<div class='ver-row'><span>Duration</span><b>"+certDuration(c.months||0)+"</b></div>"
+    + (c.terms && c.terms.length ? "<div class='ver-row'><span>Terms completed</span><b>"+escapeHtml(c.terms.join(", "))+"</b></div>" : "")
+    + (c.subjects && c.subjects.length ? "<div style='margin:14px 0 6px;font-weight:800;font-size:.85rem;color:#0b1a3b'>📚 WHAT THE STUDENT STUDIED</div>"
+        + c.subjects.map(function(x){ return "<div style='margin:6px 0'><div style='display:flex;justify-content:space-between;font-size:.84rem'><span>"+escapeHtml(x.name)+"</span><b>"+x.score+"%</b></div><div style='height:6px;background:#eef0f5;border-radius:4px;overflow:hidden'><div style='height:100%;width:"+Math.min(100,x.score)+"%;background:#c9a227'></div></div></div>"; }).join("") : "")
+    + (c.average ? "<div class='ver-row' style='margin-top:8px'><span>Final result</span><b>"+c.average+"% · Grade "+escapeHtml(c.grade)+" · CEFR "+escapeHtml(c.cefr)+(c.classification?" · "+escapeHtml(c.classification):"")+"</b></div>" : "")
+    + "<div class='ver-row'><span>Date issued</span><b>"+certFmt(c.issueDate)+"</b></div>"
+    + "<div class='ver-row'><span>Certificate ID</span><b>"+escapeHtml(c.certId)+"</b></div>"
+    + "</div></div><p style='text-align:center;font-size:.72rem;color:#8a93a8'>This page shows the record stored by the school when the certificate was issued.</p>";
+}
+// opened from a QR code?
+(function(){ try { var v = new URLSearchParams(location.search).get("verify"); if(v) setTimeout(function(){ showVerify(v); }, 300); } catch(e){} })();
+
+// ---- Students: their certificates ----
+async function loadMyCertificates(){
+  if(!studentSession) return [];
+  try { return (await certGetAll("certificates","c2epe_certificates")).filter(function(c){ return c.studentId===studentSession.studentId && c.status!=="revoked"; }); } catch(e){ return []; }
 }
 </script>
 

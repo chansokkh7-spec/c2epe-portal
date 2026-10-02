@@ -16558,6 +16558,13 @@ function sdOpenReport(){
       <button onclick="tdGo(openAnnouncePage)">📢 Announcements</button>
       <button onclick="tdGo(openMsgPage)">💬 Messages</button>
       <button onclick="tdOpenNews()">📰 School News &amp; Posts</button>
+      <h4 id="td-adm-h">ADMINISTRATION</h4>
+      <button id="td-adm-admissions" onclick="tdGo(openAdmissionsPage)">📝 Admissions (applications)<span id="td-adm-badge" style="display:none;margin-left:auto;background:#e53935;color:#fff;border-radius:999px;padding:1px 8px;font-size:.7rem;font-weight:800"></span></button>
+      <button id="td-adm-frontdesk" onclick="tdGo(openFrontDeskPage)">🏫 Front Desk Registration</button>
+      <button id="td-adm-dashboard" onclick="tdGo(openAdminDashboard)">🛡️ Admin Dashboard (staff)</button>
+      <button id="td-adm-finance" onclick="tdGo(openFinancePage)">📊 Finance Overview</button>
+      <button id="td-adm-fees" onclick="tdGo(openFeePage)">💰 Fee Payment</button>
+      <button id="td-adm-idcards" onclick="tdGo(openIDCardPage)">🪪 Student ID Cards</button>
       <h4>MORE</h4>
       <button onclick="tdAllTools(event)">🛠️ All Tools</button>
       <button onclick="tdLogout()" style="color:#ff8a80">🚪 Log out</button>
@@ -16630,6 +16637,20 @@ async function tdRefresh(){
   try { students = (await tdFetch('students','c2epe_local_students')).map(function(s){ s.cls = baseLevel(s.cls||''); return s; }).filter(function(s){ return teacherCanSeeClass(s.cls); }); } catch(e){ console.error('td students', e); }
   try { reports = (await tdFetch('reports','c2epe_reports')).filter(function(r){ return teacherCanSeeClass(baseLevel(r.cls||'')); }); } catch(e){ console.error('td reports', e); }
   try { anns = await tdFetch('announcements','c2epe_announcements'); } catch(e){ console.error('td announcements', e); }
+  // ── administration: original admin pages, by permission ──
+  var isAdm = currentUser && currentUser.email === ADMIN_EMAIL;
+  var canAdmissions = typeof admissionsCanAccess === 'function' && admissionsCanAccess();
+  var canFinance = typeof financeCanAccess === 'function' && financeCanAccess();
+  var show = function(id, on){ var el = document.getElementById(id); if(el) el.style.display = on ? '' : 'none'; };
+  show('td-adm-admissions', canAdmissions); show('td-adm-frontdesk', canAdmissions);
+  show('td-adm-dashboard', isAdm || (typeof currentAdminDeptHead !== 'undefined' && currentAdminDeptHead === 'hr'));
+  show('td-adm-finance', canFinance); show('td-adm-fees', canFinance || isAdm); show('td-adm-idcards', isAdm || canAdmissions);
+  show('td-adm-h', canAdmissions || canFinance || isAdm);
+  var apps = [];
+  if(canAdmissions){ try { apps = await tdFetch('applications','c2epe_applications'); } catch(e){ console.error('td applications', e); } }
+  var waiting = apps.filter(function(a){ return a.status==='pending' || a.status==='reviewing'; });
+  var waitOnline = waiting.filter(function(a){ return !a.registeredInPerson; }).length, waitDesk = waiting.length - waitOnline;
+  var badge = document.getElementById('td-adm-badge'); if(badge){ badge.style.display = waiting.length ? 'inline-block' : 'none'; badge.textContent = waiting.length; }
   try { var today = new Date().toISOString().split('T')[0]; att = (await tdFetch('attendance','c2epe_attendance')).filter(function(a){ return a.date===today && teacherCanSeeClass(a.cls); }); } catch(e){ console.error('td attendance', e); }
   if(!isTeacher) return;
   // latest report per student
@@ -16660,7 +16681,19 @@ async function tdRefresh(){
   var recent = students.slice().sort(function(a,b){ return String(b.createdAt||b.enrolledAt||'').localeCompare(String(a.createdAt||a.enrolledAt||'')); }).slice(0,6);
   var top = scored.slice().sort(function(a,b){ return b.overall-a.overall; }).slice(0,5);
   var studentById = {}; students.forEach(function(s){ if(s.studentId) studentById[s.studentId] = s; });
-  box.innerHTML =
+  var recentApps = apps.slice().sort(function(a,b){ return String(b.submittedAt||'').localeCompare(String(a.submittedAt||'')); }).slice(0,5);
+  var stLabel = {pending:['⏳ Pending','#f57c00'], reviewing:['🔍 Reviewing','#1565c0'], accepted:['✅ Accepted','#2e7d32'], enrolled:['🎓 Enrolled','#6a1b9a'], rejected:['🚫 Rejected','#c62828']};
+  var admHTML = canAdmissions ? (
+      "<div class='td-card' style='border:1.5px solid "+(waiting.length?"#f57c00":"#e6e9f0")+"'><div style='display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px'>"
+      + "<h3>📝 Enrollment Applications "+(waiting.length?"<span style='background:#e53935;color:#fff;border-radius:999px;padding:2px 9px;font-size:.72rem'>"+waiting.length+" to verify</span>":"")+"</h3>"
+      + "<div style='display:flex;gap:6px;flex-wrap:wrap'><button class='td-ghost' onclick='tdGo(openFrontDeskPage)'>🏫 Register at front desk</button><button class='td-gold' onclick='tdGo(openAdmissionsPage)'>Review applications</button></div></div>"
+      + "<div class='td-sub' style='margin-bottom:8px'>"+(waiting.length ? "🌐 "+waitOnline+" online · 🏫 "+waitDesk+" registered in person — waiting for you to verify and accept (Accept &amp; Enroll creates the Student ID)." : "No applications waiting.")+"</div>"
+      + (recentApps.length ? "<div style='overflow-x:auto'><table><thead><tr><th>Child</th><th>Level</th><th>Parent / Phone</th><th>How</th><th>Submitted</th><th>Status</th></tr></thead><tbody>"
+         + recentApps.map(function(a){ var st = stLabel[a.status] || [a.status||'—','#555'];
+             return "<tr style='cursor:pointer' onclick='tdGo(openAdmissionsPage)'><td>"+tdEsc(a.childNameEn||a.childNameKm||'—')+"</td><td>"+tdEsc(a.levelApplied||'')+"</td><td>"+tdEsc(a.parentName||'')+"<br><span style='color:#8a93a8'>"+tdEsc(a.parentPhone||'')+"</span></td><td>"+(a.registeredInPerson?"🏫 Front desk":"🌐 Online")+"</td><td>"+tdDate(a.submittedAt)+"</td><td><b style='color:"+st[1]+"'>"+st[0]+"</b></td></tr>"; }).join('')
+         + "</tbody></table></div>" : "")
+      + "</div>") : "";
+  box.innerHTML = admHTML +
     "<div class='td-card'><div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:10px'><h3>📢 Announcements</h3><button class='td-ghost' onclick='tdGo(openAnnouncePage)'>View all</button></div>"+annHTML+"</div>"
     + "<div class='td-kpis'>"
     + "<button class='td-kpi' onclick='tdGo(openStudentPage)'><div class='ic' style='background:#e8f0ff'>👥</div><b>"+students.length+"</b><span>Total Students</span><small style='color:#1f9d6b'>"+(newThisMonth?"▲ "+newThisMonth+" this month":"&nbsp;")+"</small></button>"

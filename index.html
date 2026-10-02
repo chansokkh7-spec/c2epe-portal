@@ -1628,6 +1628,9 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
   <div id="hw-subs-list" style="max-width:820px;margin:0 auto;padding:14px 12px 40px;"></div>
 </div>
 <style>.inv-l{display:block;font-size:.66rem;font-weight:700;color:#555;margin-bottom:2px}.inv-i{width:100%;box-sizing:border-box;padding:6px 7px;border:1.5px solid #e0e0e0;border-radius:6px;font-size:.8rem;font-family:inherit}</style>
+<style>.aiq-tab{flex:1;padding:8px;border:1.5px solid #c5cae9;background:#fff;color:#555;border-radius:8px;font-weight:700;cursor:pointer;font-size:.78rem;font-family:inherit}.aiq-tab.on{background:#000080;color:#FFD700;border-color:#000080}
+.aiq-l{display:block;font-size:.68rem;font-weight:700;color:#555;margin-bottom:2px}.aiq-i{width:100%;padding:7px 8px;border:1.5px solid #c5cae9;border-radius:6px;font-size:.8rem;font-family:inherit}
+.q-flag{background:#fff3e0;color:#c65a00;border-radius:6px;padding:5px 8px;font-size:.72rem;margin-top:6px}</style>
 <!-- ADD/EDIT HOMEWORK MODAL -->
 <div id="hw-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;align-items:center;justify-content:center;">
   <div style="background:#fff;border-radius:14px;width:360px;max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.3);">
@@ -3776,6 +3779,30 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
             <label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">Due Date</label>
             <input type="date" id="quiz-due" style="width:100%;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;outline:none;font-family:inherit;">
           </div>
+        </div>
+
+        <!-- ✨ Generate the quiz from a photo of the lesson or a topic -->
+        <div id="aiq-panel" style="background:linear-gradient(135deg,#eef2ff,#fff8e1);border:1.5px solid #c5cae9;border-radius:10px;padding:14px;margin-bottom:16px;">
+          <div style="font-weight:800;color:#000080;font-size:.92rem;margin-bottom:4px;">✨ Generate questions automatically</div>
+          <div style="font-size:.75rem;color:#555;margin-bottom:10px;">Take a photo of the lesson page(s) or type the topic, choose how many questions, and press Generate. Questions are made <b>only from your lesson</b>; you can check and edit every question before publishing.</div>
+          <div style="display:flex;gap:6px;margin-bottom:10px;">
+            <button type="button" id="aiq-tab-photo" onclick="aiqTab('photo')" class="aiq-tab on">📷 Photo of lesson</button>
+            <button type="button" id="aiq-tab-text" onclick="aiqTab('text')" class="aiq-tab">✍️ Topic / text</button>
+          </div>
+          <div id="aiq-photo-box">
+            <input type="file" id="aiq-files" accept="image/*" multiple style="display:none" onchange="aiqFilesChosen(this)">
+            <button type="button" onclick="document.getElementById('aiq-files').click()" style="width:100%;padding:12px;background:#fff;color:#000080;border:1.5px dashed #9fa8da;border-radius:8px;font-weight:700;cursor:pointer;font-size:.84rem;">📷 Take or choose photo(s) of the lesson</button>
+            <div id="aiq-thumbs" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;"></div>
+          </div>
+          <label style="font-size:.72rem;font-weight:700;color:#555;display:block;margin:10px 0 3px;" id="aiq-text-label">Lesson text (read from the photo — you can correct it)</label>
+          <textarea id="aiq-text" placeholder="Type the topic (e.g. 'Present simple: he/she/it + s') or paste the lesson text…" style="width:100%;box-sizing:border-box;height:110px;padding:8px 10px;border:1.5px solid #c5cae9;border-radius:7px;font-size:.82rem;font-family:inherit;resize:vertical;"></textarea>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px;">
+            <div><label class="aiq-l">Number of questions</label><select id="aiq-count" class="aiq-i"><option>5</option><option selected>10</option><option>15</option><option>20</option><option>25</option><option>30</option></select></div>
+            <div><label class="aiq-l">Difficulty</label><select id="aiq-level" class="aiq-i"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option></select></div>
+            <div><label class="aiq-l">If questions already exist</label><select id="aiq-mode" class="aiq-i"><option value="replace">Replace them</option><option value="add">Add to them</option></select></div>
+          </div>
+          <button type="button" id="aiq-btn" onclick="aiqGenerate()" style="width:100%;margin-top:10px;padding:11px;background:linear-gradient(90deg,#000080,#3949ab);color:#FFD700;border:none;border-radius:8px;font-weight:800;cursor:pointer;font-size:.9rem;">✨ Generate Quiz</button>
+          <div id="aiq-msg" style="display:none;font-size:.78rem;margin-top:8px;padding:8px 10px;border-radius:7px;"></div>
         </div>
 
         <!-- Questions Builder -->
@@ -15399,7 +15426,9 @@ function showCreateQuizView(){
   document.getElementById("quiz-list-view").style.display = "none";
   document.getElementById("quiz-create-view").style.display = "block";
   document.getElementById("quiz-title").value = "";
+  (function(){ var q = document.getElementById("quiz-cls"), h = document.getElementById("hw-cls"); if(q && h && q.querySelectorAll("option").length < h.querySelectorAll("option").length) q.innerHTML = h.innerHTML; })();
   document.getElementById("quiz-cls").value = document.getElementById("quiz-filter-cls").value || "";
+  document.getElementById("aiq-text").value = ""; document.getElementById("aiq-thumbs").innerHTML = ""; document.getElementById("aiq-msg").style.display = "none"; aiqTab("photo");
   document.getElementById("quiz-time").value = "0";
   document.getElementById("quiz-due").value = "";
   document.getElementById("question-blocks").innerHTML = "";
@@ -15427,6 +15456,130 @@ function addQuestionBlock(){
     +"<div style=display:flex;align-items:center;gap:5px><input type=radio name=correct_"+qid+" value=3 class=q-correct><input type=text placeholder=\"Option D\" class=q-opt style=flex:1;padding:6px 9px;border:1px solid #e0e0e0;border-radius:5px;font-size:.8rem;outline:none></div>"
     +"</div><div style=font-size:.7rem;color:#888>💡 Select the radio button next to the correct answer</div>";
   document.getElementById("question-blocks").appendChild(wrap);
+}
+
+
+// ══════════════ AI QUIZ GENERATOR ══════════════
+// Uses the school's Cloudflare Worker (the same one the Hub's Speak Room uses). It receives
+// {prompt} and returns {text}. Photos are read in the browser first (OCR) so the questions come
+// only from the lesson; every question is checked before it is put in the form.
+var AIQ_URL = "https://speak-room-ai.chansok-kh7.workers.dev";
+var aiqImages = [];
+function aiqTab(t){
+  document.getElementById("aiq-tab-photo").classList.toggle("on", t==="photo");
+  document.getElementById("aiq-tab-text").classList.toggle("on", t==="text");
+  document.getElementById("aiq-photo-box").style.display = t==="photo" ? "" : "none";
+  document.getElementById("aiq-text-label").textContent = t==="photo" ? "Lesson text (read from the photo — you can correct it)" : "Topic or lesson text";
+}
+function aiqMsg(text, kind){
+  var m = document.getElementById("aiq-msg");
+  var c = {info:["#e3f2fd","#1565c0"], ok:["#e8f5e9","#2e7d32"], err:["#ffebee","#c62828"], warn:["#fff3e0","#c65a00"]}[kind||"info"];
+  m.style.cssText = "display:block;font-size:.78rem;margin-top:8px;padding:8px 10px;border-radius:7px;background:"+c[0]+";color:"+c[1];
+  m.innerHTML = text;
+}
+function aiqLoadOCR(){
+  return new Promise(function(resolve, reject){
+    if(window.Tesseract) return resolve(window.Tesseract);
+    var sc = document.createElement("script");
+    sc.src = "https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js";
+    sc.onload = function(){ window.Tesseract ? resolve(window.Tesseract) : reject(new Error("Text reader did not load")); };
+    sc.onerror = function(){ reject(new Error("Could not load the text reader — check the internet connection.")); };
+    document.head.appendChild(sc);
+  });
+}
+async function aiqFilesChosen(inp){
+  var files = Array.prototype.slice.call(inp.files||[]); if(!files.length) return;
+  aiqImages = files;
+  document.getElementById("aiq-thumbs").innerHTML = files.map(function(f){ return "<img src='"+URL.createObjectURL(f)+"' alt='' style='width:70px;height:70px;object-fit:cover;border-radius:6px;border:1px solid #c5cae9'>"; }).join("");
+  var ta = document.getElementById("aiq-text");
+  aiqMsg("📖 Reading the text in your photo(s)… (the first time this can take up to a minute)");
+  try {
+    var T = await aiqLoadOCR(), out = [];
+    for(var i=0;i<files.length;i++){
+      aiqMsg("📖 Reading photo "+(i+1)+" of "+files.length+"…");
+      var r = await T.recognize(files[i], "eng");
+      out.push((r && r.data && r.data.text || "").trim());
+    }
+    var text = out.join("\n\n").replace(/[ \t]+\n/g,"\n").trim();
+    if(text.length < 20){ aiqMsg("⚠️ Not much text was found. Please take a clearer, straight photo in good light — or type the lesson text below.", "warn"); }
+    else aiqMsg("✅ Text read from "+files.length+" photo"+(files.length>1?"s":"")+". Please check it below (fix any mistakes), then press Generate.", "ok");
+    ta.value = text + (ta.value && text ? "" : "");
+  } catch(e){ aiqMsg("❌ "+escapeHtml(e.message||String(e))+" You can type or paste the lesson text instead.", "err"); }
+}
+function aiqNorm(s){ return String(s||"").toLowerCase().replace(/[^a-z0-9\s]/g," ").replace(/\s+/g," ").trim(); }
+// is the answer supported by the lesson text? (all its key words appear in the material)
+function aiqSupported(answer, source, material){
+  var mat = " "+aiqNorm(material)+" ";
+  var src = aiqNorm(source);
+  if(src && src.length > 12 && mat.indexOf(" "+src.split(" ").slice(0,6).join(" ")) >= 0) return true;
+  var words = aiqNorm(answer).split(" ").filter(function(w){ return w.length > 2; });
+  return words.length ? words.every(function(w){ return mat.indexOf(" "+w) >= 0; }) : false;
+}
+async function aiqAsk(prompt){
+  var ctrl = new AbortController(), t = setTimeout(function(){ ctrl.abort(); }, 90000), res;
+  try { res = await fetch(AIQ_URL, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({prompt:prompt}), signal:ctrl.signal }); }
+  finally { clearTimeout(t); }
+  var data = await res.json().catch(function(){ return null; });
+  if(!res.ok || !data || typeof data.text !== "string") throw new Error((data && data.error) === "origin_not_allowed" ? "The AI service does not allow this website yet (add it to ALLOWED_ORIGINS in the Worker)." : "The AI service did not answer ("+((data&&data.error)||res.status)+").");
+  var txt = data.text.replace(/```(?:json)?/gi,"").trim(), a = txt.indexOf("{"), b = txt.lastIndexOf("}");
+  return JSON.parse(txt.slice(a, b+1));
+}
+function aiqPrompt(material, isTopic, n, level, cls, avoid){
+  return "You are an experienced English teacher writing a multiple-choice quiz for students in the class \""+cls+"\" (difficulty: "+level+").\n"
+    + (isTopic ? "TOPIC given by the teacher:\n\"\"\"\n"+material+"\n\"\"\"\nWrite questions that test exactly this topic, using only correct, standard English facts and grammar at this level.\n"
+               : "LESSON MATERIAL (the only source you may use):\n\"\"\"\n"+material+"\n\"\"\"\nEvery question MUST be answerable from this material alone. Do not add facts that are not in the material.\n")
+    + "Rules:\n- Write exactly "+n+" questions.\n- Each question has exactly 4 different options and exactly ONE correct answer.\n- The other 3 options must be clearly wrong but plausible.\n- Use clear, simple English suitable for the class.\n- Do not repeat questions"+(avoid.length?" — these already exist: "+avoid.map(function(q){ return "\""+q+"\""; }).join("; "):"")+".\n"
+    + (isTopic ? "" : "- For each question, copy a short exact quote (5-15 words) from the material that proves the answer, in \"source\".\n")
+    + "Reply with ONLY this JSON, nothing else:\n{\"questions\":[{\"q\":\"question text\",\"options\":[\"A\",\"B\",\"C\",\"D\"],\"answer\":0,\"source\":\"exact quote\"}]}\n(\"answer\" is the index 0-3 of the correct option.)";
+}
+async function aiqGenerate(){
+  var material = document.getElementById("aiq-text").value.trim();
+  var isTopic = !document.getElementById("aiq-tab-photo").classList.contains("on") && material.length < 200;
+  var total = parseInt(document.getElementById("aiq-count").value,10)||10;
+  var level = document.getElementById("aiq-level").value;
+  var cls = document.getElementById("quiz-cls").value || "general English";
+  if(material.length < 3){ aiqMsg("Please add a photo of the lesson or type the topic first.", "err"); return; }
+  var btn = document.getElementById("aiq-btn"); btn.disabled = true;
+  var made = [], flagged = 0;
+  try {
+    // ask in small batches so long quizzes are not cut off
+    for(var guard=0; made.length < total && guard < 8; guard++){
+      var n = Math.min(5, total - made.length);
+      aiqMsg("✨ Writing questions… "+made.length+" / "+total);
+      var res = await aiqAsk(aiqPrompt(material, isTopic, n, level, cls, made.map(function(x){ return x.q; })));
+      (res.questions||[]).forEach(function(q){
+        if(made.length >= total) return;
+        var opts = (q.options||[]).map(function(o){ return String(o||"").trim(); });
+        var ans = parseInt(q.answer,10);
+        var ok = q.q && opts.length===4 && opts.every(Boolean) && new Set(opts.map(aiqNorm)).size===4 && ans>=0 && ans<=3;
+        if(!ok) return;                                                    // malformed → dropped
+        if(made.some(function(m){ return aiqNorm(m.q)===aiqNorm(q.q); })) return;   // duplicate → dropped
+        var supported = isTopic ? true : aiqSupported(opts[ans], q.source, material);
+        if(!supported) flagged++;
+        made.push({ q:String(q.q).trim(), options:opts, answer:ans, source:String(q.source||""), check:!supported });
+      });
+    }
+    if(!made.length){ aiqMsg("❌ No usable questions came back. Please try again or add more lesson text.", "err"); return; }
+    if(document.getElementById("aiq-mode").value === "replace"){ document.getElementById("question-blocks").innerHTML = ""; questionBlockCount = 0; }
+    made.forEach(function(q){
+      addQuestionBlock();
+      var w = document.getElementById("qb_"+questionBlockCount);
+      w.querySelector(".q-text").value = q.q;
+      w.querySelectorAll(".q-opt").forEach(function(inp, i){ inp.value = q.options[i]; });
+      w.querySelectorAll(".q-correct").forEach(function(r, i){ r.checked = i===q.answer; });
+      // show the correct answer in green (and keep it in sync if the teacher picks another one)
+      var paint = function(){ w.querySelectorAll(".q-correct").forEach(function(r, i){ var o = w.querySelectorAll(".q-opt")[i]; o.style.background = r.checked ? "#e8f5e9" : ""; o.style.borderColor = r.checked ? "#66bb6a" : "#e0e0e0"; }); };
+      w.querySelectorAll(".q-correct").forEach(function(r){ r.addEventListener("change", paint); }); paint();
+      if(q.source && !isTopic) w.insertAdjacentHTML("beforeend", "<div style='font-size:.7rem;color:#2e7d32;margin-top:6px'>📖 From the lesson: “"+escapeHtml(q.source)+"”</div>");
+      if(q.check) w.insertAdjacentHTML("beforeend", "<div class='q-flag'>⚠️ Please check this one — the answer could not be found word-for-word in the lesson text.</div>");
+    });
+    if(!document.getElementById("quiz-title").value.trim()) document.getElementById("quiz-title").value = (isTopic ? material.slice(0,60) : "Lesson Quiz") + " ("+made.length+" questions)";
+    aiqMsg("✅ "+made.length+" question"+(made.length===1?"":"s")+" added below"+(made.length<total?" (asked for "+total+")":"")+"."
+      + (flagged ? " <b>"+flagged+" marked ⚠️ — please check them.</b>" : "") + " Read each question and the green ✔ answer, then press <b>Publish Quiz</b>.", flagged ? "warn" : "ok");
+    document.getElementById("question-blocks").scrollIntoView({behavior:"smooth", block:"start"});
+  } catch(e){
+    aiqMsg("❌ "+escapeHtml(e.message||String(e)), "err");
+  } finally { btn.disabled = false; }
 }
 
 async function saveQuiz(){

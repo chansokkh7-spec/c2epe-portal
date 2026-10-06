@@ -340,7 +340,13 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
 .idc-front-logo{width:42px;height:42px;margin-right:8px;flex-shrink:0;object-fit:contain;}
 .idc-front-school-name{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:#0d1e3d;line-height:1.2;}
 .idc-front-school-sub{font-size:5.5px;color:#1a3060;font-weight:600;letter-spacing:.4px;margin-top:2px;}
-.idc-front-body{padding:0 10px 28px;display:flex;flex-direction:column;align-items:center;position:relative;}
+.idc-front-body{padding:0 10px 78px;display:flex;flex-direction:column;align-items:center;position:relative;flex:1;}
+.idc-card-front{display:flex;flex-direction:column}
+.idc-card-front .idc-card-footer{position:absolute;left:0;right:0;bottom:0;z-index:3}
+.idc-card-front .idc-angkor{bottom:20px}
+.idc-front-body > *:not(.idc-angkor):not(.idc-watermark){position:relative;z-index:2}
+.idc-watermark{position:absolute;left:50%;top:46%;width:150px;height:150px;transform:translate(-50%,-50%);opacity:.07;z-index:1;pointer-events:none;object-fit:contain}
+.idc-angkor{position:absolute;left:0;right:0;bottom:0;width:100%;height:74px;z-index:1;display:block}
 .idc-front-photo-ring{width:80px;height:80px;border-radius:50%;border:3px solid #c9a227;overflow:hidden;margin:-24px auto 7px;background:#1a2d56;position:relative;z-index:3;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.5);}
 .idc-front-photo-ring img{width:100%;height:100%;object-fit:cover;}
 .idc-front-photo-placeholder{font-size:30px;}
@@ -477,7 +483,7 @@ function logoImgError(img){
 
 <!-- APP SPLASH SCREEN — shows briefly on every load, logo + full name -->
 <div id="app-splash">
-  <img src="seg-shield.png" alt="SEG Education Group" id="app-splash-logo" onerror="this.style.display='none';document.getElementById('app-splash-logo-fallback').style.display='flex';">
+  <img src="logo-full.png" alt="C2-EPE Digital School" id="app-splash-logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='logo.png';}else{this.style.display='none';document.getElementById('app-splash-logo-fallback').style.display='flex';}">
   <div id="app-splash-logo-fallback">🛡️</div>
   <div id="app-splash-title">SEG EDUCATION GROUP</div>
   <div id="app-splash-subtitle">C2-EPE Digital Academy</div>
@@ -4000,6 +4006,26 @@ function logoImgError(img){
               <div class="idc-front-info" id="idc-d-dob">Date of Birth</div>
               <div class="idc-front-info" id="idc-d-valid" style="color:#e2bb55"></div>
               <div class="idc-front-id-tag" id="idc-d-id">ID: —</div>
+              <img src="logo.png" alt="" class="idc-watermark" onerror="this.remove()">
+              <svg class="idc-angkor" viewBox="0 0 210 74" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+                <defs>
+                  <linearGradient id="akSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16295a" stop-opacity="0"/><stop offset=".45" stop-color="#7a4a2a" stop-opacity=".55"/><stop offset=".72" stop-color="#e6a43c"/><stop offset="1" stop-color="#3a2a14"/></linearGradient>
+                  <linearGradient id="akGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6d77a"/><stop offset="1" stop-color="#9c6f1e"/></linearGradient>
+                </defs>
+                <rect width="210" height="74" fill="url(#akSky)"/>
+                <g fill="#2a1d0e" opacity=".9">
+                  <path d="M8 56 q3-14 6 0 M10 56 v-10 M184 56 v-13 M180 44 q4-6 8 0 q-4 3-8 0 M196 56 v-9 M193 48 q3-5 6 0"/>
+                  <rect x="0" y="54" width="210" height="4"/>
+                </g>
+                <g fill="url(#akGold)">
+                  <rect x="22" y="47" width="166" height="8"/>
+                  <rect x="40" y="41" width="130" height="7"/>
+                  <path d="M93.0 42.0 L94.4 37.3 L115.6 37.3 L117.0 42.0ZM94.6 37.3 L95.8 32.7 L114.2 32.7 L115.4 37.3ZM96.1 32.7 L97.2 28.0 L112.8 28.0 L113.9 32.7ZM97.7 28.0 L98.6 23.3 L111.4 23.3 L112.3 28.0ZM99.2 23.3 L99.9 18.7 L110.1 18.7 L110.8 23.3ZM100.8 18.7 L101.3 14.0 L108.7 14.0 L109.2 18.7ZM102.4 14.0 Q105.0 -2.8 105.0 -4.0 Q105.0 -2.8 107.6 14.0ZM75.0 42.0 L76.1 38.6 L91.9 38.6 L93.0 42.0ZM76.2 38.6 L77.1 35.2 L90.9 35.2 L91.8 38.6ZM77.3 35.2 L78.1 31.9 L89.9 31.9 L90.7 35.2ZM78.5 31.9 L79.2 28.5 L88.8 28.5 L89.5 31.9ZM79.7 28.5 L80.2 25.1 L87.8 25.1 L88.3 28.5ZM80.8 25.1 L81.2 21.7 L86.8 21.7 L87.2 25.1ZM82.0 21.7 Q84.0 9.5 84.0 8.7 Q84.0 9.5 86.0 21.7ZM117.0 42.0 L118.1 38.6 L133.9 38.6 L135.0 42.0ZM118.2 38.6 L119.1 35.2 L132.9 35.2 L133.8 38.6ZM119.3 35.2 L120.1 31.9 L131.9 31.9 L132.7 35.2ZM120.5 31.9 L121.2 28.5 L130.8 28.5 L131.5 31.9ZM121.7 28.5 L122.2 25.1 L129.8 25.1 L130.3 28.5ZM122.8 25.1 L123.2 21.7 L128.8 21.7 L129.2 25.1ZM124.0 21.7 Q126.0 9.5 126.0 8.7 Q126.0 9.5 128.0 21.7ZM54.0 42.0 L54.8 39.4 L67.2 39.4 L68.0 42.0ZM54.9 39.4 L55.6 36.9 L66.4 36.9 L67.1 39.4ZM55.8 36.9 L56.4 34.3 L65.6 34.3 L66.2 36.9ZM56.7 34.3 L57.2 31.7 L64.8 31.7 L65.3 34.3ZM57.6 31.7 L58.0 29.2 L64.0 29.2 L64.4 31.7ZM58.5 29.2 L58.8 26.6 L63.2 26.6 L63.5 29.2ZM59.5 26.6 Q61.0 17.4 61.0 16.7 Q61.0 17.4 62.5 26.6ZM142.0 42.0 L142.8 39.4 L155.2 39.4 L156.0 42.0ZM142.9 39.4 L143.6 36.9 L154.4 36.9 L155.1 39.4ZM143.8 36.9 L144.4 34.3 L153.6 34.3 L154.2 36.9ZM144.7 34.3 L145.2 31.7 L152.8 31.7 L153.3 34.3ZM145.6 31.7 L146.0 29.2 L152.0 29.2 L152.4 31.7ZM146.6 29.2 L146.8 26.6 L151.2 26.6 L151.4 29.2ZM147.5 26.6 Q149.0 17.4 149.0 16.7 Q149.0 17.4 150.5 26.6Z"/>
+                </g>
+                <g fill="#0b1a3b" opacity=".35"><rect x="44" y="49" width="122" height="1.2"/><rect x="60" y="43" width="90" height="1"/></g>
+                <rect y="58" width="210" height="16" fill="#e6a43c" opacity=".25"/>
+                <g fill="url(#akGold)" opacity=".22"><path d="M94.0 58.0 L95.3 60.6 L114.7 60.6 L116.0 58.0ZM95.4 60.6 L96.6 63.1 L113.4 63.1 L114.6 60.6ZM96.9 63.1 L97.8 65.7 L112.2 65.7 L113.1 63.1ZM98.3 65.7 L99.1 68.3 L110.9 68.3 L111.7 65.7ZM99.7 68.3 L100.4 70.8 L109.6 70.8 L110.3 68.3ZM101.2 70.8 L101.6 73.4 L108.4 73.4 L108.8 70.8ZM102.6 73.4 Q105.0 82.6 105.0 83.3 Q105.0 82.6 107.4 73.4ZM76.0 58.0 L77.0 59.8 L91.0 59.8 L92.0 58.0ZM77.0 59.8 L77.9 61.5 L90.1 61.5 L91.0 59.8ZM78.1 61.5 L78.8 63.2 L89.2 63.2 L89.9 61.5ZM79.1 63.2 L79.7 65.0 L88.3 65.0 L88.9 63.2ZM80.2 65.0 L80.6 66.8 L87.4 66.8 L87.8 65.0ZM81.2 66.8 L81.5 68.5 L86.5 68.5 L86.8 66.8ZM82.2 68.5 Q84.0 74.8 84.0 75.2 Q84.0 74.8 85.8 68.5ZM118.0 58.0 L119.0 59.8 L133.0 59.8 L134.0 58.0ZM119.0 59.8 L119.9 61.5 L132.1 61.5 L133.0 59.8ZM120.1 61.5 L120.8 63.2 L131.2 63.2 L131.9 61.5ZM121.1 63.2 L121.7 65.0 L130.3 65.0 L130.9 63.2ZM122.2 65.0 L122.6 66.8 L129.4 66.8 L129.8 65.0ZM123.2 66.8 L123.5 68.5 L128.5 68.5 L128.8 66.8ZM124.2 68.5 Q126.0 74.8 126.0 75.2 Q126.0 74.8 127.8 68.5Z"/></g>
+              </svg>
               <span id="idc-d-phone" style="display:none"></span><span id="idc-d-namekm" style="display:none"></span>
             </div>
             <div class="idc-card-footer">PREPARING GLOBAL LEADERS FOR 2030</div>

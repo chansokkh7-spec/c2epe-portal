@@ -16818,6 +16818,38 @@ function tdAvatar(s, i){
   var n = String(s.nameEn||s.nameKm||s.student||'S').trim().split(/\s+/), p = TD_PAL[i%TD_PAL.length];
   return "<span class='td-av' style='background:"+p[0]+";color:"+p[1]+"'>"+tdEsc(((n[0]||'').charAt(0)+(n.length>1?n[n.length-1].charAt(0):'')).toUpperCase())+"</span>";
 }
+
+// Enrollment applications as a round chart: tap the chart or a status to see the students
+function admDonutHTML(apps){
+  if(!apps.length) return "<div class='td-sub'>No applications yet.</div>";
+  var ST = [["pending","⏳ Pending","#f57c00"],["reviewing","🔍 Reviewing","#1565c0"],["accepted","✅ Accepted","#2e7d32"],["enrolled","🎓 Enrolled","#6a1b9a"],["rejected","🚫 Rejected","#c62828"]];
+  var cnt = {}; apps.forEach(function(a){ var k = a.status || "pending"; cnt[k] = (cnt[k]||0) + 1; });
+  var total = apps.length, r = 52, c = 2*Math.PI*r, off = 0, segs = "";
+  ST.forEach(function(st){
+    var n = cnt[st[0]]||0; if(!n) return;
+    var len = c*n/total;
+    segs += "<circle cx='70' cy='70' r='"+r+"' fill='none' stroke='"+st[2]+"' stroke-width='22' stroke-dasharray='"+len+" "+(c-len)+"' stroke-dashoffset='"+(-off)+"' transform='rotate(-90 70 70)' style='cursor:pointer' onclick=\"tdOpenAdmissions('"+st[0]+"')\"><title>"+st[1]+": "+n+"</title></circle>";
+    off += len;
+  });
+  var online = apps.filter(function(a){ return !a.registeredInPerson; }).length;
+  return "<div style='display:flex;gap:22px;align-items:center;flex-wrap:wrap'>"
+    + "<svg viewBox='0 0 140 140' width='150' height='150' role='button' aria-label='Show all applications' style='cursor:pointer;flex-shrink:0' onclick=\"if(event.target.tagName!=='circle'||!event.target.getAttribute('stroke-dasharray'))tdOpenAdmissions('all')\">"
+    + "<circle cx='70' cy='70' r='"+r+"' fill='none' stroke='#eef0f5' stroke-width='22'/>" + segs
+    + "<text x='70' y='68' text-anchor='middle' font-size='26' font-weight='800' fill='#1a1f36'>"+total+"</text><text x='70' y='86' text-anchor='middle' font-size='10' fill='#8a93a8'>applications</text></svg>"
+    + "<div style='flex:1;min-width:200px'>"
+    + ST.map(function(st){ var n = cnt[st[0]]||0;
+        return "<button onclick=\"tdOpenAdmissions('"+st[0]+"')\" style='display:flex;align-items:center;gap:8px;width:100%;background:none;border:0;padding:6px 4px;border-radius:8px;cursor:pointer;font-family:inherit;font-size:.84rem;text-align:left'>"
+          + "<i style='width:12px;height:12px;border-radius:50%;background:"+st[2]+";display:inline-block'></i><span style='flex:1'>"+st[1]+"</span><b>"+n+"</b><span style='color:#8a93a8;font-size:.72rem;width:38px;text-align:right'>"+Math.round(n*100/total)+"%</span></button>"; }).join("")
+    + "<div class='td-sub' style='margin:8px 4px 0'>🌐 "+online+" online · 🏫 "+(total-online)+" at the front desk — tap the chart to see every student</div></div></div>";
+}
+function tdOpenAdmissions(status){
+  tdGo(openAdmissionsPage);
+  setTimeout(function(){
+    var chip = Array.prototype.find.call(document.querySelectorAll(".adm-chip"), function(c){ return (c.getAttribute("onclick")||"").indexOf("'"+status+"'") >= 0; });
+    if(chip) filterAdmissions(status, chip);
+  }, 300);
+}
+
 async function tdRefresh(){
   document.querySelectorAll('#td .td-side button').forEach(function(b,i){ b.classList.toggle('on', i===0); });
   document.getElementById('td').classList.remove('menu-open');
@@ -16879,10 +16911,7 @@ async function tdRefresh(){
       + "<h3>📝 Enrollment Applications "+(waiting.length?"<span style='background:#e53935;color:#fff;border-radius:999px;padding:2px 9px;font-size:.72rem'>"+waiting.length+" to verify</span>":"")+"</h3>"
       + "<div style='display:flex;gap:6px;flex-wrap:wrap'><button class='td-ghost' onclick='tdGo(openFrontDeskPage)'>🏫 Register at front desk</button><button class='td-gold' onclick='tdGo(openAdmissionsPage)'>Review applications</button></div></div>"
       + "<div class='td-sub' style='margin-bottom:8px'>"+(waiting.length ? "🌐 "+waitOnline+" online · 🏫 "+waitDesk+" registered in person — waiting for you to verify and accept (Accept &amp; Enroll creates the Student ID)." : "No applications waiting.")+"</div>"
-      + (recentApps.length ? "<div style='overflow-x:auto'><table><thead><tr><th>Child</th><th>Level</th><th>Parent / Phone</th><th>How</th><th>Submitted</th><th>Status</th></tr></thead><tbody>"
-         + recentApps.map(function(a){ var st = stLabel[a.status] || [a.status||'—','#555'];
-             return "<tr style='cursor:pointer' onclick='tdGo(openAdmissionsPage)'><td>"+tdEsc(a.childNameEn||a.childNameKm||'—')+"</td><td>"+tdEsc(a.levelApplied||'')+"</td><td>"+tdEsc(a.parentName||'')+"<br><span style='color:#8a93a8'>"+tdEsc(a.parentPhone||'')+"</span></td><td>"+(a.registeredInPerson?"🏫 Front desk":"🌐 Online")+"</td><td>"+tdDate(a.submittedAt)+"</td><td><b style='color:"+st[1]+"'>"+st[0]+"</b></td></tr>"; }).join('')
-         + "</tbody></table></div>" : "")
+      + admDonutHTML(apps)
       + "</div>") : "";
   setTimeout(tdEnhance, 0);
   box.innerHTML = admHTML +

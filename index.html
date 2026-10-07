@@ -16913,9 +16913,11 @@ async function tdRefresh(){
       + "<div class='td-sub' style='margin-bottom:8px'>"+(waiting.length ? "🌐 "+waitOnline+" online · 🏫 "+waitDesk+" registered in person — waiting for you to verify and accept (Accept &amp; Enroll creates the Student ID)." : "No applications waiting.")+"</div>"
       + admDonutHTML(apps)
       + "</div>") : "";
-  setTimeout(tdEnhance, 0);
-  box.innerHTML = admHTML +
+  var tdRun = window.__tdRun = (window.__tdRun||0) + 1;
+  setTimeout(function(){ tdEnhance(tdRun); }, 0);
+  box.innerHTML =
     "<div class='td-card' id='td-ann-card'><div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:10px'><h3>📢 Announcements</h3><button class='td-ghost' onclick='tdGo(openAnnouncePage)'>View all</button></div>"+annHTML+"</div>"
+    + admHTML
     + "<div class='td-kpis'>"
     + "<button class='td-kpi' onclick='tdGo(openStudentPage)'><div class='ic' style='background:#e8f0ff'>👥</div><b>"+students.length+"</b><span>Total Students</span><small style='color:#1f9d6b'>"+(newThisMonth?"▲ "+newThisMonth+" this month":"&nbsp;")+"</small></button>"
     + "<button class='td-kpi' onclick='tdGo(openReportPage)'><div class='ic' style='background:#fdf2dc'>🏅</div><b>"+passed+"</b><span>Passed (60% or more)</span><small style='color:#8a93a8'>of "+scored.length+" report cards</small></button>"
@@ -17630,9 +17632,18 @@ async function sdEnhance(d){
   var items = await calLoadItems();
   if(d.examsOpen) items.push({ title:"Exam open now — Examination Portal", date:new Date().toISOString().split("T")[0], type:"exam" });
   if(!document.getElementById("sd-content") || document.getElementById("sd").style.display === "none") return;
+  var anns = [];
+  try {
+    if(xLocal()) anns = JSON.parse(localStorage.getItem("c2epe_announcements")||"[]");
+    else { var fa = await xFb(); anns = (await fa.getDocs(fa.collection(window._fb.db,"announcements"))).docs.map(function(x){ return x.data(); }); }
+    anns = filterAnnouncementsForViewer(anns).sort(function(a,b){ if(!!b.pinned !== !!a.pinned) return (b.pinned?1:0)-(a.pinned?1:0); return String(b.createdAt||"").localeCompare(String(a.createdAt||"")); }).slice(0,3);
+  } catch(e){ console.error("student announcements", e); }
+  var annBlock = "<div class='dx-card' style='margin-bottom:14px'><h3>📢 Announcements <button onclick='sdGo(openAnnouncePage)'>View all ›</button></h3>"
+    + (anns.length ? anns.map(function(a){ return "<div style='border:1px solid "+(a.pinned?"#d8a93a":"#e6e9f0")+";background:"+(a.pinned?"#fbecd9":"#fff")+";border-radius:12px;padding:10px 12px;margin-bottom:8px'><b style='font-size:.86rem'>"+(a.pinned?"📌 ":"")+escapeHtml(a.title||"")+"</b><div class='dx-muted' style='margin:2px 0 5px'>"+(a.cls?escapeHtml(a.cls):"All classes")+(a.createdAt?" · "+new Date(a.createdAt).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}):"")+"</div><div style='font-size:.8rem;color:#333;white-space:pre-line'>"+escapeHtml(String(a.message||"").slice(0,220))+(String(a.message||"").length>220?"…":"")+"</div></div>"; }).join("")
+       : "<div class='dx-muted'>No announcements right now.</div>") + "</div>";
   var initials = String(studentSession.name||"S").split(/\s+/).map(function(w){ return w.charAt(0); }).join("").slice(0,2).toUpperCase();
   var tile = function(ic, label, bg, fn){ return "<button class='dx-tile' style='background:"+bg+"' onclick='sdGo("+fn+")'><span>"+ic+"</span>"+label+"</button>"; };
-  box.insertAdjacentHTML("afterbegin",
+  box.insertAdjacentHTML("afterbegin", annBlock +
     "<div class='dx-hello'>"+(me.photo ? "<img src='"+escapeHtml(me.photo)+"' alt=''>" : "<div class='av'>"+escapeHtml(initials)+"</div>")
     + "<div style='flex:1;min-width:0'><span>"+greetWord()+",</span><b>"+escapeHtml(studentSession.name)+"</b><span>"+escapeHtml(classDisplayLabel(studentSession.cls)||studentSession.cls)+" · ID "+escapeHtml(studentSession.studentId)+"</span></div></div>"
     + "<div class='dx-tiles'>"
@@ -17667,7 +17678,7 @@ function sdProfile(){
   document.getElementById("sd-profile").style.display = "flex";
 }
 // ---- teacher ----
-async function tdEnhance(){
+async function tdEnhance(run){
   var box = document.getElementById("td-content"); if(!box || !isTeacher) return;
   var all = []; try { all = await ttGetAll(); } catch(e){}
   var today = todayDayNo(), mine = [];
@@ -17678,7 +17689,9 @@ async function tdEnhance(){
   if(!document.getElementById("td-content") || document.getElementById("td").style.display === "none") return;
   var tile = function(ic, label, bg, fn){ return "<button class='dx-tile' style='background:"+bg+"' onclick='tdGo("+fn+")'><span>"+ic+"</span>"+label+"</button>"; };
   var displayName = (currentTeacherName && currentTeacherName.indexOf("@") < 0) ? currentTeacherName : (isAdm ? "Admin" : "Teacher");
-  box.insertAdjacentHTML("afterbegin",
+  if(run && run !== window.__tdRun) return;            // a newer refresh is running — don't add the sections twice
+  var annCard = document.getElementById("td-ann-card");
+  (annCard ? function(h){ annCard.insertAdjacentHTML("afterend", h); } : function(h){ box.insertAdjacentHTML("afterbegin", h); })(
     "<div class='dx-hello'><div class='av'>👩‍🏫</div><div style='flex:1'><span>"+greetWord()+",</span><b>"+escapeHtml(displayName)+"</b><span>"+new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})+"</span></div></div>"
     + "<div class='dx-tiles'>"
     + tile("✅","Attendance","linear-gradient(135deg,#2e7d32,#43a047)","openAttendPage")

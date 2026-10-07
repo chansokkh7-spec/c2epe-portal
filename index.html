@@ -16750,6 +16750,7 @@ function sdOpenReport(){
       <button onclick="tdGo(openMsgPage)">💬 Messages</button>
       <button onclick="tdOpenNews()">📰 School News &amp; Posts</button>
       <h4 id="td-adm-h">ADMINISTRATION</h4>
+      <button id="td-adm-analytics" onclick="tdGo(openAnalyticsPage)">📈 Analytics &amp; Reports</button>
       <button id="td-adm-admissions" onclick="tdGo(openAdmissionsPage)">📝 Admissions (applications)<span id="td-adm-badge" style="display:none;margin-left:auto;background:#e53935;color:#fff;border-radius:999px;padding:1px 8px;font-size:.7rem;font-weight:800"></span></button>
       <button id="td-adm-frontdesk" onclick="tdGo(openFrontDeskPage)">🏫 Front Desk Registration</button>
       <button id="td-adm-dashboard" onclick="tdGo(openAdminDashboard)">🛡️ Admin Dashboard (staff)</button>
@@ -16857,7 +16858,7 @@ async function tdRefresh(){
   var box = document.getElementById('td-content');
   box.innerHTML = "<div class='td-card' style='text-align:center;color:#8a93a8'>⏳ Loading dashboard…</div>";
   var students=[], reports=[], anns=[], att=[];
-  try { students = (await tdFetch('students','c2epe_local_students')).map(function(s){ s.cls = baseLevel(s.cls||''); return s; }).filter(function(s){ return teacherCanSeeClass(s.cls); }); } catch(e){ console.error('td students', e); }
+  try { students = (await tdFetch('students','c2epe_local_students')).map(function(s){ s.cls = baseLevel(s.cls||''); return s; }).filter(function(s){ return teacherCanSeeClass(s.cls) && s.status !== 'left'; }); } catch(e){ console.error('td students', e); }
   try { reports = (await tdFetch('reports','c2epe_reports')).filter(function(r){ return teacherCanSeeClass(baseLevel(r.cls||'')); }); } catch(e){ console.error('td reports', e); }
   try { anns = await tdFetch('announcements','c2epe_announcements'); } catch(e){ console.error('td announcements', e); }
   // ── administration: original admin pages, by permission ──
@@ -16869,6 +16870,7 @@ async function tdRefresh(){
   show('td-adm-dashboard', isAdm || (typeof currentAdminDeptHead !== 'undefined' && currentAdminDeptHead === 'hr'));
   show('td-adm-finance', canFinance); show('td-adm-fees', canFinance || isAdm); show('td-adm-idcards', isAdm || canAdmissions);
   show('td-adm-h', canAdmissions || canFinance || isAdm);
+  show('td-adm-analytics', typeof anCan === 'function' && anCan());
   var apps = [];
   if(canAdmissions){ try { apps = await tdFetch('applications','c2epe_applications'); } catch(e){ console.error('td applications', e); } }
   var waiting = apps.filter(function(a){ return a.status==='pending' || a.status==='reviewing'; });
@@ -16918,6 +16920,7 @@ async function tdRefresh(){
   box.innerHTML =
     "<div class='td-card' id='td-ann-card'><div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:10px'><h3>📢 Announcements</h3><button class='td-ghost' onclick='tdGo(openAnnouncePage)'>View all</button></div>"+annHTML+"</div>"
     + admHTML
+    + ((typeof anCan === 'function' && anCan()) ? "<button onclick='tdGo(openAnalyticsPage)' style='width:100%;display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#0b1a3b,#1b3570);color:#fff;border:0;border-radius:16px;padding:14px 18px;margin-bottom:16px;cursor:pointer;font-family:inherit;text-align:left'><span style='font-size:1.6rem'>📈</span><span style='flex:1'><b style='color:#d6aa4c;font-size:.95rem'>Analytics &amp; Reports</b><br><span style='font-size:.78rem;color:#cfd6ea'>Growth · why students leave · weakest skills · attendance · parent concerns · AI analysis</span></span><span style='color:#d6aa4c;font-weight:800'>Open ›</span></button>" : "")
     + "<div class='td-kpis'>"
     + "<button class='td-kpi' onclick='tdGo(openStudentPage)'><div class='ic' style='background:#e8f0ff'>👥</div><b>"+students.length+"</b><span>Total Students</span><small style='color:#1f9d6b'>"+(newThisMonth?"▲ "+newThisMonth+" this month":"&nbsp;")+"</small></button>"
     + "<button class='td-kpi' onclick='tdGo(openReportPage)'><div class='ic' style='background:#fdf2dc'>🏅</div><b>"+passed+"</b><span>Passed (60% or more)</span><small style='color:#8a93a8'>of "+scored.length+" report cards</small></button>"
@@ -17292,7 +17295,8 @@ async function loadMyCertificates(){
     ["cert-view", "#cert-print-area"],
     ["fee-receipt-modal", "#fee-receipt-print-area"],
     ["idc-page", "#idc-page .idc-cards-row"],
-    ["report-page", "#report-print-area"]
+    ["report-page", "#report-print-area"],
+    ["an-page", "#an-body"]
   ];
   function visible(id){ var el = document.getElementById(id); return el && getComputedStyle(el).display !== "none"; }
   window.print = function(){
@@ -17704,6 +17708,223 @@ async function tdEnhance(run){
     + "<div class='dx-two'><div class='dx-card'><h3>📚 Today's classes <button onclick='tdGo(openTimetable)'>Timetable ›</button></h3>"+todayClassesHTML(mine, all.length ? "No classes today." : "No timetable yet — open 🗓️ Timetable to add your classes.")+"</div>"
     + "<div class='dx-card'><h3>⏰ Upcoming <button onclick='tdGo(openCalendar)'>＋ Add / Calendar ›</button></h3>"+upcomingHTML(items, "No upcoming events. Add exams, meetings and holidays in the calendar.")+"</div></div>");
   var ann = document.getElementById("td-ann-card"); if(ann) box.prepend(ann);
+}
+</script>
+
+<!-- ═════════ ANALYTICS & REPORTS (Admin / department heads) ═════════ -->
+<style>
+#an-page{display:none;position:fixed;inset:0;background:#f0f2f5;z-index:9990;overflow-y:auto;font-family:inherit;color:#1a1f36}
+#an-page .an-wrap{max-width:1100px;margin:0 auto;padding:14px 12px 50px}
+#an-page .an-card{background:#fff;border-radius:14px;box-shadow:0 1px 8px rgba(0,0,0,.07);padding:16px;margin-bottom:14px;min-width:0}
+#an-page h2{font-size:1rem;margin:0 0 4px;color:#000080}
+#an-page .an-sub{font-size:.75rem;color:#8a93a8;margin-bottom:12px}
+#an-page .an-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+#an-page .an-kpi{background:#fff;border-radius:12px;box-shadow:0 1px 8px rgba(0,0,0,.07);padding:12px 14px}
+#an-page .an-kpi b{display:block;font-size:1.4rem}#an-page .an-kpi span{font-size:.72rem;color:#6b7489}#an-page .an-kpi small{display:block;font-size:.7rem;font-weight:700;margin-top:3px}
+#an-page .an-two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#an-page .an-bar{display:grid;grid-template-columns:150px 1fr 54px;gap:8px;align-items:center;font-size:.8rem;margin:5px 0}
+#an-page .an-bar .t{height:12px;background:#eef0f5;border-radius:6px;overflow:hidden}#an-page .an-bar .t i{display:block;height:100%;border-radius:6px}
+#an-page .an-bar b{text-align:right}
+#an-page table{width:100%;border-collapse:collapse;font-size:.78rem}#an-page th{text-align:left;color:#8a93a8;font-weight:600;padding:6px;border-bottom:1px solid #eef0f5}#an-page td{padding:7px 6px;border-bottom:1px solid #f4f5f8}
+#an-page .an-in{padding:8px 10px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.82rem;font-family:inherit;box-sizing:border-box;max-width:100%}
+#an-page .an-btn{background:#000080;color:#FFD700;border:0;border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer;font-size:.8rem;font-family:inherit}
+#an-page .an-chip{display:inline-block;padding:3px 9px;border-radius:999px;font-size:.7rem;font-weight:700;margin:2px 3px 2px 0}
+#an-page .an-quote{font-size:.76rem;color:#555;background:#f7f8fb;border-left:3px solid #c5cae9;padding:5px 8px;margin:4px 0;border-radius:0 6px 6px 0}
+#an-ai{white-space:pre-wrap;line-height:1.65;font-size:.86rem}
+@media (max-width:860px){#an-page .an-two{grid-template-columns:1fr}#an-page .an-bar{grid-template-columns:110px 1fr 46px}}
+</style>
+<div id="an-page">
+  <div style="background:#000080;color:#FFD700;height:56px;display:flex;align-items:center;gap:12px;padding:0 16px;position:sticky;top:0;z-index:3">
+    <button onclick="document.getElementById('an-page').style.display='none'" style="background:rgba(255,255,255,.15);color:#fff;border:0;padding:6px 12px;border-radius:20px;cursor:pointer;font-size:.82rem">← Back</button>
+    <b style="flex:1">📈 Analytics &amp; Reports</b>
+    <select id="an-range" onchange="anRender()" style="padding:6px 8px;border-radius:8px;border:0;font-family:inherit"><option value="6">Last 6 months</option><option value="12" selected>Last 12 months</option><option value="24">Last 2 years</option></select>
+  </div>
+  <div class="an-wrap" id="an-body"><div class="an-card" style="text-align:center;color:#888">Loading…</div></div>
+</div>
+<script>
+// ══════════════ ANALYTICS ══════════════
+var AN = null;
+var LEAVE_REASONS = ["Moved to another area","Fees / cannot afford","Transferred to another school","Class time / schedule","Not happy with progress","Not happy with teaching","Health","Transport","Graduated / finished the course","Other"];
+var CONCERNS = [
+  ["💰 Fees & payment", /fee|pay|payment|price|money|discount|scholar|invoice|receipt|ថ្លៃ|បង់|លុយ|តម្លៃ|ប្រាក់/i, "#2e7d32"],
+  ["📈 Grades & progress", /grade|score|result|report|exam|test|fail|progress|level|ពិន្ទុ|លទ្ធផល|ប្រឡង|រៀនខ្សោយ|កម្រិត/i, "#1565c0"],
+  ["📝 Homework & workload", /homework|assignment|too much|workload|កិច្ចការ|លំហាត់|ការងារផ្ទះ/i, "#00897b"],
+  ["👩‍🏫 Teacher & teaching", /teacher|teaching|explain|understand|គ្រូ|បង្រៀន|ពន្យល់|មិនយល់/i, "#6a1b9a"],
+  ["🕒 Schedule & time", /time|schedule|late|early|holiday|class time|ម៉ោង|កាលវិភាគ|ឈប់សម្រាក|យឺត/i, "#f57c00"],
+  ["🚌 Transport & safety", /bus|pick ?up|drop|transport|safe|ដឹក|មកយក|ទទួល|សុវត្ថិភាព/i, "#5d4037"],
+  ["🩺 Health & wellbeing", /sick|ill|health|fever|hospital|doctor|ឈឺ|សុខភាព|គ្រុន|ពេទ្យ/i, "#c62828"],
+  ["⚠️ Behaviour & bullying", /bully|fight|hit|behaviou?r|rude|វាយ|ឈ្លោះ|ចំអក|អាកប្បកិរិយា/i, "#ad1457"],
+  ["🏫 Facilities", /room|air ?con|toilet|wifi|chair|clean|បន្ទប់|ម៉ាស៊ីនត្រជាក់|បង្គន់|ស្អាត/i, "#455a64"],
+  ["📄 Absence notice", /absent|can'?t come|cannot come|permission|leave today|សុំច្បាប់|អវត្តមាន|មិនអាចមក/i, "#1976d2"]];
+var ABSENCE_REASONS = [["🤒 Sick / health",/sick|ill|fever|health|doctor|hospital|ឈឺ|គ្រុន|ពេទ្យ/i],["👨‍👩‍👧 Family matter",/family|wedding|funeral|ceremony|គ្រួសារ|រៀបការ|បុណ្យ/i],["✈️ Travel / province",/travel|province|trip|home ?town|ខេត្ត|ធ្វើដំណើរ|ស្រុក/i],["🚌 Transport / traffic",/traffic|transport|bus|rain|moto|ស្ទះ|ភ្លៀង|ដឹក/i],["📝 Other school / exam",/exam|other school|state school|សាលារដ្ឋ|ប្រឡង/i]];
+function anCan(){ return isTeacher && ((currentUser && currentUser.email === ADMIN_EMAIL) || (typeof currentAdminDeptHead !== "undefined" && !!currentAdminDeptHead)); }
+async function openAnalyticsPage(){
+  if(!anCan()){ alert("Analytics & Reports is for the Admin and department heads."); return; }
+  document.getElementById("an-page").style.display = "block";
+  document.getElementById("an-body").innerHTML = "<div class='an-card' style='text-align:center;color:#888'>⏳ Reading the school's records…</div>";
+  AN = { students:[], reports:[], attendance:[], fees:[], apps:[], msgs:[] };
+  try { AN.students = await tdFetch("students","c2epe_local_students"); } catch(e){}
+  try { AN.reports = await tdFetch("reports","c2epe_reports"); } catch(e){}
+  try { AN.attendance = await tdFetch("attendance","c2epe_attendance"); } catch(e){}
+  try { AN.fees = await tdFetch("fees","c2epe_fees"); } catch(e){}
+  try { AN.apps = await tdFetch("applications","c2epe_applications"); } catch(e){}
+  // parents' messages (last 6 months)
+  try {
+    var since = new Date(); since.setMonth(since.getMonth()-6); since = since.toISOString();
+    if(xLocal()){
+      JSON.parse(localStorage.getItem("c2epe_conversations")||"[]").forEach(function(c){ JSON.parse(localStorage.getItem("c2epe_msgs_"+c.id)||"[]").forEach(function(m){ if(m.role==="parent" && String(m.sentAt||"")>=since) AN.msgs.push(Object.assign({cls:c.cls}, m)); }); });
+    } else {
+      var f = await xFb();
+      var convs = (await f.getDocs(f.collection(window._fb.db,"conversations"))).docs.map(function(d){ return Object.assign({id:d.id}, d.data()); }).filter(function(c){ return String(c.lastAt||"") >= since; }).slice(0,150);
+      for(var i=0;i<convs.length;i++){
+        var ms = (await f.getDocs(f.collection(window._fb.db,"conversations/"+convs[i].id+"/messages"))).docs.map(function(d){ return d.data(); });
+        ms.forEach(function(m){ if(m.role==="parent" && String(m.sentAt||"")>=since) AN.msgs.push(Object.assign({cls:convs[i].cls}, m)); });
+      }
+    }
+  } catch(e){ console.error("analytics messages", e); }
+  AN.students.forEach(function(s){ s.cls = baseLevel(s.cls||""); });
+  anRender();
+}
+function anMonthKey(v){ if(!v) return ""; var d = v.toDate ? v.toDate() : new Date(v); return isNaN(d) ? "" : d.toISOString().slice(0,7); }
+function anBars(rows, color, max, fmt){
+  max = max || Math.max.apply(null, rows.map(function(r){ return r[1]; }).concat([1]));
+  return rows.map(function(r){ return "<div class='an-bar'><span style='overflow:hidden;text-overflow:ellipsis;white-space:nowrap' title='"+escapeHtml(r[0])+"'>"+escapeHtml(r[0])+"</span><div class='t'><i style='width:"+Math.min(100,r[1]*100/max)+"%;background:"+(r[2]||color)+"'></i></div><b>"+(fmt?fmt(r[1]):r[1])+"</b></div>"; }).join("");
+}
+function anStats(){
+  var months = +document.getElementById("an-range").value, now = new Date(), keys = [];
+  for(var i=months-1;i>=0;i--){ var d = new Date(now.getFullYear(), now.getMonth()-i, 1); keys.push(d.toISOString().slice(0,7)); }
+  var S = AN.students, active = S.filter(function(s){ return s.status !== "left"; }), left = S.filter(function(s){ return s.status === "left"; });
+  var joined = {}, gone = {}; keys.forEach(function(k){ joined[k]=0; gone[k]=0; });
+  S.forEach(function(s){ var k = anMonthKey(s.enrolledAt||s.createdAt); if(k in joined) joined[k]++; });
+  left.forEach(function(s){ var k = anMonthKey(s.leftAt); if(k in gone) gone[k]++; });
+  var newN = keys.reduce(function(a,k){ return a+joined[k]; },0), leftN = keys.reduce(function(a,k){ return a+gone[k]; },0);
+  var reasons = {}; left.filter(function(s){ return anMonthKey(s.leftAt) >= keys[0]; }).forEach(function(s){ var r = s.leftReason||"Not recorded"; reasons[r]=(reasons[r]||0)+1; });
+  // learning: latest report per student
+  var latest = {}; AN.reports.forEach(function(r){ var k = r.studentId||r.student; if(!k) return; if(!latest[k] || String(r.updatedAt||r.createdAt||"") > String(latest[k].updatedAt||latest[k].createdAt||"")) latest[k] = r; });
+  var reps = Object.values(latest);
+  var skills = [];
+  CORE_FIELDS.forEach(function(f){ skills.push([f[1], reps.map(function(r){ return +((r.core||{})[f[0]])||0; })]); });
+  skills.push(["Grammar", reps.map(function(r){ return parseFloat(r.grammar)||0; })]); skills.push(["Writing", reps.map(function(r){ return parseFloat(r.writing)||0; })]);
+  LANG_FIELDS.forEach(function(f){ skills.push([f[1], reps.map(function(r){ return +((r.language||{})[f[0]])||0; })]); });
+  LIFE_FIELDS.forEach(function(f){ skills.push([f[1], reps.map(function(r){ return +((r.life||{})[f[0]])||0; })]); });
+  skills = skills.map(function(sk){ var v = sk[1].filter(function(x){ return x>0; }); return { name:sk[0], avg: v.length ? v.reduce(function(a,b){return a+b;},0)/v.length : 0, below: v.filter(function(x){ return x<60; }).length, n:v.length }; }).filter(function(x){ return x.n; }).sort(function(a,b){ return a.avg-b.avg; });
+  var byClass = {}; reps.forEach(function(r){ var c = baseLevel(r.cls||"—"), a = calcAvgScore(r); if(!a) return; (byClass[c] = byClass[c] || []).push(a); });
+  var classRows = Object.keys(byClass).map(function(c){ var v = byClass[c]; return { cls:c, avg: v.reduce(function(a,b){return a+b;},0)/v.length, below: v.filter(function(x){ return x<60; }).length, n:v.length }; }).sort(function(a,b){ return a.avg-b.avg; });
+  // attendance
+  var attM = {}; keys.forEach(function(k){ attM[k] = {came:0, total:0}; });
+  var absReasons = {}, absByStudent = {};
+  AN.attendance.forEach(function(a){ var k = String(a.date||"").slice(0,7); Object.keys(a.records||{}).forEach(function(sid){ var r = a.records[sid], st = r.status; if(!st) return;
+      if(k in attM && st !== "permission"){ attM[k].total++; if(st!=="absent") attM[k].came++; }
+      if(st==="absent" || st==="permission"){ var hit = ABSENCE_REASONS.find(function(x){ return x[1].test(r.reason||""); }); var lab = hit ? hit[0] : (r.reason ? "💬 Other reason" : "❔ No reason given"); absReasons[lab]=(absReasons[lab]||0)+1; }
+      if(st==="absent" && String(a.date) >= new Date(Date.now()-30*86400000).toISOString().slice(0,10)) absByStudent[sid]=(absByStudent[sid]||0)+1; }); });
+  // fees
+  var today = new Date().toISOString().split("T")[0];
+  var overdue = AN.fees.filter(function(f){ return f.status!=="paid" && f.dueDate && f.dueDate < today; });
+  // students at risk of leaving or failing
+  var risk = active.map(function(s){
+    var r = latest[s.studentId] || latest[s.nameEn], avg = r ? calcAvgScore(r) : 0, why = [];
+    if(absByStudent[s.id] >= 3) why.push(absByStudent[s.id]+" absences in 30 days");
+    if(avg && avg < 60) why.push("average "+Math.round(avg)+"%");
+    var od = overdue.filter(function(f){ return (f.studentId && f.studentId===s.studentId) || String(f.student||"").toLowerCase()===String(s.nameEn||"").toLowerCase(); });
+    if(od.length) why.push(od.length+" overdue fee"+(od.length>1?"s":""));
+    return { s:s, why:why };
+  }).filter(function(x){ return x.why.length; }).sort(function(a,b){ return b.why.length-a.why.length; });
+  // parent concerns
+  var conc = CONCERNS.map(function(c){ var m = AN.msgs.filter(function(x){ return c[1].test(x.text||""); }); return { name:c[0], color:c[2], n:m.length, samples:m.slice(-2) }; }).filter(function(c){ return c.n; }).sort(function(a,b){ return b.n-a.n; });
+  return { keys:keys, joined:joined, gone:gone, newN:newN, leftN:leftN, active:active.length, leftTotal:left.length, reasons:reasons, skills:skills, classRows:classRows, reps:reps, attM:attM, absReasons:absReasons, overdue:overdue, risk:risk, conc:conc, msgN:AN.msgs.length, apps:AN.apps };
+}
+function anRender(){
+  if(!AN) return;
+  var x = AN.stats = anStats(), M = function(k){ return new Date(k+"-01T00:00:00").toLocaleDateString("en-GB",{month:"short",year:"2-digit"}); };
+  var net = x.newN - x.leftN, attAll = Object.values(x.attM).reduce(function(a,v){ return {came:a.came+v.came,total:a.total+v.total}; },{came:0,total:0});
+  var avgAll = x.reps.length ? x.reps.map(calcAvgScore).filter(Boolean).reduce(function(a,b,i,arr){ return a+b/arr.length; },0) : 0;
+  var maxM = Math.max.apply(null, x.keys.map(function(k){ return Math.max(x.joined[k], x.gone[k]); }).concat([1]));
+  var appConv = x.apps.length ? Math.round(x.apps.filter(function(a){ return a.status==="enrolled"; }).length*100/x.apps.length) : 0;
+  document.getElementById("an-body").innerHTML =
+    "<div class='an-kpis'>"
+    + "<div class='an-kpi'><span>Active students</span><b>"+x.active+"</b><small style='color:"+(net>=0?"#2e7d32":"#c62828")+"'>"+(net>=0?"▲ +":"▼ ")+net+" net in this period</small></div>"
+    + "<div class='an-kpi'><span>New students</span><b style='color:#2e7d32'>"+x.newN+"</b><small style='color:#8a93a8'>joined in this period</small></div>"
+    + "<div class='an-kpi'><span>Students who left</span><b style='color:#c62828'>"+x.leftN+"</b><small style='color:#8a93a8'>"+(x.active+x.leftN ? Math.round(x.leftN*100/(x.active+x.leftN)) : 0)+"% of students</small></div>"
+    + "<div class='an-kpi'><span>Attendance rate</span><b>"+(attAll.total?Math.round(attAll.came*100/attAll.total)+"%":"—")+"</b><small style='color:#8a93a8'>"+attAll.total+" lessons recorded</small></div>"
+    + "<div class='an-kpi'><span>Average score</span><b>"+(avgAll?Math.round(avgAll)+"%":"—")+"</b><small style='color:#8a93a8'>"+x.reps.length+" report cards</small></div>"
+    + "<div class='an-kpi'><span>Applications → enrolled</span><b>"+appConv+"%</b><small style='color:#8a93a8'>"+x.apps.length+" applications</small></div>"
+    + "</div>"
+    // growth
+    + "<div class='an-card'><h2>📊 Growth: students joining and leaving</h2><div class='an-sub'>Each month: green = new students, red = students who left.</div>"
+    + "<div style='display:flex;align-items:flex-end;gap:6px;height:150px;border-bottom:1px solid #e6e9f0;overflow-x:auto;padding-top:14px'>"
+    + x.keys.map(function(k){ return "<div style='flex:1;min-width:34px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%'><div style='display:flex;gap:2px;align-items:flex-end;height:100%'>"
+        + "<i title='New: "+x.joined[k]+"' style='display:block;width:12px;background:#2e7d32;border-radius:3px 3px 0 0;height:"+(x.joined[k]*100/maxM)+"%'></i><i title='Left: "+x.gone[k]+"' style='display:block;width:12px;background:#c62828;border-radius:3px 3px 0 0;height:"+(x.gone[k]*100/maxM)+"%'></i></div></div>"; }).join("")
+    + "</div><div style='display:flex;gap:6px;overflow-x:auto'>"+x.keys.map(function(k){ return "<div style='flex:1;min-width:34px;text-align:center;font-size:.62rem;color:#8a93a8;padding-top:3px'>"+M(k)+"<br><b style='color:#2e7d32'>+"+x.joined[k]+"</b> <b style='color:#c62828'>−"+x.gone[k]+"</b></div>"; }).join("")+"</div></div>"
+    // leaving
+    + "<div class='an-two'><div class='an-card'><h2>🚪 Why students left</h2><div class='an-sub'>Recorded when a student leaves (button below).</div>"
+    + (Object.keys(x.reasons).length ? anBars(Object.keys(x.reasons).map(function(r){ return [r, x.reasons[r]]; }).sort(function(a,b){ return b[1]-a[1]; }), "#c62828") : "<div class='an-sub'>No leavers recorded in this period.</div>")
+    + "<details style='margin-top:10px'><summary style='cursor:pointer;font-weight:700;color:#000080;font-size:.82rem'>📤 Record a student leaving</summary><div style='display:grid;gap:8px;margin-top:8px'>"
+    + "<select id='an-lv-stu' class='an-in'>"+AN.students.filter(function(s){ return s.status!=="left"; }).sort(function(a,b){ return String(a.nameEn||"").localeCompare(String(b.nameEn||"")); }).map(function(s){ return "<option value='"+escapeHtml(s.id)+"'>"+escapeHtml((s.nameEn||s.nameKm||"")+" · "+(s.studentId||"")+" · "+(s.cls||""))+"</option>"; }).join("")+"</select>"
+    + "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px'><input type='date' id='an-lv-date' class='an-in' value='"+new Date().toISOString().split("T")[0]+"'><select id='an-lv-reason' class='an-in'>"+LEAVE_REASONS.map(function(r){ return "<option>"+r+"</option>"; }).join("")+"</select></div>"
+    + "<input id='an-lv-note' class='an-in' placeholder='What did the family say? (optional)'><button class='an-btn' onclick='anRecordLeaving()'>Save</button><div id='an-lv-msg' style='font-size:.78rem'></div></div></details></div>"
+    // risk
+    + "<div class='an-card'><h2>⚠️ Students who need attention</h2><div class='an-sub'>3+ absences in 30 days, average below 60%, or overdue fees — the usual warning signs before a student leaves.</div>"
+    + (x.risk.length ? "<div style='max-height:280px;overflow-y:auto'><table><tr><th>Student</th><th>Class</th><th>Why</th></tr>"+x.risk.slice(0,40).map(function(r){ return "<tr><td>"+escapeHtml(r.s.nameEn||r.s.nameKm||"")+"</td><td>"+escapeHtml(r.s.cls||"")+"</td><td>"+r.why.map(function(w){ return "<span class='an-chip' style='background:#fff3e0;color:#c65a00'>"+escapeHtml(w)+"</span>"; }).join("")+"</td></tr>"; }).join("")+"</table></div>" : "<div class='an-sub'>No warning signs right now. 🎉</div>")
+    + "</div></div>"
+    // learning
+    + "<div class='an-two'><div class='an-card'><h2>📚 Where students are weakest</h2><div class='an-sub'>Average of each skill on the latest report cards (weakest first). Red = below 60%.</div>"
+    + (x.skills.length ? anBars(x.skills.slice(0,10).map(function(s){ return [s.name+(s.below?" ("+s.below+" below 60%)":""), s.avg, s.avg<60?"#c62828":s.avg<75?"#f57c00":"#2e7d32"]; }), "#1565c0", 100, function(v){ return Math.round(v)+"%"; }) : "<div class='an-sub'>Scores appear when report cards are added.</div>")
+    + "</div><div class='an-card'><h2>🏫 Results by class</h2><div class='an-sub'>Average and number of students below 60%.</div>"
+    + (x.classRows.length ? "<table><tr><th>Class</th><th>Average</th><th>Below 60%</th><th>Students</th></tr>"+x.classRows.map(function(c){ return "<tr><td>"+escapeHtml(c.cls)+"</td><td><b style='color:"+(c.avg<60?"#c62828":c.avg<75?"#f57c00":"#2e7d32")+"'>"+Math.round(c.avg)+"%</b></td><td>"+c.below+"</td><td>"+c.n+"</td></tr>"; }).join("")+"</table>" : "<div class='an-sub'>No report cards yet.</div>")
+    + "</div></div>"
+    // attendance
+    + "<div class='an-two'><div class='an-card'><h2>📋 Attendance trend</h2><div class='an-sub'>Share of recorded lessons attended each month.</div>"
+    + anBars(x.keys.filter(function(k){ return x.attM[k].total; }).map(function(k){ var v = x.attM[k]; return [M(k), v.came*100/v.total, v.came*100/v.total<85?"#f57c00":"#2e7d32"]; }), "#2e7d32", 100, function(v){ return Math.round(v)+"%"; }) + (Object.values(x.attM).some(function(v){ return v.total; }) ? "" : "<div class='an-sub'>No attendance in this period.</div>")
+    + "</div><div class='an-card'><h2>🤒 Why students are absent</h2><div class='an-sub'>Grouped from the reasons teachers type in Attendance.</div>"
+    + (Object.keys(x.absReasons).length ? anBars(Object.keys(x.absReasons).map(function(r){ return [r, x.absReasons[r]]; }).sort(function(a,b){ return b[1]-a[1]; }), "#1976d2") : "<div class='an-sub'>No absences recorded.</div>")
+    + "</div></div>"
+    // parents
+    + "<div class='an-card'><h2>👨‍👩‍👧 What parents are concerned about</h2><div class='an-sub'>"+x.msgN+" messages from parents in the last 6 months, grouped by topic (English and Khmer keywords).</div>"
+    + (x.conc.length ? anBars(x.conc.map(function(c){ return [c.name, c.n, c.color]; }), "#000080") + "<details style='margin-top:8px'><summary style='cursor:pointer;font-weight:700;color:#000080;font-size:.82rem'>Examples</summary>"
+        + x.conc.map(function(c){ return "<div style='margin-top:6px;font-weight:700;font-size:.78rem'>"+c.name+"</div>"+c.samples.map(function(m){ return "<div class='an-quote'>“"+escapeHtml(String(m.text||"").slice(0,160))+"”"+(m.cls?" — "+escapeHtml(m.cls):"")+"</div>"; }).join(""); }).join("") + "</details>"
+       : "<div class='an-sub'>No parent messages in this period.</div>")
+    + "</div>"
+    // AI report
+    + "<div class='an-card' id='an-report'><h2>🤖 In-depth analysis report</h2><div class='an-sub'>The AI reads the numbers above (no student names are sent) and writes the causes and what to do next.</div>"
+    + "<div style='display:flex;gap:8px;flex-wrap:wrap'><button class='an-btn' id='an-ai-btn' onclick='anWriteReport()'>✍️ Write the analysis</button><button class='an-btn' style='background:#fff;color:#000080;border:1.5px solid #c5cae9' onclick='window.print()'>🖨️ Print this report</button></div>"
+    + "<div id='an-ai' style='margin-top:12px'></div></div>";
+}
+async function anRecordLeaving(){
+  var id = document.getElementById("an-lv-stu").value, m = document.getElementById("an-lv-msg");
+  if(!id) return;
+  var data = { status:"left", leftAt:document.getElementById("an-lv-date").value, leftReason:document.getElementById("an-lv-reason").value, leftNote:document.getElementById("an-lv-note").value.trim(), leftRecordedBy:currentTeacherName||"" };
+  try {
+    if(xLocal()){ var l = JSON.parse(localStorage.getItem("c2epe_local_students")||"[]"); l.forEach(function(s){ if(s.id===id) Object.assign(s, data); }); localStorage.setItem("c2epe_local_students", JSON.stringify(l)); }
+    else { var f = await xFb(); await f.updateDoc(f.doc(window._fb.db,"students",id), data); }
+    AN.students.forEach(function(s){ if(s.id===id) Object.assign(s, data); });
+    anRender();
+  } catch(e){ m.style.color="#c62828"; m.textContent = "❌ "+(e.message||e); }
+}
+async function anWriteReport(){
+  var x = AN.stats, box = document.getElementById("an-ai"), btn = document.getElementById("an-ai-btn");
+  btn.disabled = true; box.textContent = "✍️ Writing the analysis… (about 20–40 seconds)";
+  var att = x.keys.filter(function(k){ return x.attM[k].total; }).map(function(k){ return k+": "+Math.round(x.attM[k].came*100/x.attM[k].total)+"%"; }).join(", ");
+  var facts = "School: C2-EPE Digital Academy (English school, Phnom Penh). Period: "+x.keys[0]+" to "+x.keys[x.keys.length-1]+".\n"
+    + "Active students: "+x.active+". New students: "+x.newN+". Students who left: "+x.leftN+".\n"
+    + "New per month: "+x.keys.map(function(k){ return k+" +"+x.joined[k]+"/-"+x.gone[k]; }).join(", ")+".\n"
+    + "Reasons for leaving: "+(Object.keys(x.reasons).map(function(r){ return r+" "+x.reasons[r]; }).join("; ")||"none recorded")+".\n"
+    + "Weakest skills (average %): "+x.skills.slice(0,8).map(function(s){ return s.name+" "+Math.round(s.avg)+"% ("+s.below+" students below 60%)"; }).join("; ")+".\n"
+    + "Classes (average %): "+x.classRows.map(function(c){ return c.cls+" "+Math.round(c.avg)+"% ("+c.below+"/"+c.n+" below 60%)"; }).join("; ")+".\n"
+    + "Attendance by month: "+(att||"no data")+".\n"
+    + "Absence reasons: "+(Object.keys(x.absReasons).map(function(r){ return r+" "+x.absReasons[r]; }).join("; ")||"none")+".\n"
+    + "Students showing warning signs: "+x.risk.length+" (reasons: "+["absences","average below 60%","overdue fees"].map(function(w){ return w+" "+x.risk.filter(function(r){ return r.why.some(function(y){ return y.indexOf(w.split(" ")[0])>=0 || (w==="absences" && y.indexOf("absences")>=0); }); }).length; }).join(", ")+").\n"
+    + "Overdue fee records: "+x.overdue.length+".\n"
+    + "Parent message topics (last 6 months, "+x.msgN+" messages): "+(x.conc.map(function(c){ return c.name.replace(/^\S+\s/,"")+" "+c.n; }).join("; ")||"none")+".\n"
+    + "Applications: "+x.apps.length+", enrolled "+x.apps.filter(function(a){ return a.status==="enrolled"; }).length+", rejected "+x.apps.filter(function(a){ return a.status==="rejected"; }).length+".";
+  var prompt = "You are an experienced school improvement consultant. Using ONLY the facts below, write a clear analysis report for the school's director in English.\n\nFACTS:\n"+facts
+    + "\n\nWrite these sections with short headings:\n1. Summary (3-4 sentences)\n2. Growth and student retention — trend, the main reasons students leave, likely causes\n3. Learning — the weakest skills and classes, likely causes\n4. Attendance — trend and causes\n5. Parent concerns — what parents worry about most\n6. Action plan — 5-7 concrete, practical steps for the next term, most important first\n\nRules: do not invent numbers that are not in the facts; when data is missing or too small to judge, say so plainly and suggest what to start recording. Plain text, no markdown symbols like # or **.";
+  try {
+    var res = await fetch(AIQ_URL, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({prompt:prompt}) });
+    var data = await res.json().catch(function(){ return null; });
+    if(!res.ok || !data || typeof data.text !== "string") throw new Error((data && data.error) === "origin_not_allowed" ? "The AI service does not allow this website yet (ALLOWED_ORIGINS in the Worker)." : "The AI service did not answer.");
+    box.textContent = data.text.trim() + "\n\n— Written by AI from the school's figures on " + new Date().toLocaleDateString("en-GB") + ". Please check it before sharing.";
+  } catch(e){ box.textContent = "❌ " + (e.message||e) + "\n\nThe charts above still show all the figures."; }
+  finally { btn.disabled = false; }
 }
 </script>
 

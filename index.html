@@ -346,7 +346,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
 .idc-card-front .idc-angkor{bottom:20px}
 .idc-front-body > *:not(.idc-angkor):not(.idc-watermark){position:relative;z-index:2}
 .idc-watermark{position:absolute;left:50%;top:46%;width:150px;height:150px;transform:translate(-50%,-50%);opacity:.07;z-index:1;pointer-events:none;object-fit:contain}
-.idc-angkor{position:absolute;left:0;right:0;bottom:0;width:100%;height:74px;z-index:1;display:block}
+.idc-angkor{position:absolute;left:0;right:0;bottom:0;width:100%;height:84px;z-index:1;display:block;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .idc-front-photo-ring{width:80px;height:80px;border-radius:50%;border:3px solid #c9a227;overflow:hidden;margin:-24px auto 7px;background:#1a2d56;position:relative;z-index:3;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.5);}
 .idc-front-photo-ring img{width:100%;height:100%;object-fit:cover;}
 .idc-front-photo-placeholder{font-size:30px;}
@@ -4008,25 +4008,30 @@ function logoImgError(img){
               <div class="idc-front-info" id="idc-d-valid" style="color:#e2bb55"></div>
               <div class="idc-front-id-tag" id="idc-d-id">ID: —</div>
               <img src="logo.png" alt="" class="idc-watermark" onerror="this.remove()">
-              <svg class="idc-angkor" viewBox="0 0 210 74" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-                <defs>
-                  <linearGradient id="akSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16295a" stop-opacity="0"/><stop offset=".45" stop-color="#7a4a2a" stop-opacity=".55"/><stop offset=".72" stop-color="#e6a43c"/><stop offset="1" stop-color="#3a2a14"/></linearGradient>
-                  <linearGradient id="akGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6d77a"/><stop offset="1" stop-color="#9c6f1e"/></linearGradient>
-                </defs>
-                <rect width="210" height="74" fill="url(#akSky)"/>
-                <g fill="#2a1d0e" opacity=".9">
-                  <path d="M8 56 q3-14 6 0 M10 56 v-10 M184 56 v-13 M180 44 q4-6 8 0 q-4 3-8 0 M196 56 v-9 M193 48 q3-5 6 0"/>
-                  <rect x="0" y="54" width="210" height="4"/>
-                </g>
-                <g fill="url(#akGold)">
-                  <rect x="22" y="47" width="166" height="8"/>
-                  <rect x="40" y="41" width="130" height="7"/>
-                  <path d="M93.0 42.0 L94.4 37.3 L115.6 37.3 L117.0 42.0ZM94.6 37.3 L95.8 32.7 L114.2 32.7 L115.4 37.3ZM96.1 32.7 L97.2 28.0 L112.8 28.0 L113.9 32.7ZM97.7 28.0 L98.6 23.3 L111.4 23.3 L112.3 28.0ZM99.2 23.3 L99.9 18.7 L110.1 18.7 L110.8 23.3ZM100.8 18.7 L101.3 14.0 L108.7 14.0 L109.2 18.7ZM102.4 14.0 Q105.0 -2.8 105.0 -4.0 Q105.0 -2.8 107.6 14.0ZM75.0 42.0 L76.1 38.6 L91.9 38.6 L93.0 42.0ZM76.2 38.6 L77.1 35.2 L90.9 35.2 L91.8 38.6ZM77.3 35.2 L78.1 31.9 L89.9 31.9 L90.7 35.2ZM78.5 31.9 L79.2 28.5 L88.8 28.5 L89.5 31.9ZM79.7 28.5 L80.2 25.1 L87.8 25.1 L88.3 28.5ZM80.8 25.1 L81.2 21.7 L86.8 21.7 L87.2 25.1ZM82.0 21.7 Q84.0 9.5 84.0 8.7 Q84.0 9.5 86.0 21.7ZM117.0 42.0 L118.1 38.6 L133.9 38.6 L135.0 42.0ZM118.2 38.6 L119.1 35.2 L132.9 35.2 L133.8 38.6ZM119.3 35.2 L120.1 31.9 L131.9 31.9 L132.7 35.2ZM120.5 31.9 L121.2 28.5 L130.8 28.5 L131.5 31.9ZM121.7 28.5 L122.2 25.1 L129.8 25.1 L130.3 28.5ZM122.8 25.1 L123.2 21.7 L128.8 21.7 L129.2 25.1ZM124.0 21.7 Q126.0 9.5 126.0 8.7 Q126.0 9.5 128.0 21.7ZM54.0 42.0 L54.8 39.4 L67.2 39.4 L68.0 42.0ZM54.9 39.4 L55.6 36.9 L66.4 36.9 L67.1 39.4ZM55.8 36.9 L56.4 34.3 L65.6 34.3 L66.2 36.9ZM56.7 34.3 L57.2 31.7 L64.8 31.7 L65.3 34.3ZM57.6 31.7 L58.0 29.2 L64.0 29.2 L64.4 31.7ZM58.5 29.2 L58.8 26.6 L63.2 26.6 L63.5 29.2ZM59.5 26.6 Q61.0 17.4 61.0 16.7 Q61.0 17.4 62.5 26.6ZM142.0 42.0 L142.8 39.4 L155.2 39.4 L156.0 42.0ZM142.9 39.4 L143.6 36.9 L154.4 36.9 L155.1 39.4ZM143.8 36.9 L144.4 34.3 L153.6 34.3 L154.2 36.9ZM144.7 34.3 L145.2 31.7 L152.8 31.7 L153.3 34.3ZM145.6 31.7 L146.0 29.2 L152.0 29.2 L152.4 31.7ZM146.6 29.2 L146.8 26.6 L151.2 26.6 L151.4 29.2ZM147.5 26.6 Q149.0 17.4 149.0 16.7 Q149.0 17.4 150.5 26.6Z"/>
-                </g>
-                <g fill="#0b1a3b" opacity=".35"><rect x="44" y="49" width="122" height="1.2"/><rect x="60" y="43" width="90" height="1"/></g>
-                <rect y="58" width="210" height="16" fill="#e6a43c" opacity=".25"/>
-                <g fill="url(#akGold)" opacity=".22"><path d="M94.0 58.0 L95.3 60.6 L114.7 60.6 L116.0 58.0ZM95.4 60.6 L96.6 63.1 L113.4 63.1 L114.6 60.6ZM96.9 63.1 L97.8 65.7 L112.2 65.7 L113.1 63.1ZM98.3 65.7 L99.1 68.3 L110.9 68.3 L111.7 65.7ZM99.7 68.3 L100.4 70.8 L109.6 70.8 L110.3 68.3ZM101.2 70.8 L101.6 73.4 L108.4 73.4 L108.8 70.8ZM102.6 73.4 Q105.0 82.6 105.0 83.3 Q105.0 82.6 107.4 73.4ZM76.0 58.0 L77.0 59.8 L91.0 59.8 L92.0 58.0ZM77.0 59.8 L77.9 61.5 L90.1 61.5 L91.0 59.8ZM78.1 61.5 L78.8 63.2 L89.2 63.2 L89.9 61.5ZM79.1 63.2 L79.7 65.0 L88.3 65.0 L88.9 63.2ZM80.2 65.0 L80.6 66.8 L87.4 66.8 L87.8 65.0ZM81.2 66.8 L81.5 68.5 L86.5 68.5 L86.8 66.8ZM82.2 68.5 Q84.0 74.8 84.0 75.2 Q84.0 74.8 85.8 68.5ZM118.0 58.0 L119.0 59.8 L133.0 59.8 L134.0 58.0ZM119.0 59.8 L119.9 61.5 L132.1 61.5 L133.0 59.8ZM120.1 61.5 L120.8 63.2 L131.2 63.2 L131.9 61.5ZM121.1 63.2 L121.7 65.0 L130.3 65.0 L130.9 63.2ZM122.2 65.0 L122.6 66.8 L129.4 66.8 L129.8 65.0ZM123.2 66.8 L123.5 68.5 L128.5 68.5 L128.8 66.8ZM124.2 68.5 Q126.0 74.8 126.0 75.2 Q126.0 74.8 127.8 68.5Z"/></g>
-              </svg>
+              <svg class="idc-angkor" viewBox="0 0 210 80" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="akSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16295a" stop-opacity="0"/><stop offset=".35" stop-color="#3b2f5c" stop-opacity=".55"/><stop offset=".6" stop-color="#c8743a"/><stop offset=".72" stop-color="#f3b04f"/></linearGradient>
+    <linearGradient id="akGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a2f12"/><stop offset=".6" stop-color="#2a1a0b"/><stop offset="1" stop-color="#1b1206"/></linearGradient>
+    <linearGradient id="akRim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe7a3"/><stop offset="1" stop-color="#d4a23a"/></linearGradient>
+    <linearGradient id="akWater" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9a446" stop-opacity=".55"/><stop offset=".35" stop-color="#5a3b2a"/><stop offset="1" stop-color="#14254f"/></linearGradient>
+    <radialGradient id="akSun"><stop offset="0" stop-color="#fff2c4"/><stop offset=".45" stop-color="#ffd27a" stop-opacity=".9"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="210" height="58" fill="url(#akSky)"/>
+  <circle cx="105" cy="34" r="22" fill="url(#akSun)"/>
+  <g fill="url(#akGold)" stroke="url(#akRim)" stroke-width=".55" stroke-linejoin="round">
+    <path d="M97.50 45.00 C95.10 35.48 98.70 20.52 105.00 11.00 C111.30 20.52 114.90 35.48 112.50 45.00Z M80.25 46.00 C78.41 39.00 81.17 28.00 86.00 21.00 C90.83 28.00 93.59 39.00 91.75 46.00Z M118.25 46.00 C116.41 39.00 119.17 28.00 124.00 21.00 C128.83 28.00 131.59 39.00 129.75 46.00Z M61.50 48.00 C60.06 42.68 62.22 34.32 66.00 29.00 C69.78 34.32 71.94 42.68 70.50 48.00Z M139.50 48.00 C138.06 42.68 140.22 34.32 144.00 29.00 C147.78 34.32 149.94 42.68 148.50 48.00Z"/>
+    <path d="M24 57 L186 57 L182 53 L28 53Z M36 53 L174 53 L170 48.6 L40 48.6Z M50 48.6 L160 48.6 L157 45.2 L53 45.2Z"/>
+    <path d="M98 57 L112 57 L120 63 L90 63Z" opacity=".9"/>
+  </g>
+  <g fill="none" stroke="#e8b84a" stroke-width=".35" opacity=".55"><path d="M97.64 40.47 L112.36 40.47 M98.04 35.93 L111.96 35.93 M98.73 31.40 L111.27 31.40 M99.71 26.87 L110.29 26.87 M100.93 22.33 L109.07 22.33 M102.32 17.80 L107.68 17.80 M80.36 42.67 L91.64 42.67 M80.66 39.33 L91.34 39.33 M81.19 36.00 L90.81 36.00 M81.94 32.67 L90.06 32.67 M82.88 29.33 L89.12 29.33 M83.95 26.00 L88.05 26.00 M118.36 42.67 L129.64 42.67 M118.66 39.33 L129.34 39.33 M119.19 36.00 L128.81 36.00 M119.94 32.67 L128.06 32.67 M120.88 29.33 L127.12 29.33 M121.95 26.00 L126.05 26.00 M61.59 45.47 L70.41 45.47 M61.82 42.93 L70.18 42.93 M62.24 40.40 L69.76 40.40 M62.83 37.87 L69.17 37.87 M63.56 35.33 L68.44 35.33 M64.39 32.80 L67.61 32.80 M139.59 45.47 L148.41 45.47 M139.82 42.93 L148.18 42.93 M140.24 40.40 L147.76 40.40 M140.83 37.87 L147.17 37.87 M141.56 35.33 L146.44 35.33 M142.39 32.80 L145.61 32.80"/></g>
+  <g stroke="#d4a23a" stroke-width=".7"><path d="M105.0 11.0 L105.0 7.5 M86.0 21.0 L86.0 17.5 M124.0 21.0 L124.0 17.5 M66.0 29.0 L66.0 25.5 M144.0 29.0 L144.0 25.5"/></g>
+  <g fill="#ffd27a" opacity=".85"><path d="M47.0 49.6 h1.4 v1.6 h-1.4Z M51.6 49.6 h1.4 v1.6 h-1.4Z M56.2 49.6 h1.4 v1.6 h-1.4Z M60.8 49.6 h1.4 v1.6 h-1.4Z M65.4 49.6 h1.4 v1.6 h-1.4Z M70.0 49.6 h1.4 v1.6 h-1.4Z M74.6 49.6 h1.4 v1.6 h-1.4Z M79.2 49.6 h1.4 v1.6 h-1.4Z M83.8 49.6 h1.4 v1.6 h-1.4Z M88.4 49.6 h1.4 v1.6 h-1.4Z M93.0 49.6 h1.4 v1.6 h-1.4Z M97.6 49.6 h1.4 v1.6 h-1.4Z M102.2 49.6 h1.4 v1.6 h-1.4Z M106.8 49.6 h1.4 v1.6 h-1.4Z M111.4 49.6 h1.4 v1.6 h-1.4Z M116.0 49.6 h1.4 v1.6 h-1.4Z M120.6 49.6 h1.4 v1.6 h-1.4Z M125.2 49.6 h1.4 v1.6 h-1.4Z M129.8 49.6 h1.4 v1.6 h-1.4Z M134.4 49.6 h1.4 v1.6 h-1.4Z M139.0 49.6 h1.4 v1.6 h-1.4Z M143.6 49.6 h1.4 v1.6 h-1.4Z M148.2 49.6 h1.4 v1.6 h-1.4Z M152.8 49.6 h1.4 v1.6 h-1.4Z M157.4 49.6 h1.4 v1.6 h-1.4Z M162.0 49.6 h1.4 v1.6 h-1.4Z M34.0 53.4 h1.4 v1.8 h-1.4Z M39.2 53.4 h1.4 v1.8 h-1.4Z M44.4 53.4 h1.4 v1.8 h-1.4Z M49.6 53.4 h1.4 v1.8 h-1.4Z M54.8 53.4 h1.4 v1.8 h-1.4Z M60.0 53.4 h1.4 v1.8 h-1.4Z M65.2 53.4 h1.4 v1.8 h-1.4Z M70.4 53.4 h1.4 v1.8 h-1.4Z M75.6 53.4 h1.4 v1.8 h-1.4Z M80.8 53.4 h1.4 v1.8 h-1.4Z M86.0 53.4 h1.4 v1.8 h-1.4Z M91.2 53.4 h1.4 v1.8 h-1.4Z M96.4 53.4 h1.4 v1.8 h-1.4Z M101.6 53.4 h1.4 v1.8 h-1.4Z M106.8 53.4 h1.4 v1.8 h-1.4Z M112.0 53.4 h1.4 v1.8 h-1.4Z M117.2 53.4 h1.4 v1.8 h-1.4Z M122.4 53.4 h1.4 v1.8 h-1.4Z M127.6 53.4 h1.4 v1.8 h-1.4Z M132.8 53.4 h1.4 v1.8 h-1.4Z M138.0 53.4 h1.4 v1.8 h-1.4Z M143.2 53.4 h1.4 v1.8 h-1.4Z M148.4 53.4 h1.4 v1.8 h-1.4Z M153.6 53.4 h1.4 v1.8 h-1.4Z M158.8 53.4 h1.4 v1.8 h-1.4Z M164.0 53.4 h1.4 v1.8 h-1.4Z M169.2 53.4 h1.4 v1.8 h-1.4Z M174.4 53.4 h1.4 v1.8 h-1.4Z"/></g>
+  <rect y="57" width="210" height="23" fill="url(#akWater)"/>
+  <g fill="#2a1a0b" opacity=".45" transform="translate(0 114) scale(1 -1)"><path d="M97.50 45.00 C95.10 35.48 98.70 20.52 105.00 11.00 C111.30 20.52 114.90 35.48 112.50 45.00Z M80.25 46.00 C78.41 39.00 81.17 28.00 86.00 21.00 C90.83 28.00 93.59 39.00 91.75 46.00Z M118.25 46.00 C116.41 39.00 119.17 28.00 124.00 21.00 C128.83 28.00 131.59 39.00 129.75 46.00Z M61.50 48.00 C60.06 42.68 62.22 34.32 66.00 29.00 C69.78 34.32 71.94 42.68 70.50 48.00Z M139.50 48.00 C138.06 42.68 140.22 34.32 144.00 29.00 C147.78 34.32 149.94 42.68 148.50 48.00Z"/><path d="M24 57 L186 57 L182 53 L28 53Z M36 53 L174 53 L170 48.6 L40 48.6Z"/></g>
+  <g stroke="#ffe08a" stroke-width=".35" opacity=".55"><path d="M78 61 h20 M116 62 h18 M60 65 h16 M132 66 h22 M88 69 h30 M50 71 h12 M146 72 h14"/></g>
+  <g stroke="#1b1206" fill="none" stroke-linecap="round"><path d="M14.0 57.0 Q15.2 47.0 14.4 37.0 M23.0 57.0 Q21.8 49.5 22.6 42.0 M193.0 57.0 Q191.8 47.5 192.6 38.0 M184.0 57.0 Q185.2 50.5 184.4 44.0" stroke-width="1.1"/><path d="M14.4 37.0 Q17.5 35.4 20.1 36.4 M14.4 37.0 Q16.5 36.0 18.3 37.6 M14.4 37.0 Q16.0 36.6 17.2 39.1 M14.4 37.0 Q14.4 36.5 14.4 38.9 M14.4 37.0 Q12.8 36.6 11.6 39.1 M14.4 37.0 Q12.3 36.0 10.5 37.6 M14.4 37.0 Q11.3 35.4 8.7 36.4 M14.4 37.0 Q12.3 34.8 10.5 35.2 M14.4 37.0 Q12.8 34.2 11.5 33.7 M14.4 37.0 Q14.4 34.3 14.4 33.9 M14.4 37.0 Q16.0 34.2 17.2 33.7 M14.4 37.0 Q16.5 34.8 18.3 35.2 M22.6 42.0 Q25.7 40.4 28.3 41.4 M22.6 42.0 Q24.7 41.0 26.5 42.6 M22.6 42.0 Q24.2 41.6 25.5 44.1 M22.6 42.0 Q22.6 41.5 22.6 43.9 M22.6 42.0 Q21.0 41.6 19.8 44.1 M22.6 42.0 Q20.5 41.0 18.7 42.6 M22.6 42.0 Q19.5 40.4 16.9 41.4 M22.6 42.0 Q20.5 39.8 18.7 40.2 M22.6 42.0 Q21.0 39.2 19.8 38.7 M22.6 42.0 Q22.6 39.3 22.6 38.9 M22.6 42.0 Q24.2 39.2 25.5 38.7 M22.6 42.0 Q24.7 39.8 26.5 40.2 M192.6 38.0 Q195.7 36.4 198.3 37.4 M192.6 38.0 Q194.7 37.0 196.5 38.6 M192.6 38.0 Q194.2 37.6 195.4 40.1 M192.6 38.0 Q192.6 37.5 192.6 39.9 M192.6 38.0 Q191.0 37.6 189.8 40.1 M192.6 38.0 Q190.5 37.0 188.7 38.6 M192.6 38.0 Q189.5 36.4 186.9 37.4 M192.6 38.0 Q190.5 35.8 188.7 36.2 M192.6 38.0 Q191.0 35.2 189.8 34.7 M192.6 38.0 Q192.6 35.3 192.6 34.9 M192.6 38.0 Q194.2 35.2 195.4 34.7 M192.6 38.0 Q194.7 35.8 196.5 36.2 M184.4 44.0 Q187.5 42.4 190.1 43.4 M184.4 44.0 Q186.5 43.0 188.3 44.6 M184.4 44.0 Q186.0 43.6 187.2 46.1 M184.4 44.0 Q184.4 43.5 184.4 45.9 M184.4 44.0 Q182.8 43.6 181.6 46.1 M184.4 44.0 Q182.3 43.0 180.5 44.6 M184.4 44.0 Q181.3 42.4 178.7 43.4 M184.4 44.0 Q182.3 41.8 180.5 42.2 M184.4 44.0 Q182.8 41.2 181.6 40.7 M184.4 44.0 Q184.4 41.3 184.4 40.9 M184.4 44.0 Q186.0 41.2 187.2 40.7 M184.4 44.0 Q186.5 41.8 188.3 42.2" stroke-width=".8"/></g>
+  <path d="M0 57 L24 57 L22 58.2 L0 58.2Z M186 57 L210 57 L210 58.2 L188 58.2Z" fill="#1b1206"/>
+</svg>
               <span id="idc-d-phone" style="display:none"></span><span id="idc-d-namekm" style="display:none"></span>
             </div>
             <div class="idc-card-footer">PREPARING TOMORROW'S GLOBAL LEADERS</div>
@@ -17438,7 +17443,17 @@ async function loadMyCertificates(){
       img.style.cssText = "display:block;width:" + (c.style.width || (from[i].clientWidth||from[i].width)+"px") + ";height:auto;image-rendering:pixelated";
       c.parentNode.replaceChild(img, c);
     } catch(e){} });
-    copy.querySelectorAll("[id]").forEach(function(el){ if(el.id !== "cert-print-area" && el.id !== "fee-receipt-print-area" && el.id !== "report-print-area") el.removeAttribute("id"); });
+    // SVG drawings (e.g. Angkor Wat on the ID card) use gradients found by id; the original is hidden while
+    // printing, so give the copy's gradients their own ids or the drawing prints empty
+    copy.querySelectorAll("svg").forEach(function(svg, n){
+      var html = svg.outerHTML;
+      Array.prototype.forEach.call(svg.querySelectorAll("[id]"), function(el){
+        var oldId = el.id, newId = oldId + "_print" + n;
+        html = html.split('id="' + oldId + '"').join('id="' + newId + '"').split("url(#" + oldId + ")").join("url(#" + newId + ")");
+      });
+      var holder = document.createElement("div"); holder.innerHTML = html; svg.parentNode.replaceChild(holder.firstElementChild, svg);
+    });
+    copy.querySelectorAll("[id]").forEach(function(el){ if(el.closest("svg")) return; if(el.id !== "cert-print-area" && el.id !== "fee-receipt-print-area" && el.id !== "report-print-area") el.removeAttribute("id"); });
     host.appendChild(copy);
     document.body.classList.add("print-one");
     var done = function(){ document.body.classList.remove("print-one"); host.innerHTML = ""; window.removeEventListener("afterprint", done); };

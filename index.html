@@ -17338,7 +17338,7 @@ function showCertificate(c){
     + "<div class='school'>C2-EPE DIGITAL ACADEMY</div><div style='height:2px;width:60%;margin:0 auto;background:#c9a227'></div>"
     + "<div class='tag'>LEARN · GROW · ACHIEVE</div><div class='title'>CERTIFICATE</div><div class='sub'>OF ACHIEVEMENT</div>"
     + "<div class='pres'>THIS CERTIFICATE IS PROUDLY PRESENTED TO</div>"
-    + "<div class='name'>"+E(c.studentName)+"</div>"+(c.studentNameKm && c.studentNameKm!==c.studentName?"<div class='km'>"+E(c.studentNameKm)+"</div>":"")
+    + "<div class='name'>"+E(c.studentName)+"</div>"
     + "<div class='for'>for successfully completing</div><div class='what'>"+E(c.achievement)+" — "+E(c.levelLabel||c.level)+"</div>"
     + "<div class='meta'>"+E(certFmt(c.from))+" – "+E(certFmt(c.to))+" ("+E(certDuration(c.months||0))+")"+(c.average?" · Average "+E(c.average)+"% · Grade "+E(c.grade)+" · CEFR "+E(c.cefr):"")+"</div>"
     + "<div class='for' style='margin-top:8px'>We are proud of your accomplishments.</div></div>"
@@ -17374,7 +17374,7 @@ async function showVerify(id){
     + "<div style='font-size:.8rem;opacity:.85;margin-top:4px'>Issued by C2-EPE Digital Academy · Phnom Penh, Cambodia</div></div>"
     + "<div style='padding:18px 20px'>"
     + (ok ? "" : "<p style='color:#c62828;font-weight:700'>This certificate is no longer valid"+(c.revokedAt?" (revoked on "+certFmt(c.revokedAt)+")":"")+".</p>")
-    + "<div class='ver-row'><span>Student</span><b>"+escapeHtml(c.studentName)+(c.studentNameKm&&c.studentNameKm!==c.studentName?"<br>"+escapeHtml(c.studentNameKm):"")+"</b></div>"
+    + "<div class='ver-row'><span>Student</span><b>"+escapeHtml(c.studentName)+"</b></div>"
     + "<div class='ver-row'><span>Level completed</span><b>"+escapeHtml(c.levelLabel||c.level)+"</b></div>"
     + "<div class='ver-row'><span>Programme</span><b>"+escapeHtml(c.achievement)+"</b></div>"
     + "<div class='ver-row'><span>Period of study</span><b>"+certFmt(c.from)+" – "+certFmt(c.to)+"</b></div>"

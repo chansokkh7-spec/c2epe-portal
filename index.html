@@ -9443,7 +9443,7 @@ async function renderInvoiceDoc(f, isPaidDoc){
   try { var cfg = await loadPaymentQRConfig(); banks = (cfg && cfg.banks || []).map(function(b){ return b.name || b.bank || ""; }).filter(Boolean); } catch(e){}
   return "<div class='inv-doc'>"
     + "<div class='inv-head'><div class='inv-brand'><img src='logo.png' alt='' onerror=\"this.style.display='none'\"><div><b>C2-EPE Digital Academy</b><span>English Proficiency Excellence</span></div></div>"
-    + "<div class='inv-contact'>Phnom Penh, Cambodia<br>Tel: 015 555 631 / 071 6115 407 / 088 4714 887</div></div>"
+    + "<div class='inv-contact'>Phnom Penh, Cambodia<br>Tel: 015 555 631 / 071 6115 407 / 088 4714 887<br>Email: c2.kh2029@gmail.com</div></div>"
     + "<div class='inv-date'>"+E(dateStr)+"</div>"
     + "<div class='inv-title'>"+(isPaidDoc ? "PAYMENT RECEIPT" : "INVOICE")+"</div>"
     + "<p class='inv-intro'>Thank you for choosing C2-EPE Digital Academy. Please keep this "+(isPaidDoc?"receipt as proof of payment":"invoice and pay by the due date")+". School fees, once paid, are not refundable. Please bring this document if you have any questions about your payment.</p>"
@@ -15357,7 +15357,8 @@ function switchReportTab(tab){
   var r = currentViewedReport || {};
   // Encode the Student ID only — falls back to the document number for the
   // rare report that has no Student ID set, so the QR box is never blank.
-  var qrPayload = r.studentId || reportDocNo(r);
+  // The QR opens the public academic record page (verified, read live from the school's records)
+  var qrPayload = r.id ? trUrl(r.id) : (r.studentId || reportDocNo(r));
   if(tab === "passport"){
     pBtn.style.background = "#000080"; pBtn.style.color = "#FFD700";
     fBtn.style.background = "#e0e0e0"; fBtn.style.color = "#555";
@@ -15367,7 +15368,7 @@ function switchReportTab(tab){
     fBtn.style.background = "#000080"; fBtn.style.color = "#FFD700";
     pBtn.style.background = "#e0e0e0"; pBtn.style.color = "#555";
     document.getElementById("report-print-content").innerHTML = renderPortfolioHTML(currentViewedReport);
-    renderQRCode("rpt-qr-portfolio", qrPayload, 64);
+    renderQRCode("rpt-qr-portfolio", r.id ? pfUrl(r.id) : qrPayload, 64);
   }
 }
 
@@ -15453,7 +15454,7 @@ function renderPassportHTML(r){
     + "<div><b style='font-size:1.9rem;color:"+(overallGrade.color||"#1d3a8a")+"'>"+E(overallGrade.label)+"</b>LETTER GRADE</div>"
     + "<div><b>"+(gpaVal ? gpaVal+" / 4.0" : "—")+"</b>GPA</div><div><b>"+E(cefr)+"</b>CEFR</div>"
     + "<div><b>"+(hasData ? Math.round(avgScore)+"%" : "—")+"</b>AVERAGE</div><div><b style='font-size:1rem'>"+E(classification)+"</b>CLASSIFICATION</div></div></div>"
-    + "<div class='pp-qr'><div id='rpt-qr-passport' style='width:86px;height:86px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;overflow:hidden'></div>Student ID: "+E(r.studentId||docNo)+"</div></div>"
+    + "<div class='pp-qr'><div id='rpt-qr-passport' style='width:86px;height:86px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;overflow:hidden'></div>"+(r.id ? "Scan to verify this record" : "Student ID: "+E(r.studentId||docNo))+"</div></div>"
     + "<div class='pp-h'>21ST CENTURY SKILLS ASSESSMENT</div>" + skills
     + "<div class='pp-h'>CLASS INFORMATION</div>"
     + "<table class='pp-table'><tr><td>TEACHER</td><td><b>"+E(teacher||"—")+"</b></td><td>COORDINATOR</td><td><b>"+E(r.coordinator||"—")+"</b></td></tr>"
@@ -15507,7 +15508,7 @@ function renderPortfolioHTML(r){
       <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #eee0c0;padding-top:16px">
         <div style="text-align:center">
           <div id="rpt-qr-portfolio" style="width:64px;height:64px;display:flex;align-items:center;justify-content:center;margin:0 auto;overflow:hidden"></div>
-          <div style="font-size:.62rem;color:#8a7a55;margin-top:4px">Scan to view record</div>
+          <div style="font-size:.62rem;color:#8a7a55;margin-top:4px">Scan to view the full portfolio</div>
         </div>
         <div style="width:56px;height:56px;border-radius:50%;border:2px dashed #d4af37;display:flex;align-items:center;justify-content:center;font-size:.6rem;color:#8d6e00;font-weight:700;text-align:center;line-height:1.1">SCHOOL<br>SEAL</div>
       </div>
@@ -17312,7 +17313,8 @@ async function loadMyCertificates(){
     ["idc-page", "#idc-page .idc-cards-row"],
     ["report-page", "#report-print-area"],
     ["an-page", "#an-body"],
-    ["sp-page", "#sp-body"]
+    ["sp-page", "#sp-body"],
+    ["tr-verify", "#tr-body"]
   ];
   function visible(id){ var el = document.getElementById(id); return el && getComputedStyle(el).display !== "none"; }
   window.print = function(){
@@ -18219,6 +18221,179 @@ async function spWriteReview(){
   } catch(e){ box.textContent = "❌ " + (e.message||e); }
   finally { btn.disabled = false; }
 }
+</script>
+
+<!-- ═════════ PUBLIC ACADEMIC RECORD (opened by the QR on a report card: ?transcript=<report id>) ═════════ -->
+<div id="tr-verify" style="display:none;position:fixed;inset:0;background:#eef1f7;z-index:30000;overflow-y:auto;font-family:inherit;color:#1a1f36">
+  <div style="background:#0b1a3b;color:#d6aa4c;height:56px;display:flex;align-items:center;gap:12px;padding:0 16px;position:sticky;top:0;z-index:3">
+    <button onclick="trClose()" style="background:rgba(255,255,255,.12);color:#fff;border:0;padding:6px 12px;border-radius:20px;cursor:pointer;font-size:.82rem">← Portal</button>
+    <b style="flex:1">🔍 Academic Record Verification</b>
+    <button onclick="window.print()" style="background:#c9a227;color:#0b1a3b;border:0;padding:6px 12px;border-radius:20px;cursor:pointer;font-size:.8rem;font-weight:800">🖨️ Print</button>
+  </div>
+  <div id="tr-body" style="max-width:760px;margin:0 auto;padding:14px 12px 40px"></div>
+</div>
+<style>
+.tr-card{background:#fff;border-radius:16px;box-shadow:0 2px 14px rgba(16,30,70,.08);padding:18px;margin-bottom:14px}
+.tr-h{font-weight:800;letter-spacing:1px;font-size:.78rem;color:#0b1a3b;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #0b1a3b}
+.tr-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #eef0f5;font-size:.86rem}.tr-row span{color:#7a84a0}.tr-row b{text-align:right}
+.tr-sk{display:grid;grid-template-columns:1fr 46px;gap:8px;align-items:center;font-size:.82rem;margin:6px 0}
+.tr-sk .bar{grid-column:1/-1;height:6px;background:#eef0f5;border-radius:4px;overflow:hidden;margin-top:-3px}.tr-sk .bar i{display:block;height:100%;background:#c9a227;border-radius:4px}
+.tr-sub{padding-left:14px;color:#3a4256}
+.tr-table{width:100%;border-collapse:collapse;font-size:.8rem}.tr-table th,.tr-table td{padding:6px 8px;border-bottom:1px solid #eef0f5;text-align:left}.tr-table th{background:#f5f7fb;color:#5b6478;font-weight:700}
+</style>
+<script>
+// ══════════════ PUBLIC ACADEMIC RECORD ══════════════
+// What an institution sees when it scans the QR on a student's report card:
+//  1. that the record is genuine and comes from C2-EPE (read live from the school's records)
+//  2. who the school is (programmes, the CEFR framework, contact)
+//  3. the student's results for that term, and how to read the grades
+var TR_SCHOOL = {
+  name: "C2-EPE Digital Academy",
+  group: "SEG Education Group",
+  city: "Phnom Penh, Cambodia",
+  phones: "015 555 631 / 071 6115 407 / 088 4714 887",
+  telegram: "@SEGEDUCATIONGROUP",
+  email: "c2.kh2029@gmail.com",
+  website: "https://chansokkh7-spec.github.io/c2epe-website/",
+  about: "An English-language academy in Phnom Penh teaching English from kindergarten to advanced (CEFR Pre-A1 to C2), with an international curriculum, AI-powered learning and support for students' academic, health and life skills.",
+  programmes: [["Kindergarten","Ages 3–5 · Play, explore, grow"],["Primary (Young Learners)","Cambridge-style Starters, Movers, Flyers · Pre-A1 to A2"],["Secondary (General English)","Beginner to Upper-Intermediate · A1 to B2"],["Master Level (Advanced English)","Advanced, Proficiency, EAP, IELTS/TOEFL · C1 to C2"]]
+};
+function trUrl(id){ return certPortalBase() + "?transcript=" + encodeURIComponent(id); }
+function trClose(){ document.getElementById("tr-verify").style.display = "none"; history.replaceState(null, "", location.pathname); }
+async function showTranscript(id){
+  var box = document.getElementById("tr-body");
+  document.getElementById("tr-verify").style.display = "block";
+  box.innerHTML = "<div class='tr-card' style='text-align:center;color:#888'>Checking the record…</div>";
+  var r = null;
+  try {
+    if(location.protocol === "file:" || !window._fb){ r = JSON.parse(localStorage.getItem("c2epe_reports")||"[]").find(function(x){ return x.id===id; }) || null; }
+    else { var m = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"); var sn = await m.getDoc(m.doc(window._fb.db, "reports", id)); r = sn.exists() ? Object.assign({id:sn.id}, sn.data()) : null; }
+  } catch(e){ console.error("transcript", e); }
+  var E = function(v){ return escapeHtml(v==null?"":String(v)); };
+  var schoolCard = "<div class='tr-card'><div style='display:flex;gap:14px;align-items:center;margin-bottom:12px'><img src='logo.png' alt='' style='width:64px;height:64px;object-fit:contain' onerror=\"this.style.display='none'\"><div><b style='font-size:1.15rem;color:#0b1a3b'>"+TR_SCHOOL.name+"</b><div style='font-size:.78rem;color:#7a84a0'>"+TR_SCHOOL.group+" · "+TR_SCHOOL.city+"</div></div></div>"
+    + "<p style='font-size:.84rem;line-height:1.6;margin:0 0 10px'>"+TR_SCHOOL.about+"</p>"
+    + "<div class='tr-h'>PROGRAMMES</div>" + TR_SCHOOL.programmes.map(function(p){ return "<div class='tr-row'><b style='text-align:left'>"+p[0]+"</b><span style='text-align:right'>"+p[1]+"</span></div>"; }).join("")
+    + "<div class='tr-h' style='margin-top:14px'>CONTACT THE SCHOOL TO CONFIRM</div>"
+    + "<div class='tr-row'><span>Phone</span><b>"+TR_SCHOOL.phones+"</b></div><div class='tr-row'><span>Telegram</span><b>"+TR_SCHOOL.telegram+"</b></div>"
+    + "<div class='tr-row'><span>Email</span><b><a href='mailto:"+TR_SCHOOL.email+"' style='color:#1565c0'>"+TR_SCHOOL.email+"</a></b></div>"
+    + "<div class='tr-row'><span>Website</span><b><a href='"+TR_SCHOOL.website+"' target='_blank' rel='noopener' style='color:#1565c0'>Visit website</a></b></div></div>";
+  if(!r){
+    box.innerHTML = "<div class='tr-card' style='text-align:center'><div style='font-size:3rem'>❌</div><h2 style='color:#c62828;margin:6px 0'>Record not found</h2><p style='color:#666;font-size:.88rem'>This academic record is not in C2-EPE's system. It may have been withdrawn or the code is not genuine. Please contact the school using the details below.</p></div>" + schoolCard;
+    return;
+  }
+  var avg = calcAvgScore(r), g = avg ? scoreToGrade(avg,100) : null;
+  var row = function(label, v, sub){ v = parseFloat(v)||0; return "<div class='tr-sk"+(sub?" tr-sub":"")+"'><span>"+label+"</span><b style='text-align:right'>"+(v?Math.round(v)+"%":"—")+"</b><div class='bar'><i style='width:"+Math.min(100,v)+"%'></i></div></div>"; };
+  var group = function(title, fields, data){ return row("<b>"+title+"</b>", avgOfFields(fields, data)) + fields.map(function(f){ return row(f[1], (data||{})[f[0]], true); }).join(""); };
+  var issued = r.updatedAt || r.createdAt;
+  box.innerHTML =
+    "<div class='tr-card' style='background:linear-gradient(135deg,#0b1a3b,#1b3570);color:#fff;text-align:center'><div style='font-size:2.4rem'>✅</div>"
+    + "<div style='font-weight:800;font-size:1.1rem;color:#d6aa4c'>VERIFIED ACADEMIC RECORD</div><div style='font-size:.8rem;color:#cfd6ea;margin-top:4px'>Issued by "+TR_SCHOOL.name+" · read live from the school's records</div></div>"
+    + "<div class='tr-card'><div class='tr-h'>STUDENT</div>"
+    + "<div class='tr-row'><span>Name</span><b>"+E(r.student)+"</b></div><div class='tr-row'><span>Student ID</span><b>"+E(r.studentId||"—")+"</b></div>"
+    + "<div class='tr-row'><span>Programme level</span><b>"+E((classDisplayLabel(r.cls)||r.cls||"—")+(idcProgramFor(r.cls)?" · "+idcProgramFor(r.cls):""))+"</b></div>"
+    + "<div class='tr-row'><span>Term</span><b>"+E(r.term||"—")+"</b></div><div class='tr-row'><span>Document No.</span><b>"+E(reportDocNo(r))+"</b></div>"
+    + "<div class='tr-row'><span>Issued</span><b>"+(issued?new Date(issued).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"}):"—")+"</b></div>"
+    + (r.status ? "<div class='tr-row'><span>Status</span><b style='color:"+(/promot|graduat/i.test(r.status)?"#2e7d32":"#1a1f36")+"'>"+E(r.status)+"</b></div>" : "") + "</div>"
+    + "<div class='tr-card'><div class='tr-h'>RESULT</div><div style='display:flex;gap:18px;flex-wrap:wrap;justify-content:space-around;text-align:center'>"
+    + [["Grade", g?g.label:"—"],["Average", avg?Math.round(avg)+"%":"—"],["GPA", avg?calcGPA(avg)+" / 4.0":"—"],["CEFR", avg?scoreToCEFR(avg):"—"],["Classification", avg?scoreToClassification(avg):"—"]].map(function(x){ return "<div><div style='font-size:1.35rem;font-weight:800;color:#1d3a8a'>"+x[1]+"</div><div style='font-size:.68rem;color:#7a84a0;letter-spacing:.5px'>"+x[0].toUpperCase()+"</div></div>"; }).join("") + "</div></div>"
+    + "<div class='tr-card'><div class='tr-h'>SUBJECTS AND SKILLS</div>"
+    + group("Core (coursework and tests)", CORE_FIELDS, r.core) + row("<b>Grammar</b>", r.grammar) + row("<b>Writing</b>", r.writing)
+    + group("Language skills", LANG_FIELDS, r.language) + group("Life education", LIFE_FIELDS, r.life)
+    + (r.remarks ? "<div class='tr-h' style='margin-top:14px'>TEACHER'S COMMENT</div><p style='font-style:italic;font-size:.86rem;margin:0'>“"+E(r.remarks)+"”"+(r.teacherName?" — "+E(r.teacherName):"")+"</p>" : "") + "</div>"
+    + "<div class='tr-card'><div class='tr-h'>HOW TO READ THESE RESULTS</div><table class='tr-table'><tr><th>Score</th><th>Grade</th><th>CEFR level</th><th>Classification</th></tr>"
+    // every band is worked out with the same functions the report card uses, so the table always matches
+    + [90,80,75,70,60,50,0].map(function(lo, i, arr){ var hi = i ? arr[i-1]-1 : 100, v = lo || 1; return "<tr><td>"+lo+"–"+hi+"%</td><td><b>"+scoreToGrade(v,100).label+"</b></td><td>"+scoreToCEFR(v)+"</td><td>"+scoreToClassification(v)+"</td></tr>"; }).join("")
+    + "</table><p style='font-size:.74rem;color:#7a84a0;margin:8px 0 0'>GPA = average ÷ 100 × 4.0. CEFR = Common European Framework of Reference for Languages (A1 beginner → C2 mastery).</p></div>"
+    + schoolCard
+    + "<p style='text-align:center;font-size:.72rem;color:#8a93a8'>If a printed report card differs from this page, the information on this page is the school's official record.</p>";
+}
+// ══════════════ PUBLIC STUDENT PORTFOLIO (QR on the Portfolio: ?portfolio=<report id>) ══════════════
+// The whole learning story of one student: every term's results, progress over time,
+// certificates earned — plus who the school is. Opened by a report id (hard to guess),
+// never by the 6-digit Student ID.
+function trSchoolCardHTML(){
+  return "<div class='tr-card'><div style='display:flex;gap:14px;align-items:center;margin-bottom:12px'><img src='logo.png' alt='' style='width:64px;height:64px;object-fit:contain' onerror=\"this.style.display='none'\"><div><b style='font-size:1.15rem;color:#0b1a3b'>"+TR_SCHOOL.name+"</b><div style='font-size:.78rem;color:#7a84a0'>"+TR_SCHOOL.group+" · "+TR_SCHOOL.city+"</div></div></div>"
+    + "<p style='font-size:.84rem;line-height:1.6;margin:0 0 10px'>"+TR_SCHOOL.about+"</p>"
+    + "<div class='tr-h'>PROGRAMMES</div>" + TR_SCHOOL.programmes.map(function(p){ return "<div class='tr-row'><b style='text-align:left'>"+p[0]+"</b><span style='text-align:right'>"+p[1]+"</span></div>"; }).join("")
+    + "<div class='tr-h' style='margin-top:14px'>CONTACT THE SCHOOL TO CONFIRM</div>"
+    + "<div class='tr-row'><span>Phone</span><b>"+TR_SCHOOL.phones+"</b></div><div class='tr-row'><span>Telegram</span><b>"+TR_SCHOOL.telegram+"</b></div>"
+    + "<div class='tr-row'><span>Email</span><b><a href='mailto:"+TR_SCHOOL.email+"' style='color:#1565c0'>"+TR_SCHOOL.email+"</a></b></div>"
+    + "<div class='tr-row'><span>Website</span><b><a href='"+TR_SCHOOL.website+"' target='_blank' rel='noopener' style='color:#1565c0'>Visit website</a></b></div></div>";
+}
+function trGradeTableHTML(){
+  return "<div class='tr-card'><div class='tr-h'>HOW TO READ THESE RESULTS</div><table class='tr-table'><tr><th>Score</th><th>Grade</th><th>CEFR level</th><th>Classification</th></tr>"
+    + [90,80,75,70,60,50,0].map(function(lo, i, arr){ var hi = i ? arr[i-1]-1 : 100, v = lo || 1; return "<tr><td>"+lo+"–"+hi+"%</td><td><b>"+scoreToGrade(v,100).label+"</b></td><td>"+scoreToCEFR(v)+"</td><td>"+scoreToClassification(v)+"</td></tr>"; }).join("")
+    + "</table><p style='font-size:.74rem;color:#7a84a0;margin:8px 0 0'>GPA = average ÷ 100 × 4.0. CEFR = Common European Framework of Reference for Languages (A1 beginner → C2 mastery).</p></div>";
+}
+function pfUrl(id){ return certPortalBase() + "?portfolio=" + encodeURIComponent(id); }
+async function showPortfolio(id){
+  var box = document.getElementById("tr-body");
+  document.getElementById("tr-verify").style.display = "block";
+  box.innerHTML = "<div class='tr-card' style='text-align:center;color:#888'>Checking the record…</div>";
+  var E = function(v){ return escapeHtml(v==null?"":String(v)); };
+  var all = [], certs = [], me = null;
+  try {
+    if(location.protocol === "file:" || !window._fb){
+      var reps = JSON.parse(localStorage.getItem("c2epe_reports")||"[]"); me = reps.find(function(x){ return x.id===id; });
+      if(me) all = reps.filter(function(x){ return me.studentId ? x.studentId===me.studentId : x.student===me.student; });
+      if(me && me.studentId) certs = JSON.parse(localStorage.getItem("c2epe_certificates")||"[]").filter(function(c){ return c.studentId===me.studentId && c.status!=="revoked"; });
+    } else {
+      var m = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"), db = window._fb.db;
+      var sn = await m.getDoc(m.doc(db,"reports",id));
+      if(sn.exists()){
+        me = Object.assign({id:sn.id}, sn.data());
+        var q = me.studentId ? m.query(m.collection(db,"reports"), m.where("studentId","==",me.studentId)) : m.query(m.collection(db,"reports"), m.where("student","==",me.student||""));
+        all = (await m.getDocs(q)).docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+        if(me.studentId) certs = (await m.getDocs(m.query(m.collection(db,"certificates"), m.where("studentId","==",me.studentId)))).docs.map(function(d){ return d.data(); }).filter(function(c){ return c.status!=="revoked"; });
+      }
+    }
+  } catch(e){ console.error("portfolio", e); }
+  if(!me){
+    box.innerHTML = "<div class='tr-card' style='text-align:center'><div style='font-size:3rem'>❌</div><h2 style='color:#c62828;margin:6px 0'>Portfolio not found</h2><p style='color:#666;font-size:.88rem'>This portfolio is not in C2-EPE's system. Please contact the school using the details below.</p></div>" + trSchoolCardHTML();
+    return;
+  }
+  all.sort(function(a,b){ return String(a.createdAt||a.updatedAt||"").localeCompare(String(b.createdAt||b.updatedAt||"")); });   // oldest term first
+  var latest = all[all.length-1] || me;
+  var terms = all.map(function(r){ var avg = Math.round(calcAvgScore(r)); return { r:r, avg:avg, core:avgOfFields(CORE_FIELDS, r.core), grammar:parseFloat(r.grammar)||0, writing:parseFloat(r.writing)||0, lang:avgOfFields(LANG_FIELDS, r.language), life:avgOfFields(LIFE_FIELDS, r.life) }; });
+  var first = terms.find(function(t){ return t.avg; }), last = terms.slice().reverse().find(function(t){ return t.avg; });
+  var growth = first && last && first !== last ? Math.round(last.avg - first.avg) : null;
+  var cell = function(v){ return v ? "<b style='color:"+(v>=75?"#2e7d32":v>=60?"#1a1f36":"#c62828")+"'>"+Math.round(v)+"%</b>" : "<span style='color:#9aa3b8'>—</span>"; };
+  var since = terms[0] && (terms[0].r.createdAt||terms[0].r.updatedAt);
+  box.innerHTML =
+    "<div class='tr-card' style='background:linear-gradient(135deg,#0b1a3b,#1b3570);color:#fff;text-align:center'><div style='font-size:2.4rem'>🎓</div>"
+    + "<div style='font-weight:800;font-size:1.1rem;color:#d6aa4c'>VERIFIED STUDENT PORTFOLIO</div><div style='font-size:.8rem;color:#cfd6ea;margin-top:4px'>The student's learning journey at "+TR_SCHOOL.name+" · read live from the school's records</div></div>"
+    + "<div class='tr-card'><div class='tr-h'>STUDENT</div>"
+    + "<div class='tr-row'><span>Name</span><b>"+E(latest.student)+"</b></div><div class='tr-row'><span>Student ID</span><b>"+E(latest.studentId||"—")+"</b></div>"
+    + "<div class='tr-row'><span>Current level</span><b>"+E((classDisplayLabel(latest.cls)||latest.cls||"—")+(idcProgramFor(latest.cls)?" · "+idcProgramFor(latest.cls):""))+"</b></div>"
+    + "<div class='tr-row'><span>Terms on record</span><b>"+terms.length+"</b></div>"
+    + (since ? "<div class='tr-row'><span>First report</span><b>"+new Date(since).toLocaleDateString("en-GB",{month:"long",year:"numeric"})+"</b></div>" : "")
+    + (last ? "<div class='tr-row'><span>Latest result</span><b>"+scoreToGrade(Math.round(last.avg),100).label+" · "+Math.round(last.avg)+"% · CEFR "+scoreToCEFR(Math.round(last.avg))+" · "+scoreToClassification(Math.round(last.avg))+"</b></div>" : "")
+    + (growth !== null ? "<div class='tr-row'><span>Progress since the first term</span><b style='color:"+(growth>=0?"#2e7d32":"#c62828")+"'>"+(growth>=0?"▲ +":"▼ ")+growth+" points</b></div>" : "") + "</div>"
+    // progress chart (overall average per term)
+    + "<div class='tr-card'><div class='tr-h'>PROGRESS OVER TIME</div>"
+    + (terms.some(function(t){ return t.avg; })
+        ? "<div style='display:flex;align-items:flex-end;gap:10px;height:150px;border-bottom:1px solid #e6e9f0;padding-top:18px;overflow-x:auto'>"
+          + terms.map(function(t){ return "<div style='flex:1;min-width:46px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%'><b style='font-size:.72rem;margin-bottom:3px'>"+(t.avg?Math.round(t.avg)+"%":"—")+"</b><i style='display:block;width:70%;max-width:46px;border-radius:6px 6px 0 0;background:"+(t.avg>=75?"#2e7d32":t.avg>=60?"#c9a227":"#c62828")+";height:"+Math.max(2,t.avg)+"%'></i></div>"; }).join("")
+          + "</div><div style='display:flex;gap:10px;overflow-x:auto'>"+terms.map(function(t){ return "<div style='flex:1;min-width:46px;text-align:center;font-size:.66rem;color:#7a84a0;padding-top:4px'>"+E(t.r.term||"—")+"</div>"; }).join("")+"</div>"
+        : "<div style='font-size:.82rem;color:#8a93a8'>Results appear here as report cards are published.</div>")
+    + "</div>"
+    // skills by term
+    + "<div class='tr-card'><div class='tr-h'>RESULTS BY TERM</div><div style='overflow-x:auto'><table class='tr-table'><tr><th>Term</th><th>Level</th><th>Core</th><th>Grammar</th><th>Writing</th><th>Language</th><th>Life ed.</th><th>Overall</th></tr>"
+    + terms.slice().reverse().map(function(t){ return "<tr><td>"+E(t.r.term||"—")+"</td><td>"+E(t.r.cls||"")+"</td><td>"+cell(t.core)+"</td><td>"+cell(t.grammar)+"</td><td>"+cell(t.writing)+"</td><td>"+cell(t.lang)+"</td><td>"+cell(t.life)+"</td><td>"+cell(t.avg)+(t.avg?" <span style='color:#7a84a0'>"+scoreToGrade(Math.round(t.avg),100).label+"</span>":"")+"</td></tr>"; }).join("")
+    + "</table></div>"
+    + (latest.remarks ? "<div class='tr-h' style='margin-top:14px'>LATEST TEACHER'S COMMENT</div><p style='font-style:italic;font-size:.86rem;margin:0'>“"+E(latest.remarks)+"”"+(latest.teacherName?" — "+E(latest.teacherName):"")+"</p>" : "")
+    + "</div>"
+    // certificates
+    + "<div class='tr-card'><div class='tr-h'>CERTIFICATES</div>"
+    + (certs.length ? certs.map(function(c){ return "<div class='tr-row'><span>🏅 "+E(c.achievement)+" — "+E(c.levelLabel||c.level)+"<br><span style='font-size:.72rem'>"+certFmt(c.from)+" – "+certFmt(c.to)+"</span></span><b><a href='"+certVerifyUrl(c.certId)+"' style='color:#1565c0'>"+E(c.certId)+"</a></b></div>"; }).join("")
+       : "<div style='font-size:.82rem;color:#8a93a8'>No certificates issued yet.</div>")
+    + "</div>"
+    + trGradeTableHTML() + trSchoolCardHTML()
+    + "<p style='text-align:center;font-size:.72rem;color:#8a93a8'>This page shows the official record held by the school.</p>";
+}
+(function(){ try { var p = new URLSearchParams(location.search).get("portfolio"); if(p) setTimeout(function(){ showPortfolio(p); }, 300); } catch(e){} })();
+
+(function(){ try { var t = new URLSearchParams(location.search).get("transcript"); if(t) setTimeout(function(){ showTranscript(t); }, 300); } catch(e){} })();
 </script>
 
 </body>

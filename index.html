@@ -3687,7 +3687,7 @@ function logoImgError(img){
           <div style="background:#000080;color:#FFD700;padding:10px 14px;font-weight:700;font-size:.85rem;">📚 Academic Record</div>
           <div style="padding:14px;">
 
-            <div style="font-weight:700;font-size:.8rem;color:#000080;margin-bottom:8px;">Core</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;"><span style="font-weight:700;font-size:.8rem;color:#000080;">Core</span><button type="button" onclick="fillReportFromClasswork()" style="background:#fff8e1;color:#8a5a00;border:1px solid #e2c27a;border-radius:7px;padding:4px 10px;font-size:.72rem;font-weight:700;cursor:pointer;">📚 Fill from Classwork</button></div>
             <div id="rpt-core-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:16px;"></div>
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
@@ -16599,6 +16599,10 @@ body.dash-open #ai-chat-bubble,body.dash-open #ai-chat-panel{display:none !impor
       <button onclick="sdGo(openTimetable)">📚 My Classes (Timetable)</button>
       <button onclick="sdGo(openCalendar)">📅 School Calendar</button>
       <button onclick="sdGo(openHwPage)">📝 Homework</button>
+      <button onclick="sdGo(openClassworkPage)">🗂️ Classwork &amp; Scores</button>
+      <button onclick="sdGo(openDailyRecordPage)">📔 Daily Record</button>
+      <button onclick="sdGo(openLeavePage)">📝 Leave Request</button>
+      <button onclick="sdGo(openConcernsPage)">🛡️ Report a Concern</button>
       <button onclick="sdGo(openExamPortalPage)">🎓 Examination Portal</button>
       <button onclick="sdGo(openMyTestsPage)">📚 My Tests</button>
       <button onclick="sdGo(openQuizPage)">✏️ Quiz &amp; Exams</button>
@@ -16861,6 +16865,10 @@ function sdOpenReport(){
       <button onclick="tdGo(openCalendar)">📅 School Calendar</button>
       <button onclick="tdGo(openStudentPage)">🎒 Students</button>
       <button onclick="tdGo(openHwPage)">📝 Homework</button>
+      <button onclick="tdGo(openClassworkPage)">🗂️ Classwork &amp; Scores</button>
+      <button onclick="tdGo(openDailyRecordPage)">📔 Daily Record</button>
+      <button onclick="tdGo(openLeavePage)">📝 Leave Requests</button>
+      <button onclick="tdGo(openConcernsPage)">🛡️ Concerns from Families</button>
       <button onclick="tdGo(openReportPage)">📊 Report Cards</button>
       <button onclick="tdGo(openQuizPage)">✏️ Quiz &amp; Exams</button>
       <button onclick="tdGo(openExamSchedulePage)">🗓️ Exam Schedule</button>
@@ -17489,7 +17497,7 @@ async function loadMyCertificates(){
 .dx-hello{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#0b1a3b,#1b3570);color:#fff;border-radius:18px;padding:16px;margin-bottom:14px}
 .dx-hello img,.dx-hello .av{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid #d6aa4c;background:#2f55a4;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;flex-shrink:0}
 .dx-hello b{display:block;font-size:1.05rem;color:#d6aa4c}.dx-hello span{font-size:.8rem;color:#cfd6ea}
-.dx-tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:14px}
+.dx-tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}
 .dx-tile{border:0;border-radius:14px;padding:14px 6px;color:#fff;font-weight:700;font-size:.76rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;font-family:inherit;box-shadow:0 2px 8px rgba(0,0,0,.1)}
 .dx-tile span{font-size:1.4rem}
 .dx-two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
@@ -17503,7 +17511,9 @@ async function loadMyCertificates(){
 .dx-legend{display:flex;gap:10px;flex-wrap:wrap;font-size:.7rem;color:#555;margin-top:8px}.dx-legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:3px;vertical-align:middle}
 .dx-bottom{display:none}
 @media (max-width:860px){
-  .dx-tiles{grid-template-columns:repeat(3,1fr)}
+  .dx-tiles{grid-template-columns:repeat(4,1fr);gap:7px}
+  .dx-tile{font-size:.66rem;padding:11px 3px;border-radius:12px}
+  .dx-tile span{font-size:1.2rem}
   .dx-two{grid-template-columns:1fr}
   .dx-bottom{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:4;background:#fff;border-top:1px solid #e6e9f0;justify-content:space-around;padding:6px 0 calc(6px + env(safe-area-inset-bottom,0px));box-shadow:0 -2px 10px rgba(0,0,0,.06)}
   .dx-bottom button{background:none;border:0;display:flex;flex-direction:column;align-items:center;font-size:.66rem;color:#5b6478;gap:2px;cursor:pointer;font-family:inherit}
@@ -17793,6 +17803,10 @@ async function sdEnhance(d){
     + tile("✅","Attendance","linear-gradient(135deg,#2e7d32,#43a047)","openAttendPage")
     + tile("💬","Messages","linear-gradient(135deg,#c2185b,#ec407a)","openMsgPage")
     + tile("📅","Calendar","linear-gradient(135deg,#1565c0,#42a5f5)","openCalendar")
+    + tile("🗂️","Classwork","linear-gradient(135deg,#0b1a3b,#1b3570)","openClassworkPage")
+    + tile("📔","Daily Record","linear-gradient(135deg,#8a5a00,#c9a227)","openDailyRecordPage")
+    + tile("📝","Leave Request","linear-gradient(135deg,#5d4037,#8d6e63)","openLeavePage")
+    + tile("🛡️","Concern","linear-gradient(135deg,#ad1457,#d81b60)","openConcernsPage")
     + "</div>"
     + "<div class='dx-two'><div class='dx-card'><h3>📚 Today's classes <button onclick='sdGo(openTimetable)'>Full week ›</button></h3>"+todayClassesHTML(todays.map(function(s){ s.cls=""; return s; }), slots.length ? "No classes today 🎉" : "Your timetable will appear here when the school adds it.")+"</div>"
     + "<div class='dx-card'><h3>⏰ Upcoming <button onclick='sdGo(openCalendar)'>Calendar ›</button></h3>"+upcomingHTML(items, "Nothing coming up.")+"</div></div>"
@@ -17826,6 +17840,7 @@ async function tdEnhance(run){
   var isAdm = currentUser && currentUser.email === ADMIN_EMAIL;
   if(!isAdm && currentTeacherName){ var own = mine.filter(function(s){ return String(s.teacher||"").toLowerCase()===String(currentTeacherName).toLowerCase(); }); if(own.length) mine = own; }
   var items = await calLoadItems();
+  var wait = await c2pWaitingCounts();
   if(!document.getElementById("td-content") || document.getElementById("td").style.display === "none") return;
   var tile = function(ic, label, bg, fn){ return "<button class='dx-tile' style='background:"+bg+"' onclick='tdGo("+fn+")'><span>"+ic+"</span>"+label+"</button>"; };
   var displayName = (currentTeacherName && currentTeacherName.indexOf("@") < 0) ? currentTeacherName : (isAdm ? "Admin" : "Teacher");
@@ -17840,7 +17855,14 @@ async function tdEnhance(run){
     + tile("📊","Grades","linear-gradient(135deg,#f57c00,#ffa726)","openReportPage")
     + tile("🗓️","Timetable","linear-gradient(135deg,#6a1b9a,#8e24aa)","openTimetable")
     + tile("📅","Calendar","linear-gradient(135deg,#1565c0,#42a5f5)","openCalendar")
+    + tile("🗂️","Classwork","linear-gradient(135deg,#0b1a3b,#1b3570)","openClassworkPage")
+    + tile("📔","Daily Record","linear-gradient(135deg,#8a5a00,#c9a227)","openDailyRecordPage")
+    + tile("📝","Leave"+(wait.leave?" ("+wait.leave+")":""),"linear-gradient(135deg,#5d4037,#8d6e63)","openLeavePage")
+    + tile("🛡️","Concerns"+(wait.concerns?" ("+wait.concerns+")":""),"linear-gradient(135deg,#ad1457,#d81b60)","openConcernsPage")
     + "</div>"
+    + ((wait.leave || wait.concerns) ? "<div class='dx-card' style='margin-bottom:14px;border:1.5px solid #f57c00'><h3>📥 Waiting for you</h3><div style='display:flex;gap:10px;flex-wrap:wrap'>"
+        + (wait.leave ? "<button class='td-gold' onclick='tdGo(openLeavePage)'>📝 "+wait.leave+" leave request"+(wait.leave>1?"s":"")+" to approve</button>" : "")
+        + (wait.concerns ? "<button class='td-gold' style='background:#c62828' onclick='tdGo(openConcernsPage)'>🛡️ "+wait.concerns+" new concern"+(wait.concerns>1?"s":"")+" from families</button>" : "") + "</div></div>" : "")
     + "<div class='dx-two'><div class='dx-card'><h3>📚 Today's classes <button onclick='tdGo(openTimetable)'>Timetable ›</button></h3>"+todayClassesHTML(mine, all.length ? "No classes today." : "No timetable yet — open 🗓️ Timetable to add your classes.")+"</div>"
     + "<div class='dx-card'><h3>⏰ Upcoming <button onclick='tdGo(openCalendar)'>＋ Add / Calendar ›</button></h3>"+upcomingHTML(items, "No upcoming events. Add exams, meetings and holidays in the calendar.")+"</div></div>");
   var ann = document.getElementById("td-ann-card"); if(ann) box.prepend(ann);
@@ -17918,6 +17940,7 @@ async function openAnalyticsPage(){
       }
     }
   } catch(e){ console.error("analytics messages", e); }
+  try { (await c2pList("incidents")).forEach(function(x){ AN.msgs.push({ role:"parent", text:(x.category||"")+" "+(x.title||"")+" "+(x.description||""), sentAt:x.createdAt, cls:x.cls }); }); } catch(e){}
   AN.students.forEach(function(s){ s.cls = baseLevel(s.cls||""); });
   anRender();
 }
@@ -18512,6 +18535,376 @@ async function showPortfolio(id){
 (function(){ try { var p = new URLSearchParams(location.search).get("portfolio"); if(p) setTimeout(function(){ showPortfolio(p); }, 300); } catch(e){} })();
 
 (function(){ try { var t = new URLSearchParams(location.search).get("transcript"); if(t) setTimeout(function(){ showTranscript(t); }, 300); } catch(e){} })();
+</script>
+
+<!-- ═════════ LEAVE REQUESTS · CLASSWORK · DAILY RECORD · CONCERNS ═════════ -->
+<style>
+.c2p{display:none;position:fixed;inset:0;background:#f0f2f5;z-index:9990;overflow-y:auto;font-family:inherit;color:#1a1f36}
+.c2p-bar{background:linear-gradient(135deg,#0b1a3b,#1b3570);color:#d6aa4c;height:56px;display:flex;align-items:center;gap:10px;padding:0 14px;position:sticky;top:0;z-index:3;border-bottom:3px solid #c9a227}
+.c2p-bar button{background:rgba(255,255,255,.12);color:#fff;border:0;padding:6px 12px;border-radius:20px;cursor:pointer;font-size:.8rem;font-family:inherit}
+.c2p-bar .add{background:#c9a227;color:#0b1a3b;font-weight:800}
+.c2p-wrap{max-width:900px;margin:0 auto;padding:12px 12px 90px}
+.c2p-card{background:#fff;border-radius:14px;box-shadow:0 1px 8px rgba(16,30,70,.08);padding:14px;margin-bottom:12px}
+.c2p-tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px;padding-bottom:2px}
+.c2p-tabs button{border:1.5px solid #c5cae9;background:#fff;color:#0b1a3b;border-radius:999px;padding:6px 12px;font-size:.76rem;font-weight:700;cursor:pointer;white-space:nowrap;font-family:inherit}
+.c2p-tabs button.on{background:#0b1a3b;color:#d6aa4c;border-color:#0b1a3b}
+.c2p-in{width:100%;box-sizing:border-box;padding:9px 10px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:.84rem;font-family:inherit;background:#fff}
+.c2p-l{display:block;font-size:.72rem;font-weight:700;color:#5b6478;margin:8px 0 3px}
+.c2p-btn{background:#0b1a3b;color:#d6aa4c;border:0;border-radius:9px;padding:10px 14px;font-weight:800;cursor:pointer;font-size:.84rem;font-family:inherit}
+.c2p-btn.gold{background:#c9a227;color:#0b1a3b}.c2p-btn.ghost{background:#fff;color:#0b1a3b;border:1.5px solid #c5cae9}.c2p-btn.red{background:#fff;color:#c62828;border:1.5px solid #ef9a9a}
+.c2p-st{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.7rem;font-weight:800}
+.c2p-st.pending{background:#fff3e0;color:#c65a00}.c2p-st.approved,.c2p-st.resolved{background:#e8f5e9;color:#2e7d32}.c2p-st.rejected{background:#ffebee;color:#c62828}.c2p-st.inprogress{background:#e3f2fd;color:#1565c0}
+.c2p-muted{color:#7a84a0;font-size:.74rem}
+.c2p-empty{text-align:center;color:#9aa3b8;padding:30px 10px;font-size:.86rem}
+.c2p-score{display:inline-block;background:#0b1a3b;color:#d6aa4c;border-radius:8px;padding:3px 9px;font-weight:800;font-size:.8rem}
+.c2p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.c2p-mood button{font-size:1.25rem;background:#f5f7fb;border:1.5px solid transparent;border-radius:9px;padding:3px 6px;cursor:pointer}
+.c2p-mood button.on{border-color:#c9a227;background:#fff8e1}
+.c2p-stu{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid #f0f2f5}
+#c2p-form{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10004;align-items:center;justify-content:center;padding:12px}
+#c2p-form .box{background:#fff;border-radius:14px;width:460px;max-width:100%;max-height:92vh;overflow-y:auto}
+#c2p-form .hd{background:linear-gradient(135deg,#0b1a3b,#1b3570);color:#d6aa4c;padding:13px 16px;font-weight:800;display:flex;justify-content:space-between;border-radius:14px 14px 0 0}
+</style>
+<div id="c2p-page" class="c2p">
+  <div class="c2p-bar"><button onclick="c2pClose()">← Back</button><b style="flex:1" id="c2p-title"></b><button class="add" id="c2p-add" onclick="c2pAdd()">＋ New</button></div>
+  <div class="c2p-wrap"><div id="c2p-top"></div><div class="c2p-tabs" id="c2p-tabs"></div><div id="c2p-body"></div></div>
+</div>
+<div id="c2p-form"><div class="box"><div class="hd"><span id="c2p-form-title"></span><button aria-label="Close" onclick="document.getElementById('c2p-form').style.display='none'" style="background:none;border:0;color:#d6aa4c;font-size:1.1rem;cursor:pointer">✕</button></div><div style="padding:14px 16px" id="c2p-form-body"></div></div></div>
+<script>
+// ══════════════ shared helpers ══════════════
+var C2P = { mode:"", tab:"all", items:[], students:[] };
+var C2P_KEYS = { leaveRequests:"c2epe_leave", classwork:"c2epe_classwork", dailyRecords:"c2epe_daily", incidents:"c2epe_incidents" };
+async function c2pList(coll, field, value){
+  if(xLocal()) return JSON.parse(localStorage.getItem(C2P_KEYS[coll])||"[]").filter(function(x){ return !field || x[field]===value; });
+  var m = await xFb(), db = window._fb.db;
+  var q = field ? m.query(m.collection(db,coll), m.where(field,"==",value)) : m.collection(db,coll);
+  return (await m.getDocs(q)).docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+}
+async function c2pSave(coll, data, id){
+  data.updatedAt = new Date().toISOString();
+  if(xLocal()){
+    var l = JSON.parse(localStorage.getItem(C2P_KEYS[coll])||"[]");
+    if(id){ l.forEach(function(x){ if(x.id===id) Object.assign(x, data); }); }
+    else { id = coll.slice(0,2)+Date.now()+Math.floor(Math.random()*1000); data.id = id; data.createdAt = data.updatedAt; l.unshift(data); }
+    localStorage.setItem(C2P_KEYS[coll], JSON.stringify(l)); return id;
+  }
+  var m = await xFb(), db = window._fb.db;
+  if(id){ await m.setDoc(m.doc(db,coll,id), data, {merge:true}); return id; }
+  data.createdAt = data.updatedAt; return (await m.addDoc(m.collection(db,coll), data)).id;
+}
+async function c2pClassStudents(cls){
+  var s = []; try { s = await tdFetch("students","c2epe_local_students"); } catch(e){}
+  return s.filter(function(x){ return baseLevel(x.cls||"") === baseLevel(cls) && x.status !== "left"; }).sort(function(a,b){ return String(a.nameEn||"").localeCompare(String(b.nameEn||"")); });
+}
+function c2pDate(v, opt){ if(!v) return "—"; var d = new Date(String(v).length===10 ? v+"T00:00:00" : v); return isNaN(d) ? v : d.toLocaleDateString("en-GB", opt||{day:"numeric",month:"short",year:"numeric"}); }
+function c2pMsg(id, text, ok){ var m = document.getElementById(id); if(!m) return; m.style.cssText = "display:block;margin-top:8px;padding:7px 10px;border-radius:7px;font-size:.78rem;background:"+(ok?"#e8f5e9":"#ffebee")+";color:"+(ok?"#2e7d32":"#c62828"); m.textContent = text; }
+function c2pClassSelect(id, selected){
+  var h = document.getElementById("hw-cls"); var html = h ? h.innerHTML : "";
+  return "<select id='"+id+"' class='c2p-in'>"+html+"</select>";
+}
+function c2pPrepClassSelect(id, value){
+  var el = document.getElementById(id); if(!el) return;
+  el.querySelector("option").textContent = "Choose a class";
+  restrictClassDropdown(id);
+  if(value) el.value = value;
+}
+function c2pOpen(mode, title, canAdd){
+  C2P.mode = mode; C2P.tab = "all";
+  document.getElementById("c2p-title").textContent = title;
+  document.getElementById("c2p-add").style.display = canAdd ? "" : "none";
+  document.getElementById("c2p-top").innerHTML = ""; document.getElementById("c2p-tabs").innerHTML = "";
+  document.getElementById("c2p-body").innerHTML = "<div class='c2p-empty'>Loading…</div>";
+  document.getElementById("c2p-page").style.display = "block";
+}
+function c2pClose(){ document.getElementById("c2p-page").style.display = "none"; if(isTeacher && typeof tdRefresh==="function" && document.getElementById("td").style.display==="block") tdRefresh(); }
+function c2pTabs(list){ document.getElementById("c2p-tabs").innerHTML = list.map(function(t){ return "<button class='"+(C2P.tab===t[0]?"on":"")+"' onclick=\"C2P.tab='"+t[0]+"';c2pRender()\">"+t[1]+(t[2]!=null?" ("+t[2]+")":"")+"</button>"; }).join(""); }
+function c2pForm(title, html){ document.getElementById("c2p-form-title").textContent = title; document.getElementById("c2p-form-body").innerHTML = html; document.getElementById("c2p-form").style.display = "flex"; }
+function c2pAdd(){ ({leave:leaveNewForm, classwork:cwNewForm, daily:drNewForm, concern:icNewForm})[C2P.mode](); }
+function c2pRender(){ ({leave:leaveRender, classwork:cwRender, daily:drRender, concern:icRender})[C2P.mode](); }
+var C2P_PART = {full:"Full day", morning:"Morning", afternoon:"Afternoon", evening:"Evening"};
+
+// ══════════════ 1. LEAVE REQUESTS ══════════════
+// Parents ask for leave; the teacher approves; approved days are written into Attendance as "Permission".
+async function openLeavePage(){
+  c2pOpen("leave", isTeacher ? "📝 Leave Requests" : "📝 Leave Request", !isTeacher && !!studentSession);
+  try {
+    C2P.items = isTeacher ? (await c2pList("leaveRequests")).filter(function(x){ return teacherCanSeeClass(baseLevel(x.cls||"")); })
+                          : (studentSession ? await c2pList("leaveRequests","studentId",studentSession.studentId) : []);
+  } catch(e){ C2P.items = []; document.getElementById("c2p-body").innerHTML = "<div class='c2p-empty'>❌ "+escapeHtml(e.message||String(e))+"</div>"; return; }
+  C2P.items.sort(function(a,b){ return String(b.createdAt||"").localeCompare(String(a.createdAt||"")); });
+  if(isTeacher) C2P.tab = "pending";
+  leaveRender();
+}
+function leaveRender(){
+  var it = C2P.items, n = function(s){ return it.filter(function(x){ return x.status===s; }).length; };
+  c2pTabs([["all","All",it.length],["pending","⏳ Pending",n("pending")],["approved","✅ Approved",n("approved")],["rejected","✖ Not approved",n("rejected")]]);
+  var list = it.filter(function(x){ return C2P.tab==="all" || x.status===C2P.tab; });
+  if(!isTeacher && studentSession) document.getElementById("c2p-top").innerHTML = "<div class='c2p-card' style='display:flex;gap:10px;align-items:center'><div style='font-size:1.6rem'>📝</div><div style='flex:1;font-size:.82rem'>Need your child to miss class? Send a leave request — the teacher approves it and the attendance is marked as <b>Permission</b>.</div><button class='c2p-btn gold' onclick='leaveNewForm()'>＋ New request</button></div>";
+  document.getElementById("c2p-body").innerHTML = list.length ? list.map(function(x){
+    var days = x.from===x.to ? c2pDate(x.from)+" · "+(C2P_PART[x.fromPart]||"") : c2pDate(x.from)+" ("+(C2P_PART[x.fromPart]||"")+") → "+c2pDate(x.to)+" ("+(C2P_PART[x.toPart]||"")+")";
+    return "<div class='c2p-card'><div style='display:flex;justify-content:space-between;gap:8px;align-items:flex-start;flex-wrap:wrap'>"
+      + "<div><b style='color:#0b1a3b'>"+escapeHtml(days)+"</b><div class='c2p-muted'>"+escapeHtml(x.studentName||"")+" · "+escapeHtml(x.cls||"")+" · sent "+c2pDate(x.createdAt)+"</div></div>"
+      + "<span class='c2p-st "+x.status+"'>"+({pending:"⏳ Pending",approved:"✅ Approved",rejected:"✖ Not approved"}[x.status]||x.status)+"</span></div>"
+      + "<div style='margin-top:8px;font-size:.84rem;white-space:pre-line'>"+escapeHtml(x.reason||"")+"</div>"
+      + (x.reviewNote ? "<div style='margin-top:8px;font-size:.78rem;background:#fffaf0;border-left:3px solid #c9a227;padding:6px 9px;border-radius:0 6px 6px 0'>💬 "+escapeHtml(x.reviewNote)+(x.reviewedBy?" — "+escapeHtml(x.reviewedBy):"")+"</div>" : "")
+      + (isTeacher && x.status==="pending" ? "<div style='display:flex;gap:8px;margin-top:10px;flex-wrap:wrap'><input id='lv-note-"+x.id+"' class='c2p-in' placeholder='Note to the parent (optional)' style='flex:1;min-width:160px'><button class='c2p-btn gold' onclick=\"leaveDecide('"+x.id+"','approved')\">✅ Approve</button><button class='c2p-btn red' onclick=\"leaveDecide('"+x.id+"','rejected')\">✖ Not approve</button></div>" : "")
+      + "</div>";
+  }).join("") : "<div class='c2p-empty'>"+(C2P.tab==="pending"?"No requests waiting. 🎉":"No leave requests yet.")+"</div>";
+}
+function leaveNewForm(){
+  if(!studentSession) return;
+  var today = new Date().toISOString().slice(0,10);
+  var part = function(id){ return "<select id='"+id+"' class='c2p-in'><option value='full'>Full day</option><option value='morning'>Morning</option><option value='afternoon'>Afternoon</option><option value='evening'>Evening</option></select>"; };
+  c2pForm("📝 New leave request",
+    "<div class='c2p-muted'>"+escapeHtml(studentSession.name)+" · "+escapeHtml(classDisplayLabel(studentSession.cls)||studentSession.cls)+"</div>"
+    + "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px'><div><label class='c2p-l'>From</label><input type='date' id='lv-from' class='c2p-in' value='"+today+"'></div><div><label class='c2p-l'>&nbsp;</label>"+part("lv-from-part")+"</div>"
+    + "<div><label class='c2p-l'>To</label><input type='date' id='lv-to' class='c2p-in' value='"+today+"'></div><div><label class='c2p-l'>&nbsp;</label>"+part("lv-to-part")+"</div></div>"
+    + "<label class='c2p-l'>Reason</label><textarea id='lv-reason' class='c2p-in' maxlength='500' style='height:80px;resize:vertical' placeholder='e.g. My child has a fever and will see the doctor.'></textarea>"
+    + "<button class='c2p-btn gold' style='width:100%;margin-top:12px' onclick='leaveSend()'>📨 Send request</button><div id='lv-msg' style='display:none'></div>");
+}
+async function leaveSend(){
+  var d = { studentId:studentSession.studentId, studentDocId:studentSession.docId||"", studentName:studentSession.name, cls:studentSession.cls,
+    from:document.getElementById("lv-from").value, fromPart:document.getElementById("lv-from-part").value, to:document.getElementById("lv-to").value, toPart:document.getElementById("lv-to-part").value,
+    reason:document.getElementById("lv-reason").value.trim(), status:"pending" };
+  if(!d.from || !d.to || d.to < d.from) return c2pMsg("lv-msg","Please choose the dates (the end date cannot be before the start).");
+  if(d.reason.length < 3) return c2pMsg("lv-msg","Please write the reason.");
+  try { var id = await c2pSave("leaveRequests", d); d.id = id; C2P.items.unshift(d); document.getElementById("c2p-form").style.display = "none"; leaveRender(); }
+  catch(e){ c2pMsg("lv-msg","❌ "+(e.message||e)); }
+}
+async function leaveDecide(id, status){
+  var x = C2P.items.find(function(i){ return i.id===id; }); if(!x) return;
+  var note = (document.getElementById("lv-note-"+id)||{value:""}).value.trim();
+  try {
+    await c2pSave("leaveRequests", { status:status, reviewNote:note, reviewedBy:currentTeacherName||"", reviewedAt:new Date().toISOString() }, id);
+    Object.assign(x, { status:status, reviewNote:note, reviewedBy:currentTeacherName||"" });
+    if(status === "approved") await leaveToAttendance(x);
+    leaveRender();
+  } catch(e){ alert("Could not save: "+(e.message||e)); }
+}
+// approved leave → Attendance "Permission" for each school day in the range (Sundays skipped)
+async function leaveToAttendance(x){
+  var sid = x.studentDocId;
+  if(!sid){ var st = (await c2pClassStudents(x.cls)).find(function(s){ return s.studentId===x.studentId; }); sid = st && st.id; }
+  if(!sid) return;
+  var d = new Date(x.from+"T00:00:00"), end = new Date(x.to+"T00:00:00");
+  for(; d <= end; d.setDate(d.getDate()+1)){
+    if(d.getDay() === 0) continue;
+    var ds = d.toISOString().slice(0,10), cls = baseLevel(x.cls), rec = { status:"permission", reason:"Leave: "+x.reason+(x.from===x.to && x.fromPart!=="full" ? " ("+C2P_PART[x.fromPart]+")" : ""), name:x.studentName, studentId:x.studentId };
+    if(xLocal()){
+      var l = JSON.parse(localStorage.getItem("c2epe_attendance")||"[]"), a = l.find(function(y){ return y.cls===cls && y.date===ds; });
+      if(!a){ a = {cls:cls, date:ds, records:{}}; l.push(a); } a.records[sid] = Object.assign({}, a.records[sid]||{}, rec);
+      localStorage.setItem("c2epe_attendance", JSON.stringify(l));
+    } else {
+      var m = await xFb(), recs = {}; recs[sid] = rec;
+      await m.setDoc(m.doc(window._fb.db,"attendance",attDocIdFor(cls,ds)), { cls:cls, date:ds, records:recs }, {merge:true});
+    }
+  }
+}
+
+// ══════════════ 2. CLASSWORK (gradebook) ══════════════
+// Teachers score every activity; families see each score right away; the averages can fill the Report Card.
+var CW_CATS = ["Homework","Quiz","Class Participation","Presentation / Assignment","Project","Portfolio","Extra Activity","Test"];
+async function openClassworkPage(){
+  c2pOpen("classwork", isTeacher ? "📚 Classwork & Scores" : "📚 Classwork", isTeacher);
+  try {
+    if(isTeacher) C2P.items = (await c2pList("classwork")).filter(function(x){ return teacherCanSeeClass(baseLevel(x.cls||"")); });
+    else if(studentSession) C2P.items = await c2pList("classwork","cls",baseLevel(studentSession.cls));
+    else C2P.items = [];
+  } catch(e){ C2P.items = []; }
+  C2P.items.sort(function(a,b){ return String(b.date||"").localeCompare(String(a.date||"")); });
+  cwRender();
+}
+function cwMine(x){ return ((x.scores||{})[studentSession.docId] != null && (x.scores||{})[studentSession.docId] !== "") ? +x.scores[studentSession.docId] : null; }
+function cwRender(){
+  var it = C2P.items;
+  var tabs = [["all","All"]].concat(CW_CATS.filter(function(c){ return it.some(function(x){ return x.category===c; }); }).map(function(c){ return [c, c]; }));
+  if(!isTeacher) tabs.push(["missing","⚠️ Not submitted"]);
+  c2pTabs(tabs);
+  var list = it.filter(function(x){ return C2P.tab==="all" || x.category===C2P.tab || (C2P.tab==="missing" && cwMine(x)===null); });
+  if(!isTeacher && studentSession){
+    var scored = it.map(function(x){ var v = cwMine(x); return v===null ? null : v*100/(+x.max||100); }).filter(function(v){ return v!==null; });
+    var avg = scored.length ? Math.round(scored.reduce(function(a,b){return a+b;},0)/scored.length) : null;
+    document.getElementById("c2p-top").innerHTML = "<div class='c2p-card' style='display:flex;gap:16px;align-items:center;flex-wrap:wrap'><div style='font-size:1.6rem'>📚</div><div style='flex:1'><b>"+escapeHtml(studentSession.name)+"</b><div class='c2p-muted'>"+scored.length+" scored · "+(it.length-scored.length)+" not submitted</div></div>"+(avg!==null?"<div style='text-align:center'><div style='font-size:1.4rem;font-weight:800;color:#0b1a3b'>"+avg+"%</div><div class='c2p-muted'>average</div></div>":"")+"</div>";
+  }
+  document.getElementById("c2p-body").innerHTML = list.length ? list.map(function(x){
+    var max = +x.max||100, head = "<div style='display:flex;justify-content:space-between;gap:8px;align-items:flex-start'><div><b style='color:#0b1a3b'>"+escapeHtml(x.title||x.category)+"</b><div class='c2p-muted'>"+escapeHtml(x.category)+" · "+escapeHtml(x.cls)+" · "+c2pDate(x.date)+(x.teacherName?" · "+escapeHtml(x.teacherName):"")+"</div></div>";
+    if(isTeacher){
+      var vals = Object.values(x.scores||{}).filter(function(v){ return v!==""&&v!=null; }).map(Number);
+      var av = vals.length ? Math.round(vals.reduce(function(a,b){return a+b;},0)/vals.length*100/max) : null;
+      return "<div class='c2p-card'>"+head+"<span class='c2p-muted' style='text-align:right'>"+vals.length+" scored"+(av!==null?"<br><b style='color:#0b1a3b'>avg "+av+"%</b>":"")+"</span></div><div style='display:flex;gap:8px;margin-top:8px'><button class='c2p-btn ghost' onclick=\"cwScoreForm('"+x.id+"')\">✏️ Enter / edit scores</button></div></div>";
+    }
+    var v = cwMine(x);
+    return "<div class='c2p-card'>"+head+(v===null?"<span class='c2p-st pending'>Not submitted</span>":"<span class='c2p-score'>"+v+" / "+max+"</span>")+"</div>"+(x.note?"<div class='c2p-muted' style='margin-top:6px'>"+escapeHtml(x.note)+"</div>":"")+"</div>";
+  }).join("") : "<div class='c2p-empty'>"+(isTeacher?"No classwork yet — press ＋ New to add an activity and its scores.":"No scores yet.")+"</div>";
+}
+function cwNewForm(){
+  c2pForm("📚 New activity",
+    "<label class='c2p-l'>Class</label>"+c2pClassSelect("cw-cls")
+    + "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px'><div><label class='c2p-l'>Type</label><select id='cw-cat' class='c2p-in'>"+CW_CATS.map(function(c){ return "<option>"+c+"</option>"; }).join("")+"</select></div><div><label class='c2p-l'>Date</label><input type='date' id='cw-date' class='c2p-in' value='"+new Date().toISOString().slice(0,10)+"'></div></div>"
+    + "<div style='display:grid;grid-template-columns:2fr 1fr;gap:8px'><div><label class='c2p-l'>Title</label><input id='cw-title' class='c2p-in' placeholder='e.g. Unit 3 vocabulary quiz'></div><div><label class='c2p-l'>Out of</label><input type='number' id='cw-max' class='c2p-in' value='10' min='1'></div></div>"
+    + "<button class='c2p-btn gold' style='width:100%;margin-top:12px' onclick='cwCreate()'>Next: enter scores ›</button><div id='cw-msg' style='display:none'></div>");
+  c2pPrepClassSelect("cw-cls");
+}
+async function cwCreate(){
+  var d = { cls:document.getElementById("cw-cls").value, category:document.getElementById("cw-cat").value, date:document.getElementById("cw-date").value,
+    title:document.getElementById("cw-title").value.trim(), max:+document.getElementById("cw-max").value||10, scores:{}, teacherName:currentTeacherName||"" };
+  if(!d.cls) return c2pMsg("cw-msg","Please choose a class.");
+  if(!d.title) d.title = d.category;
+  try { d.id = await c2pSave("classwork", d); C2P.items.unshift(d); cwRender(); cwScoreForm(d.id); }
+  catch(e){ c2pMsg("cw-msg","❌ "+(e.message||e)); }
+}
+async function cwScoreForm(id){
+  var x = C2P.items.find(function(i){ return i.id===id; }); if(!x) return;
+  var studs = await c2pClassStudents(x.cls);
+  c2pForm("✏️ "+(x.title||x.category)+" — out of "+x.max,
+    "<div class='c2p-muted'>"+escapeHtml(x.cls)+" · "+c2pDate(x.date)+" · leave empty = not submitted</div>"
+    + (studs.length ? studs.map(function(s){ var v = (x.scores||{})[s.id]; return "<div class='c2p-stu'><span>"+escapeHtml(s.nameEn||s.nameKm||"")+"<span class='c2p-muted'> · "+escapeHtml(s.studentId||"")+"</span></span><input type='number' min='0' max='"+x.max+"' step='0.5' data-sid='"+escapeHtml(s.id)+"' class='c2p-in cw-score' style='width:80px' value='"+(v==null?"":v)+"'></div>"; }).join("") : "<div class='c2p-empty'>No students in this class.</div>")
+    + "<button class='c2p-btn gold' style='width:100%;margin-top:12px' onclick=\"cwSaveScores('"+id+"')\">💾 Save scores</button><div id='cw-msg2' style='display:none'></div>");
+}
+async function cwSaveScores(id){
+  var x = C2P.items.find(function(i){ return i.id===id; }), sc = {}, bad = false;
+  document.querySelectorAll(".cw-score").forEach(function(inp){ var v = inp.value.trim(); if(v!=="" && (+v<0 || +v>x.max)) bad = true; sc[inp.dataset.sid] = v==="" ? "" : +v; });
+  if(bad) return c2pMsg("cw-msg2","Scores must be between 0 and "+x.max+".");
+  try { await c2pSave("classwork", { scores:sc }, id); x.scores = sc; document.getElementById("c2p-form").style.display = "none"; cwRender(); }
+  catch(e){ c2pMsg("cw-msg2","❌ "+(e.message||e)); }
+}
+// Report Card editor: fill Homework / Participation / Monthly quiz / Project from Classwork averages
+async function fillReportFromClasswork(){
+  var cls = document.getElementById("rpt-cls").value, sid = document.getElementById("rpt-student-id").value.trim(), name = document.getElementById("rpt-student").value.trim();
+  if(!cls || (!sid && !name)){ alert("Choose the student and class first."); return; }
+  var st = (await c2pClassStudents(cls)).find(function(s){ return (sid && s.studentId===sid) || String(s.nameEn||"").toLowerCase()===name.toLowerCase(); });
+  if(!st){ alert("This student was not found in "+cls+"."); return; }
+  var since = new Date(Date.now()-130*86400000).toISOString().slice(0,10);
+  var items = (await c2pList("classwork")).filter(function(x){ return baseLevel(x.cls||"")===baseLevel(cls) && String(x.date||"") >= since; });
+  var pct = function(cats){ var v = items.filter(function(x){ return cats.indexOf(x.category)>=0 && x.scores && x.scores[st.id]!=="" && x.scores[st.id]!=null; }).map(function(x){ return x.scores[st.id]*100/(+x.max||100); }); return v.length ? Math.round(v.reduce(function(a,b){return a+b;},0)/v.length) : null; };
+  var map = { homework:pct(["Homework"]), participation:pct(["Class Participation","Extra Activity"]), monthlyQuiz:pct(["Quiz"]), project:pct(["Project","Presentation / Assignment","Portfolio"]) };
+  var filled = [];
+  Object.keys(map).forEach(function(k){ var el = document.getElementById("core-"+k); if(el && map[k]!==null){ el.value = map[k]; el.dispatchEvent(new Event("input",{bubbles:true})); filled.push(k+" "+map[k]+"%"); } });
+  alert(filled.length ? "Filled from Classwork (last 4 months): "+filled.join(", ")+". Please check before saving." : "No Classwork scores found for this student in the last 4 months.");
+}
+
+// ══════════════ 3. DAILY RECORD ══════════════
+// One short note per child per day: mood, participation, (meal for Kindergarten), what the class learned.
+var DR_MOODS = [["😄","Very happy"],["🙂","Happy"],["😐","Okay"],["😢","Sad"],["😴","Tired"]];
+async function openDailyRecordPage(){
+  c2pOpen("daily", "📔 Daily Record", isTeacher);
+  try {
+    if(isTeacher) C2P.items = (await c2pList("dailyRecords")).filter(function(x){ return teacherCanSeeClass(baseLevel(x.cls||"")); });
+    else if(studentSession) C2P.items = (await c2pList("dailyRecords","cls",baseLevel(studentSession.cls))).filter(function(x){ return x.entries && x.entries[studentSession.docId]; });
+    else C2P.items = [];
+  } catch(e){ C2P.items = []; }
+  C2P.items.sort(function(a,b){ return String(b.date||"").localeCompare(String(a.date||"")); });
+  drRender();
+}
+function drRender(){
+  c2pTabs([["all","All"],["week","This week"],["month","This month"]]);
+  var lim = C2P.tab==="week" ? 7 : C2P.tab==="month" ? 31 : 3650, since = new Date(Date.now()-lim*86400000).toISOString().slice(0,10);
+  var list = C2P.items.filter(function(x){ return String(x.date) >= since; });
+  document.getElementById("c2p-body").innerHTML = list.length ? list.map(function(x){
+    var learned = x.learned ? "<div style='font-size:.82rem;margin-top:6px'>📖 <b>Today we learned:</b> "+escapeHtml(x.learned)+"</div>" : "";
+    if(isTeacher){
+      var n = Object.keys(x.entries||{}).length;
+      return "<div class='c2p-card'><div style='display:flex;justify-content:space-between;gap:8px'><div><b style='color:#0b1a3b'>"+c2pDate(x.date,{weekday:"long",day:"numeric",month:"short"})+"</b><div class='c2p-muted'>"+escapeHtml(x.cls)+" · "+n+" children · "+escapeHtml(x.teacherName||"")+"</div></div><button class='c2p-btn ghost' onclick=\"drEdit('"+x.cls+"','"+x.date+"')\">✏️ Edit</button></div>"+learned+"</div>";
+    }
+    var e = x.entries[studentSession.docId] || {}, mood = DR_MOODS.find(function(m){ return m[0]===e.mood; });
+    return "<div class='c2p-card'><div style='display:flex;justify-content:space-between;gap:8px;align-items:center'><b style='color:#0b1a3b'>"+c2pDate(x.date,{weekday:"long",day:"numeric",month:"short"})+"</b>"+(mood?"<span style='font-size:1.6rem' title='"+mood[1]+"'>"+mood[0]+"</span>":"")+"</div>"
+      + (e.part ? "<div style='font-size:.82rem;margin-top:4px'>⭐ Participation: <b style='color:#c9a227'>"+"★".repeat(+e.part)+"</b><span style='color:#ddd'>"+"★".repeat(5-e.part)+"</span></div>" : "")
+      + (e.meal ? "<div style='font-size:.82rem;margin-top:2px'>🍱 Meal: "+escapeHtml(e.meal)+"</div>" : "") + learned
+      + (e.note ? "<div style='font-size:.82rem;margin-top:6px;background:#fffaf0;border-left:3px solid #c9a227;padding:6px 9px;border-radius:0 6px 6px 0'>💬 "+escapeHtml(e.note)+" <span class='c2p-muted'>— "+escapeHtml(x.teacherName||"Teacher")+"</span></div>" : "")
+      + "</div>";
+  }).join("") : "<div class='c2p-empty'>"+(isTeacher?"No daily records yet — press ＋ New.":"No daily notes yet.")+"</div>";
+}
+function drNewForm(){
+  c2pForm("📔 Daily record", "<label class='c2p-l'>Class</label>"+c2pClassSelect("dr-cls")+"<label class='c2p-l'>Date</label><input type='date' id='dr-date' class='c2p-in' value='"+new Date().toISOString().slice(0,10)+"'><button class='c2p-btn gold' style='width:100%;margin-top:12px' onclick=\"drEdit(document.getElementById('dr-cls').value, document.getElementById('dr-date').value)\">Next ›</button>");
+  c2pPrepClassSelect("dr-cls");
+}
+async function drEdit(cls, date){
+  if(!cls){ alert("Please choose a class."); return; }
+  var ex = C2P.items.find(function(x){ return baseLevel(x.cls)===baseLevel(cls) && x.date===date; }) || { cls:baseLevel(cls), date:date, entries:{} };
+  var studs = await c2pClassStudents(cls), isK = /^K\d/i.test(baseLevel(cls));
+  window.__drEdit = ex;
+  c2pForm("📔 "+baseLevel(cls)+" · "+c2pDate(date),
+    "<label class='c2p-l'>📖 What the class learned today (sent to every family)</label><textarea id='dr-learned' class='c2p-in' style='height:56px'>"+escapeHtml(ex.learned||"")+"</textarea>"
+    + studs.map(function(s){ var e = (ex.entries||{})[s.id] || {};
+        return "<div style='border-bottom:1px solid #f0f2f5;padding:10px 0' data-dr='"+escapeHtml(s.id)+"'><b style='font-size:.86rem'>"+escapeHtml(s.nameEn||s.nameKm||"")+"</b>"
+          + "<div class='c2p-mood' style='display:flex;gap:4px;margin:6px 0'>"+DR_MOODS.map(function(m){ return "<button type='button' title='"+m[1]+"' class='"+(e.mood===m[0]?"on":"")+"' onclick=\"this.parentNode.querySelectorAll('button').forEach(b=>b.classList.remove('on'));this.classList.add('on')\">"+m[0]+"</button>"; }).join("")+"</div>"
+          + "<div style='display:grid;grid-template-columns:"+(isK?"1fr 1fr":"1fr")+";gap:6px'><select class='c2p-in dr-part'><option value=''>Participation…</option>"+[5,4,3,2,1].map(function(n){ return "<option value='"+n+"'"+(+e.part===n?" selected":"")+">"+"★".repeat(n)+"</option>"; }).join("")+"</select>"
+          + (isK ? "<select class='c2p-in dr-meal'><option value=''>Meal…</option>"+["Ate everything","Ate some","Ate a little"].map(function(o){ return "<option"+(e.meal===o?" selected":"")+">"+o+"</option>"; }).join("")+"</select>" : "")+"</div>"
+          + "<input class='c2p-in dr-note' style='margin-top:6px' placeholder='Short note for the family (optional)' value='"+escapeHtml(e.note||"")+"'></div>"; }).join("")
+    + "<button class='c2p-btn gold' style='width:100%;margin-top:12px' onclick='drSave()'>💾 Save daily record</button><div id='dr-msg' style='display:none'></div>");
+}
+async function drSave(){
+  var ex = window.__drEdit, entries = {};
+  document.querySelectorAll("[data-dr]").forEach(function(row){
+    var on = row.querySelector(".c2p-mood .on"), part = row.querySelector(".dr-part").value, meal = row.querySelector(".dr-meal"), note = row.querySelector(".dr-note").value.trim();
+    var e = { mood: on ? on.textContent : "", part: part ? +part : "", meal: meal ? meal.value : "", note: note };
+    if(e.mood || e.part || e.meal || e.note) entries[row.dataset.dr] = e;
+  });
+  var data = { cls:ex.cls, date:ex.date, learned:document.getElementById("dr-learned").value.trim(), entries:entries, teacherName:currentTeacherName||"" };
+  try {
+    var id = ex.id || ("dr_"+ex.cls.replace(/[^A-Za-z0-9]/g,"_")+"_"+ex.date);
+    if(xLocal()){ var l = JSON.parse(localStorage.getItem("c2epe_daily")||"[]").filter(function(x){ return x.id!==id; }); data.id = id; l.unshift(data); localStorage.setItem("c2epe_daily", JSON.stringify(l)); }
+    else { var m = await xFb(); await m.setDoc(m.doc(window._fb.db,"dailyRecords",id), data); data.id = id; }
+    C2P.items = C2P.items.filter(function(x){ return x.id!==id; }); C2P.items.unshift(data);
+    document.getElementById("c2p-form").style.display = "none"; drRender();
+  } catch(e){ c2pMsg("dr-msg","❌ "+(e.message||e)); }
+}
+
+// ══════════════ 4. CONCERNS (parents report a problem; the school answers and tracks it) ══════════════
+var IC_CATS = ["🛡️ Bullying / safety","🩺 Health","📚 Learning / teaching","💰 Fees","🚌 Transport","🏫 Facilities","💬 Other"];
+async function openConcernsPage(){
+  c2pOpen("concern", isTeacher ? "🛡️ Concerns from families" : "🛡️ Report a concern", !isTeacher && !!studentSession);
+  try {
+    C2P.items = isTeacher ? (await c2pList("incidents")).filter(function(x){ return teacherCanSeeClass(baseLevel(x.cls||"")) || (currentUser && currentUser.email===ADMIN_EMAIL); })
+                          : (studentSession ? await c2pList("incidents","studentId",studentSession.studentId) : []);
+  } catch(e){ C2P.items = []; }
+  C2P.items.sort(function(a,b){ return String(b.createdAt||"").localeCompare(String(a.createdAt||"")); });
+  if(isTeacher) C2P.tab = "open";
+  icRender();
+}
+function icRender(){
+  var it = C2P.items, n = function(s){ return it.filter(function(x){ return x.status===s; }).length; };
+  c2pTabs([["all","All",it.length],["open","🆕 New",n("open")],["inprogress","🔄 In progress",n("inprogress")],["resolved","✅ Resolved",n("resolved")]]);
+  if(!isTeacher && studentSession) document.getElementById("c2p-top").innerHTML = "<div class='c2p-card' style='display:flex;gap:10px;align-items:center'><div style='font-size:1.6rem'>🛡️</div><div style='flex:1;font-size:.82rem'><b>Tell us what happened.</b> Bullying, safety, health, learning or anything else — the school will follow up and you can see the answer here.</div><button class='c2p-btn gold' onclick='icNewForm()'>＋ Report</button></div>";
+  var list = it.filter(function(x){ return C2P.tab==="all" || x.status===C2P.tab; });
+  document.getElementById("c2p-body").innerHTML = list.length ? list.map(function(x){
+    return "<div class='c2p-card'><div style='display:flex;justify-content:space-between;gap:8px;align-items:flex-start;flex-wrap:wrap'><div><b style='color:#0b1a3b'>"+escapeHtml(x.title)+"</b><div class='c2p-muted'>"+escapeHtml(x.category||"")+" · "+escapeHtml(x.studentName||"")+" · "+escapeHtml(x.cls||"")+" · "+c2pDate(x.createdAt)+"</div></div>"
+      + "<span class='c2p-st "+(x.status==="open"?"pending":x.status)+"'>"+({open:"🆕 New",inprogress:"🔄 In progress",resolved:"✅ Resolved"}[x.status]||x.status)+"</span></div>"
+      + "<div style='margin-top:8px;font-size:.84rem;white-space:pre-line'>"+escapeHtml(x.description||"")+"</div>"
+      + (x.response ? "<div style='margin-top:8px;font-size:.8rem;background:#fffaf0;border-left:3px solid #c9a227;padding:7px 10px;border-radius:0 6px 6px 0'>🏫 <b>School:</b> "+escapeHtml(x.response)+(x.handledBy?" — "+escapeHtml(x.handledBy):"")+"</div>" : "")
+      + (isTeacher && x.status!=="resolved" ? "<div style='display:flex;gap:8px;margin-top:10px;flex-wrap:wrap'><input id='ic-resp-"+x.id+"' class='c2p-in' placeholder='Answer to the family' style='flex:1;min-width:160px' value='"+escapeHtml(x.response||"")+"'><button class='c2p-btn ghost' onclick=\"icUpdate('"+x.id+"','inprogress')\">🔄 Working on it</button><button class='c2p-btn gold' onclick=\"icUpdate('"+x.id+"','resolved')\">✅ Resolved</button></div>" : "")
+      + "</div>";
+  }).join("") : "<div class='c2p-empty'>"+(isTeacher?"No new concerns. 🎉":"You haven't reported anything.")+"</div>";
+}
+function icNewForm(){
+  if(!studentSession) return;
+  c2pForm("🛡️ Report a concern",
+    "<label class='c2p-l'>Type</label><select id='ic-cat' class='c2p-in'>"+IC_CATS.map(function(c){ return "<option>"+c+"</option>"; }).join("")+"</select>"
+    + "<label class='c2p-l'>Title</label><input id='ic-title' class='c2p-in' maxlength='120' placeholder='Short summary'>"
+    + "<label class='c2p-l'>What happened?</label><textarea id='ic-desc' class='c2p-in' maxlength='1200' style='height:110px;resize:vertical' placeholder='When and where it happened, who was involved, and a phone number so we can reach you.'></textarea>"
+    + "<button class='c2p-btn gold' style='width:100%;margin-top:12px' onclick='icSend()'>📨 Send to the school</button><div id='ic-msg' style='display:none'></div>");
+}
+async function icSend(){
+  var d = { studentId:studentSession.studentId, studentName:studentSession.name, cls:studentSession.cls, category:document.getElementById("ic-cat").value,
+    title:document.getElementById("ic-title").value.trim(), description:document.getElementById("ic-desc").value.trim(), status:"open", response:"" };
+  if(!d.title || d.description.length < 5) return c2pMsg("ic-msg","Please write a title and what happened.");
+  try { d.id = await c2pSave("incidents", d); C2P.items.unshift(d); document.getElementById("c2p-form").style.display = "none"; icRender(); }
+  catch(e){ c2pMsg("ic-msg","❌ "+(e.message||e)); }
+}
+async function icUpdate(id, status){
+  var x = C2P.items.find(function(i){ return i.id===id; }); if(!x) return;
+  var resp = document.getElementById("ic-resp-"+id).value.trim();
+  if(status==="resolved" && !resp){ alert("Please write an answer to the family before marking it resolved."); return; }
+  try { await c2pSave("incidents", { status:status, response:resp, handledBy:currentTeacherName||"" }, id); Object.assign(x, {status:status, response:resp, handledBy:currentTeacherName||""}); icRender(); }
+  catch(e){ alert("Could not save: "+(e.message||e)); }
+}
+// teacher dashboard: what is waiting
+async function c2pWaitingCounts(){
+  var out = { leave:0, concerns:0 };
+  try { out.leave = (await c2pList("leaveRequests")).filter(function(x){ return x.status==="pending" && teacherCanSeeClass(baseLevel(x.cls||"")); }).length; } catch(e){}
+  try { out.concerns = (await c2pList("incidents")).filter(function(x){ return x.status==="open" && (teacherCanSeeClass(baseLevel(x.cls||"")) || (currentUser && currentUser.email===ADMIN_EMAIL)); }).length; } catch(e){}
+  return out;
+}
 </script>
 
 </body>

@@ -16869,6 +16869,8 @@ function sdOpenReport(){
       <button onclick="tdGo(openDailyRecordPage)">📔 Daily Record</button>
       <button onclick="tdGo(openLeavePage)">📝 Leave Requests</button>
       <button onclick="tdGo(openConcernsPage)">🛡️ Concerns from Families</button>
+      <button onclick="tdGo(openMyTimeSheet)">🕐 My Time Sheet</button>
+      <button onclick="tdGo(openMyLeave)">✈️ My Leave</button>
       <button onclick="tdGo(openReportPage)">📊 Report Cards</button>
       <button onclick="tdGo(openQuizPage)">✏️ Quiz &amp; Exams</button>
       <button onclick="tdGo(openExamSchedulePage)">🗓️ Exam Schedule</button>
@@ -16882,6 +16884,8 @@ function sdOpenReport(){
       <h4 id="td-adm-h">ADMINISTRATION</h4>
       <button id="td-adm-analytics" onclick="tdGo(openAnalyticsPage)">📈 Analytics &amp; Reports</button>
       <button id="td-adm-staff" onclick="tdGo(openStaffPerformance)">👥 Staff Performance</button>
+      <button id="td-adm-hratt" onclick="tdGo(openStaffAttendance)">🕐 Staff Attendance</button>
+      <button id="td-adm-hrleave" onclick="tdGo(openStaffLeaveApprovals)">✈️ Staff Leave Approvals</button>
       <button id="td-adm-admissions" onclick="tdGo(openAdmissionsPage)">📝 Admissions (applications)<span id="td-adm-badge" style="display:none;margin-left:auto;background:#e53935;color:#fff;border-radius:999px;padding:1px 8px;font-size:.7rem;font-weight:800"></span></button>
       <button id="td-adm-frontdesk" onclick="tdGo(openFrontDeskPage)">🏫 Front Desk Registration</button>
       <button id="td-adm-dashboard" onclick="tdGo(openAdminDashboard)">🛡️ Admin Dashboard (staff)</button>
@@ -17003,6 +17007,7 @@ async function tdRefresh(){
   show('td-adm-h', canAdmissions || canFinance || isAdm);
   show('td-adm-analytics', typeof anCan === 'function' && anCan());
   show('td-adm-staff', typeof spCan === 'function' && spCan());
+  show('td-adm-hratt', typeof hrIsManager === 'function' && hrIsManager()); show('td-adm-hrleave', typeof hrIsManager === 'function' && hrIsManager());
   var apps = [];
   if(canAdmissions){ try { apps = await tdFetch('applications','c2epe_applications'); } catch(e){ console.error('td applications', e); } }
   var waiting = apps.filter(function(a){ return a.status==='pending' || a.status==='reviewing'; });
@@ -17430,7 +17435,8 @@ async function loadMyCertificates(){
     ["report-page", "#report-print-area"],
     ["an-page", "#an-body"],
     ["sp-page", "#sp-body"],
-    ["tr-verify", "#tr-body"]
+    ["tr-verify", "#tr-body"],
+    ["c2p-page", "#c2p-body"]
   ];
   function visible(id){ var el = document.getElementById(id); return el && getComputedStyle(el).display !== "none"; }
   window.print = function(){
@@ -17845,8 +17851,9 @@ async function tdEnhance(run){
   var tile = function(ic, label, bg, fn){ return "<button class='dx-tile' style='background:"+bg+"' onclick='tdGo("+fn+")'><span>"+ic+"</span>"+label+"</button>"; };
   var displayName = (currentTeacherName && currentTeacherName.indexOf("@") < 0) ? currentTeacherName : (isAdm ? "Admin" : "Teacher");
   if(run && run !== window.__tdRun) return;            // a newer refresh is running — don't add the sections twice
+  setTimeout(hrRenderClockCard, 0);
   var annCard = document.getElementById("td-ann-card");
-  (annCard ? function(h){ annCard.insertAdjacentHTML("afterend", h); } : function(h){ box.insertAdjacentHTML("afterbegin", h); })(
+  (annCard ? function(h){ annCard.insertAdjacentHTML("afterend", h); } : function(h){ box.insertAdjacentHTML("afterbegin", h); })("<div id='hr-clock-card'></div>" +
     "<div class='dx-hello'><div class='av'>👩‍🏫</div><div style='flex:1'><span>"+greetWord()+",</span><b>"+escapeHtml(displayName)+"</b><span>"+new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})+"</span></div></div>"
     + "<div class='dx-tiles'>"
     + tile("✅","Attendance","linear-gradient(135deg,#2e7d32,#43a047)","openAttendPage")
@@ -18153,6 +18160,7 @@ async function openStaffPerformance(){
   SP.claims = await get("paymentClaims","c2epe_payment_claims");
   SP.posts = await get("posts","c2epe_posts");
   SP.obs = await get("observations","c2epe_observations");
+  try { SP.punct = await hrPunctuality(180); await hrSettings(true); } catch(e){ SP.punct = { recs:[], leaves:[], since:"" }; }
   SP.msgs = [];
   try {
     if(xLocal()){
@@ -18228,8 +18236,22 @@ function spAnalyse(){
       m.deskRegs = recent(SP.apps, "submittedAt").filter(function(a){ return a.registeredInPerson && String(a.notes||"").toLowerCase().indexOf(String(t.name||"").toLowerCase()) >= 0; }).length;
     }
     if(dept === "hr"){ m.noClass = SP.teachers.filter(function(x){ return !(x.assignedClasses||[]).length && !x.adminDeptHead; }).length; m.noObs = SP.teachers.filter(function(x){ return (x.assignedClasses||[]).length && !SP.obs.some(function(o){ return o.teacherId === (x.id||x.uid) || spSame(o.teacherName, x); }); }).length; }
+    // ── punctuality (Clock In/Out) — only once the school uses it ──
+    var P = SP.punct || {recs:[]};
+    if(P.recs.length){
+      var uid = t.uid || t.id, sinceD = [since.slice(0,10), P.since, hrStart(P.recs)].sort().pop();
+      var mine = P.recs.filter(function(r){ return (r.staffUid===uid || (t.email && r.staffEmail===t.email)) && r.date >= sinceD && r.in; });
+      var lvd = hrLeaveDays(P.leaves, uid), wd = 0, today = hrToday(), hs = HR.settings || HR_DEFAULT;
+      for(var dd = new Date(sinceD+"T00:00:00"); hrToday(dd) < today; dd.setDate(dd.getDate()+1)){ var k = hrToday(dd); if((hs.workDays||[]).indexOf(dd.getDay()||7)>=0 && !lvd[k]) wd++; }
+      m.daysIn = mine.length; m.lateN = mine.filter(function(r){ return r.lateMin; }).length; m.lateMins = mine.reduce(function(a,r){ return a+(r.lateMin||0); },0);
+      m.missedDays = Math.max(0, wd - mine.filter(function(r){ return r.date < today; }).length);
+    }
     // ── gaps and strengths ──
     var G = function(txt, bad){ m.gaps.push([txt, !!bad]); }, OK = function(txt){ m.goods.push(txt); };
+    if(m.daysIn !== undefined){
+      if(m.lateN >= 3) G("Late "+m.lateN+" times ("+m.lateMins+" min in total)", m.lateN >= 6); else if(m.daysIn && !m.lateN) OK("Always on time");
+      if(m.missedDays >= 2) G(m.missedDays+" work days with no clock-in and no approved leave", m.missedDays >= 4);
+    }
     if(classes.length){
       if(m.attTaken < 60) G("Attendance taken on only "+m.attTaken+"% of school days", true); else if(m.attTaken < 90) G("Attendance taken on "+m.attTaken+"% of school days"); else OK("Takes attendance every day");
       if(!m.hw) G("No homework set in this period", days>=30); else OK(m.hw+" homework set");
@@ -18258,6 +18280,7 @@ function spAnalyse(){
       if(m.avg !== null) parts.push(Math.min(100, m.avg*1.15));
       if(m.obsAvg) parts.push(m.obsAvg*20);
     }
+    if(m.daysIn !== undefined) parts.push(Math.max(0, 100 - (m.lateN||0)*8 - (m.missedDays||0)*15));
     if(dept === "finance") parts.push(Math.max(0, 100 - m.claimsOld*20));
     if(dept === "admissions") parts.push(Math.max(0, 100 - m.appsOld*20));
     if(dept === "hr") parts.push(Math.max(0, 100 - m.noObs*10 - m.noClass*10));
@@ -18612,6 +18635,7 @@ function c2pOpen(mode, title, canAdd){
   C2P.mode = mode; C2P.tab = "all";
   document.getElementById("c2p-title").textContent = title;
   document.getElementById("c2p-add").style.display = canAdd ? "" : "none";
+  document.getElementById("c2p-add").onclick = c2pAdd;
   document.getElementById("c2p-top").innerHTML = ""; document.getElementById("c2p-tabs").innerHTML = "";
   document.getElementById("c2p-body").innerHTML = "<div class='c2p-empty'>Loading…</div>";
   document.getElementById("c2p-page").style.display = "block";
@@ -18904,6 +18928,309 @@ async function c2pWaitingCounts(){
   try { out.leave = (await c2pList("leaveRequests")).filter(function(x){ return x.status==="pending" && teacherCanSeeClass(baseLevel(x.cls||"")); }).length; } catch(e){}
   try { out.concerns = (await c2pList("incidents")).filter(function(x){ return x.status==="open" && (teacherCanSeeClass(baseLevel(x.cls||"")) || (currentUser && currentUser.email===ADMIN_EMAIL)); }).length; } catch(e){}
   return out;
+}
+</script>
+
+<!-- ═════════ STAFF ATTENDANCE (Clock In/Out) · TIME SHEET · STAFF LEAVE ═════════ -->
+<style>
+.hr-clock{background:linear-gradient(135deg,#0b1a3b,#1b3570);color:#fff;border-radius:16px;padding:16px;margin-bottom:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;border:2px solid #c9a227}
+.hr-clock .big{font-size:1.6rem;font-weight:800;color:#d6aa4c;font-variant-numeric:tabular-nums}
+.hr-clock button{background:#c9a227;color:#0b1a3b;border:0;border-radius:12px;padding:12px 18px;font-weight:900;font-size:.95rem;cursor:pointer;font-family:inherit}
+.hr-clock button.out{background:#fff;color:#0b1a3b}
+.hr-tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:.7rem;font-weight:800}
+.hr-tag.ok{background:#e8f5e9;color:#2e7d32}.hr-tag.late{background:#fff3e0;color:#c65a00}.hr-tag.abs{background:#ffebee;color:#c62828}.hr-tag.leave{background:#e3f2fd;color:#1565c0}.hr-tag.off{background:#f1f3f8;color:#7a84a0}
+.hr-table{width:100%;border-collapse:collapse;font-size:.78rem}.hr-table th{background:#0b1a3b;color:#d6aa4c;text-align:left;padding:7px 6px;white-space:nowrap}.hr-table td{padding:7px 6px;border-bottom:1px solid #eef0f5;white-space:nowrap}
+.hr-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:12px}
+.hr-kpi{background:#fff;border-radius:12px;box-shadow:0 1px 6px rgba(16,30,70,.08);padding:10px;text-align:center}.hr-kpi b{display:block;font-size:1.25rem;color:#0b1a3b}.hr-kpi span{font-size:.68rem;color:#7a84a0}
+.hr-selfie{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid #c9a227;vertical-align:middle}
+</style>
+<input type="file" id="hr-selfie-input" accept="image/*" capture="user" style="display:none">
+<script>
+// ══════════════ STAFF ATTENDANCE ══════════════
+// staffAttendance/<uid>_<date>: in/out time, GPS distance from school, selfie, late/early minutes
+// staffLeave: staff leave requests (HR/Admin approve) · staffSettings/main: school location, shifts, quotas
+var HR_LEAVE_TYPES = [["annual","🏖️ Annual leave"],["sick","🤒 Sick leave"],["mission","🧳 Mission / training"],["special","⭐ Special leave"],["maternity","🤱 Maternity leave"],["paternity","👨‍🍼 Paternity leave"],["nopay","💸 Unpaid leave"],["dayoff","📅 Day off"]];
+var HR_DEFAULT = { lat:null, lng:null, radius:150, shiftIn:"07:30", shiftOut:"17:00", grace:10, workDays:[1,2,3,4,5,6], requireSelfie:true, quota:{annual:18, sick:7, special:3, mission:30, maternity:90, paternity:10, nopay:30, dayoff:12}, shifts:{} };
+var HR = { settings:null };
+var HR_KEYS = { staffAttendance:"c2epe_staff_att", staffLeave:"c2epe_staff_leave" };
+function hrIsManager(){ return isTeacher && ((currentUser && currentUser.email === ADMIN_EMAIL) || (typeof currentAdminDeptHead !== "undefined" && currentAdminDeptHead === "hr")); }
+function hrMe(){ var u = currentUser || {}; return { uid: u.uid || u.email || "local", email: u.email || "", name: (currentTeacherName && currentTeacherName.indexOf("@")<0) ? currentTeacherName : (u.email===ADMIN_EMAIL ? "Admin" : (u.email||"Staff").split("@")[0]) }; }
+function hrToday(d){ d = d || new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function hrHM(d){ d = d || new Date(); return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0"); }
+function hrMin(hm){ if(!hm) return null; var p = hm.split(":"); return (+p[0])*60 + (+p[1]); }
+function hrFmtMin(m){ m = Math.round(m||0); var h = Math.floor(m/60); return (h?h+"h ":"")+(m%60)+"m"; }
+async function hrSettings(force){
+  if(HR.settings && !force) return HR.settings;
+  var s = {};
+  try {
+    if(xLocal()) s = JSON.parse(localStorage.getItem("c2epe_staff_settings")||"{}");
+    else { var m = await xFb(), sn = await m.getDoc(m.doc(window._fb.db,"staffSettings","main")); s = sn.exists() ? sn.data() : {}; }
+  } catch(e){}
+  HR.settings = Object.assign({}, HR_DEFAULT, s, { quota:Object.assign({}, HR_DEFAULT.quota, s.quota||{}), shifts:s.shifts||{} });
+  return HR.settings;
+}
+async function hrSaveSettings(s){
+  if(xLocal()) localStorage.setItem("c2epe_staff_settings", JSON.stringify(s));
+  else { var m = await xFb(); await m.setDoc(m.doc(window._fb.db,"staffSettings","main"), s); }
+  HR.settings = s;
+}
+function hrStart(recs){ var s = HR.settings || {}; var first = (recs||[]).map(function(r){ return r.date; }).filter(Boolean).sort()[0]; return s.startedAt || first || hrToday(); }
+function hrShiftFor(uid){ var s = HR.settings || HR_DEFAULT, x = (s.shifts||{})[uid] || {}; return { in:x.in||s.shiftIn, out:x.out||s.shiftOut }; }
+async function hrList(coll, field, value){
+  if(xLocal()) return JSON.parse(localStorage.getItem(HR_KEYS[coll])||"[]").filter(function(x){ return !field || x[field]===value; });
+  var m = await xFb(), db = window._fb.db, q = field ? m.query(m.collection(db,coll), m.where(field,"==",value)) : m.collection(db,coll);
+  return (await m.getDocs(q)).docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+}
+async function hrPut(coll, id, data, merge){
+  if(xLocal()){
+    var l = JSON.parse(localStorage.getItem(HR_KEYS[coll])||"[]"), ex = l.find(function(x){ return x.id===id; });
+    if(ex) Object.assign(ex, data); else l.unshift(Object.assign({id:id}, data));
+    localStorage.setItem(HR_KEYS[coll], JSON.stringify(l)); return;
+  }
+  var m = await xFb(); await m.setDoc(m.doc(window._fb.db,coll,id), data, {merge:!!merge});
+}
+function hrDistance(a, b){ var R = 6371000, r = Math.PI/180, dLat = (b.lat-a.lat)*r, dLng = (b.lng-a.lng)*r; var h = Math.sin(dLat/2)**2 + Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLng/2)**2; return Math.round(2*R*Math.asin(Math.sqrt(h))); }
+function hrLocate(){
+  return new Promise(function(res, rej){
+    if(!navigator.geolocation) return rej(new Error("This device cannot share its location."));
+    navigator.geolocation.getCurrentPosition(function(p){ res({ lat:p.coords.latitude, lng:p.coords.longitude, acc:Math.round(p.coords.accuracy) }); },
+      function(e){ rej(new Error(e.code===1 ? "Location permission was refused. Please allow location for this site and try again." : "Could not find your location. Move near a window and try again.")); },
+      { enableHighAccuracy:true, timeout:20000, maximumAge:0 });
+  });
+}
+function hrSelfie(){
+  return new Promise(function(res){
+    var inp = document.getElementById("hr-selfie-input"); inp.value = "";
+    inp.onchange = function(){
+      var f = inp.files && inp.files[0]; if(!f) return res(null);
+      var img = new Image(), url = URL.createObjectURL(f);
+      img.onload = function(){ var s = Math.min(img.width, img.height), c = document.createElement("canvas"); c.width = c.height = 180;
+        c.getContext("2d").drawImage(img, (img.width-s)/2, (img.height-s)/2, s, s, 0, 0, 180, 180); URL.revokeObjectURL(url); res(c.toDataURL("image/jpeg", 0.6)); };
+      img.onerror = function(){ res(null); }; img.src = url;
+    };
+    inp.click();
+  });
+}
+// Clock in / out
+async function hrClock(kind){
+  var btn = document.getElementById("hr-clock-btn"), msg = document.getElementById("hr-clock-msg");
+  var say = function(t, bad){ if(msg){ msg.style.color = bad ? "#ffb4a9" : "#cfd6ea"; msg.textContent = t; } };
+  if(btn) btn.disabled = true;
+  try {
+    var s = await hrSettings(true), me = hrMe(), now = new Date(), date = hrToday(now), id = (me.uid+"_"+date).replace(/[^\w@.-]/g,"_");
+    say("📍 Checking your location…");
+    var pos = await hrLocate(), dist = null;
+    if(s.lat != null && s.lng != null){
+      dist = hrDistance(pos, {lat:s.lat, lng:s.lng});
+      if(dist > s.radius + Math.min(pos.acc||0, 100)){ say("❌ You are "+dist+" m from the school. Clock "+kind+" works only at school (within "+s.radius+" m).", true); if(btn) btn.disabled = false; return; }
+    }
+    var photo = "";
+    if(s.requireSelfie){ say("🤳 Take a quick selfie…"); photo = await hrSelfie(); if(!photo){ say("A selfie is needed to clock "+kind+".", true); if(btn) btn.disabled = false; return; } }
+    var shift = hrShiftFor(me.uid), hm = hrHM(now), rec = { staffUid:me.uid, staffEmail:me.email, staffName:me.name, date:date };
+    if(kind === "in"){ rec.in = { time:hm, at:now.toISOString(), lat:pos.lat, lng:pos.lng, dist:dist, acc:pos.acc, photo:photo }; rec.lateMin = Math.max(0, hrMin(hm) - hrMin(shift.in) - (s.grace||0)); rec.shiftIn = shift.in; rec.shiftOut = shift.out; }
+    else { rec.out = { time:hm, at:now.toISOString(), lat:pos.lat, lng:pos.lng, dist:dist, acc:pos.acc, photo:photo }; rec.earlyMin = Math.max(0, hrMin(shift.out) - hrMin(hm)); }
+    await hrPut("staffAttendance", id, rec, true);
+    say("✅ Clocked "+kind+" at "+hm+(dist!==null?" · "+dist+" m from school":"")+".");
+    setTimeout(hrRenderClockCard, 800);
+  } catch(e){ say("❌ "+(e.message||e), true); if(btn) btn.disabled = false; }
+}
+// the clock card on the teacher dashboard
+async function hrRenderClockCard(){
+  var box = document.getElementById("hr-clock-card"); if(!box) return;
+  var me = hrMe(), s = await hrSettings(), date = hrToday(), id = (me.uid+"_"+date).replace(/[^\w@.-]/g,"_");
+  var rec = null; try { rec = (await hrList("staffAttendance","staffUid",me.uid)).find(function(r){ return r.date===date; }); } catch(e){}
+  var shift = hrShiftFor(me.uid), status, action;
+  if(!rec || !rec.in){ status = "Not clocked in yet · shift "+shift.in+"–"+shift.out; action = "<button id='hr-clock-btn' onclick=\"hrClock('in')\">🕐 Clock In</button>"; }
+  else if(!rec.out){ status = "In at <b>"+rec.in.time+"</b> "+(rec.lateMin?"<span class='hr-tag late'>Late "+rec.lateMin+" min</span>":"<span class='hr-tag ok'>On time</span>"); action = "<button id='hr-clock-btn' class='out' onclick=\"hrClock('out')\">🏁 Clock Out</button>"; }
+  else { status = "In "+rec.in.time+" · Out "+rec.out.time+" · worked <b>"+hrFmtMin(hrMin(rec.out.time)-hrMin(rec.in.time))+"</b>"; action = "<span class='hr-tag ok' style='font-size:.8rem'>✅ Day complete</span>"; }
+  box.innerHTML = "<div class='hr-clock'><div style='flex:1;min-width:180px'><div style='font-size:.75rem;color:#cfd6ea'>"+new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})+"</div><div class='big' id='hr-now'>"+hrHM()+"</div><div style='font-size:.8rem;margin-top:2px'>"+status+"</div><div id='hr-clock-msg' style='font-size:.76rem;margin-top:4px;color:#cfd6ea'>"+(s.lat==null?"⚠️ The school location is not set yet — Admin: Staff Attendance → Settings.":"")+"</div></div>"+action
+    + "<div style='display:flex;flex-direction:column;gap:6px'><button style='background:rgba(255,255,255,.12);color:#fff;font-size:.74rem;padding:7px 10px' onclick='tdGo(openMyTimeSheet)'>📊 My time sheet</button><button style='background:rgba(255,255,255,.12);color:#fff;font-size:.74rem;padding:7px 10px' onclick='tdGo(openMyLeave)'>✈️ My leave</button></div></div>";
+  clearInterval(window.__hrTick); window.__hrTick = setInterval(function(){ var n = document.getElementById("hr-now"); if(n) n.textContent = hrHM(); else clearInterval(window.__hrTick); }, 20000);
+}
+// ── leave days of one person (approved), per date ──
+function hrLeaveDays(leaves, uid){
+  var map = {};
+  leaves.filter(function(l){ return l.staffUid===uid && l.status==="approved"; }).forEach(function(l){
+    for(var d = new Date(l.from+"T00:00:00"); d <= new Date(l.to+"T00:00:00"); d.setDate(d.getDate()+1)) map[hrToday(d)] = { type:l.type, part:l.part||"full" };
+  });
+  return map;
+}
+// ── one month for one person ──
+async function hrMonth(uid, ym){
+  var s = await hrSettings(), recs = [], leaves = [], holidays = {};
+  try { recs = (await hrList("staffAttendance","staffUid",uid)).filter(function(r){ return String(r.date).slice(0,7)===ym; }); } catch(e){}
+  try { leaves = await hrList("staffLeave","staffUid",uid); } catch(e){}
+  try { (await evList()).filter(function(e){ return e.type==="holiday" && String(e.date).slice(0,7)===ym; }).forEach(function(e){ holidays[e.date] = e.title; }); } catch(e){}
+  var startD = s.startedAt || hrToday();
+  var lv = hrLeaveDays(leaves, uid), y = +ym.slice(0,4), mo = +ym.slice(5,7)-1, days = new Date(y, mo+1, 0).getDate(), today = hrToday();
+  var shift = hrShiftFor(uid), rows = [], sum = { workdays:0, present:0, late:0, lateMin:0, early:0, earlyMin:0, absent:0, leave:0, holiday:0, workMin:0, overMin:0 };
+  for(var d=1; d<=days; d++){
+    var dt = new Date(y, mo, d), ds = hrToday(dt), dow = dt.getDay() || 7, r = recs.find(function(x){ return x.date===ds; });
+    var work = (s.workDays||[1,2,3,4,5,6]).indexOf(dow) >= 0, row = { date:ds, dow:dow, rec:r };
+    if(holidays[ds]){ row.status = "holiday"; row.note = holidays[ds]; sum.holiday++; }
+    else if(!work && !r){ row.status = "off"; }
+    else if(lv[ds] && !(r && r.in)){ row.status = "leave"; row.note = (HR_LEAVE_TYPES.find(function(t){ return t[0]===lv[ds].type; })||["",lv[ds].type])[1]; sum.leave++; if(work) sum.workdays++; }
+    else if(r && r.in){
+      if(work) sum.workdays++; sum.present++;
+      row.status = r.lateMin ? "late" : "ok"; if(r.lateMin){ sum.late++; sum.lateMin += r.lateMin; }
+      if(r.out){ var wm = hrMin(r.out.time) - hrMin(r.in.time); row.workMin = wm; sum.workMin += wm; if(r.earlyMin){ sum.early++; sum.earlyMin += r.earlyMin; }
+        var over = hrMin(r.out.time) - hrMin(r.shiftOut||shift.out); if(over > 0) sum.overMin += over; }
+    }
+    else if(work && ds < today && ds >= startD){ row.status = "abs"; sum.workdays++; sum.absent++; }
+    else if(work && ds < startD){ row.status = "before"; }
+    else row.status = work ? "future" : "off";
+    rows.push(row);
+  }
+  return { rows:rows, sum:sum, shift:shift };
+}
+function hrMonthHTML(name, ym, m){
+  var label = {ok:["On time","ok"], late:["Late","late"], abs:["Absent","abs"], leave:["Leave","leave"], holiday:["Holiday","off"], off:["Day off","off"], future:["—","off"], before:["Not started","off"]};
+  var S = m.sum;
+  return "<div class='c2p-card'><div style='display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center'><div><b style='color:#0b1a3b;font-size:1rem'>"+escapeHtml(name)+"</b><div class='c2p-muted'>"+new Date(ym+"-01T00:00:00").toLocaleDateString("en-GB",{month:"long",year:"numeric"})+" · shift "+m.shift.in+"–"+m.shift.out+"</div></div><img src='logo.png' alt='' style='height:38px' onerror=\"this.style.display='none'\"></div></div>"
+    + "<div class='hr-kpis'>"+[["Work days",S.workdays],["Present",S.present],["Late",S.late+(S.lateMin?" · "+hrFmtMin(S.lateMin):"")],["Left early",S.early],["Absent",S.absent],["Leave",S.leave],["Hours worked",hrFmtMin(S.workMin)],["Overtime",hrFmtMin(S.overMin)]].map(function(k){ return "<div class='hr-kpi'><b>"+k[1]+"</b><span>"+k[0]+"</span></div>"; }).join("")+"</div>"
+    + "<div class='c2p-card' style='overflow-x:auto;padding:0'><table class='hr-table'><tr><th>Date</th><th>In</th><th>Out</th><th>Worked</th><th>Late</th><th>Early</th><th>Status</th><th>Selfie</th></tr>"
+    + m.rows.map(function(r){ var rc = r.rec || {}, l = label[r.status];
+        return "<tr style='"+(r.status==="off"||r.status==="future"||r.status==="before"?"color:#9aa3b8":"")+"'><td>"+new Date(r.date+"T00:00:00").toLocaleDateString("en-GB",{weekday:"short",day:"2-digit"})+"</td><td>"+((rc.in||{}).time||"")+"</td><td>"+((rc.out||{}).time||"")+"</td><td>"+(r.workMin?hrFmtMin(r.workMin):"")+"</td><td>"+(rc.lateMin?rc.lateMin+"m":"")+"</td><td>"+(rc.earlyMin?rc.earlyMin+"m":"")+"</td><td><span class='hr-tag "+l[1]+"'>"+l[0]+"</span>"+(r.note?" <span class='c2p-muted'>"+escapeHtml(r.note)+"</span>":"")+"</td><td>"+((rc.in||{}).photo?"<img class='hr-selfie' src='"+rc.in.photo+"' alt=''>":"")+"</td></tr>"; }).join("")
+    + "</table></div><div class='c2p-muted' style='text-align:center'>C2-EPE Digital Academy · Staff Time Sheet · generated "+new Date().toLocaleDateString("en-GB")+"</div>";
+}
+// ── My time sheet ──
+async function openMyTimeSheet(uid, name){
+  var me = hrMe(); uid = uid || me.uid; name = name || me.name;
+  c2pOpen("hr", "📊 Time Sheet — "+name, false);
+  var now = new Date(), opts = [];
+  for(var i=0;i<12;i++){ var d = new Date(now.getFullYear(), now.getMonth()-i, 1); opts.push(d.toISOString().slice(0,7)); }
+  document.getElementById("c2p-top").innerHTML = "<div style='display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap'><select id='hr-ym' class='c2p-in' style='width:auto' onchange=\"hrShowMonth('"+escapeHtml(uid)+"', '"+escapeHtml(name).replace(/'/g,"")+"')\">"+opts.map(function(o){ return "<option value='"+o+"'>"+new Date(o+"-01T00:00:00").toLocaleDateString("en-GB",{month:"long",year:"numeric"})+"</option>"; }).join("")+"</select><button class='c2p-btn ghost' onclick='window.print()'>🖨️ Print / PDF</button></div>";
+  hrShowMonth(uid, name);
+}
+async function hrShowMonth(uid, name){ var ym = document.getElementById("hr-ym").value; document.getElementById("c2p-body").innerHTML = "<div class='c2p-empty'>Loading…</div>"; document.getElementById("c2p-body").innerHTML = hrMonthHTML(name, ym, await hrMonth(uid, ym)); }
+
+// ══════════════ STAFF LEAVE ══════════════
+async function hrBalances(uid){
+  var s = await hrSettings(), year = String(new Date().getFullYear()), used = {};
+  (await hrList("staffLeave","staffUid",uid)).filter(function(l){ return l.status==="approved" && String(l.from).slice(0,4)===year; }).forEach(function(l){ used[l.type] = (used[l.type]||0) + (+l.days||0); });
+  return HR_LEAVE_TYPES.map(function(t){ var q = (s.quota||{})[t[0]] || 0; return { type:t[0], label:t[1], quota:q, used:used[t[0]]||0, left:Math.max(0, q-(used[t[0]]||0)) }; });
+}
+function hrDaysBetween(from, to, part){ var s = HR.settings || HR_DEFAULT, n = 0; for(var d = new Date(from+"T00:00:00"); d <= new Date(to+"T00:00:00"); d.setDate(d.getDate()+1)){ if((s.workDays||[]).indexOf(d.getDay()||7) >= 0) n++; } return part && part!=="full" && from===to ? 0.5 : n; }
+async function openMyLeave(){
+  var me = hrMe(); await hrSettings();
+  c2pOpen("hrleave", "✈️ My Leave", true);
+  document.getElementById("c2p-add").onclick = hrLeaveForm;
+  var bal = await hrBalances(me.uid), mine = (await hrList("staffLeave","staffUid",me.uid)).sort(function(a,b){ return String(b.createdAt||"").localeCompare(String(a.createdAt||"")); });
+  document.getElementById("c2p-top").innerHTML = "<div class='c2p-card'><b style='color:#0b1a3b'>Leave balance "+new Date().getFullYear()+"</b><div class='hr-kpis' style='margin:8px 0 0'>"+bal.filter(function(b){ return ["annual","sick","special","dayoff"].indexOf(b.type)>=0; }).map(function(b){ return "<div class='hr-kpi'><b>"+b.left+"</b><span>"+b.label.replace(/^\S+\s/,"")+" left (of "+b.quota+")</span></div>"; }).join("")+"</div></div>";
+  hrLeaveListHTML(mine, false);
+}
+function hrLeaveListHTML(list, manage){
+  document.getElementById("c2p-tabs").innerHTML = "";
+  document.getElementById("c2p-body").innerHTML = list.length ? list.map(function(l){
+    var t = (HR_LEAVE_TYPES.find(function(x){ return x[0]===l.type; })||["",l.type])[1];
+    return "<div class='c2p-card'><div style='display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap'><div><b style='color:#0b1a3b'>"+t+" · "+l.days+" day"+(l.days===1?"":"s")+"</b><div class='c2p-muted'>"+(manage?escapeHtml(l.staffName)+" · ":"")+c2pDate(l.from)+(l.to!==l.from?" → "+c2pDate(l.to):"")+(l.part&&l.part!=="full"?" ("+l.part+")":"")+"</div></div><span class='c2p-st "+l.status+"'>"+({pending:"⏳ Pending",approved:"✅ Approved",rejected:"✖ Not approved"}[l.status])+"</span></div>"
+      + "<div style='font-size:.84rem;margin-top:6px'>"+escapeHtml(l.reason||"")+"</div>"
+      + (l.reviewNote ? "<div style='font-size:.78rem;margin-top:6px;background:#fffaf0;border-left:3px solid #c9a227;padding:5px 9px'>💬 "+escapeHtml(l.reviewNote)+" — "+escapeHtml(l.reviewedBy||"")+"</div>" : "")
+      + (manage && l.status==="pending" ? "<div style='display:flex;gap:8px;margin-top:8px;flex-wrap:wrap'><input id='hl-note-"+l.id+"' class='c2p-in' style='flex:1;min-width:150px' placeholder='Note (optional)'><button class='c2p-btn gold' onclick=\"hrDecide('"+l.id+"','approved')\">✅ Approve</button><button class='c2p-btn red' onclick=\"hrDecide('"+l.id+"','rejected')\">✖ Not approve</button></div>" : "")
+      + "</div>";
+  }).join("") : "<div class='c2p-empty'>No leave requests.</div>";
+}
+function hrLeaveForm(){
+  var t = hrToday();
+  c2pForm("✈️ Request leave",
+    "<label class='c2p-l'>Type</label><select id='hl-type' class='c2p-in'>"+HR_LEAVE_TYPES.map(function(x){ return "<option value='"+x[0]+"'>"+x[1]+"</option>"; }).join("")+"</select>"
+    + "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px'><div><label class='c2p-l'>From</label><input type='date' id='hl-from' class='c2p-in' value='"+t+"'></div><div><label class='c2p-l'>To</label><input type='date' id='hl-to' class='c2p-in' value='"+t+"'></div></div>"
+    + "<label class='c2p-l'>For a single day</label><select id='hl-part' class='c2p-in'><option value='full'>Full day</option><option value='morning'>Morning only</option><option value='afternoon'>Afternoon only</option></select>"
+    + "<label class='c2p-l'>Reason</label><textarea id='hl-reason' class='c2p-in' style='height:70px' maxlength='300'></textarea>"
+    + "<button class='c2p-btn gold' style='width:100%;margin-top:12px' onclick='hrLeaveSend()'>📨 Send to HR / Admin</button><div id='hl-msg' style='display:none'></div>");
+}
+async function hrLeaveSend(){
+  var me = hrMe(), d = { staffUid:me.uid, staffEmail:me.email, staffName:me.name, type:document.getElementById("hl-type").value, from:document.getElementById("hl-from").value, to:document.getElementById("hl-to").value,
+    part:document.getElementById("hl-part").value, reason:document.getElementById("hl-reason").value.trim(), status:"pending", createdAt:new Date().toISOString() };
+  if(!d.from || !d.to || d.to < d.from) return c2pMsg("hl-msg","Please check the dates.");
+  if(d.reason.length < 3) return c2pMsg("hl-msg","Please write the reason.");
+  d.days = hrDaysBetween(d.from, d.to, d.part);
+  var bal = (await hrBalances(me.uid)).find(function(b){ return b.type===d.type; });
+  if(bal && bal.quota && d.days > bal.left) return c2pMsg("hl-msg","Only "+bal.left+" day(s) of "+bal.label.replace(/^\S+\s/,"")+" left this year.");
+  try { await hrPut("staffLeave", "sl_"+Date.now()+"_"+Math.floor(Math.random()*1000), d); document.getElementById("c2p-form").style.display = "none"; openMyLeave(); }
+  catch(e){ c2pMsg("hl-msg","❌ "+(e.message||e)); }
+}
+async function openStaffLeaveApprovals(){
+  if(!hrIsManager()){ alert("Staff leave approval is for the Admin and the HR head."); return; }
+  c2pOpen("hrleave", "✈️ Staff Leave Approvals", false);
+  var all = (await hrList("staffLeave")).sort(function(a,b){ return (a.status==="pending"?0:1)-(b.status==="pending"?0:1) || String(b.createdAt||"").localeCompare(String(a.createdAt||"")); });
+  window.__hrLeaves = all; hrLeaveListHTML(all, true);
+}
+async function hrDecide(id, status){
+  var note = (document.getElementById("hl-note-"+id)||{value:""}).value.trim();
+  try { await hrPut("staffLeave", id, { status:status, reviewNote:note, reviewedBy:currentTeacherName||"Admin", reviewedAt:new Date().toISOString() }, true); openStaffLeaveApprovals(); }
+  catch(e){ alert("Could not save: "+(e.message||e)); }
+}
+
+// ══════════════ ADMIN: STAFF ATTENDANCE BOARD + SETTINGS ══════════════
+async function hrStaffList(){
+  var t = []; try { t = await tdFetch("teachers","c2epe_local_teachers"); } catch(e){}
+  return t.filter(function(x){ return x.active !== false && x.status !== "removed"; }).map(function(x){ return { uid:x.uid||x.id, email:x.email||"", name:x.name||x.email||"Staff" }; });
+}
+async function openStaffAttendance(){
+  if(!hrIsManager()){ alert("Staff Attendance is for the Admin and the HR head."); return; }
+  c2pOpen("hr", "🕐 Staff Attendance", false);
+  var s = await hrSettings(true), staff = await hrStaffList(), date = hrToday(), all = [], leaves = [];
+  try { all = await hrList("staffAttendance"); } catch(e){}
+  try { leaves = await hrList("staffLeave"); } catch(e){}
+  var today = all.filter(function(r){ return r.date===date; });
+  // include anyone who clocked in but is not in the staff list (e.g. the Admin)
+  today.forEach(function(r){ if(!staff.some(function(x){ return x.uid===r.staffUid; })) staff.push({ uid:r.staffUid, email:r.staffEmail, name:r.staffName }); });
+  var now = hrMin(hrHM()), cnt = { in:0, late:0, missing:0, leave:0 };
+  var rows = staff.map(function(p){
+    var r = today.find(function(x){ return x.staffUid===p.uid || (p.email && x.staffEmail===p.email); }), lv = hrLeaveDays(leaves, p.uid)[date], sh = hrShiftFor(p.uid), st;
+    if(r && r.in){ st = r.lateMin ? ["late","Late "+r.lateMin+"m"] : ["ok","On time"]; cnt.in++; if(r.lateMin) cnt.late++; }
+    else if(lv){ st = ["leave","On leave"]; cnt.leave++; }
+    else if(now > hrMin(sh.in) + (s.grace||0)){ st = ["abs","Not in yet"]; cnt.missing++; }
+    else st = ["off","Shift "+sh.in];
+    return { p:p, r:r, st:st };
+  });
+  var ym = date.slice(0,7);
+  document.getElementById("c2p-top").innerHTML =
+    "<div class='hr-kpis'>"+[["Clocked in",cnt.in],["Late today",cnt.late],["Not in yet",cnt.missing],["On leave",cnt.leave],["Staff",staff.length]].map(function(k){ return "<div class='hr-kpi'><b>"+k[1]+"</b><span>"+k[0]+"</span></div>"; }).join("")+"</div>"
+    + "<div style='display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px'><button class='c2p-btn gold' onclick='hrSettingsForm()'>⚙️ Settings (location, shifts, leave)</button><button class='c2p-btn ghost' onclick='openStaffLeaveApprovals()'>✈️ Leave approvals</button></div>"
+    + (s.lat==null ? "<div class='c2p-card' style='border:1.5px solid #f57c00;font-size:.84rem'>⚠️ <b>The school location is not set.</b> Until it is, staff can clock in from anywhere. Open ⚙️ Settings <b>while you are at school</b> and press “Use my current location”.</div>" : "");
+  document.getElementById("c2p-body").innerHTML = "<div class='c2p-card' style='padding:0;overflow-x:auto'><table class='hr-table'><tr><th>Staff</th><th>Today</th><th>In</th><th>Out</th><th>Distance</th><th>Selfie</th><th></th></tr>"
+    + rows.map(function(x){ var r = x.r||{}; return "<tr><td><b>"+escapeHtml(x.p.name)+"</b></td><td><span class='hr-tag "+x.st[0]+"'>"+x.st[1]+"</span></td><td>"+((r.in||{}).time||"")+"</td><td>"+((r.out||{}).time||"")+"</td><td>"+((r.in||{}).dist!=null?r.in.dist+" m":"")+"</td><td>"+((r.in||{}).photo?"<img class='hr-selfie' src='"+r.in.photo+"' alt=''>":"")+"</td><td><button class='c2p-btn ghost' style='padding:5px 9px;font-size:.72rem' onclick=\"openMyTimeSheet('"+escapeHtml(x.p.uid)+"','"+escapeHtml(x.p.name).replace(/'/g,"")+"')\">📊 Month</button></td></tr>"; }).join("")
+    + "</table></div>";
+}
+async function hrSettingsForm(){
+  var s = await hrSettings(true), staff = await hrStaffList();
+  c2pForm("⚙️ Staff attendance settings",
+    "<label class='c2p-l'>📍 School location</label><div class='c2p-muted' id='hs-loc'>"+(s.lat!=null ? s.lat.toFixed(5)+", "+s.lng.toFixed(5) : "Not set")+"</div>"
+    + "<button class='c2p-btn ghost' style='margin-top:6px' onclick='hrUseHere()'>📍 Use my current location (stand at school)</button>"
+    + "<label class='c2p-l'>Allowed distance (metres)</label><input type='number' id='hs-radius' class='c2p-in' value='"+s.radius+"' min='30' max='2000'>"
+    + "<div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px'><div><label class='c2p-l'>Default start</label><input type='time' id='hs-in' class='c2p-in' value='"+s.shiftIn+"'></div><div><label class='c2p-l'>Default end</label><input type='time' id='hs-out' class='c2p-in' value='"+s.shiftOut+"'></div><div><label class='c2p-l'>Grace (min)</label><input type='number' id='hs-grace' class='c2p-in' value='"+s.grace+"' min='0' max='60'></div></div>"
+    + "<label class='c2p-l'>Work days</label><div style='display:flex;gap:6px;flex-wrap:wrap'>"+["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(function(d,i){ return "<label style='font-size:.8rem;display:flex;gap:4px;align-items:center'><input type='checkbox' class='hs-day' value='"+(i+1)+"'"+((s.workDays||[]).indexOf(i+1)>=0?" checked":"")+">"+d+"</label>"; }).join("")+"</div>"
+    + "<label class='c2p-l' style='display:flex;gap:6px;align-items:center'><input type='checkbox' id='hs-selfie'"+(s.requireSelfie?" checked":"")+"> Require a selfie when clocking in/out</label>"
+    + "<label class='c2p-l'>Leave days per year</label><div style='display:grid;grid-template-columns:1fr 1fr;gap:6px'>"+HR_LEAVE_TYPES.map(function(t){ return "<label style='font-size:.74rem'>"+t[1]+"<input type='number' class='c2p-in hs-q' data-t='"+t[0]+"' value='"+(s.quota[t[0]]||0)+"' min='0'></label>"; }).join("")+"</div>"
+    + "<label class='c2p-l'>Personal shifts (leave empty to use the default)</label>"+staff.map(function(p){ var x = (s.shifts||{})[p.uid]||{}; return "<div style='display:grid;grid-template-columns:1fr 90px 90px;gap:6px;align-items:center;margin:4px 0'><span style='font-size:.8rem'>"+escapeHtml(p.name)+"</span><input type='time' class='c2p-in hs-sh' data-u='"+escapeHtml(p.uid)+"' data-k='in' value='"+(x.in||"")+"'><input type='time' class='c2p-in hs-sh' data-u='"+escapeHtml(p.uid)+"' data-k='out' value='"+(x.out||"")+"'></div>"; }).join("")
+    + "<button class='c2p-btn gold' style='width:100%;margin-top:12px' onclick='hrSaveSettingsForm()'>💾 Save settings</button><div id='hs-msg' style='display:none'></div>");
+  window.__hsLoc = s.lat!=null ? {lat:s.lat, lng:s.lng} : null;
+}
+async function hrUseHere(){
+  var el = document.getElementById("hs-loc"); el.textContent = "Finding your location…";
+  try { var p = await hrLocate(); window.__hsLoc = {lat:p.lat, lng:p.lng}; el.textContent = p.lat.toFixed(5)+", "+p.lng.toFixed(5)+" (accuracy ±"+p.acc+" m)"; }
+  catch(e){ el.textContent = "❌ "+(e.message||e); }
+}
+async function hrSaveSettingsForm(){
+  var s = Object.assign({}, await hrSettings(true));
+  if(window.__hsLoc){ s.lat = window.__hsLoc.lat; s.lng = window.__hsLoc.lng; }
+  s.radius = +document.getElementById("hs-radius").value || 150; s.shiftIn = document.getElementById("hs-in").value || "07:30"; s.shiftOut = document.getElementById("hs-out").value || "17:00";
+  s.grace = +document.getElementById("hs-grace").value || 0; s.requireSelfie = document.getElementById("hs-selfie").checked;
+  s.workDays = Array.prototype.map.call(document.querySelectorAll(".hs-day:checked"), function(c){ return +c.value; });
+  s.quota = {}; document.querySelectorAll(".hs-q").forEach(function(i){ s.quota[i.dataset.t] = +i.value||0; });
+  if(!s.startedAt) s.startedAt = hrToday();
+  s.shifts = {}; document.querySelectorAll(".hs-sh").forEach(function(i){ if(i.value){ s.shifts[i.dataset.u] = s.shifts[i.dataset.u] || {}; s.shifts[i.dataset.u][i.dataset.k] = i.value; } });
+  try { await hrSaveSettings(s); document.getElementById("c2p-form").style.display = "none"; openStaffAttendance(); }
+  catch(e){ c2pMsg("hs-msg","❌ "+(e.message||e)); }
+}
+// punctuality for Staff Performance (last N days)
+async function hrPunctuality(days){
+  var since = hrToday(new Date(Date.now()-days*86400000)), all = [], leaves = [];
+  try { all = (await hrList("staffAttendance")).filter(function(r){ return r.date >= since; }); } catch(e){}
+  try { leaves = await hrList("staffLeave"); } catch(e){}
+  return { recs:all, leaves:leaves, since:since };
 }
 </script>
 

@@ -6615,10 +6615,23 @@ async function openAdminDashboard(){
     return;
   }
   document.getElementById("admin-dashboard").style.display = "block";
+  spAddAdminDashButton();
   document.getElementById("dash-date").textContent = new Date().toLocaleDateString("en-GB",{weekday:"long",day:"2-digit",month:"long",year:"numeric"});
   await loadAdminDepartments();
   renderAddButtonsRow();
   loadDashboardData();
+}
+// a clear entry to Staff Performance at the top of the Admin Dashboard
+function spAddAdminDashButton(){
+  if(document.getElementById("sp-entry")) return;
+  var host = document.getElementById("dash-stats") || document.querySelector("#admin-dashboard .dash-stats") || document.querySelector("#admin-dashboard [id$='stats']");
+  var btn = document.createElement("button");
+  btn.id = "sp-entry";
+  btn.onclick = openStaffPerformance;
+  btn.style.cssText = "display:flex;align-items:center;gap:12px;width:100%;max-width:820px;margin:14px auto 0;background:linear-gradient(135deg,#0b1a3b,#1b3570);color:#fff;border:0;border-radius:14px;padding:14px 18px;cursor:pointer;font-family:inherit;text-align:left;box-sizing:border-box";
+  btn.innerHTML = "<span style='font-size:1.6rem'>👥</span><span style='flex:1'><b style='color:#d6aa4c'>Staff Performance</b><br><span style='font-size:.78rem;color:#cfd6ea'>Charts, strengths and gaps for every teacher, leader and staff member · classroom observations · AI review</span></span><b style='color:#d6aa4c'>Open ›</b>";
+  if(host && host.parentNode) host.parentNode.insertBefore(btn, host);
+  else { var dash = document.getElementById("admin-dashboard"); var bar = dash.firstElementChild; bar.parentNode.insertBefore(btn, bar.nextSibling); }
 }
 function closeAdminDashboard(){
   document.getElementById("admin-dashboard").style.display = "none";
@@ -16751,6 +16764,7 @@ function sdOpenReport(){
       <button onclick="tdOpenNews()">📰 School News &amp; Posts</button>
       <h4 id="td-adm-h">ADMINISTRATION</h4>
       <button id="td-adm-analytics" onclick="tdGo(openAnalyticsPage)">📈 Analytics &amp; Reports</button>
+      <button id="td-adm-staff" onclick="tdGo(openStaffPerformance)">👥 Staff Performance</button>
       <button id="td-adm-admissions" onclick="tdGo(openAdmissionsPage)">📝 Admissions (applications)<span id="td-adm-badge" style="display:none;margin-left:auto;background:#e53935;color:#fff;border-radius:999px;padding:1px 8px;font-size:.7rem;font-weight:800"></span></button>
       <button id="td-adm-frontdesk" onclick="tdGo(openFrontDeskPage)">🏫 Front Desk Registration</button>
       <button id="td-adm-dashboard" onclick="tdGo(openAdminDashboard)">🛡️ Admin Dashboard (staff)</button>
@@ -16871,6 +16885,7 @@ async function tdRefresh(){
   show('td-adm-finance', canFinance); show('td-adm-fees', canFinance || isAdm); show('td-adm-idcards', isAdm || canAdmissions);
   show('td-adm-h', canAdmissions || canFinance || isAdm);
   show('td-adm-analytics', typeof anCan === 'function' && anCan());
+  show('td-adm-staff', typeof spCan === 'function' && spCan());
   var apps = [];
   if(canAdmissions){ try { apps = await tdFetch('applications','c2epe_applications'); } catch(e){ console.error('td applications', e); } }
   var waiting = apps.filter(function(a){ return a.status==='pending' || a.status==='reviewing'; });
@@ -17296,7 +17311,8 @@ async function loadMyCertificates(){
     ["fee-receipt-modal", "#fee-receipt-print-area"],
     ["idc-page", "#idc-page .idc-cards-row"],
     ["report-page", "#report-print-area"],
-    ["an-page", "#an-body"]
+    ["an-page", "#an-body"],
+    ["sp-page", "#sp-body"]
   ];
   function visible(id){ var el = document.getElementById(id); return el && getComputedStyle(el).display !== "none"; }
   window.print = function(){
@@ -17924,6 +17940,283 @@ async function anWriteReport(){
     if(!res.ok || !data || typeof data.text !== "string") throw new Error((data && data.error) === "origin_not_allowed" ? "The AI service does not allow this website yet (ALLOWED_ORIGINS in the Worker)." : "The AI service did not answer.");
     box.textContent = data.text.trim() + "\n\n— Written by AI from the school's figures on " + new Date().toLocaleDateString("en-GB") + ". Please check it before sharing.";
   } catch(e){ box.textContent = "❌ " + (e.message||e) + "\n\nThe charts above still show all the figures."; }
+  finally { btn.disabled = false; }
+}
+</script>
+
+<!-- ═════════ STAFF PERFORMANCE (Admin / HR head) ═════════ -->
+<style>
+#sp-page{display:none;position:fixed;inset:0;background:#f0f2f5;z-index:9995;overflow-y:auto;font-family:inherit;color:#1a1f36}
+#sp-page .sp-wrap{max-width:1150px;margin:0 auto;padding:14px 12px 50px}
+#sp-page .sp-card{background:#fff;border-radius:14px;box-shadow:0 1px 8px rgba(0,0,0,.07);padding:16px;margin-bottom:14px;min-width:0}
+#sp-page h2{font-size:1rem;margin:0 0 4px;color:#000080}
+#sp-page .sp-sub{font-size:.75rem;color:#8a93a8;margin-bottom:10px}
+#sp-page .sp-three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+#sp-page table{width:100%;border-collapse:collapse;font-size:.78rem}#sp-page th{text-align:left;color:#8a93a8;font-weight:600;padding:7px 6px;border-bottom:1px solid #eef0f5;white-space:nowrap}#sp-page td{padding:8px 6px;border-bottom:1px solid #f4f5f8;vertical-align:top}
+#sp-page .sp-score{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;font-weight:800;font-size:.85rem;color:#fff}
+#sp-page .sp-gap{display:block;font-size:.72rem;margin:2px 0;padding:3px 8px;border-radius:6px;background:#fff3e0;color:#a35200}
+#sp-page .sp-gap.bad{background:#ffebee;color:#c62828}
+#sp-page .sp-good{display:block;font-size:.72rem;margin:2px 0;padding:3px 8px;border-radius:6px;background:#e8f5e9;color:#2e7d32}
+#sp-page .sp-btn{background:#000080;color:#FFD700;border:0;border-radius:8px;padding:7px 12px;font-weight:700;cursor:pointer;font-size:.76rem;font-family:inherit}
+#sp-page .sp-btn.ghost{background:#fff;color:#000080;border:1.5px solid #c5cae9}
+#sp-page .sp-in{padding:7px 9px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.8rem;font-family:inherit;box-sizing:border-box;max-width:100%}
+#sp-page .sp-legend div{display:flex;align-items:center;gap:6px;font-size:.74rem;margin:3px 0}#sp-page .sp-legend i{width:10px;height:10px;border-radius:50%;display:inline-block;flex-shrink:0}
+#sp-ai{white-space:pre-wrap;line-height:1.6;font-size:.84rem}
+@media (max-width:900px){#sp-page .sp-three{grid-template-columns:1fr}}
+</style>
+<div id="sp-page">
+  <div style="background:#000080;color:#FFD700;height:56px;display:flex;align-items:center;gap:12px;padding:0 16px;position:sticky;top:0;z-index:3">
+    <button onclick="document.getElementById('sp-page').style.display='none'" style="background:rgba(255,255,255,.15);color:#fff;border:0;padding:6px 12px;border-radius:20px;cursor:pointer;font-size:.82rem">← Back</button>
+    <b style="flex:1">👥 Staff Performance</b>
+    <select id="sp-days" onchange="spRender()" style="padding:6px 8px;border-radius:8px;border:0;font-family:inherit"><option value="30">Last 30 days</option><option value="90" selected>Last 90 days</option><option value="180">Last 6 months</option></select>
+  </div>
+  <div class="sp-wrap" id="sp-body"><div class="sp-card" style="text-align:center;color:#888">Loading…</div></div>
+</div>
+
+<!-- classroom observation form -->
+<div id="sp-obs" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10002;align-items:center;justify-content:center;padding:12px">
+  <div style="background:#fff;border-radius:14px;width:440px;max-width:100%;max-height:92vh;overflow-y:auto">
+    <div style="background:#000080;color:#FFD700;padding:14px 18px;font-weight:800;display:flex;justify-content:space-between;border-radius:14px 14px 0 0"><span id="sp-obs-title">📝 Classroom observation</span><button aria-label="Close" onclick="document.getElementById('sp-obs').style.display='none'" style="background:none;border:0;color:#FFD700;font-size:1.1rem;cursor:pointer">✕</button></div>
+    <div style="padding:14px 18px;font-size:.82rem" id="sp-obs-body"></div>
+  </div>
+</div>
+
+<script>
+// ══════════════ STAFF PERFORMANCE ══════════════
+// Every number comes from what each person does in the Portal (attendance, homework, quizzes,
+// report cards, feedback on submitted work, replies to parents, fees, admissions) plus the
+// results of their classes and the Admin's classroom observations.
+var SP = null;
+var OBS_CRITERIA = [["planning","Lesson planning & objectives"],["management","Classroom management"],["engagement","Student engagement & participation"],["english","Use of English & teaching methods"],["feedback","Checking understanding & feedback"],["tech","Use of technology & materials"]];
+function spCan(){ return isTeacher && ((currentUser && currentUser.email === ADMIN_EMAIL) || (typeof currentAdminDeptHead !== "undefined" && currentAdminDeptHead === "hr")); }
+function spSame(a, t){ a = String(a||"").trim().toLowerCase(); return !!a && (a === String(t.name||"").trim().toLowerCase() || a === String(t.email||"").trim().toLowerCase()); }
+function spBy(x){ return x.teacherName || x.createdBy || x.savedBy || x.authorName || x.author || x.gradedBy || x.recordedBy || ""; }
+async function openStaffPerformance(){
+  if(!spCan()){ alert("Staff Performance is for the Admin and the HR Department Head."); return; }
+  document.getElementById("sp-page").style.display = "block";
+  document.getElementById("sp-body").innerHTML = "<div class='sp-card' style='text-align:center;color:#888'>⏳ Reading the school's records…</div>";
+  SP = {};
+  var get = async function(name, key){ try { return await tdFetch(name, key); } catch(e){ return []; } };
+  SP.teachers = (await get("teachers","c2epe_local_teachers")).filter(function(t){ return t.active !== false && t.status !== "removed"; });
+  SP.students = (await get("students","c2epe_local_students")).filter(function(s){ return s.status !== "left"; });
+  SP.left = (await get("students","c2epe_local_students")).filter(function(s){ return s.status === "left"; });
+  SP.homework = await get("homework","c2epe_homework");
+  SP.quizzes = await get("quizzes","c2epe_quizzes");
+  SP.reports = await get("reports","c2epe_reports");
+  SP.attendance = await get("attendance","c2epe_attendance");
+  SP.subs = await get("hwSubmissions","c2epe_hw_submissions");
+  SP.fees = await get("fees","c2epe_fees");
+  SP.apps = await get("applications","c2epe_applications");
+  SP.claims = await get("paymentClaims","c2epe_payment_claims");
+  SP.posts = await get("posts","c2epe_posts");
+  SP.obs = await get("observations","c2epe_observations");
+  SP.msgs = [];
+  try {
+    if(xLocal()){
+      JSON.parse(localStorage.getItem("c2epe_conversations")||"[]").forEach(function(c){ SP.msgs.push({cls:c.cls, list:JSON.parse(localStorage.getItem("c2epe_msgs_"+c.id)||"[]")}); });
+    } else {
+      var f = await xFb(), since = new Date(Date.now()-180*86400000).toISOString();
+      var convs = (await f.getDocs(f.collection(window._fb.db,"conversations"))).docs.map(function(d){ return Object.assign({id:d.id}, d.data()); }).filter(function(c){ return String(c.lastAt||"") >= since; }).slice(0,150);
+      for(var i=0;i<convs.length;i++){ SP.msgs.push({cls:convs[i].cls, list:(await f.getDocs(f.collection(window._fb.db,"conversations/"+convs[i].id+"/messages"))).docs.map(function(d){ return d.data(); })}); }
+    }
+  } catch(e){ console.error("staff messages", e); }
+  spRender();
+}
+function spWeekdays(days){ var n = 0; for(var i=0;i<days;i++){ var d = new Date(Date.now()-i*86400000).getDay(); if(d !== 0) n++; } return n; }  // Mon–Sat
+function spAnalyse(){
+  var days = +document.getElementById("sp-days").value, since = new Date(Date.now()-days*86400000).toISOString(), sinceD = since.slice(0,10);
+  var schoolDays = spWeekdays(Math.min(days, 60));
+  var recent = function(arr, field){ return arr.filter(function(x){ return String(x[field]||x.createdAt||x.updatedAt||"") >= since; }); };
+  var latest = {}; SP.reports.forEach(function(r){ var k = r.studentId||r.student; if(!latest[k] || String(r.updatedAt||r.createdAt||"") > String(latest[k].updatedAt||latest[k].createdAt||"")) latest[k] = r; });
+  var rows = SP.teachers.map(function(t){
+    var classes = (t.assignedClasses||[]).map(baseLevel), dept = t.adminDeptHead || "";
+    var inCls = function(c){ return classes.indexOf(baseLevel(c||"")) >= 0; };
+    var m = { t:t, classes:classes, dept:dept, gaps:[], goods:[] };
+    var stu = SP.students.filter(function(s){ return inCls(s.cls); });
+    m.students = stu.length;
+    if(classes.length){
+      // attendance: share of school days with attendance saved for each class (last 60 days at most)
+      var a60 = new Date(Date.now()-Math.min(days,60)*86400000).toISOString().slice(0,10);
+      var perCls = classes.map(function(c){ return new Set(SP.attendance.filter(function(a){ return baseLevel(a.cls||"")===c && String(a.date) >= a60; }).map(function(a){ return a.date; })).size; });
+      m.attTaken = Math.min(100, Math.round(perCls.reduce(function(a,b){return a+b;},0) * 100 / (schoolDays*classes.length||1)));
+      var came=0, tot=0; SP.attendance.filter(function(a){ return inCls(a.cls) && String(a.date) >= sinceD; }).forEach(function(a){ Object.values(a.records||{}).forEach(function(r){ if(!r.status||r.status==="permission") return; tot++; if(r.status!=="absent") came++; }); });
+      m.attRate = tot ? Math.round(came*100/tot) : null;
+      m.hw = recent(SP.homework, "createdAt").filter(function(h){ return inCls(h.cls) && (spSame(spBy(h), t) || !spBy(h)); }).length;
+      m.quizzes = recent(SP.quizzes, "createdAt").filter(function(q){ return inCls(q.cls) && (spSame(spBy(q), t) || !spBy(q)); }).length;
+      var withReport = stu.filter(function(s){ var r = latest[s.studentId] || latest[s.nameEn]; return r && String(r.updatedAt||r.createdAt||"") >= new Date(Date.now()-150*86400000).toISOString(); }).length;
+      m.reportCover = stu.length ? Math.round(withReport*100/stu.length) : null;
+      var scores = stu.map(function(s){ var r = latest[s.studentId] || latest[s.nameEn]; return r ? calcAvgScore(r) : 0; }).filter(Boolean);
+      m.avg = scores.length ? Math.round(scores.reduce(function(a,b){return a+b;},0)/scores.length) : null;
+      m.below = scores.filter(function(x){ return x<60; }).length;
+      var subs = SP.subs.filter(function(x){ return inCls(x.cls) && String(x.submittedAt||"") >= since; });
+      var graded = subs.filter(function(x){ return x.score || x.feedback; });
+      m.waiting = subs.length - graded.length;
+      var turn = graded.filter(function(x){ return x.gradedAt; }).map(function(x){ return (new Date(x.gradedAt) - new Date(x.submittedAt))/86400000; });
+      m.turnaround = turn.length ? +(turn.reduce(function(a,b){return a+b;},0)/turn.length).toFixed(1) : null;
+      // replies to parents in this teacher's classes
+      var waits = [], unanswered = 0;
+      SP.msgs.filter(function(c){ return inCls(c.cls); }).forEach(function(c){
+        var list = c.list.slice().sort(function(a,b){ return String(a.sentAt).localeCompare(String(b.sentAt)); });
+        list.forEach(function(msg, i){
+          if(msg.role !== "parent" || String(msg.sentAt||"") < since) return;
+          var rep = list.slice(i+1).find(function(x){ return x.role === "teacher"; });
+          if(rep) waits.push((new Date(rep.sentAt) - new Date(msg.sentAt))/3600000);
+          else if(Date.now() - new Date(msg.sentAt) > 24*3600000) unanswered++;
+        });
+      });
+      m.replyHrs = waits.length ? Math.round(waits.reduce(function(a,b){return a+b;},0)/waits.length) : null;
+      m.unanswered = unanswered;
+      m.leftN = SP.left.filter(function(s){ return inCls(s.cls) && String(s.leftAt||"") >= sinceD; }).length;
+    }
+    m.posts = recent(SP.posts, "createdAt").filter(function(p){ return spSame(spBy(p), t); }).length;
+    var ob = SP.obs.filter(function(o){ return o.teacherId === (t.id||t.uid) || spSame(o.teacherName, t); }).sort(function(a,b){ return String(b.date).localeCompare(String(a.date)); });
+    m.obs = ob[0] || null; m.obsCount = ob.length;
+    if(m.obs){ var vals = OBS_CRITERIA.map(function(c){ return +m.obs.scores[c[0]]||0; }).filter(Boolean); m.obsAvg = vals.length ? +(vals.reduce(function(a,b){return a+b;},0)/vals.length).toFixed(1) : null; }
+    // non-teaching duties
+    if(dept === "finance"){
+      m.feesRecorded = recent(SP.fees, "updatedAt").filter(function(f){ return spSame(f.teacherName, t); }).length;
+      var pend = SP.claims.filter(function(c){ return (c.status||"pending") === "pending"; });
+      m.claimsWaiting = pend.length; m.claimsOld = pend.filter(function(c){ return Date.now() - new Date(c.createdAt||c.submittedAt||Date.now()) > 2*86400000; }).length;
+      var today = new Date().toISOString().slice(0,10); m.overdueFees = SP.fees.filter(function(f){ return f.status!=="paid" && f.dueDate && f.dueDate < today; }).length;
+    }
+    if(dept === "admissions"){
+      var pa = SP.apps.filter(function(a){ return a.status==="pending" || a.status==="reviewing"; });
+      m.appsWaiting = pa.length; m.appsOld = pa.filter(function(a){ return Date.now() - new Date(a.submittedAt||Date.now()) > 3*86400000; }).length;
+      m.deskRegs = recent(SP.apps, "submittedAt").filter(function(a){ return a.registeredInPerson && String(a.notes||"").toLowerCase().indexOf(String(t.name||"").toLowerCase()) >= 0; }).length;
+    }
+    if(dept === "hr"){ m.noClass = SP.teachers.filter(function(x){ return !(x.assignedClasses||[]).length && !x.adminDeptHead; }).length; m.noObs = SP.teachers.filter(function(x){ return (x.assignedClasses||[]).length && !SP.obs.some(function(o){ return o.teacherId === (x.id||x.uid) || spSame(o.teacherName, x); }); }).length; }
+    // ── gaps and strengths ──
+    var G = function(txt, bad){ m.gaps.push([txt, !!bad]); }, OK = function(txt){ m.goods.push(txt); };
+    if(classes.length){
+      if(m.attTaken < 60) G("Attendance taken on only "+m.attTaken+"% of school days", true); else if(m.attTaken < 90) G("Attendance taken on "+m.attTaken+"% of school days"); else OK("Takes attendance every day");
+      if(!m.hw) G("No homework set in this period", days>=30); else OK(m.hw+" homework set");
+      if(m.waiting >= 5) G(m.waiting+" student submissions still waiting for feedback", true); else if(m.waiting) G(m.waiting+" submissions waiting for feedback");
+      if(m.turnaround !== null && m.turnaround > 5) G("Feedback takes "+m.turnaround+" days on average");
+      else if(m.turnaround !== null) OK("Gives feedback in "+m.turnaround+" days");
+      if(m.unanswered) G(m.unanswered+" parent message"+(m.unanswered>1?"s":"")+" not answered after 24 h", m.unanswered>=3);
+      if(m.replyHrs !== null && m.replyHrs > 24) G("Parents wait "+m.replyHrs+" h for a reply on average"); else if(m.replyHrs !== null) OK("Replies to parents in ~"+m.replyHrs+" h");
+      if(m.reportCover !== null && m.reportCover < 80) G("Report cards missing for "+(100-m.reportCover)+"% of students", m.reportCover < 50);
+      if(m.avg !== null && m.avg < 60) G("Class average "+m.avg+"% (below 60%)", true); else if(m.avg !== null && m.avg >= 80) OK("Strong results: class average "+m.avg+"%");
+      if(m.below >= 3) G(m.below+" students below 60%");
+      if(m.attRate !== null && m.attRate < 85) G("Student attendance only "+m.attRate+"%");
+      if(m.leftN >= 2) G(m.leftN+" students left these classes", true);
+      if(!m.obs) G("No classroom observation yet"); else if(m.obsAvg < 3) G("Last observation "+m.obsAvg+"/5", true); else if(m.obsAvg >= 4) OK("Observation "+m.obsAvg+"/5");
+    } else if(!dept){ G("No classes assigned", false); }
+    if(dept === "finance"){ if(m.claimsOld) G(m.claimsOld+" payment claims waiting more than 2 days", true); if(m.overdueFees > 5) G(m.overdueFees+" overdue fee records to follow up"); if(m.feesRecorded) OK(m.feesRecorded+" fee records updated"); }
+    if(dept === "admissions"){ if(m.appsOld) G(m.appsOld+" applications waiting more than 3 days", true); else OK("Applications handled quickly"); }
+    if(dept === "hr"){ if(m.noObs) G(m.noObs+" teachers have never been observed"); if(m.noClass) G(m.noClass+" staff accounts without classes or a role"); }
+    // overall score (activity + results), 0–100
+    var parts = [];
+    if(classes.length){
+      parts.push(m.attTaken); parts.push(m.hw ? Math.min(100, m.hw*25) : 0);
+      parts.push(m.waiting ? Math.max(0, 100 - m.waiting*12) : 100);
+      if(m.replyHrs !== null || m.unanswered) parts.push(Math.max(0, 100 - (m.replyHrs||0)*2 - m.unanswered*15));
+      if(m.reportCover !== null) parts.push(m.reportCover);
+      if(m.avg !== null) parts.push(Math.min(100, m.avg*1.15));
+      if(m.obsAvg) parts.push(m.obsAvg*20);
+    }
+    if(dept === "finance") parts.push(Math.max(0, 100 - m.claimsOld*20));
+    if(dept === "admissions") parts.push(Math.max(0, 100 - m.appsOld*20));
+    if(dept === "hr") parts.push(Math.max(0, 100 - m.noObs*10 - m.noClass*10));
+    m.score = parts.length ? Math.round(parts.reduce(function(a,b){return a+b;},0)/parts.length) : null;
+    m.band = m.score === null ? "none" : m.score >= 80 ? "good" : m.score >= 60 ? "support" : "concern";
+    m.work = (m.hw||0) + (m.quizzes||0) + (classes.length ? Math.round(m.attTaken/10) : 0) + (m.feesRecorded||0) + (m.deskRegs||0) + (m.posts||0);
+    return m;
+  });
+  return rows.sort(function(a,b){ return (a.score===null?999:a.score) - (b.score===null?999:b.score); });
+}
+function spPie(parts, size){
+  var total = parts.reduce(function(a,p){ return a+p[1]; },0) || 1, r = 50, c = 2*Math.PI*r, off = 0;
+  return "<svg viewBox='0 0 140 140' width='"+(size||150)+"' height='"+(size||150)+"' style='flex-shrink:0'><circle cx='70' cy='70' r='"+r+"' fill='none' stroke='#eef0f5' stroke-width='26'/>"
+    + parts.filter(function(p){ return p[1]>0; }).map(function(p){ var len = c*p[1]/total, s = "<circle cx='70' cy='70' r='"+r+"' fill='none' stroke='"+p[2]+"' stroke-width='26' stroke-dasharray='"+len+" "+(c-len)+"' stroke-dashoffset='"+(-off)+"' transform='rotate(-90 70 70)'><title>"+p[0]+": "+p[1]+"</title></circle>"; off += len; return s; }).join("")
+    + "<text x='70' y='75' text-anchor='middle' font-size='18' font-weight='800' fill='#1a1f36'>"+parts.reduce(function(a,p){ return a+p[1]; },0)+"</text></svg>";
+}
+var SP_COL = ["#000080","#c9a227","#2e7d32","#1565c0","#c62828","#6a1b9a","#00897b","#f57c00","#5d4037","#ad1457"];
+function spRender(){
+  if(!SP) return;
+  var R = SP.rows = spAnalyse();
+  var bands = { good:R.filter(function(m){ return m.band==="good"; }).length, support:R.filter(function(m){ return m.band==="support"; }).length, concern:R.filter(function(m){ return m.band==="concern"; }).length, none:R.filter(function(m){ return m.band==="none"; }).length };
+  var work = R.filter(function(m){ return m.work; }).sort(function(a,b){ return b.work-a.work; });
+  var gapCount = {}; R.forEach(function(m){ m.gaps.forEach(function(g){ var k = g[0].replace(/\d+(\.\d+)?/g,"#").replace(/\s+/g," "); gapCount[k] = (gapCount[k]||0)+1; }); });
+  var topGaps = Object.keys(gapCount).map(function(k){ return [k, gapCount[k]]; }).sort(function(a,b){ return b[1]-a[1]; }).slice(0,6);
+  var col = function(b){ return {good:"#2e7d32", support:"#f57c00", concern:"#c62828", none:"#9aa3b8"}[b]; };
+  var role = function(m){ return m.dept ? ({finance:"💰 Finance head", hr:"🧑‍💼 HR head", admissions:"📝 Admissions head"}[m.dept] || "🏢 "+m.dept) : (m.classes.length ? "👩‍🏫 Teacher" : "Staff"); };
+  document.getElementById("sp-body").innerHTML =
+    (R.length ? "" : "<div class='sp-card'>No staff accounts found. Add teachers and staff in the Admin Dashboard first.</div>")
+    + "<div class='sp-three'>"
+    + "<div class='sp-card'><h2>🟢 Overall picture</h2><div class='sp-sub'>Staff by overall score (activity + results)</div><div style='display:flex;gap:14px;align-items:center;flex-wrap:wrap'>"
+    + spPie([["Doing well (80+)",bands.good,"#2e7d32"],["Needs support (60–79)",bands.support,"#f57c00"],["Concern (<60)",bands.concern,"#c62828"],["Not enough data",bands.none,"#9aa3b8"]])
+    + "<div class='sp-legend'><div><i style='background:#2e7d32'></i>Doing well: <b>"+bands.good+"</b></div><div><i style='background:#f57c00'></i>Needs support: <b>"+bands.support+"</b></div><div><i style='background:#c62828'></i>Concern: <b>"+bands.concern+"</b></div><div><i style='background:#9aa3b8'></i>Not enough data: <b>"+bands.none+"</b></div></div></div></div>"
+    + "<div class='sp-card'><h2>📦 Who does the work</h2><div class='sp-sub'>Share of recorded work (homework, quizzes, attendance, fees, registrations, posts)</div><div style='display:flex;gap:14px;align-items:center;flex-wrap:wrap'>"
+    + spPie(work.slice(0,8).map(function(m,i){ return [m.t.name||m.t.email, m.work, SP_COL[i%SP_COL.length]]; }))
+    + "<div class='sp-legend'>"+work.slice(0,8).map(function(m,i){ return "<div><i style='background:"+SP_COL[i%SP_COL.length]+"'></i>"+escapeHtml(m.t.name||m.t.email)+": <b>"+m.work+"</b></div>"; }).join("")+(work.length?"":"<div>No recorded work yet.</div>")+"</div></div></div>"
+    + "<div class='sp-card'><h2>⚠️ Most common gaps</h2><div class='sp-sub'>How many staff have each problem</div>"
+    + (topGaps.length ? topGaps.map(function(g){ return "<div style='display:flex;justify-content:space-between;gap:8px;font-size:.78rem;padding:5px 0;border-bottom:1px solid #f4f5f8'><span>"+escapeHtml(g[0].replace(/#/g,"…"))+"</span><b>"+g[1]+"</b></div>"; }).join("") : "<div class='sp-sub'>No gaps found 🎉</div>")
+    + "</div></div>"
+    // score bars
+    + "<div class='sp-card'><h2>📊 Overall score by person</h2><div class='sp-sub'>Lowest first — the people who need help most are at the top.</div>"
+    + R.filter(function(m){ return m.score!==null; }).map(function(m){ return "<div style='display:grid;grid-template-columns:170px 1fr 44px;gap:8px;align-items:center;font-size:.8rem;margin:5px 0'><span style='overflow:hidden;text-overflow:ellipsis;white-space:nowrap'>"+escapeHtml(m.t.name||m.t.email)+"</span><div style='height:12px;background:#eef0f5;border-radius:6px;overflow:hidden'><i style='display:block;height:100%;width:"+m.score+"%;background:"+col(m.band)+"'></i></div><b style='text-align:right'>"+m.score+"</b></div>"; }).join("")
+    + "</div>"
+    // detail table
+    + "<div class='sp-card'><h2>🔍 Each person: strengths and gaps</h2><div class='sp-sub'>Attendance = days attendance was taken · HW = homework set · Waiting = submissions without feedback · Reply = average hours parents wait · Reports = students with a recent report card · Obs. = latest classroom observation</div>"
+    + "<div style='overflow-x:auto'><table><tr><th>Person</th><th>Score</th><th>Attend.</th><th>HW</th><th>Waiting</th><th>Reply</th><th>Reports</th><th>Class avg</th><th>Obs.</th><th style='min-width:260px'>Strengths &amp; gaps</th><th></th></tr>"
+    + R.map(function(m, i){ return "<tr><td><b>"+escapeHtml(m.t.name||m.t.email)+"</b><div style='font-size:.7rem;color:#8a93a8'>"+role(m)+(m.classes.length?" · "+escapeHtml(m.classes.join(", ")):"")+"</div></td>"
+        + "<td><span class='sp-score' style='background:"+col(m.band)+"'>"+(m.score===null?"—":m.score)+"</span></td>"
+        + (m.classes.length ? "<td>"+m.attTaken+"%</td><td>"+m.hw+"</td><td>"+m.waiting+"</td>"
+           : "<td colspan='3' style='font-size:.72rem;color:#555'>"+(m.dept==="finance" ? "Claims waiting: <b>"+m.claimsWaiting+"</b> · overdue fees: <b>"+m.overdueFees+"</b> · records updated: <b>"+m.feesRecorded+"</b>"
+              : m.dept==="admissions" ? "Applications waiting: <b>"+m.appsWaiting+"</b> (over 3 days: <b>"+m.appsOld+"</b>)"
+              : m.dept==="hr" ? "Never observed: <b>"+m.noObs+"</b> · accounts without a role: <b>"+m.noClass+"</b>" : "—")+"</td>")
+        + "<td>"+(m.replyHrs!=null?m.replyHrs+" h":"—")+(m.unanswered?"<br><span style='color:#c62828;font-size:.7rem'>"+m.unanswered+" unanswered</span>":"")+"</td>"
+        + "<td>"+(m.reportCover!==null&&m.reportCover!==undefined?m.reportCover+"%":"—")+"</td><td>"+(m.avg!==null&&m.avg!==undefined?m.avg+"%":"—")+"</td>"
+        + "<td>"+(m.obsAvg?m.obsAvg+"/5":"—")+"</td>"
+        + "<td>"+m.goods.map(function(g){ return "<span class='sp-good'>✓ "+escapeHtml(g)+"</span>"; }).join("")+m.gaps.map(function(g){ return "<span class='sp-gap"+(g[1]?" bad":"")+"'>"+(g[1]?"⛔ ":"⚠️ ")+escapeHtml(g[0])+"</span>"; }).join("")+"</td>"
+        + "<td>"+(m.classes.length?"<button class='sp-btn ghost' onclick='spObserve("+i+")'>📝 Observe</button>":"")+"</td></tr>"; }).join("")
+    + "</table></div></div>"
+    + "<div class='sp-card' id='sp-report'><h2>🤖 Staff review written by AI</h2><div class='sp-sub'>Strengths, gaps and a coaching plan for each person, from the figures above. Staff names are sent to the AI service; student names are not.</div>"
+    + "<div style='display:flex;gap:8px;flex-wrap:wrap'><button class='sp-btn' id='sp-ai-btn' onclick='spWriteReview()'>✍️ Write the review</button><button class='sp-btn ghost' onclick='window.print()'>🖨️ Print</button></div><div id='sp-ai' style='margin-top:12px'></div></div>";
+}
+function spObserve(i){
+  var m = SP.rows[i]; if(!m) return;
+  window.__spObsFor = m;
+  document.getElementById("sp-obs-title").textContent = "📝 Observation — " + (m.t.name||m.t.email);
+  document.getElementById("sp-obs-body").innerHTML =
+    "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px'><input type='date' id='ob-date' class='sp-in' value='"+new Date().toISOString().slice(0,10)+"'><select id='ob-cls' class='sp-in'>"+m.classes.map(function(c){ return "<option>"+escapeHtml(c)+"</option>"; }).join("")+"</select></div>"
+    + OBS_CRITERIA.map(function(c){ return "<div style='display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #f4f5f8'><span>"+c[1]+"</span><select id='ob-"+c[0]+"' class='sp-in'><option value='5'>5 Excellent</option><option value='4' selected>4 Good</option><option value='3'>3 Adequate</option><option value='2'>2 Weak</option><option value='1'>1 Poor</option></select></div>"; }).join("")
+    + "<textarea id='ob-strength' class='sp-in' placeholder='What went well' style='width:100%;margin-top:8px;height:50px'></textarea><textarea id='ob-improve' class='sp-in' placeholder='What to improve (agreed with the teacher)' style='width:100%;margin-top:6px;height:50px'></textarea>"
+    + "<button class='sp-btn' style='width:100%;margin-top:10px;padding:10px' onclick='spSaveObs()'>💾 Save observation</button><div id='ob-msg' style='font-size:.78rem;margin-top:6px'></div>"
+    + (m.obs ? "<div style='margin-top:10px;font-size:.74rem;color:#8a93a8'>Last observation: "+escapeHtml(m.obs.date)+" · "+m.obsAvg+"/5 · "+m.obsCount+" in total"+(m.obs.improve?"<br>To improve: “"+escapeHtml(m.obs.improve)+"”":"")+"</div>" : "");
+  document.getElementById("sp-obs").style.display = "flex";
+}
+async function spSaveObs(){
+  var m = window.__spObsFor, msg = document.getElementById("ob-msg"), scores = {};
+  OBS_CRITERIA.forEach(function(c){ scores[c[0]] = +document.getElementById("ob-"+c[0]).value; });
+  var o = { teacherId:m.t.id||m.t.uid||"", teacherName:m.t.name||m.t.email||"", cls:document.getElementById("ob-cls").value, date:document.getElementById("ob-date").value, scores:scores,
+    strength:document.getElementById("ob-strength").value.trim(), improve:document.getElementById("ob-improve").value.trim(), observer:currentTeacherName||"", createdAt:new Date().toISOString() };
+  try {
+    if(xLocal()){ var l = JSON.parse(localStorage.getItem("c2epe_observations")||"[]"); l.push(o); localStorage.setItem("c2epe_observations", JSON.stringify(l)); }
+    else { var f = await xFb(); await f.addDoc(f.collection(window._fb.db,"observations"), o); }
+    SP.obs.push(o); document.getElementById("sp-obs").style.display = "none"; spRender();
+  } catch(e){ msg.style.color = "#c62828"; msg.textContent = "❌ "+(e.message||e); }
+}
+async function spWriteReview(){
+  var box = document.getElementById("sp-ai"), btn = document.getElementById("sp-ai-btn");
+  btn.disabled = true; box.textContent = "✍️ Writing the staff review… (about 20–40 seconds)";
+  var lines = SP.rows.map(function(m){
+    return "- "+(m.t.name||m.t.email)+" ("+(m.dept?m.dept+" department head":"teacher")+(m.classes.length?", classes "+m.classes.join("/"):"")+"): score "+(m.score===null?"n/a":m.score)
+      + (m.classes.length ? "; attendance taken "+m.attTaken+"% of days; homework set "+m.hw+"; quizzes "+m.quizzes+"; submissions waiting "+m.waiting+(m.turnaround!==null?"; feedback in "+m.turnaround+" days":"")+(m.replyHrs!==null?"; parent reply "+m.replyHrs+" h":"")+"; unanswered parent messages "+m.unanswered+(m.reportCover!=null?"; report cards "+m.reportCover+"%":"")+(m.avg!=null?"; class average "+m.avg+"%, "+m.below+" students below 60%":"")+(m.attRate!=null?"; student attendance "+m.attRate+"%":"")+"; students left "+m.leftN : "")
+      + (m.obsAvg ? "; observation "+m.obsAvg+"/5"+(m.obs.improve?" (to improve: "+m.obs.improve+")":"") : "; not observed yet")
+      + (m.dept==="finance" ? "; payment claims waiting >2 days "+m.claimsOld+"; overdue fees "+m.overdueFees : "")
+      + (m.dept==="admissions" ? "; applications waiting >3 days "+m.appsOld : "")
+      + (m.dept==="hr" ? "; teachers never observed "+m.noObs : "");
+  }).join("\n");
+  var prompt = "You are an experienced school principal and staff coach. Using ONLY the data below from the school's management system (last "+document.getElementById("sp-days").value+" days), write a staff performance review for the school owner, in English.\n\nDATA:\n"+lines
+    + "\n\nWrite: 1) A short overview of the whole team. 2) For each person: Strengths, Gaps, and 2-3 concrete coaching actions. 3) School-wide actions for leaders. Be fair and constructive: activity in the system is not the same as teaching quality, so say when a classroom observation is needed before judging. Do not invent numbers. Plain text, no markdown symbols.";
+  try {
+    var res = await fetch(AIQ_URL, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({prompt:prompt}) });
+    var data = await res.json().catch(function(){ return null; });
+    if(!res.ok || !data || typeof data.text !== "string") throw new Error("The AI service did not answer.");
+    box.textContent = data.text.trim() + "\n\n— Written by AI on " + new Date().toLocaleDateString("en-GB") + " from the Portal's records. Discuss it with each person before acting on it.";
+  } catch(e){ box.textContent = "❌ " + (e.message||e); }
   finally { btn.disabled = false; }
 }
 </script>

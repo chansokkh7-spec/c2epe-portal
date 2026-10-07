@@ -9443,7 +9443,7 @@ async function renderInvoiceDoc(f, isPaidDoc){
   var banks = [];
   try { var cfg = await loadPaymentQRConfig(); banks = (cfg && cfg.banks || []).map(function(b){ return b.name || b.bank || ""; }).filter(Boolean); } catch(e){}
   return "<div class='inv-doc'>"
-    + "<div class='inv-head'><div class='inv-brand'><img src='logo.png' alt='' onerror=\"this.style.display='none'\"><div><b>C2-EPE Digital Academy</b><span>English Proficiency Excellence</span></div></div>"
+    + "<div class='inv-head'><div class='inv-brand'><img src='logo.png' alt='' onerror=\"this.style.display='none'\"><div><b>C2-EPE Digital Academy</b><span>English Proficiency Education</span></div></div>"
     + "<div class='inv-contact'>Phnom Penh, Cambodia<br>Tel: 015 555 631 / 071 6115 407 / 088 4714 887<br>Email: c2.kh2029@gmail.com</div></div>"
     + "<div class='inv-date'>"+E(dateStr)+"</div>"
     + "<div class='inv-title'>"+(isPaidDoc ? "PAYMENT RECEIPT" : "INVOICE")+"</div>"
@@ -15416,7 +15416,7 @@ async function renderTermReport(r){
   }
   box.innerHTML = "<style>.trc{background:#fff;color:#1a1f36;max-width:820px;margin:0 auto;padding:26px 30px;border-radius:6px;box-shadow:0 6px 24px rgba(0,0,0,.12);font-size:13px}.trc table{width:100%;border-collapse:collapse}.trc td{border-bottom:1px solid #eef0f5;padding:6px 10px}@media (max-width:640px){.trc{padding:16px 12px}}</style>"
     + "<div class='trc'>"
-    + "<div style='display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding-bottom:12px;border-bottom:3px solid #0b1a3b'><div style='display:flex;gap:10px;align-items:center'><img src='logo.png' alt='' style='width:50px;height:50px;object-fit:contain' onerror=\"this.style.display='none'\"><div><b style='font-size:1.1rem;color:#0b1a3b'>C2-EPE ACADEMY</b><div style='font-size:.74rem;color:#5b6478'>English Proficiency Excellence · Phnom Penh, Cambodia</div></div></div>"
+    + "<div style='display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding-bottom:12px;border-bottom:3px solid #0b1a3b'><div style='display:flex;gap:10px;align-items:center'><img src='logo.png' alt='' style='width:50px;height:50px;object-fit:contain' onerror=\"this.style.display='none'\"><div><b style='font-size:1.1rem;color:#0b1a3b'>C2-EPE ACADEMY</b><div style='font-size:.74rem;color:#5b6478'>English Proficiency Education · Phnom Penh, Cambodia</div></div></div>"
     + "<div style='text-align:right;font-size:.72rem;color:#5b6478;line-height:1.7'>Document No: <b style='color:#1a1f36'>"+E(reportDocNo(r))+"</b><br>Issued: <b style='color:#1a1f36'>"+E(issued)+"</b></div></div>"
     + "<div style='text-align:center;margin:16px 0 4px;font-weight:900;letter-spacing:2px;color:#0b1a3b;font-size:1.05rem'>TERM REPORT CARD</div><div style='text-align:center;font-size:.8rem;color:#7a84a0;margin-bottom:12px'>"+E(r.term||"—")+"</div>"
     + "<div style='display:grid;grid-template-columns:auto 1fr auto 1fr;gap:8px 16px;font-size:.82rem;padding:10px 0;border-top:1px solid #e3e6ee;border-bottom:1px solid #e3e6ee'>"
@@ -15542,7 +15542,7 @@ function renderPassportHTML(r){
     + "@media (max-width:640px){.pp{padding:18px 14px}.pp-info{grid-template-columns:auto 1fr}.pp-row{grid-template-columns:110px 1fr 40px;gap:8px}.pp-sub{grid-template-columns:96px 1fr 40px}.pp-bottom{grid-template-columns:1fr}.pp-sign{gap:20px}}"
     + "</style>"
     + "<div class='pp'>"
-    + "<div class='pp-head'><div class='pp-brand'><img src='logo.png' alt='C2-EPE Logo' onerror=\"this.style.display='none'\"><div><b>C2-EPE ACADEMY</b><span>English Proficiency Excellence · Phnom Penh, Cambodia</span></div></div>"
+    + "<div class='pp-head'><div class='pp-brand'><img src='logo.png' alt='C2-EPE Logo' onerror=\"this.style.display='none'\"><div><b>C2-EPE ACADEMY</b><span>English Proficiency Education · Phnom Penh, Cambodia</span></div></div>"
     + "<div class='pp-doc'>Document No: <b>"+E(docNo)+"</b><br>Issued: <b>"+E(issued)+"</b></div></div>"
     + "<div class='pp-title'>OFFICIAL STUDENT ACADEMIC PASSPORT</div><div>This document certifies the academic record held by C2-EPE Academy</div>"
     + "<div class='pp-info'><span>Student name</span><b>"+E(r.student||"—")+"</b><span>Student ID</span><b>"+E(r.studentId||"—")+"</b>"

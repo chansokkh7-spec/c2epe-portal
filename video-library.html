@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Library · បណ្ណាល័យវីដេអូសិក្សា</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0E1B38;--navy2:#16295a;--gold:#D4A017;--gold2:#FFD700;--paper:#f4f6fb;--card:#fff;--ink:#1a1f36;--soft:#6b7489;--line:#e3e7f0;--green:#2e7d32;--red:#c62828;--orange:#c65a00}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Noto Sans Khmer',system-ui,sans-serif;line-height:1.55}
+button{font-family:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit;font-size:.88rem;padding:9px 11px;border:1.5px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);width:100%}
+header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:16px 16px 0;border-bottom:3px solid var(--gold)}
+.hd{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.hd h1{margin:0;font-size:1.15rem;color:var(--gold2);flex:1}
+.hd small{display:block;color:#cfd6ea;font-weight:400;font-size:.76rem}
+.who{font-size:.78rem;background:rgba(255,255,255,.12);border-radius:999px;padding:5px 12px}
+.lang{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:5px 12px;font-size:.78rem}
+nav{max-width:1000px;margin:12px auto 0;display:flex;gap:4px;overflow-x:auto}
+nav button{background:none;border:0;color:#cfd6ea;padding:10px 14px;font-weight:700;font-size:.86rem;border-bottom:3px solid transparent;white-space:nowrap}
+nav button.on{color:var(--gold2);border-color:var(--gold2)}
+main{max-width:1000px;margin:0 auto;padding:14px 12px 60px}
+.bar{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chip{border:1.5px solid #c5cae9;background:#fff;color:var(--navy);border-radius:999px;padding:5px 12px;font-size:.78rem;font-weight:700}
+.chip.on{background:var(--navy);color:var(--gold2);border-color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.card{background:var(--card);border-radius:14px;box-shadow:0 2px 10px rgba(16,30,70,.08);overflow:hidden;cursor:pointer;display:flex;flex-direction:column;border:2px solid transparent}
+.card:hover{border-color:var(--gold)}
+.thumb{aspect-ratio:16/9;background:#1b2a4a center/cover no-repeat;position:relative;display:flex;align-items:center;justify-content:center;color:#fff;font-size:2rem}
+.thumb .play{width:46px;height:46px;border-radius:50%;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.thumb .done{position:absolute;top:8px;left:8px;background:var(--green);color:#fff;font-size:.7rem;font-weight:800;border-radius:999px;padding:2px 9px}
+.thumb .fav{position:absolute;top:6px;right:8px;font-size:1.2rem;background:none;border:0;color:#fff;text-shadow:0 1px 3px #000}
+.cb{padding:10px 12px;flex:1;display:flex;flex-direction:column;gap:3px}
+.cb b{font-size:.92rem}
+.meta{font-size:.72rem;color:var(--soft)}
+.badge{display:inline-block;border-radius:999px;padding:2px 9px;font-size:.68rem;font-weight:800;margin-right:4px}
+.b-due{background:#fff3e0;color:var(--orange)}.b-late{background:#ffebee;color:var(--red)}.b-ok{background:#e8f5e9;color:var(--green)}.b-quiz{background:#e8eaf6;color:#283593}
+.box{background:#fff;border-radius:14px;box-shadow:0 2px 10px rgba(16,30,70,.08);padding:14px;margin-bottom:12px}
+.box h3{margin:0 0 8px;font-size:.95rem;color:var(--navy)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:12px}
+.kpi{background:#fff;border-radius:12px;box-shadow:0 1px 6px rgba(16,30,70,.08);padding:10px;text-align:center}.kpi b{display:block;font-size:1.3rem;color:var(--navy)}.kpi span{font-size:.7rem;color:var(--soft)}
+table{width:100%;border-collapse:collapse;font-size:.8rem}th{background:var(--navy);color:var(--gold2);text-align:left;padding:7px}td{padding:7px;border-bottom:1px solid var(--line)}
+.btn{background:var(--navy);color:var(--gold2);border:0;border-radius:9px;padding:9px 14px;font-weight:800;font-size:.84rem}
+.btn.gold{background:var(--gold);color:var(--navy)}.btn.ghost{background:#fff;color:var(--navy);border:1.5px solid #c5cae9}.btn.red{background:#fff;color:var(--red);border:1.5px solid #ef9a9a}
+.empty{text-align:center;color:#9aa3b8;padding:30px 10px}
+.modal{position:fixed;inset:0;background:rgba(5,10,25,.75);display:none;align-items:center;justify-content:center;padding:10px;z-index:50}
+.modal.show{display:flex}
+.mbox{background:#fff;border-radius:16px;width:760px;max-width:100%;max-height:94vh;overflow-y:auto}
+.mhd{background:var(--navy);color:var(--gold2);padding:12px 16px;display:flex;justify-content:space-between;gap:10px;align-items:center;position:sticky;top:0;z-index:2}
+.mhd button{background:none;border:0;color:var(--gold2);font-size:1.2rem}
+.player{aspect-ratio:16/9;background:#000}.player iframe,.player video{width:100%;height:100%;border:0;display:block}
+.mb{padding:14px 16px}
+.q{border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:8px}
+.q label{display:flex;gap:8px;align-items:center;padding:4px 0;font-size:.86rem;cursor:pointer}.q input{width:auto}
+.q.right{border-color:var(--green);background:#f3fbf3}.q.wrong{border-color:var(--red);background:#fff6f6}
+.cm{border-bottom:1px solid var(--line);padding:7px 0;font-size:.84rem}.cm b{color:var(--navy)}.cm.t b{color:var(--orange)}
+.msg{display:none;margin-top:8px;padding:8px 10px;border-radius:8px;font-size:.8rem}
+.lock{text-align:center;padding:40px 16px}
+.lock .big{font-size:2.6rem}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.l{display:block;font-size:.72rem;font-weight:700;color:var(--soft);margin:8px 0 3px}
+.bar2{height:8px;background:#eef0f5;border-radius:6px;overflow:hidden}.bar2 i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--green))}
+@media(max-width:700px){.bar{grid-template-columns:1fr 1fr}.bar input{grid-column:1/-1}.row3{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <h1>🎬 <span data-t="title">Video Library</span><small data-t="subtitle">Watch · Learn · Quiz — SEG Digital Hub</small></h1>
+    <span class="who" id="who"></span>
+    <button class="lang" id="lang" onclick="toggleLang()">ខ្មែរ</button>
+  </div>
+  <nav id="tabs">
+    <button data-tab="watch" class="on" onclick="showTab('watch')" data-t="tWatch">Videos</button>
+    <button data-tab="progress" onclick="showTab('progress')" data-t="tProgress">My Progress</button>
+    <button data-tab="board" onclick="showTab('board')" data-t="tBoard">Leaderboard</button>
+    <button data-tab="teacher" onclick="showTab('teacher')" data-t="tTeacher" id="tab-teacher" style="display:none">Teacher</button>
+  </nav>
+</header>
+<main id="main"><div class="empty">Loading…</div></main>
+
+<div class="modal" id="vmodal"><div class="mbox"><div class="mhd"><b id="v-title"></b><button aria-label="Close" onclick="closeVideo()">✕</button></div><div id="v-body"></div></div></div>
+<div class="modal" id="emodal"><div class="mbox"><div class="mhd"><b id="e-title"></b><button aria-label="Close" onclick="closeEditor()">✕</button></div><div class="mb" id="e-body"></div></div></div>
+
+<script>
+// ══════════════ Connection to the SEG Digital Hub ══════════════
+// The Hub opens this page in a full-screen frame and lends it the signed-in person and its database
+// (window.__videoLibBridge). Students = Student ID sign-in; teachers/admin = Hub staff sign-in.
+var BR = null, DB = null, ME = { role:"guest" };
+try { BR = window.parent && window.parent !== window ? window.parent.__videoLibBridge : null; } catch(e){}
+var COL = { videos:"vl_videos", progress:"vl_progress", comments:"vl_comments" };
+var LANG = "en", TAB = "watch", VIDEOS = [], PROG = [], COMMENTS = [], filt = { q:"", subject:"", cls:"", sort:"new", fav:false, todo:false };
+var I18N = {
+  title:["Video Library","បណ្ណាល័យវីដេអូសិក្សា"], subtitle:["Watch · Learn · Quiz — SEG Digital Hub","មើល · រៀន · តេស្ត — SEG Digital Hub"],
+  tWatch:["Videos","វីដេអូ"], tProgress:["My Progress","វឌ្ឍនភាពរបស់ខ្ញុំ"], tBoard:["Leaderboard","តារាងកិត្តិយស"], tTeacher:["Teacher","គ្រូ"],
+  search:["Search videos…","ស្វែងរកវីដេអូ…"], allSubjects:["All subjects","គ្រប់មុខវិជ្ជា"], allClasses:["All classes","គ្រប់ថ្នាក់"],
+  newest:["Newest first","ថ្មីបំផុត"], deadline:["Deadline soonest","ថ្ងៃកំណត់ជិតបំផុត"], title_:["Title A–Z","ចំណងជើង A–Z"],
+  favs:["★ Favourites","★ ចំណូលចិត្ត"], todo:["To watch","មិនទាន់មើល"], noVideos:["No videos yet.","មិនទាន់មានវីដេអូ។"],
+  due:["Due","កំណត់"], overdue:["Overdue","ហួសកំណត់"], done:["Done","រួចរាល់"], quiz:["Quiz","តេស្ត"], week:["Week","សប្តាហ៍"],
+  markDone:["✅ Mark as watched","✅ សម្គាល់ថាបានមើល"], watched:["✅ Watched","✅ បានមើលរួច"], takeQuiz:["📝 Take the quiz","📝 ធ្វើតេស្ត"],
+  submitQuiz:["Submit answers","ដាក់ចម្លើយ"], yourScore:["Your score","ពិន្ទុរបស់អ្នក"], retake:["Try again","ធ្វើម្តងទៀត"],
+  comments:["Comments","មតិយោបល់"], writeComment:["Write a comment…","សរសេរមតិ…"], post:["Post","បង្ហោះ"], resource:["📎 Extra material","📎 ឯកសារបន្ថែម"],
+  signIn:["Please sign in to the Hub with your Student ID to track your progress.","សូមចូល Hub ដោយ Student ID ដើម្បីរក្សាវឌ្ឍនភាព។"],
+  openFromHub:["Open the Video Library from the SEG Digital Hub.","សូមបើក Video Library ពី SEG Digital Hub។"],
+  completed:["Watched","បានមើល"], total:["Videos","វីដេអូ"], avgQuiz:["Quiz average","មធ្យមភាគតេស្ត"], pending:["Still to watch","នៅសល់ត្រូវមើល"],
+  topStudents:["Top students","សិស្សឆ្នើម"], popular:["Most watched","វីដេអូពេញនិយម"]
+};
+function t(k){ var v = I18N[k]; return v ? v[LANG==="km"?1:0] : k; }
+function applyLang(){ document.querySelectorAll("[data-t]").forEach(function(el){ el.textContent = t(el.dataset.t); }); document.getElementById("lang").textContent = LANG==="km" ? "English" : "ខ្មែរ"; document.documentElement.lang = LANG==="km"?"km":"en"; }
+function toggleLang(){ LANG = LANG==="km" ? "en" : "km"; try { localStorage.setItem("vl_lang", LANG); } catch(e){} applyLang(); render(); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function today(){ var d = new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function fmtDate(v){ if(!v) return ""; var d = new Date(String(v).length===10 ? v+"T00:00:00" : v); return isNaN(d) ? v : d.toLocaleDateString(LANG==="km"?"km-KH":"en-GB",{day:"numeric",month:"short",year:"numeric"}); }
+function isStaff(){ return ME.role==="teacher" || ME.role==="admin"; }
+function myId(){ return ME.studentId || ""; }
+
+// ── data (Hub's Firestore through the bridge) ──
+async function load(){
+  if(!DB) return;
+  var g = async function(c){ return (await DB.collection(c).get()).docs.map(function(d){ var x = d.data(); x.id = d.id; return x; }); };
+  try { VIDEOS = await g(COL.videos); } catch(e){ VIDEOS = []; console.error(e); }
+  try { PROG = await g(COL.progress); } catch(e){ PROG = []; }
+  try { COMMENTS = await g(COL.comments); } catch(e){ COMMENTS = []; }
+}
+function myProg(vid){ return PROG.find(function(p){ return p.studentId===myId() && p.videoId===vid; }) || null; }
+async function saveProg(vid, data){
+  var id = myId()+"__"+vid, ex = myProg(vid) || { studentId:myId(), studentName:ME.name, videoId:vid };
+  var rec = Object.assign({}, ex, data, { studentId:myId(), studentName:ME.name, videoId:vid, updatedAt:new Date().toISOString() }); delete rec.id;
+  await DB.collection(COL.progress).doc(id).set(rec, { merge:true });
+  rec.id = id; PROG = PROG.filter(function(p){ return p.id!==id; }); PROG.push(rec);
+}
+function favs(){ try { return JSON.parse(localStorage.getItem("vl_fav_"+(myId()||"guest"))||"[]"); } catch(e){ return []; } }
+function toggleFav(vid, ev){ ev.stopPropagation(); var f = favs(), i = f.indexOf(vid); if(i>=0) f.splice(i,1); else f.push(vid); try { localStorage.setItem("vl_fav_"+(myId()||"guest"), JSON.stringify(f)); } catch(e){} render(); }
+
+// ── video links: YouTube, Google Drive, MP4 ──
+function embedInfo(url){
+  url = String(url||"").trim();
+  var yt = url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{6,})/);
+  if(yt) return { type:"iframe", src:"https://www.youtube.com/embed/"+yt[1]+"?rel=0", thumb:"https://img.youtube.com/vi/"+yt[1]+"/hqdefault.jpg" };
+  var dr = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if(dr) return { type:"iframe", src:"https://drive.google.com/file/d/"+dr[1]+"/preview", thumb:"" };
+  if(/\.(mp4|webm|ogg)(\?.*)?$/i.test(url)) return { type:"video", src:url, thumb:"" };
+  return { type:"iframe", src:url, thumb:"" };
+}
+function deadlineBadge(v){
+  if(!v.deadline) return "";
+  var p = myProg(v.id);
+  if(p && p.completedAt) return "";
+  return v.deadline < today() ? "<span class='badge b-late'>"+t("overdue")+" · "+fmtDate(v.deadline)+"</span>" : "<span class='badge b-due'>"+t("due")+" "+fmtDate(v.deadline)+"</span>";
+}
+
+// ══════════════ tabs ══════════════
+function showTab(tab){ TAB = tab; document.querySelectorAll("#tabs button").forEach(function(b){ b.classList.toggle("on", b.dataset.tab===tab); }); render(); }
+function render(){
+  var m = document.getElementById("main");
+  if(!DB){ m.innerHTML = "<div class='lock'><div class='big'>🎬</div><p>"+t("openFromHub")+"</p></div>"; return; }
+  if(TAB==="watch") return renderWatch(m);
+  if(TAB==="progress") return renderProgress(m);
+  if(TAB==="board") return renderBoard(m);
+  if(TAB==="teacher") return isStaff() ? renderTeacher(m) : showTab("watch");
+}
+function uniq(field){ return Array.from(new Set(VIDEOS.map(function(v){ return v[field]; }).filter(Boolean))).sort(); }
+function renderWatch(m){
+  var f = favs(), list = VIDEOS.filter(function(v){
+    if(filt.subject && v.subject!==filt.subject) return false;
+    if(filt.cls && v.cls!==filt.cls) return false;
+    if(filt.fav && f.indexOf(v.id)<0) return false;
+    if(filt.todo){ var p = myProg(v.id); if(p && p.completedAt) return false; }
+    if(filt.q){ var q = filt.q.toLowerCase(); if(String(v.title+" "+v.desc+" "+v.subject).toLowerCase().indexOf(q)<0) return false; }
+    return true;
+  });
+  list.sort(function(a,b){
+    if(filt.sort==="deadline") return String(a.deadline||"9999").localeCompare(String(b.deadline||"9999"));
+    if(filt.sort==="title") return String(a.title).localeCompare(String(b.title));
+    return String(b.createdAt||"").localeCompare(String(a.createdAt||""));
+  });
+  m.innerHTML = (ME.role==="guest" ? "<div class='box' style='border-left:4px solid var(--gold)'>"+t("signIn")+"</div>" : "")
+    + "<div class='bar'><input id='f-q' placeholder='"+t("search")+"' value='"+esc(filt.q)+"' oninput='filt.q=this.value;renderGridOnly()'>"
+    + "<select onchange='filt.subject=this.value;render()'><option value=''>"+t("allSubjects")+"</option>"+uniq("subject").map(function(s){ return "<option"+(s===filt.subject?" selected":"")+">"+esc(s)+"</option>"; }).join("")+"</select>"
+    + "<select onchange='filt.cls=this.value;render()'><option value=''>"+t("allClasses")+"</option>"+uniq("cls").map(function(s){ return "<option"+(s===filt.cls?" selected":"")+">"+esc(s)+"</option>"; }).join("")+"</select>"
+    + "<select onchange='filt.sort=this.value;render()'><option value='new'"+(filt.sort==="new"?" selected":"")+">"+t("newest")+"</option><option value='deadline'"+(filt.sort==="deadline"?" selected":"")+">"+t("deadline")+"</option><option value='title'"+(filt.sort==="title"?" selected":"")+">"+t("title_")+"</option></select></div>"
+    + "<div class='chips'><button class='chip"+(filt.fav?" on":"")+"' onclick='filt.fav=!filt.fav;render()'>"+t("favs")+"</button>"+(myId()?"<button class='chip"+(filt.todo?" on":"")+"' onclick='filt.todo=!filt.todo;render()'>"+t("todo")+"</button>":"")+"</div>"
+    + "<div class='grid' id='vgrid'></div>";
+  window.__list = list; renderGridOnly();
+}
+function renderGridOnly(){
+  var list = (window.__list||[]).filter(function(v){ if(!filt.q) return true; return String(v.title+" "+v.desc+" "+v.subject).toLowerCase().indexOf(filt.q.toLowerCase())>=0; });
+  var f = favs(), g = document.getElementById("vgrid"); if(!g) return;
+  g.innerHTML = list.length ? list.map(function(v){
+    var e = embedInfo(v.url), p = myProg(v.id);
+    return "<div class='card' onclick=\"openVideo('"+v.id+"')\"><div class='thumb' style=\""+(e.thumb?"background-image:url('"+e.thumb+"')":"")+"\"><div class='play'>▶</div>"
+      + (p && p.completedAt ? "<span class='done'>✓ "+t("done")+"</span>" : "")
+      + "<button class='fav' aria-label='favourite' onclick=\"toggleFav('"+v.id+"',event)\">"+(f.indexOf(v.id)>=0?"★":"☆")+"</button></div>"
+      + "<div class='cb'><b>"+esc(v.title)+"</b><span class='meta'>"+esc([v.subject, v.cls, v.week?t("week")+" "+v.week:""].filter(Boolean).join(" · "))+"</span>"
+      + "<div>"+deadlineBadge(v)+((v.quiz||[]).length?"<span class='badge b-quiz'>📝 "+t("quiz")+(p&&p.quizTotal?" "+p.quizScore+"/"+p.quizTotal:"")+"</span>":"")+"</div></div></div>";
+  }).join("") : "<div class='empty'>"+t("noVideos")+"</div>";
+}
+
+// ── watching a video ──
+var CUR = null;
+function openVideo(id){
+  var v = VIDEOS.find(function(x){ return x.id===id; }); if(!v) return; CUR = v;
+  var e = embedInfo(v.url), p = myProg(id);
+  document.getElementById("v-title").textContent = v.title;
+  document.getElementById("v-body").innerHTML =
+    "<div class='player'>"+(e.type==="video" ? "<video src='"+esc(e.src)+"' controls playsinline></video>" : "<iframe src='"+esc(e.src)+"' allow='autoplay; encrypted-media; fullscreen; picture-in-picture' allowfullscreen></iframe>")+"</div>"
+    + "<div class='mb'><div class='meta'>"+esc([v.subject, v.cls, v.week?t("week")+" "+v.week:"", v.createdBy].filter(Boolean).join(" · "))+" "+deadlineBadge(v)+"</div>"
+    + (v.desc ? "<p style='font-size:.88rem;white-space:pre-line'>"+esc(v.desc)+"</p>" : "")
+    + (v.resource ? "<p><a href='"+esc(v.resource)+"' target='_blank' rel='noopener' style='color:#1565c0;font-weight:700'>"+t("resource")+"</a></p>" : "")
+    + (myId() ? "<button class='btn "+(p&&p.completedAt?"ghost":"gold")+"' id='mark-btn' onclick='markDone()'"+(p&&p.completedAt?" disabled":"")+">"+(p&&p.completedAt?t("watched"):t("markDone"))+"</button>" : "<div class='meta'>"+t("signIn")+"</div>")
+    + ((v.quiz||[]).length && myId() ? "<div style='margin-top:14px' id='quiz-area'><button class='btn' onclick='startQuiz()'>"+t("takeQuiz")+(p&&p.quizTotal?" · "+t("yourScore")+" "+p.quizScore+"/"+p.quizTotal:"")+"</button></div>" : "")
+    + "<h3 style='margin:18px 0 6px;font-size:.95rem;color:var(--navy)'>💬 "+t("comments")+"</h3><div id='c-list'></div>"
+    + (ME.role!=="guest" ? "<div style='display:flex;gap:8px;margin-top:8px'><input id='c-in' maxlength='400' placeholder='"+t("writeComment")+"'><button class='btn' onclick='postComment()'>"+t("post")+"</button></div>" : "")
+    + "</div>";
+  renderComments();
+  document.getElementById("vmodal").classList.add("show");
+}
+function closeVideo(){ document.getElementById("vmodal").classList.remove("show"); document.getElementById("v-body").innerHTML = ""; CUR = null; render(); }
+async function markDone(){ var b = document.getElementById("mark-btn"); b.disabled = true; try { await saveProg(CUR.id, { completedAt:new Date().toISOString() }); b.textContent = t("watched"); b.className = "btn ghost"; } catch(e){ b.disabled = false; alert("❌ "+(e.message||e)); } }
+function startQuiz(){
+  var qa = document.getElementById("quiz-area");
+  qa.innerHTML = (CUR.quiz||[]).map(function(q, i){ return "<div class='q' id='q"+i+"'><b style='font-size:.88rem'>"+(i+1)+". "+esc(q.q)+"</b>"+q.opts.map(function(o, j){ return "<label><input type='radio' name='qq"+i+"' value='"+j+"'> "+esc(o)+"</label>"; }).join("")+"</div>"; }).join("")
+    + "<button class='btn gold' onclick='submitQuiz()'>"+t("submitQuiz")+"</button><div class='msg' id='q-msg'></div>";
+}
+async function submitQuiz(){
+  var score = 0, total = CUR.quiz.length, answers = [];
+  CUR.quiz.forEach(function(q, i){ var c = document.querySelector("input[name='qq"+i+"']:checked"), a = c ? +c.value : -1; answers.push(a); var ok = a === +q.a; if(ok) score++; var el = document.getElementById("q"+i); el.classList.add(ok?"right":"wrong"); });
+  var m = document.getElementById("q-msg"); m.style.display = "block"; m.style.background = score/total >= .6 ? "#e8f5e9" : "#fff3e0"; m.textContent = t("yourScore")+": "+score+" / "+total;
+  try { var p = myProg(CUR.id) || {}; await saveProg(CUR.id, { quizScore:score, quizTotal:total, quizAnswers:answers, quizAt:new Date().toISOString(), quizTries:(p.quizTries||0)+1, completedAt:p.completedAt || new Date().toISOString() }); }
+  catch(e){ m.textContent += " — ❌ "+(e.message||e); }
+}
+function renderComments(){
+  var l = COMMENTS.filter(function(c){ return c.videoId===CUR.id; }).sort(function(a,b){ return String(a.createdAt).localeCompare(String(b.createdAt)); });
+  document.getElementById("c-list").innerHTML = l.length ? l.map(function(c){ return "<div class='cm"+(c.role!=="student"?" t":"")+"'><b>"+esc(c.name)+(c.role!=="student"?" 👩‍🏫":"")+"</b> <span class='meta'>"+fmtDate(c.createdAt)+"</span>"
+    + (isStaff() ? " <button onclick=\"delComment('"+c.id+"')\" style='background:none;border:0;color:#c62828;font-size:.75rem'>✕</button>" : "")+"<div>"+esc(c.text)+"</div></div>"; }).join("") : "<div class='meta'>—</div>";
+}
+async function postComment(){
+  var inp = document.getElementById("c-in"), text = inp.value.trim(); if(!text) return;
+  var c = { videoId:CUR.id, studentId:myId(), name:ME.name || "Teacher", role:isStaff()?"teacher":"student", text:text, createdAt:new Date().toISOString() };
+  try { var ref = await DB.collection(COL.comments).add(c); c.id = ref.id; COMMENTS.push(c); inp.value = ""; renderComments(); } catch(e){ alert("❌ "+(e.message||e)); }
+}
+async function delComment(id){ if(!confirm("Delete this comment?")) return; try { await DB.collection(COL.comments).doc(id).delete(); COMMENTS = COMMENTS.filter(function(c){ return c.id!==id; }); renderComments(); } catch(e){ alert("❌ "+(e.message||e)); } }
+
+// ── my progress (student and parent) ──
+function renderProgress(m){
+  if(!myId()){ m.innerHTML = isStaff() ? "<div class='box'>"+(LANG==="km"?"សូមមើល «គ្រូ» សម្រាប់វឌ្ឍនភាពថ្នាក់។":"See the Teacher tab for class progress.")+"</div>" : "<div class='lock'><div class='big'>🔒</div><p>"+t("signIn")+"</p></div>"; return; }
+  var mine = PROG.filter(function(p){ return p.studentId===myId(); }), done = mine.filter(function(p){ return p.completedAt; }).length;
+  var qz = mine.filter(function(p){ return p.quizTotal; }), avg = qz.length ? Math.round(qz.reduce(function(a,p){ return a + p.quizScore*100/p.quizTotal; },0)/qz.length) : null;
+  var todo = VIDEOS.filter(function(v){ var p = myProg(v.id); return !(p && p.completedAt); }).sort(function(a,b){ return String(a.deadline||"9999").localeCompare(String(b.deadline||"9999")); });
+  m.innerHTML = "<div class='box'><b style='color:var(--navy)'>"+esc(ME.name)+"</b> <span class='meta'>· ID "+esc(myId())+"</span><div class='bar2' style='margin-top:8px'><i style='width:"+(VIDEOS.length?done*100/VIDEOS.length:0)+"%'></i></div></div>"
+    + "<div class='kpis'><div class='kpi'><b>"+done+" / "+VIDEOS.length+"</b><span>"+t("completed")+"</span></div><div class='kpi'><b>"+(avg===null?"—":avg+"%")+"</b><span>"+t("avgQuiz")+"</span></div><div class='kpi'><b>"+todo.length+"</b><span>"+t("pending")+"</span></div></div>"
+    + "<div class='box'><h3>⏳ "+t("pending")+"</h3>"+(todo.length ? todo.map(function(v){ return "<div style='display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid var(--line);cursor:pointer' onclick=\"openVideo('"+v.id+"')\"><span>"+esc(v.title)+" <span class='meta'>"+esc(v.subject||"")+"</span></span>"+deadlineBadge(v)+"</div>"; }).join("") : "<div class='meta'>🎉</div>")+"</div>"
+    + "<div class='box'><h3>📝 "+t("quiz")+"</h3>"+(qz.length ? "<table><tr><th>Video</th><th>"+t("yourScore")+"</th><th></th></tr>"+qz.map(function(p){ var v = VIDEOS.find(function(x){ return x.id===p.videoId; })||{title:"—"}; return "<tr><td>"+esc(v.title)+"</td><td><b>"+p.quizScore+" / "+p.quizTotal+"</b></td><td class='meta'>"+fmtDate(p.quizAt)+"</td></tr>"; }).join("")+"</table>" : "<div class='meta'>—</div>")+"</div>";
+}
+// ── leaderboard ──
+function renderBoard(m){
+  var by = {}; PROG.forEach(function(p){ var s = by[p.studentId] = by[p.studentId] || { name:p.studentName, done:0, pts:0, n:0 }; if(p.completedAt) s.done++; if(p.quizTotal){ s.pts += p.quizScore*100/p.quizTotal; s.n++; } });
+  var top = Object.keys(by).map(function(k){ var s = by[k]; return { id:k, name:s.name, done:s.done, avg:s.n?Math.round(s.pts/s.n):0, score:s.done*10 + (s.n?s.pts/s.n:0)/10 }; }).sort(function(a,b){ return b.score-a.score; }).slice(0,10);
+  var pop = VIDEOS.map(function(v){ return { v:v, n:PROG.filter(function(p){ return p.videoId===v.id && p.completedAt; }).length }; }).sort(function(a,b){ return b.n-a.n; }).slice(0,8);
+  var medal = ["🥇","🥈","🥉"];
+  m.innerHTML = "<div class='box'><h3>🏆 "+t("topStudents")+"</h3>"+(top.length ? "<table><tr><th>#</th><th>Name</th><th>"+t("completed")+"</th><th>"+t("avgQuiz")+"</th></tr>"+top.map(function(s, i){ return "<tr"+(s.id===myId()?" style='background:#fff8e1'":"")+"><td>"+(medal[i]||i+1)+"</td><td>"+esc(s.name)+"</td><td>"+s.done+"</td><td>"+(s.avg?s.avg+"%":"—")+"</td></tr>"; }).join("")+"</table>" : "<div class='meta'>—</div>")+"</div>"
+    + "<div class='box'><h3>🔥 "+t("popular")+"</h3>"+(pop.length ? pop.map(function(x){ return "<div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);cursor:pointer' onclick=\"openVideo('"+x.v.id+"')\"><span>"+esc(x.v.title)+"</span><b>"+x.n+" 👁</b></div>"; }).join("") : "<div class='meta'>—</div>")+"</div>";
+}
+
+// ══════════════ teacher tools (Hub staff only) ══════════════
+function renderTeacher(m){
+  var students = {}; PROG.forEach(function(p){ var s = students[p.studentId] = students[p.studentId] || { name:p.studentName, done:0, q:[] }; if(p.completedAt) s.done++; if(p.quizTotal) s.q.push(p.quizScore*100/p.quizTotal); });
+  m.innerHTML = "<div style='display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px'><button class='btn gold' onclick='editVideo()'>＋ "+(LANG==="km"?"បន្ថែមវីដេអូ":"Add a video")+"</button><button class='btn ghost' onclick='exportCSV()'>⬇️ Export CSV</button></div>"
+    + "<div class='box'><h3>🎬 "+(LANG==="km"?"វីដេអូ":"Videos")+" ("+VIDEOS.length+")</h3>"+(VIDEOS.length ? "<div style='overflow-x:auto'><table><tr><th>Title</th><th>Class</th><th>Due</th><th>Watched</th><th>Quiz</th><th></th></tr>"
+      + VIDEOS.slice().sort(function(a,b){ return String(b.createdAt||"").localeCompare(String(a.createdAt||"")); }).map(function(v){ var ps = PROG.filter(function(p){ return p.videoId===v.id; }), w = ps.filter(function(p){ return p.completedAt; }).length, qs = ps.filter(function(p){ return p.quizTotal; });
+          var qa = qs.length ? Math.round(qs.reduce(function(a,p){ return a+p.quizScore*100/p.quizTotal; },0)/qs.length)+"%" : "—";
+          return "<tr><td><b>"+esc(v.title)+"</b><div class='meta'>"+esc(v.subject||"")+"</div></td><td>"+esc(v.cls||"")+"</td><td>"+(v.deadline?fmtDate(v.deadline):"")+"</td><td>"+w+"</td><td>"+((v.quiz||[]).length?(v.quiz.length+" Q · "+qa):"—")+"</td><td style='white-space:nowrap'><button class='btn ghost' style='padding:5px 9px;font-size:.72rem' onclick=\"editVideo('"+v.id+"')\">✏️</button> <button class='btn ghost' style='padding:5px 9px;font-size:.72rem' onclick=\"editQuiz('"+v.id+"')\">📝</button> <button class='btn red' style='padding:5px 9px;font-size:.72rem' onclick=\"delVideo('"+v.id+"')\">🗑</button></td></tr>"; }).join("")+"</table></div>" : "<div class='meta'>"+t("noVideos")+"</div>")+"</div>"
+    + "<div class='box'><h3>👥 "+(LANG==="km"?"វឌ្ឍនភាពសិស្ស":"Student progress")+"</h3>"+(Object.keys(students).length ? "<div style='overflow-x:auto'><table><tr><th>Student</th><th>ID</th><th>Watched</th><th>Quiz average</th></tr>"
+      + Object.keys(students).sort(function(a,b){ return students[b].done-students[a].done; }).map(function(k){ var s = students[k]; return "<tr><td>"+esc(s.name)+"</td><td>"+esc(k)+"</td><td>"+s.done+" / "+VIDEOS.length+"</td><td>"+(s.q.length?Math.round(s.q.reduce(function(a,b){return a+b;},0)/s.q.length)+"%":"—")+"</td></tr>"; }).join("")+"</table></div>" : "<div class='meta'>—</div>")+"</div>";
+}
+function editVideo(id){
+  var v = VIDEOS.find(function(x){ return x.id===id; }) || {};
+  document.getElementById("e-title").textContent = id ? "✏️ "+v.title : "＋ "+(LANG==="km"?"វីដេអូថ្មី":"New video");
+  document.getElementById("e-body").innerHTML =
+    "<label class='l'>Title</label><input id='f-title' value='"+esc(v.title||"")+"'>"
+    + "<div class='row3'><div><label class='l'>Subject</label><input id='f-subject' list='dl-sub' value='"+esc(v.subject||"")+"' placeholder='Grammar'><datalist id='dl-sub'>"+uniq("subject").map(function(s){ return "<option value='"+esc(s)+"'>"; }).join("")+"</datalist></div>"
+    + "<div><label class='l'>Class</label><input id='f-class' list='dl-cls' value='"+esc(v.cls||"")+"' placeholder='Starters'><datalist id='dl-cls'>"+uniq("cls").map(function(s){ return "<option value='"+esc(s)+"'>"; }).join("")+"</datalist></div>"
+    + "<div><label class='l'>Week</label><input id='f-week' type='number' min='1' max='60' value='"+esc(v.week||"")+"'></div></div>"
+    + "<label class='l'>Video link (YouTube, Google Drive or .mp4)</label><input id='f-url' value='"+esc(v.url||"")+"' placeholder='https://youtu.be/…'>"
+    + "<div class='row2'><div><label class='l'>Deadline (optional)</label><input id='f-deadline' type='date' value='"+esc(v.deadline||"")+"'></div><div><label class='l'>Extra material link (optional)</label><input id='f-resource' value='"+esc(v.resource||"")+"'></div></div>"
+    + "<label class='l'>Description</label><textarea id='f-desc' rows='3'>"+esc(v.desc||"")+"</textarea>"
+    + "<button class='btn gold' style='width:100%;margin-top:12px' onclick=\"saveVideo('"+(id||"")+"')\">💾 Save</button><div class='msg' id='e-msg'></div>";
+  document.getElementById("emodal").classList.add("show");
+}
+function closeEditor(){ document.getElementById("emodal").classList.remove("show"); }
+function emsg(text){ var m = document.getElementById("e-msg"); m.style.display = "block"; m.style.background = "#ffebee"; m.style.color = "#c62828"; m.textContent = text; }
+async function saveVideo(id){
+  var d = { title:document.getElementById("f-title").value.trim(), subject:document.getElementById("f-subject").value.trim(), cls:document.getElementById("f-class").value.trim(),
+    week:document.getElementById("f-week").value.trim(), url:document.getElementById("f-url").value.trim(), deadline:document.getElementById("f-deadline").value,
+    resource:document.getElementById("f-resource").value.trim(), desc:document.getElementById("f-desc").value.trim(), updatedAt:new Date().toISOString() };
+  if(!d.title || !d.url) return emsg("Please enter the title and the video link.");
+  if(!/^https?:\/\//i.test(d.url)) return emsg("The video link must start with https://");
+  try {
+    if(id){ await DB.collection(COL.videos).doc(id).set(d, { merge:true }); Object.assign(VIDEOS.find(function(x){ return x.id===id; }), d); }
+    else { d.createdAt = d.updatedAt; d.createdBy = ME.name || "Teacher"; d.quiz = []; var ref = await DB.collection(COL.videos).add(d); d.id = ref.id; VIDEOS.push(d); }
+    closeEditor(); render();
+  } catch(e){ emsg("❌ "+(e.message||e)); }
+}
+async function delVideo(id){
+  var v = VIDEOS.find(function(x){ return x.id===id; });
+  if(!confirm("Delete \""+(v&&v.title)+"\"? Students' progress for it will no longer show.")) return;
+  try { await DB.collection(COL.videos).doc(id).delete(); VIDEOS = VIDEOS.filter(function(x){ return x.id!==id; }); render(); } catch(e){ alert("❌ "+(e.message||e)); }
+}
+// quiz editor
+var QE = null;
+function editQuiz(id){
+  var v = VIDEOS.find(function(x){ return x.id===id; }); if(!v) return;
+  QE = { id:id, quiz:JSON.parse(JSON.stringify(v.quiz||[])) };
+  document.getElementById("e-title").textContent = "📝 "+v.title;
+  renderQuizEditor(); document.getElementById("emodal").classList.add("show");
+}
+function renderQuizEditor(){
+  document.getElementById("e-body").innerHTML =
+    QE.quiz.map(function(q, i){ return "<div class='q'><div style='display:flex;justify-content:space-between;gap:8px'><b style='font-size:.86rem'>"+(i+1)+". "+esc(q.q)+"</b><button onclick='QE.quiz.splice("+i+",1);renderQuizEditor()' style='background:none;border:0;color:#c62828'>✕</button></div>"+q.opts.map(function(o, j){ return "<div style='font-size:.82rem;"+(j===+q.a?"color:#2e7d32;font-weight:800":"")+"'>"+(j===+q.a?"✓ ":"○ ")+esc(o)+"</div>"; }).join("")+"</div>"; }).join("")
+    + "<div class='box' style='box-shadow:none;border:1.5px dashed #c5cae9'><label class='l'>Question</label><input id='qe-q'>"
+    + [0,1,2,3].map(function(j){ return "<div style='display:flex;gap:8px;align-items:center;margin-top:6px'><input type='radio' name='qe-a' value='"+j+"'"+(j===0?" checked":"")+" style='width:auto' title='correct answer'><input id='qe-o"+j+"' placeholder='Option "+"ABCD"[j]+(j<2?"":" (optional)")+"'></div>"; }).join("")
+    + "<div class='meta' style='margin-top:4px'>Tick the circle next to the correct answer.</div><button class='btn ghost' style='margin-top:8px' onclick='addQ()'>＋ Add question</button></div>"
+    + "<button class='btn gold' style='width:100%;margin-top:12px' onclick='saveQuiz()'>💾 Save quiz ("+QE.quiz.length+" questions)</button><div class='msg' id='e-msg'></div>";
+}
+function addQ(){
+  var q = document.getElementById("qe-q").value.trim(), opts = [], map = [], a = +document.querySelector("input[name='qe-a']:checked").value;
+  [0,1,2,3].forEach(function(j){ var o = document.getElementById("qe-o"+j).value.trim(); if(o){ map[j] = opts.length; opts.push(o); } });
+  if(!q || opts.length < 2) return emsg("Write the question and at least two options.");
+  if(map[a] === undefined) return emsg("The correct answer must be one of the options you filled in.");
+  QE.quiz.push({ q:q, opts:opts, a:map[a] }); renderQuizEditor();
+}
+async function saveQuiz(){
+  try { await DB.collection(COL.videos).doc(QE.id).set({ quiz:QE.quiz, updatedAt:new Date().toISOString() }, { merge:true }); VIDEOS.find(function(x){ return x.id===QE.id; }).quiz = QE.quiz; closeEditor(); render(); }
+  catch(e){ emsg("❌ "+(e.message||e)); }
+}
+function exportCSV(){
+  var rows = [["Student ID","Student","Video","Subject","Class","Watched","Quiz score","Quiz total","Quiz date"]];
+  PROG.forEach(function(p){ var v = VIDEOS.find(function(x){ return x.id===p.videoId; }) || {}; rows.push([p.studentId, p.studentName, v.title||"", v.subject||"", v.cls||"", p.completedAt?p.completedAt.slice(0,10):"", p.quizTotal?p.quizScore:"", p.quizTotal||"", p.quizAt?p.quizAt.slice(0,10):""]); });
+  var csv = "\ufeff"+rows.map(function(r){ return r.map(function(c){ return '"'+String(c==null?"":c).replace(/"/g,'""')+'"'; }).join(","); }).join("\n");
+  var a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv],{type:"text/csv"})); a.download = "video-library-progress-"+today()+".csv"; document.body.appendChild(a); a.click(); a.remove();
+}
+
+// ══════════════ start ══════════════
+(async function(){
+  try { LANG = localStorage.getItem("vl_lang") || "km"; } catch(e){}
+  if(BR){ try { DB = BR.db(); ME = BR.identity() || ME; } catch(e){ console.error(e); } }
+  var who = ME.role==="student" ? "🎓 "+(ME.name||"")+" · "+(ME.studentId||"") : isStaff() ? "👩‍🏫 "+(ME.name||"Teacher") : (LANG==="km"?"👤 ភ្ញៀវ":"👤 Guest");
+  document.getElementById("who").textContent = who;
+  document.getElementById("tab-teacher").style.display = isStaff() ? "" : "none";
+  applyLang();
+  await load();
+  render();
+})();
+</script>
+</body>
+</html>

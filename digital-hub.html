@@ -1105,7 +1105,8 @@
                 <button type="button" class="filter-btn app-practices-toggle" id="appPracticesToggle" aria-expanded="false" aria-controls="appPracticesBody" onclick="toggleAppPractices()"><span id="appPracticesTitle">App Practices</span><span id="appPracticesPick"></span> <span class="app-practices-chevron" aria-hidden="true">▾</span></button>
                 <button type="button" class="filter-btn app-practices-toggle" id="speakRoomToggle" aria-expanded="false" aria-controls="speakRoomBody" onclick="toggleSpeakRoom()"><span id="speakRoomTitle">Speak Room</span> <span class="app-practices-chevron" aria-hidden="true">▾</span></button>
                 <button type="button" class="filter-btn app-practices-toggle" id="videoLibToggle" aria-expanded="false" aria-controls="videoLibBody" onclick="toggleVideoLibrary()"><span>🎬 Video Library</span></button>
-                <button type="button" class="filter-btn app-practices-toggle" id="gameRoomToggle" aria-expanded="false" aria-controls="gameRoomBody" onclick="toggleGameRoom()"><span>🎮 Game Room</span></button>
+                <button type="button" class="filter-btn app-practices-toggle" id="gameRoomToggle" aria-expanded="false" aria-controls="gameRoomBody" onclick="toggleGameRoom('games')"><span>🎮 Game Room</span></button>
+                <button type="button" class="filter-btn app-practices-toggle" id="practiceRoomToggle" aria-expanded="false" aria-controls="gameRoomBody" onclick="toggleGameRoom('practice')"><span>🎯 GEP Practice</span></button>
                 <button class="manage-students-btn admin-only" onclick="openManageStudents()">👥 Manage Students & Access</button>
                 <button class="manage-students-btn admin-only" onclick="openManageTeachers()">👩‍🏫 Manage Teachers</button>
                 <button class="manage-students-btn admin-only" onclick="downloadBackup()" title="Download all Hub data as a JSON file">💾 Backup Data</button>
@@ -1172,7 +1173,7 @@
             <div class="app-practices-body speak-room-body" id="gameRoomBody" role="dialog" aria-modal="true" aria-label="Game Room" hidden>
                 <div class="speak-room-bar">
                     <button type="button" onclick="toggleGameRoom()">← <span>ត្រឡប់ · Back</span></button>
-                    <span style="flex:1">🎮 Game Room</span>
+                    <span style="flex:1" id="grRoomTitle">🎮 Game Room</span>
                     <button type="button" class="gr-admin-only" onclick="grTidy()" title="Fix levels, icons and duplicates">🧹 Tidy up</button>
                     <button type="button" class="gr-admin-only" onclick="grEdit()">＋ Add games</button>
                 </div>
@@ -2981,6 +2982,10 @@
         const GR_PRESETS = {"journey-of-letters.html": {"emoji": "🪁", "title": "Journey of Letters", "titleKm": "ដំណើរអក្សរ", "desc": "Travel a map from Kindergarten to C2 — answer, earn stars, unlock the next level. · ធ្វើដំណើរពីមត្តេយ្យដល់ C2 ឆ្លើយត្រូវ ទទួលផ្កាយ ដោះសោកម្រិតបន្ទាប់។", "skill": "Reading & Vocabulary", "levels": ["all"], "order": 1, "thumb": "game-icons/journey-of-letters.jpg"}, "little-learners.html": {"emoji": "🎈", "title": "Little Learners", "titleKm": "ល្បែងកូនមត្តេយ្យ", "desc": "Tap the right colour, shape, animal or number. · ចុចពណ៌ រូបរាង សត្វ ឬលេខ ឱ្យត្រូវ។", "skill": "Colours · Shapes · Numbers", "levels": ["kindergarten"], "order": 2, "thumb": "game-icons/little-learners.jpg"}, "listening-choice.html": {"emoji": "🎧", "title": "Listen & Choose", "titleKm": "ស្តាប់ ហើយជ្រើសរើស", "desc": "Listen to the word or sentence, then choose what you heard. · ស្តាប់ពាក្យ ឬប្រយោគ ហើយជ្រើសចម្លើយដែលបានឮ។", "skill": "Listening", "levels": ["kindergarten", "primary", "secondary"], "order": 3, "thumb": "game-icons/listening-choice.jpg"}, "memory-match.html": {"emoji": "🧠", "title": "Memory Match", "titleKm": "ការផ្គូផ្គងចងចាំ", "desc": "Flip the cards and match words with pictures or meanings. · បើកកាត ហើយផ្គូផ្គងពាក្យជាមួយរូប ឬអត្ថន័យ។", "skill": "Vocabulary & Memory", "levels": ["primary", "secondary"], "order": 4, "thumb": "game-icons/memory-match.jpg"}, "spelling-bee.html": {"emoji": "🐝", "title": "Spelling Bee", "titleKm": "ប្រកបពាក្យ", "desc": "Look at the clue and type the word correctly. · មើលតម្រុយ ហើយវាយប្រកបពាក្យឱ្យត្រូវ។", "skill": "Spelling & Writing", "levels": ["primary", "secondary"], "order": 5, "thumb": "game-icons/spelling-bee.jpg"}, "word-guess.html": {"emoji": "🔤", "title": "Word Guess", "titleKm": "ទាយពាក្យ", "desc": "Guess the hidden word letter by letter before the balloons pop. · ទាយពាក្យលាក់ម្តងមួយអក្សរ មុនប៉េងប៉ោងផ្ទុះអស់។", "skill": "Vocabulary & Spelling", "levels": ["primary", "secondary"], "order": 6, "thumb": "game-icons/word-guess.jpg"}, "knowledge-quiz.html": {"emoji": "🔬", "title": "Knowledge Quiz", "titleKm": "ចំណេះទូទៅ & វិទ្យាសាស្ត្រ", "desc": "General knowledge and science questions in English. · សំណួរចំណេះទូទៅ និងវិទ្យាសាស្ត្រ ជាភាសាអង់គ្លេស។", "skill": "Science · General knowledge", "levels": ["primary", "secondary", "master"], "order": 7, "thumb": "game-icons/knowledge-quiz.jpg"}, "math-speed.html": {"emoji": "⚡", "title": "Math Speed", "titleKm": "ល្បឿនគណិត", "desc": "Answer as many sums as you can in 60 seconds. · ឆ្លើយលំហាត់គណិតឱ្យបានច្រើនបំផុតក្នុង ៦០ វិនាទី។", "skill": "Mental math", "levels": ["primary", "secondary"], "order": 8, "thumb": "game-icons/math-speed.jpg"}, "math-memory.html": {"emoji": "🔢", "title": "Math Memory", "titleKm": "ផ្គូផ្គងគណិត", "desc": "Match each sum with its answer. · ផ្គូផ្គងលំហាត់គណិតនីមួយៗជាមួយចម្លើយ។", "skill": "Math & Memory", "levels": ["primary"], "order": 9, "thumb": "game-icons/math-memory.jpg"}};
         const GR_CHUNK = 300000;           // characters per Firestore piece (Khmer text can take 3 bytes per character)
         Object.assign(GR_PRESETS, GR_PRESETS_AE);
+        // GEP Practice Hub apps (practice drills and mock tests)
+        Object.assign(GR_PRESETS, {"kid-test-k0-prea.html": {"emoji": "🧒", "title": "Digital Kid Test", "titleKm": "តេស្តកុមារឌីជីថល K0–Pre-A1", "desc": "Short lessons with sound, then a test with results and a printable certificate. · មេរៀនខ្លីមានសំឡេង រួចតេស្ត លទ្ធផល និងវិញ្ញាបនបត្រ។", "skill": "Lessons · Test", "levels": ["kindergarten", "primary"], "order": 1, "room": "practice", "thumb": "game-icons/kid-test-k0-prea.jpg"}, "seg-vocabulary-skills.html": {"emoji": "📖", "title": "SEG Vocabulary Skills", "titleKm": "ជំនាញវាក្យសព្ទ SEG", "desc": "12 story units (fables) with vocabulary, listening and exercises. · រឿង ១២ មេរៀន ជាមួយវាក្យសព្ទ ការស្តាប់ និងលំហាត់។", "skill": "Vocabulary · Reading", "levels": ["primary", "secondary"], "order": 2, "room": "practice", "thumb": "game-icons/seg-vocabulary-skills.jpg"}, "seg-english-a1-c2.html": {"emoji": "🗂️", "title": "SEG English A1–C2", "titleKm": "វាក្យសព្ទ SEG A1–C2", "desc": "Flashcards, level quizzes and word search from A1 to C2. · កាតពាក្យ តេស្តតាមកម្រិត និងស្វែងរកពាក្យ A1–C2។", "skill": "Vocabulary · Quiz", "levels": ["primary", "secondary", "master"], "order": 3, "room": "practice", "thumb": "game-icons/seg-english-a1-c2.jpg"}, "upstream-bridge-test.html": {"emoji": "🌉", "title": "Upstream Bridge Test", "titleKm": "តេស្ត Upstream Bridge", "desc": "Mock test in 5 sections: Grammar, Reading, Writing, Listening and Speaking. · តេស្តសាកល្បង ៥ ផ្នែក។", "skill": "Mock test · 4 skills", "levels": ["primary", "secondary"], "order": 4, "room": "practice", "mic": true, "thumb": "game-icons/upstream-bridge-test.jpg"}, "lingo-quest.html": {"emoji": "🚀", "title": "Lingo Quest Pro", "titleKm": "ហ្គេមពាក្យមេរៀន", "desc": "Type this lesson's words and play 5 word games (scramble, hidden letters, reverse…). · វាយពាក្យមេរៀន ហើយលេងហ្គេម ៥ បែប។", "skill": "Spelling · Any lesson", "levels": ["all"], "order": 5, "room": "practice", "thumb": "game-icons/lingo-quest.jpg"}});
+        let grRoom = 'games';             // 'games' = 🎮 Game Room · 'practice' = 🎯 GEP Practice Hub
+        const grInRoom = g => (g.room || 'games') === grRoom;
         let grGames = [], grPlays = [], grFilter = { level:'', q:'' }, grCurrent = null, grStart = 0, grTick = null, grLastScore = null;
         const grEsc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
         function grMe() {
@@ -2992,19 +2997,24 @@
             const body = document.getElementById('gameRoomBody');
             if (!body || body.hidden) return;
             grClosePlay(); body.hidden = true;
-            const btn = document.getElementById('gameRoomToggle'); if (btn) btn.setAttribute('aria-expanded', 'false');
+            ['gameRoomToggle', 'practiceRoomToggle'].forEach(i => { const b = document.getElementById(i); if (b) b.setAttribute('aria-expanded', 'false'); });
             document.body.classList.remove('speak-room-open');
         }
-        async function toggleGameRoom() {
+        async function toggleGameRoom(room) {
             const body = document.getElementById('gameRoomBody');
             if (!body) return;
-            if (!body.hidden) { closeGameRoom(); return; }
+            room = room === 'practice' ? 'practice' : 'games';
+            if (!body.hidden && room === grRoom) { closeGameRoom(); return; }
+            grRoom = room; grFilter = { level: '', q: '' };
+            document.getElementById('grRoomTitle').textContent = room === 'practice' ? '🎯 GEP Practice Hub' : '🎮 Game Room';
+            ['gameRoomToggle', 'practiceRoomToggle'].forEach(i => { const b = document.getElementById(i); if (b) b.setAttribute('aria-expanded', String((i === 'practiceRoomToggle') === (room === 'practice'))); });
+            if (!body.hidden) { grClosePlay(); await grLoad(); grRender(); return; }
             setPanel('appPracticesToggle', 'appPracticesBody', false);
             setPanel('speakRoomToggle', 'speakRoomBody', false);
             if (typeof closeVideoLibrary === 'function') closeVideoLibrary();
             if (body.parentNode !== document.body) document.body.appendChild(body);
             body.hidden = false;
-            const btn = document.getElementById('gameRoomToggle'); if (btn) btn.setAttribute('aria-expanded', 'true');
+
             document.body.classList.add('speak-room-open');
             document.getElementById('grMain').innerHTML = '<div class="gr-empty">Loading…</div>';
             await grLoad(); grRender();
@@ -3038,7 +3048,7 @@
         }
         function grRender() {
             const admin = isAdmin(), q = grFilter.q.toLowerCase();
-            const list = grGames.filter(g => (admin || g.active !== false)
+            const list = grGames.filter(g => grInRoom(g) && (admin || g.active !== false)
                 && (!grFilter.level || grLevelsOf(g).includes(grFilter.level) || grLevelsOf(g).includes('all'))
                 && (!q || String((g.title || '') + ' ' + (g.titleKm || '') + ' ' + (g.skill || '') + ' ' + (g.desc || '')).toLowerCase().includes(q)));
             const me = grMe();
@@ -3065,12 +3075,13 @@
                 }).join('') + list.filter(g => grLevelRank(g) === 5).map(grCardHTML).join('');
             } else cards = list.map(grCardHTML).join('');
             grid.innerHTML = list.length ? cards
-                : '<div class="gr-empty" style="grid-column:1/-1">' + (grGames.length ? 'No games match.' : (admin ? 'No games yet — press “＋ Add games” to upload your game files.' : 'No games yet.')) + '</div>';
+                : '<div class="gr-empty" style="grid-column:1/-1">' + (grGames.some(grInRoom) ? 'Nothing matches.' : (admin ? 'Nothing here yet — press “＋ Add games” to upload files.' : 'Nothing here yet.')) + '</div>';
         }
         function grStatsHTML() {
-            if (!grPlays.length) return '';
+            const ids = new Set(grGames.filter(grInRoom).map(g => g.id));
+            const roomPlays = grPlays.filter(p => ids.has(p.gameId)); if (!roomPlays.length) return '';
             const byGame = {}, byStudent = {};
-            grPlays.forEach(p => {
+            roomPlays.forEach(p => {
                 const g = byGame[p.gameId] = byGame[p.gameId] || { title: p.gameTitle, plays: 0, min: 0, players: new Set() };
                 g.plays++; g.min += (p.seconds || 0) / 60; if (p.studentId) g.players.add(p.studentId);
                 if (p.studentId && p.role === 'student') { const s = byStudent[p.studentId] = byStudent[p.studentId] || { name: p.studentName, plays: 0, min: 0, best: '' }; s.plays++; s.min += (p.seconds || 0) / 60; if (p.total) s.best = p.score + '/' + p.total; }
@@ -3096,10 +3107,29 @@
             const me = grMe();
             if (me.role === 'student') { try { const d = await db.collection('game_progress').doc(me.id + '__' + g.id).get(); grProgress = d.exists ? d.data() : null; } catch (e) {} }
             frame.onload = grHello;
-            frame.srcdoc = code;
+            frame.setAttribute('sandbox', 'allow-scripts allow-popups allow-forms allow-modals' + (g.mic ? ' allow-same-origin' : ''));
+            frame.setAttribute('allow', 'autoplay *; fullscreen *' + (g.mic ? '; microphone *' : ''));
+            frame.srcdoc = grWithShim(code, me, grProgress);
             clearInterval(grTick); grTick = setInterval(() => { const s = Math.floor((Date.now() - grStart) / 1000); document.getElementById('grPlayTimer').textContent = '⏱ ' + Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }, 1000);
         }
         let grProgress = null, grSaveTimer = null;
+        // Every game gets its own small "browser storage" that is saved for each student (so progress is kept),
+        // and the signed-in name is filled into the app's name box.
+        function grWithShim(code, me, prog) {
+            let kv = {}; try { kv = JSON.parse((prog && prog.kv) || '{}'); } catch (e) {}
+            const boot = '<script>(function(){var data=' + JSON.stringify(kv).replace(/</g, '\\u003c') + ',t=null;'
+                + 'function save(){clearTimeout(t);t=setTimeout(function(){try{parent.postMessage({type:"gameroom-store",kv:data},"*")}catch(e){}},700)}'
+                + 'function mk(p){return{getItem:function(k){return Object.prototype.hasOwnProperty.call(data,k)?data[k]:null},setItem:function(k,v){data[k]=String(v);if(p)save()},removeItem:function(k){delete data[k];if(p)save()},clear:function(){for(var k in data)delete data[k];if(p)save()},key:function(i){return Object.keys(data)[i]||null},get length(){return Object.keys(data).length}}}'
+                + 'try{Object.defineProperty(window,"localStorage",{value:mk(true),configurable:true})}catch(e){}'
+                + 'try{Object.defineProperty(window,"sessionStorage",{value:mk(false),configurable:true})}catch(e){}'
+                + 'window.GEP_STUDENT=' + JSON.stringify({ name: me.role === 'guest' ? '' : me.name, id: me.role === 'student' ? me.id : '' }).replace(/</g, '\\u003c') + ';'
+                + 'document.addEventListener("DOMContentLoaded",function(){var n=window.GEP_STUDENT.name;if(!n)return;Array.prototype.forEach.call(document.querySelectorAll("input[type=text],input:not([type])"),function(i){var h=(i.id+" "+i.name+" "+(i.placeholder||"")).toLowerCase();if(!i.value&&/name|ឈ្មោះ/.test(h)){i.value=n;i.dispatchEvent(new Event("input",{bubbles:true}))}})});'
+                + '})();<\/script>';
+            const m = code.match(/<head[^>]*>/i);
+            if (m) return code.replace(m[0], m[0] + boot);
+            const h = code.match(/<html[^>]*>/i);
+            return h ? code.replace(h[0], h[0] + boot) : boot + code;
+        }
         // tell the game who is playing and what they finished last time (games that support it)
         function grHello() {
             const f = document.getElementById('grFrame'); if (!f || !f.contentWindow || !grCurrent) return;
@@ -3108,10 +3138,14 @@
         }
         function grSaveProgress(data) {
             const me = grMe(), g = grCurrent; if (me.role !== 'student' || !g) return;
-            grProgress = Object.assign({}, grProgress || {}, { xp: Math.max(0, Math.round(+data.xp || 0)), done: (Array.isArray(data.done) ? data.done : []).slice(0, 1000).map(String) });
+            const upd = {};
+            if (data.xp !== undefined) upd.xp = Math.max(0, Math.round(+data.xp || 0));
+            if (data.done !== undefined) upd.done = (Array.isArray(data.done) ? data.done : []).slice(0, 1000).map(String);
+            if (data.kv !== undefined) { const t = JSON.stringify(data.kv || {}); if (t.length < 400000) upd.kv = t; }
+            grProgress = Object.assign({ xp: 0, done: [] }, grProgress || {}, upd);
             clearTimeout(grSaveTimer);
             grSaveTimer = setTimeout(() => {
-                db.collection('game_progress').doc(me.id + '__' + g.id).set({ studentId: me.id, studentName: me.name, gameId: g.id, gameTitle: g.title, xp: grProgress.xp, done: grProgress.done, updatedAt: new Date().toISOString() }, { merge: true })
+                db.collection('game_progress').doc(me.id + '__' + g.id).set({ studentId: me.id, studentName: me.name, gameId: g.id, gameTitle: g.title, xp: grProgress.xp, done: grProgress.done, kv: grProgress.kv || '{}', updatedAt: new Date().toISOString() }, { merge: true })
                   .catch(e => console.error('game progress not saved', e));
             }, 800);
         }
@@ -3131,6 +3165,7 @@
             if (!grCurrent || ev.source !== document.getElementById('grFrame').contentWindow) return;
             if (d.type === 'gameroom-ready') { grHello(); return; }
             if (d.type === 'gameroom-progress') { grSaveProgress(d.data || {}); return; }
+            if (d.type === 'gameroom-store') { grSaveProgress({ kv: d.kv || {} }); return; }
             if (d.type !== 'gameroom-score') return;
             const score = Math.max(0, Math.round(+d.score || 0)), total = Math.max(0, Math.round(+d.total || 0));
             grLastScore = { score: total ? Math.min(score, total) : score, total: total, level: String(d.level || '').slice(0, 30) };
@@ -3210,7 +3245,8 @@
                 for (let k = 0; k < files.length; k++) {
                     const f = files[k]; let text = f ? await f.text() : null;
                     if (f && !/<html|<body|<script/i.test(text)) { say('“' + f.name + '” does not look like a game (HTML) file.', true); continue; }
-                    let meta = { levels: levels.length ? levels : ['all'], active, updatedAt: new Date().toISOString() };
+                    let meta = { levels: levels.length ? levels : ['all'], active, updatedAt: new Date().toISOString(), room: (f && GR_PRESETS[f.name.toLowerCase()] && GR_PRESETS[f.name.toLowerCase()].room) || grRoom };
+                    if (f && GR_PRESETS[f.name.toLowerCase()] && GR_PRESETS[f.name.toLowerCase()].mic) meta.mic = true;
                     if (files.length === 1) {
                         meta.emoji = document.getElementById('grEmoji').value.trim() || '🎮'; meta.title = document.getElementById('grTitle').value.trim();
                         meta.titleKm = document.getElementById('grTitleKm').value.trim(); meta.desc = document.getElementById('grDesc').value.trim();
@@ -3218,7 +3254,7 @@
                         if (!meta.title) return say('Please enter the title.', true);
                     } else if (GR_PRESETS[f.name.toLowerCase()]) {
                         const pre = GR_PRESETS[f.name.toLowerCase()];
-                        Object.assign(meta, { emoji: pre.emoji, title: pre.title, titleKm: pre.titleKm, desc: pre.desc, skill: pre.skill, order: pre.order, levels: pre.levels });
+                        Object.assign(meta, { emoji: pre.emoji, title: pre.title, titleKm: pre.titleKm, desc: pre.desc, skill: pre.skill, order: pre.order, levels: pre.levels, room: pre.room || meta.room });
                     } else {
                         const m = text.match(/<title>([^<]*)<\/title>/i), p = m ? m[1].split(/\s*[·|–-]\s*/) : [f.name.replace(/\.html?$/i, '')];
                         Object.assign(meta, { emoji: '🎮', title: (p.length > 1 ? p[1] : p[0]).trim(), titleKm: p.length > 1 ? p[0].trim() : '', desc: '', skill: '', order: 99 });
@@ -3279,14 +3315,14 @@
         (function () {
             let want = '';
             try { want = new URLSearchParams(location.search).get('open') || ''; } catch (e) {}
-            if (!/^(games|videos)$/.test(want)) return;
+            if (!/^(games|videos|practice)$/.test(want)) return;
             let tries = 0;
             const t = setInterval(() => {
                 const gate = document.getElementById('loginGate');
                 if (++tries > 600) { clearInterval(t); return; }              // stop after ~10 minutes
                 if (!authResolved || (gate && !gate.hidden)) return;        // still signing in
                 clearInterval(t);
-                if (want === 'games') toggleGameRoom(); else toggleVideoLibrary();
+                if (want === 'games' || want === 'practice') toggleGameRoom(want); else toggleVideoLibrary();
                 try { history.replaceState(null, '', location.pathname); } catch (e) {}
             }, 1000);
         })();

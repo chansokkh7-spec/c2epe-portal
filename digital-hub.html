@@ -1068,6 +1068,7 @@
                 <button class="filter-btn" id="filterOnlineBtnUI" onclick="filterCategory('online', this)">Online Class</button>
                 <button type="button" class="filter-btn app-practices-toggle" id="appPracticesToggle" aria-expanded="false" aria-controls="appPracticesBody" onclick="toggleAppPractices()"><span id="appPracticesTitle">App Practices</span><span id="appPracticesPick"></span> <span class="app-practices-chevron" aria-hidden="true">▾</span></button>
                 <button type="button" class="filter-btn app-practices-toggle" id="speakRoomToggle" aria-expanded="false" aria-controls="speakRoomBody" onclick="toggleSpeakRoom()"><span id="speakRoomTitle">Speak Room</span> <span class="app-practices-chevron" aria-hidden="true">▾</span></button>
+                <button type="button" class="filter-btn app-practices-toggle" id="videoLibToggle" aria-expanded="false" aria-controls="videoLibBody" onclick="toggleVideoLibrary()"><span>🎬 Video Library</span></button>
                 <button class="manage-students-btn admin-only" onclick="openManageStudents()">👥 Manage Students & Access</button>
                 <button class="manage-students-btn admin-only" onclick="openManageTeachers()">👩‍🏫 Manage Teachers</button>
                 <button class="manage-students-btn admin-only" onclick="downloadBackup()" title="Download all Hub data as a JSON file">💾 Backup Data</button>
@@ -1123,6 +1124,13 @@
                     <span>🎙️ Speak Room</span>
                 </div>
                 <iframe id="speakRoomFrame" class="speak-room-frame" title="Speak Room" allow="microphone *; camera *; autoplay *"></iframe>
+            </div>
+            <div class="app-practices-body speak-room-body" id="videoLibBody" role="dialog" aria-modal="true" aria-label="Video Library" hidden>
+                <div class="speak-room-bar">
+                    <button type="button" onclick="toggleVideoLibrary()">← <span>ត្រឡប់ · Back</span></button>
+                    <span>🎬 Video Library</span>
+                </div>
+                <iframe id="videoLibFrame" class="speak-room-frame" title="Video Library" allow="autoplay *; fullscreen *; encrypted-media *; picture-in-picture *" allowfullscreen></iframe>
             </div>
             <div class="filter-buttons level-filter-buttons" id="levelFilterBar" style="display:none;"></div>
         </div>
@@ -1648,7 +1656,7 @@
         let currentStudent = null;
         // The sign-in lasts only while this tab is open — closing it (or 30 minutes without activity) signs out,
         // so the next person on a shared computer must sign in with their own account.
-        try { sessionStorage.removeItem('seg_student'); currentStudent = JSON.parse(sessionStorage.getItem('seg_student') || 'null'); } catch (e) { currentStudent = null; }
+        try { localStorage.removeItem('seg_student'); currentStudent = JSON.parse(sessionStorage.getItem('seg_student') || 'null'); } catch (e) { currentStudent = null; }
         let allStudentsCache = {}; // id -> {name, allowedSystems}
         let editingStudentId = null; // which student the admin form is currently editing
 
@@ -2749,6 +2757,7 @@
             if (!body) return;
             const open = body.hidden;
             setPanel('speakRoomToggle', 'speakRoomBody', false);
+            if (typeof closeVideoLibrary === 'function') closeVideoLibrary();
             setPanel('appPracticesToggle', 'appPracticesBody', open);
         }
 
@@ -2901,8 +2910,45 @@
             if (!body) return;
             const open = body.hidden;
             setPanel('appPracticesToggle', 'appPracticesBody', false);
+            if (typeof closeVideoLibrary === 'function') closeVideoLibrary();
             setPanel('speakRoomToggle', 'speakRoomBody', open);
             if (open && (!speakRoomLoaded || speakRoomIdentity !== speakRoomIdentityKey())) loadSpeakRoom();
+        }
+
+        // ---- Video Library (video-library.html, same folder) ----
+        // Opens full screen like Speak Room. The page uses the Hub's sign-in and database through this bridge,
+        // so students are known by their Student ID and only Hub staff see the teacher tools.
+        let videoLibIdentity = null;
+        window.__videoLibBridge = {
+            db() { return db; },
+            identity() {
+                let admin = false;
+                try { admin = isAdmin() && auth && auth.currentUser; } catch (e) {}
+                if (staffRole) return { role: admin ? 'admin' : staffRole, name: staffName || (auth.currentUser && auth.currentUser.email) || 'Teacher', uid: auth.currentUser ? auth.currentUser.uid : '' };
+                if (currentStudent && currentStudent.id) return { role: 'student', studentId: currentStudent.id, name: currentStudent.name || currentStudent.id };
+                return { role: 'guest' };
+            }
+        };
+        function videoLibKey() { const i = window.__videoLibBridge.identity(); return i.role + ':' + (i.studentId || i.uid || ''); }
+        function closeVideoLibrary() {
+            const body = document.getElementById('videoLibBody');
+            if (!body || body.hidden) return;
+            body.hidden = true;
+            const btn = document.getElementById('videoLibToggle'); if (btn) btn.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('speak-room-open');
+        }
+        function toggleVideoLibrary() {
+            const body = document.getElementById('videoLibBody');
+            if (!body) return;
+            if (!body.hidden) { closeVideoLibrary(); return; }
+            setPanel('appPracticesToggle', 'appPracticesBody', false);
+            setPanel('speakRoomToggle', 'speakRoomBody', false);
+            if (body.parentNode !== document.body) document.body.appendChild(body);
+            body.hidden = false;
+            const btn = document.getElementById('videoLibToggle'); if (btn) btn.setAttribute('aria-expanded', 'true');
+            document.body.classList.add('speak-room-open');
+            const frame = document.getElementById('videoLibFrame');
+            if (!frame.src || videoLibIdentity !== videoLibKey()) { frame.src = 'video-library.html?v=' + Date.now(); videoLibIdentity = videoLibKey(); }
         }
 
         function toggleRPSDSubmenu() {

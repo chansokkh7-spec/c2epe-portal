@@ -310,6 +310,8 @@
         .gr-admin-row{display:flex;gap:6px;padding:0 12px 10px}
         .gr-admin-row button{flex:1;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:5px;font:inherit;font-size:.72rem;cursor:pointer}
         .gr-empty{text-align:center;color:#9db4de;padding:40px 10px}
+        .gr-group{grid-column:1/-1;margin:14px 0 2px;font-size:1rem;color:#FFD700;border-bottom:1px solid #2a4380;padding-bottom:6px}
+        .gr-group:first-child{margin-top:0}.gr-group span{font-size:.75rem;color:#9db4de;font-weight:400}
         .gr-play{position:absolute;inset:0;display:flex;flex-direction:column;background:#0E1B38;z-index:2}
         .gr-play[hidden],.gr-editor[hidden]{display:none}
         .gr-editor{position:absolute;inset:0;background:rgba(5,10,25,.8);display:flex;align-items:center;justify-content:center;padding:10px;z-index:3}
@@ -3009,7 +3011,27 @@
         async function grLoad() {
             try { grGames = (await db.collection('games').get()).docs.map(d => Object.assign({ id: d.id }, d.data())); } catch (e) { grGames = []; console.error('games', e); }
             if (staffRole) { try { grPlays = (await db.collection('game_plays').get()).docs.map(d => d.data()); } catch (e) { grPlays = []; } }
-            grGames.sort((a, b) => (a.order || 99) - (b.order || 99) || String(a.title).localeCompare(String(b.title)));
+            grGames.sort(grCompare);
+        }
+        // Order: All levels → Kindergarten → Primary → Secondary → Master; inside a level K0 < K1 < … < Pre-A1 < A1 < … < C2
+        const GR_RANK = { all: 0, kindergarten: 1, primary: 2, secondary: 3, master: 4 };
+        const GR_CEFR = ['K0', 'K1', 'K2', 'K3', 'PRE-A1', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+        function grLevelRank(g) { const r = (g.levels || []).map(l => GR_RANK[l]).filter(x => x !== undefined); return r.length ? Math.min.apply(null, r) : 5; }
+        function grCefrRank(g) {
+            const m = String(g.title || '').toUpperCase().match(/\b(PRE-A1|K[0-3]|[ABC][12])\b/);
+            return m ? GR_CEFR.indexOf(m[1]) : -1;              // named levels after the other games of the same group
+        }
+        function grCompare(a, b) {
+            return grLevelRank(a) - grLevelRank(b) || grCefrRank(a) - grCefrRank(b) || (a.order || 99) - (b.order || 99) || String(a.title).localeCompare(String(b.title));
+        }
+        function grCardHTML(g) {
+            const admin = isAdmin();
+            return '<div class="gr-card" role="button" tabindex="0" onclick="grPlay(\'' + g.id + '\')">'
+                + '<div class="gr-thumb" style="' + (g.thumb ? 'background-image:url(' + g.thumb + ')' : '') + '">' + (g.thumb ? '' : grEsc(g.emoji || '🎮')) + (g.active === false ? '<span class="gr-hidden">Hidden</span>' : '') + '</div>'
+                + '<div class="gr-cb"><b>' + grEsc(g.emoji || '') + ' ' + grEsc(g.title) + '</b>' + (g.titleKm ? '<small>' + grEsc(g.titleKm) + '</small>' : '') + (g.desc ? '<small>' + grEsc(g.desc) + '</small>' : '')
+                + '<div class="gr-tags">' + (g.levels || []).slice().sort((x, y) => (GR_RANK[x] || 0) - (GR_RANK[y] || 0)).map(l => '<span>' + grEsc((GR_LEVELS.find(x => x[0] === l) || [l, l])[1]) + '</span>').join('') + (g.skill ? '<span>' + grEsc(g.skill) + '</span>' : '') + '</div></div>'
+                + (admin ? '<div class="gr-admin-row" onclick="event.stopPropagation()"><button onclick="grEdit(\'' + g.id + '\')">✏️ Edit</button><button onclick="grToggleActive(\'' + g.id + '\')">' + (g.active === false ? '👁 Show' : '🙈 Hide') + '</button><button onclick="grDelete(\'' + g.id + '\')">🗑</button></div>' : '')
+                + '</div>';
         }
         function grRender() {
             const admin = isAdmin(), q = grFilter.q.toLowerCase();
@@ -3030,12 +3052,16 @@
         function grRenderGrid() {
             const admin = isAdmin(), q = grFilter.q.toLowerCase(), grid = document.getElementById('grGrid'); if (!grid) return;
             const list = (window.__grList || []).filter(g => !q || String((g.title || '') + ' ' + (g.titleKm || '') + ' ' + (g.skill || '')).toLowerCase().includes(q));
-            grid.innerHTML = list.length ? list.map(g => '<div class="gr-card" role="button" tabindex="0" onclick="grPlay(\'' + g.id + '\')">'
-                + '<div class="gr-thumb" style="' + (g.thumb ? 'background-image:url(' + g.thumb + ')' : '') + '">' + (g.thumb ? '' : grEsc(g.emoji || '🎮')) + (g.active === false ? '<span class="gr-hidden">Hidden</span>' : '') + '</div>'
-                + '<div class="gr-cb"><b>' + grEsc(g.emoji || '') + ' ' + grEsc(g.title) + '</b>' + (g.titleKm ? '<small>' + grEsc(g.titleKm) + '</small>' : '') + (g.desc ? '<small>' + grEsc(g.desc) + '</small>' : '')
-                + '<div class="gr-tags">' + (g.levels || []).map(l => '<span>' + grEsc((GR_LEVELS.find(x => x[0] === l) || [l, l])[1]) + '</span>').join('') + (g.skill ? '<span>' + grEsc(g.skill) + '</span>' : '') + '</div></div>'
-                + (admin ? '<div class="gr-admin-row" onclick="event.stopPropagation()"><button onclick="grEdit(\'' + g.id + '\')">✏️ Edit</button><button onclick="grToggleActive(\'' + g.id + '\')">' + (g.active === false ? '👁 Show' : '🙈 Hide') + '</button><button onclick="grDelete(\'' + g.id + '\')">🗑</button></div>' : '')
-                + '</div>').join('')
+            list.sort(grCompare);
+            const groups = [['all', '🌟 All levels'], ['kindergarten', '🧸 Kindergarten'], ['primary', '🎒 Primary'], ['secondary', '📘 Secondary'], ['master', '🎓 Master']];
+            let cards;
+            if (!grFilter.level && !q) {
+                cards = groups.map(gr => {
+                    const inGroup = list.filter(g => { const r = grLevelRank(g); return r === GR_RANK[gr[0]]; });
+                    return inGroup.length ? '<h3 class="gr-group">' + gr[1] + ' <span>' + inGroup.length + '</span></h3>' + inGroup.map(grCardHTML).join('') : '';
+                }).join('') + list.filter(g => grLevelRank(g) === 5).map(grCardHTML).join('');
+            } else cards = list.map(grCardHTML).join('');
+            grid.innerHTML = list.length ? cards
                 : '<div class="gr-empty" style="grid-column:1/-1">' + (grGames.length ? 'No games match.' : (admin ? 'No games yet — press “＋ Add games” to upload your game files.' : 'No games yet.')) + '</div>';
         }
         function grStatsHTML() {

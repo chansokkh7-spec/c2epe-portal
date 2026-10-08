@@ -3169,6 +3169,23 @@
             catch (e) { alert('❌ ' + (e.message || e)); }
         }
 
+        // Links such as digital-hub.html?open=games (Portal → Apps & Services → Game Hub)
+        // open the Game Room (or ?open=videos the Video Library) once the person has signed in.
+        (function () {
+            let want = '';
+            try { want = new URLSearchParams(location.search).get('open') || ''; } catch (e) {}
+            if (!/^(games|videos)$/.test(want)) return;
+            let tries = 0;
+            const t = setInterval(() => {
+                const gate = document.getElementById('loginGate');
+                if (++tries > 600) { clearInterval(t); return; }              // stop after ~10 minutes
+                if (!authResolved || (gate && !gate.hidden)) return;        // still signing in
+                clearInterval(t);
+                if (want === 'games') toggleGameRoom(); else toggleVideoLibrary();
+                try { history.replaceState(null, '', location.pathname); } catch (e) {}
+            }, 1000);
+        })();
+
         // ---- Video Library (video-library.html, same folder) ----
         // Opens full screen like Speak Room. The page uses the Hub's sign-in and database through this bridge,
         // so students are known by their Student ID and only Hub staff see the teacher tools.

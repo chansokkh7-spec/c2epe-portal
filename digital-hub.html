@@ -305,6 +305,7 @@
         .gr-thumb .gr-hidden{position:absolute;top:8px;left:8px;background:#c62828;color:#fff;font-size:.68rem;font-weight:800;border-radius:999px;padding:2px 8px}
         .gr-cb{padding:10px 12px;display:flex;flex-direction:column;gap:4px;flex:1}
         .gr-cb b{color:#FFD700;font-size:.95rem}.gr-cb small{color:#9db4de;font-size:.74rem;line-height:1.4}
+        .gr-cb small{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
         .gr-tags span{display:inline-block;background:rgba(212,160,23,.18);color:#FFD700;border-radius:999px;padding:1px 8px;font-size:.66rem;font-weight:700;margin:2px 3px 0 0}
         .gr-admin-row{display:flex;gap:6px;padding:0 12px 10px}
         .gr-admin-row button{flex:1;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:5px;font:inherit;font-size:.72rem;cursor:pointer}
@@ -2970,7 +2971,10 @@
         // (games = details, game_code = the file in pieces) and played full screen in a sandboxed frame.
         // Every play is recorded in game_plays (Student ID, game, minutes, and the score if the game reports one:
         //   window.parent.postMessage({type:'gameroom-score', score:7, total:8, level:'A1'}, '*') ).
-        const GR_LEVELS = [['kindergarten','Kindergarten'],['primary','Primary'],['secondary','Secondary'],['master','Master'],['all','All levels']];
+        const GR_LEVELS = [['kindergarten','🧸 Kindergarten'],['primary','🎒 Primary'],['secondary','📘 Secondary'],['master','🎓 Master'],['all','🌟 All levels']];
+        // Ready-made details for C2-EPE's own games: when the Admin uploads one of these files,
+        // icon, titles, description, skill, levels and picture (game-icons/…jpg on GitHub) fill in by themselves.
+        const GR_PRESETS = {"journey-of-letters.html": {"emoji": "🪁", "title": "Journey of Letters", "titleKm": "ដំណើរអក្សរ", "desc": "Travel a map from Kindergarten to C2 — answer, earn stars, unlock the next level. · ធ្វើដំណើរពីមត្តេយ្យដល់ C2 ឆ្លើយត្រូវ ទទួលផ្កាយ ដោះសោកម្រិតបន្ទាប់។", "skill": "Reading & Vocabulary", "levels": ["all"], "order": 1, "thumb": "game-icons/journey-of-letters.jpg"}, "little-learners.html": {"emoji": "🎈", "title": "Little Learners", "titleKm": "ល្បែងកូនមត្តេយ្យ", "desc": "Tap the right colour, shape, animal or number. · ចុចពណ៌ រូបរាង សត្វ ឬលេខ ឱ្យត្រូវ។", "skill": "Colours · Shapes · Numbers", "levels": ["kindergarten"], "order": 2, "thumb": "game-icons/little-learners.jpg"}, "listening-choice.html": {"emoji": "🎧", "title": "Listen & Choose", "titleKm": "ស្តាប់ ហើយជ្រើសរើស", "desc": "Listen to the word or sentence, then choose what you heard. · ស្តាប់ពាក្យ ឬប្រយោគ ហើយជ្រើសចម្លើយដែលបានឮ។", "skill": "Listening", "levels": ["kindergarten", "primary", "secondary"], "order": 3, "thumb": "game-icons/listening-choice.jpg"}, "memory-match.html": {"emoji": "🧠", "title": "Memory Match", "titleKm": "ការផ្គូផ្គងចងចាំ", "desc": "Flip the cards and match words with pictures or meanings. · បើកកាត ហើយផ្គូផ្គងពាក្យជាមួយរូប ឬអត្ថន័យ។", "skill": "Vocabulary & Memory", "levels": ["primary", "secondary"], "order": 4, "thumb": "game-icons/memory-match.jpg"}, "spelling-bee.html": {"emoji": "🐝", "title": "Spelling Bee", "titleKm": "ប្រកបពាក្យ", "desc": "Look at the clue and type the word correctly. · មើលតម្រុយ ហើយវាយប្រកបពាក្យឱ្យត្រូវ។", "skill": "Spelling & Writing", "levels": ["primary", "secondary"], "order": 5, "thumb": "game-icons/spelling-bee.jpg"}, "word-guess.html": {"emoji": "🔤", "title": "Word Guess", "titleKm": "ទាយពាក្យ", "desc": "Guess the hidden word letter by letter before the balloons pop. · ទាយពាក្យលាក់ម្តងមួយអក្សរ មុនប៉េងប៉ោងផ្ទុះអស់។", "skill": "Vocabulary & Spelling", "levels": ["primary", "secondary"], "order": 6, "thumb": "game-icons/word-guess.jpg"}, "knowledge-quiz.html": {"emoji": "🔬", "title": "Knowledge Quiz", "titleKm": "ចំណេះទូទៅ & វិទ្យាសាស្ត្រ", "desc": "General knowledge and science questions in English. · សំណួរចំណេះទូទៅ និងវិទ្យាសាស្ត្រ ជាភាសាអង់គ្លេស។", "skill": "Science · General knowledge", "levels": ["primary", "secondary", "master"], "order": 7, "thumb": "game-icons/knowledge-quiz.jpg"}, "math-speed.html": {"emoji": "⚡", "title": "Math Speed", "titleKm": "ល្បឿនគណិត", "desc": "Answer as many sums as you can in 60 seconds. · ឆ្លើយលំហាត់គណិតឱ្យបានច្រើនបំផុតក្នុង ៦០ វិនាទី។", "skill": "Mental math", "levels": ["primary", "secondary"], "order": 8, "thumb": "game-icons/math-speed.jpg"}, "math-memory.html": {"emoji": "🔢", "title": "Math Memory", "titleKm": "ផ្គូផ្គងគណិត", "desc": "Match each sum with its answer. · ផ្គូផ្គងលំហាត់គណិតនីមួយៗជាមួយចម្លើយ។", "skill": "Math & Memory", "levels": ["primary"], "order": 9, "thumb": "game-icons/math-memory.jpg"}};
         const GR_CHUNK = 300000;           // characters per Firestore piece (Khmer text can take 3 bytes per character)
         let grGames = [], grPlays = [], grFilter = { level:'', q:'' }, grCurrent = null, grStart = 0, grTick = null, grLastScore = null;
         const grEsc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -3110,6 +3114,16 @@
             const one = grPicked.length <= 1;
             document.getElementById('grOneFields').style.display = one ? '' : 'none';
             if (grPicked.length > 1) info.textContent += ' — titles will be taken from each file.';
+            const pre = grPicked.length === 1 ? GR_PRESETS[grPicked[0].name.toLowerCase()] : null;
+            if (pre) {
+                document.getElementById('grEmoji').value = pre.emoji; document.getElementById('grTitle').value = pre.title;
+                document.getElementById('grTitleKm').value = pre.titleKm; document.getElementById('grDesc').value = pre.desc;
+                document.getElementById('grSkill').value = pre.skill; document.getElementById('grOrder').value = pre.order;
+                document.querySelectorAll('.grLv').forEach(c => { c.checked = pre.levels.includes(c.value); });
+                info.textContent += ' — C2-EPE game recognised: details filled in.';
+                return;
+            }
+            if (grPicked.length > 1) { const known = grPicked.filter(f => GR_PRESETS[f.name.toLowerCase()]).length; if (known) info.textContent += ' (' + known + ' C2-EPE game' + (known > 1 ? 's' : '') + ' recognised — their details and pictures fill in by themselves)'; }
             if (grPicked.length === 1 && !document.getElementById('grTitle').value) {
                 grPicked[0].text().then(t => { const m = t.match(/<title>([^<]*)<\/title>/i); if (m) { const p = m[1].split(/\s*[·|–-]\s*/); document.getElementById('grTitleKm').value = p.length > 1 ? p[0] : ''; document.getElementById('grTitle').value = (p.length > 1 ? p[1] : p[0]).trim(); } });
             }
@@ -3145,11 +3159,15 @@
                         meta.titleKm = document.getElementById('grTitleKm').value.trim(); meta.desc = document.getElementById('grDesc').value.trim();
                         meta.skill = document.getElementById('grSkill').value.trim(); meta.order = +document.getElementById('grOrder').value || 99;
                         if (!meta.title) return say('Please enter the title.', true);
+                    } else if (GR_PRESETS[f.name.toLowerCase()]) {
+                        const pre = GR_PRESETS[f.name.toLowerCase()];
+                        Object.assign(meta, { emoji: pre.emoji, title: pre.title, titleKm: pre.titleKm, desc: pre.desc, skill: pre.skill, order: pre.order, levels: pre.levels });
                     } else {
                         const m = text.match(/<title>([^<]*)<\/title>/i), p = m ? m[1].split(/\s*[·|–-]\s*/) : [f.name.replace(/\.html?$/i, '')];
                         Object.assign(meta, { emoji: '🎮', title: (p.length > 1 ? p[1] : p[0]).trim(), titleKm: p.length > 1 ? p[0].trim() : '', desc: '', skill: '', order: 99 });
                     }
                     if (thumb && files.length === 1) meta.thumb = thumb;
+                    else if (f && GR_PRESETS[f.name.toLowerCase()] && !(grGames.find(x => x.id === id) || {}).thumb) meta.thumb = GR_PRESETS[f.name.toLowerCase()].thumb;
                     say('Saving ' + (k + 1) + ' / ' + files.length + '…');
                     const gid = id || db.collection('games').doc().id;
                     if (text) { meta.chunks = await grWriteCode(gid, text); meta.sizeKB = Math.round(text.length / 1024); meta.fileName = f.name; }

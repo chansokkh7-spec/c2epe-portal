@@ -1173,6 +1173,7 @@
                 <div class="speak-room-bar">
                     <button type="button" onclick="toggleGameRoom()">← <span>ត្រឡប់ · Back</span></button>
                     <span style="flex:1">🎮 Game Room</span>
+                    <button type="button" class="gr-admin-only" onclick="grTidy()" title="Fix levels, icons and duplicates">🧹 Tidy up</button>
                     <button type="button" class="gr-admin-only" onclick="grEdit()">＋ Add games</button>
                 </div>
                 <div id="grMain" class="gr-main"></div>
@@ -3016,7 +3017,9 @@
         // Order: All levels → Kindergarten → Primary → Secondary → Master; inside a level K0 < K1 < … < Pre-A1 < A1 < … < C2
         const GR_RANK = { all: 0, kindergarten: 1, primary: 2, secondary: 3, master: 4 };
         const GR_CEFR = ['K0', 'K1', 'K2', 'K3', 'PRE-A1', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-        function grLevelRank(g) { const r = (g.levels || []).map(l => GR_RANK[l]).filter(x => x !== undefined); return r.length ? Math.min.apply(null, r) : 5; }
+        // "All levels" together with a real level is a mistake: the real level wins
+        function grLevelsOf(g) { const l = (g.levels || []).filter(x => GR_RANK[x] !== undefined); const real = l.filter(x => x !== 'all'); return real.length ? real : (l.length ? ['all'] : []); }
+        function grLevelRank(g) { const r = grLevelsOf(g).map(l => GR_RANK[l]); return r.length ? Math.min.apply(null, r) : 5; }
         function grCefrRank(g) {
             const m = String(g.title || '').toUpperCase().match(/\b(PRE-A1|K[0-3]|[ABC][12])\b/);
             return m ? GR_CEFR.indexOf(m[1]) : -1;              // named levels after the other games of the same group
@@ -3029,14 +3032,14 @@
             return '<div class="gr-card" role="button" tabindex="0" onclick="grPlay(\'' + g.id + '\')">'
                 + '<div class="gr-thumb" style="' + (g.thumb ? 'background-image:url(' + g.thumb + ')' : '') + '">' + (g.thumb ? '' : grEsc(g.emoji || '🎮')) + (g.active === false ? '<span class="gr-hidden">Hidden</span>' : '') + '</div>'
                 + '<div class="gr-cb"><b>' + grEsc(g.emoji || '') + ' ' + grEsc(g.title) + '</b>' + (g.titleKm ? '<small>' + grEsc(g.titleKm) + '</small>' : '') + (g.desc ? '<small>' + grEsc(g.desc) + '</small>' : '')
-                + '<div class="gr-tags">' + (g.levels || []).slice().sort((x, y) => (GR_RANK[x] || 0) - (GR_RANK[y] || 0)).map(l => '<span>' + grEsc((GR_LEVELS.find(x => x[0] === l) || [l, l])[1]) + '</span>').join('') + (g.skill ? '<span>' + grEsc(g.skill) + '</span>' : '') + '</div></div>'
+                + '<div class="gr-tags">' + grLevelsOf(g).slice().sort((x, y) => (GR_RANK[x] || 0) - (GR_RANK[y] || 0)).map(l => '<span>' + grEsc((GR_LEVELS.find(x => x[0] === l) || [l, l])[1]) + '</span>').join('') + (g.skill ? '<span>' + grEsc(g.skill) + '</span>' : '') + '</div></div>'
                 + (admin ? '<div class="gr-admin-row" onclick="event.stopPropagation()"><button onclick="grEdit(\'' + g.id + '\')">✏️ Edit</button><button onclick="grToggleActive(\'' + g.id + '\')">' + (g.active === false ? '👁 Show' : '🙈 Hide') + '</button><button onclick="grDelete(\'' + g.id + '\')">🗑</button></div>' : '')
                 + '</div>';
         }
         function grRender() {
             const admin = isAdmin(), q = grFilter.q.toLowerCase();
             const list = grGames.filter(g => (admin || g.active !== false)
-                && (!grFilter.level || (g.levels || []).includes(grFilter.level) || (g.levels || []).includes('all'))
+                && (!grFilter.level || grLevelsOf(g).includes(grFilter.level) || grLevelsOf(g).includes('all'))
                 && (!q || String((g.title || '') + ' ' + (g.titleKm || '') + ' ' + (g.skill || '') + ' ' + (g.desc || '')).toLowerCase().includes(q)));
             const me = grMe();
             let html = '<div class="gr-wrap"><div class="gr-filters"><button class="' + (!grFilter.level ? 'on' : '') + '" onclick="grFilter.level=\'\';grRender()">All</button>'
@@ -3147,12 +3150,16 @@
                 + '<label>Short description</label><textarea id="grDesc" rows="2">' + grEsc(g.desc || '') + '</textarea>'
                 + '<div style="display:grid;grid-template-columns:1fr 90px;gap:8px"><div><label>Skill</label><input id="grSkill" value="' + grEsc(g.skill || '') + '" placeholder="Vocabulary, Listening, Math…"></div><div><label>Order</label><input id="grOrder" type="number" value="' + (g.order || '') + '"></div></div>'
                 + '</div>'
-                + '<label>Levels</label><div class="gr-levels">' + GR_LEVELS.map(l => '<label><input type="checkbox" class="grLv" value="' + l[0] + '"' + (lv.includes(l[0]) || (!id && l[0] === 'all') ? ' checked' : '') + '> ' + l[1] + '</label>').join('') + '</div>'
+                + '<label>Levels</label><div class="gr-levels">' + GR_LEVELS.map(l => '<label><input type="checkbox" class="grLv" value="' + l[0] + '"' + (lv.includes(l[0]) ? ' checked' : '') + '> ' + l[1] + '</label>').join('') + '</div>'
                 + '<label>Picture (optional — e.g. a screenshot of the game)</label><input type="file" id="grThumb" accept="image/*">'
                 + '<label style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="grActive" style="width:auto"' + (g.active === false ? '' : ' checked') + '> Visible to students</label>'
                 + '<button class="gr-btn gold" style="width:100%;margin-top:14px" onclick="grSave(\'' + (id || '') + '\')">💾 Save</button><div id="grMsg" style="font-size:.8rem;margin-top:8px"></div>'
                 + '<details style="margin-top:12px;font-size:.76rem;color:#5b6478"><summary style="cursor:pointer">For game makers: how a game can send its score</summary><code style="display:block;background:#f4f6fb;padding:8px;border-radius:6px;margin-top:6px;white-space:pre-wrap">window.parent.postMessage({ type: "gameroom-score", score: 7, total: 8, level: "A1" }, "*");</code></details>';
             document.getElementById('grEditor').hidden = false;
+            document.querySelectorAll('.grLv').forEach(c => c.addEventListener('change', () => {
+                if (!c.checked) return;
+                document.querySelectorAll('.grLv').forEach(o => { if (o !== c && ((c.value === 'all') !== (o.value === 'all'))) o.checked = false; });
+            }));
         }
         function grCloseEdit() { document.getElementById('grEditor').hidden = true; }
         let grPicked = [];
@@ -3193,7 +3200,8 @@
         }
         async function grSave(id) {
             const msg = document.getElementById('grMsg'), say = (t, bad) => { msg.style.color = bad ? '#c62828' : '#2e7d32'; msg.textContent = t; };
-            const levels = Array.from(document.querySelectorAll('.grLv:checked')).map(c => c.value);
+            let levels = Array.from(document.querySelectorAll('.grLv:checked')).map(c => c.value);
+            if (levels.some(l => l !== 'all')) levels = levels.filter(l => l !== 'all');
             const thumb = await grReadImage((document.getElementById('grThumb').files || [])[0]);
             const active = document.getElementById('grActive').checked;
             try {
@@ -3218,13 +3226,43 @@
                     if (thumb && files.length === 1) meta.thumb = thumb;
                     else if (f && GR_PRESETS[f.name.toLowerCase()] && !(grGames.find(x => x.id === id) || {}).thumb) meta.thumb = GR_PRESETS[f.name.toLowerCase()].thumb;
                     say('Saving ' + (k + 1) + ' / ' + files.length + '…');
-                    const gid = id || db.collection('games').doc().id;
+                    const same = !id && f ? grGames.find(x => (x.fileName || '').toLowerCase() === f.name.toLowerCase()) : null;
+                    const gid = id || (same && same.id) || db.collection('games').doc().id;
+                    if (same) { meta.createdAt = same.createdAt; delete meta.order; if (!GR_PRESETS[f.name.toLowerCase()]) { delete meta.title; delete meta.titleKm; delete meta.emoji; } }
                     if (text) { meta.chunks = await grWriteCode(gid, text); meta.sizeKB = Math.round(text.length / 1024); meta.fileName = f.name; }
-                    if (!id) { meta.createdAt = meta.updatedAt; meta.createdBy = (auth.currentUser && auth.currentUser.email) || ''; }
+                    if (!id && !same) { meta.createdAt = meta.updatedAt; meta.createdBy = (auth.currentUser && auth.currentUser.email) || ''; }
                     await db.collection('games').doc(gid).set(meta, { merge: true });
                 }
                 grPicked = []; grCloseEdit(); await grLoad(); grRender();
             } catch (e) { say('❌ ' + (e.message || e), true); }
+        }
+        // Admin: remove "All levels" next to a real level, restore C2-EPE icons/levels, delete duplicate copies
+        async function grTidy() {
+            if (!isAdmin()) return;
+            const key = g => ((g.fileName || '').toLowerCase()) || ('t:' + String(g.title || '').toLowerCase());
+            const groups = {}; grGames.forEach(g => (groups[key(g)] = groups[key(g)] || []).push(g));
+            const dups = [];
+            Object.values(groups).forEach(list => { list.sort((a, b) => String(b.updatedAt || b.createdAt || '').localeCompare(String(a.updatedAt || a.createdAt || ''))); dups.push(...list.slice(1)); });
+            const fixes = grGames.filter(g => !dups.includes(g)).map(g => {
+                const pre = GR_PRESETS[(g.fileName || '').toLowerCase()], ch = {};
+                const lv = grLevelsOf(g);
+                if (JSON.stringify(lv) !== JSON.stringify(g.levels || [])) ch.levels = lv;
+                if (pre) {
+                    if (JSON.stringify((ch.levels || g.levels || []).slice().sort()) !== JSON.stringify(pre.levels.slice().sort())) ch.levels = pre.levels;
+                    if (!g.emoji || g.emoji === '🎮') ch.emoji = pre.emoji;
+                    if (!g.thumb) ch.thumb = pre.thumb;
+                    if (g.order !== pre.order) ch.order = pre.order;
+                }
+                return Object.keys(ch).length ? [g, ch] : null;
+            }).filter(Boolean);
+            if (!dups.length && !fixes.length) { alert('✅ Everything is already tidy.'); return; }
+            if (!confirm('🧹 Tidy up the Game Room?\n\n• ' + fixes.length + ' game(s): fix levels / icons\n• ' + dups.length + ' duplicate copy(ies) to delete' + (dups.length ? ': ' + dups.map(d => d.title).join(', ') : '') + '\n\nPlay records are kept.')) return;
+            try {
+                for (const [g, ch] of fixes) await db.collection('games').doc(g.id).set(ch, { merge: true });
+                for (const d of dups) { for (let i = 0; i < (d.chunks || 0); i++) await db.collection('game_code').doc(d.id + '_' + i).delete(); await db.collection('games').doc(d.id).delete(); }
+                await grLoad(); grRender();
+                alert('✅ Done: ' + fixes.length + ' fixed, ' + dups.length + ' duplicate(s) removed.');
+            } catch (e) { alert('❌ ' + (e.message || e)); }
         }
         async function grToggleActive(id) {
             const g = grGames.find(x => x.id === id); if (!g) return;

@@ -1,0 +1,32 @@
+{
+  "id": "./partners.html",
+  "name": "C2-EPE Partners",
+  "short_name": "C2 Partners",
+  "description": "Referral partners of C2-EPE Digital Academy",
+  "start_url": "./partners.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f0f2f5",
+  "theme_color": "#0b1a3b",
+  "icons": [
+    {
+      "src": "partners-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "partners-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "partners-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

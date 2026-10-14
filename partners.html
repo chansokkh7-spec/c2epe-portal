@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>C2-EPE Partners · ភ្នាក់ងារណែនាំសិស្ស</title>
+<!-- installable as an app (computer and phone) -->
+<link rel="manifest" href="partners-manifest.json">
+<meta name="theme-color" content="#0b1a3b">
+<link rel="icon" type="image/png" href="partners-icon-192.png">
+<link rel="apple-touch-icon" href="partners-icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="C2 Partners">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
@@ -53,6 +62,7 @@ table{width:100%;border-collapse:collapse;font-size:.8rem}th{background:var(--na
 <header>
   <h1>🤝 C2-EPE Partners<small>ភ្នាក់ងារណែនាំសិស្ស · Referral partners</small></h1>
   <span id="who" style="font-size:.78rem"></span>
+  <button id="install-btn" style="display:none;background:#c9a227;color:#0b1a3b;font-weight:800" onclick="installApp()">📲 Install app</button>
   <button id="logout-btn" style="display:none" onclick="logout()">Log out</button>
 </header>
 <main id="main"><div class="card">Loading…</div></main>
@@ -392,6 +402,24 @@ function ownerSettings(){
 async function saveRates(){
   var r = { bonus:Math.max(0, +$("st-b").value||0), perMonth:Math.max(0, +$("st-m").value||0), minPayout:Math.max(1, +$("st-min").value||1) };
   try { await P.set("settings/rates", r); RATES = Object.assign({}, DEFAULT_RATES, r); await audit("Rates changed", JSON.stringify(r)); msg("st-msg", "✅ Saved.", true); } catch(e){ msg("st-msg", "❌ " + (e.message||e)); }
+}
+// ═══════════ install as an app ═══════════
+// Chrome / Edge / Android: the browser offers to install → our button shows it.
+// iPhone / iPad (Safari): there is no automatic offer → we show the steps (Share → Add to Home Screen).
+var installEvt = null;
+var isStandalone = function(){ return window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true; };
+var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+window.addEventListener("beforeinstallprompt", function(e){ e.preventDefault(); installEvt = e; if(!isStandalone()) $("install-btn").style.display = ""; });
+window.addEventListener("appinstalled", function(){ installEvt = null; $("install-btn").style.display = "none"; });
+if(isIOS && !isStandalone()) $("install-btn").style.display = "";
+async function installApp(){
+  if(installEvt){ installEvt.prompt(); try { await installEvt.userChoice; } catch(e){} installEvt = null; $("install-btn").style.display = "none"; return; }
+  openModal("📲 Install C2 Partners", isIOS
+    ? "<div style='font-size:.9rem;line-height:1.8'>On iPhone / iPad (use <b>Safari</b>):<br>1. Tap the <b>Share</b> button <span style='font-size:1.2rem'>⎙</span> at the bottom<br>2. Scroll down and tap <b>Add to Home Screen</b><br>3. Tap <b>Add</b> — the 🤝 C2 Partners icon appears on your home screen.</div>"
+    : "<div style='font-size:.9rem;line-height:1.8'><b>Computer (Chrome / Edge):</b> click the install icon <b>⊕</b> at the right end of the address bar, or menu <b>⋮ → Cast, save and share → Install page as app</b>.<br><br><b>Android (Chrome):</b> menu <b>⋮ → Add to Home screen → Install</b>.</div>");
+}
+if("serviceWorker" in navigator && location.protocol === "https:"){
+  navigator.serviceWorker.register("sw.js").catch(function(){});   // the Portal's service worker (same folder)
 }
 start();
 </script>

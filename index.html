@@ -3150,6 +3150,9 @@ function logoImgError(img){
           <input type="email" id="enr-parent-email" placeholder="you@example.com" style="width:100%;padding:9px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;outline:none;margin-bottom:10px;font-family:inherit;">
         </div>
 
+        <label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">Referral code (optional) · លេខកូដអ្នកណែនាំ</label>
+        <input type="text" id="enr-ref" maxlength="12" placeholder="e.g. P4821" style="width:100%;padding:9px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;outline:none;margin-bottom:10px;font-family:inherit;text-transform:uppercase;">
+
         <label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">Anything else we should know? (optional)</label>
         <textarea id="enr-notes" rows="3" placeholder="Previous school, special needs, preferred start date..." style="width:100%;padding:9px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;outline:none;margin-bottom:12px;font-family:inherit;resize:vertical;"></textarea>
 
@@ -11155,6 +11158,7 @@ function openEnrollApplyPage(){
   ["enr-name-en","enr-name-km","enr-dob","enr-parent-name","enr-parent-phone","enr-parent-email","enr-notes"].forEach(function(id){
     document.getElementById(id).value = "";
   });
+  var refBox = document.getElementById("enr-ref"); if(refBox){ var rc = ""; try { rc = sessionStorage.getItem("c2epe_ref") || ""; } catch(e){} refBox.value = rc; refBox.readOnly = !!rc; }
   document.getElementById("enr-gender").value = "Male";
   document.getElementById("enr-level").value = "";
   document.getElementById("enr-apply-msg").style.display = "none";
@@ -11189,7 +11193,8 @@ async function submitEnrollApplication(){
     childNameEn: nameEn, childNameKm: nameKm, dob: dob, gender: gender, levelApplied: level,
     parentName: parentName, parentPhone: parentPhone, parentEmail: parentEmail, notes: notes,
     status: "pending",
-    submittedAt: new Date().toISOString()
+    submittedAt: new Date().toISOString(),
+    referralCode: String((document.getElementById("enr-ref")||{}).value||"").trim().toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,12)
   };
 
   var isLocal = window.location.protocol === "file:";
@@ -11379,6 +11384,7 @@ function openAppDetailModal(id){
     + "<div style='color:#666;'>📞 "+escapeHtml(a.parentPhone||"—")+(a.parentEmail?" · ✉️ "+escapeHtml(a.parentEmail):"")+"</div>"
     + "</div>"
     + (a.notes ? "<div style='background:#fffdf0;border:1px solid #ffe082;border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:.8rem;'><strong>Notes:</strong> "+escapeHtml(a.notes)+"</div>" : "")
+    + (a.referralCode ? "<div style='background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:8px 12px;margin-bottom:14px;font-size:.8rem;'>🤝 <strong>Referred by partner:</strong> "+escapeHtml(a.referralCode)+"</div>" : "")
     + placementHTML
     + actionsHTML
     + "<button onclick='closeAppDetailModal()' style='width:100%;padding:8px;background:none;border:none;color:#aaa;cursor:pointer;font-size:.8rem;margin-top:4px;'>Close</button>";
@@ -11445,7 +11451,7 @@ async function acceptAndEnrollApplication(id){
     var studentData = {
       nameKm: a.childNameKm||"", nameEn: a.childNameEn||"", cls: newCls,
       dob: a.dob||"", gender: a.gender||"", parent: a.parentName||"",
-      parentPhone: a.parentPhone||"", parentEmail: a.parentEmail||"", enrolledAt: new Date().toISOString(),
+      parentPhone: a.parentPhone||"", parentEmail: a.parentEmail||"", referredBy: a.referralCode||"", enrolledAt: new Date().toISOString(),
       photo: "", createdAt: new Date().toISOString(), updatedAt: new Date().toISOString()
     };
 
@@ -17406,6 +17412,8 @@ async function showVerify(id){
     + "<div class='ver-row'><span>Certificate ID</span><b>"+escapeHtml(c.certId)+"</b></div>"
     + "</div></div><p style='text-align:center;font-size:.72rem;color:#8a93a8'>This page shows the record stored by the school when the certificate was issued.</p>";
 }
+// opened from a partner's referral link (?ref=CODE): remember the code and open the application form
+(function(){ try { var r = new URLSearchParams(location.search).get("ref"); if(r){ r = String(r).toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,12); if(r){ sessionStorage.setItem("c2epe_ref", r); setTimeout(function(){ if(typeof openEnrollApplyPage==="function") openEnrollApplyPage(); }, 900); } } } catch(e){} })();
 // opened from a QR code?
 (function(){ try { var v = new URLSearchParams(location.search).get("verify"); if(v) setTimeout(function(){ showVerify(v); }, 300); } catch(e){} })();
 

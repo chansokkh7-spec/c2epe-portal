@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C2-EPE Partners · ភ្នាក់ងារណែនាំសិស្ស</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<style>
+:root{--navy:#0b1a3b;--navy2:#1b3570;--gold:#c9a227;--gold2:#d6aa4c;--paper:#f0f2f5;--line:#e3e7f0;--soft:#6b7489;--green:#2e7d32;--red:#c62828;--orange:#c65a00}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:#1a1f36;font-family:'Noto Sans Khmer',system-ui,sans-serif;line-height:1.5}
+button,input,select,textarea{font-family:inherit}
+header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-bottom:3px solid var(--gold);padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:5}
+header h1{margin:0;font-size:1.1rem;color:var(--gold2);flex:1}
+header small{display:block;color:#cfd6ea;font-weight:400;font-size:.72rem}
+header button{background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:20px;padding:6px 12px;cursor:pointer;font-size:.78rem}
+main{max-width:1000px;margin:0 auto;padding:14px 12px 60px}
+.card{background:#fff;border-radius:14px;box-shadow:0 1px 8px rgba(16,30,70,.08);padding:14px;margin-bottom:12px}
+.card h3{margin:0 0 8px;font-size:.98rem;color:var(--navy)}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:12px}
+.tabs button{border:1.5px solid #c5cae9;background:#fff;color:var(--navy);border-radius:999px;padding:7px 13px;font-size:.8rem;font-weight:700;cursor:pointer;white-space:nowrap}
+.tabs button.on{background:var(--navy);color:var(--gold2);border-color:var(--navy)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:12px}
+.kpi{background:#fff;border-radius:12px;box-shadow:0 1px 6px rgba(16,30,70,.08);padding:12px;text-align:center}.kpi b{display:block;font-size:1.35rem;color:var(--navy)}.kpi span{font-size:.72rem;color:var(--soft)}
+.kpi.gold{background:linear-gradient(135deg,var(--navy),var(--navy2))}.kpi.gold b{color:var(--gold2)}.kpi.gold span{color:#cfd6ea}
+.in{width:100%;padding:9px 11px;border:1.5px solid #e0e0e0;border-radius:9px;font-size:.88rem;background:#fff}
+.l{display:block;font-size:.74rem;font-weight:700;color:var(--soft);margin:9px 0 3px}
+.btn{background:var(--navy);color:var(--gold2);border:0;border-radius:9px;padding:10px 15px;font-weight:800;cursor:pointer;font-size:.86rem}
+.btn.gold{background:var(--gold);color:var(--navy)}.btn.ghost{background:#fff;color:var(--navy);border:1.5px solid #c5cae9}.btn.red{background:#fff;color:var(--red);border:1.5px solid #ef9a9a}.btn.sm{padding:5px 10px;font-size:.74rem}
+.btn:disabled{opacity:.5;cursor:default}
+table{width:100%;border-collapse:collapse;font-size:.8rem}th{background:var(--navy);color:var(--gold2);text-align:left;padding:7px;white-space:nowrap}td{padding:7px;border-bottom:1px solid var(--line);vertical-align:top}
+.scroll{overflow-x:auto}
+.tag{display:inline-block;border-radius:999px;padding:2px 9px;font-size:.7rem;font-weight:800}
+.t-req{background:#fff3e0;color:var(--orange)}.t-paid{background:#e8f5e9;color:var(--green)}.t-rej{background:#ffebee;color:var(--red)}.t-off{background:#eceff1;color:#607d8b}
+.muted{color:var(--soft);font-size:.76rem}
+.msg{display:none;margin-top:8px;padding:8px 10px;border-radius:8px;font-size:.8rem}
+.modal{position:fixed;inset:0;background:rgba(5,10,25,.7);display:none;align-items:center;justify-content:center;padding:12px;z-index:20}
+.modal.show{display:flex}
+.mbox{background:#fff;border-radius:14px;width:480px;max-width:100%;max-height:92vh;overflow-y:auto}
+.mhd{background:var(--navy);color:var(--gold2);padding:12px 16px;display:flex;justify-content:space-between;border-radius:14px 14px 0 0;font-weight:800}
+.mhd button{background:none;border:0;color:var(--gold2);font-size:1.1rem;cursor:pointer}
+.login{max-width:400px;margin:40px auto}
+.reflink{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.reflink input{flex:1;min-width:200px}
+.banner{background:#fff8e1;border:1px solid #f0d48a;color:#7a5600;border-radius:10px;padding:10px 12px;font-size:.82rem;margin-bottom:12px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🤝 C2-EPE Partners<small>ភ្នាក់ងារណែនាំសិស្ស · Referral partners</small></h1>
+  <span id="who" style="font-size:.78rem"></span>
+  <button id="logout-btn" style="display:none" onclick="logout()">Log out</button>
+</header>
+<main id="main"><div class="card">Loading…</div></main>
+
+<div class="modal" id="modal"><div class="mbox"><div class="mhd"><span id="m-title"></span><button onclick="closeModal()" aria-label="Close">✕</button></div><div style="padding:14px 16px" id="m-body"></div></div></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════
+// C2-EPE PARTNERS — referral partners and their commission (works on the free Spark plan)
+//  · Partner data (accounts, bank details, payouts, settings, audit log) → its OWN Firebase project (below)
+//  · Referred students and their PAID tuition → read-only from the C2-EPE Portal (public data only)
+//  · Money is never typed in by partners: earnings = rules set by the owner × months actually paid in the Portal;
+//    the owner checks and approves every payout.
+// ═══════════════════════════════════════════════════════════════════════
+var PARTNERS_CONFIG = {                 // ⚠️ paste the config of the NEW Firebase project (Spark) here
+  apiKey: "PASTE_API_KEY", authDomain: "PASTE.firebaseapp.com", projectId: "PASTE_PROJECT_ID",
+  storageBucket: "PASTE.appspot.com", messagingSenderId: "PASTE", appId: "PASTE"
+};
+var PORTAL_CONFIG = { apiKey:"AIzaSyAmATKmyTWQqqyNDqxbzN4CdTKAyzG1Dq4", authDomain:"c2epe-school-share-and-post.firebaseapp.com", projectId:"c2epe-school-share-and-post",
+  storageBucket:"c2epe-school-share-and-post.firebasestorage.app", messagingSenderId:"109849107156", appId:"1:109849107156:web:0b67b05f3511d2f0893941" };
+var PORTAL_URL = "https://chansokkh7-spec.github.io/c2epe-portal/";
+var OWNER_EMAIL = "chansok.kh7@gmail.com";
+var DEFAULT_RATES = { bonus:5, perMonth:0.5, minPayout:5 };   // the owner can change these in ⚙️ Settings
+
+var DEMO = /[?&]demo=1/.test(location.search) || PARTNERS_CONFIG.apiKey.indexOf("PASTE") === 0;
+var ME = null, RATES = Object.assign({}, DEFAULT_RATES), TAB = "";
+var esc = function(s){ return String(s==null?"":s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); };
+var $ = function(id){ return document.getElementById(id); };
+var money = function(n){ return "$" + (Math.round((+n||0)*100)/100).toFixed(2); };
+function msg(id, text, ok){ var m = $(id); if(!m) return; m.style.display = "block"; m.style.background = ok ? "#e8f5e9" : "#ffebee"; m.style.color = ok ? "#2e7d32" : "#c62828"; m.textContent = text; }
+function openModal(t, html){ $("m-title").textContent = t; $("m-body").innerHTML = html; $("modal").classList.add("show"); }
+function closeModal(){ $("modal").classList.remove("show"); }
+
+// ═══════════ data layer (Firebase, or a demo kept in this browser) ═══════════
+var P = {}, S = {}, AUTH = {};
+(function(){
+  if(DEMO){
+    var key = function(c){ return "pt_demo_" + c; };
+    var load = function(c){ try { return JSON.parse(localStorage.getItem(key(c))||"{}"); } catch(e){ return {}; } };
+    var save = function(c, o){ localStorage.setItem(key(c), JSON.stringify(o)); };
+    var split = function(path){ var i = path.lastIndexOf("/"); return [path.slice(0,i), path.slice(i+1)]; };
+    P.get = async function(path){ var p = split(path); return load(p[0])[p[1]] || null; };
+    P.set = async function(path, d, merge){ var p = split(path), o = load(p[0]); o[p[1]] = merge ? Object.assign({}, o[p[1]]||{}, d) : d; save(p[0], o); };
+    P.add = async function(c, d){ var o = load(c), id = "d" + Date.now() + Math.floor(Math.random()*1000); o[id] = d; save(c, o); return id; };
+    P.list = async function(c){ var o = load(c); return Object.keys(o).map(function(k){ return Object.assign({ id:k }, o[k]); }); };
+    P.where = async function(c, f, v){ return (await P.list(c)).filter(function(x){ return x[f] === v; }); };
+    P.del = async function(path){ var p = split(path), o = load(p[0]); delete o[p[1]]; save(p[0], o); };
+    S.studentsByRef = async function(code){ return (JSON.parse(localStorage.getItem("pt_demo_portal_students")||"[]")).filter(function(s){ return s.referredBy === code; }); };
+    S.allReferred = async function(){ return (JSON.parse(localStorage.getItem("pt_demo_portal_students")||"[]")).filter(function(s){ return s.referredBy; }); };
+    S.feesFor = async function(ids){ return (JSON.parse(localStorage.getItem("pt_demo_portal_fees")||"[]")).filter(function(f){ return ids.indexOf(f.studentId) >= 0; }); };
+    var users = function(){ return load("_users"); };
+    AUTH.current = null;
+    AUTH.signIn = async function(email, pw){ var u = users()[email.toLowerCase()]; if(!u || u.pw !== pw) throw new Error("Wrong email or password."); AUTH.current = { uid:u.uid, email:email.toLowerCase() }; sessionStorage.setItem("pt_demo_me", JSON.stringify(AUTH.current)); };
+    AUTH.create = async function(email, pw){ var all = users(); email = email.toLowerCase(); if(all[email]) throw new Error("This email already has an account."); var uid = "u" + Date.now(); all[email] = { pw:pw, uid:uid }; save("_users", all); return uid; };
+    AUTH.signOut = async function(){ AUTH.current = null; sessionStorage.removeItem("pt_demo_me"); };
+    AUTH.reset = async function(){ throw new Error("Not available in demo mode."); };
+    AUTH.ready = async function(){ try { AUTH.current = JSON.parse(sessionStorage.getItem("pt_demo_me")||"null"); } catch(e){} };
+    return;
+  }
+  var app = firebase.initializeApp(PARTNERS_CONFIG), db = app.firestore(), auth = app.auth();
+  var portal = firebase.initializeApp(PORTAL_CONFIG, "portal").firestore();          // read-only, public data
+  P.get = async function(path){ var d = await db.doc(path).get(); return d.exists ? d.data() : null; };
+  P.set = async function(path, d, merge){ await db.doc(path).set(d, { merge:!!merge }); };
+  P.add = async function(c, d){ return (await db.collection(c).add(d)).id; };
+  P.list = async function(c){ return (await db.collection(c).get()).docs.map(function(x){ return Object.assign({ id:x.id }, x.data()); }); };
+  P.where = async function(c, f, v){ return (await db.collection(c).where(f, "==", v).get()).docs.map(function(x){ return Object.assign({ id:x.id }, x.data()); }); };
+  P.del = async function(path){ await db.doc(path).delete(); };
+  S.studentsByRef = async function(code){ return (await portal.collection("students").where("referredBy", "==", code).get()).docs.map(function(x){ return Object.assign({ id:x.id }, x.data()); }); };
+  S.allReferred = async function(){ return (await portal.collection("students").where("referredBy", ">", "").get()).docs.map(function(x){ return Object.assign({ id:x.id }, x.data()); }); };
+  S.feesFor = async function(ids){
+    var out = [];
+    for(var i = 0; i < ids.length; i += 10){ var part = ids.slice(i, i+10); if(!part.length) continue;
+      out = out.concat((await portal.collection("fees").where("studentId", "in", part).get()).docs.map(function(x){ return x.data(); })); }
+    return out;
+  };
+  AUTH.signIn = async function(email, pw){ await auth.signInWithEmailAndPassword(email, pw); };
+  AUTH.create = async function(email, pw){       // a second connection, so the owner stays signed in
+    var tmp = firebase.apps.find(function(a){ return a.name === "creator"; }) || firebase.initializeApp(PARTNERS_CONFIG, "creator");
+    var cred = await tmp.auth().createUserWithEmailAndPassword(email, pw); var uid = cred.user.uid; await tmp.auth().signOut(); return uid;
+  };
+  AUTH.signOut = async function(){ await auth.signOut(); };
+  AUTH.reset = async function(email){ await auth.sendPasswordResetEmail(email); };
+  AUTH.ready = function(){ return new Promise(function(res){ var done = false; auth.onAuthStateChanged(function(u){ AUTH.current = u ? { uid:u.uid, email:(u.email||"").toLowerCase() } : null; if(!done){ done = true; res(); } }); }); };
+})();
+function isOwner(){ return ME && ME.role === "owner"; }
+function isStaff(){ return ME && (ME.role === "owner" || ME.role === "admin"); }
+async function audit(action, detail){ try { await P.add("auditLogs", { at:new Date().toISOString(), by:ME ? (ME.name||ME.email) : "", role:ME ? ME.role : "", action:action, detail:detail||"" }); } catch(e){} }
+
+// ═══════════ commission ═══════════
+// A month counts once it is PAID in the Portal (tuition with “Covers from / Valid until”, or the month it was paid).
+function paidMonths(fees){
+  var set = {};
+  fees.filter(function(f){ return f.status === "paid" && !/test|admin|book|uniform|registration|exam/i.test(f.type||""); }).forEach(function(f){
+    if(f.periodStart && f.periodEnd){
+      var d = new Date(f.periodStart.slice(0,7) + "-01T00:00:00"), end = f.periodEnd.slice(0,7);
+      for(var k = 0; k < 60; k++){ var ym = d.toISOString().slice(0,7); if(ym > end) break; set[ym] = 1; d.setMonth(d.getMonth()+1); }
+    } else { var ym2 = String(f.paidAt || f.dueDate || "").slice(0,7); if(ym2) set[ym2] = 1; }
+  });
+  return Object.keys(set).sort();
+}
+async function referralsFor(code){
+  var studs = await S.studentsByRef(code);
+  var fees = await S.feesFor(studs.map(function(s){ return s.studentId; }).filter(Boolean));
+  return studs.map(function(s){
+    var months = paidMonths(fees.filter(function(f){ return f.studentId === s.studentId; }));
+    var earned = months.length ? RATES.bonus + months.length * RATES.perMonth : 0;
+    return { s:s, months:months, earned:earned, left:s.status === "left" };
+  });
+}
+function payoutTotals(pays){
+  var paid = 0, pending = 0;
+  pays.forEach(function(p){ if(p.status === "paid") paid += +p.amount||0; else if(p.status === "requested") pending += +p.amount||0; });
+  return { paid:paid, pending:pending };
+}
+function shortName(s){ var n = String(s.nameEn || s.nameKm || "").trim().split(/\s+/); return n.length > 1 ? n[0] + " " + n[1].charAt(0) + "." : n[0]; }
+
+// ═══════════ start / login ═══════════
+async function start(){
+  await AUTH.ready();
+  try { var r = await P.get("settings/rates"); if(r) RATES = Object.assign({}, DEFAULT_RATES, r); } catch(e){}
+  if(!AUTH.current) return loginView();
+  ME = await P.get("accounts/" + AUTH.current.uid);
+  if(!ME && AUTH.current.email === OWNER_EMAIL){             // the very first sign-in of the owner creates the owner account
+    ME = { role:"owner", name:"Owner", email:OWNER_EMAIL, active:true, createdAt:new Date().toISOString() };
+    await P.set("accounts/" + AUTH.current.uid, ME);
+  }
+  if(!ME || ME.active === false){ await AUTH.signOut(); return loginView(ME ? "This account has been switched off. Please contact the school." : "This account is not registered. Please contact the school owner."); }
+  ME.uid = AUTH.current.uid; ME.email = AUTH.current.email;
+  $("who").textContent = (ME.role === "agent" ? "🤝 " : ME.role === "owner" ? "👑 " : "🛠️ ") + (ME.name || ME.email) + (ME.code ? " · " + ME.code : "");
+  $("logout-btn").style.display = "";
+  TAB = ME.role === "agent" ? "home" : "overview";
+  render();
+}
+function loginView(note){
+  $("who").textContent = ""; $("logout-btn").style.display = "none";
+  $("main").innerHTML = "<div class='login'><div class='card'>" + (DEMO ? "<div class='banner'>🧪 <b>Demo mode</b> — data stays in this browser. Paste the Firebase config of the partners project into partners.html to go live.</div>" : "")
+    + "<h3>🔑 Sign in</h3><div class='muted'>Partners, admins and the owner sign in with the email and password given by the school.</div>"
+    + (note ? "<div class='msg' style='display:block;background:#ffebee;color:#c62828'>"+esc(note)+"</div>" : "")
+    + "<label class='l'>Email</label><input id='li-email' class='in' type='email' autocomplete='username'>"
+    + "<label class='l'>Password</label><input id='li-pw' class='in' type='password' autocomplete='current-password' onkeydown=\"if(event.key==='Enter')login()\">"
+    + "<button class='btn gold' style='width:100%;margin-top:12px' onclick='login()'>Sign in</button>"
+    + "<button class='btn ghost' style='width:100%;margin-top:8px' onclick='forgot()'>Forgot password?</button><div id='li-msg' class='msg'></div>"
+    + (DEMO ? "<button class='btn ghost' style='width:100%;margin-top:8px' onclick='demoOwner()'>🧪 Create the demo owner account</button>" : "")
+    + "</div><div class='muted' style='text-align:center'>C2-EPE Digital Academy · Referral partners</div></div>";
+}
+async function login(){
+  var e = $("li-email").value.trim().toLowerCase(), p = $("li-pw").value;
+  if(!e || !p) return msg("li-msg", "Please enter your email and password.");
+  try { await AUTH.signIn(e, p); start(); } catch(err){ msg("li-msg", /wrong|invalid|password|user/i.test(err.message||"") ? "Wrong email or password." : (err.message||err)); }
+}
+async function forgot(){ var e = $("li-email").value.trim(); if(!e) return msg("li-msg", "Type your email first."); try { await AUTH.reset(e); msg("li-msg", "A reset link was sent to " + e + ".", true); } catch(err){ msg("li-msg", err.message||err); } }
+async function demoOwner(){ try { await AUTH.create(OWNER_EMAIL, "owner123"); } catch(e){} $("li-email").value = OWNER_EMAIL; $("li-pw").value = "owner123"; msg("li-msg", "Demo owner: " + OWNER_EMAIL + " / owner123", true); }
+async function logout(){ await AUTH.signOut(); ME = null; loginView(); }
+
+// ═══════════ screens ═══════════
+function tabs(list){ return "<div class='tabs'>" + list.map(function(t){ return "<button class='"+(TAB===t[0]?"on":"")+"' onclick=\"TAB='"+t[0]+"';render()\">"+t[1]+"</button>"; }).join("") + "</div>"; }
+async function render(){
+  var m = $("main");
+  if(ME.role === "agent"){
+    m.innerHTML = tabs([["home","🏠 Home"],["students","🎓 My students"],["payouts","💸 Payouts"],["bank","🏦 Bank details"]]) + "<div id='view'><div class='card'>Loading…</div></div>";
+    return ({ home:agentHome, students:agentStudents, payouts:agentPayouts, bank:agentBank })[TAB]();
+  }
+  var t = [["overview","📊 Overview"],["partners","🤝 Partners"],["payouts","💸 Payouts"],["log","📜 Audit log"]];
+  if(isOwner()) t.push(["settings","⚙️ Settings"]);
+  m.innerHTML = (DEMO ? "<div class='banner'>🧪 Demo mode — not connected to the partners database yet.</div>" : "") + tabs(t) + "<div id='view'><div class='card'>Loading…</div></div>";
+  return ({ overview:ownerOverview, partners:ownerPartners, payouts:ownerPayouts, log:ownerLog, settings:ownerSettings })[TAB]();
+}
+// ── partner ──
+async function agentData(){
+  var refs = await referralsFor(ME.code), pays = await P.where("payouts", "agentUid", ME.uid);
+  var earned = refs.reduce(function(a,r){ return a + r.earned; }, 0), t = payoutTotals(pays);
+  return { refs:refs, pays:pays, earned:earned, paid:t.paid, pending:t.pending, balance:Math.max(0, earned - t.paid - t.pending) };
+}
+async function agentHome(){
+  var d = await agentData(), link = PORTAL_URL + "?ref=" + encodeURIComponent(ME.code);
+  $("view").innerHTML = "<div class='kpis'><div class='kpi gold'><b>"+money(d.balance)+"</b><span>available to withdraw</span></div><div class='kpi'><b>"+money(d.earned)+"</b><span>earned in total</span></div><div class='kpi'><b>"+money(d.paid)+"</b><span>paid to you</span></div><div class='kpi'><b>"+d.refs.length+"</b><span>students enrolled</span></div></div>"
+    + "<div class='card'><h3>🔗 Your referral link</h3><div class='muted' style='margin-bottom:8px'>Families who apply through this link (or type your code <b>"+esc(ME.code)+"</b> on the application form) are linked to you.</div>"
+    + "<div class='reflink'><input id='reflink' class='in' readonly value='"+esc(link)+"'><button class='btn gold' onclick='copyLink()'>📋 Copy</button></div><div id='qr' style='margin-top:12px;background:#fff;display:inline-block;padding:8px;border-radius:10px;border:1px solid var(--line)'></div><div id='cp-msg' class='msg'></div></div>"
+    + "<div class='card'><h3>💡 How you earn</h3><div style='font-size:.86rem'>• <b>"+money(RATES.bonus)+"</b> when a student you referred pays their first month<br>• <b>"+money(RATES.perMonth)+"</b> for every month the student studies and pays<br>• You can ask for a payout from <b>"+money(RATES.minPayout)+"</b>. The school checks and pays it.</div><button class='btn ghost sm' style='margin-top:8px' onclick='terms()'>📄 Terms</button></div>"
+    + (await leaderboardHTML());
+  try { new QRCode($("qr"), { text:link, width:140, height:140 }); } catch(e){ $("qr").textContent = "QR not available"; }
+}
+function copyLink(){ var i = $("reflink"); i.select(); try { navigator.clipboard.writeText(i.value); } catch(e){ document.execCommand("copy"); } msg("cp-msg", "Copied!", true); }
+async function agentStudents(){
+  var d = await agentData();
+  $("view").innerHTML = "<div class='card'><h3>🎓 Students you referred ("+d.refs.length+")</h3><div class='muted' style='margin-bottom:8px'>Only months that are <b>paid</b> at school count. Names are shortened for privacy.</div>"
+    + (d.refs.length ? "<div class='scroll'><table><tr><th>Student</th><th>Class</th><th>Enrolled</th><th>Paid months</th><th>Earned</th></tr>" + d.refs.map(function(r){ return "<tr><td>"+esc(shortName(r.s))+(r.left?" <span class='tag t-off'>left</span>":"")+"</td><td>"+esc(r.s.cls||"")+"</td><td>"+esc(String(r.s.enrolledAt||"").slice(0,10))+"</td><td>"+r.months.length+"</td><td><b>"+money(r.earned)+"</b></td></tr>"; }).join("") + "</table></div>"
+      : "<div class='muted'>No students yet — share your link!</div>") + "</div>";
+}
+async function agentPayouts(){
+  var d = await agentData(), bank = await P.get("bank/" + ME.uid);
+  $("view").innerHTML = "<div class='kpis'><div class='kpi gold'><b>"+money(d.balance)+"</b><span>available</span></div><div class='kpi'><b>"+money(d.pending)+"</b><span>waiting for approval</span></div><div class='kpi'><b>"+money(d.paid)+"</b><span>paid</span></div></div>"
+    + "<div class='card'><h3>💸 Ask for a payout</h3>" + (!bank || !bank.accNum ? "<div class='banner'>Please add your bank details first (🏦 Bank details).</div>" : "")
+    + "<label class='l'>Amount (USD)</label><input id='po-amt' class='in' type='number' min='"+RATES.minPayout+"' step='0.5' max='"+d.balance.toFixed(2)+"' value='"+d.balance.toFixed(2)+"'>"
+    + "<button class='btn gold' style='margin-top:10px' onclick='requestPayout("+d.balance.toFixed(2)+")'"+(!bank || !bank.accNum || d.balance < RATES.minPayout ? " disabled" : "")+">Send request</button>"
+    + (d.balance < RATES.minPayout ? "<div class='muted' style='margin-top:6px'>The minimum payout is "+money(RATES.minPayout)+".</div>" : "") + "<div id='po-msg' class='msg'></div></div>"
+    + "<div class='card'><h3>📜 History</h3>" + (d.pays.length ? "<div class='scroll'><table><tr><th>Date</th><th>Amount</th><th>Status</th><th>Note</th></tr>" + d.pays.sort(function(a,b){ return String(b.requestedAt).localeCompare(String(a.requestedAt)); }).map(function(p){ return "<tr><td>"+esc(String(p.requestedAt).slice(0,10))+"</td><td>"+money(p.amount)+"</td><td>"+statusTag(p.status)+"</td><td>"+esc(p.note||"")+(p.paidAt?" <span class='muted'>paid "+esc(String(p.paidAt).slice(0,10))+"</span>":"")+"</td></tr>"; }).join("") + "</table></div>" : "<div class='muted'>No payouts yet.</div>") + "</div>";
+}
+function statusTag(s){ return s === "paid" ? "<span class='tag t-paid'>✅ Paid</span>" : s === "rejected" ? "<span class='tag t-rej'>✖ Not approved</span>" : "<span class='tag t-req'>⏳ Waiting</span>"; }
+async function requestPayout(balance){
+  var a = Math.round((+$("po-amt").value||0)*100)/100;
+  if(a < RATES.minPayout) return msg("po-msg", "The minimum payout is " + money(RATES.minPayout) + ".");
+  if(a > balance + 0.001) return msg("po-msg", "You can ask for at most " + money(balance) + ".");
+  try { await P.add("payouts", { agentUid:ME.uid, agentName:ME.name||"", code:ME.code||"", amount:a, status:"requested", requestedAt:new Date().toISOString() }); await audit("Payout requested", money(a)); agentPayouts(); }
+  catch(e){ msg("po-msg", "❌ " + (e.message||e)); }
+}
+async function agentBank(){
+  var b = await P.get("bank/" + ME.uid) || {};
+  $("view").innerHTML = "<div class='card'><h3>🏦 Bank details</h3><div class='muted'>Only you and the school owner can see these.</div>"
+    + "<label class='l'>Bank</label><input id='bk-bank' class='in' maxlength='60' value='"+esc(b.bank)+"' placeholder='ABA, ACLEDA, Wing…'>"
+    + "<label class='l'>Account name</label><input id='bk-name' class='in' maxlength='80' value='"+esc(b.accName)+"'>"
+    + "<label class='l'>Account number</label><input id='bk-num' class='in' maxlength='40' value='"+esc(b.accNum)+"'>"
+    + "<label class='l'>KHQR picture (optional)</label><input id='bk-qr' class='in' type='file' accept='image/*'>" + (b.qr ? "<img src='"+b.qr+"' alt='' style='max-width:160px;margin-top:8px;border-radius:8px'>" : "")
+    + "<button class='btn gold' style='margin-top:12px' onclick='saveBank()'>💾 Save</button><div id='bk-msg' class='msg'></div></div>";
+}
+function shrink(file){ return new Promise(function(res){ if(!file) return res(""); var img = new Image(), u = URL.createObjectURL(file); img.onload = function(){ var s = Math.min(1, 420/Math.max(img.width, img.height)), c = document.createElement("canvas"); c.width = Math.round(img.width*s); c.height = Math.round(img.height*s); c.getContext("2d").drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(u); res(c.toDataURL("image/jpeg", .8)); }; img.onerror = function(){ res(""); }; img.src = u; }); }
+async function saveBank(){
+  var d = { bank:$("bk-bank").value.trim(), accName:$("bk-name").value.trim(), accNum:$("bk-num").value.trim(), updatedAt:new Date().toISOString() };
+  if(!d.bank || !d.accName || !d.accNum) return msg("bk-msg", "Please fill in the bank, account name and number.");
+  var q = await shrink(($("bk-qr").files||[])[0]); if(q) d.qr = q;
+  try { await P.set("bank/" + ME.uid, d, true); await audit("Bank details changed", d.bank); msg("bk-msg", "✅ Saved.", true); } catch(e){ msg("bk-msg", "❌ " + (e.message||e)); }
+}
+function terms(){ openModal("📄 Partner terms", "<div style='font-size:.84rem'><p>1. Commission is paid only for students who enrol and <b>pay</b> tuition at C2-EPE.</p><p>2. Amounts follow the rates shown in the app; the school may change rates for the future with notice.</p><p>3. Every payout is checked and approved by the school owner.</p><p>4. Fake or duplicate referrals cancel the commission and may close the account.</p><p>5. Partners must give families honest information about the school and never collect money from them.</p><p>6. Personal data of families is used only for the referral and kept private.</p></div>"); }
+async function leaderboardHTML(){
+  try {
+    var all = await S.allReferred(), by = {};
+    all.forEach(function(s){ by[s.referredBy] = (by[s.referredBy]||0) + 1; });
+    // partners do not see each other's names or contact details — only staff do
+    var accs = isStaff() ? await P.list("accounts").catch(function(){ return []; }) : [];
+    var rows = Object.keys(by).map(function(c){ var a = accs.find(function(x){ return x.code === c; }); return { code:c, name:a ? a.name : (ME && c === ME.code ? "You" : "Partner " + c.slice(0,3) + "••"), n:by[c] }; }).sort(function(a,b){ return b.n - a.n; }).slice(0,5);
+    if(!rows.length) return "";
+    var md = ["🥇","🥈","🥉"];
+    return "<div class='card'><h3>🏆 Top partners</h3>" + rows.map(function(r,i){ return "<div style='display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)"+(ME && r.code===ME.code?";background:#fff8e1":"")+"'><b style='width:26px'>"+(md[i]||i+1)+"</b><span style='flex:1'>"+esc(String(r.name).split(" ")[0])+"</span><b>"+r.n+" students</b></div>"; }).join("") + "</div>";
+  } catch(e){ return ""; }
+}
+// ── owner / admin ──
+async function staffData(){
+  var accs = (await P.list("accounts")).filter(function(a){ return a.role === "agent"; }), pays = await P.list("payouts");
+  var out = [];
+  for(var i = 0; i < accs.length; i++){
+    var a = accs[i], refs = a.code ? await referralsFor(a.code) : [], t = payoutTotals(pays.filter(function(p){ return p.agentUid === a.id; }));
+    var earned = refs.reduce(function(x,r){ return x + r.earned; }, 0);
+    out.push({ a:a, refs:refs, earned:earned, paid:t.paid, pending:t.pending, balance:Math.max(0, earned - t.paid - t.pending) });
+  }
+  return { rows:out, pays:pays };
+}
+async function ownerOverview(){
+  var d = await staffData(), sum = function(f){ return d.rows.reduce(function(x,r){ return x + f(r); }, 0); };
+  var waiting = d.pays.filter(function(p){ return p.status === "requested"; });
+  $("view").innerHTML = "<div class='kpis'><div class='kpi'><b>"+d.rows.filter(function(r){ return r.a.active !== false; }).length+"</b><span>active partners</span></div><div class='kpi'><b>"+sum(function(r){ return r.refs.length; })+"</b><span>students referred</span></div><div class='kpi'><b>"+money(sum(function(r){ return r.earned; }))+"</b><span>commission earned</span></div><div class='kpi'><b>"+money(sum(function(r){ return r.paid; }))+"</b><span>paid out</span></div><div class='kpi gold'><b>"+waiting.length+" · "+money(waiting.reduce(function(x,p){ return x + (+p.amount||0); }, 0))+"</b><span>payouts waiting</span></div></div>"
+    + (waiting.length ? "<div class='banner'>💸 "+waiting.length+" payout request"+(waiting.length>1?"s":"")+" waiting — open 💸 Payouts.</div>" : "")
+    + "<div class='card'><h3>💡 Current rates</h3><div style='font-size:.86rem'>"+money(RATES.bonus)+" first-month bonus · "+money(RATES.perMonth)+" per paid month · minimum payout "+money(RATES.minPayout)+"</div></div>" + (await leaderboardHTML());
+}
+async function ownerPartners(){
+  var d = await staffData();
+  $("view").innerHTML = "<button class='btn gold' style='margin-bottom:10px' onclick='newPartnerForm()'>＋ New partner</button>"
+    + "<div class='card scroll' style='padding:0'><table><tr><th>Partner</th><th>Code</th><th>Students</th><th>Earned</th><th>Paid</th><th>Balance</th><th></th></tr>"
+    + (d.rows.length ? d.rows.map(function(r){ return "<tr><td><b>"+esc(r.a.name)+"</b>"+(r.a.active===false?" <span class='tag t-off'>off</span>":"")+"<div class='muted'>"+esc(r.a.email)+" · "+esc(r.a.phone||"")+"</div></td><td>"+esc(r.a.code)+"</td><td>"+r.refs.length+"</td><td>"+money(r.earned)+"</td><td>"+money(r.paid)+"</td><td><b>"+money(r.balance)+"</b></td><td style='white-space:nowrap'><button class='btn ghost sm' onclick=\"showPartner('"+r.a.id+"')\">👁️</button> <button class='btn ghost sm' onclick=\"toggleActive('"+r.a.id+"',"+(r.a.active===false)+")\">"+(r.a.active===false?"✅ On":"⛔ Off")+"</button></td></tr>"; }).join("") : "<tr><td colspan='7' class='muted'>No partners yet.</td></tr>")
+    + "</table></div>";
+  window.__rows = d.rows;
+}
+function newPartnerForm(){
+  openModal("＋ New partner", "<label class='l'>Full name</label><input id='np-name' class='in' maxlength='60'><label class='l'>Phone</label><input id='np-phone' class='in' maxlength='20'><label class='l'>Email (used to sign in)</label><input id='np-email' class='in' type='email'><label class='l'>First password (at least 6 characters)</label><input id='np-pw' class='in' maxlength='40'>"
+    + (isOwner() ? "<label class='l'>Role</label><select id='np-role' class='in'><option value='agent'>Partner (referrer)</option><option value='admin'>Admin (helps the owner)</option></select>" : "")
+    + "<button class='btn gold' style='width:100%;margin-top:12px' onclick='createPartner()'>Create account</button><div id='np-msg' class='msg'></div><div class='muted' style='margin-top:8px'>Give the email and password to the person — they can change the password with “Forgot password?”.</div>");
+}
+async function createPartner(){
+  var name = $("np-name").value.trim(), phone = $("np-phone").value.trim(), email = $("np-email").value.trim().toLowerCase(), pw = $("np-pw").value, role = ($("np-role")||{value:"agent"}).value;
+  if(!name || !/@/.test(email) || pw.length < 6) return msg("np-msg", "Please fill in the name, a valid email and a password of 6+ characters.");
+  try {
+    var accs = await P.list("accounts"), code;
+    do { code = "P" + Math.floor(1000 + Math.random()*9000); } while(accs.some(function(a){ return a.code === code; }));
+    var uid = await AUTH.create(email, pw);
+    var acc = { role:role, name:name, phone:phone, email:email, active:true, createdAt:new Date().toISOString(), createdBy:ME.email };
+    if(role === "agent") acc.code = code;
+    await P.set("accounts/" + uid, acc);
+    await audit("Account created", name + " (" + role + (acc.code ? ", " + acc.code : "") + ")");
+    closeModal(); ownerPartners();
+  } catch(e){ msg("np-msg", /already|in-use/i.test(e.message||"") ? "This email already has an account." : "❌ " + (e.message||e)); }
+}
+async function toggleActive(id, on){
+  if(!confirm(on ? "Switch this account back on?" : "Switch this account off? The person will not be able to sign in.")) return;
+  try { await P.set("accounts/" + id, { active:on }, true); await audit(on ? "Account switched on" : "Account switched off", id); ownerPartners(); } catch(e){ alert("❌ " + (e.message||e)); }
+}
+async function showPartner(id){
+  var r = (window.__rows||[]).find(function(x){ return x.a.id === id; }); if(!r) return;
+  var b = isOwner() ? await P.get("bank/" + id) : null;
+  openModal("🤝 " + r.a.name, "<div class='muted'>Code <b>"+esc(r.a.code)+"</b> · "+esc(r.a.email)+" · "+esc(r.a.phone||"")+"</div>"
+    + (isOwner() ? "<div class='card' style='margin-top:10px'><b>🏦 Bank</b><div style='font-size:.84rem'>"+(b ? esc(b.bank)+" · "+esc(b.accName)+" · "+esc(b.accNum) : "<span class='muted'>Not added yet</span>")+"</div>"+(b && b.qr ? "<img src='"+b.qr+"' style='max-width:160px;margin-top:6px;border-radius:8px'>" : "")+"</div>" : "")
+    + "<b>🎓 Students ("+r.refs.length+")</b><table style='margin-top:6px'><tr><th>Student</th><th>ID</th><th>Paid months</th><th>Earned</th></tr>" + r.refs.map(function(x){ return "<tr><td>"+esc(x.s.nameEn||x.s.nameKm)+(x.left?" (left)":"")+"</td><td>"+esc(x.s.studentId)+"</td><td>"+x.months.length+"</td><td>"+money(x.earned)+"</td></tr>"; }).join("") + "</table>");
+}
+async function ownerPayouts(){
+  var d = await staffData(), list = d.pays.sort(function(a,b){ return (a.status==="requested"?0:1)-(b.status==="requested"?0:1) || String(b.requestedAt).localeCompare(String(a.requestedAt)); });
+  window.__pays = list; window.__payRows = d.rows;
+  $("view").innerHTML = (isOwner() ? "<div style='display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px'><button class='btn gold' onclick='markPaid()'>✅ Mark selected as paid</button><button class='btn ghost' onclick='exportBank()'>⬇️ Bank CSV (selected)</button></div>" : "<div class='banner'>Only the owner can approve payouts.</div>")
+    + "<div class='card scroll' style='padding:0'><table><tr><th></th><th>Requested</th><th>Partner</th><th>Amount</th><th>Can withdraw now</th><th>Status</th><th></th></tr>"
+    + (list.length ? list.map(function(p){ var r = d.rows.find(function(x){ return x.a.id === p.agentUid; }), check = r ? r.earned - r.paid : 0;
+        return "<tr><td>"+(p.status==="requested"&&isOwner()?"<input type='checkbox' class='po-chk' value='"+p.id+"'>":"")+"</td><td>"+esc(String(p.requestedAt).slice(0,10))+"</td><td>"+esc(p.agentName)+" <span class='muted'>"+esc(p.code)+"</span></td><td><b>"+money(p.amount)+"</b></td><td>"+(p.status==="requested" ? (check + 0.001 >= +p.amount ? "<span style='color:#2e7d32'>✓ "+money(check)+"</span>" : "<span style='color:#c62828'>⚠️ only "+money(check)+"</span>") : "")+"</td><td>"+statusTag(p.status)+"</td><td>"+(p.status==="requested"&&isOwner()?"<button class='btn red sm' onclick=\"rejectPayout('"+p.id+"')\">✖</button>":"")+"</td></tr>"; }).join("") : "<tr><td colspan='7' class='muted'>No payouts yet.</td></tr>")
+    + "</table></div>";
+}
+function selectedPays(){ return Array.prototype.map.call(document.querySelectorAll(".po-chk:checked"), function(c){ return (window.__pays||[]).find(function(p){ return p.id === c.value; }); }).filter(Boolean); }
+async function markPaid(){
+  var sel = selectedPays(); if(!sel.length) return alert("Tick the payouts you have paid.");
+  var bad = sel.filter(function(p){ var r = (window.__payRows||[]).find(function(x){ return x.a.id === p.agentUid; }); return !r || r.earned - r.paid + 0.001 < +p.amount; });
+  if(bad.length && !confirm("⚠️ " + bad.length + " request(s) are more than the partner has earned. Pay anyway?")) return;
+  if(!confirm("Mark " + sel.length + " payout(s) as PAID — " + money(sel.reduce(function(x,p){ return x + (+p.amount||0); }, 0)) + " in total?")) return;
+  try { for(var i = 0; i < sel.length; i++){ await P.set("payouts/" + sel[i].id, { status:"paid", paidAt:new Date().toISOString(), paidBy:ME.email }, true); await audit("Payout paid", sel[i].agentName + " " + money(sel[i].amount)); } ownerPayouts(); }
+  catch(e){ alert("❌ " + (e.message||e)); }
+}
+async function rejectPayout(id){
+  var note = prompt("Why is this payout not approved? (the partner will see this)"); if(note === null) return;
+  try { await P.set("payouts/" + id, { status:"rejected", note:note.slice(0,200), paidBy:ME.email, paidAt:"" }, true); await audit("Payout rejected", id + " " + note); ownerPayouts(); } catch(e){ alert("❌ " + (e.message||e)); }
+}
+async function exportBank(){
+  var sel = selectedPays(); if(!sel.length) return alert("Tick the payouts to export.");
+  var rows = [["Partner","Code","Bank","Account name","Account number","Amount (USD)"]];
+  for(var i = 0; i < sel.length; i++){ var b = await P.get("bank/" + sel[i].agentUid) || {}; rows.push([sel[i].agentName, sel[i].code, b.bank||"", b.accName||"", b.accNum||"", (+sel[i].amount).toFixed(2)]); }
+  var csv = "\ufeff" + rows.map(function(r){ return r.map(function(c){ return '"' + String(c).replace(/"/g,'""') + '"'; }).join(","); }).join("\n");
+  var a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], { type:"text/csv" })); a.download = "partner-payouts-" + new Date().toISOString().slice(0,10) + ".csv"; document.body.appendChild(a); a.click(); a.remove();
+  await audit("Bank CSV exported", sel.length + " payouts");
+}
+async function ownerLog(){
+  var l = (await P.list("auditLogs").catch(function(){ return []; })).sort(function(a,b){ return String(b.at).localeCompare(String(a.at)); }).slice(0,200);
+  $("view").innerHTML = "<div class='card scroll' style='padding:0'><table><tr><th>When</th><th>Who</th><th>What</th><th>Details</th></tr>" + (l.length ? l.map(function(x){ return "<tr><td>"+esc(String(x.at).replace("T"," ").slice(0,16))+"</td><td>"+esc(x.by)+" <span class='muted'>"+esc(x.role)+"</span></td><td>"+esc(x.action)+"</td><td>"+esc(x.detail)+"</td></tr>"; }).join("") : "<tr><td colspan='4' class='muted'>Nothing yet.</td></tr>") + "</table></div>";
+}
+function ownerSettings(){
+  $("view").innerHTML = "<div class='card'><h3>⚙️ Commission rates</h3><div class='muted'>Changes apply to all calculations (also past months). Tell partners before changing.</div>"
+    + "<label class='l'>First-month bonus (USD)</label><input id='st-b' class='in' type='number' min='0' step='0.5' value='"+RATES.bonus+"'>"
+    + "<label class='l'>Per paid month (USD)</label><input id='st-m' class='in' type='number' min='0' step='0.1' value='"+RATES.perMonth+"'>"
+    + "<label class='l'>Minimum payout (USD)</label><input id='st-min' class='in' type='number' min='1' step='1' value='"+RATES.minPayout+"'>"
+    + "<button class='btn gold' style='margin-top:12px' onclick='saveRates()'>💾 Save</button><div id='st-msg' class='msg'></div></div>";
+}
+async function saveRates(){
+  var r = { bonus:Math.max(0, +$("st-b").value||0), perMonth:Math.max(0, +$("st-m").value||0), minPayout:Math.max(1, +$("st-min").value||1) };
+  try { await P.set("settings/rates", r); RATES = Object.assign({}, DEFAULT_RATES, r); await audit("Rates changed", JSON.stringify(r)); msg("st-msg", "✅ Saved.", true); } catch(e){ msg("st-msg", "❌ " + (e.message||e)); }
+}
+start();
+</script>
+</body>
+</html>

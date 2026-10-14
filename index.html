@@ -547,7 +547,7 @@ function logoImgError(img){
       <div style="background:#f3f5fb;color:#000080;padding:7px 14px;font-weight:700;font-size:.78rem;border-top:1px solid #eee;">🎪 Clubs &amp; Services</div>
       <div style="padding:6px;">
         <button onclick="closeClubsMenu();openReadingClub()" class="tools-item">📖 <span>Reading Club</span></button>
-        <button onclick="closeClubsMenu();openClubComingSoon('🩺 Daily Medicine Clinic', 'Daily student health check-ins and clinic records.')" class="tools-item">🩺 <span>Daily Medicine Clinic</span></button>
+        <button onclick="closeClubsMenu();openClinic()" class="tools-item">🩺 <span>Daily Medicine Clinic</span></button>
         <button onclick="closeClubsMenu();window.open('it-club-hub.html', '_blank', 'noopener,noreferrer')" class="tools-item">💻 <span>ICT Club</span></button>
         <button onclick="closeClubsMenu();window.open('digital-hub.html?open=games', '_blank', 'noopener,noreferrer')" class="tools-item">🎮 <span>Game Hub</span></button>
         <button onclick="closeClubsMenu();window.open('digital-library.html', '_blank')" class="tools-item">📚 <span>SEG Digital Library</span></button>
@@ -16606,6 +16606,7 @@ body.dash-open #ai-chat-bubble,body.dash-open #ai-chat-panel{display:none !impor
       <button onclick="sdGo(openLeavePage)">📝 Leave Request</button>
       <button onclick="sdGo(openConcernsPage)">🛡️ Report a Concern</button>
       <button onclick="sdGo(openReadingClub)">📖 Reading Club</button>
+      <button onclick="sdGo(openClinic)">🏥 My Child's Health</button>
       <button onclick="sdGo(openExamPortalPage)">🎓 Examination Portal</button>
       <button onclick="sdGo(openMyTestsPage)">📚 My Tests</button>
       <button onclick="sdGo(openQuizPage)">✏️ Quiz &amp; Exams</button>
@@ -16873,6 +16874,7 @@ function sdOpenReport(){
       <button onclick="tdGo(openLeavePage)">📝 Leave Requests</button>
       <button onclick="tdGo(openConcernsPage)">🛡️ Concerns from Families</button>
       <button onclick="tdGo(openReadingClub)">📖 Reading Club</button>
+      <button onclick="tdGo(openClinic)">🏥 School Clinic</button>
       <button onclick="tdGo(openMyTimeSheet)">🕐 My Time Sheet</button>
       <button onclick="tdGo(openMyLeave)">✈️ My Leave</button>
       <button onclick="tdGo(openReportPage)">📊 Report Cards</button>
@@ -17780,6 +17782,7 @@ function attCalendarHTML(map){
 }
 // ---- student ----
 async function sdEnhance(d){
+  setTimeout(clinicParentAlert, 1200);
   var box = document.getElementById("sd-content"); if(!box || !studentSession) return;
   var me = {};
   try {
@@ -17818,6 +17821,7 @@ async function sdEnhance(d){
     + tile("📝","Leave Request","linear-gradient(135deg,#5d4037,#8d6e63)","openLeavePage")
     + tile("🛡️","Concern","linear-gradient(135deg,#ad1457,#d81b60)","openConcernsPage")
     + tile("📖","Reading Club","linear-gradient(135deg,#00695c,#26a69a)","openReadingClub")
+    + tile("🏥","Health","linear-gradient(135deg,#c62828,#ef5350)","openClinic")
     + "</div>"
     + "<div class='dx-two'><div class='dx-card'><h3>📚 Today's classes <button onclick='sdGo(openTimetable)'>Full week ›</button></h3>"+todayClassesHTML(todays.map(function(s){ s.cls=""; return s; }), slots.length ? "No classes today 🎉" : "Your timetable will appear here when the school adds it.")+"</div>"
     + "<div class='dx-card'><h3>⏰ Upcoming <button onclick='sdGo(openCalendar)'>Calendar ›</button></h3>"+upcomingHTML(items, "Nothing coming up.")+"</div></div>"
@@ -18649,8 +18653,8 @@ function c2pOpen(mode, title, canAdd){
 function c2pClose(){ document.getElementById("c2p-page").style.display = "none"; if(isTeacher && typeof tdRefresh==="function" && document.getElementById("td").style.display==="block") tdRefresh(); }
 function c2pTabs(list){ document.getElementById("c2p-tabs").innerHTML = list.map(function(t){ return "<button class='"+(C2P.tab===t[0]?"on":"")+"' onclick=\"C2P.tab='"+t[0]+"';c2pRender()\">"+t[1]+(t[2]!=null?" ("+t[2]+")":"")+"</button>"; }).join(""); }
 function c2pForm(title, html){ document.getElementById("c2p-form-title").textContent = title; document.getElementById("c2p-form-body").innerHTML = html; document.getElementById("c2p-form").style.display = "flex"; }
-function c2pAdd(){ ({leave:leaveNewForm, classwork:cwNewForm, daily:drNewForm, concern:icNewForm, reading:function(){ rcLogForm(); }})[C2P.mode](); }
-function c2pRender(){ ({leave:leaveRender, classwork:cwRender, daily:drRender, concern:icRender, reading:function(){ rcRender(); }})[C2P.mode](); }
+function c2pAdd(){ ({leave:leaveNewForm, classwork:cwNewForm, daily:drNewForm, concern:icNewForm, reading:function(){ rcLogForm(); }, clinic:function(){ clVisitForm(); }})[C2P.mode](); }
+function c2pRender(){ ({leave:leaveRender, classwork:cwRender, daily:drRender, concern:icRender, reading:function(){ rcRender(); }, clinic:function(){ clRender(); }})[C2P.mode](); }
 var C2P_PART = {full:"Full day", morning:"Morning", afternoon:"Afternoon", evening:"Evening"};
 
 // ══════════════ 📖 READING CLUB ══════════════
@@ -18846,6 +18850,242 @@ function rcCertificate(){
     + "<p>for reading <b>"+done.length+" books</b> and <b>"+Math.round(mins/60)+" hours</b> as a member of the C2-EPE Reading Club</p><div class='b'>"+(b?b[1]:"")+"</div><p style='font-weight:bold;color:#0b1a3b'>"+(b?b[2]:"")+"</p>"
     + "<p style='font-size:14px;color:#777;margin-top:14px'>"+new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})+" · Student ID "+escapeHtml(studentSession.studentId)+"</p></div><script>setTimeout(function(){window.print()},600)<\/script></body></html>");
   w.document.close();
+}
+
+// ══════════════ 🏥 SCHOOL HEALTH CLINIC ══════════════
+// Health profile (allergies, conditions, emergency contacts, parent consent), clinic visits with parent alerts,
+// growth checks. Privacy: everything is stored under healthProfiles/<student record id> (a long random id), so a
+// family can open only its own child's record; staff see everything.
+//   healthProfiles/{sid} · healthProfiles/{sid}/visits/{id} · healthProfiles/{sid}/growth/{id}
+var CL = { profiles:{}, visits:[], studs:[] };
+var CL_SYMPTOMS = ["🤒 Fever","🤕 Headache","🤢 Stomach ache","🩹 Cut / injury","🤮 Vomiting","🤧 Cough / cold","😵 Dizziness","🦷 Toothache","👁️ Eye problem","🐝 Bite / sting","😢 Feeling upset","Other"];
+var CL_OUTCOMES = [["class","✅ Back to class"],["rest","🛏️ Rested, then back to class"],["home","🏠 Picked up by family"],["hospital","🚑 Sent to clinic / hospital"]];
+function clNow(){ var d = new Date(); return { date:d.toISOString().slice(0,10), time:String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0") }; }
+function clKey(name){ return "c2epe_clinic_"+name; }
+// ── storage ──
+async function clGetProfile(sid){
+  if(!sid) return null;
+  if(xLocal()) return JSON.parse(localStorage.getItem(clKey("profiles"))||"{}")[sid] || null;
+  var m = await xFb(), d = await m.getDoc(m.doc(window._fb.db,"healthProfiles",sid)); return d.exists() ? d.data() : null;
+}
+async function clSaveProfile(sid, data){
+  data.updatedAt = new Date().toISOString();
+  if(xLocal()){ var all = JSON.parse(localStorage.getItem(clKey("profiles"))||"{}"); all[sid] = Object.assign({}, all[sid]||{}, data); localStorage.setItem(clKey("profiles"), JSON.stringify(all)); return; }
+  var m = await xFb(); await m.setDoc(m.doc(window._fb.db,"healthProfiles",sid), data, {merge:true});
+}
+async function clSub(sid, sub){   // visits or growth of one student
+  if(xLocal()) return JSON.parse(localStorage.getItem(clKey(sub))||"[]").filter(function(x){ return x.sid === sid; });
+  var m = await xFb(); return (await m.getDocs(m.collection(window._fb.db,"healthProfiles",sid,sub))).docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+}
+async function clAddSub(sid, sub, data){
+  data.sid = sid; data.createdAt = new Date().toISOString();
+  if(xLocal()){ var l = JSON.parse(localStorage.getItem(clKey(sub))||"[]"); data.id = sub.slice(0,2)+Date.now(); l.unshift(data); localStorage.setItem(clKey(sub), JSON.stringify(l)); return data.id; }
+  var m = await xFb(); return (await m.addDoc(m.collection(window._fb.db,"healthProfiles",sid,sub), data)).id;
+}
+async function clUpdateSub(sid, sub, id, data){
+  if(xLocal()){ var l = JSON.parse(localStorage.getItem(clKey(sub))||"[]"); l.forEach(function(x){ if(x.id===id) Object.assign(x, data); }); localStorage.setItem(clKey(sub), JSON.stringify(l)); return; }
+  var m = await xFb(); await m.setDoc(m.doc(window._fb.db,"healthProfiles",sid,sub,id), data, {merge:true});
+}
+async function clAllVisits(){   // staff: every visit (recent first)
+  if(xLocal()) return JSON.parse(localStorage.getItem(clKey("visits"))||"[]");
+  var m = await xFb(); return (await m.getDocs(m.collectionGroup(window._fb.db,"visits"))).docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+}
+async function clAllProfiles(){
+  if(xLocal()) return JSON.parse(localStorage.getItem(clKey("profiles"))||"{}");
+  var m = await xFb(), o = {}; (await m.getDocs(m.collection(window._fb.db,"healthProfiles"))).docs.forEach(function(d){ o[d.id] = d.data(); }); return o;
+}
+// ── open ──
+async function openClinic(){
+  c2pOpen("clinic", isTeacher ? "🏥 School Clinic" : "🏥 My Child's Health", !!isTeacher);
+  document.getElementById("c2p-add").textContent = "＋ New visit";
+  if(!isTeacher && !studentSession){
+    document.getElementById("c2p-body").innerHTML = "<div class='c2p-card' style='text-align:center;padding:30px 18px'><div style='font-size:2.6rem'>🏥</div><b style='color:#0b1a3b'>School Health Clinic</b><p style='font-size:.86rem;color:#555'>Sign in with your child's Student ID to see the health record and clinic visits.<br>សូមចូលដោយ Student ID ដើម្បីមើលកំណត់ត្រាសុខភាពកូន។</p><button class='c2p-btn gold' onclick='c2pClose(); showParentModal();'>🔑 Sign in with Student ID</button></div>";
+    return;
+  }
+  try {
+    if(isTeacher){
+      CL.studs = []; try { CL.studs = (await tdFetch("students","c2epe_local_students")).filter(function(s){ return s.status !== "left" && teacherCanSeeClass(baseLevel(s.cls||"")); }); } catch(e){}
+      CL.profiles = await clAllProfiles(); CL.visits = (await clAllVisits()).filter(function(v){ return CL.studs.some(function(s){ return s.id === v.sid; }); });
+      CL.visits.sort(function(a,b){ return String(b.date+b.time).localeCompare(String(a.date+a.time)); });
+      C2P.tab = "today";
+    } else {
+      CL.sid = studentSession.docId; CL.profile = await clGetProfile(CL.sid) || {};
+      CL.visits = (await clSub(CL.sid,"visits")).sort(function(a,b){ return String(b.date+b.time).localeCompare(String(a.date+a.time)); });
+      CL.growth = (await clSub(CL.sid,"growth")).sort(function(a,b){ return String(b.date).localeCompare(String(a.date)); });
+      C2P.tab = CL.visits.some(function(v){ return !v.parentSeenAt; }) ? "visits" : "profile";
+    }
+  } catch(e){ document.getElementById("c2p-body").innerHTML = "<div class='c2p-empty'>❌ "+escapeHtml(e.message||String(e))+"</div>"; return; }
+  clRender();
+}
+function clRender(){
+  document.getElementById("c2p-top").innerHTML = "";
+  if(isTeacher){
+    var alerts = CL.studs.filter(function(s){ var p = CL.profiles[s.id]; return p && (p.allergies || p.conditions); }).length;
+    c2pTabs([["today","📋 Visits"],["alerts","⚠️ Health alerts ("+alerts+")"],["record","👤 Student record"]]);
+    ({ today:clToday, alerts:clAlerts, record:clRecordPick })[C2P.tab]();
+  } else {
+    var unseen = CL.visits.filter(function(v){ return !v.parentSeenAt; }).length;
+    c2pTabs([["profile","🩺 Health profile"],["visits","📋 Clinic visits"+(unseen?" 🔴 "+unseen:"")],["growth","📏 Growth"]]);
+    ({ profile:clProfileForm, visits:clParentVisits, growth:clGrowthView })[C2P.tab]();
+  }
+}
+function clEsc(v){ return escapeHtml(v||""); }
+function clProfileHTML(p, compact){
+  p = p || {};
+  var row = function(k, v, warn){ return v ? "<div style='padding:6px 0;border-bottom:1px solid #f0f2f5;font-size:.84rem'><b style='color:"+(warn?"#c62828":"#0b1a3b")+"'>"+k+":</b> "+clEsc(v)+"</div>" : ""; };
+  var html = row("⚠️ Allergies", p.allergies, true) + row("🩺 Medical conditions", p.conditions, true) + row("💊 Regular medicine", p.medicines) + row("🩸 Blood group", p.blood)
+    + row("📞 Emergency contact", [p.ecName, p.ecRelation, p.ecPhone].filter(Boolean).join(" · ")) + row("📞 Second contact", [p.ec2Name, p.ec2Phone].filter(Boolean).join(" · "))
+    + row("👨‍⚕️ Family doctor", p.doctor)
+    + "<div style='padding:6px 0;font-size:.82rem'><b style='color:#0b1a3b'>Parent consent:</b> "
+    + (p.consentFirstAid ? "✅ first aid" : "❌ first aid") + " · " + (p.consentParacetamol ? "✅ paracetamol for fever/pain" : "❌ no paracetamol") + " · " + (p.consentHospital ? "✅ take to hospital in an emergency" : "❌ hospital — call us first") + "</div>";
+  return (p.allergies || p.conditions || p.ecPhone) ? html : "<div class='c2p-muted'>No health information yet — the family has not filled in the health profile.</div>"+(compact?"":html);
+}
+// ══════════ families ══════════
+function clProfileForm(){
+  var p = CL.profile || {};
+  var inp = function(id, label, val, ph, max){ return "<label class='c2p-l'>"+label+"</label><input id='"+id+"' class='c2p-in' maxlength='"+(max||120)+"' value='"+clEsc(val)+"' placeholder='"+clEsc(ph||"")+"'>"; };
+  var chk = function(id, val, text){ return "<label style='display:flex;gap:8px;align-items:flex-start;font-size:.84rem;margin-top:8px'><input type='checkbox' id='"+id+"' style='width:auto;margin-top:3px'"+(val?" checked":"")+"> <span>"+text+"</span></label>"; };
+  document.getElementById("c2p-top").innerHTML = "<div class='c2p-card' style='border-left:4px solid #c9a227;font-size:.82rem'>🔒 Only your family and school staff can see this. It helps the school nurse look after <b>"+clEsc(studentSession.name)+"</b> safely — please keep it up to date.<br><span class='c2p-muted'>ព័ត៌មាននេះមើលឃើញតែគ្រួសារ និងបុគ្គលិកសាលាប៉ុណ្ណោះ។</span></div>";
+  document.getElementById("c2p-body").innerHTML = "<div class='c2p-card'>"
+    + inp("cl-allergies","⚠️ Allergies (food, medicine, insects…) — write “None” if none",p.allergies,"e.g. Peanuts, penicillin",200)
+    + inp("cl-conditions","🩺 Medical conditions (asthma, epilepsy, diabetes…)",p.conditions,"e.g. Asthma — uses inhaler",200)
+    + inp("cl-medicines","💊 Medicine taken regularly",p.medicines,"",200)
+    + "<label class='c2p-l'>🩸 Blood group (if known)</label><select id='cl-blood' class='c2p-in'>"+["","A+","A-","B+","B-","AB+","AB-","O+","O-"].map(function(b){ return "<option"+(p.blood===b?" selected":"")+">"+b+"</option>"; }).join("")+"</select>"
+    + "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px'>"+inp("cl-ecname","📞 Emergency contact — name",p.ecName)+inp("cl-ecrel","Relationship",p.ecRelation,"Mother / Father…",40)+"</div>"
+    + inp("cl-ecphone","Phone",p.ecPhone,"012 345 678",30)
+    + "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px'>"+inp("cl-ec2name","📞 Second contact — name",p.ec2Name)+inp("cl-ec2phone","Phone",p.ec2Phone,"",30)+"</div>"
+    + inp("cl-doctor","👨‍⚕️ Family doctor / clinic (optional)",p.doctor)
+    + "<div style='margin-top:12px;padding:10px;border-radius:9px;background:#fffaf0;border:1px solid #f1e6c8'><b style='font-size:.86rem;color:#0b1a3b'>✍️ Parent consent</b>"
+    + chk("cl-c1",p.consentFirstAid,"The school may give <b>basic first aid</b> (clean and cover a cut, cold pack, rest).")
+    + chk("cl-c2",p.consentParacetamol,"The school may give <b>paracetamol</b> (correct child dose) for fever or pain, and will tell me.")
+    + chk("cl-c3",p.consentHospital,"In an <b>emergency</b>, the school may take my child to a hospital before reaching me.")
+    + "<label class='c2p-l'>Parent / guardian name (signature)</label><input id='cl-signed' class='c2p-in' maxlength='60' value='"+clEsc(p.signedBy)+"'></div>"
+    + "<button class='c2p-btn gold' style='width:100%;margin-top:12px' onclick='clProfileSave()'>💾 Save health profile</button><div id='cl-msg' style='display:none'></div>"
+    + (p.updatedAt ? "<div class='c2p-muted' style='margin-top:6px;text-align:center'>Last updated "+c2pDate(p.updatedAt)+(p.signedBy?" by "+clEsc(p.signedBy):"")+"</div>" : "")
+    + "</div>";
+}
+async function clProfileSave(){
+  var v = function(id){ return document.getElementById(id).value.trim(); }, c = function(id){ return document.getElementById(id).checked; };
+  var d = { studentId:studentSession.studentId, studentName:studentSession.name, cls:baseLevel(studentSession.cls||""), allergies:v("cl-allergies"), conditions:v("cl-conditions"), medicines:v("cl-medicines"), blood:v("cl-blood"),
+    ecName:v("cl-ecname"), ecRelation:v("cl-ecrel"), ecPhone:v("cl-ecphone"), ec2Name:v("cl-ec2name"), ec2Phone:v("cl-ec2phone"), doctor:v("cl-doctor"),
+    consentFirstAid:c("cl-c1"), consentParacetamol:c("cl-c2"), consentHospital:c("cl-c3"), signedBy:v("cl-signed") };
+  if(!d.ecName || !/\d{6,}/.test(d.ecPhone.replace(/\D/g,""))) return c2pMsg("cl-msg","Please add an emergency contact name and phone number.");
+  if(!d.allergies) return c2pMsg("cl-msg","Please fill in allergies — write “None” if your child has none.");
+  if(!d.signedBy) return c2pMsg("cl-msg","Please type the parent / guardian name to sign.");
+  try { await clSaveProfile(CL.sid, d); CL.profile = Object.assign(CL.profile||{}, d, {updatedAt:new Date().toISOString()}); clProfileForm(); c2pMsg("cl-msg","✅ Saved. Thank you!", true); }
+  catch(e){ c2pMsg("cl-msg","❌ "+(e.message||e)); }
+}
+function clVisitCard(v, staff){
+  var oc = (CL_OUTCOMES.find(function(o){ return o[0]===v.outcome; })||["",""])[1];
+  return "<div class='c2p-card' style='"+(!staff && !v.parentSeenAt?"border:2px solid #c62828":"")+"'><div style='display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap'><div><b style='color:#0b1a3b'>"+(staff?clEsc(v.studentName)+" · ":"")+c2pDate(v.date,{weekday:"short",day:"numeric",month:"short"})+" "+clEsc(v.time)+"</b><div class='c2p-muted'>"+clEsc((v.symptoms||[]).join(" · "))+(v.temp?" · 🌡️ "+v.temp+"°C":"")+(staff?" · "+clEsc(v.cls):"")+"</div></div><span class='c2p-st "+(v.outcome==="hospital"?"rejected":v.outcome==="home"?"pending":"approved")+"'>"+oc+"</span></div>"
+    + (v.action ? "<div style='font-size:.84rem;margin-top:6px'>🩹 <b>What we did:</b> "+clEsc(v.action)+"</div>" : "")
+    + (v.medicine && v.medicine !== "None" ? "<div style='font-size:.84rem;margin-top:4px'>💊 <b>Medicine:</b> "+clEsc(v.medicine)+(v.dose?" — "+clEsc(v.dose):"")+"</div>" : "")
+    + (v.note ? "<div style='font-size:.82rem;margin-top:4px;color:#555'>"+clEsc(v.note)+"</div>" : "")
+    + "<div class='c2p-muted' style='margin-top:6px'>Seen by "+clEsc(v.staffName||"school staff")+(staff ? (v.parentSeenAt?" · 👁️ family has read it":" · family has not read it yet") : "")+"</div>"
+    + (!staff && !v.parentSeenAt ? "<button class='c2p-btn gold' style='margin-top:8px' onclick=\"clSeen('"+v.id+"')\">👍 I have read this</button>" : "")
+    + "</div>";
+}
+function clParentVisits(){
+  document.getElementById("c2p-body").innerHTML = CL.visits.length ? CL.visits.map(function(v){ return clVisitCard(v,false); }).join("") : "<div class='c2p-empty'>No clinic visits. 🎉</div>";
+}
+async function clSeen(id){
+  try { await clUpdateSub(CL.sid,"visits",id,{ parentSeenAt:new Date().toISOString() }); CL.visits.forEach(function(v){ if(v.id===id) v.parentSeenAt = new Date().toISOString(); }); clRender(); } catch(e){ alert("❌ "+(e.message||e)); }
+}
+function clGrowthView(){
+  var g = CL.growth || [];
+  document.getElementById("c2p-body").innerHTML = "<div class='c2p-card'><b style='color:#0b1a3b'>📏 Height and weight checks at school</b><div class='c2p-muted' style='margin:4px 0 10px'>For children, a healthy weight depends on <b>age and sex</b>. Please ask the school nurse or your doctor to read these on the <b>WHO growth charts</b> — a single number is not a diagnosis.</div>"
+    + (g.length ? "<table style='width:100%;border-collapse:collapse;font-size:.82rem'><tr style='background:#0b1a3b;color:#d6aa4c'><th style='padding:6px;text-align:left'>Date</th><th>Height</th><th>Weight</th><th>BMI</th><th>Nurse's note</th></tr>"+g.map(function(x){ return "<tr style='border-bottom:1px solid #eef0f5'><td style='padding:6px'>"+c2pDate(x.date)+"</td><td style='text-align:center'>"+x.height+" cm</td><td style='text-align:center'>"+x.weight+" kg</td><td style='text-align:center'>"+(x.weight/Math.pow(x.height/100,2)).toFixed(1)+"</td><td>"+clEsc(x.note)+"</td></tr>"; }).join("")+"</table>" : "<div class='c2p-empty'>No checks yet.</div>")
+    + "</div>";
+}
+// ══════════ staff ══════════
+function clToday(){
+  var today = clNow().date, t = CL.visits.filter(function(v){ return v.date === today; });
+  document.getElementById("c2p-top").innerHTML = "<div class='c2p-grid' style='margin-bottom:12px'>"+[["🩺",t.length,"visits today"],["🏠",t.filter(function(v){ return v.outcome==="home"; }).length,"sent home"],["🚑",t.filter(function(v){ return v.outcome==="hospital"; }).length,"to hospital"],["👁️",CL.visits.filter(function(v){ return !v.parentSeenAt; }).length,"not read by family"]].map(function(k){ return "<div class='c2p-card' style='text-align:center;margin:0'><div>"+k[0]+"</div><b style='font-size:1.2rem;color:#0b1a3b'>"+k[1]+"</b><div class='c2p-muted'>"+k[2]+"</div></div>"; }).join("")+"</div>"
+    + "<button class='c2p-btn gold' style='margin-bottom:10px' onclick='clVisitForm()'>＋ New clinic visit</button>";
+  document.getElementById("c2p-body").innerHTML = CL.visits.length ? CL.visits.slice(0,60).map(function(v){ return clVisitCard(v,true); }).join("") : "<div class='c2p-empty'>No clinic visits yet.</div>";
+}
+function clAlerts(){
+  var list = CL.studs.filter(function(s){ var p = CL.profiles[s.id]; return p && (p.allergies && !/^none$/i.test(p.allergies) || p.conditions); });
+  var missing = CL.studs.filter(function(s){ return !CL.profiles[s.id]; }).length;
+  document.getElementById("c2p-top").innerHTML = "<div class='c2p-card' style='font-size:.82rem'>⚠️ Students with allergies or medical conditions in your classes. Keep this list in mind on trips and at lunch.<br>📝 <b>"+missing+"</b> student"+(missing===1?"":"s")+" still without a health profile — remind their families.</div>";
+  document.getElementById("c2p-body").innerHTML = list.length ? list.map(function(s){ var p = CL.profiles[s.id]; return "<div class='c2p-card' style='border-left:4px solid #c62828'><b style='color:#0b1a3b'>"+clEsc(s.nameEn||s.nameKm)+"</b> <span class='c2p-muted'>"+clEsc(s.cls)+"</span>"+(p.allergies&&!/^none$/i.test(p.allergies)?"<div style='font-size:.84rem;margin-top:4px'>⚠️ <b>Allergies:</b> "+clEsc(p.allergies)+"</div>":"")+(p.conditions?"<div style='font-size:.84rem'>🩺 <b>Condition:</b> "+clEsc(p.conditions)+"</div>":"")+(p.ecPhone?"<div class='c2p-muted'>📞 "+clEsc(p.ecName)+" "+clEsc(p.ecPhone)+"</div>":"")+"</div>"; }).join("") : "<div class='c2p-empty'>No allergies or conditions recorded.</div>";
+}
+function clStudentOptions(){ return CL.studs.map(function(s){ return "<option value='"+clEsc((s.nameEn||s.nameKm)+" · "+s.studentId)+"'>"; }).join(""); }
+function clFindStudent(val){ var id = String(val||"").split("·").pop().trim(); return CL.studs.find(function(s){ return s.studentId === id; }) || null; }
+function clRecordPick(){
+  document.getElementById("c2p-body").innerHTML = "<div class='c2p-card'><label class='c2p-l' style='margin-top:0'>Find a student</label><input id='cl-find' class='c2p-in' list='cl-studs' placeholder='Type a name or Student ID' onchange='clShowRecord(this.value)'><datalist id='cl-studs'>"+clStudentOptions()+"</datalist></div><div id='cl-record'></div>";
+}
+async function clShowRecord(val){
+  var s = clFindStudent(val), box = document.getElementById("cl-record"); if(!s){ box.innerHTML = ""; return; }
+  box.innerHTML = "<div class='c2p-empty'>Loading…</div>";
+  var visits = (await clSub(s.id,"visits")).sort(function(a,b){ return String(b.date+b.time).localeCompare(String(a.date+a.time)); }), growth = (await clSub(s.id,"growth")).sort(function(a,b){ return String(b.date).localeCompare(String(a.date)); });
+  box.innerHTML = "<div class='c2p-card'><b style='color:#0b1a3b;font-size:1rem'>"+clEsc(s.nameEn||s.nameKm)+"</b> <span class='c2p-muted'>"+clEsc(s.cls)+" · ID "+clEsc(s.studentId)+"</span>"+clProfileHTML(CL.profiles[s.id], true)+"</div>"
+    + "<div class='c2p-card'><div style='display:flex;justify-content:space-between;align-items:center'><b style='color:#0b1a3b'>📏 Growth checks</b><button class='c2p-btn ghost' style='padding:5px 10px;font-size:.74rem' onclick=\"clGrowthForm('"+s.id+"')\">＋ Add</button></div>"
+    + (growth.length ? growth.map(function(x){ return "<div style='font-size:.82rem;padding:5px 0;border-bottom:1px solid #f0f2f5'>"+c2pDate(x.date)+" · "+x.height+" cm · "+x.weight+" kg · BMI "+(x.weight/Math.pow(x.height/100,2)).toFixed(1)+(x.note?" · "+clEsc(x.note):"")+"</div>"; }).join("") : "<div class='c2p-muted'>No checks yet.</div>")
+    + "<div class='c2p-muted' style='margin-top:6px'>Read children's BMI on the WHO BMI-for-age chart (by age and sex), not with adult categories.</div></div>"
+    + "<b style='color:#0b1a3b'>📋 Clinic visits ("+visits.length+")</b>" + visits.map(function(v){ return clVisitCard(v,true); }).join("");
+}
+function clVisitForm(){
+  var n = clNow();
+  c2pForm("🩺 New clinic visit",
+    "<label class='c2p-l'>Student</label><input id='clv-stu' class='c2p-in' list='cl-studs2' placeholder='Type a name or Student ID' oninput='clVisitStudent(this.value)'><datalist id='cl-studs2'>"+clStudentOptions()+"</datalist><div id='clv-alert'></div>"
+    + "<div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px'><div><label class='c2p-l'>Date</label><input type='date' id='clv-date' class='c2p-in' value='"+n.date+"'></div><div><label class='c2p-l'>Time</label><input type='time' id='clv-time' class='c2p-in' value='"+n.time+"'></div><div><label class='c2p-l'>🌡️ Temp °C</label><input type='number' id='clv-temp' class='c2p-in' step='0.1' min='34' max='43' placeholder='—'></div></div>"
+    + "<label class='c2p-l'>Symptoms</label><div style='display:flex;flex-wrap:wrap;gap:6px'>"+CL_SYMPTOMS.map(function(x){ return "<label style='font-size:.78rem;border:1.5px solid #c5cae9;border-radius:999px;padding:4px 10px;cursor:pointer'><input type='checkbox' class='clv-sym' value='"+x+"' style='width:auto;margin-right:4px'>"+x+"</label>"; }).join("")+"</div>"
+    + "<label class='c2p-l'>What we did (first aid)</label><input id='clv-action' class='c2p-in' maxlength='200' placeholder='e.g. Cleaned the cut and put on a plaster'>"
+    + "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px'><div><label class='c2p-l'>💊 Medicine given</label><select id='clv-med' class='c2p-in'><option>None</option><option>Paracetamol</option><option>Other</option></select></div><div><label class='c2p-l'>Dose / name</label><input id='clv-dose' class='c2p-in' maxlength='60' placeholder='e.g. 250 mg syrup'></div></div>"
+    + "<label class='c2p-l'>Outcome</label><select id='clv-out' class='c2p-in'>"+CL_OUTCOMES.map(function(o){ return "<option value='"+o[0]+"'>"+o[1]+"</option>"; }).join("")+"</select>"
+    + "<label class='c2p-l'>Note for the family (optional)</label><input id='clv-note' class='c2p-in' maxlength='200'>"
+    + "<button class='c2p-btn gold' style='width:100%;margin-top:12px' onclick='clVisitSave()'>💾 Save and tell the family</button><div id='clv-msg' style='display:none'></div>");
+}
+function clVisitStudent(val){
+  var s = clFindStudent(val), box = document.getElementById("clv-alert"); if(!box) return;
+  if(!s){ box.innerHTML = ""; return; }
+  var p = CL.profiles[s.id];
+  box.innerHTML = "<div style='margin-top:8px;padding:9px;border-radius:9px;background:"+(p && (p.allergies&&!/^none$/i.test(p.allergies) || p.conditions)?"#ffebee":"#f5f7fb")+";font-size:.8rem'>"+clProfileHTML(p, true)+"</div>";
+}
+async function clVisitSave(){
+  var s = clFindStudent(document.getElementById("clv-stu").value);
+  if(!s) return c2pMsg("clv-msg","Please choose the student from the list.");
+  var p = CL.profiles[s.id] || {}, med = document.getElementById("clv-med").value;
+  var d = { studentId:s.studentId, studentName:s.nameEn||s.nameKm||"", cls:baseLevel(s.cls||""), date:document.getElementById("clv-date").value, time:document.getElementById("clv-time").value,
+    temp:+document.getElementById("clv-temp").value||"", symptoms:Array.prototype.map.call(document.querySelectorAll(".clv-sym:checked"), function(c){ return c.value; }),
+    action:document.getElementById("clv-action").value.trim(), medicine:med, dose:document.getElementById("clv-dose").value.trim(), outcome:document.getElementById("clv-out").value,
+    note:document.getElementById("clv-note").value.trim(), staffName:currentTeacherName||"School staff", parentSeenAt:"" };
+  if(!d.symptoms.length) return c2pMsg("clv-msg","Please tick at least one symptom.");
+  if(med === "Paracetamol" && !p.consentParacetamol) return c2pMsg("clv-msg","⛔ The family has NOT given consent for paracetamol. Call the family first.");
+  if(med !== "None" && p.allergies && !/^none$/i.test(p.allergies) && !confirm("⚠️ This student has allergies: " + p.allergies + "\n\nAre you sure this medicine is safe?")) return;
+  if(med === "Other" && !d.dose) return c2pMsg("clv-msg","Please write the name and dose of the medicine.");
+  try {
+    d.id = await clAddSub(s.id, "visits", d); d.sid = s.id; CL.visits.unshift(d);
+    document.getElementById("c2p-form").style.display = "none"; C2P.tab = "today"; clRender();
+    if(d.outcome === "home" || d.outcome === "hospital") alert("📞 Please also phone the family now: " + ((p.ecName||"") + " " + (p.ecPhone||"(no number on file — check the student record)")));
+  } catch(e){ c2pMsg("clv-msg","❌ "+(e.message||e)); }
+}
+function clGrowthForm(sid){
+  c2pForm("📏 Growth check",
+    "<div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px'><div><label class='c2p-l'>Date</label><input type='date' id='clg-date' class='c2p-in' value='"+clNow().date+"'></div><div><label class='c2p-l'>Height (cm)</label><input type='number' id='clg-h' class='c2p-in' min='50' max='220' step='0.1'></div><div><label class='c2p-l'>Weight (kg)</label><input type='number' id='clg-w' class='c2p-in' min='5' max='200' step='0.1'></div></div>"
+    + "<label class='c2p-l'>Nurse's note (optional)</label><input id='clg-note' class='c2p-in' maxlength='150' placeholder='e.g. Normal growth on the WHO chart'>"
+    + "<button class='c2p-btn gold' style='width:100%;margin-top:12px' onclick=\"clGrowthSave('"+sid+"')\">💾 Save</button><div id='clg-msg' style='display:none'></div>");
+}
+async function clGrowthSave(sid){
+  var h = +document.getElementById("clg-h").value, w = +document.getElementById("clg-w").value;
+  if(!(h >= 50 && h <= 220) || !(w >= 5 && w <= 200)) return c2pMsg("clg-msg","Please check the height and weight.");
+  try { await clAddSub(sid, "growth", { date:document.getElementById("clg-date").value, height:h, weight:w, note:document.getElementById("clg-note").value.trim(), staffName:currentTeacherName||"" });
+        document.getElementById("c2p-form").style.display = "none"; clShowRecord(document.getElementById("cl-find").value); }
+  catch(e){ c2pMsg("clg-msg","❌ "+(e.message||e)); }
+}
+// family dashboard: a red card when the clinic has news that the family has not read
+async function clinicParentAlert(){
+  if(isTeacher || !studentSession || !studentSession.docId) return;
+  var box = document.getElementById("sd-content"); if(!box || document.getElementById("cl-dash-alert")) return;
+  var v = []; try { v = (await clSub(studentSession.docId,"visits")).filter(function(x){ return !x.parentSeenAt; }); } catch(e){ return; }
+  var p = null; try { p = await clGetProfile(studentSession.docId); } catch(e){}
+  var html = "";
+  if(v.length) html += "<div id='cl-dash-alert' class='dx-card' style='margin-bottom:14px;border:2px solid #c62828;cursor:pointer' onclick='sdGo(openClinic)'><h3 style='color:#c62828'>🏥 "+escapeHtml(studentSession.name)+" visited the school clinic</h3><div style='font-size:.84rem'>"+v.length+" new note"+(v.length>1?"s":"")+" from the school nurse — tap to read.</div></div>";
+  else if(!p) html += "<div id='cl-dash-alert' class='dx-card' style='margin-bottom:14px;border:1.5px solid #c9a227;cursor:pointer' onclick='sdGo(openClinic)'><h3>🩺 Please fill in the health profile</h3><div style='font-size:.84rem'>Allergies, emergency contact and consent help the school keep your child safe.</div></div>";
+  if(!html) return;
+  var first = box.querySelector(".dx-hello") || box.firstElementChild;
+  if(first) first.insertAdjacentHTML("beforebegin", html); else box.insertAdjacentHTML("afterbegin", html);
 }
 
 // ══════════════ 1. LEAVE REQUESTS ══════════════

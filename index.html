@@ -546,7 +546,7 @@ function logoImgError(img){
       </div>
       <div style="background:#f3f5fb;color:#000080;padding:7px 14px;font-weight:700;font-size:.78rem;border-top:1px solid #eee;">🎪 Clubs &amp; Services</div>
       <div style="padding:6px;">
-        <button onclick="closeClubsMenu();openClubComingSoon('📖 Reading Club', 'A shared space for book lists, reading logs, and reading challenges.')" class="tools-item">📖 <span>Reading Club</span></button>
+        <button onclick="closeClubsMenu();openReadingClub()" class="tools-item">📖 <span>Reading Club</span></button>
         <button onclick="closeClubsMenu();openClubComingSoon('🩺 Daily Medicine Clinic', 'Daily student health check-ins and clinic records.')" class="tools-item">🩺 <span>Daily Medicine Clinic</span></button>
         <button onclick="closeClubsMenu();window.open('it-club-hub.html', '_blank', 'noopener,noreferrer')" class="tools-item">💻 <span>ICT Club</span></button>
         <button onclick="closeClubsMenu();window.open('digital-hub.html?open=games', '_blank', 'noopener,noreferrer')" class="tools-item">🎮 <span>Game Hub</span></button>
@@ -16603,6 +16603,7 @@ body.dash-open #ai-chat-bubble,body.dash-open #ai-chat-panel{display:none !impor
       <button onclick="sdGo(openDailyRecordPage)">📔 Daily Record</button>
       <button onclick="sdGo(openLeavePage)">📝 Leave Request</button>
       <button onclick="sdGo(openConcernsPage)">🛡️ Report a Concern</button>
+      <button onclick="sdGo(openReadingClub)">📖 Reading Club</button>
       <button onclick="sdGo(openExamPortalPage)">🎓 Examination Portal</button>
       <button onclick="sdGo(openMyTestsPage)">📚 My Tests</button>
       <button onclick="sdGo(openQuizPage)">✏️ Quiz &amp; Exams</button>
@@ -16869,6 +16870,7 @@ function sdOpenReport(){
       <button onclick="tdGo(openDailyRecordPage)">📔 Daily Record</button>
       <button onclick="tdGo(openLeavePage)">📝 Leave Requests</button>
       <button onclick="tdGo(openConcernsPage)">🛡️ Concerns from Families</button>
+      <button onclick="tdGo(openReadingClub)">📖 Reading Club</button>
       <button onclick="tdGo(openMyTimeSheet)">🕐 My Time Sheet</button>
       <button onclick="tdGo(openMyLeave)">✈️ My Leave</button>
       <button onclick="tdGo(openReportPage)">📊 Report Cards</button>
@@ -17813,6 +17815,7 @@ async function sdEnhance(d){
     + tile("📔","Daily Record","linear-gradient(135deg,#8a5a00,#c9a227)","openDailyRecordPage")
     + tile("📝","Leave Request","linear-gradient(135deg,#5d4037,#8d6e63)","openLeavePage")
     + tile("🛡️","Concern","linear-gradient(135deg,#ad1457,#d81b60)","openConcernsPage")
+    + tile("📖","Reading Club","linear-gradient(135deg,#00695c,#26a69a)","openReadingClub")
     + "</div>"
     + "<div class='dx-two'><div class='dx-card'><h3>📚 Today's classes <button onclick='sdGo(openTimetable)'>Full week ›</button></h3>"+todayClassesHTML(todays.map(function(s){ s.cls=""; return s; }), slots.length ? "No classes today 🎉" : "Your timetable will appear here when the school adds it.")+"</div>"
     + "<div class='dx-card'><h3>⏰ Upcoming <button onclick='sdGo(openCalendar)'>Calendar ›</button></h3>"+upcomingHTML(items, "Nothing coming up.")+"</div></div>"
@@ -18636,6 +18639,7 @@ function c2pOpen(mode, title, canAdd){
   document.getElementById("c2p-title").textContent = title;
   document.getElementById("c2p-add").style.display = canAdd ? "" : "none";
   document.getElementById("c2p-add").onclick = c2pAdd;
+  document.getElementById("c2p-add").textContent = "＋ New";
   document.getElementById("c2p-top").innerHTML = ""; document.getElementById("c2p-tabs").innerHTML = "";
   document.getElementById("c2p-body").innerHTML = "<div class='c2p-empty'>Loading…</div>";
   document.getElementById("c2p-page").style.display = "block";
@@ -18643,9 +18647,197 @@ function c2pOpen(mode, title, canAdd){
 function c2pClose(){ document.getElementById("c2p-page").style.display = "none"; if(isTeacher && typeof tdRefresh==="function" && document.getElementById("td").style.display==="block") tdRefresh(); }
 function c2pTabs(list){ document.getElementById("c2p-tabs").innerHTML = list.map(function(t){ return "<button class='"+(C2P.tab===t[0]?"on":"")+"' onclick=\"C2P.tab='"+t[0]+"';c2pRender()\">"+t[1]+(t[2]!=null?" ("+t[2]+")":"")+"</button>"; }).join(""); }
 function c2pForm(title, html){ document.getElementById("c2p-form-title").textContent = title; document.getElementById("c2p-form-body").innerHTML = html; document.getElementById("c2p-form").style.display = "flex"; }
-function c2pAdd(){ ({leave:leaveNewForm, classwork:cwNewForm, daily:drNewForm, concern:icNewForm})[C2P.mode](); }
-function c2pRender(){ ({leave:leaveRender, classwork:cwRender, daily:drRender, concern:icRender})[C2P.mode](); }
+function c2pAdd(){ ({leave:leaveNewForm, classwork:cwNewForm, daily:drNewForm, concern:icNewForm, reading:function(){ rcLogForm(); }})[C2P.mode](); }
+function c2pRender(){ ({leave:leaveRender, classwork:cwRender, daily:drRender, concern:icRender, reading:function(){ rcRender(); }})[C2P.mode](); }
 var C2P_PART = {full:"Full day", morning:"Morning", afternoon:"Afternoon", evening:"Evening"};
+
+// ══════════════ 📖 READING CLUB ══════════════
+// Builds a reading habit: daily Reading Log (any book — library, paper or at home) with parent confirmation,
+// monthly challenges set by teachers, a Reading Passport with badges and a printable certificate,
+// and monthly leaderboards. Data: readingLogs, readingChallenges (Portal Firestore).
+C2P_KEYS.readingLogs = "c2epe_reading_logs"; C2P_KEYS.readingChallenges = "c2epe_reading_challenges";
+var RC_BADGES = [[100,"💎","Diamond Reader"],[50,"🥇","Gold Reader"],[25,"🥈","Silver Reader"],[10,"🥉","Bronze Reader"],[1,"🌱","New Reader"]];
+var RC = { logs:[], challenges:[], books:[] };
+function rcBadge(n){ return RC_BADGES.find(function(b){ return n >= b[0]; }) || null; }
+function rcNextBadge(n){ var up = RC_BADGES.slice().reverse().find(function(b){ return n < b[0]; }); return up; }
+function rcMonth(d){ return String(d || new Date().toISOString()).slice(0,7); }
+function rcDays(logs){ return new Set(logs.map(function(l){ return l.date; })).size; }
+function rcStreak(logs){
+  var set = new Set(logs.map(function(l){ return l.date; })), d = new Date(), n = 0;
+  if(!set.has(d.toISOString().slice(0,10))) d.setDate(d.getDate()-1);           // today not logged yet: count up to yesterday
+  while(set.has(d.toISOString().slice(0,10))){ n++; d.setDate(d.getDate()-1); }
+  return n;
+}
+async function rcLoadBooks(){
+  try {
+    if(xLocal()) return JSON.parse(localStorage.getItem("c2epe_lib_books")||"[]");
+    var m = await xFb(); return (await m.getDocs(m.collection(window._fb.db,"lib_books"))).docs.map(function(d){ return d.data(); });
+  } catch(e){ return []; }
+}
+async function openReadingClub(){
+  c2pOpen("reading", "📖 Reading Club", !!studentSession && !isTeacher);
+  document.getElementById("c2p-add").textContent = "＋ Log reading";
+  try {
+    RC.challenges = (await c2pList("readingChallenges")).filter(function(c){ return c.active !== false; });
+    if(isTeacher) RC.logs = (await c2pList("readingLogs")).filter(function(l){ return teacherCanSeeClass(baseLevel(l.cls||"")); });
+    else if(studentSession) RC.logs = await c2pList("readingLogs","studentId",studentSession.studentId);
+    else RC.logs = [];
+    if(!isTeacher) { try { RC.all = (await c2pList("readingLogs")).filter(function(l){ return rcMonth(l.date) === rcMonth(); }); } catch(e){ RC.all = []; } }
+  } catch(e){ document.getElementById("c2p-body").innerHTML = "<div class='c2p-empty'>❌ "+escapeHtml(e.message||String(e))+"</div>"; return; }
+  RC.logs.sort(function(a,b){ return String(b.date+b.createdAt).localeCompare(String(a.date+a.createdAt)); });
+  C2P.tab = isTeacher ? "class" : "passport";
+  rcRender();
+}
+function rcRender(){
+  if(isTeacher){ c2pTabs([["class","📊 My classes"],["challenges","🏆 Challenges"],["board","🌟 Top readers"]]); }
+  else c2pTabs([["passport","🛂 My Passport"],["log","📒 Reading log"],["challenges","🏆 Challenges"],["board","🌟 Top readers"]]);
+  document.getElementById("c2p-top").innerHTML = "";
+  ({ passport:rcPassport, log:rcLogList, challenges:rcChallenges, board:rcBoard, "class":rcClass })[C2P.tab]();
+}
+// ── student: passport ──
+function rcPassport(){
+  var logs = RC.logs, done = logs.filter(function(l){ return l.finished; }), mins = logs.reduce(function(a,l){ return a + (+l.minutes||0); },0);
+  var b = rcBadge(done.length), nx = rcNextBadge(done.length), streak = rcStreak(logs);
+  var thisMonth = logs.filter(function(l){ return rcMonth(l.date) === rcMonth(); });
+  var html = "<div class='c2p-card' style='background:linear-gradient(135deg,#0b1a3b,#1b3570);color:#fff;text-align:center'>"
+    + "<div style='font-size:.75rem;color:#cfd6ea;letter-spacing:2px'>C2-EPE READING PASSPORT</div>"
+    + "<div style='font-size:3rem;margin:4px 0'>"+(b?b[1]:"📖")+"</div><b style='color:#d6aa4c;font-size:1.1rem'>"+(b?b[2]:"Start reading!")+"</b>"
+    + "<div style='font-size:.8rem;color:#cfd6ea;margin-top:4px'>"+escapeHtml(studentSession.name)+" · "+escapeHtml(studentSession.cls||"")+"</div>"
+    + (nx ? "<div style='margin:10px auto 0;max-width:280px'><div style='height:8px;background:rgba(255,255,255,.15);border-radius:6px;overflow:hidden'><i style='display:block;height:100%;width:"+Math.round(done.length*100/nx[0])+"%;background:#d6aa4c'></i></div><div style='font-size:.72rem;color:#cfd6ea;margin-top:4px'>"+(nx[0]-done.length)+" more book"+(nx[0]-done.length>1?"s":"")+" to "+nx[1]+" "+nx[2]+"</div></div>" : "")
+    + "</div>"
+    + "<div class='c2p-grid' style='margin-bottom:12px'>"+[["📚",done.length,"books finished"],["⏱️",mins>=60?Math.floor(mins/60)+"h "+(mins%60)+"m":mins+" min","reading time"],["🔥",streak,"day streak"],["📅",rcDays(thisMonth),"days this month"]].map(function(k){ return "<div class='c2p-card' style='text-align:center;margin:0'><div style='font-size:1.3rem'>"+k[0]+"</div><b style='font-size:1.2rem;color:#0b1a3b'>"+k[1]+"</b><div class='c2p-muted'>"+k[2]+"</div></div>"; }).join("")+"</div>"
+    + "<div class='c2p-card'><b style='color:#0b1a3b'>🛂 Stamps — one for every book you finish</b><div style='display:flex;flex-wrap:wrap;gap:8px;margin-top:10px'>"
+    + (done.length ? done.slice().reverse().map(function(l, i){ return "<div title='"+escapeHtml(l.title)+"' style='width:74px;text-align:center'><div style='width:58px;height:58px;margin:0 auto;border-radius:50%;border:2px dashed #c9a227;display:flex;align-items:center;justify-content:center;font-size:1.4rem;transform:rotate("+((i*37)%21-10)+"deg);background:#fffaf0'>📘</div><div style='font-size:.62rem;color:#555;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap'>"+escapeHtml(l.title)+"</div></div>"; }).join("") : "<div class='c2p-muted'>No stamps yet — finish your first book!</div>")
+    + "</div></div>"
+    + "<div class='c2p-card'><b style='color:#0b1a3b'>🏅 Badges</b><div style='display:flex;gap:12px;flex-wrap:wrap;margin-top:10px'>"
+    + RC_BADGES.slice().reverse().map(function(x){ var got = done.length >= x[0]; return "<div style='text-align:center;opacity:"+(got?1:.35)+"'><div style='font-size:1.8rem'>"+x[1]+"</div><div class='c2p-muted'>"+x[2]+"<br>"+x[0]+" book"+(x[0]>1?"s":"")+"</div></div>"; }).join("")
+    + "</div>" + (done.length >= 10 ? "<button class='c2p-btn gold' style='margin-top:12px' onclick='rcCertificate()'>🎓 Print my Reading Club certificate</button>" : "<div class='c2p-muted' style='margin-top:10px'>Finish 10 books to get your Reading Club certificate.</div>") + "</div>";
+  document.getElementById("c2p-body").innerHTML = html;
+}
+// ── student: log ──
+function rcLogList(){
+  document.getElementById("c2p-top").innerHTML = "<div class='c2p-card' style='display:flex;gap:10px;align-items:center'><div style='font-size:1.6rem'>📒</div><div style='flex:1;font-size:.82rem'>Read today? Write it down — any book counts: from the library, a paper book or a story at home.</div><button class='c2p-btn gold' onclick='rcLogForm()'>＋ Log reading</button></div>";
+  document.getElementById("c2p-body").innerHTML = RC.logs.length ? RC.logs.map(function(l){
+    return "<div class='c2p-card'><div style='display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap'><div><b style='color:#0b1a3b'>"+(l.finished?"✅ ":"📖 ")+escapeHtml(l.title)+"</b><div class='c2p-muted'>"+c2pDate(l.date,{weekday:"short",day:"numeric",month:"short"})+" · "+(+l.minutes||0)+" min"+(l.pages?" · "+l.pages+" pages":"")+(l.withParent?" · 👨‍👩‍👧 with family":"")+"</div></div>"
+      + (l.parentName ? "<span class='c2p-st approved'>👨‍👩‍👧 Confirmed by "+escapeHtml(l.parentName)+"</span>" : "") + "</div>"
+      + (l.note ? "<div style='font-size:.82rem;margin-top:6px;font-style:italic'>“"+escapeHtml(l.note)+"”</div>" : "") + "</div>";
+  }).join("") : "<div class='c2p-empty'>No reading logged yet.</div>";
+}
+async function rcLogForm(){
+  if(!RC.books.length) RC.books = await rcLoadBooks();
+  c2pForm("📒 Log my reading",
+    "<label class='c2p-l'>Book title</label><input id='rc-title' class='c2p-in' list='rc-books' maxlength='120' placeholder='e.g. The Little Red Hen'><datalist id='rc-books'>"+RC.books.map(function(b){ return "<option value='"+escapeHtml(b.title||"")+"'>"; }).join("")+"</datalist>"
+    + "<div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px'><div><label class='c2p-l'>Date</label><input type='date' id='rc-date' class='c2p-in' value='"+new Date().toISOString().slice(0,10)+"' max='"+new Date().toISOString().slice(0,10)+"'></div><div><label class='c2p-l'>Minutes</label><input type='number' id='rc-min' class='c2p-in' min='1' max='300' value='20'></div><div><label class='c2p-l'>Pages</label><input type='number' id='rc-pages' class='c2p-in' min='0' max='1000' placeholder='—'></div></div>"
+    + "<label style='display:flex;gap:8px;align-items:center;margin-top:10px;font-size:.84rem'><input type='checkbox' id='rc-fin' style='width:auto'> ✅ I finished this book</label>"
+    + "<label style='display:flex;gap:8px;align-items:center;margin-top:6px;font-size:.84rem'><input type='checkbox' id='rc-fam' style='width:auto'> 👨‍👩‍👧 I read with my family</label>"
+    + "<label class='c2p-l'>What did you like? (optional)</label><input id='rc-note' class='c2p-in' maxlength='200'>"
+    + "<div style='margin-top:10px;padding:10px;border-radius:9px;background:#fffaf0;border:1px solid #f1e6c8'><label class='c2p-l' style='margin-top:0'>👨‍👩‍👧 Parent / guardian confirms (name)</label><input id='rc-parent' class='c2p-in' maxlength='60' placeholder='Parent signs here by typing their name'><div class='c2p-muted' style='margin-top:4px'>Parents: please check your child really read before signing.</div></div>"
+    + "<button class='c2p-btn gold' style='width:100%;margin-top:12px' onclick='rcLogSave()'>💾 Save</button><div id='rc-msg' style='display:none'></div>");
+}
+async function rcLogSave(){
+  var d = { studentId:studentSession.studentId, studentDocId:studentSession.docId||"", studentName:studentSession.name, cls:baseLevel(studentSession.cls||""),
+    title:document.getElementById("rc-title").value.trim(), date:document.getElementById("rc-date").value, minutes:Math.round(+document.getElementById("rc-min").value||0),
+    pages:Math.round(+document.getElementById("rc-pages").value||0), finished:document.getElementById("rc-fin").checked, withParent:document.getElementById("rc-fam").checked,
+    note:document.getElementById("rc-note").value.trim(), parentName:document.getElementById("rc-parent").value.trim() };
+  if(d.title.length < 2) return c2pMsg("rc-msg","Please write the book title.");
+  if(!(d.minutes >= 1 && d.minutes <= 300)) return c2pMsg("rc-msg","Minutes must be between 1 and 300.");
+  if(!d.date || d.date > new Date().toISOString().slice(0,10)) return c2pMsg("rc-msg","Please choose today or an earlier day.");
+  if(d.finished && RC.logs.some(function(l){ return l.finished && l.title.toLowerCase() === d.title.toLowerCase(); })) return c2pMsg("rc-msg","You already finished this book — choose another one for a new stamp.");
+  try {
+    d.id = await c2pSave("readingLogs", d); RC.logs.unshift(d); if(RC.all) RC.all.push(d);
+    document.getElementById("c2p-form").style.display = "none";
+    var n = RC.logs.filter(function(l){ return l.finished; }).length, b = rcBadge(n);
+    if(d.finished && b && b[0] === n) alert("🎉 New badge: " + b[1] + " " + b[2] + "!");
+    C2P.tab = "log"; rcRender();
+  } catch(e){ c2pMsg("rc-msg","❌ "+(e.message||e)); }
+}
+// ── challenges ──
+function rcProgress(c, logs){
+  var mine = logs.filter(function(l){ return l.date >= c.from && l.date <= c.to; });
+  var v = c.type === "books" ? mine.filter(function(l){ return l.finished; }).length : c.type === "days" ? rcDays(mine) : mine.reduce(function(a,l){ return a + (+l.minutes||0); },0);
+  return Math.min(v, +c.target||0);
+}
+function rcChallenges(){
+  var today = new Date().toISOString().slice(0,10);
+  var list = RC.challenges.filter(function(c){ return isTeacher || !c.cls || baseLevel(c.cls) === baseLevel((studentSession||{}).cls||""); });
+  var unit = { minutes:"minutes", books:"books", days:"reading days" };
+  document.getElementById("c2p-top").innerHTML = isTeacher ? "<div class='c2p-card' style='display:flex;gap:10px;align-items:center'><div style='font-size:1.6rem'>🏆</div><div style='flex:1;font-size:.82rem'>Set a goal for a class or the whole school — students see their progress automatically.</div><button class='c2p-btn gold' onclick='rcChallengeForm()'>＋ New challenge</button></div>" : "";
+  document.getElementById("c2p-body").innerHTML = list.length ? list.map(function(c){
+    var live = c.from <= today && today <= c.to, head = "<div style='display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap'><div><b style='color:#0b1a3b'>🏆 "+escapeHtml(c.title)+"</b><div class='c2p-muted'>"+c.target+" "+unit[c.type]+" · "+c2pDate(c.from)+" → "+c2pDate(c.to)+" · "+(c.cls?escapeHtml(c.cls):"All classes")+"</div></div><span class='c2p-st "+(live?"approved":"pending")+"'>"+(live?"Running":today<c.from?"Starts soon":"Finished")+"</span></div>"+(c.desc?"<div style='font-size:.82rem;margin-top:6px'>"+escapeHtml(c.desc)+"</div>":"");
+    if(isTeacher){
+      var by = {}; RC.logs.filter(function(l){ return !c.cls || baseLevel(l.cls)===baseLevel(c.cls); }).forEach(function(l){ (by[l.studentId] = by[l.studentId] || []).push(l); });
+      var done = Object.keys(by).filter(function(k){ return rcProgress(c, by[k]) >= c.target; }).length;
+      return "<div class='c2p-card'>"+head+"<div class='c2p-muted' style='margin-top:6px'>✅ "+done+" student"+(done===1?"":"s")+" completed · "+Object.keys(by).length+" taking part</div><button class='c2p-btn red' style='margin-top:8px;padding:6px 10px;font-size:.74rem' onclick=\"rcEndChallenge('"+c.id+"')\">End challenge</button></div>";
+    }
+    var v = rcProgress(c, RC.logs), pct = Math.round(v*100/(+c.target||1));
+    return "<div class='c2p-card'>"+head+"<div style='height:12px;background:#eef0f5;border-radius:7px;overflow:hidden;margin-top:10px'><i style='display:block;height:100%;width:"+pct+"%;background:linear-gradient(90deg,#c9a227,#2e7d32)'></i></div><div class='c2p-muted' style='margin-top:4px'>"+v+" / "+c.target+" "+unit[c.type]+(pct>=100?" — 🎉 Challenge complete!":"")+"</div></div>";
+  }).join("") : "<div class='c2p-empty'>No challenges right now.</div>";
+}
+function rcChallengeForm(){
+  var t = new Date(), first = new Date(t.getFullYear(), t.getMonth(), 1), last = new Date(t.getFullYear(), t.getMonth()+1, 0), f = function(d){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
+  c2pForm("🏆 New reading challenge",
+    "<label class='c2p-l'>Title</label><input id='rcc-title' class='c2p-in' placeholder='e.g. 20 minutes a day in March'>"
+    + "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px'><div><label class='c2p-l'>Goal</label><select id='rcc-type' class='c2p-in'><option value='minutes'>Minutes of reading</option><option value='books'>Books finished</option><option value='days'>Days with reading</option></select></div><div><label class='c2p-l'>Target</label><input type='number' id='rcc-target' class='c2p-in' value='300' min='1'></div></div>"
+    + "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px'><div><label class='c2p-l'>From</label><input type='date' id='rcc-from' class='c2p-in' value='"+f(first)+"'></div><div><label class='c2p-l'>To</label><input type='date' id='rcc-to' class='c2p-in' value='"+f(last)+"'></div></div>"
+    + "<label class='c2p-l'>Class (leave as “Choose a class” for all)</label>"+c2pClassSelect("rcc-cls")
+    + "<label class='c2p-l'>Description (optional)</label><input id='rcc-desc' class='c2p-in' maxlength='200'>"
+    + "<button class='c2p-btn gold' style='width:100%;margin-top:12px' onclick='rcChallengeSave()'>💾 Save challenge</button><div id='rcc-msg' style='display:none'></div>");
+  c2pPrepClassSelect("rcc-cls");
+}
+async function rcChallengeSave(){
+  var c = { title:document.getElementById("rcc-title").value.trim(), type:document.getElementById("rcc-type").value, target:Math.round(+document.getElementById("rcc-target").value||0),
+    from:document.getElementById("rcc-from").value, to:document.getElementById("rcc-to").value, cls:document.getElementById("rcc-cls").value, desc:document.getElementById("rcc-desc").value.trim(), active:true, createdBy:currentTeacherName||"" };
+  if(!c.title || c.target < 1 || !c.from || !c.to || c.to < c.from) return c2pMsg("rcc-msg","Please fill in the title, a target and the dates.");
+  try { c.id = await c2pSave("readingChallenges", c); RC.challenges.unshift(c); document.getElementById("c2p-form").style.display = "none"; C2P.tab = "challenges"; rcRender(); }
+  catch(e){ c2pMsg("rcc-msg","❌ "+(e.message||e)); }
+}
+async function rcEndChallenge(id){
+  if(!confirm("End this challenge? It will disappear for students.")) return;
+  try { await c2pSave("readingChallenges", { active:false }, id); RC.challenges = RC.challenges.filter(function(c){ return c.id !== id; }); rcRender(); } catch(e){ alert("❌ "+(e.message||e)); }
+}
+// ── leaderboard (this month) ──
+function rcBoard(){
+  var src = isTeacher ? RC.logs.filter(function(l){ return rcMonth(l.date) === rcMonth(); }) : (RC.all || []);
+  var by = {}; src.forEach(function(l){ var s = by[l.studentId] = by[l.studentId] || { name:l.studentName, cls:l.cls, min:0, books:0 }; s.min += (+l.minutes||0); if(l.finished) s.books++; });
+  var rows = Object.keys(by).map(function(k){ return Object.assign({ id:k }, by[k]); }).sort(function(a,b){ return b.min - a.min || b.books - a.books; }).slice(0, 20);
+  var medal = ["🥇","🥈","🥉"], me = studentSession && studentSession.studentId;
+  document.getElementById("c2p-body").innerHTML = "<div class='c2p-card'><b style='color:#0b1a3b'>🌟 Top readers — "+new Date().toLocaleDateString("en-GB",{month:"long",year:"numeric"})+"</b><div class='c2p-muted'>Ranked by minutes of reading this month</div>"
+    + (rows.length ? rows.map(function(r, i){ return "<div style='display:flex;align-items:center;gap:10px;padding:8px 6px;border-bottom:1px solid #f0f2f5;"+(r.id===me?"background:#fff8e1;border-radius:8px":"")+"'><b style='width:28px;text-align:center'>"+(medal[i]||i+1)+"</b><span style='flex:1'>"+escapeHtml(String(r.name||"").split(" ").slice(0,2).join(" "))+" <span class='c2p-muted'>"+escapeHtml(r.cls||"")+"</span></span><b style='color:#0b1a3b'>"+r.min+" min</b><span class='c2p-muted'>📚 "+r.books+"</span></div>"; }).join("") : "<div class='c2p-empty'>Nobody has logged reading this month yet — be the first!</div>")
+    + "</div>";
+}
+// ── teacher: who is reading ──
+async function rcClass(){
+  var studs = []; try { studs = (await tdFetch("students","c2epe_local_students")).filter(function(s){ return s.status !== "left" && teacherCanSeeClass(baseLevel(s.cls||"")); }); } catch(e){}
+  var week = new Date(Date.now()-7*86400000).toISOString().slice(0,10), month = rcMonth();
+  var rows = studs.map(function(s){
+    var l = RC.logs.filter(function(x){ return x.studentId === s.studentId; });
+    var m = l.filter(function(x){ return rcMonth(x.date) === month; });
+    return { s:s, min:m.reduce(function(a,x){ return a+(+x.minutes||0); },0), books:l.filter(function(x){ return x.finished; }).length, days:rcDays(m), last:l[0] && l[0].date, week:l.some(function(x){ return x.date >= week; }), signed:m.filter(function(x){ return x.parentName; }).length, logs:m.length };
+  }).sort(function(a,b){ return a.min - b.min; });
+  var notReading = rows.filter(function(r){ return !r.week; }).length;
+  document.getElementById("c2p-top").innerHTML = "<div class='c2p-grid' style='margin-bottom:12px'>"+[["👥",rows.length,"students"],["📖",rows.length-notReading,"read this week"],["⚠️",notReading,"no reading this week"],["📚",rows.reduce(function(a,r){ return a+r.books; },0),"books finished"]].map(function(k){ return "<div class='c2p-card' style='text-align:center;margin:0'><div>"+k[0]+"</div><b style='font-size:1.2rem;color:#0b1a3b'>"+k[1]+"</b><div class='c2p-muted'>"+k[2]+"</div></div>"; }).join("")+"</div>"
+    + "<button class='c2p-btn ghost' style='margin-bottom:10px' onclick='rcExport()'>⬇️ Export CSV</button>";
+  window.__rcRows = rows;
+  document.getElementById("c2p-body").innerHTML = rows.length ? "<div class='c2p-card' style='padding:0;overflow-x:auto'><table style='width:100%;border-collapse:collapse;font-size:.78rem'><tr style='background:#0b1a3b;color:#d6aa4c'><th style='padding:7px;text-align:left'>Student</th><th>This month</th><th>Days</th><th>Books</th><th>Parent signed</th><th>Last read</th></tr>"
+    + rows.map(function(r){ var b = rcBadge(r.books); return "<tr style='border-bottom:1px solid #eef0f5"+(r.week?"":";background:#fff6f6")+"'><td style='padding:7px'><b>"+escapeHtml(r.s.nameEn||r.s.nameKm||"")+"</b> "+(b?b[1]:"")+"<div class='c2p-muted'>"+escapeHtml(r.s.cls||"")+"</div></td><td style='text-align:center'>"+r.min+" min</td><td style='text-align:center'>"+r.days+"</td><td style='text-align:center'>"+r.books+"</td><td style='text-align:center'>"+r.signed+" / "+r.logs+"</td><td style='text-align:center'>"+(r.last?c2pDate(r.last,{day:"numeric",month:"short"}):"<span style='color:#c62828'>never</span>")+"</td></tr>"; }).join("") + "</table></div>"
+    : "<div class='c2p-empty'>No students in your classes.</div>";
+}
+function rcExport(){
+  var rows = [["Student ID","Student","Class","Minutes this month","Reading days this month","Books finished","Parent-signed logs","Last read"]].concat((window.__rcRows||[]).map(function(r){ return [r.s.studentId, r.s.nameEn||"", r.s.cls||"", r.min, r.days, r.books, r.signed, r.last||""]; }));
+  var csv = "\ufeff"+rows.map(function(r){ return r.map(function(c){ return '"'+String(c).replace(/"/g,'""')+'"'; }).join(","); }).join("\n");
+  var a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv],{type:"text/csv"})); a.download = "reading-club-"+rcMonth()+".csv"; document.body.appendChild(a); a.click(); a.remove();
+}
+// ── certificate ──
+function rcCertificate(){
+  var done = RC.logs.filter(function(l){ return l.finished; }), b = rcBadge(done.length), mins = RC.logs.reduce(function(a,l){ return a+(+l.minutes||0); },0);
+  var w = window.open("", "_blank"); if(!w){ alert("Please allow pop-ups to print the certificate."); return; }
+  w.document.write("<!DOCTYPE html><html><head><meta charset='utf-8'><title>Reading Club Certificate</title><style>@page{size:A4 landscape;margin:0}body{margin:0;font-family:Georgia,serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}.c{width:297mm;height:210mm;box-sizing:border-box;padding:18mm;background:#fffdf6;border:10mm solid #0b1a3b;outline:2mm solid #c9a227;outline-offset:-14mm;text-align:center;display:flex;flex-direction:column;justify-content:center}h1{font-size:44px;color:#0b1a3b;margin:6px 0;letter-spacing:3px}h2{font-size:40px;color:#b8892b;margin:8px 0;font-style:italic}p{font-size:18px;color:#333;margin:6px 0}.b{font-size:64px}</style></head><body><div class='c'>"
+    + "<img src='"+location.href.replace(/[^\/]*$/,"")+"logo.png' style='height:70px;margin:0 auto' onerror=\"this.style.display='none'\"><div style='letter-spacing:4px;color:#555;font-family:Arial;font-size:13px;margin-top:6px'>C2-EPE DIGITAL ACADEMY · READING CLUB</div>"
+    + "<h1>CERTIFICATE OF READING</h1><p>This certificate is proudly presented to</p><h2>"+escapeHtml(studentSession.name)+"</h2>"
+    + "<p>for reading <b>"+done.length+" books</b> and <b>"+Math.round(mins/60)+" hours</b> as a member of the C2-EPE Reading Club</p><div class='b'>"+(b?b[1]:"")+"</div><p style='font-weight:bold;color:#0b1a3b'>"+(b?b[2]:"")+"</p>"
+    + "<p style='font-size:14px;color:#777;margin-top:14px'>"+new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})+" · Student ID "+escapeHtml(studentSession.studentId)+"</p></div><script>setTimeout(function(){window.print()},600)<\/script></body></html>");
+  w.document.close();
+}
 
 // ══════════════ 1. LEAVE REQUESTS ══════════════
 // Parents ask for leave; the teacher approves; approved days are written into Attendance as "Permission".

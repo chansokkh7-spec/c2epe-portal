@@ -16416,7 +16416,9 @@ setInterval(function(){
   setAiWidgetVisible(!isAnyFullPageOpen());
 }, 400);
 
+var CHAT_BOT_ON = false;   // the floating 💬 chat bot is switched off (set to true to show it again)
 function setAiWidgetVisible(visible){
+  if(!CHAT_BOT_ON) visible = false;
   // Never show the chat bot while the SEG Digital Hub is open
   var hub = document.getElementById("digital-hub-page");
   if(hub && hub.style.display !== "none" && hub.style.display !== "") visible = false;
@@ -18689,6 +18691,13 @@ async function openReadingClub(){
   rcRender();
 }
 function rcRender(){
+  if(!isTeacher && !studentSession){
+    document.getElementById("c2p-tabs").innerHTML = ""; document.getElementById("c2p-top").innerHTML = "";
+    document.getElementById("c2p-body").innerHTML = "<div class='c2p-card' style='text-align:center;padding:30px 18px'><div style='font-size:2.6rem'>📖</div><b style='color:#0b1a3b;font-size:1.05rem'>Welcome to the C2-EPE Reading Club!</b>"
+      + "<p style='font-size:.86rem;color:#555;margin:8px 0 14px'>Sign in with your Student ID to log your reading, collect stamps and badges, and join the monthly challenges.<br>សូមចូលដោយ Student ID ដើម្បីកត់ត្រាការអាន និងទទួលត្រា។</p>"
+      + "<button class='c2p-btn gold' onclick=\"c2pClose(); showParentModal();\">🔑 Sign in with Student ID</button></div>";
+    return;
+  }
   if(isTeacher){ c2pTabs([["class","📊 My classes"],["challenges","🏆 Challenges"],["board","🌟 Top readers"]]); }
   else c2pTabs([["passport","🛂 My Passport"],["log","📒 Reading log"],["challenges","🏆 Challenges"],["board","🌟 Top readers"]]);
   document.getElementById("c2p-top").innerHTML = "";

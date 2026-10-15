@@ -3539,6 +3539,18 @@
                     </a>
                 </div>
             ` : '';
+            // If this system ALSO has a lesson app (Embed Code), show a big button under the video
+            // so students can go into the app after watching (before, the video hid the app completely).
+            const appSection = (sys.type === 'code' && sys.content) ? `
+                <div style="text-align:center;padding:22px 16px 6px;font-family:Arial,sans-serif;">
+                    <button type="button" onclick="window.parent.postMessage({ type: 'hubOpenApp' }, '*')"
+                        style="background:#d4a017;color:#0b1736;font-weight:800;font-size:18px;border:0;cursor:pointer;
+                        padding:14px 34px;border-radius:10px;box-shadow:0 4px 0 #9c7410;">
+                        ▶ Start the lesson · ចូលរៀន
+                    </button>
+                    <div style="color:#667;font-size:13px;margin-top:8px;">Watch the video, then press the button to practise.</div>
+                </div>
+            ` : '';
 
             return `
                 <div style="background:#000;padding:16px;">
@@ -3552,6 +3564,7 @@
                         </video>`
                     }
                 </div>
+                ${appSection}
                 ${linkSection}
                 ${quizSection}
             `;
@@ -3630,6 +3643,13 @@
         // Firestore instance, by design — postMessage is the only bridge,
         // and it works even without "allow-same-origin" on the sandbox.
         window.addEventListener('message', (event) => {
+            // "▶ Start the lesson" under a video: open this system's lesson app in the same viewer
+            if (event.data && event.data.type === 'hubOpenApp' && activeViewerSystemId !== null) {
+                const vf = document.getElementById('viewerFrame');
+                const sys = systemsData[activeViewerSystemId];
+                if (vf && event.source === vf.contentWindow && sys && sys.type === 'code' && sys.content) openViewer(sys.title, sys.content);
+                return;
+            }
             if (event.data && event.data.type === 'quizComplete' && activeViewerSystemId !== null) {
                 saveQuizResult(activeViewerSystemId, activeViewerSystemTitle, event.data.score, event.data.total, event.data.unit, event.data.unitTitle);
             }

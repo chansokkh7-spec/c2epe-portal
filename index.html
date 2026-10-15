@@ -16881,6 +16881,7 @@ function sdOpenReport(){
       <button onclick="tdGo(openConcernsPage)">🛡️ Concerns from Families</button>
       <button onclick="tdGo(openReadingClub)">📖 Reading Club</button>
       <button onclick="tdGo(openClinic)">🏥 School Clinic</button>
+      <button onclick="tdGo(openMyHrFile)">📁 My HR File</button>
       <button onclick="tdGo(openMyTimeSheet)">🕐 My Time Sheet</button>
       <button onclick="tdGo(openMyLeave)">✈️ My Leave</button>
       <button onclick="tdGo(openReportPage)">📊 Report Cards</button>
@@ -16898,6 +16899,7 @@ function sdOpenReport(){
       <button id="td-adm-staff" onclick="tdGo(openStaffPerformance)">👥 Staff Performance</button>
       <button id="td-adm-hratt" onclick="tdGo(openStaffAttendance)">🕐 Staff Attendance</button>
       <button id="td-adm-hrleave" onclick="tdGo(openStaffLeaveApprovals)">✈️ Staff Leave Approvals</button>
+      <button id="td-adm-sfiles" onclick="tdGo(openStaffFiles)">📁 Staff e-Files</button>
       <button id="td-adm-admissions" onclick="tdGo(openAdmissionsPage)">📝 Admissions (applications)<span id="td-adm-badge" style="display:none;margin-left:auto;background:#e53935;color:#fff;border-radius:999px;padding:1px 8px;font-size:.7rem;font-weight:800"></span></button>
       <button id="td-adm-frontdesk" onclick="tdGo(openFrontDeskPage)">🏫 Front Desk Registration</button>
       <button id="td-adm-dashboard" onclick="tdGo(openAdminDashboard)">🛡️ Admin Dashboard (staff)</button>
@@ -17019,7 +17021,8 @@ async function tdRefresh(){
   show('td-adm-h', canAdmissions || canFinance || isAdm);
   show('td-adm-analytics', typeof anCan === 'function' && anCan());
   show('td-adm-staff', typeof spCan === 'function' && spCan());
-  show('td-adm-hratt', typeof hrIsManager === 'function' && hrIsManager()); show('td-adm-hrleave', typeof hrIsManager === 'function' && hrIsManager());
+  show('td-adm-hratt', typeof hrIsManager === 'function' && hrIsManager());
+  show('td-adm-sfiles', (typeof hrIsManager === 'function' && hrIsManager()) || (typeof currentAdminDeptHead !== 'undefined' && currentAdminDeptHead === 'finance')); show('td-adm-hrleave', typeof hrIsManager === 'function' && hrIsManager());
   var apps = [];
   if(canAdmissions){ try { apps = await tdFetch('applications','c2epe_applications'); } catch(e){ console.error('td applications', e); } }
   var waiting = apps.filter(function(a){ return a.status==='pending' || a.status==='reviewing'; });
@@ -18661,8 +18664,8 @@ function c2pOpen(mode, title, canAdd){
 function c2pClose(){ document.getElementById("c2p-page").style.display = "none"; if(isTeacher && typeof tdRefresh==="function" && document.getElementById("td").style.display==="block") tdRefresh(); }
 function c2pTabs(list){ document.getElementById("c2p-tabs").innerHTML = list.map(function(t){ return "<button class='"+(C2P.tab===t[0]?"on":"")+"' onclick=\"C2P.tab='"+t[0]+"';c2pRender()\">"+t[1]+(t[2]!=null?" ("+t[2]+")":"")+"</button>"; }).join(""); }
 function c2pForm(title, html){ document.getElementById("c2p-form-title").textContent = title; document.getElementById("c2p-form-body").innerHTML = html; document.getElementById("c2p-form").style.display = "flex"; }
-function c2pAdd(){ ({leave:leaveNewForm, classwork:cwNewForm, daily:drNewForm, concern:icNewForm, reading:function(){ rcLogForm(); }, clinic:function(){ clVisitForm(); }})[C2P.mode](); }
-function c2pRender(){ ({leave:leaveRender, classwork:cwRender, daily:drRender, concern:icRender, reading:function(){ rcRender(); }, clinic:function(){ clRender(); }})[C2P.mode](); }
+function c2pAdd(){ ({leave:leaveNewForm, classwork:cwNewForm, daily:drNewForm, concern:icNewForm, reading:function(){ rcLogForm(); }, clinic:function(){ clVisitForm(); }, hrfile:function(){}})[C2P.mode](); }
+function c2pRender(){ ({leave:leaveRender, classwork:cwRender, daily:drRender, concern:icRender, reading:function(){ rcRender(); }, clinic:function(){ clRender(); }, hrfile:function(){ sfRender(); }})[C2P.mode](); }
 var C2P_PART = {full:"Full day", morning:"Morning", afternoon:"Afternoon", evening:"Evening"};
 
 // ══════════════ 📖 READING CLUB ══════════════
@@ -19094,6 +19097,371 @@ async function clinicParentAlert(){
   if(!html) return;
   var first = box.querySelector(".dx-hello") || box.firstElementChild;
   if(first) first.insertAdjacentHTML("beforebegin", html); else box.insertAdjacentHTML("afterbegin", html);
+}
+
+// ══════════════ 📁 STAFF e-FILE (C2-EPE Digital Academy HR forms, no printing needed) ══════════════
+// Each staff member fills ONE Employee Profile on phone/computer (it produces C2-HR-01 Application,
+// C2-HR-02 Autobiography and C2-HR-03 Employee Profile as PDFs), uploads the documents of C2-HR-04,
+// reads and signs their Job Description (C2-HR-07). HR checks → the Director approves.
+// HR also keeps the Recruitment checklist (C2-HR-05) and Personnel updates (C2-HR-06).
+// Privacy: staffFiles/{uid} = only the person, HR head and Admin · staffFinance/{uid} = + Finance head.
+var SF = { file:null, uid:"", list:[], recruit:[], jds:{} };
+var SF_STATUS = { draft:["📝 Draft","pending"], submitted:["📨 Waiting for HR","pending"], checked:["🔎 Checked by HR","inprogress"], approved:["✅ Approved","approved"], returned:["↩️ Returned for changes","rejected"] };
+var SF_DOCS = [
+  ["idcard","National ID card / Passport","អត្តសញ្ញាណប័ណ្ណ / លិខិតឆ្លងដែន",true,true],
+  ["familybook","Family Book","សៀវភៅគ្រួសារ",false,true],
+  ["marriage","Marriage Certificate (if married)","សំបុត្រអាពាហ៍ពិពាហ៍ (បើមាន)",false,false],
+  ["birth","Birth Certificate","សំបុត្រកំណើត",false,true],
+  ["bank","ABA bank account (USD)","គណនីធនាគារ ABA (USD)",true,true],
+  ["degrees","Educational degrees / certificates","សញ្ញាបត្រ / វិញ្ញាបនបត្រសិក្សា",true,true],
+  ["employment","Certificates of employment / recommendations","លិខិតបញ្ជាក់ការងារ / លិខិតណែនាំ",false,false],
+  ["nssf","NSSF card","ប័ណ្ណ ប.ស.ស.",true,false],
+  ["photo","Photograph 4×6 cm","រូបថត 4×6",false,true],
+  ["criminal","Criminal record certificate","លិខិតបញ្ជាក់គ្មានទោស",false,true],
+  ["workbook","Work Book (if applicable)","សៀវភៅការងារ (បើមាន)",false,false],
+  ["residence","Residence certificate (signed by village/commune chief)","លិខិតបញ្ជាក់ទីលំនៅ (មេភូមិ/ចៅសង្កាត់)",false,true]
+];   // [key, English, Khmer, attach to Finance, required]
+var SF_RECRUIT = [["requisition","Position Requisition Form","ទម្រង់ស្នើសុំជ្រើសរើសបុគ្គលិក"],["jd","Job Description","ការពិពណ៌នាការងារ"],["cv","Application Form / CV","ពាក្យសុំ ឬប្រវត្តិរូបសង្ខេប"],["interview","Interview Assessment Form","ទម្រង់វាយតម្លៃសម្ភាសន៍"],["summary","Recruitment Summary","សេចក្តីសង្ខេបលទ្ធផលជ្រើសរើស"],["reference","Reference Check","ការពិនិត្យអ្នកធានា"],["medical","Medical Clearance (if required)","ពិនិត្យសុខភាព (បើតម្រូវ)"],["offer","Job Offer Letter","លិខិតផ្តល់ការងារ"],["salary","Salary Request for Approval / Internal Memo","លិខិតស្នើសុំអនុម័តប្រាក់បៀវត្ស"],["contract","Employment Contract","កិច្ចសន្យាការងារ"]];
+var SF_UPDATES = [["promotion","Promotion / change of position","ការដំឡើងតំណែង ឬការកែប្រែមុខតំណែង"],["data","Update of documents or personal information","ការធ្វើបច្ចុប្បន្នភាពឯកសារ ឬព័ត៌មានផ្ទាល់ខ្លួន"],["discipline","Disciplinary record","កំណត់ត្រាវិន័យ ឬវិធានការផ្នែកវិន័យ"],["other","Other information","ព័ត៌មានពាក់ព័ន្ធផ្សេងៗ"]];
+var SF_DEFAULT_JD = { key:"teacher", title:"Teacher (English Programme)", titleKm:"គ្រូបង្រៀន (កម្មវិធីភាសាអង់គ្លេស)", reportsTo:"Academic Director",
+  purpose:"Teach English to the C2 standard with care for every learner, using the C2-EPE curriculum and digital tools.",
+  duties:["Plan and teach lessons that follow the C2-EPE curriculum and timetable","Take student attendance in the Portal at the start of every class","Set homework, classwork and quizzes; mark them on time and give clear feedback","Complete Daily Records (Kindergarten) and term Report Cards accurately","Answer families' messages within 24 hours, politely and professionally","Look after students' safety and wellbeing; report any concern to the school the same day","Use the SEG Digital Hub, Reading Club and Library to support learning","Keep the classroom clean, organised and welcoming","Attend meetings, training and school events","Follow the C·A·R·E·S values and the staff code of conduct"],
+  qualifications:["Bachelor's degree (English, Education or related) or equivalent experience","Strong spoken and written English","Patient, caring and reliable; good with children","Basic computer and smartphone skills"],
+  hours:"As set in the staff schedule (see Staff Attendance)" };
+var SF_SECTIONS = [
+  ["👤 Personal information", [["nameEn","Full name (English, as on ID)"],["nameKm","Full name (Khmer)"],["gender","Gender","sel",["","Male","Female"]],["nationality","Nationality"],["dob","Date of birth","date"],["placeOfBirth","Place of birth"],["idNo","National ID / Passport No."],["idIssued","ID issued by"],["idExpiry","ID expiry date","date"],["familyBookNo","Family Book No."],["phone","Phone"],["phone2","Other phone"],["email","Email"]]],
+  ["🏠 Permanent address", [["pHouse","House No."],["pStreet","Street"],["pVillage","Village / Group"],["pCommune","Commune / Sangkat"],["pDistrict","District / Khan"],["pProvince","Province / City"]]],
+  ["📍 Current address", [["cSame","Same as permanent address","chk"],["cHouse","House No."],["cStreet","Street"],["cVillage","Village / Group"],["cCommune","Commune / Sangkat"],["cDistrict","District / Khan"],["cProvince","Province / City"]]],
+  ["👨‍👩‍👧 Family", [["fatherName","Father's name"],["fatherAge","Father's age","num"],["fatherJob","Father's occupation"],["fatherAlive","Father","sel",["","Alive","Deceased"]],["motherName","Mother's name"],["motherAge","Mother's age","num"],["motherJob","Mother's occupation"],["motherAlive","Mother","sel",["","Alive","Deceased"]],["siblings","Number of siblings","num"],["sisters","of whom sisters","num"],["birthOrder","Your order among siblings","num"],["spouseName","Spouse's name"],["spouseJob","Spouse's occupation"],["children","Number of children","num"],["girls","of whom girls","num"]]],
+  ["🚨 Emergency contact", [["ecName","Name"],["ecRelation","Relationship"],["ecPhone","Phone"],["ecPhone2","Other phone"],["ecAddress","Address"]]],
+  ["💼 Position at C2-EPE", [["position","Position / job title"],["department","Department"],["campus","Campus / branch"],["startDate","Start date","date"],["employeeId","Employee ID (HR fills)"],["officeFrom","Office hours from","time"],["officeTo","Office hours to","time"],["breakFrom","Break from","time"],["breakTo","Break to","time"],["otherCampus","Do you also work at another school / campus?"]]],
+  ["🎓 Education", [["education","Highest qualification","sel",["","Certificate","Associate degree","Bachelor's degree","Master's degree","PhD"]],["specialization","Specialization / major"]]],
+  ["🏦 Bank and social security (shared with Finance)", [["bankName","Bank"],["bankAccName","Account name"],["bankAccNo","Account number (USD)"],["nssfNo","NSSF number"]]]
+];
+var SF_TABLES = [
+  ["jobs","🗂️ Last three positions (most recent first)",3,[["title","Position"],["from","From","date"],["to","To","date"],["employer","Employer / company"],["business","Business type"],["tel","Company phone"],["reason","Reason for leaving"]]],
+  ["refs","🤝 References",3,[["name","Name"],["job","Occupation"],["tel","Phone"],["email","Email"],["rel","Relationship"]]],
+  ["skills","🛠️ Other specialized skills",5,[["skill","Skill"],["period","Period"],["grade","Grade"],["inst","Institution"],["cert","Certificate"]]],
+  ["teach","🧑‍🏫 Teaching skills",5,[["skill","Skill / subject"],["aware","Skill awareness"],["conf","Confidence %","num"],["time","Teaching time"],["other","Other"]]],
+  ["langs","🌐 Languages (Good / Fairly good / Poor)",4,[["lang","Language"],["speak","Speaking","sel",["","Good","Fairly good","Poor"]],["listen","Listening","sel",["","Good","Fairly good","Poor"]],["read","Reading","sel",["","Good","Fairly good","Poor"]],["write","Writing","sel",["","Good","Fairly good","Poor"]]]]
+];
+var SF_REQUIRED = ["nameEn","nameKm","gender","dob","idNo","phone","pProvince","ecName","ecPhone","position"];
+function sfCanManage(){ return hrIsManager(); }
+function sfIsFinance(){ return isTeacher && typeof currentAdminDeptHead !== "undefined" && currentAdminDeptHead === "finance"; }
+function sfKey(n){ return "c2epe_staff_" + n; }
+// ── storage ──
+async function sfGet(coll, id){
+  if(xLocal()) return (JSON.parse(localStorage.getItem(sfKey(coll))||"{}"))[id] || null;
+  var m = await xFb(), d = await m.getDoc(m.doc(window._fb.db, coll, id)); return d.exists() ? d.data() : null;
+}
+async function sfSet(coll, id, data){
+  if(xLocal()){ var o = JSON.parse(localStorage.getItem(sfKey(coll))||"{}"); o[id] = Object.assign({}, o[id]||{}, data); localStorage.setItem(sfKey(coll), JSON.stringify(o)); return; }
+  var m = await xFb(); await m.setDoc(m.doc(window._fb.db, coll, id), data, { merge:true });
+}
+async function sfAll(coll){
+  if(xLocal()){ var o = JSON.parse(localStorage.getItem(sfKey(coll))||"{}"); return Object.keys(o).map(function(k){ return Object.assign({ id:k }, o[k]); }); }
+  var m = await xFb(); return (await m.getDocs(m.collection(window._fb.db, coll))).docs.map(function(d){ return Object.assign({ id:d.id }, d.data()); });
+}
+async function sfAdd(coll, data){
+  if(xLocal()){ var id = "x" + Date.now(); await sfSet(coll, id, data); return id; }
+  var m = await xFb(); return (await m.addDoc(m.collection(window._fb.db, coll), data)).id;
+}
+async function sfDel(coll, id){
+  if(xLocal()){ var o = JSON.parse(localStorage.getItem(sfKey(coll))||"{}"); delete o[id]; localStorage.setItem(sfKey(coll), JSON.stringify(o)); return; }
+  var m = await xFb(); await m.deleteDoc(m.doc(window._fb.db, coll, id));
+}
+function sfUpload(file, onProgress){
+  return new Promise(function(resolve, reject){
+    if(file.size > 10*1024*1024) return reject(new Error("The file is larger than 10 MB."));
+    var kind = file.type.indexOf("image/") === 0 ? "image" : "raw";
+    var fd = new FormData(); fd.append("file", file); fd.append("upload_preset", UPLOAD_PRESET); fd.append("folder", "c2epe_hr");
+    var x = new XMLHttpRequest(); x.open("POST", "https://api.cloudinary.com/v1_1/" + CLOUD_NAME + "/" + kind + "/upload");
+    x.upload.onprogress = function(e){ if(e.lengthComputable && onProgress) onProgress(e.loaded/e.total); };
+    x.onload = function(){ try { var r = JSON.parse(x.responseText); r.secure_url ? resolve(r.secure_url) : reject(new Error((r.error&&r.error.message)||"Upload failed")); } catch(e){ reject(e); } };
+    x.onerror = function(){ reject(new Error("Upload failed — check the internet.")); }; x.send(fd);
+  });
+}
+function sfMe(){ var u = currentUser || {}; return { uid:u.uid || u.email || "local-me", email:u.email || "", name:(currentTeacherName && currentTeacherName.indexOf("@") < 0) ? currentTeacherName : (u.email===ADMIN_EMAIL ? "Admin" : (u.email||"Staff").split("@")[0]) }; }
+function sfProgress(f){
+  f = f || {}; var p = f.profile || {}, d = f.docs || {};
+  var req = SF_REQUIRED.filter(function(k){ return p[k]; }).length / SF_REQUIRED.length;
+  var docsReq = SF_DOCS.filter(function(x){ return x[4]; }), docs = docsReq.filter(function(x){ return d[x[0]] && d[x[0]].url; }).length / docsReq.length;
+  return Math.round((req*0.5 + docs*0.4 + (f.signature ? 0.1 : 0)) * 100);
+}
+// ── open ──
+async function openMyHrFile(){
+  if(!isTeacher){ alert("Please sign in with your staff account."); return; }
+  var me = sfMe(); SF.uid = me.uid;
+  c2pOpen("hrfile", "📁 My HR File", false);
+  try { SF.file = await sfGet("staffFiles", me.uid) || { status:"draft", profile:{ email:me.email, nameEn:me.name }, docs:{} }; SF.jds = await sfJds(); }
+  catch(e){ document.getElementById("c2p-body").innerHTML = "<div class='c2p-empty'>❌ " + escapeHtml(e.message||String(e)) + "</div>"; return; }
+  SF.file.uid = me.uid; SF.mode = "self"; C2P.tab = "profile"; sfRender();
+}
+async function openStaffFiles(){
+  if(!sfCanManage() && !sfIsFinance()){ alert("Staff e-Files are for the Admin, the HR head and the Finance head."); return; }
+  c2pOpen("hrfile", sfIsFinance() && !sfCanManage() ? "💰 Staff finance documents" : "📁 Staff e-Files", false);
+  try {
+    SF.list = sfCanManage() ? await sfAll("staffFiles") : await sfAll("staffFinance");
+    if(sfCanManage()) SF.recruit = await sfAll("recruitment");
+    SF.jds = await sfJds();
+  } catch(e){ document.getElementById("c2p-body").innerHTML = "<div class='c2p-empty'>❌ " + escapeHtml(e.message||String(e)) + "</div>"; return; }
+  SF.mode = sfCanManage() ? "hr" : "finance"; C2P.tab = SF.mode === "hr" ? "files" : "finance"; sfRender();
+}
+async function sfJds(){ var o = {}; try { (await sfAll("jobDescriptions")).forEach(function(j){ o[j.id] = j; }); } catch(e){} if(!o.teacher) o.teacher = SF_DEFAULT_JD; return o; }
+function sfRender(){
+  document.getElementById("c2p-top").innerHTML = "";
+  if(SF.mode === "self"){
+    var f = SF.file, st = SF_STATUS[f.status||"draft"];
+    c2pTabs([["profile","👤 Profile"],["docs","📎 Documents"],["jd","📄 Job description"],["sign","✍️ Sign & send"],["history","🕓 My record"]]);
+    document.getElementById("c2p-top").innerHTML = "<div class='c2p-card' style='display:flex;gap:12px;align-items:center;flex-wrap:wrap'><div style='flex:1'><b style='color:#0b1a3b'>C2-EPE Digital Academy · Staff e-File</b><div class='c2p-muted'>Fill everything here — no paper needed. HR checks it, then the Director approves.</div><div style='height:8px;background:#eef0f5;border-radius:6px;overflow:hidden;margin-top:8px;max-width:320px'><i style='display:block;height:100%;width:"+sfProgress(f)+"%;background:linear-gradient(90deg,#c9a227,#2e7d32)'></i></div><div class='c2p-muted'>"+sfProgress(f)+"% complete</div></div><span class='c2p-st "+st[1]+"'>"+st[0]+"</span></div>"
+      + (f.status === "returned" && f.returnNote ? "<div class='c2p-card' style='border-left:4px solid #c62828;font-size:.84rem'>↩️ <b>HR asked for changes:</b> "+escapeHtml(f.returnNote)+"</div>" : "");
+    return ({ profile:sfProfileForm, docs:sfDocsView, jd:sfJdView, sign:sfSignView, history:sfHistoryView })[C2P.tab]();
+  }
+  if(SF.mode === "finance"){ c2pTabs([["finance","💰 Bank, NSSF and documents"]]); return sfFinanceView(); }
+  c2pTabs([["files","📁 Staff files"],["recruit","🧾 Recruitment"],["jds","📄 Job descriptions"]]);
+  return ({ files:sfHrList, recruit:sfRecruitList, jds:sfJdLibrary })[C2P.tab]();
+}
+// ── profile form (C2-HR-01/02/03 in one) ──
+function sfField(prefix, f, val){
+  var id = prefix + f[0], type = f[2] || "text", v = val == null ? "" : val, lock = SF.locked ? " disabled" : "";
+  if(type === "sel") return "<select id='"+id+"' class='c2p-in'"+lock+">" + f[3].map(function(o){ return "<option"+(o===v?" selected":"")+">"+escapeHtml(o)+"</option>"; }).join("") + "</select>";
+  if(type === "chk") return "<label style='display:flex;gap:8px;align-items:center;font-size:.84rem;margin-top:4px'><input type='checkbox' id='"+id+"' style='width:auto'"+(v?" checked":"")+lock+"> "+escapeHtml(f[1])+"</label>";
+  return "<input id='"+id+"' class='c2p-in' type='"+(type==="num"?"number":type)+"' value='"+escapeHtml(v)+"' maxlength='150'"+lock+">";
+}
+function sfProfileForm(){
+  var p = (SF.file.profile)||{}; SF.locked = SF.mode === "self" && (SF.file.status === "submitted" || SF.file.status === "checked" || SF.file.status === "approved");
+  var html = SF.locked ? "<div class='c2p-card' style='font-size:.82rem'>🔒 Sent to HR — the form is locked. If something must change, ask HR to return it to you.</div>" : "";
+  SF_SECTIONS.forEach(function(sec){
+    html += "<div class='c2p-card'><b style='color:#0b1a3b'>"+sec[0]+"</b><div class='c2p-grid' style='margin-top:6px'>" + sec[1].map(function(f){
+      return f[2] === "chk" ? "<div style='grid-column:1/-1'>"+sfField("sf-", f, p[f[0]])+"</div>" : "<div><label class='c2p-l'>"+escapeHtml(f[1])+(SF_REQUIRED.indexOf(f[0])>=0?" *":"")+"</label>"+sfField("sf-", f, p[f[0]])+"</div>";
+    }).join("") + "</div></div>";
+  });
+  SF_TABLES.forEach(function(t){
+    var rows = (p[t[0]] || []);
+    html += "<div class='c2p-card'><b style='color:#0b1a3b'>"+t[1]+"</b>";
+    for(var i = 0; i < t[2]; i++){ var r = rows[i] || (t[0]==="langs" ? { lang:["Khmer","English","",""][i] } : {});
+      html += "<div style='border-top:1px solid #f0f2f5;margin-top:8px;padding-top:6px'><span class='c2p-muted'>"+(i+1)+".</span><div class='c2p-grid'>" + t[3].map(function(c){ return "<div><label class='c2p-l'>"+escapeHtml(c[1])+"</label>"+sfField("sf-"+t[0]+i+"-", c, r[c[0]])+"</div>"; }).join("") + "</div></div>"; }
+    html += "</div>";
+  });
+  if(!SF.locked) html += "<button class='c2p-btn gold' style='width:100%' onclick='sfSaveProfile()'>💾 Save (you can continue later)</button><div id='sf-msg' style='display:none'></div>";
+  document.getElementById("c2p-body").innerHTML = html;
+}
+function sfReadProfile(){
+  var p = {}, v = function(id){ var e = document.getElementById(id); return !e ? "" : e.type === "checkbox" ? e.checked : String(e.value||"").trim(); };
+  SF_SECTIONS.forEach(function(sec){ sec[1].forEach(function(f){ p[f[0]] = v("sf-"+f[0]); }); });
+  SF_TABLES.forEach(function(t){ p[t[0]] = []; for(var i = 0; i < t[2]; i++){ var r = {}, any = false; t[3].forEach(function(c){ r[c[0]] = v("sf-"+t[0]+i+"-"+c[0]); if(r[c[0]] && !(t[0]==="langs" && c[0]==="lang")) any = true; }); p[t[0]].push(any || (t[0]==="langs" && r.lang) ? r : {}); } });
+  if(p.cSame){ ["House","Street","Village","Commune","District","Province"].forEach(function(k){ p["c"+k] = p["p"+k]; }); }
+  return p;
+}
+async function sfSaveProfile(){
+  var p = sfReadProfile();
+  try {
+    await sfSet("staffFiles", SF.file.uid, { profile:p, name:p.nameEn || SF.file.name || "", email:SF.file.email || (currentUser||{}).email || "", status:SF.file.status || "draft", updatedAt:new Date().toISOString() });
+    if(p.bankAccNo || p.nssfNo) await sfSet("staffFinance", SF.file.uid, { name:p.nameEn||"", position:p.position||"", bankName:p.bankName, bankAccName:p.bankAccName, bankAccNo:p.bankAccNo, nssfNo:p.nssfNo, updatedAt:new Date().toISOString() });
+    SF.file.profile = p; c2pMsg("sf-msg","✅ Saved.", true);
+  } catch(e){ c2pMsg("sf-msg","❌ "+(e.message||e)); }
+}
+// ── documents (C2-HR-04) ──
+function sfDocsView(){
+  var d = SF.file.docs || {}, staff = SF.mode !== "self";
+  document.getElementById("c2p-body").innerHTML = "<div class='c2p-card' style='font-size:.82rem'>📎 Take a clear photo or scan (PDF) of each document — up to 10 MB. Items marked <b>💰 Finance</b> are also shared with the Finance head.</div>"
+    + SF_DOCS.map(function(x){ var it = d[x[0]] || {};
+        return "<div class='c2p-card' style='display:flex;gap:10px;align-items:center;flex-wrap:wrap'><div style='flex:1;min-width:200px'><b style='color:#0b1a3b;font-size:.88rem'>"+escapeHtml(x[1])+(x[4]?" *":"")+"</b>"+(x[3]?" <span class='c2p-st pending'>💰 Finance</span>":"")+"<div class='c2p-muted'>"+escapeHtml(x[2])+"</div>"
+          + (it.url ? "<div style='font-size:.78rem;margin-top:4px'>"+(it.verified?"<span class='c2p-st approved'>✅ Checked by HR</span> ":"<span class='c2p-st pending'>⏳ Not checked yet</span> ")+"<a href='"+escapeHtml(it.url)+"' target='_blank' rel='noopener'>View file</a> <span class='c2p-muted'>"+c2pDate(it.uploadedAt)+"</span></div>" : "<div class='c2p-muted' style='color:#c62828'>Not uploaded</div>") + "</div>"
+          + (staff ? (it.url ? "<button class='c2p-btn "+(it.verified?"ghost":"gold")+"' onclick=\"sfVerifyDoc('"+x[0]+"',"+(!it.verified)+")\">"+(it.verified?"Undo check":"✅ Mark checked")+"</button>" : "")
+                   : (SF.locked ? "" : "<label class='c2p-btn ghost' style='cursor:pointer'>"+(it.url?"🔄 Replace":"📤 Upload")+"<input type='file' accept='image/*,application/pdf' style='display:none' onchange=\"sfUploadDoc('"+x[0]+"',this)\"></label>"))
+          + "<div id='sfd-"+x[0]+"' style='width:100%;display:none' class='c2p-muted'></div></div>"; }).join("");
+}
+async function sfUploadDoc(key, input){
+  var file = (input.files||[])[0]; if(!file) return; var box = document.getElementById("sfd-"+key); box.style.display = "block";
+  try {
+    var url = await sfUpload(file, function(p){ box.textContent = "⏫ " + Math.round(p*100) + "%"; });
+    var meta = { url:url, name:file.name, uploadedAt:new Date().toISOString(), verified:false }, docs = Object.assign({}, SF.file.docs||{}); docs[key] = meta;
+    await sfSet("staffFiles", SF.file.uid, { docs:docs, name:(SF.file.profile||{}).nameEn||"", updatedAt:new Date().toISOString(), status:SF.file.status||"draft" });
+    var fin = SF_DOCS.find(function(x){ return x[0]===key; }); if(fin && fin[3]){ var fd = {}; fd["doc_"+key] = meta; fd.name = (SF.file.profile||{}).nameEn||""; await sfSet("staffFinance", SF.file.uid, fd); }
+    SF.file.docs = docs; sfDocsView();
+  } catch(e){ box.textContent = "❌ " + (e.message||e); }
+}
+async function sfVerifyDoc(key, on){
+  var docs = Object.assign({}, SF.file.docs||{}); docs[key] = Object.assign({}, docs[key], { verified:on, verifiedBy:currentTeacherName||"HR", verifiedAt:new Date().toISOString() });
+  try { await sfSet("staffFiles", SF.file.uid, { docs:docs }); SF.file.docs = docs; var row = (SF.list||[]).find(function(x){ return x.id === SF.file.uid; }); if(row) row.docs = docs; if(SF.mode === "hr") sfOpenFile(SF.file.uid); else sfDocsView(); } catch(e){ alert("❌ "+(e.message||e)); }
+}
+// ── job description (C2-HR-07) ──
+function sfJdFor(f){ var k = (f||{}).jdKey || "teacher"; return SF.jds[k] || SF_DEFAULT_JD; }
+function sfJdHTML(j){
+  return "<div style='font-size:.86rem'><b style='font-size:1rem;color:#0b1a3b'>"+escapeHtml(j.title)+"</b><div class='c2p-muted'>"+escapeHtml(j.titleKm||"")+" · Reports to: "+escapeHtml(j.reportsTo||"")+"</div>"
+    + "<p><b>Purpose:</b> "+escapeHtml(j.purpose||"")+"</p><b>Main duties</b><ol style='margin:4px 0 8px 18px;padding:0'>"+(j.duties||[]).map(function(d){ return "<li>"+escapeHtml(d)+"</li>"; }).join("")+"</ol>"
+    + "<b>Qualifications</b><ul style='margin:4px 0 8px 18px;padding:0'>"+(j.qualifications||[]).map(function(d){ return "<li>"+escapeHtml(d)+"</li>"; }).join("")+"</ul><b>Working hours:</b> "+escapeHtml(j.hours||"")+"</div>";
+}
+function sfJdView(){
+  var f = SF.file, j = sfJdFor(f);
+  document.getElementById("c2p-body").innerHTML = "<div class='c2p-card'>"+sfJdHTML(j)+"</div><div class='c2p-card'>"
+    + (f.jdAckAt ? "<span class='c2p-st approved'>✅ You read and accepted this job description on "+c2pDate(f.jdAckAt)+"</span>"
+       : "<label style='display:flex;gap:8px;align-items:flex-start;font-size:.86rem'><input type='checkbox' id='sf-jdok' style='width:auto;margin-top:3px'> I have read this job description and I accept these duties.</label><button class='c2p-btn gold' style='margin-top:10px' onclick='sfAckJd()'>✍️ Accept</button><div id='sf-jdmsg' style='display:none'></div>") + "</div>";
+}
+async function sfAckJd(){
+  if(!document.getElementById("sf-jdok").checked) return c2pMsg("sf-jdmsg","Please tick the box first.");
+  try { var t = new Date().toISOString(); await sfSet("staffFiles", SF.file.uid, { jdAckAt:t, jdKey:SF.file.jdKey||"teacher", status:SF.file.status||"draft" }); SF.file.jdAckAt = t; sfJdView(); } catch(e){ c2pMsg("sf-jdmsg","❌ "+(e.message||e)); }
+}
+// ── signature and submit ──
+function sfSignView(){
+  var f = SF.file, missing = SF_REQUIRED.filter(function(k){ return !(f.profile||{})[k]; }), missDocs = SF_DOCS.filter(function(x){ return x[4] && !((f.docs||{})[x[0]]||{}).url; });
+  var done = f.status === "submitted" || f.status === "checked" || f.status === "approved";
+  document.getElementById("c2p-body").innerHTML = "<div class='c2p-card'><b style='color:#0b1a3b'>✍️ Declaration</b><p style='font-size:.86rem'>To the best of my knowledge, the information in my Staff e-File is true and correct. If not, I accept the school's dismissal and any legal measure.<br><span class='c2p-muted'>ខ្ញុំសូមធានាអះអាងថា ព័ត៌មានខាងលើពិតជាត្រឹមត្រូវ។ ប្រសិនបើមិនពិត ខ្ញុំសូមទទួលការបញ្ឈប់ពីសាលា និងវិធានការតាមច្បាប់។</span></p>"
+    + (missing.length || missDocs.length ? "<div style='font-size:.8rem;color:#c65a00;margin-bottom:8px'>⚠️ Still missing: "+escapeHtml(missing.map(function(k){ var f2 = null; SF_SECTIONS.forEach(function(s){ s[1].forEach(function(x){ if(x[0]===k) f2 = x[1]; }); }); return f2; }).concat(missDocs.map(function(x){ return x[1]; })).join(" · "))+"</div>" : "")
+    + (f.signature ? "<div class='c2p-muted'>Your signature</div><img src='"+f.signature+"' alt='' style='max-width:260px;border:1px solid #e3e7f0;border-radius:8px;background:#fff'>" : "")
+    + (done ? "<div style='margin-top:10px'><span class='c2p-st approved'>Sent on "+c2pDate(f.submittedAt)+"</span></div>"
+       : "<div class='c2p-muted' style='margin-top:8px'>Sign with your finger or mouse:</div><canvas id='sf-pad' width='520' height='160' style='width:100%;max-width:520px;height:160px;border:1.5px dashed #c5cae9;border-radius:10px;background:#fff;touch-action:none'></canvas><div style='display:flex;gap:8px;margin-top:6px'><button class='c2p-btn ghost' onclick='sfPadClear()'>Clear</button><button class='c2p-btn gold' onclick='sfSubmit()'>📨 Sign and send to HR</button></div><div id='sf-smsg' style='display:none'></div>")
+    + "</div>"
+    + "<div class='c2p-card'><b style='color:#0b1a3b'>🖨️ Forms (PDF)</b><div class='c2p-muted'>Made from your e-File — print only if someone asks for paper.</div><div style='display:flex;gap:8px;flex-wrap:wrap;margin-top:8px'>"
+    + [["app","C2-HR-01 Application"],["auto","C2-HR-02 Autobiography"],["profile","C2-HR-03 Employee Profile"],["docs","C2-HR-04 Document checklist"],["jd","C2-HR-07 Job Description"]].map(function(x){ return "<button class='c2p-btn ghost' onclick=\"sfPrint('"+x[0]+"')\">"+x[1]+"</button>"; }).join("") + "</div></div>";
+  if(!done) sfPadInit();
+}
+function sfPadInit(){
+  var c = document.getElementById("sf-pad"); if(!c) return; var x = c.getContext("2d"), on = false; SF.padUsed = false;
+  x.lineWidth = 2.5; x.lineCap = "round"; x.strokeStyle = "#0b1a3b";
+  var pos = function(e){ var r = c.getBoundingClientRect(), t = e.touches ? e.touches[0] : e; return [ (t.clientX - r.left) * c.width / r.width, (t.clientY - r.top) * c.height / r.height ]; };
+  var down = function(e){ e.preventDefault(); on = true; var p = pos(e); x.beginPath(); x.moveTo(p[0], p[1]); };
+  var move = function(e){ if(!on) return; e.preventDefault(); var p = pos(e); x.lineTo(p[0], p[1]); x.stroke(); SF.padUsed = true; };
+  var up = function(){ on = false; };
+  c.addEventListener("mousedown", down); c.addEventListener("mousemove", move); window.addEventListener("mouseup", up);
+  c.addEventListener("touchstart", down, { passive:false }); c.addEventListener("touchmove", move, { passive:false }); c.addEventListener("touchend", up);
+}
+function sfPadClear(){ var c = document.getElementById("sf-pad"); c.getContext("2d").clearRect(0, 0, c.width, c.height); SF.padUsed = false; }
+async function sfSubmit(){
+  var f = SF.file, missing = SF_REQUIRED.filter(function(k){ return !(f.profile||{})[k]; }), missDocs = SF_DOCS.filter(function(x){ return x[4] && !((f.docs||{})[x[0]]||{}).url; });
+  if(missing.length || missDocs.length) return c2pMsg("sf-smsg","Please complete the missing items first.");
+  if(!f.jdAckAt) return c2pMsg("sf-smsg","Please read and accept your job description first.");
+  if(!SF.padUsed) return c2pMsg("sf-smsg","Please sign in the box.");
+  var sig = document.getElementById("sf-pad").toDataURL("image/png"), t = new Date().toISOString();
+  try { await sfSet("staffFiles", f.uid, { signature:sig, status:"submitted", submittedAt:t, returnNote:"" }); Object.assign(f, { signature:sig, status:"submitted", submittedAt:t }); sfRender(); }
+  catch(e){ c2pMsg("sf-smsg","❌ "+(e.message||e)); }
+}
+// ── my record (C2-HR-06 history, read only) ──
+async function sfHistoryView(){
+  var list = []; try { list = await sfUpdatesFor(SF.file.uid); } catch(e){}
+  document.getElementById("c2p-body").innerHTML = "<div class='c2p-card'><b style='color:#0b1a3b'>🕓 Personnel record (C2-HR-06)</b><div class='c2p-muted'>Changes HR has recorded in your file.</div></div>" + (list.length ? list.map(sfUpdateCard).join("") : "<div class='c2p-empty'>Nothing recorded yet.</div>");
+}
+async function sfUpdatesFor(uid){
+  if(xLocal()) return (await sfAll("staffUpdates")).filter(function(u){ return u.uid === uid; });
+  var m = await xFb(); return (await m.getDocs(m.collection(window._fb.db, "staffFiles", uid, "updates"))).docs.map(function(d){ return Object.assign({ id:d.id }, d.data()); }).sort(function(a,b){ return String(b.date).localeCompare(String(a.date)); });
+}
+function sfUpdateCard(u){ var t = SF_UPDATES.find(function(x){ return x[0]===u.type; }) || ["",u.type,""]; return "<div class='c2p-card'><b style='color:#0b1a3b'>"+escapeHtml(t[1])+"</b> <span class='c2p-muted'>"+c2pDate(u.date)+" · "+escapeHtml(u.by||"")+"</span><div style='font-size:.84rem;margin-top:4px;white-space:pre-line'>"+escapeHtml(u.details||"")+"</div></div>"; }
+// ══════════ HR / Admin ══════════
+function sfHrList(){
+  var rows = SF.list.slice().sort(function(a,b){ var o = { submitted:0, checked:1, returned:2, draft:3, approved:4 }; return (o[a.status]||5) - (o[b.status]||5); });
+  var waiting = rows.filter(function(r){ return r.status === "submitted" || (r.status === "checked" && currentUser && currentUser.email === ADMIN_EMAIL); }).length;
+  document.getElementById("c2p-top").innerHTML = "<div class='c2p-grid' style='margin-bottom:10px'>"+[["📁",rows.length,"staff files"],["⏳",waiting,"waiting for you"],["✅",rows.filter(function(r){ return r.status==="approved"; }).length,"approved"],["📝",rows.filter(function(r){ return !r.status||r.status==="draft"; }).length,"still drafting"]].map(function(k){ return "<div class='c2p-card' style='text-align:center;margin:0'><div>"+k[0]+"</div><b style='font-size:1.2rem;color:#0b1a3b'>"+k[1]+"</b><div class='c2p-muted'>"+k[2]+"</div></div>"; }).join("")+"</div><div class='c2p-muted' style='margin-bottom:8px'>Staff fill their own file from the menu <b>📁 My HR File</b>. Files appear here once they save.</div>";
+  document.getElementById("c2p-body").innerHTML = rows.length ? rows.map(function(r){ var st = SF_STATUS[r.status||"draft"];
+      return "<div class='c2p-card' style='display:flex;gap:10px;align-items:center;flex-wrap:wrap;cursor:pointer' onclick=\"sfOpenFile('"+r.id+"')\"><div style='flex:1'><b style='color:#0b1a3b'>"+escapeHtml(r.name||(r.profile||{}).nameEn||r.email||r.id)+"</b><div class='c2p-muted'>"+escapeHtml((r.profile||{}).position||"")+" · "+sfProgress(r)+"% complete · updated "+c2pDate(r.updatedAt)+"</div></div><span class='c2p-st "+st[1]+"'>"+st[0]+"</span></div>"; }).join("")
+    : "<div class='c2p-empty'>No staff files yet.</div>";
+}
+async function sfOpenFile(id){
+  var f = SF.list.find(function(x){ return x.id === id; }); if(!f) return; SF.file = Object.assign({ uid:id }, f); SF.locked = true;
+  var st = SF_STATUS[f.status||"draft"], isDir = currentUser && currentUser.email === ADMIN_EMAIL, p = f.profile || {};
+  var updates = []; try { updates = await sfUpdatesFor(id); } catch(e){}
+  document.getElementById("c2p-tabs").innerHTML = "<button onclick=\"C2P.tab='files';sfRender()\">← All files</button>";
+  document.getElementById("c2p-top").innerHTML = "<div class='c2p-card'><div style='display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap'><div><b style='color:#0b1a3b;font-size:1.05rem'>"+escapeHtml(p.nameEn||f.name||"")+"</b> <span class='c2p-muted'>"+escapeHtml(p.nameKm||"")+"</span><div class='c2p-muted'>"+escapeHtml(p.position||"")+" · "+escapeHtml(p.phone||"")+" · "+escapeHtml(f.email||"")+"</div></div><span class='c2p-st "+st[1]+"'>"+st[0]+"</span></div>"
+    + "<div style='display:flex;gap:8px;flex-wrap:wrap;margin-top:10px'>"
+    + (f.status === "submitted" ? "<button class='c2p-btn gold' onclick=\"sfDecide('checked')\">🔎 Checked by HR</button>" : "")
+    + (f.status === "checked" && isDir ? "<button class='c2p-btn gold' onclick=\"sfDecide('approved')\">✅ Approve (Director)</button>" : "")
+    + (f.status === "submitted" || f.status === "checked" ? "<button class='c2p-btn red' onclick=\"sfDecide('returned')\">↩️ Return for changes</button>" : "")
+    + "<select class='c2p-in' style='width:auto' onchange=\"sfSetJd(this.value)\">"+Object.keys(SF.jds).map(function(k){ return "<option value='"+k+"'"+((f.jdKey||"teacher")===k?" selected":"")+">JD: "+escapeHtml(SF.jds[k].title)+"</option>"; }).join("")+"</select>"
+    + "</div><div class='c2p-muted' style='margin-top:6px'>"+(f.submittedAt?"Sent "+c2pDate(f.submittedAt):"Not sent yet")+(f.checkedBy?" · checked by "+escapeHtml(f.checkedBy)+" "+c2pDate(f.checkedAt):"")+(f.approvedBy?" · approved by "+escapeHtml(f.approvedBy)+" "+c2pDate(f.approvedAt):"")+(f.jdAckAt?" · JD accepted "+c2pDate(f.jdAckAt):" · JD not accepted yet")+"</div>"
+    + "<div style='display:flex;gap:6px;flex-wrap:wrap;margin-top:8px'>"+[["app","C2-HR-01"],["auto","C2-HR-02"],["profile","C2-HR-03"],["docs","C2-HR-04"],["jd","C2-HR-07"],["updates","C2-HR-06"]].map(function(x){ return "<button class='c2p-btn ghost' style='padding:5px 10px;font-size:.74rem' onclick=\"sfPrint('"+x[0]+"')\">🖨️ "+x[1]+"</button>"; }).join("")+"</div></div>";
+  document.getElementById("c2p-body").innerHTML = "<div id='sf-docs-here'></div><div class='c2p-card'><div style='display:flex;justify-content:space-between;align-items:center'><b style='color:#0b1a3b'>🕓 Personnel updates (C2-HR-06)</b><button class='c2p-btn gold' style='padding:5px 10px;font-size:.74rem' onclick=\"sfUpdateForm('"+id+"')\">＋ Add</button></div>"+(updates.length ? updates.map(sfUpdateCard).join("") : "<div class='c2p-muted'>Nothing recorded.</div>")+"</div><div id='sf-profile-here'></div>";
+  var keep = document.getElementById("c2p-body").innerHTML;
+  sfDocsView(); var docsHTML = document.getElementById("c2p-body").innerHTML;
+  sfProfileForm(); var profHTML = document.getElementById("c2p-body").innerHTML;
+  document.getElementById("c2p-body").innerHTML = keep; document.getElementById("sf-docs-here").innerHTML = "<b style='color:#0b1a3b'>📎 Documents</b>" + docsHTML; document.getElementById("sf-profile-here").innerHTML = "<b style='color:#0b1a3b'>👤 Profile</b>" + profHTML;
+  SF.mode = "hr";
+}
+async function sfDecide(status){
+  var note = ""; if(status === "returned"){ note = prompt("What should the staff member change?"); if(note === null) return; }
+  var d = { status:status }; if(status === "checked"){ d.checkedBy = currentTeacherName||"HR"; d.checkedAt = new Date().toISOString(); } if(status === "approved"){ d.approvedBy = currentTeacherName||"Director"; d.approvedAt = new Date().toISOString(); } if(status === "returned") d.returnNote = note.slice(0,300);
+  try { await sfSet("staffFiles", SF.file.uid, d); Object.assign(SF.file, d); var row = SF.list.find(function(x){ return x.id === SF.file.uid; }); if(row) Object.assign(row, d); sfOpenFile(SF.file.uid); } catch(e){ alert("❌ "+(e.message||e)); }
+}
+async function sfSetJd(k){ try { await sfSet("staffFiles", SF.file.uid, { jdKey:k, jdAckAt:"" }); SF.file.jdKey = k; SF.file.jdAckAt = ""; var row = SF.list.find(function(x){ return x.id === SF.file.uid; }); if(row){ row.jdKey = k; row.jdAckAt = ""; } } catch(e){ alert("❌ "+(e.message||e)); } }
+function sfUpdateForm(uid){
+  c2pForm("🕓 Personnel update (C2-HR-06)", "<label class='c2p-l'>Type</label><select id='su-type' class='c2p-in'>"+SF_UPDATES.map(function(x){ return "<option value='"+x[0]+"'>"+x[1]+" · "+x[2]+"</option>"; }).join("")+"</select><label class='c2p-l'>Date</label><input type='date' id='su-date' class='c2p-in' value='"+new Date().toISOString().slice(0,10)+"'><label class='c2p-l'>Details</label><textarea id='su-det' class='c2p-in' rows='4' maxlength='800' placeholder='e.g. Promoted to Head of Primary from 1 November 2026, salary as approved in memo…'></textarea><button class='c2p-btn gold' style='width:100%;margin-top:12px' onclick=\"sfUpdateSave('"+uid+"')\">💾 Save</button><div id='su-msg' style='display:none'></div>");
+}
+async function sfUpdateSave(uid){
+  var d = { type:document.getElementById("su-type").value, date:document.getElementById("su-date").value, details:document.getElementById("su-det").value.trim(), by:currentTeacherName||"HR", at:new Date().toISOString() };
+  if(d.details.length < 3) return c2pMsg("su-msg","Please write the details.");
+  try { if(xLocal()){ d.uid = uid; await sfAdd("staffUpdates", d); } else { var m = await xFb(); await m.addDoc(m.collection(window._fb.db,"staffFiles",uid,"updates"), d); }
+        document.getElementById("c2p-form").style.display = "none"; sfOpenFile(uid); } catch(e){ c2pMsg("su-msg","❌ "+(e.message||e)); }
+}
+// ── recruitment (C2-HR-05) ──
+function sfRecruitList(){
+  document.getElementById("c2p-top").innerHTML = "<button class='c2p-btn gold' style='margin-bottom:10px' onclick='sfRecruitNew()'>＋ New candidate</button>";
+  document.getElementById("c2p-body").innerHTML = SF.recruit.length ? SF.recruit.slice().sort(function(a,b){ return String(b.createdAt).localeCompare(String(a.createdAt)); }).map(function(r){
+    var done = SF_RECRUIT.filter(function(s){ return (r.steps||{})[s[0]] && r.steps[s[0]].done; }).length;
+    return "<div class='c2p-card'><div style='display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap'><div><b style='color:#0b1a3b'>"+escapeHtml(r.name)+"</b><div class='c2p-muted'>"+escapeHtml(r.position)+" · "+escapeHtml(r.phone||"")+" · "+done+" / 10 steps</div></div><span class='c2p-st "+(r.result==="hired"?"approved":r.result==="rejected"?"rejected":"pending")+"'>"+(r.result==="hired"?"✅ Hired":r.result==="rejected"?"✖ Not hired":"⏳ In progress")+"</span></div>"
+      + "<div style='margin-top:8px'>" + SF_RECRUIT.map(function(s, i){ var st = (r.steps||{})[s[0]] || {};
+          return "<div style='display:flex;gap:8px;align-items:center;padding:5px 0;border-bottom:1px solid #f0f2f5;font-size:.82rem'><input type='checkbox' style='width:auto' "+(st.done?"checked":"")+" onchange=\"sfRecruitStep('"+r.id+"','"+s[0]+"',this.checked)\"><span style='flex:1'>"+(i+1)+". "+escapeHtml(s[1])+" <span class='c2p-muted'>"+escapeHtml(s[2])+"</span></span>"+(st.url?"<a href='"+escapeHtml(st.url)+"' target='_blank' rel='noopener'>file</a>":"")+"<label style='cursor:pointer;color:#1565c0'>📎<input type='file' accept='image/*,application/pdf' style='display:none' onchange=\"sfRecruitFile('"+r.id+"','"+s[0]+"',this)\"></label></div>"; }).join("") + "</div>"
+      + "<div style='display:flex;gap:8px;margin-top:8px;flex-wrap:wrap'><button class='c2p-btn ghost' style='padding:5px 10px;font-size:.74rem' onclick=\"sfRecruitResult('"+r.id+"','hired')\">✅ Hired</button><button class='c2p-btn red' style='padding:5px 10px;font-size:.74rem' onclick=\"sfRecruitResult('"+r.id+"','rejected')\">✖ Not hired</button><button class='c2p-btn ghost' style='padding:5px 10px;font-size:.74rem' onclick=\"sfPrint('recruit','"+r.id+"')\">🖨️ C2-HR-05</button></div></div>";
+  }).join("") : "<div class='c2p-empty'>No candidates yet.</div>";
+}
+function sfRecruitNew(){ c2pForm("🧾 New candidate", "<label class='c2p-l'>Name</label><input id='rn-name' class='c2p-in'><label class='c2p-l'>Position</label><input id='rn-pos' class='c2p-in'><label class='c2p-l'>Phone</label><input id='rn-phone' class='c2p-in'><button class='c2p-btn gold' style='width:100%;margin-top:12px' onclick='sfRecruitSave()'>💾 Save</button><div id='rn-msg' style='display:none'></div>"); }
+async function sfRecruitSave(){
+  var d = { name:document.getElementById("rn-name").value.trim(), position:document.getElementById("rn-pos").value.trim(), phone:document.getElementById("rn-phone").value.trim(), steps:{}, result:"", createdAt:new Date().toISOString(), createdBy:currentTeacherName||"HR" };
+  if(!d.name || !d.position) return c2pMsg("rn-msg","Please write the name and the position.");
+  try { d.id = await sfAdd("recruitment", d); SF.recruit.push(d); document.getElementById("c2p-form").style.display = "none"; sfRecruitList(); } catch(e){ c2pMsg("rn-msg","❌ "+(e.message||e)); }
+}
+async function sfRecruitStep(id, key, on, url){
+  var r = SF.recruit.find(function(x){ return x.id === id; }); if(!r) return; r.steps = r.steps || {}; r.steps[key] = Object.assign({}, r.steps[key], { done:on, at:new Date().toISOString(), by:currentTeacherName||"HR" }, url ? { url:url } : {});
+  try { await sfSet("recruitment", id, { steps:r.steps }); } catch(e){ alert("❌ "+(e.message||e)); }
+}
+async function sfRecruitFile(id, key, input){ var f = (input.files||[])[0]; if(!f) return; try { var url = await sfUpload(f); await sfRecruitStep(id, key, true, url); sfRecruitList(); } catch(e){ alert("❌ "+(e.message||e)); } }
+async function sfRecruitResult(id, res){ var r = SF.recruit.find(function(x){ return x.id === id; }); try { await sfSet("recruitment", id, { result:res }); r.result = res; sfRecruitList(); if(res === "hired") alert("✅ Next: create the staff account (Admin Dashboard), then ask " + r.name + " to fill “📁 My HR File”."); } catch(e){ alert("❌ "+(e.message||e)); } }
+// ── job description library (C2-HR-07) ──
+function sfJdLibrary(){
+  document.getElementById("c2p-top").innerHTML = "<button class='c2p-btn gold' style='margin-bottom:10px' onclick=\"sfJdEdit('')\">＋ New job description</button>";
+  document.getElementById("c2p-body").innerHTML = Object.keys(SF.jds).map(function(k){ return "<div class='c2p-card'>"+sfJdHTML(SF.jds[k])+"<div style='display:flex;gap:8px;margin-top:8px'><button class='c2p-btn ghost' onclick=\"sfJdEdit('"+k+"')\">✏️ Edit</button></div></div>"; }).join("");
+}
+function sfJdEdit(k){
+  var j = SF.jds[k] || { key:"", title:"", titleKm:"", reportsTo:"", purpose:"", duties:[], qualifications:[], hours:"" };
+  c2pForm("📄 Job description", "<label class='c2p-l'>Short code (no spaces)</label><input id='jd-key' class='c2p-in' value='"+escapeHtml(k)+"'"+(k?" disabled":"")+" placeholder='e.g. finance-officer'><label class='c2p-l'>Title (English)</label><input id='jd-title' class='c2p-in' value='"+escapeHtml(j.title)+"'><label class='c2p-l'>Title (Khmer)</label><input id='jd-km' class='c2p-in' value='"+escapeHtml(j.titleKm)+"'><label class='c2p-l'>Reports to</label><input id='jd-rep' class='c2p-in' value='"+escapeHtml(j.reportsTo)+"'><label class='c2p-l'>Purpose of the job</label><textarea id='jd-pur' class='c2p-in' rows='2'>"+escapeHtml(j.purpose)+"</textarea><label class='c2p-l'>Main duties (one per line)</label><textarea id='jd-dut' class='c2p-in' rows='7'>"+escapeHtml((j.duties||[]).join("\n"))+"</textarea><label class='c2p-l'>Qualifications (one per line)</label><textarea id='jd-q' class='c2p-in' rows='4'>"+escapeHtml((j.qualifications||[]).join("\n"))+"</textarea><label class='c2p-l'>Working hours</label><input id='jd-h' class='c2p-in' value='"+escapeHtml(j.hours)+"'><button class='c2p-btn gold' style='width:100%;margin-top:12px' onclick=\"sfJdSave('"+k+"')\">💾 Save</button><div id='jd-msg' style='display:none'></div>");
+}
+async function sfJdSave(k){
+  var key = k || document.getElementById("jd-key").value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");
+  var lines = function(id){ return document.getElementById(id).value.split("\n").map(function(s){ return s.trim(); }).filter(Boolean); };
+  var j = { key:key, title:document.getElementById("jd-title").value.trim(), titleKm:document.getElementById("jd-km").value.trim(), reportsTo:document.getElementById("jd-rep").value.trim(), purpose:document.getElementById("jd-pur").value.trim(), duties:lines("jd-dut"), qualifications:lines("jd-q"), hours:document.getElementById("jd-h").value.trim(), updatedAt:new Date().toISOString() };
+  if(!key || !j.title || !j.duties.length) return c2pMsg("jd-msg","Please fill the code, title and duties.");
+  try { await sfSet("jobDescriptions", key, j); SF.jds[key] = j; document.getElementById("c2p-form").style.display = "none"; sfJdLibrary(); } catch(e){ c2pMsg("jd-msg","❌ "+(e.message||e)); }
+}
+// ── finance view ──
+function sfFinanceView(){
+  document.getElementById("c2p-body").innerHTML = SF.list.length ? "<div class='c2p-card' style='padding:0;overflow-x:auto'><table style='width:100%;border-collapse:collapse;font-size:.8rem'><tr style='background:#0b1a3b;color:#d6aa4c'><th style='padding:7px;text-align:left'>Staff</th><th>Bank</th><th>Account name</th><th>Account No.</th><th>NSSF</th><th>Documents</th></tr>"
+    + SF.list.map(function(f){ return "<tr style='border-bottom:1px solid #eef0f5'><td style='padding:7px'><b>"+escapeHtml(f.name||"")+"</b><div class='c2p-muted'>"+escapeHtml(f.position||"")+"</div></td><td>"+escapeHtml(f.bankName||"")+"</td><td>"+escapeHtml(f.bankAccName||"")+"</td><td>"+escapeHtml(f.bankAccNo||"")+"</td><td>"+escapeHtml(f.nssfNo||"")+"</td><td>"+SF_DOCS.filter(function(x){ return x[3] && f["doc_"+x[0]]; }).map(function(x){ return "<a href='"+escapeHtml(f["doc_"+x[0]].url)+"' target='_blank' rel='noopener'>"+escapeHtml(x[1].split(" ")[0])+"</a>"; }).join(" · ")+"</td></tr>"; }).join("") + "</table></div>"
+    : "<div class='c2p-empty'>No finance information yet.</div>";
+}
+// ══════════ printable C2-EPE forms ══════════
+function sfPrint(kind, rid){
+  var f = SF.file || {}, p = f.profile || {}, E = escapeHtml, base = location.href.replace(/[^\/]*$/,"");
+  var code = { app:"C2-HR-01", auto:"C2-HR-02", profile:"C2-HR-03", docs:"C2-HR-04", recruit:"C2-HR-05", updates:"C2-HR-06", jd:"C2-HR-07" }[kind];
+  var title = { app:["ពាក្យសុំចូលបម្រើការងារ","PERSONNEL APPLICATION FORM"], auto:["ប្រវត្តិរូបបុគ្គលិក","PERSONNEL AUTOBIOGRAPHY"], profile:["ទម្រង់ប្រវត្តិរូបបុគ្គលិក","EMPLOYEE PROFILE FORM"], docs:["បញ្ជីត្រួតពិនិត្យឯកសារបុគ្គលិក","STAFF DOCUMENT CHECKLIST"], recruit:["បញ្ជីត្រួតពិនិត្យដំណើរការជ្រើសរើសបុគ្គលិក","RECRUITMENT PROCESS CHECKLIST"], updates:["កំណត់ត្រាធ្វើបច្ចុប្បន្នភាពឯកសារបុគ្គលិក","STAFF PERSONNEL UPDATES RECORD"], jd:["ការពិពណ៌នាការងារ","JOB DESCRIPTION"] }[kind];
+  var row = function(k, v){ return "<tr><td class='k'>"+k+"</td><td>"+E(v==null?"":v)+"</td></tr>"; };
+  var addr = function(pr){ return [p[pr+"House"]&&("No. "+p[pr+"House"]), p[pr+"Street"]&&("St. "+p[pr+"Street"]), p[pr+"Village"], p[pr+"Commune"], p[pr+"District"], p[pr+"Province"]].filter(Boolean).join(", "); };
+  var personal = row("ឈ្មោះ / Name", (p.nameKm?p.nameKm+" · ":"") + (p.nameEn||"")) + row("ភេទ / Sex", p.gender) + row("សញ្ជាតិ / Nationality", p.nationality) + row("ថ្ងៃខែឆ្នាំកំណើត / Date of birth", p.dob) + row("ទីកន្លែងកំណើត / Place of birth", p.placeOfBirth) + row("អត្តសញ្ញាណប័ណ្ណ / ID or Passport", [p.idNo, p.idIssued&&("issued by "+p.idIssued), p.idExpiry&&("expires "+p.idExpiry)].filter(Boolean).join(" · ")) + row("ទូរសព្ទ / Phone", [p.phone,p.phone2].filter(Boolean).join(" · ")) + row("អ៊ីមែល / Email", p.email) + row("អាសយដ្ឋានអចិន្ត្រៃយ៍ / Permanent address", addr("p")) + row("អាសយដ្ឋានបច្ចុប្បន្ន / Present address", addr("c"));
+  var family = row("ឪពុក / Father", [p.fatherName, p.fatherAge&&("age "+p.fatherAge), p.fatherJob, p.fatherAlive].filter(Boolean).join(" · ")) + row("ម្តាយ / Mother", [p.motherName, p.motherAge&&("age "+p.motherAge), p.motherJob, p.motherAlive].filter(Boolean).join(" · ")) + row("បងប្អូន / Siblings", [p.siblings&&(p.siblings+" in total"), p.sisters&&(p.sisters+" sisters"), p.birthOrder&&("order "+p.birthOrder)].filter(Boolean).join(" · ")) + row("ប្តី/ប្រពន្ធ / Spouse", [p.spouseName,p.spouseJob].filter(Boolean).join(" · ")) + row("កូន / Children", [p.children, p.girls&&(p.girls+" girls")].filter(Boolean).join(" · "));
+  var tbl = function(t){ var rows = (p[t[0]]||[]).filter(function(r){ return r && Object.keys(r).some(function(k){ return r[k]; }); }); return "<h3>"+t[1].replace(/^\S+\s/,"")+"</h3><table class='g'><tr><th>No.</th>"+t[3].map(function(c){ return "<th>"+E(c[1])+"</th>"; }).join("")+"</tr>"+(rows.length?rows:[{}]).map(function(r,i){ return "<tr><td>"+(i+1)+"</td>"+t[3].map(function(c){ return "<td>"+E(r[c[0]]||"")+"</td>"; }).join("")+"</tr>"; }).join("")+"</table>"; };
+  var sign = "<div class='sig'><div>"+(f.signature?"<img src='"+f.signature+"'>":"<br><br>")+"<br>ហត្ថលេខាបុគ្គលិក / Employee's signature<br><small>"+E(f.submittedAt?String(f.submittedAt).slice(0,10):"")+"</small></div><div><br><br>"+E(f.checkedBy||"")+"<br>ត្រួតពិនិត្យដោយ / Checked by (HR)<br><small>"+E(f.checkedAt?String(f.checkedAt).slice(0,10):"")+"</small></div><div><br><br>"+E(f.approvedBy||"")+"<br>ឯកភាពដោយ / Approved by (Director)<br><small>"+E(f.approvedAt?String(f.approvedAt).slice(0,10):"")+"</small></div></div>";
+  var decl = "<p class='decl'>ខ្ញុំសូមធានាអះអាងថា ព័ត៌មានខាងលើពិតជាត្រឹមត្រូវ។ ប្រសិនបើមិនពិត ខ្ញុំសូមទទួលការបញ្ឈប់ពីសាលា និងវិធានការតាមច្បាប់។<br>To the best of my knowledge, the information contained herein is true and correct. If not, I agree to accept the school's dismissal and any legal measure.</p>";
+  var body = "";
+  if(kind === "app") body = "<table>"+row("គោរពជូន / To","The Director, C2-EPE Digital Academy")+"</table><h3>ព័ត៌មានផ្ទាល់ខ្លួន / Personnel details</h3><table>"+personal+"</table><h3>ស្នើសុំចូលបម្រើការងារជា / Applying for</h3><table>"+row("មុខតំណែង / Job title", p.position)+row("នាយកដ្ឋាន / Department", p.department)+row("សាខា / Campus", p.campus)+row("ចាប់ផ្តើមការងារ / Start date", p.startDate)+"</table><p class='decl'>ខ្ញុំសន្យា និងប្តេជ្ញាគោរពតាមបទបញ្ជាផ្ទៃក្នុង និងគោលការណ៍ផ្សេងៗរបស់ C2-EPE Digital Academy។<br>I promise to obey and abide by the internal regulations and principles of C2-EPE Digital Academy.</p>" + sign;
+  else if(kind === "auto") body = "<h3>ព័ត៌មានផ្ទាល់ខ្លួន / Personal information</h3><table>"+personal+row("មុខតំណែងបច្ចុប្បន្ន / Present position", p.position)+row("ការសិក្សា / Education", p.education)+row("ជំនាញ / Specialization", p.specialization)+"</table><h3>គ្រួសារ / Family</h3><table>"+family+"</table>"+decl+sign;
+  else if(kind === "profile") body = "<h3>I. ព័ត៌មានផ្ទាល់ខ្លួន / Personal information</h3><table>"+row("លេខបុគ្គលិក / Employee ID", p.employeeId)+personal+row("សៀវភៅគ្រួសារ / Family Book No.", p.familyBookNo)+"</table><h3>II. ទំនាក់ទំនងបន្ទាន់ / Emergency contact</h3><table>"+row("ឈ្មោះ / Name", p.ecName)+row("ត្រូវជា / Relationship", p.ecRelation)+row("ទូរសព្ទ / Phone", [p.ecPhone,p.ecPhone2].filter(Boolean).join(" · "))+row("អាសយដ្ឋាន / Address", p.ecAddress)+"</table><h3>III. ការងារនៅ C2-EPE / Position</h3><table>"+row("មុខតំណែង / Position", p.position)+row("នាយកដ្ឋាន / Department", p.department)+row("ម៉ោងការងារ / Office hours", (p.officeFrom||"")+" – "+(p.officeTo||""))+row("ម៉ោងសម្រាក / Break", (p.breakFrom||"")+" – "+(p.breakTo||""))+row("ធ្វើការនៅសាលាផ្សេង / Other campus", p.otherCampus)+row("ការសិក្សា / Education", [p.education,p.specialization].filter(Boolean).join(" · "))+"</table>"+SF_TABLES.map(tbl).join("")+decl+sign;
+  else if(kind === "docs") body = "<table>"+row("បុគ្គលិក / Staff", (p.nameKm?p.nameKm+" · ":"")+(p.nameEn||""))+row("មុខតំណែង / Position", p.position)+"</table><table class='g'><tr><th>No.</th><th>ឯកសារ / Document</th><th>Finance</th><th>បានដាក់ / Uploaded</th><th>HR ពិនិត្យ / Checked</th></tr>"+SF_DOCS.map(function(x,i){ var it = (f.docs||{})[x[0]]||{}; return "<tr><td>"+(i+1)+"</td><td>"+E(x[2])+"<br><small>"+E(x[1])+"</small></td><td>"+(x[3]?"✔":"")+"</td><td>"+(it.url?"✔ "+E(String(it.uploadedAt||"").slice(0,10)):"")+"</td><td>"+(it.verified?"✔ "+E(it.verifiedBy||""):"")+"</td></tr>"; }).join("")+"</table>"+sign;
+  else if(kind === "jd"){ var j = sfJdFor(f); body = "<table>"+row("មុខតំណែង / Position", j.title+(j.titleKm?" · "+j.titleKm:""))+row("ឈ្មោះបុគ្គលិក / Staff", p.nameEn)+row("រាយការណ៍ទៅ / Reports to", j.reportsTo)+row("ម៉ោងការងារ / Working hours", j.hours)+"</table><h3>គោលបំណង / Purpose</h3><p>"+E(j.purpose)+"</p><h3>ភារកិច្ចចម្បង / Main duties</h3><ol>"+(j.duties||[]).map(function(d){ return "<li>"+E(d)+"</li>"; }).join("")+"</ol><h3>លក្ខណៈសម្បត្តិ / Qualifications</h3><ul>"+(j.qualifications||[]).map(function(d){ return "<li>"+E(d)+"</li>"; }).join("")+"</ul><p class='decl'>"+(f.jdAckAt?"Read and accepted by the staff member on "+E(String(f.jdAckAt).slice(0,10))+".":"Not yet accepted by the staff member.")+"</p>"+sign; }
+  else if(kind === "recruit"){ var r = (SF.recruit||[]).find(function(x){ return x.id === rid; }) || {}; body = "<table>"+row("បេក្ខជន / Candidate", r.name)+row("មុខតំណែង / Position", r.position)+row("ទូរសព្ទ / Phone", r.phone)+row("លទ្ធផល / Result", r.result||"In progress")+"</table><table class='g'><tr><th>No.</th><th>ជំហាន / Step</th><th>រួចរាល់ / Done</th><th>ដោយ / By</th></tr>"+SF_RECRUIT.map(function(s,i){ var st = (r.steps||{})[s[0]]||{}; return "<tr><td>"+(i+1)+"</td><td>"+E(s[2])+"<br><small>"+E(s[1])+"</small></td><td>"+(st.done?"✔ "+E(String(st.at||"").slice(0,10)):"")+"</td><td>"+E(st.by||"")+"</td></tr>"; }).join("")+"</table>"; }
+  else if(kind === "updates"){ body = "<table>"+row("បុគ្គលិក / Staff", p.nameEn)+row("មុខតំណែង / Position", p.position)+"</table><p><i>The updates are listed in the Staff e-File (HR view).</i></p>"; sfUpdatesFor(f.uid).then(function(list){ try { var t = w.document.getElementById("upd"); if(t) t.innerHTML = "<table class='g'><tr><th>ថ្ងៃ / Date</th><th>ប្រភេទ / Type</th><th>ព័ត៌មានលម្អិត / Details</th><th>ដោយ / By</th></tr>"+list.map(function(u){ var ty = SF_UPDATES.find(function(x){ return x[0]===u.type; })||["",u.type,""]; return "<tr><td>"+E(u.date)+"</td><td>"+E(ty[2])+"<br><small>"+E(ty[1])+"</small></td><td>"+E(u.details)+"</td><td>"+E(u.by)+"</td></tr>"; }).join("")+"</table>"; } catch(e){} }); body += "<div id='upd'></div>"; }
+  var w = window.open("", "_blank"); if(!w){ alert("Please allow pop-ups to open the form."); return; }
+  w.document.write("<!DOCTYPE html><html><head><meta charset='utf-8'><title>"+code+" "+title[1]+"</title><link href='https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;700&display=swap' rel='stylesheet'><style>@page{size:A4;margin:14mm}body{font-family:'Noto Sans Khmer',Arial,sans-serif;color:#1a1f36;font-size:12px;-webkit-print-color-adjust:exact;print-color-adjust:exact}.hd{display:flex;align-items:center;gap:14px;border-bottom:3px solid #c9a227;padding-bottom:8px}.hd img{height:60px}.hd .n{flex:1}.hd .n b{font-size:18px;color:#0b1a3b;letter-spacing:1px}.hd .c{text-align:right;font-size:11px;color:#555}h1{text-align:center;color:#0b1a3b;font-size:17px;margin:14px 0 2px}h2{text-align:center;color:#b8892b;font-size:13px;margin:0 0 12px;letter-spacing:1px}h3{color:#0b1a3b;font-size:13px;margin:14px 0 4px;border-left:4px solid #c9a227;padding-left:6px}table{width:100%;border-collapse:collapse;margin-bottom:6px}td,th{border:1px solid #cfd5e3;padding:5px 7px;vertical-align:top}td.k{width:36%;background:#f6f8fc;font-weight:600}table.g th{background:#0b1a3b;color:#fff;font-size:11px}.decl{font-size:11px;border:1px dashed #c9a227;padding:8px;margin-top:12px}.sig{display:flex;gap:10px;margin-top:22px;text-align:center;font-size:11px}.sig div{flex:1;border-top:1px solid #999;padding-top:4px}.sig img{max-height:60px}.ft{margin-top:20px;text-align:center;font-size:10px;color:#777;border-top:1px solid #e3e7f0;padding-top:6px}</style></head><body>"
+    + "<div class='hd'><img src='"+base+"logo.png' onerror=\"this.style.display='none'\"><div class='n'><b>C2-EPE DIGITAL ACADEMY</b><br><span style='color:#555'>Preparing Tomorrow's Global Leaders</span></div><div class='c'>"+code+"<br>No: "+E(p.employeeId||"…………")+"<br>"+new Date().toLocaleDateString("en-GB")+"</div></div>"
+    + "<h1>"+title[0]+"</h1><h2>"+title[1]+"</h2>" + body
+    + "<div class='ft'>C2-EPE Digital Academy · Phnom Penh, Cambodia · c2.kh2029@gmail.com · 015 555 631 · Generated from the Staff e-File (digital original)</div><script>setTimeout(function(){window.print()},900)<\/script></body></html>");
+  w.document.close();
 }
 
 // ══════════════ 1. LEAVE REQUESTS ══════════════

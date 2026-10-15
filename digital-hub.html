@@ -3335,6 +3335,9 @@
         let videoLibIdentity = null;
         window.__videoLibBridge = {
             db() { return db; },
+            // the Video Library page runs in its own frame: data made there must be re-created here before
+            // Firestore will accept it ("Data must be an object, but it was: a custom Object object")
+            plain(o) { return JSON.parse(JSON.stringify(o)); },
             identity() {
                 let admin = false;
                 try { admin = isAdmin() && auth && auth.currentUser; } catch (e) {}

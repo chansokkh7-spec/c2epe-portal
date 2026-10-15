@@ -17415,6 +17415,19 @@ async function showVerify(id){
     + "<div class='ver-row'><span>Certificate ID</span><b>"+escapeHtml(c.certId)+"</b></div>"
     + "</div></div><p style='text-align:center;font-size:.72rem;color:#8a93a8'>This page shows the record stored by the school when the certificate was issued.</p>";
 }
+// direct link for staff: …/?open=hrfile → sign in (if needed) → 📁 My HR File opens by itself
+(function(){ try {
+  if(new URLSearchParams(location.search).get("open") !== "hrfile") return;
+  var asked = false, tries = 0;
+  var t = setInterval(function(){
+    if(++tries > 600){ clearInterval(t); return; }                  // stop after ~10 minutes
+    if(typeof isTeacher !== "undefined" && isTeacher && currentUser){
+      clearInterval(t); try { history.replaceState(null, "", location.pathname); } catch(e){}
+      setTimeout(function(){ if(typeof openMyHrFile === "function") openMyHrFile(); }, 800); return;
+    }
+    if(!asked && tries > 3 && typeof showAuthModal === "function"){ asked = true; showAuthModal("teacher"); }
+  }, 1000);
+} catch(e){} })();
 // opened from a partner's referral link (?ref=CODE): remember the code and open the application form
 (function(){ try { var r = new URLSearchParams(location.search).get("ref"); if(r){ r = String(r).toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,12); if(r){ sessionStorage.setItem("c2epe_ref", r); setTimeout(function(){ if(typeof openEnrollApplyPage==="function") openEnrollApplyPage(); }, 900); } } } catch(e){} })();
 // opened from a QR code?
@@ -19267,8 +19280,9 @@ function sfDocsView(){
   document.getElementById("c2p-body").innerHTML = "<div class='c2p-card' style='font-size:.82rem'>📎 Take a clear photo or scan (PDF) of each document — up to 10 MB. Items marked <b>💰 Finance</b> are also shared with the Finance head.</div>"
     + SF_DOCS.map(function(x){ var it = d[x[0]] || {};
         return "<div class='c2p-card' style='display:flex;gap:10px;align-items:center;flex-wrap:wrap'><div style='flex:1;min-width:200px'><b style='color:#0b1a3b;font-size:.88rem'>"+escapeHtml(x[1])+(x[4]?" *":"")+"</b>"+(x[3]?" <span class='c2p-st pending'>💰 Finance</span>":"")+"<div class='c2p-muted'>"+escapeHtml(x[2])+"</div>"
-          + (it.url ? "<div style='font-size:.78rem;margin-top:4px'>"+(it.verified?"<span class='c2p-st approved'>✅ Checked by HR</span> ":"<span class='c2p-st pending'>⏳ Not checked yet</span> ")+"<a href='"+escapeHtml(it.url)+"' target='_blank' rel='noopener'>View file</a> <span class='c2p-muted'>"+c2pDate(it.uploadedAt)+"</span></div>" : "<div class='c2p-muted' style='color:#c62828'>Not uploaded</div>") + "</div>"
-          + (staff ? (it.url ? "<button class='c2p-btn "+(it.verified?"ghost":"gold")+"' onclick=\"sfVerifyDoc('"+x[0]+"',"+(!it.verified)+")\">"+(it.verified?"Undo check":"✅ Mark checked")+"</button>" : "")
+          + (it.url ? "<div style='font-size:.78rem;margin-top:4px'>"+(it.uploadedBy?"<span class='c2p-muted'>uploaded by "+escapeHtml(it.uploadedBy)+"</span> ":"")+(it.verified?"<span class='c2p-st approved'>✅ Checked by HR</span> ":"<span class='c2p-st pending'>⏳ Not checked yet</span> ")+"<a href='"+escapeHtml(it.url)+"' target='_blank' rel='noopener'>View file</a> <span class='c2p-muted'>"+c2pDate(it.uploadedAt)+"</span></div>" : "<div class='c2p-muted' style='color:#c62828'>Not uploaded</div>") + "</div>"
+          + (staff ? (it.url ? "<button class='c2p-btn "+(it.verified?"ghost":"gold")+"' onclick=\"sfVerifyDoc('"+x[0]+"',"+(!it.verified)+")\">"+(it.verified?"Undo check":"✅ Mark checked")+"</button> " : "")
+                   + "<label class='c2p-btn ghost' style='cursor:pointer' title='Upload a scan or photo for this staff member'>"+(it.url?"🔄":"📤 Upload for staff")+"<input type='file' accept='image/*,application/pdf' style='display:none' onchange=\"sfUploadDoc('"+x[0]+"',this)\"></label>"
                    : (SF.locked ? "" : "<label class='c2p-btn ghost' style='cursor:pointer'>"+(it.url?"🔄 Replace":"📤 Upload")+"<input type='file' accept='image/*,application/pdf' style='display:none' onchange=\"sfUploadDoc('"+x[0]+"',this)\"></label>"))
           + "<div id='sfd-"+x[0]+"' style='width:100%;display:none' class='c2p-muted'></div></div>"; }).join("");
 }
@@ -19276,10 +19290,13 @@ async function sfUploadDoc(key, input){
   var file = (input.files||[])[0]; if(!file) return; var box = document.getElementById("sfd-"+key); box.style.display = "block";
   try {
     var url = await sfUpload(file, function(p){ box.textContent = "⏫ " + Math.round(p*100) + "%"; });
-    var meta = { url:url, name:file.name, uploadedAt:new Date().toISOString(), verified:false }, docs = Object.assign({}, SF.file.docs||{}); docs[key] = meta;
-    await sfSet("staffFiles", SF.file.uid, { docs:docs, name:(SF.file.profile||{}).nameEn||"", updatedAt:new Date().toISOString(), status:SF.file.status||"draft" });
+    var byHr = SF.mode === "hr";
+    var meta = { url:url, name:file.name, uploadedAt:new Date().toISOString(), verified:byHr, uploadedBy:byHr ? (currentTeacherName||"HR") + " (HR)" : "" }, docs = Object.assign({}, SF.file.docs||{}); docs[key] = meta;
+    if(byHr){ meta.verifiedBy = currentTeacherName||"HR"; meta.verifiedAt = meta.uploadedAt; }
+    await sfSet("staffFiles", SF.file.uid, Object.assign({ docs:docs, updatedAt:new Date().toISOString() }, byHr ? {} : { name:(SF.file.profile||{}).nameEn||"", status:SF.file.status||"draft" }));
     var fin = SF_DOCS.find(function(x){ return x[0]===key; }); if(fin && fin[3]){ var fd = {}; fd["doc_"+key] = meta; fd.name = (SF.file.profile||{}).nameEn||""; await sfSet("staffFinance", SF.file.uid, fd); }
-    SF.file.docs = docs; sfDocsView();
+    SF.file.docs = docs; var row = (SF.list||[]).find(function(x){ return x.id === SF.file.uid; }); if(row) row.docs = docs;
+    if(byHr) sfOpenFile(SF.file.uid); else sfDocsView();
   } catch(e){ box.textContent = "❌ " + (e.message||e); }
 }
 async function sfVerifyDoc(key, on){

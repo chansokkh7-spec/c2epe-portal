@@ -94,12 +94,12 @@ try { BR = window.parent && window.parent !== window ? window.parent.__videoLibB
 var COL = { videos:"vl_videos", progress:"vl_progress", comments:"vl_comments" };
 // every object sent to the Hub's database is rebuilt inside the Hub (see plain() in digital-hub.html)
 function P(o){ return BR && BR.plain ? BR.plain(o) : o; }
-var LANG = "en", TAB = "watch", VIDEOS = [], PROG = [], COMMENTS = [], filt = { q:"", subject:"", cls:"", sort:"new", fav:false, todo:false };
+var LANG = "en", TAB = "watch", VIDEOS = [], PROG = [], COMMENTS = [], filt = { q:"", subject:"", cls:"", sort:"lesson", fav:false, todo:false };
 var I18N = {
   title:["Video Library","បណ្ណាល័យវីដេអូសិក្សា"], subtitle:["Watch · Learn · Quiz — SEG Digital Hub","មើល · រៀន · តេស្ត — SEG Digital Hub"],
   tWatch:["Videos","វីដេអូ"], tProgress:["My Progress","វឌ្ឍនភាពរបស់ខ្ញុំ"], tBoard:["Leaderboard","តារាងកិត្តិយស"], tTeacher:["Teacher","គ្រូ"],
   search:["Search videos…","ស្វែងរកវីដេអូ…"], allSubjects:["All subjects","គ្រប់មុខវិជ្ជា"], allClasses:["All classes","គ្រប់ថ្នាក់"],
-  newest:["Newest first","ថ្មីបំផុត"], deadline:["Deadline soonest","ថ្ងៃកំណត់ជិតបំផុត"], title_:["Title A–Z","ចំណងជើង A–Z"],
+  lesson:["Lesson order (1, 2, 3…)","តាមលំដាប់មេរៀន (1, 2, 3…)"], newest:["Newest first","ថ្មីបំផុត"], deadline:["Deadline soonest","ថ្ងៃកំណត់ជិតបំផុត"], title_:["Title A–Z","ចំណងជើង A–Z"],
   favs:["★ Favourites","★ ចំណូលចិត្ត"], todo:["To watch","មិនទាន់មើល"], noVideos:["No videos yet.","មិនទាន់មានវីដេអូ។"],
   due:["Due","កំណត់"], overdue:["Overdue","ហួសកំណត់"], done:["Done","រួចរាល់"], quiz:["Quiz","តេស្ត"], week:["Week","សប្តាហ៍"],
   markDone:["✅ Mark as watched","✅ សម្គាល់ថាបានមើល"], watched:["✅ Watched","✅ បានមើលរួច"], takeQuiz:["📝 Take the quiz","📝 ធ្វើតេស្ត"],
@@ -175,6 +175,14 @@ function renderWatch(m){
     return true;
   });
   list.sort(function(a,b){
+    // Lesson order: class, then week number (1, 2 … 10, 11 — as numbers, not text), then the order they were added
+    if(filt.sort==="lesson"){
+      var c = String(a.cls||"").localeCompare(String(b.cls||""), undefined, { numeric:true }); if(c) return c;
+      var wa = parseFloat(a.week), wb = parseFloat(b.week);
+      if(isNaN(wa)) wa = 9999; if(isNaN(wb)) wb = 9999;
+      if(wa !== wb) return wa - wb;
+      return String(a.createdAt||"").localeCompare(String(b.createdAt||""));
+    }
     if(filt.sort==="deadline") return String(a.deadline||"9999").localeCompare(String(b.deadline||"9999"));
     if(filt.sort==="title") return String(a.title).localeCompare(String(b.title));
     return String(b.createdAt||"").localeCompare(String(a.createdAt||""));
@@ -183,7 +191,7 @@ function renderWatch(m){
     + "<div class='bar'><input id='f-q' placeholder='"+t("search")+"' value='"+esc(filt.q)+"' oninput='filt.q=this.value;renderGridOnly()'>"
     + "<select onchange='filt.subject=this.value;render()'><option value=''>"+t("allSubjects")+"</option>"+uniq("subject").map(function(s){ return "<option"+(s===filt.subject?" selected":"")+">"+esc(s)+"</option>"; }).join("")+"</select>"
     + "<select onchange='filt.cls=this.value;render()'><option value=''>"+t("allClasses")+"</option>"+uniq("cls").map(function(s){ return "<option"+(s===filt.cls?" selected":"")+">"+esc(s)+"</option>"; }).join("")+"</select>"
-    + "<select onchange='filt.sort=this.value;render()'><option value='new'"+(filt.sort==="new"?" selected":"")+">"+t("newest")+"</option><option value='deadline'"+(filt.sort==="deadline"?" selected":"")+">"+t("deadline")+"</option><option value='title'"+(filt.sort==="title"?" selected":"")+">"+t("title_")+"</option></select></div>"
+    + "<select onchange='filt.sort=this.value;render()'><option value='lesson'"+(filt.sort==="lesson"?" selected":"")+">"+t("lesson")+"</option><option value='new'"+(filt.sort==="new"?" selected":"")+">"+t("newest")+"</option><option value='deadline'"+(filt.sort==="deadline"?" selected":"")+">"+t("deadline")+"</option><option value='title'"+(filt.sort==="title"?" selected":"")+">"+t("title_")+"</option></select></div>"
     + "<div class='chips'><button class='chip"+(filt.fav?" on":"")+"' onclick='filt.fav=!filt.fav;render()'>"+t("favs")+"</button>"+(myId()?"<button class='chip"+(filt.todo?" on":"")+"' onclick='filt.todo=!filt.todo;render()'>"+t("todo")+"</button>":"")+"</div>"
     + "<div class='grid' id='vgrid'></div>";
   window.__list = list; renderGridOnly();

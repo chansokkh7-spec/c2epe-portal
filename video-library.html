@@ -164,11 +164,29 @@ function render(){
   if(TAB==="board") return renderBoard(m);
   if(TAB==="teacher") return isStaff() ? renderTeacher(m) : showTab("watch");
 }
-function uniq(field){ return Array.from(new Set(VIDEOS.map(function(v){ return v[field]; }).filter(Boolean))).sort(); }
+// Class names: extra spaces are ignored, and "Master O" (letter O) is read as "Master 0", so the same class is never listed twice.
+function normCls(c){ var s = String(c||"").replace(/[\s\u00a0]+/g," ").trim(); var m = /^master\s*([oO0-9]+)$/i.exec(s); if(m) s = "Master " + m[1].replace(/[oO]/g,"0"); return s; }
+// School order: K0–K3 → Pre-A1 → A1, A2, B1, B2 → S1–S6 → Master → anything else (A–Z)
+var MASTER_NAMES = { beginner:0, elementary:1, preintermediate:2, "pre-intermediate":2, intermediate:3, upperintermediate:4, "upper-intermediate":4, advanced:5, proficiency:6 };
+function clsRank(c){
+  var s = normCls(c), m;
+  if((m = /^k\s*(\d+)$/i.exec(s))) return [0, +m[1]];
+  if(/^pre[\s-]?a1$/i.test(s)) return [1, 0];
+  if((m = /^([ab])\s*([12])$/i.exec(s))) return [2, (m[1].toUpperCase()==="A" ? 0 : 2) + +m[2]];
+  if((m = /^(?:s|secondary(?:\s*level)?)\s*(\d+)$/i.exec(s))) return [3, +m[1]];
+  if((m = /^master\s*(.*)$/i.exec(s))){ var k = m[1].toLowerCase().replace(/\s+/g,""); return [4, /^\d+$/.test(k) ? +k : (k in MASTER_NAMES ? MASTER_NAMES[k] : 99)]; }
+  return [5, 0];
+}
+function clsCompare(a, b){ var x = clsRank(a), y = clsRank(b); if(x[0]!==y[0]) return x[0]-y[0]; if(x[1]!==y[1]) return x[1]-y[1]; return normCls(a).localeCompare(normCls(b), undefined, { numeric:true }); }
+function uniq(field){
+  var vals = VIDEOS.map(function(v){ return field==="cls" ? normCls(v[field]) : v[field]; }).filter(Boolean);
+  vals = Array.from(new Set(vals));
+  return field==="cls" ? vals.sort(clsCompare) : vals.sort();
+}
 function renderWatch(m){
   var f = favs(), list = VIDEOS.filter(function(v){
     if(filt.subject && v.subject!==filt.subject) return false;
-    if(filt.cls && v.cls!==filt.cls) return false;
+    if(filt.cls && normCls(v.cls)!==filt.cls) return false;
     if(filt.fav && f.indexOf(v.id)<0) return false;
     if(filt.todo){ var p = myProg(v.id); if(p && p.completedAt) return false; }
     if(filt.q){ var q = filt.q.toLowerCase(); if(String(v.title+" "+v.desc+" "+v.subject).toLowerCase().indexOf(q)<0) return false; }
@@ -177,7 +195,7 @@ function renderWatch(m){
   list.sort(function(a,b){
     // Lesson order: class, then week number (1, 2 … 10, 11 — as numbers, not text), then the order they were added
     if(filt.sort==="lesson"){
-      var c = String(a.cls||"").localeCompare(String(b.cls||""), undefined, { numeric:true }); if(c) return c;
+      var c = clsCompare(a.cls, b.cls); if(c) return c;
       var wa = parseFloat(a.week), wb = parseFloat(b.week);
       if(isNaN(wa)) wa = 9999; if(isNaN(wb)) wb = 9999;
       if(wa !== wb) return wa - wb;
@@ -303,7 +321,7 @@ function editVideo(id){
 function closeEditor(){ document.getElementById("emodal").classList.remove("show"); }
 function emsg(text){ var m = document.getElementById("e-msg"); m.style.display = "block"; m.style.background = "#ffebee"; m.style.color = "#c62828"; m.textContent = text; }
 async function saveVideo(id){
-  var d = { title:document.getElementById("f-title").value.trim(), subject:document.getElementById("f-subject").value.trim(), cls:document.getElementById("f-class").value.trim(),
+  var d = { title:document.getElementById("f-title").value.trim(), subject:document.getElementById("f-subject").value.trim(), cls:normCls(document.getElementById("f-class").value),
     week:document.getElementById("f-week").value.trim(), url:document.getElementById("f-url").value.trim(), deadline:document.getElementById("f-deadline").value,
     resource:document.getElementById("f-resource").value.trim(), desc:document.getElementById("f-desc").value.trim(), updatedAt:new Date().toISOString() };
   if(!d.title || !d.url) return emsg("Please enter the title and the video link.");

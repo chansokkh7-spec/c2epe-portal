@@ -6,6 +6,7 @@
 <title>Video Library · បណ្ណាល័យវីដេអូសិក្សា</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+video::cue{font-size:1.1em;font-weight:600;background:rgba(0,0,0,.72);color:#fff}
 :root{--navy:#0E1B38;--navy2:#16295a;--gold:#D4A017;--gold2:#FFD700;--paper:#f4f6fb;--card:#fff;--ink:#1a1f36;--soft:#6b7489;--line:#e3e7f0;--green:#2e7d32;--red:#c62828;--orange:#c65a00}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:'Noto Sans Khmer',system-ui,sans-serif;line-height:1.55}
@@ -227,6 +228,30 @@ function renderGridOnly(){
   }).join("") : "<div class='empty'>"+t("noVideos")+"</div>";
 }
 
+// ── subtitles: school videos on GitHub have an English .vtt file with the same name next to them ──
+var subsOn = true;
+function vttFor(src){ return /github\.io\/.+\.mp4(\?|$)/i.test(src) ? src.replace(/\.mp4(\?.*)?$/i, ".vtt") : ""; }
+function videoTag(src){
+  var vtt = vttFor(src);
+  return "<video id='vl-player' src='"+esc(src)+"' controls playsinline"+(vtt ? " crossorigin='anonymous'><track kind='subtitles' srclang='en' label='English' src='"+esc(vtt)+"' default>" : ">")+"</video>"
+    + (vtt ? "<div style='text-align:center;margin-top:8px'><button class='btn ghost' id='subs-btn' style='display:none' onclick='toggleSubs()'>💬 Subtitles: ON</button></div>" : "");
+}
+function setupSubs(){
+  var v = document.getElementById("vl-player"); if(!v) return;
+  var tr = v.querySelector("track"), btn = document.getElementById("subs-btn");
+  if(!tr) return;
+  // if the video cannot be fetched this way, play it plainly without subtitles
+  v.addEventListener("error", function once(){ v.removeEventListener("error", once); if(v.hasAttribute("crossorigin")){ v.removeAttribute("crossorigin"); tr.remove(); if(btn) btn.style.display="none"; v.load(); } });
+  tr.addEventListener("load", function(){ if(btn) btn.style.display=""; applySubs(); });
+  tr.addEventListener("error", function(){ if(btn) btn.style.display="none"; });
+  applySubs();
+}
+function applySubs(){
+  var v = document.getElementById("vl-player"); if(!v || !v.textTracks.length) return;
+  v.textTracks[0].mode = subsOn ? "showing" : "hidden";
+  var b = document.getElementById("subs-btn"); if(b) b.textContent = subsOn ? "💬 Subtitles: ON" : "💬 Subtitles: OFF";
+}
+function toggleSubs(){ subsOn = !subsOn; applySubs(); }
 // ── watching a video ──
 var CUR = null;
 function openVideo(id){
@@ -234,7 +259,7 @@ function openVideo(id){
   var e = embedInfo(v.url), p = myProg(id);
   document.getElementById("v-title").textContent = v.title;
   document.getElementById("v-body").innerHTML =
-    "<div class='player'>"+(e.type==="video" ? "<video src='"+esc(e.src)+"' controls playsinline></video>" : "<iframe src='"+esc(e.src)+"' allow='autoplay; encrypted-media; fullscreen; picture-in-picture' allowfullscreen></iframe>")+"</div>"
+    "<div class='player'>"+(e.type==="video" ? videoTag(e.src) : "<iframe src='"+esc(e.src)+"' allow='autoplay; encrypted-media; fullscreen; picture-in-picture' allowfullscreen></iframe>")+"</div>"
     + "<div class='mb'><div class='meta'>"+esc([v.subject, v.cls, v.week?t("week")+" "+v.week:"", v.createdBy].filter(Boolean).join(" · "))+" "+deadlineBadge(v)+"</div>"
     + (v.desc ? "<p style='font-size:.88rem;white-space:pre-line'>"+esc(v.desc)+"</p>" : "")
     + (v.resource ? "<p><a href='"+esc(v.resource)+"' target='_blank' rel='noopener' style='color:#1565c0;font-weight:700'>"+t("resource")+"</a></p>" : "")
@@ -243,6 +268,7 @@ function openVideo(id){
     + "<h3 style='margin:18px 0 6px;font-size:.95rem;color:var(--navy)'>💬 "+t("comments")+"</h3><div id='c-list'></div>"
     + (ME.role!=="guest" ? "<div style='display:flex;gap:8px;margin-top:8px'><input id='c-in' maxlength='400' placeholder='"+t("writeComment")+"'><button class='btn' onclick='postComment()'>"+t("post")+"</button></div>" : "")
     + "</div>";
+  setupSubs();
   renderComments();
   document.getElementById("vmodal").classList.add("show");
 }

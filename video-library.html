@@ -231,7 +231,16 @@ function renderGridOnly(){
 // ── subtitles: school videos on GitHub have an English .vtt file with the same name next to them ──
 var subsOn = true;
 function vttFor(src){ return /github\.io\/.+\.mp4(\?|$)/i.test(src) ? src.replace(/\.mp4(\?.*)?$/i, ".vtt") : ""; }
+// Old A2 videos (saying "Unit undefined") were replaced by "-v2" copies: old saved links are switched automatically,
+// and other school videos are asked for fresh (not an old cached copy).
+function remapVideo(src){
+  var m = /^(https:\/\/chansokkh7-spec\.github\.io\/c2epe-portal\/A2-Unit\d\d-[^\/?]+?)(?:-v2)?\.mp4(?:\?.*)?$/i.exec(src);
+  if(m) return m[1] + "-v2.mp4";
+  if(/^https:\/\/chansokkh7-spec\.github\.io\/.+\.mp4$/i.test(src)) return src + "?v=20261031";
+  return src;
+}
 function videoTag(src){
+  src = remapVideo(src);
   var vtt = vttFor(src);
   return "<video id='vl-player' src='"+esc(src)+"' controls playsinline"+(vtt ? " crossorigin='anonymous'><track kind='subtitles' srclang='en' label='English' src='"+esc(vtt)+"' default>" : ">")+"</video>"
     + (vtt ? "<div style='text-align:center;margin-top:8px'><button class='btn ghost' id='subs-btn' style='display:none' onclick='toggleSubs()'>💬 Subtitles: ON</button></div>" : "");

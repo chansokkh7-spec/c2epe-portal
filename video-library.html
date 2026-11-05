@@ -238,7 +238,7 @@ function remapVideo(src){
   src = src.replace(/^(https:\/\/chansokkh7-spec\.github\.io\/)c2epe-videos(\/B1-Unit\d\d-)/i, "$1c2epe-portal$2");
   var m = /^(https:\/\/chansokkh7-spec\.github\.io\/c2epe-portal\/A2-Unit\d\d-[^\/?]+?)(?:-v2)?\.mp4(?:\?.*)?$/i.exec(src);
   if(m) return m[1] + "-v2.mp4";
-  if(/^https:\/\/chansokkh7-spec\.github\.io\/.+\.mp4$/i.test(src)) return src + "?v=20261031";
+  if(/^https:\/\/chansokkh7-spec\.github\.io\/.+\.mp4$/i.test(src)) return src + "?v=20261106";
   return src;
 }
 function videoTag(src){

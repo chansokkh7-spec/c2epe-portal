@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>C2-EPE Online · Student Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+Khmer:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0b1f4d; --navy-2:#13306e; --gold:#e8c766; --gold-deep:#6b3f00; --cream:#f6f3ea;
+  --ink:#14213d; --muted:#4a5672; --line:#d7dcea; --ok:#14532d; --ok-bg:#e8f6ee; --warn:#7c2d12; --warn-bg:#ffe7d1;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Inter,'Noto Sans Khmer',system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.5;
+  padding-bottom:env(safe-area-inset-bottom,0px)}
+h1,h2,h3{font-family:Poppins,'Noto Sans Khmer',sans-serif;margin:0;color:var(--navy)}
+a{color:var(--navy)}
+button,input{font:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.hidden{display:none!important}
+.logo{width:40px;height:40px;border-radius:10px;background:var(--gold);color:var(--navy);display:flex;align-items:center;justify-content:center;font-family:Poppins,sans-serif;font-weight:700}
+.tag{padding:4px 10px;border-radius:6px;background:var(--gold);color:var(--navy);font-size:11px;font-weight:800;letter-spacing:.12em}
+
+/* sign-in */
+#signin{min-height:100vh;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;padding:calc(32px + env(safe-area-inset-top,0px)) 20px 32px}
+.signin-box{width:100%;max-width:420px;display:flex;flex-direction:column;gap:24px}
+.signin-head{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.signin-head .logo{width:72px;height:72px;border-radius:18px;font-size:26px}
+.signin-head h1{color:#fff;font-size:26px;line-height:1.25}
+.signin-head p{margin:0;color:#c9d3ea;font-size:14px}
+.card{background:#fff;color:var(--ink);border-radius:18px;padding:22px}
+.field{display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:14px}
+.field input{min-height:52px;border:1px solid #c7cfe0;border-radius:12px;padding:0 14px;font-size:20px;letter-spacing:.12em;color:var(--ink)}
+.btn{min-height:48px;border:0;border-radius:12px;padding:0 18px;font-weight:700;font-size:15px;cursor:pointer}
+.btn-gold{background:var(--gold);color:var(--navy)}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-line{background:#fff;color:var(--navy);border:1px solid var(--navy)}
+.btn:disabled{opacity:.6;cursor:default}
+.err{display:none;margin-top:12px;padding:10px 12px;border-radius:10px;background:#fdecec;color:#8a1c1c;font-size:14px}
+.help{background:rgba(255,255,255,.08);border:1px solid rgba(232,199,102,.5);border-radius:14px;padding:14px 16px;font-size:13px;color:#e5e9f4}
+
+/* dashboard */
+header{background:var(--navy);color:#fff;border-bottom:3px solid var(--gold);padding:env(safe-area-inset-top,0px) 24px 0}
+.bar{max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:14px;min-height:68px}
+.brand{display:flex;align-items:center;gap:12px;flex-grow:1;font-family:Poppins,sans-serif;font-weight:600;font-size:18px}
+main{max-width:1240px;margin:0 auto;padding:24px 24px 48px;display:flex;flex-direction:column;gap:22px}
+.hero{background:var(--navy);color:#fff;border-radius:20px;padding:26px 28px;display:flex;flex-wrap:wrap;align-items:center;gap:24px}
+.avatar{width:84px;height:84px;border-radius:50%;background:var(--gold);color:var(--navy);display:flex;align-items:center;justify-content:center;font-family:Poppins,sans-serif;font-size:28px;font-weight:700;flex-shrink:0}
+.hero-text{flex:999 1 300px;min-width:0}
+.hero-text .hi{color:var(--gold);font-weight:600;font-size:14px}
+.hero-text h1{color:#fff;font-size:30px;margin:2px 0 4px}
+.hero-text .meta{color:#c9d3ea;font-size:14px}
+.continue{flex:1 1 280px;display:flex;flex-direction:column;gap:4px;text-decoration:none;background:var(--gold);color:var(--navy);border-radius:16px;padding:18px 22px}
+.continue small{font-size:12px;font-weight:700}
+.continue b{font-family:Poppins,sans-serif;font-size:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.stat{background:#fff;border-radius:16px;padding:18px 20px;box-shadow:0 1px 3px rgba(11,31,77,.08)}
+.stat .l{font-size:13px;color:var(--muted);font-weight:600}
+.stat .v{font-family:Poppins,sans-serif;font-size:28px;font-weight:700;color:var(--navy);margin-top:4px}
+.cols{display:flex;flex-wrap:wrap;gap:22px;align-items:flex-start}
+.lessons{flex:999 1 560px;min-width:0;background:#fff;border-radius:16px;padding:22px;box-shadow:0 1px 3px rgba(11,31,77,.08)}
+.lessons-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline;margin-bottom:14px}
+.lessons-head h2{font-size:18px}
+.units{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.unit{display:flex;flex-direction:column;gap:6px;text-decoration:none;border-radius:12px;padding:14px;min-height:92px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+.unit.done{background:var(--ok-bg);border-color:#b7e3c8;color:var(--ok)}
+.unit.now{background:var(--navy);border-color:var(--navy);color:#fff}
+.unit .n{font-size:12px;font-weight:700}
+.unit .t{font-size:14px;font-weight:600;line-height:1.3}
+.side{flex:1 1 320px;display:flex;flex-direction:column;gap:16px}
+.box{background:#fff;border-radius:16px;padding:20px;box-shadow:0 1px 3px rgba(11,31,77,.08)}
+.box h2{font-size:16px;margin-bottom:8px}
+.box p{margin:0;font-size:14px}
+.box .btn{width:100%;margin-top:12px}
+.access{background:#fff8e1;border:1px solid var(--gold);box-shadow:none}
+.access.ending{background:var(--warn-bg);border-color:#f5b27a}
+.empty{padding:26px;border:1px dashed var(--line);border-radius:14px;text-align:center;color:var(--muted)}
+@media (max-width:640px){ main{padding:18px 16px 40px} header{padding-left:16px;padding-right:16px} .hero{padding:22px} .hero-text h1{font-size:24px} }
+@media (prefers-reduced-motion:reduce){ *{transition:none!important;animation:none!important} }
+</style>
+</head>
+<body>
+
+<!-- ===== SIGN IN ===== -->
+<section id="signin" aria-labelledby="si-title">
+  <div class="signin-box">
+    <div class="signin-head">
+      <div class="logo" aria-hidden="true">C2</div>
+      <span class="tag">ONLINE CLASS</span>
+      <h1 id="si-title">Sign in to your online lessons</h1>
+      <p>ចូលរៀន Online · Use the Student ID and PIN from the Front Desk.</p>
+    </div>
+    <form class="card" id="si-form" novalidate>
+      <label class="field">Student ID · លេខសម្គាល់សិស្ស
+        <input id="si-id" inputmode="numeric" autocomplete="username" maxlength="12" placeholder="e.g. 482916" required>
+      </label>
+      <label class="field">PIN (4 digits) · លេខ PIN
+        <input id="si-pin" type="password" inputmode="numeric" autocomplete="current-password" maxlength="4" placeholder="••••">
+      </label>
+      <button class="btn btn-gold" id="si-btn" type="submit" style="width:100%">Sign in · ចូល</button>
+      <div class="err" id="si-err" role="alert"></div>
+      <p style="margin:14px 0 0;text-align:center;font-size:13px">Forgot your PIN? Ask the Front Desk for a new one.</p>
+    </form>
+    <div class="help">Classroom students sign in on the <a id="hub-link-1" href="#" style="color:var(--gold)">Digital Hub</a> instead. · សិស្សរៀនក្នុងថ្នាក់ សូមចូល Digital Hub។</div>
+  </div>
+</section>
+
+<!-- ===== DASHBOARD ===== -->
+<div id="dash" class="hidden">
+  <header>
+    <div class="bar">
+      <div class="brand"><div class="logo" aria-hidden="true">C2</div>C2-EPE Online <span class="tag">ONLINE</span></div>
+      <button class="btn btn-line" id="out-btn" type="button" style="min-height:44px;background:transparent;color:#fff;border-color:#4a5f99">Sign out</button>
+    </div>
+  </header>
+  <main>
+    <section class="hero" aria-label="Welcome">
+      <div class="avatar" id="d-avatar" aria-hidden="true"></div>
+      <div class="hero-text">
+        <div class="hi">Welcome back · សូមស្វាគមន៍</div>
+        <h1 id="d-name"></h1>
+        <div class="meta" id="d-meta"></div>
+      </div>
+      <a class="continue" id="d-continue" href="#">
+        <small>Continue lesson</small>
+        <b id="d-continue-title"></b>
+        <span id="d-continue-sub" style="font-size:13px"></span>
+      </a>
+    </section>
+
+    <div class="stats" aria-label="Progress">
+      <div class="stat"><div class="l">Units finished</div><div class="v" id="s-done">0</div></div>
+      <div class="stat"><div class="l">Lessons opened</div><div class="v" id="s-opened">0</div></div>
+      <div class="stat"><div class="l">Days of access left</div><div class="v" id="s-days">—</div></div>
+    </div>
+
+    <div class="cols">
+      <section class="lessons" aria-labelledby="l-title">
+        <div class="lessons-head">
+          <h2 id="l-title">My lessons</h2>
+          <span id="l-sub" style="font-size:13px;color:var(--muted)"></span>
+        </div>
+        <div class="units" id="units"></div>
+      </section>
+      <aside class="side">
+        <section class="box" aria-labelledby="live-title">
+          <h2 id="live-title">Live class &amp; messages</h2>
+          <p>Join your live class, see the schedule and message your teacher in the Digital Hub.</p>
+          <a class="btn btn-navy" id="hub-link-2" href="#" style="display:flex;align-items:center;justify-content:center;text-decoration:none">Open live class &amp; chat</a>
+        </section>
+        <section class="box access" id="acc-box" aria-labelledby="acc-title">
+          <h2 id="acc-title">Online access</h2>
+          <p id="acc-text"></p>
+          <p id="acc-sub" style="font-size:12px;color:var(--gold-deep);margin-top:4px"></p>
+        </section>
+      </aside>
+    </div>
+  </main>
+</div>
+
+<script type="module">
+// ================= SETTINGS (edit these) =================
+const HUB_URL = 'digital-hub.html';      // where classroom students, live class and chat live
+// One lesson app per online course. Each link opens a unit with ?unit=N. Leave '' until the app is uploaded.
+const LESSON_APPS = {
+  'Online K0': '', 'Online K1': '', 'Online K2': '', 'Online K3': '',
+  'Online Starters': '', 'Online Movers': '', 'Online Flyers': '',
+  'Online Beginner': '', 'Online Pre-Intermediate': '', 'Online Intermediate': '', 'Online Upper-Intermediate': '',
+  'Online Advanced': '', 'Online Proficiency': ''
+};
+// Unit titles per course (Online K0 is written; others appear when their lessons are ready)
+const UNITS = {
+  'Online K0': ['Hello, Friends!','My Room','Bath Time','Yummy Snacks','Farm Babies','Bugs in the Garden','Huge and Little','Pretend Play','Sounds','Up and Down','At the Beach','Vegetables','Birthday Party','Rainy Day','Things That Go','Night Sky','My Garden','Breakfast Time','At the Zoo','Cleaning Up','Music Fun','Opposites','Silly Faces','Winter Fun','Picnic Day','Body Moves','Pond Life','Camping','Hooray! Well Done!']
+};
+// ==========================================================
+
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getFirestore, collection, query, where, getDocs, limit, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+const app = initializeApp({
+  apiKey: 'AIzaSyAmATKmyTWQqqyNDqxbzN4CdTKAyzG1Dq4',
+  authDomain: 'c2epe-school-share-and-post.firebaseapp.com',
+  projectId: 'c2epe-school-share-and-post',
+  storageBucket: 'c2epe-school-share-and-post.firebasestorage.app',
+  messagingSenderId: '109849107156',
+  appId: '1:109849107156:web:0b67b05f3511d2f0893941'
+});
+const db = getFirestore(app);
+
+const $ = (id) => document.getElementById(id);
+const SESSION = 'c2_online_session';
+const today = () => new Date().toISOString().slice(0, 10);
+const daysLeft = (until) => until ? Math.round((new Date(until) - new Date(today())) / 86400000) : null;
+const esc = (t) => String(t ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+['hub-link-1', 'hub-link-2'].forEach((id) => { $(id).href = HUB_URL; });
+
+async function pinKey(studentId, pin) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(String(studentId).toUpperCase() + ':' + String(pin)));
+  return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+function showError(msg) { const e = $('si-err'); e.textContent = msg; e.style.display = 'block'; }
+
+async function signIn(ev) {
+  ev.preventDefault();
+  $('si-err').style.display = 'none';
+  const id = $('si-id').value.trim().toUpperCase().replace(/\s+/g, '');
+  const pin = $('si-pin').value.replace(/\D/g, '');
+  if (!/^(\d{6}|C2-EPE\d{4,})$/.test(id)) { showError('The Student ID is the 6-digit number from the school (e.g. 482916).'); return; }
+  const btn = $('si-btn'); btn.disabled = true; btn.textContent = 'Checking…';
+  try {
+    const snap = await getDocs(query(collection(db, 'students'), where('studentId', '==', id), limit(1)));
+    if (snap.empty) { showError('Student ID not found. Check the number or ask the Front Desk.'); return; }
+    const s = snap.docs[0].data();
+    if (s.active === false || s.status === 'inactive') { showError('This account is turned off. Please contact the Front Desk.'); return; }
+    if (s.pinSet) {
+      if (!pin) { showError('Please enter your 4-digit PIN.'); $('si-pin').focus(); return; }
+      const ks = await getDoc(doc(db, 'studentKeys', await pinKey(id, pin)));
+      if (!ks.exists() || String(ks.data().studentId) !== id) { showError('Incorrect PIN. Ask the Front Desk if you forgot it.'); $('si-pin').focus(); return; }
+    }
+    if (!s.online) { showError('This Student ID is not enrolled in Online Class. Classroom students use the Digital Hub.'); return; }
+    const st = { id, name: s.nameEn || s.nameKm || 'Student', km: s.nameKm || '', course: s.onlineCourse || 'Online', until: s.onlineUntil || '' };
+    sessionStorage.setItem(SESSION, JSON.stringify(st));
+    $('si-id').value = ''; $('si-pin').value = '';
+    showDashboard(st);
+  } catch (e) {
+    console.error(e);
+    showError('Could not connect right now. Check the internet and try again.');
+  } finally { btn.disabled = false; btn.textContent = 'Sign in · ចូល'; }
+}
+
+function lessonLink(course, n) {
+  const base = LESSON_APPS[course];
+  return base ? base + (base.includes('?') ? '&' : '?') + 'unit=' + n : HUB_URL;
+}
+
+function showDashboard(st) {
+  $('signin').classList.add('hidden'); $('dash').classList.remove('hidden');
+  const left = daysLeft(st.until);
+  const ended = left !== null && left < 0;
+  const initials = st.name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
+  $('d-avatar').textContent = initials;
+  $('d-name').textContent = st.name;
+  $('d-meta').textContent = 'Student ID ' + st.id + ' · ' + st.course + (st.until ? ' · Online until ' + st.until : '');
+
+  const units = UNITS[st.course] || [];
+  const doneKey = 'c2_online_done_' + st.id, openKey = 'c2_online_opened_' + st.id;
+  const done = store.get(doneKey, []), opened = store.get(openKey, []);
+  const next = units.findIndex((_, i) => !done.includes(i + 1));
+  $('s-done').textContent = done.length + (units.length ? ' / ' + units.length : '');
+  $('s-opened').textContent = opened.length;
+  $('s-days').textContent = left === null ? 'No end date' : ended ? 'Ended' : String(left);
+
+  // access box
+  const box = $('acc-box');
+  box.classList.toggle('ending', ended || (left !== null && left <= 7));
+  $('acc-text').innerHTML = ended ? 'Your online access ended on <b>' + esc(st.until) + '</b>.'
+    : st.until ? 'Active until <b>' + esc(st.until) + '</b>.' : 'Active — no end date set.';
+  $('acc-sub').textContent = ended ? 'Lessons are locked. Please renew at the Front Desk. · សូមបន្តនៅ Front Desk'
+    : (left !== null && left <= 7) ? 'Ends soon — please renew at the Front Desk.' : 'Renew at the Front Desk before the end date.';
+
+  // continue button
+  const cont = $('d-continue');
+  if (ended) { cont.removeAttribute('href'); cont.style.opacity = '.55'; $('d-continue-title').textContent = 'Access ended'; $('d-continue-sub').textContent = 'Renew to keep learning'; }
+  else if (!units.length) { cont.href = HUB_URL; $('d-continue-title').textContent = st.course; $('d-continue-sub').textContent = 'Open your lessons in the Digital Hub'; }
+  else {
+    const n = (next === -1 ? units.length - 1 : next) + 1;
+    cont.href = lessonLink(st.course, n);
+    $('d-continue-title').textContent = 'Unit ' + n + ' · ' + units[n - 1];
+    $('d-continue-sub').textContent = next === -1 ? 'All units finished — review any unit' : 'Pick up where you left off';
+    cont.onclick = () => markOpened(n);
+  }
+
+  // unit grid
+  $('l-title').textContent = 'My lessons · ' + st.course;
+  $('l-sub').textContent = units.length ? units.length + ' units · 19 learning modules each' : '';
+  const grid = $('units');
+  if (!units.length) { grid.innerHTML = '<div class="empty" style="grid-column:1/-1">Lessons for ' + esc(st.course) + ' are being prepared. Your teacher will tell you when they open.</div>'; }
+  else {
+    grid.innerHTML = units.map((t, i) => {
+      const n = i + 1, isDone = done.includes(n), isNow = !isDone && i === next;
+      const cls = isDone ? 'unit done' : isNow ? 'unit now' : 'unit';
+      const state = isDone ? 'Done' : isNow ? 'Up next' : '';
+      const href = ended ? '' : ' href="' + esc(lessonLink(st.course, n)) + '"';
+      return '<a class="' + cls + '"' + href + ' data-n="' + n + '"' + (ended ? ' aria-disabled="true" style="opacity:.55"' : '') + '>'
+        + '<span class="n">Unit ' + n + (state ? ' · ' + state : '') + '</span><span class="t">' + esc(t) + '</span></a>';
+    }).join('');
+    grid.querySelectorAll('a[href]').forEach((a) => a.addEventListener('click', () => markOpened(Number(a.dataset.n))));
+  }
+  function markOpened(n) { const o = store.get(openKey, []); if (!o.includes(n)) { o.push(n); store.set(openKey, o); } }
+}
+
+$('si-form').addEventListener('submit', signIn);
+$('out-btn').addEventListener('click', () => { sessionStorage.removeItem(SESSION); $('dash').classList.add('hidden'); $('signin').classList.remove('hidden'); $('si-id').focus(); });
+try { const saved = JSON.parse(sessionStorage.getItem(SESSION) || 'null'); if (saved && saved.id) showDashboard(saved); } catch (e) {}
+// a lesson app can report a finished unit with: localStorage 'c2_online_done_<StudentID>' = [1,2,…]
+</script>
+</body>
+</html>

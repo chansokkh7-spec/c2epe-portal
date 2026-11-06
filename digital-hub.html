@@ -1254,7 +1254,16 @@
                 <textarea id="systemDescInput" rows="2" placeholder="Short description..."></textarea>
             </div>
 
-            <div class="restrict-toggle">
+            <div class="form-group" id="c2ClassesWrap">
+                    <label>🎓 Who can open this card · កម្រិតដែលអាចបើក</label>
+                    <div style="font-size:0.8rem;color:#9db4de;margin:2px 0 8px;">Leave all unticked = automatic (by level group: Kindergarten · Primary · Secondary · Master; Online cards = every active online student).</div>
+                    <div id="c2ClassesList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:4px 10px;max-height:190px;overflow-y:auto;padding:6px 8px;border:1px solid rgba(157,180,222,0.35);border-radius:8px;"></div>
+                </div>
+                <div class="restrict-toggle">
+                    <input type="checkbox" id="c2PublicInput">
+                    <label for="c2PublicInput">🌐 Public — guests can open this without signing in</label>
+                </div>
+                <div class="restrict-toggle">
                 <input type="checkbox" id="restrictedInput" onchange="toggleAssignedList()">
                 <label for="restrictedInput">🔒 Restrict — only assigned students can see/open this</label>
             </div>
@@ -1356,6 +1365,8 @@
                 <form id="gateStudentForm" onsubmit="event.preventDefault(); gateStudentLogin();">
                     <label for="gateStudentId">លេខសម្គាល់សិស្ស · Student ID</label>
                     <input id="gateStudentId" autocomplete="username" placeholder="e.g. 482916" inputmode="text" required>
+<label for="gateStudentPin">លេខ PIN · PIN (if the school gave you one)</label>
+<input id="gateStudentPin" type="password" autocomplete="current-password" placeholder="4 digits" inputmode="numeric" maxlength="4">
                     <button class="go" id="gateStudentBtn" type="submit">ចូល · Sign in</button>
                     <div class="login-err" id="gateStudentErr"></div>
                     <div class="login-note">ប្រើលេខសម្គាល់សិស្ស ដែលសាលាបានផ្តល់ឱ្យ ពេលចុះឈ្មោះចូលរៀនតាម Portal។ មាតាបិតាប្រើលេខសម្គាល់របស់កូន។<br>Use the Student ID you received when registering through the school Portal. Parents use their child's Student ID.</div>
@@ -1406,6 +1417,8 @@
                 <div class="form-group">
                     <label>Enter your Student ID (ask your teacher if you don't have one):</label>
                     <input type="text" id="studentIdInputField" placeholder="e.g. C2-0142" onkeydown="if(event.key==='Enter') submitStudentId();">
+                    <label for="studentIdPinField" style="margin-top:10px;">PIN (if the school gave you one):</label>
+                    <input type="password" id="studentIdPinField" placeholder="4 digits" inputmode="numeric" maxlength="4" onkeydown="if(event.key==='Enter') submitStudentId();">
                 </div>
                 <p id="studentIdError" style="color:#ef4444; font-size:0.85rem; margin-bottom:10px; display:none;"></p>
                 <button class="btn-save" onclick="submitStudentId()">Confirm</button>
@@ -2266,7 +2279,7 @@
             if (ADMIN_EMAILS.includes(String(user.email || '').toLowerCase())) { staffName = 'Admin'; return 'admin'; }
             try {
                 const doc = await staffCollectionRef.doc(user.uid).get();
-                if (doc.exists && doc.data().role === 'teacher' && doc.data().active !== false) { staffName = doc.data().name || user.email; return 'teacher'; }
+                if (doc.exists && doc.data().role === 'teacher' && doc.data().active !== false) { staffName = doc.data().name || user.email; await c2LoadTeacherClasses(user, doc.data()); return 'teacher'; }
             } catch (e) { console.error('Could not check teacher account:', e); }
             return null;
         }
@@ -2294,7 +2307,7 @@
             const m = id.match(/^C2-?EPE-?(\d{3,})$/);
             return m ? [id, 'C2-EPE' + m[1], 'C2-EPE-' + m[1]].filter((v, i, a) => a.indexOf(v) === i) : [id];
         }
-        async function lookupStudent(raw) {
+        async function lookupStudent(raw, pin) {
             const id = normalizeStudentId(raw);
             if (!id) return null;
             for (const v of studentIdVariants(id)) {
@@ -2307,7 +2320,8 @@
                     const snap = await pdb.collection('students').where('studentId', '==', v).limit(1).get();
                     if (!snap.empty) {
                         const d = snap.docs[0].data();
-                        return { id: v, name: d.nameEn || d.nameKm || '', allowedSystems: [], active: d.active !== false && d.status !== 'inactive', fromPortal: true };
+                        if (d.pinSet) { const pinIn = String(pin || '').replace(/\D/g, ''); if (!pinIn) return { id: v, pinProblem: 'missing' }; const k = await c2PinKey(v, pinIn); const ks = await getPortalDb().collection('studentKeys').doc(k).get(); if (!ks.exists || String((ks.data() || {}).studentId) !== String(v).toUpperCase()) return { id: v, pinProblem: 'wrong' }; }
+                        return { id: v, name: d.nameEn || d.nameKm || '', allowedSystems: [], active: d.active !== false && d.status !== 'inactive', cls: d.cls || '', classroom: d.classroom !== false, online: !!d.online, onlineCourse: d.onlineCourse || '', onlineUntil: d.onlineUntil || '', allowReview: !!d.allowReview, fromPortal: true };
                     }
                 }
             } catch (e) { console.error('Could not check the school Portal:', e); }
@@ -2343,13 +2357,16 @@
             if (!input.value.trim()) return;
             btn.disabled = true;
             try {
-                const found = await lookupStudent(input.value);
+                const pinEl = document.getElementById('gateStudentPin');
+                const found = await lookupStudent(input.value, pinEl ? pinEl.value : '');
+                if (found && found.pinProblem) { err.textContent = found.pinProblem === 'wrong' ? 'លេខ PIN មិនត្រឹមត្រូវ · Incorrect PIN — please check with the Front Desk.' : 'សូមបញ្ចូល PIN 4 ខ្ទង់ · Please enter your 4-digit PIN.'; if (pinEl) pinEl.focus(); return; }
+                
                 if (!found) { err.textContent = 'រកមិនឃើញលេខសម្គាល់នេះទេ · Student ID not found — please check it or ask the school.'; return; }
                 if (!found.active) { err.textContent = 'គណនីនេះត្រូវបានបិទ · This account is not active — please contact the school.'; return; }
                 if (auth.currentUser) await auth.signOut();
-                currentStudent = { id: found.id, name: found.name, allowedSystems: found.allowedSystems };
+                currentStudent = c2StudentFromFound(found);
                 sessionStorage.setItem('seg_student', JSON.stringify(currentStudent));
-                input.value = '';
+                input.value = ''; if (pinEl) pinEl.value = '';
                 updateStudentIdBtn();
                 renderGrid();
                 updateGate();
@@ -2411,8 +2428,9 @@
                 const rows = [];
                 snap.forEach(d => rows.push({ id: d.id, ...d.data() }));
                 rows.sort((a, b) => String(a.name || '').localeCompare(String(b.name || '')));
-                box.innerHTML = rows.length ? rows.map(r => `<div class="teacher-row"><div><b>${escapeHtml(r.name || '')}</b><br><span style="color:#a9b8dc;font-size:.85rem;">${escapeHtml(r.email || '')}</span></div>
+                box.innerHTML = rows.length ? rows.map(r => `<div class="teacher-row"><div><b>${escapeHtml(r.name || '')}</b><br><span style="color:#a9b8dc;font-size:.85rem;">${escapeHtml(r.email || '')}</span><br><span style="color:#e8c766;font-size:.8rem;">🎓 ${escapeHtml((r.classes || []).join(', ') || 'no classes set in Hub (Portal classes still apply)')}</span></div>
                     <div>${r.active === false ? '<span class="role-badge" style="background:#5a2a2a;color:#ffb3b3;">OFF</span>' : '<span class="role-badge" style="background:#1f5a34;color:#b8f5c9;">ON</span>'}
+                    <button class="manage-students-btn" style="margin-left:6px;" onclick="c2EditTeacherClasses('${r.id}', '${escapeHtml((r.classes || []).join(', '))}')">🎓 Classes</button>
                     <button class="manage-students-btn" style="margin-left:6px;" onclick="setTeacherActive('${r.id}', ${r.active === false})">${r.active === false ? 'Turn on' : 'Turn off'}</button></div></div>`).join('')
                     : '<p style="color:#a9b8dc;">No teacher accounts yet.</p>';
             } catch (e) { console.error(e); box.innerHTML = '<p style="color:#ff8a8a;">Could not load teachers. Check the Firestore rules for "staff".</p>'; }
@@ -2621,10 +2639,123 @@
             return document.body.classList.contains('admin-mode');
         }
 
+
+        // ===== C2 ACCESS: one Student ID · classroom / online · own level only =====
+        const PORTAL_CLASSES = ['K0','K1','K2','K3','Starters','Movers','Flyers','Beginner','Pre-Intermediate','Intermediate','Upper-Intermediate','Advanced','Proficiency','EAP / Bridge to University','IELTS & TOEFL Prep','Exam Prep','Online Class','Grammar','Writing Skills','Computer','AI'];
+        const ONLINE_COURSES = ['Online K0','Online K1','Online K2','Online K3','Online Starters','Online Movers','Online Flyers','Online Beginner','Online Pre-Intermediate','Online Intermediate','Online Upper-Intermediate','Online Advanced','Online Proficiency'];
+        const LEVEL_GROUPS = ['Kindergarten','Primary','Secondary','Master Level'];
+        const ONLINE_LEVEL_GROUPS = ['Kindergarten','Primary','Secondary Level','Master Level'];
+        const ONLINE_GROUP = { 'Online K0':'Kindergarten','Online K1':'Kindergarten','Online K2':'Kindergarten','Online K3':'Kindergarten',
+            'Online Starters':'Primary','Online Movers':'Primary','Online Flyers':'Primary',
+            'Online Beginner':'Secondary Level','Online Pre-Intermediate':'Secondary Level','Online Intermediate':'Secondary Level','Online Upper-Intermediate':'Secondary Level',
+            'Online Advanced':'Master Level','Online Proficiency':'Master Level' };
+        const CLASS_GROUP = { 'K0':'Kindergarten','K1':'Kindergarten','K2':'Kindergarten','K3':'Kindergarten',
+            'Starters':'Primary','Movers':'Primary','Flyers':'Primary',
+            'Beginner':'Secondary','Pre-Intermediate':'Secondary','Intermediate':'Secondary','Upper-Intermediate':'Secondary',
+            'Advanced':'Master Level','Proficiency':'Master Level','EAP / Bridge to University':'Master Level','IELTS & TOEFL Prep':'Master Level' };
+        async function c2PinKey(studentId, pin) {
+            const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(String(studentId).toUpperCase() + ':' + String(pin)));
+            return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+        function c2BaseClass(c) { return String(c || '').replace(/-[A-C]$/i, '').trim(); }
+        function c2OnlineActive(st) {
+            if (!st || !st.online) return false;
+            if (!st.onlineUntil) return true;
+            return st.onlineUntil >= new Date().toISOString().slice(0, 10);
+        }
+        function c2ClassIndex(list, c) { return list.indexOf(c); }
+        // true when this signed-in student may open this card (staff and the old "restricted" rule are handled by the caller)
+        function c2LevelRule(sys, st) {
+            if (!st.fromPortal) return true;                     // Hub-only student records keep the old behaviour
+            const classes = Array.isArray(sys.classes) ? sys.classes : [];
+            if (sys.category === 'online') {
+                if (!c2OnlineActive(st)) return false;
+                if (!classes.length) {
+                    const og = ONLINE_GROUP[st.onlineCourse];
+                    const cg = defaultLevelFor(sys._id) === 'Bridge Course' ? 'Primary' : defaultLevelFor(sys._id);
+                    if (!ONLINE_LEVEL_GROUPS.includes(cg)) return false;      // Newspaper · Grammar · Writing: only students an admin assigns
+                    if (og === cg) return true;
+                    return !!st.allowReview && ONLINE_LEVEL_GROUPS.indexOf(cg) < ONLINE_LEVEL_GROUPS.indexOf(og);
+                }
+                if (classes.includes(st.onlineCourse)) return true;
+                if (st.allowReview) { const a = c2ClassIndex(ONLINE_COURSES, st.onlineCourse); return classes.some(c => { const b = c2ClassIndex(ONLINE_COURSES, c); return b >= 0 && a >= 0 && b < a; }); }
+                return false;
+            }
+            if (st.classroom === false) return false;            // online-only students: no classroom cards
+            const cls = c2BaseClass(st.cls);
+            if (classes.length) {
+                if (classes.includes(cls)) return true;
+                if (st.allowReview) { const a = c2ClassIndex(PORTAL_CLASSES, cls); return classes.some(c => { const b = c2ClassIndex(PORTAL_CLASSES, c); return b >= 0 && a >= 0 && b < a; }); }
+                return false;
+            }
+            const cardGroup = defaultLevelFor(sys._id);
+            if (!LEVEL_GROUPS.includes(cardGroup)) return true;   // cards without a level group stay open to classroom students
+            const g = CLASS_GROUP[cls];
+            if (!g) return false;                                 // special classes see only cards an admin assigned to them
+            if (g === cardGroup) return true;
+            return !!st.allowReview && LEVEL_GROUPS.indexOf(cardGroup) < LEVEL_GROUPS.indexOf(g);
+        }
+        function c2StudentFromFound(found) {
+            return { id: found.id, name: found.name, allowedSystems: found.allowedSystems || [], fromPortal: !!found.fromPortal,
+                     cls: found.cls || '', classroom: found.classroom !== false, online: !!found.online,
+                     onlineCourse: found.onlineCourse || '', onlineUntil: found.onlineUntil || '', allowReview: !!found.allowReview };
+        }
+        function c2AccessNote() {
+            let el = document.getElementById('c2AccessNote');
+            const grid = document.getElementById('systemGrid');
+            if (!el && grid) { el = document.createElement('div'); el.id = 'c2AccessNote'; grid.parentNode.insertBefore(el, grid); }
+            if (!el) return;
+            const st = currentStudent;
+            if (staffRole === 'teacher') {
+                el.style.cssText = 'display:block;max-width:1200px;margin:6px auto 14px;padding:10px 16px;border-radius:12px;background:rgba(232,199,102,0.14);border:1px solid rgba(232,199,102,0.55);color:inherit;font-size:0.9rem;line-height:1.5;text-align:center;';
+                el.innerHTML = staffClasses.length
+                    ? '👩‍🏫 ថ្នាក់ដែលអ្នកបង្រៀន · Your classes: <b>' + staffClasses.map(escapeHtml).join(', ') + '</b> — only these cards are shown.'
+                    : '👩‍🏫 No classes assigned to you yet, so all cards are shown. Admin: assign classes in the Portal or with 🎓 Classes in Manage Teachers.';
+                return;
+            }
+            if (!st || staffRole || !st.fromPortal) { el.style.display = 'none'; return; }
+            const parts = [];
+            if (st.classroom !== false && st.cls) parts.push('🏫 ' + escapeHtml(st.cls));
+            if (st.online) parts.push('💻 ' + escapeHtml(st.onlineCourse || 'Online') + (c2OnlineActive(st) ? (st.onlineUntil ? ' · until ' + escapeHtml(st.onlineUntil) : '') : ' · <b>ended — please contact the Front Desk</b>'));
+            el.style.cssText = 'display:block;max-width:1200px;margin:6px auto 14px;padding:10px 16px;border-radius:12px;background:rgba(232,199,102,0.14);border:1px solid rgba(232,199,102,0.55);color:inherit;font-size:0.9rem;line-height:1.5;text-align:center;';
+            el.innerHTML = 'បង្ហាញតែមេរៀនរបស់អ្នក · Showing only your lessons: ' + parts.join(' &nbsp;|&nbsp; ') +
+                (st.allowReview ? ' · <i>earlier levels open for review</i>' : '');
+        }
+
+        // ===== C2 ACCESS: classes a teacher teaches (Portal "assigned classes", else the Hub staff list) =====
+        let staffClasses = [];
+        async function c2LoadTeacherClasses(user, hubData) {
+            let list = Array.isArray(hubData && hubData.classes) ? hubData.classes.slice() : [];
+            try {
+                const pdb = getPortalDb();
+                const snap = await pdb.collection('teachers').where('email', '==', String(user.email || '').toLowerCase()).limit(1).get();
+                if (!snap.empty) list = list.concat((snap.docs[0].data().assignedClasses || []).map(c2BaseClass));
+            } catch (e) { console.warn('Portal teacher classes not readable here — using the Hub list:', e && e.message); }
+            staffClasses = Array.from(new Set(list.filter(Boolean)));
+        }
+        function c2TeacherRule(sys) {
+            if (!staffClasses.length) return true;                       // nothing assigned yet: see everything (note shown)
+            if (sys.restricted) return true;
+            return staffClasses.some(c => ONLINE_COURSES.includes(c)
+                ? c2LevelRule(sys, { fromPortal: true, classroom: false, online: true, onlineCourse: c, onlineUntil: '' })
+                : c2LevelRule(sys, { fromPortal: true, classroom: true, online: false, cls: c }));
+        }
+        async function c2EditTeacherClasses(uid, current) {
+            const all = PORTAL_CLASSES.concat(ONLINE_COURSES);
+            const v = prompt('Classes this teacher teaches (comma separated).\nExample: K1, K2, Online K0\n\nAvailable: ' + all.join(', '), current || '');
+            if (v === null) return;
+            const chosen = v.split(',').map(x => x.trim()).filter(Boolean);
+            const bad = chosen.filter(x => !all.includes(x));
+            if (bad.length) { alert('Not a class name: ' + bad.join(', ')); return; }
+            try { await staffCollectionRef.doc(uid).update({ classes: chosen }); loadTeachers(); }
+            catch (e) { console.error(e); alert('Could not save the classes.'); }
+        }
         function studentCanAccess(sys) {
-            if (!sys.restricted) return true;
-            if (!currentStudent) return false;
-            return (currentStudent.allowedSystems || []).includes(sys._id);
+            if (staffRole === 'admin' || isAdmin()) return true;           // Admin sees everything
+            if (staffRole === 'teacher') return c2TeacherRule(sys);      // teachers: only their classes
+            if (!currentStudent) return !!sys.public;                     // guests: only cards marked public
+            if (sys.restricted) return (currentStudent.allowedSystems || []).includes(sys._id);
+            return c2LevelRule(sys, currentStudent);
         }
 
         // Fixes display ORDER only (never the underlying slot number, so
@@ -2641,7 +2772,7 @@
 
         function renderGrid() {
             const grid = document.getElementById('systemGrid');
-            grid.innerHTML = '';
+            grid.innerHTML = ''; c2AccessNote();
 
             Object.keys(carouselIntervals).forEach(key => clearInterval(carouselIntervals[key]));
             carouselIntervals = {};
@@ -2670,7 +2801,7 @@
                 const card = document.createElement('div');
                 card.className = 'system-card' + (unlocked ? '' : ' is-locked');
                 card.style.order = defaultOrderFor(i);
-                card.style.display = (matchesSearch && matchesCategory && matchesLevel) ? 'flex' : 'none';
+                card.style.display = (matchesSearch && matchesCategory && matchesLevel && (unlocked || (!currentStudent && !staffRole))) ? 'flex' : 'none';
                 card.onclick = unlocked ? (() => onCardClick(i)) : (() => openStudentIdModal(true));
 
                 let contentHtml = `<button class="edit-btn admin-only" title="${escapeHtml(t('editBtnTitle'))}" onclick="event.stopPropagation(); openModal(${i});">⚙️</button>`;
@@ -3690,6 +3821,15 @@
             frame.setAttribute('referrerpolicy', 'no-referrer');
         }
 
+
+        function c2RenderClassBoxes(sys) {
+            const box = document.getElementById('c2ClassesList'); if (!box) return;
+            const list = sys.category === 'online' || defaultCategoryFor(activeSystemId) === 'online' ? ONLINE_COURSES : PORTAL_CLASSES;
+            const chosen = Array.isArray(sys.classes) ? sys.classes : [];
+            box.innerHTML = list.map((c, i) => '<label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;cursor:pointer;"><input type="checkbox" class="c2ClassBox" value="' + escapeHtml(c) + '"' + (chosen.includes(c) ? ' checked' : '') + '> ' + escapeHtml(c) + '</label>').join('');
+            const pub = document.getElementById('c2PublicInput'); if (pub) pub.checked = !!sys.public;
+        }
+        function c2CollectClassBoxes() { return Array.from(document.querySelectorAll('.c2ClassBox:checked')).map(x => x.value); }
         function openModal(id) {
             activeSystemId = id;
             const sys = systemsData[id] || {};
@@ -3705,6 +3845,7 @@
             document.getElementById('videoUrlInput').value = sys.video || '';
             renderQuizBuilder(sys.quiz || []);
             document.getElementById('restrictedInput').checked = !!sys.restricted;
+            c2RenderClassBoxes(sys);
             toggleAssignedList();
 
             switchTab(sys.type || 'url');
@@ -3878,6 +4019,8 @@
                     category,
                     desc,
                     restricted,
+                    classes: c2CollectClassBoxes(),
+                    public: !!(document.getElementById('c2PublicInput') || {}).checked,
                     icon: iconBase64,
                     slides: slidesArray,
                     video: videoUrl,
@@ -4576,13 +4719,16 @@
             errEl.style.display = 'none';
             if (!raw) return;
             try {
-                const found = await lookupStudent(raw);
+                const pinEl = document.getElementById('studentIdPinField');
+                const found = await lookupStudent(raw, pinEl ? pinEl.value : '');
+                if (found && found.pinProblem) { errEl.style.display = 'block'; errEl.textContent = found.pinProblem === 'wrong' ? 'លេខ PIN មិនត្រឹមត្រូវ · Incorrect PIN — please check with the Front Desk.' : 'សូមបញ្ចូល PIN 4 ខ្ទង់ · Please enter your 4-digit PIN.'; if (pinEl) pinEl.focus(); return; }
+                
                 if (!found || !found.active) {
                     errEl.textContent = found ? 'This account is not active — please contact the school.' : 'Student ID not found — please ask your teacher.';
                     errEl.style.display = 'block';
                     return;
                 }
-                currentStudent = { id: found.id, name: found.name, allowedSystems: found.allowedSystems };
+                currentStudent = c2StudentFromFound(found); if (pinEl) pinEl.value = '';
                 sessionStorage.setItem('seg_student', JSON.stringify(currentStudent));
                 updateStudentIdBtn();
                 renderGrid();

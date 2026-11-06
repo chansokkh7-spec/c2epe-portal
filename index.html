@@ -1009,6 +1009,9 @@ function logoImgError(img){
         <input type="text" id="parent-student-id" placeholder="e.g. 482916" inputmode="numeric" maxlength="12"
           style="width:100%;padding:10px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:1rem;font-family:monospace;letter-spacing:1px;text-transform:uppercase;outline:none;margin-bottom:8px;"
           onkeydown="if(event.key==='Enter')loginWithStudentId()">
+<label for="parent-student-pin" style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">PIN (if the school gave you one)</label>
+<input type="password" id="parent-student-pin" placeholder="4 digits" inputmode="numeric" maxlength="4" style="width:100%;padding:10px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:1rem;font-family:monospace;letter-spacing:4px;outline:none;margin-bottom:8px;box-sizing:border-box;" onkeydown="if(event.key==='Enter')loginWithStudentId()">
+
         <div id="parent-id-err" style="display:none;color:#e53935;font-size:.76rem;margin-bottom:10px;background:#ffebee;padding:7px 10px;border-radius:6px;"></div>
         <button onclick="loginWithStudentId()" id="parent-id-btn"
           style="width:100%;padding:11px;background:#388e3c;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem;margin-bottom:8px;">
@@ -1205,7 +1208,10 @@ function logoImgError(img){
     
     <!-- Filter bar -->
     <div style="background:#fff;border-radius:10px;padding:12px 14px;box-shadow:0 1px 6px rgba(0,0,0,.08);margin-bottom:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
-      <select id="stu-filter-cls" onchange="loadStudents()" style="padding:7px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.83rem;outline:none;font-family:inherit;color:#333;">
+      <select id="stu-filter-mode" onchange="renderStudentGrid(allStudents)" aria-label="Filter by study type" style="padding:7px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.83rem;outline:none;font-family:inherit;color:#333;">
+<option value="">🎓 All study types</option><option value="classroom">🏫 Classroom only</option><option value="online">💻 Online only</option><option value="both">🏫💻 Both</option><option value="expiring">⏰ Online ending in 7 days</option><option value="ended">⏸ Online ended</option>
+</select>
+<select id="stu-filter-cls" onchange="loadStudents()" style="padding:7px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.83rem;outline:none;font-family:inherit;color:#333;">
         <option value="">All Classes</option>
         <optgroup label="🎒 Kindergarten">
           <option>K0</option>
@@ -1336,7 +1342,31 @@ function logoImgError(img){
       <input type="text" id="stu-parent" placeholder="Parent name / phone"
         style="width:100%;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;outline:none;margin-bottom:14px;font-family:inherit;">
 
-      <div id="stu-modal-msg" style="display:none;font-size:.76rem;margin-bottom:10px;padding:6px 10px;border-radius:6px;"></div>
+      <!-- C2 ACCESS: classroom / online / PIN -->
+<div id="stu-access-box" style="border:1.5px solid #000080;border-radius:10px;padding:10px 12px 4px;margin:4px 0 14px;background:#f7f8ff;">
+<div style="font-weight:800;font-size:.8rem;color:#000080;margin-bottom:8px;">🎓 Studies &amp; Access · របៀបសិក្សា</div>
+<label style="display:flex;align-items:center;gap:8px;font-size:.84rem;margin-bottom:6px;cursor:pointer;"><input type="checkbox" id="stu-acc-classroom" checked style="width:18px;height:18px;"> 🏫 Classroom (in school)</label>
+<label style="display:flex;align-items:center;gap:8px;font-size:.84rem;margin-bottom:10px;cursor:pointer;"><input type="checkbox" id="stu-acc-online" onchange="toggleOnlineFields()" style="width:18px;height:18px;"> 💻 Online class</label>
+<div id="stu-acc-online-fields" style="display:none;">
+<label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">Online course</label>
+<select id="stu-acc-online-course" style="width:100%;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;outline:none;margin-bottom:10px;font-family:inherit;color:#333;box-sizing:border-box;">
+<option value="">Select online course</option>
+<optgroup label="Online Kindergarten"><option>Online K0</option><option>Online K1</option><option>Online K2</option><option>Online K3</option></optgroup>
+<optgroup label="Online Primary"><option>Online Starters</option><option>Online Movers</option><option>Online Flyers</option></optgroup>
+<optgroup label="Online General English"><option>Online Beginner</option><option>Online Pre-Intermediate</option><option>Online Intermediate</option><option>Online Upper-Intermediate</option></optgroup>
+<optgroup label="Online Advanced"><option>Online Advanced</option><option>Online Proficiency</option></optgroup>
+</select>
+<label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">Online until (end date)</label>
+<input type="date" id="stu-acc-online-until" style="width:100%;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;outline:none;margin-bottom:10px;font-family:inherit;color:#333;box-sizing:border-box;">
+</div>
+<label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">PIN for student / parent login (4 digits)</label>
+<div style="display:flex;gap:6px;margin-bottom:10px;">
+<input type="text" id="stu-acc-pin" inputmode="numeric" maxlength="4" placeholder="none" style="flex:1;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.95rem;font-family:monospace;letter-spacing:4px;outline:none;">
+<button type="button" onclick="document.getElementById('stu-acc-pin').value=genStudentPin()" style="background:#f0f2f5;border:1.5px solid #e0e0e0;border-radius:7px;padding:0 10px;cursor:pointer;font-size:.78rem;">🔄 New PIN</button>
+</div>
+<label style="display:flex;align-items:flex-start;gap:8px;font-size:.8rem;margin-bottom:8px;cursor:pointer;line-height:1.35;"><input type="checkbox" id="stu-acc-review" style="width:18px;height:18px;margin-top:1px;"> <span>Allow review of earlier levels<br><small style="color:#777;">Off = sees only the current level in the Hub</small></span></label>
+</div>
+<div id="stu-modal-msg" style="display:none;font-size:.76rem;margin-bottom:10px;padding:6px 10px;border-radius:6px;"></div>
       <button onclick="saveStudent()" style="width:100%;padding:11px;background:#000080;color:#FFD700;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem;margin-bottom:8px;">
         💾 Save Student
       </button>
@@ -6185,6 +6215,17 @@ async function loginWithStudentId(){
     } else {
       var d = snap.docs[0];
       var s = d.data();
+      // C2 ACCESS: a student with a PIN must also type the PIN
+      var pinEl = document.getElementById('parent-student-pin');
+      var pinIn = pinEl ? pinEl.value.replace(/\D/g,'') : '';
+      if(s.pinSet && !(pinIn && await c2CheckPin(raw, pinIn))){
+        errEl.style.display='block';
+        errEl.textContent = pinIn ? '❌ Incorrect PIN. Please check with the Front Desk.' : '🔑 Please enter the 4-digit PIN.';
+        btn.disabled = false; btn.textContent = "🔓 View My Child's Studies";
+        if(pinEl) pinEl.focus();
+        return;
+      }
+      if(pinEl) pinEl.value = '';
       // baseLevel() strips any leftover "-A/-B/-C" section suffix — needed
       // because older student records created before sections were
       // removed may still have e.g. "K0-A" stored in Firestore. This
@@ -7071,6 +7112,96 @@ function closeStudentPage(){
   document.getElementById("student-page").style.display = "none";
 }
 
+
+// ===== C2 ACCESS helpers: one Student ID, classroom and/or online =====
+async function c2PinKey(studentId, pin){
+  var data = new TextEncoder().encode(String(studentId).toUpperCase() + ':' + String(pin));
+  var buf = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+}
+async function c2CheckPin(studentId, pin){
+  var {db, doc} = window._fb;
+  var {getDoc} = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+  var snap = await getDoc(doc(db, 'studentKeys', await c2PinKey(studentId, pin)));
+  return snap.exists() && String(snap.data().studentId) === String(studentId).toUpperCase();
+}
+function genStudentPin(){ return String(Math.floor(1000 + Math.random() * 9000)); }
+function stuHasClassroom(s){ return !s || s.classroom !== false; }
+function stuOnlineActive(s){
+  if(!s || !s.online) return false;
+  if(!s.onlineUntil) return true;
+  return s.onlineUntil >= new Date().toISOString().slice(0,10);
+}
+function stuMode(s){
+  var c = stuHasClassroom(s), o = !!(s && s.online);
+  return c && o ? 'both' : o ? 'online' : 'classroom';
+}
+function stuModeBadge(s){
+  var m = stuMode(s);
+  var exp = s && s.online && !stuOnlineActive(s);
+  var map = { classroom:['🏫 Classroom','#e3ebff','#1a237e'], online:['💻 Online','#fff3c4','#6b3f00'], both:['🏫💻 Both','#000080','#FFD700'] };
+  var b = map[m];
+  var badge = "<span style=\"display:inline-block;background:"+b[1]+";color:"+b[2]+";border-radius:8px;padding:1px 7px;font-size:.62rem;font-weight:800;margin:4px 0 0 4px\">"+b[0]+"</span>";
+  if(exp) badge += "<span style=\"display:inline-block;background:#eceff1;color:#455a64;border-radius:8px;padding:1px 7px;font-size:.6rem;font-weight:700;margin:3px 0 0 4px\">⏸ Online ended</span>";
+  else if(s && s.online && s.onlineUntil){
+    var days = Math.round((new Date(s.onlineUntil) - new Date(new Date().toISOString().slice(0,10))) / 86400000);
+    if(days <= 7) badge += "<span style=\"display:inline-block;background:#ffe0b2;color:#7c2d12;border-radius:8px;padding:1px 7px;font-size:.6rem;font-weight:700;margin:3px 0 0 4px\">⏰ "+days+" day"+(days===1?"":"s")+" left</span>";
+  }
+  return badge;
+}
+function stuModeFilter(list){
+  var el = document.getElementById('stu-filter-mode'); var v = el ? el.value : '';
+  if(!v) return list;
+  return list.filter(function(s){
+    if(v === 'expiring'){ if(!s.online || !s.onlineUntil) return false; var d=(new Date(s.onlineUntil)-new Date(new Date().toISOString().slice(0,10)))/86400000; return d>=0 && d<=7; }
+    if(v === 'ended') return !!s.online && !stuOnlineActive(s);
+    return stuMode(s) === v;
+  });
+}
+function toggleOnlineFields(){
+  var on = document.getElementById('stu-acc-online').checked;
+  document.getElementById('stu-acc-online-fields').style.display = on ? 'block' : 'none';
+}
+function resetAccessFields(){
+  document.getElementById('stu-acc-classroom').checked = true;
+  document.getElementById('stu-acc-online').checked = false;
+  document.getElementById('stu-acc-online-course').value = '';
+  document.getElementById('stu-acc-online-until').value = '';
+  document.getElementById('stu-acc-pin').value = genStudentPin();
+  document.getElementById('stu-acc-pin').placeholder = 'none';
+  c2AccessEditable();
+  document.getElementById('stu-acc-review').checked = false;
+  toggleOnlineFields();
+}
+function fillAccessFields(s){
+  document.getElementById('stu-acc-classroom').checked = stuHasClassroom(s);
+  document.getElementById('stu-acc-online').checked = !!s.online;
+  document.getElementById('stu-acc-online-course').value = s.onlineCourse || '';
+  document.getElementById('stu-acc-online-until').value = s.onlineUntil || '';
+  document.getElementById('stu-acc-pin').value = '';
+  document.getElementById('stu-acc-pin').placeholder = s.pinSet ? 'set ✓ — type a new PIN to change' : 'none';
+  c2AccessEditable();
+  document.getElementById('stu-acc-review').checked = !!s.allowReview;
+  toggleOnlineFields();
+}
+function c2AccessEditable(){
+  var can = admissionsCanAccess();
+  ['stu-acc-classroom','stu-acc-online','stu-acc-online-course','stu-acc-online-until','stu-acc-pin','stu-acc-review'].forEach(function(id){ var el=document.getElementById(id); if(el) el.disabled = !can; });
+  var box = document.getElementById('stu-access-box'); if(box) box.style.opacity = can ? '1' : '.6';
+  box && (box.title = can ? '' : 'Only the Admin or the Admissions head can change study access and PINs');
+}
+function collectAccessFields(){
+  var pin = document.getElementById('stu-acc-pin').value.replace(/\D/g,'').slice(0,4);
+  return {
+    classroom: document.getElementById('stu-acc-classroom').checked,
+    online: document.getElementById('stu-acc-online').checked,
+    onlineCourse: document.getElementById('stu-acc-online-course').value,
+    onlineUntil: document.getElementById('stu-acc-online-until').value,
+    allowReview: document.getElementById('stu-acc-review').checked,
+    _newPin: pin
+  };
+}
+
 async function loadStudents(){
   var cls = document.getElementById("stu-filter-cls").value;
   var grid = document.getElementById("student-grid");
@@ -7092,6 +7223,7 @@ async function loadStudents(){
 }
 
 function renderStudentGrid(students){
+  students = stuModeFilter(students);
   var grid = document.getElementById("student-grid");
   document.getElementById("stu-count").textContent = students.length + " students";
   
@@ -7112,7 +7244,7 @@ function renderStudentGrid(students){
       +"<div style=padding:8px 6px>"
       +"<div style=font-weight:700;font-size:.82rem;color:#1a1a2e;overflow:hidden;text-overflow:ellipsis;white-space:nowrap>"+( s.nameKm||s.nameEn||"—")+"</div>"
       +"<div style=font-size:.72rem;color:#888;margin-top:1px>"+( s.nameEn||"")+"</div>"
-      +"<span style=display:inline-block;background:"+col+";color:#fff;border-radius:8px;padding:1px 7px;font-size:.65rem;font-weight:700;margin-top:4px>"+( s.cls||"—")+"</span>"
+      +"<span style=display:inline-block;background:"+col+";color:#fff;border-radius:8px;padding:1px 7px;font-size:.65rem;font-weight:700;margin-top:4px>"+( s.cls||"—")+"</span>"+stuModeBadge(s)
       +(s.studentId?"<div style=font-size:.62rem;color:#aaa;margin-top:3px;font-family:monospace>"+s.studentId+"</div>":"")
       +"</div></div>";
   }).join("");
@@ -7143,6 +7275,7 @@ function showAddStudentModal(){
   document.getElementById("stu-dob").value = "";
   document.getElementById("stu-gender").value = "Male";
   document.getElementById("stu-parent").value = "";
+  resetAccessFields();
   document.getElementById("stu-photo-preview").innerHTML = "👤";
   document.getElementById("stu-id-display").value = "";
   document.getElementById("stu-id-display").placeholder = "Will be generated when you save";
@@ -7165,6 +7298,7 @@ function editStudent(id){
   document.getElementById("stu-dob").value = s.dob||"";
   document.getElementById("stu-gender").value = s.gender||"Male";
   document.getElementById("stu-parent").value = s.parent||"";
+  fillAccessFields(s);
   document.getElementById("stu-photo-preview").innerHTML = s.photo
     ? "<img src="+s.photo+" alt='Student photo' style=width:100%;height:100%;object-fit:cover;border-radius:50%>"
     : "👤";
@@ -7261,7 +7395,23 @@ async function saveStudent(){
     photo: stuPhotoDataUrl || "",
     updatedAt: new Date().toISOString()
   };
+  var acc = collectAccessFields();
+  if(!acc.classroom && !acc.online){
+    msg.style.cssText="display:block;background:#ffebee;color:#c62828;padding:6px 10px;border-radius:6px;";
+    msg.textContent="Choose Classroom, Online, or both."; return;
+  }
+  if(acc.online && !acc.onlineCourse){
+    msg.style.cssText="display:block;background:#ffebee;color:#c62828;padding:6px 10px;border-radius:6px;";
+    msg.textContent="Please choose the online course."; return;
+  }
+  if(acc._newPin && acc._newPin.length !== 4){
+    msg.style.cssText="display:block;background:#ffebee;color:#c62828;padding:6px 10px;border-radius:6px;";
+    msg.textContent="The PIN must be 4 digits (or leave it empty)."; return;
+  }
+  var newPin = acc._newPin; delete acc._newPin;
+  if(admissionsCanAccess()) Object.assign(data, acc); else newPin = '';
 
+  var c2NewRef = null;
   try {
     if(editingStudentId){
       var existing = allStudents.find(function(x){ return x.id===editingStudentId; });
@@ -7272,11 +7422,25 @@ async function saveStudent(){
     } else {
       data.studentId = await generateNextStudentId();
       data.createdAt = new Date().toISOString();
-      await add(collection(db,"students"), data);
+      c2NewRef = await add(collection(db,"students"), data);
+    }
+    var pinNote = '';
+    if(newPin){
+      var sid = data.studentId || ((allStudents.find(function(x){ return x.id===editingStudentId; })||{}).studentId);
+      var docId = editingStudentId || (c2NewRef && c2NewRef.id);
+      var fs = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+      var key = await c2PinKey(sid, newPin);
+      var adminRef = fs.doc(db, 'studentPinAdmin', docId);
+      var old = await fs.getDoc(adminRef);
+      if(old.exists() && old.data().key && old.data().key !== key){ try { await fs.deleteDoc(fs.doc(db,'studentKeys', old.data().key)); } catch(e){} }
+      await fs.setDoc(fs.doc(db,'studentKeys', key), { studentId: String(sid).toUpperCase(), at: new Date().toISOString() });
+      await fs.setDoc(adminRef, { key: key, studentId: String(sid).toUpperCase(), at: new Date().toISOString() });
+      await set(docRef(db,'students', docId), { pinSet: true }, {merge:true});
+      pinNote = " · PIN: " + newPin + " (give this to the family — it is not shown again)";
     }
     msg.style.cssText="display:block;background:#e8f5e9;color:#2e7d32;padding:6px 10px;border-radius:6px;";
-    msg.textContent = data.studentId ? ("✅ Saved! Student ID: " + data.studentId) : "✅ Saved successfully!";
-    setTimeout(()=>{ closeStudentModal(); loadStudents(); }, data.studentId ? 1600 : 800);
+    msg.textContent = (data.studentId ? ("✅ Saved! Student ID: " + data.studentId) : "✅ Saved successfully!") + pinNote;
+    setTimeout(()=>{ closeStudentModal(); loadStudents(); }, pinNote ? 6000 : (data.studentId ? 1600 : 800));
   } catch(e){
     msg.style.cssText="display:block;background:#ffebee;color:#c62828;padding:6px 10px;border-radius:6px;";
     msg.textContent="Error: "+e.message;

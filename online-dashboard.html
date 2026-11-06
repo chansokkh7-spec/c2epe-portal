@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>C2-EPE Online · Student Dashboard</title>
+<link rel="manifest" href="online-manifest.json">
+<meta name="theme-color" content="#0b1f4d">
+<link rel="icon" href="online-icon-192.png">
+<link rel="apple-touch-icon" href="online-apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="C2 Online">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+Khmer:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -103,6 +111,10 @@ main{max-width:1240px;margin:0 auto;padding:24px 24px 48px;display:flex;flex-dir
       <div class="err" id="si-err" role="alert"></div>
       <p style="margin:14px 0 0;text-align:center;font-size:13px">Forgot your PIN? Ask the Front Desk for a new one.</p>
     </form>
+    <div class="help hidden" id="install-box" style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+      <span id="install-text">📲 Install <b>C2-EPE Online</b> on this phone or computer for one-tap lessons.</span>
+      <button class="btn btn-gold" id="install-btn" type="button" style="min-height:44px">Install app</button>
+    </div>
     <div class="help">Classroom students sign in on the <a id="hub-link-1" href="#" style="color:var(--gold)">Digital Hub</a> instead. · សិស្សរៀនក្នុងថ្នាក់ សូមចូល Digital Hub។</div>
   </div>
 </section>
@@ -296,6 +308,20 @@ function showDashboard(st) {
 }
 
 $('si-form').addEventListener('submit', signIn);
+// ---- install as an app ----
+let installEvt = null;
+const standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); installEvt = e; if (!standalone) $('install-box').classList.remove('hidden'); });
+$('install-btn').addEventListener('click', async () => {
+  if (installEvt) { installEvt.prompt(); const r = await installEvt.userChoice; if (r.outcome === 'accepted') $('install-box').classList.add('hidden'); installEvt = null; }
+});
+window.addEventListener('appinstalled', () => $('install-box').classList.add('hidden'));
+// iPhone / iPad: no install button in Safari, so show the steps instead
+if (!standalone && /iphone|ipad|ipod/i.test(navigator.userAgent)) {
+  $('install-btn').style.display = 'none';
+  $('install-text').innerHTML = '📲 To install: tap <b>Share</b> ⬆️ then <b>Add to Home Screen</b>.';
+  $('install-box').classList.remove('hidden');
+}
 $('out-btn').addEventListener('click', () => { sessionStorage.removeItem(SESSION); $('dash').classList.add('hidden'); $('signin').classList.remove('hidden'); $('si-id').focus(); });
 try { const saved = JSON.parse(sessionStorage.getItem(SESSION) || 'null'); if (saved && saved.id) showDashboard(saved); } catch (e) {}
 // a lesson app can report a finished unit with: localStorage 'c2_online_done_<StudentID>' = [1,2,…]

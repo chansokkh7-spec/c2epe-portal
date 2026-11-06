@@ -165,7 +165,7 @@ main{max-width:1240px;margin:0 auto;padding:24px 24px 48px;display:flex;flex-dir
 const HUB_URL = 'digital-hub.html';      // where classroom students, live class and chat live
 // One lesson app per online course. Each link opens a unit with ?unit=N. Leave '' until the app is uploaded.
 const LESSON_APPS = {
-  'Online K0': '', 'Online K1': '', 'Online K2': '', 'Online K3': '',
+  'Online K0': 'Online-K0-app.html', 'Online K1': '', 'Online K2': '', 'Online K3': '',
   'Online Starters': '', 'Online Movers': '', 'Online Flyers': '',
   'Online Beginner': '', 'Online Pre-Intermediate': '', 'Online Intermediate': '', 'Online Upper-Intermediate': '',
   'Online Advanced': '', 'Online Proficiency': ''
@@ -235,7 +235,8 @@ async function signIn(ev) {
 
 function lessonLink(course, n) {
   const base = LESSON_APPS[course];
-  return base ? base + (base.includes('?') ? '&' : '?') + 'unit=' + n : HUB_URL;
+  const st = JSON.parse(sessionStorage.getItem(SESSION) || '{}');
+  return base ? base + (base.includes('?') ? '&' : '?') + 'unit=' + n + (st.id ? '&sid=' + encodeURIComponent(st.id) : '') : HUB_URL;
 }
 
 function showDashboard(st) {

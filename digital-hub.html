@@ -1073,6 +1073,7 @@
         <div class="header">
             <div class="lang-switch">
                 <button class="student-id-btn" id="studentIdBtn" onclick="openStudentIdModal()">🔑 Student ID</button>
+<button class="student-id-btn" id="onlineDashBtn" onclick="window.open('online-dashboard.html', '_blank')" title="For Online Class students">💻 Online Dashboard</button>
                 <button class="student-id-btn" id="progressBtn" onclick="openProgressModal()" style="display:none;">📊 My Progress</button>
                 <button class="student-id-btn" id="certificatesBtn" onclick="openMyCertificates()" style="display:none;">🎓 My Certificates</button>
                 <button class="student-id-btn" id="adminLockBtn" onclick="toggleAdminMode()" title="Admin / Teacher Login" style="background:#5a3d8f;">👨‍🏫 Admin/Teacher</button>
@@ -1370,7 +1371,8 @@
                     <button class="go" id="gateStudentBtn" type="submit">ចូល · Sign in</button>
                     <div class="login-err" id="gateStudentErr"></div>
                     <div class="login-note">ប្រើលេខសម្គាល់សិស្ស ដែលសាលាបានផ្តល់ឱ្យ ពេលចុះឈ្មោះចូលរៀនតាម Portal។ មាតាបិតាប្រើលេខសម្គាល់របស់កូន។<br>Use the Student ID you received when registering through the school Portal. Parents use their child's Student ID.</div>
-                </form>
+                <p style="margin:12px 0 0;font-size:.85rem;text-align:center;">💻 Online Class student? <a href="online-dashboard.html" target="_blank" style="color:#e8c766;font-weight:700;">Open the Online Dashboard</a></p>
+</form>
                 <form id="gateStaffForm" onsubmit="event.preventDefault(); gateStaffLogin();" hidden>
                     <label for="gateEmail">អ៊ីមែល · Email</label>
                     <input id="gateEmail" type="email" autocomplete="username" placeholder="teacher@gmail.com" required>

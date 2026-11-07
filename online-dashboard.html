@@ -128,6 +128,13 @@ main{max-width:1240px;margin:0 auto;padding:24px 24px 48px;display:flex;flex-dir
     </div>
     <button class="btn btn-line" id="apply-open" type="button" style="background:transparent;color:#fff;border-color:var(--gold);min-height:52px">📝 New student? Register &amp; try 7 days free · ចុះឈ្មោះ ហើយរៀនសាកល្បង ៧ ថ្ងៃ</button>
     <div class="help">Classroom students sign in on the <a id="hub-link-1" href="#" style="color:var(--gold)">Digital Hub</a> instead. · សិស្សរៀនក្នុងថ្នាក់ សូមចូល Digital Hub។</div>
+    <div class="help" id="staff-link" style="display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+      <span>👩‍🏫 <b>Teachers &amp; Admin</b> · គ្រូ និង Admin — sign in to the Portal or the Digital Hub.</span>
+      <span style="display:flex;gap:8px;flex-wrap:wrap">
+        <a class="btn btn-line" href="index.html" style="min-height:40px;display:inline-flex;align-items:center;text-decoration:none;background:transparent;color:#fff;border-color:var(--gold)">🏫 Portal</a>
+        <a class="btn btn-line" id="hub-link-3" href="digital-hub.html" style="min-height:40px;display:inline-flex;align-items:center;text-decoration:none;background:transparent;color:#fff;border-color:var(--gold)">🧭 Digital Hub</a>
+      </span>
+    </div>
   </div>
 </section>
 
@@ -280,13 +287,14 @@ main{max-width:1240px;margin:0 auto;padding:24px 24px 48px;display:flex;flex-dir
 const HUB_URL = 'digital-hub.html';      // where classroom students, live class and chat live
 // One lesson app per online course. Each link opens a unit with ?unit=N. Leave '' until the app is uploaded.
 const LESSON_APPS = {
-  'Online K0': 'Online-K0-app.html', 'Online K1': '', 'Online K2': '', 'Online K3': '',
+  'Online K0': 'Online-K0-app.html', 'Online K1': 'Online-K1-app.html', 'Online K2': '', 'Online K3': '',
   'Online Starters': '', 'Online Movers': '', 'Online Flyers': '',
   'Online Beginner': '', 'Online Pre-Intermediate': '', 'Online Intermediate': '', 'Online Upper-Intermediate': '',
   'Online Advanced': '', 'Online Proficiency': ''
 };
 // Unit titles per course (Online K0 is written; others appear when their lessons are ready)
 const UNITS = {
+  'Online K1': ["My Morning", "Around My House", "Fruit Salad", "Market Day", "More Colours", "Jungle Friends", "Sky and Weather", "How Do You Feel?", "Playground Games", "Little Helpers", "Counting to 18", "Patterns", "Birds", "Feeling Sick", "Building Things", "Into Space", "Let's Cook", "Ice Cream Shop", "Dinosaurs", "Fairy Tales", "Hobbies", "Where Is It?", "Throw and Catch", "Accessories", "Cambodian Festivals", "Kind Manners", "Our Planet", "Finding the Way", "Ready for K2!"],
   'Online K0': ['Hello, Friends!','My Room','Bath Time','Yummy Snacks','Farm Babies','Bugs in the Garden','Huge and Little','Pretend Play','Sounds','Up and Down','At the Beach','Vegetables','Birthday Party','Rainy Day','Things That Go','Night Sky','My Garden','Breakfast Time','At the Zoo','Cleaning Up','Music Fun','Opposites','Silly Faces','Winter Fun','Picnic Day','Body Moves','Pond Life','Camping','Hooray! Well Done!']
 };
 // ==========================================================
@@ -312,7 +320,7 @@ const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 };
-['hub-link-1', 'hub-link-2'].forEach((id) => { $(id).href = HUB_URL; });
+['hub-link-1', 'hub-link-2', 'hub-link-3'].forEach((id) => { $(id).href = HUB_URL; });
 
 async function pinKey(studentId, pin) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(String(studentId).toUpperCase() + ':' + String(pin)));

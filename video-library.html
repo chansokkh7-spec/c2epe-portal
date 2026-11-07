@@ -125,6 +125,8 @@ async function load(){
   if(!DB) return;
   var g = async function(c){ return (await DB.collection(c).get()).docs.map(function(d){ var x = d.data(); x.id = d.id; return x; }); };
   try { VIDEOS = await g(COL.videos); } catch(e){ VIDEOS = []; console.error(e); }
+ await loadAccess();
+ if(ME.role === "student") VIDEOS = VIDEOS.filter(vlAllowed);
   try { PROG = await g(COL.progress); } catch(e){ PROG = []; }
   try { COMMENTS = await g(COL.comments); } catch(e){ COMMENTS = []; }
 }
@@ -157,6 +159,77 @@ function deadlineBadge(v){
 
 // ══════════════ tabs ══════════════
 function showTab(tab){ TAB = tab; document.querySelectorAll("#tabs button").forEach(function(b){ b.classList.toggle("on", b.dataset.tab===tab); }); render(); }
+
+// ===== Who can watch what (students): own level only · online ↔ online · classroom ↔ classroom =====
+var ONLINE_TITLES = {"Online K0": ["Hello, Friends!", "My Room", "Bath Time", "Yummy Snacks", "Farm Babies", "Bugs in the Garden", "Huge and Little", "Pretend Play", "Sounds", "Up and Down", "At the Beach", "Vegetables", "Birthday Party", "Rainy Day", "Things That Go", "Night Sky", "My Garden", "Breakfast Time", "At the Zoo", "Cleaning Up", "Music Fun", "Opposites", "Silly Faces", "Winter Fun", "Picnic Day", "Body Moves", "Pond Life", "Camping", "Hooray! Well Done!"], "Online K1": ["My Morning", "Around My House", "Fruit Salad", "Market Day", "More Colours", "Jungle Friends", "Sky and Weather", "How Do You Feel?", "Playground Games", "Little Helpers", "Counting to 18", "Patterns", "Birds", "Feeling Sick", "Building Things", "Into Space", "Let's Cook", "Ice Cream Shop", "Dinosaurs", "Fairy Tales", "Hobbies", "Where Is It?", "Throw and Catch", "Accessories", "Cambodian Festivals", "Kind Manners", "Our Planet", "Finding the Way", "Ready for K2!"], "Online K2": ["Off to School", "Rooms in a House", "Herbs and Spices", "Under the Sea", "How Does It Feel?", "Nature Walk", "3D Shapes", "Telling the Time", "People Who Help", "At the Airport", "Counting by Tens", "Money and Saving", "Rice Farm", "Inside My Body", "Healthy Habits", "Amazing Places", "Orchestra", "Khmer Food", "Ways to Travel", "Let's Play Sports", "Clothes for All Weather", "My Weekend", "Bigger and Smaller", "Around Town", "Beautiful Cambodia", "Being a Good Friend", "Science Fun", "Computer Time", "Ready for K3!"]};
+var PORTAL_CLASSES = ["K0","K1","K2","K3","Starters","Movers","Flyers","Beginner","Pre-Intermediate","Intermediate","Upper-Intermediate","Advanced","Proficiency","EAP / Bridge to University","IELTS & TOEFL Prep","Exam Prep","Grammar","Writing Skills","Computer","AI"];
+var DEFAULT_ACCESS = { "K0":["K0"], "K1":["K1"], "K2":["K2"], "K3":["K3"], "Pre-A1":["Starters"], "A1":["Movers"], "A2":["Flyers"] };
+var ACCESS = {};          // Library class → Portal classes (Admin can change; saved in config/videoLibAccess)
+function isOnlineCls(c){ return /^online\s/i.test(normCls(c)); }
+function accessFor(c){ var k = normCls(c); return ACCESS[k] || DEFAULT_ACCESS[k] || null; }
+function kNum(c){ var m = /k\s*(\d+)$/i.exec(normCls(c)); return m ? +m[1] : null; }
+function vlAllowed(v){
+  if(ME.role !== "student") return true;                         // staff see everything
+  if(isOnlineCls(v.cls)){                                        // online videos: online students of that course only
+    if(!ME.online || !ME.onlineOk) return false;
+    if(normCls(v.cls).toLowerCase() === normCls(ME.onlineCourse).toLowerCase()) return true;
+    var a = kNum(v.cls), b = kNum(ME.onlineCourse);
+    return !!ME.allowReview && a !== null && b !== null && a < b;   // earlier online levels only when review is allowed
+  }
+  if(ME.fromPortal && (ME.classroom === false || !ME.classroomOk)) return false;   // online-only, or classroom fees locked
+  var allowed = accessFor(v.cls);
+  if(!allowed) return true;                                      // not linked yet: open to classroom students (Admin should link it)
+  if(allowed.indexOf(ME.cls) >= 0) return true;
+  if(ME.allowReview && /^K\d$/.test(ME.cls)){ var vk = kNum(v.cls), sk = kNum(ME.cls); return vk !== null && vk < sk; }
+  return false;
+}
+async function loadAccess(){
+  try { var d = await DB.collection("config").doc("videoLibAccess").get(); ACCESS = (d.exists && d.data().map) || {}; } catch(e){ ACCESS = {}; }
+}
+async function importOnline(){
+  var picks = Array.prototype.slice.call(document.querySelectorAll(".imp-lv:checked")).map(function(x){ return x.value; });
+  var msg = document.getElementById("imp-msg"); if(!picks.length){ msg.textContent = "Tick at least one level."; return; }
+  var have = {}; VIDEOS.forEach(function(x){ have[String(x.url).split("?")[0]] = 1; });
+  var made = 0, skipped = 0, now = new Date().toISOString();
+  msg.textContent = "Adding…";
+  for(var i = 0; i < picks.length; i++){
+    var lv = picks[i], titles = ONLINE_TITLES[lv], code = lv.replace("Online ", "");
+    for(var n = 1; n <= titles.length; n++){
+      var slug = titles[n-1].replace(/[^A-Za-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+      var url = "https://chansokkh7-spec.github.io/c2epe-online/OC-" + code + "-Unit" + String(n).padStart(2, "0") + "-" + slug + ".mp4";
+      if(have[url]){ skipped++; continue; }
+      var d = { title: "Unit " + n + " · " + titles[n-1], subject: "Online Class", cls: lv, week: String(n), url: url, deadline: "", resource: "",
+                desc: "Online Class " + code + " with Ms. Lily and Malis", createdAt: now, updatedAt: now, createdBy: ME.name || "" };
+      try { var ref = await DB.collection(COL.videos).add(P(d)); d.id = ref.id; VIDEOS.push(d); have[url] = 1; made++; } catch(e){ msg.textContent = "Stopped: " + e.message; return; }
+      if(made % 10 === 0) msg.textContent = "Adding… " + made;
+    }
+  }
+  msg.textContent = "✅ Added " + made + " video(s)" + (skipped ? " · " + skipped + " were already there" : "") + ".";
+}
+async function saveAccess(){
+  var map = {};
+  document.querySelectorAll(".acc-row").forEach(function(row){
+    var c = row.getAttribute("data-cls"), sel = Array.prototype.slice.call(row.querySelectorAll("input:checked")).map(function(x){ return x.value; });
+    if(sel.length) map[c] = sel;
+  });
+  try { await DB.collection("config").doc("videoLibAccess").set(P({ map: map, updatedAt: new Date().toISOString(), updatedBy: ME.name || "" })); ACCESS = map;
+    document.getElementById("acc-msg").textContent = "✅ Saved.";
+  } catch(e){ document.getElementById("acc-msg").textContent = "Only the Admin can save this (" + e.message + ")."; }
+}
+function accessPanel(){
+  var classes = Array.from(new Set(VIDEOS.filter(function(x){ return !isOnlineCls(x.cls) && x.cls; }).map(function(x){ return normCls(x.cls); }))).sort(clsCompare);
+  var rows = classes.map(function(c){
+    var cur = accessFor(c) || [];
+    return "<div class='acc-row' data-cls='"+esc(c)+"' style='padding:8px 0;border-bottom:1px solid rgba(128,128,128,.25)'><b>"+esc(c)+"</b> "+(cur.length ? "" : "<span style='color:#e65100;font-size:12px'>⚠️ not linked — every classroom student sees it</span>")
+      + "<div style='display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:4px;font-size:13px'>" + PORTAL_CLASSES.map(function(pc){ return "<label><input type='checkbox' value='"+esc(pc)+"' "+(cur.indexOf(pc)>=0?"checked":"")+"> "+esc(pc)+"</label>"; }).join("") + "</div></div>";
+  }).join("");
+  return "<div class='box' style='margin-bottom:14px'><h3 style='margin:0 0 6px'>📥 Add Online Class videos</h3><p style='margin:0 0 8px;font-size:13px'>Adds every unit with title, class, unit number and subtitles. Videos already in the library are skipped.</p>"
+    + Object.keys(ONLINE_TITLES).map(function(lv){ return "<label style='margin-right:14px'><input type='checkbox' class='imp-lv' value='"+lv+"' checked> "+lv+" ("+ONLINE_TITLES[lv].length+")</label>"; }).join("")
+    + "<div style='margin-top:8px'><button class='btn' onclick='importOnline()'>📥 Add videos</button> <span id='imp-msg' style='font-size:13px'></span></div></div>"
+    + "<div class='box' style='margin-bottom:14px'><h3 style='margin:0 0 6px'>🔐 Who can watch each class</h3><p style='margin:0 0 8px;font-size:13px'>Students only see videos of their own class. Tick the Portal class(es) for each library class. Online videos are shown only to online students of that course; classroom students never see them.</p>"
+    + (rows || "<p style='font-size:13px'>No classroom videos yet.</p>") + "<div style='margin-top:8px'><button class='btn' onclick='saveAccess()'>💾 Save</button> <span id='acc-msg' style='font-size:13px'></span></div></div>";
+}
+
 function render(){
   var m = document.getElementById("main");
   if(!DB){ m.innerHTML = "<div class='lock'><div class='big'>🎬</div><p>"+t("openFromHub")+"</p></div>"; return; }
@@ -171,7 +244,8 @@ function normCls(c){ var s = String(c||"").replace(/[\s\u00a0]+/g," ").trim(); v
 var MASTER_NAMES = { beginner:0, elementary:1, preintermediate:2, "pre-intermediate":2, intermediate:3, upperintermediate:4, "upper-intermediate":4, advanced:5, proficiency:6 };
 function clsRank(c){
   var s = normCls(c), m;
-  if((m = /^k\s*(\d+)$/i.exec(s))) return [0, +m[1]];
+  if((m = /^online\s*k\s*(\d+)$/i.exec(s))) return [5, +m[1]];
+ if((m = /^k\s*(\d+)$/i.exec(s))) return [0, +m[1]];
   if(/^pre[\s-]?a1$/i.test(s)) return [1, 0];
   if((m = /^([ab])\s*([12])$/i.exec(s))) return [2, (m[1].toUpperCase()==="A" ? 0 : 2) + +m[2]];
   if((m = /^(?:s|secondary(?:\s*level)?)\s*(\d+)$/i.exec(s))) return [3, +m[1]];
@@ -331,7 +405,7 @@ function renderBoard(m){
 }
 
 // ══════════════ teacher tools (Hub staff only) ══════════════
-function renderTeacher(m){
+function renderTeacher(m){ setTimeout(function(){ if(document.getElementById('imp-msg')) return; var w = document.createElement('div'); w.innerHTML = accessPanel(); m.insertBefore(w, m.firstChild); }, 0);
   var students = {}; PROG.forEach(function(p){ var s = students[p.studentId] = students[p.studentId] || { name:p.studentName, done:0, q:[] }; if(p.completedAt) s.done++; if(p.quizTotal) s.q.push(p.quizScore*100/p.quizTotal); });
   m.innerHTML = "<div style='display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px'><button class='btn gold' onclick='editVideo()'>＋ "+(LANG==="km"?"បន្ថែមវីដេអូ":"Add a video")+"</button><button class='btn ghost' onclick='exportCSV()'>⬇️ Export CSV</button></div>"
     + "<div class='box'><h3>🎬 "+(LANG==="km"?"វីដេអូ":"Videos")+" ("+VIDEOS.length+")</h3>"+(VIDEOS.length ? "<div style='overflow-x:auto'><table><tr><th>Title</th><th>Class</th><th>Due</th><th>Watched</th><th>Quiz</th><th></th></tr>"

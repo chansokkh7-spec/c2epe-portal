@@ -3496,7 +3496,9 @@
                 let admin = false;
                 try { admin = isAdmin() && auth && auth.currentUser; } catch (e) {}
                 if (staffRole) return { role: admin ? 'admin' : staffRole, name: staffName || (auth.currentUser && auth.currentUser.email) || 'Teacher', uid: auth.currentUser ? auth.currentUser.uid : '' };
-                if (currentStudent && currentStudent.id) return { role: 'student', studentId: currentStudent.id, name: currentStudent.name || currentStudent.id };
+                if (currentStudent && currentStudent.id) { const st = currentStudent; let onlineOk = false, classroomOk = st.classroom !== false;
+                    try { onlineOk = c2OnlineActive(st); classroomOk = st.classroom !== false && c2PayState(st.paidUntil) !== 'locked'; } catch (e) {}
+                    return { role: 'student', studentId: st.id, name: st.name || st.id, cls: st.cls || '', classroom: st.classroom !== false, classroomOk, online: !!st.online, onlineCourse: st.onlineCourse || '', onlineOk, allowReview: !!st.allowReview, fromPortal: !!st.fromPortal }; }
                 return { role: 'guest' };
             }
         };
@@ -3520,7 +3522,7 @@
             const btn = document.getElementById('videoLibToggle'); if (btn) btn.setAttribute('aria-expanded', 'true');
             document.body.classList.add('speak-room-open');
             const frame = document.getElementById('videoLibFrame');
-            if (!frame.src || videoLibIdentity !== videoLibKey()) { frame.src = 'video-library.html?v=' + Date.now(); videoLibIdentity = videoLibKey(); }
+            if (!frame.src || videoLibIdentity !== videoLibKey()) { frame.src = 'video-library.html?v=20261108' + Date.now(); videoLibIdentity = videoLibKey(); }
         }
 
         function toggleRPSDSubmenu() {

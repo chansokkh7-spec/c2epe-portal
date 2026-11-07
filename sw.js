@@ -24,7 +24,7 @@ messaging.onBackgroundMessage(function(payload) {
 });
 // ══════════════════ END FIREBASE CLOUD MESSAGING ══════════════════
 
-const CACHE_NAME = 'c2epe-v1';
+const CACHE_NAME = 'c2epe-v2';
 const urlsToCache = [
   './index.html',
   './manifest.json'
@@ -55,10 +55,13 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
+  var req = event.request;
+  // Pages (HTML): always ask GitHub whether there is a newer version, so updates show at once
+  var isPage = req.mode === 'navigate' || (req.method === 'GET' && /\.html?(\?|$)/.test(new URL(req.url).pathname + new URL(req.url).search));
   // Network first, fallback to cache (so Firebase data stays fresh)
   event.respondWith(
-    fetch(event.request).catch(function() {
-      return caches.match(event.request);
+    (isPage ? fetch(req.url, { cache: 'no-cache', credentials: 'same-origin' }) : fetch(req)).catch(function() {
+      return caches.match(req);
     })
   );
 });

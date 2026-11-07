@@ -649,7 +649,9 @@ function logoImgError(img){
         <div class="tools-section-label">💰 Finance</div>
         <button id="tools-fee-btn" onclick="closeToolsMenu();openFeePage()" class="tools-item" style="display:none;">💰 <span>Fee Payment</span></button>
         <button onclick="closeToolsMenu();openPaymentStatusPage()" class="tools-item">✅ <span>Student Payment Status</span></button>
-        <button id="tools-pricing-btn" onclick="closeToolsMenu();openTuitionPricingPage()" class="tools-item" style="display:none;">💰 <span>Tuition Pricing</span></button>
+        <button id="tools-accessreq-btn" onclick="closeToolsMenu();openAccessRequests()" class="tools-item" style="display:none;">🙋 <span>Access Requests <b id="c2-areq-count" style="background:#e53935;color:#fff;border-radius:9px;padding:0 6px;font-size:.7rem;display:none;"></b></span></button>
+<button id="tools-docs-btn" onclick="closeToolsMenu();openSchoolDocsEditor()" class="tools-item" style="display:none;">📜 <span>Contract &amp; Rules</span></button>
+<button id="tools-pricing-btn" onclick="closeToolsMenu();openTuitionPricingPage()" class="tools-item" style="display:none;">💰 <span>Tuition Pricing</span></button>
 <button id="tools-finance-btn" onclick="closeToolsMenu();openFinancePage()" class="tools-item" style="display:none;">📊 <span>Finance Overview</span></button>
         <button id="tools-payqr-btn" onclick="closeToolsMenu();openPaymentQRSettingsPage()" class="tools-item" style="display:none;">💳 <span>Payment QR (Owner Only)</span></button>
         <button id="tools-dailyclosing-btn" onclick="closeToolsMenu();openDailyClosingPage()" class="tools-item" style="display:none;">💵 <span>Daily Cash Reconciliation</span></button>
@@ -1343,7 +1345,8 @@ function logoImgError(img){
       <input type="text" id="stu-parent" placeholder="Parent name / phone"
         style="width:100%;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;outline:none;margin-bottom:14px;font-family:inherit;">
 
-      <!-- C2 ACCESS: classroom / online / PIN -->
+      <div id="c2-family-box" style="display:none;border:1.5px solid #c8e6c9;background:#f6fff6;border-radius:10px;padding:8px 12px;margin:0 0 12px;font-size:.78rem;"></div>
+<!-- C2 ACCESS: classroom / online / PIN -->
 <div id="stu-access-box" style="border:1.5px solid #000080;border-radius:10px;padding:10px 12px 4px;margin:4px 0 14px;background:#f7f8ff;">
 <div style="font-weight:800;font-size:.8rem;color:#000080;margin-bottom:8px;">🎓 Studies &amp; Access · របៀបសិក្សា</div>
 <label style="display:flex;align-items:center;gap:8px;font-size:.84rem;margin-bottom:6px;cursor:pointer;"><input type="checkbox" id="stu-acc-classroom" checked style="width:18px;height:18px;"> 🏫 Classroom (in school)</label>
@@ -1366,6 +1369,16 @@ function logoImgError(img){
 <button type="button" onclick="document.getElementById('stu-acc-pin').value=genStudentPin()" style="background:#f0f2f5;border:1.5px solid #e0e0e0;border-radius:7px;padding:0 10px;cursor:pointer;font-size:.78rem;">🔄 New PIN</button>
 </div>
 <label style="display:flex;align-items:flex-start;gap:8px;font-size:.8rem;margin-bottom:8px;cursor:pointer;line-height:1.35;"><input type="checkbox" id="stu-acc-review" style="width:18px;height:18px;margin-top:1px;"> <span>Allow review of earlier levels<br><small style="color:#777;">Off = sees only the current level in the Hub</small></span></label>
+<div id="c2-req-area" style="display:none;border-top:1px dashed #c5cae9;margin-top:6px;padding-top:10px;">
+<div style="font-size:.78rem;color:#555;margin-bottom:6px;">🔒 Only the Admin or Admissions can change access. You can ask them:</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+<select id="c2-req-mode" aria-label="Access type" style="padding:7px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.82rem;"><option value="classroom">🏫 Classroom</option><option value="online">💻 Online</option></select>
+<select id="c2-req-days" aria-label="Number of days" style="padding:7px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.82rem;"><option value="3">3 days</option><option value="7" selected>7 days</option><option value="14">14 days</option><option value="30">30 days</option></select>
+</div>
+<textarea id="c2-req-reason" rows="2" maxlength="300" placeholder="Reason (e.g. parent will pay on Friday)" style="width:100%;margin-top:6px;padding:7px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.82rem;box-sizing:border-box;font-family:inherit;"></textarea>
+<button type="button" onclick="c2SendAccessRequest()" style="width:100%;margin-top:6px;background:#000080;color:#FFD700;border:none;border-radius:7px;padding:8px;font-weight:800;cursor:pointer;font-size:.82rem;">🙋 Request access</button>
+<div id="c2-req-msg" style="display:none;margin-top:6px;font-size:.78rem;"></div>
+</div>
 </div>
 <div id="stu-modal-msg" style="display:none;font-size:.76rem;margin-bottom:10px;padding:6px 10px;border-radius:6px;"></div>
       <button onclick="saveStudent()" style="width:100%;padding:11px;background:#000080;color:#FFD700;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem;margin-bottom:8px;">
@@ -2400,6 +2413,36 @@ function logoImgError(img){
 
 
 
+
+
+<!-- CONTRACT & RULES EDITOR (Admin / Admissions) -->
+<div id="c2-docs-page" style="display:none;position:fixed;inset:0;background:#f0f2f5;z-index:9990;overflow-y:auto;">
+  <div style="background:#000080;color:#fff;padding:0 20px;height:56px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;">
+    <button onclick="document.getElementById('c2-docs-page').style.display='none'" style="background:rgba(255,255,255,.15);color:#fff;border:none;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:.82rem;">← Back</button>
+    <span style="font-weight:800;flex:1;">📜 Contract &amp; School Rules</span>
+    <button onclick="c2SaveSchoolDocs()" style="background:#FFD700;color:#000080;border:none;padding:6px 16px;border-radius:20px;font-weight:700;cursor:pointer;font-size:.8rem;">💾 Save</button>
+  </div>
+  <div style="max-width:820px;margin:0 auto;padding:18px 14px 60px;">
+    <div style="background:#fff8e1;border:1px solid #ffe082;border-radius:10px;padding:10px 12px;font-size:.82rem;margin-bottom:14px;">When you change a text, its version goes up and every family is asked to read and sign again.</div>
+    <div id="c2-docs-fields"></div>
+    <div id="c2-docs-msg" style="display:none;margin-top:10px;"></div>
+  </div>
+</div>
+<!-- ACCESS REQUESTS (Admin / Admissions) -->
+<div id="c2-areq-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9995;overflow-y:auto;padding:16px;">
+  <div style="background:#fff;border-radius:14px;max-width:520px;margin:20px auto;overflow:hidden;">
+    <div style="background:#000080;color:#FFD700;padding:14px 18px;display:flex;align-items:center;gap:10px;">
+      <span style="font-weight:800;flex:1;">🙋 Access Requests · សំណើសិទ្ធិចូលរៀន</span>
+      <button onclick="document.getElementById('c2-areq-modal').style.display='none'" aria-label="Close" style="background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;">✕</button>
+    </div>
+    <div id="c2-areq-list" style="padding:14px 16px 18px;"></div>
+  </div>
+</div>
+<div id="c2-areq-toast" style="display:none;position:fixed;right:16px;bottom:16px;z-index:9996;background:#000080;color:#fff;border-radius:12px;padding:12px 16px;box-shadow:0 6px 20px rgba(0,0,0,.3);font-size:.86rem;max-width:300px;">
+  <div id="c2-areq-toast-text" style="font-weight:700;margin-bottom:8px;"></div>
+  <div style="display:flex;gap:8px;"><button onclick="document.getElementById('c2-areq-toast').style.display='none';openAccessRequests()" style="flex:1;background:#FFD700;color:#000080;border:none;border-radius:8px;padding:7px;font-weight:800;cursor:pointer;">Open</button>
+  <button onclick="document.getElementById('c2-areq-toast').style.display='none'" style="background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:8px;padding:7px 10px;cursor:pointer;">Later</button></div>
+</div>
 <!-- PAY TUITION NOW (parents / students) -->
 <div id="c2-pay-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9995;overflow-y:auto;padding:16px;">
   <div style="background:#fff;border-radius:14px;max-width:460px;margin:20px auto;overflow:hidden;">
@@ -6402,6 +6445,8 @@ function toggleToolsMenu(e){
   var dd = document.getElementById("tools-dropdown");
   var financeBtn = document.getElementById("tools-finance-btn");
   if(financeBtn) financeBtn.style.display = financeCanAccess() ? "block" : "none";
+  var areqBtn = document.getElementById("tools-accessreq-btn"); if(areqBtn) areqBtn.style.display = admissionsCanAccess() ? "block" : "none";
+  var docsBtn = document.getElementById("tools-docs-btn"); if(docsBtn) docsBtn.style.display = admissionsCanAccess() ? "block" : "none";
   var pricingBtn = document.getElementById("tools-pricing-btn"); if(pricingBtn) pricingBtn.style.display = (admissionsCanAccess() || financeCanAccess()) ? "block" : "none";
   var payqrBtn = document.getElementById("tools-payqr-btn");
   if(payqrBtn) payqrBtn.style.display = isSchoolOwner() ? "block" : "none";
@@ -7263,7 +7308,9 @@ function fillAccessFields(s){
 function c2AccessEditable(){
   var can = admissionsCanAccess();
   ['stu-acc-classroom','stu-acc-online','stu-acc-online-course','stu-acc-online-until','stu-acc-pin','stu-acc-review'].forEach(function(id){ var el=document.getElementById(id); if(el) el.disabled = !can; });
-  var box = document.getElementById('stu-access-box'); if(box) box.style.opacity = can ? '1' : '.6';
+  var box = document.getElementById('stu-access-box'); if(box) box.style.opacity = '1';
+  ['stu-acc-classroom','stu-acc-online','stu-acc-online-course','stu-acc-online-until','stu-acc-pin','stu-acc-review'].forEach(function(id){ var el=document.getElementById(id); if(el && el.closest('label')) el.closest('label').style.opacity = can ? '1' : '.55'; });
+  var ra = document.getElementById('c2-req-area'); if(ra){ ra.style.display = (!can && editingStudentId) ? 'block' : 'none'; document.getElementById('c2-req-msg').style.display = 'none'; document.getElementById('c2-req-reason').value = ''; }
   box && (box.title = can ? '' : 'Only the Admin or the Admissions head can change study access and PINs');
 }
 function collectAccessFields(){
@@ -7375,6 +7422,7 @@ function editStudent(id){
   document.getElementById("stu-gender").value = s.gender||"Male";
   document.getElementById("stu-parent").value = s.parent||"";
   fillAccessFields(s);
+  c2ShowFamilyDetails(s).then(function(){ c2ShowAgreements(s); });
   document.getElementById("stu-photo-preview").innerHTML = s.photo
     ? "<img src="+s.photo+" alt='Student photo' style=width:100%;height:100%;object-fit:cover;border-radius:50%>"
     : "👤";
@@ -10537,6 +10585,93 @@ async function loadPaymentQRConfig(){
 
 
 
+
+
+async function c2ShowFamilyDetails(s){
+  var box = document.getElementById("c2-family-box"); if(!box) return; box.style.display = "none"; box.innerHTML = "";
+  try { var fs = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"), {db, doc} = window._fb;
+    var sn = await fs.getDoc(doc(db,"studentProfiles", s.id)); if(!sn.exists()) return; var p = sn.data();
+    var rows = [["Father", [p.fatherName, p.fatherPhone]], ["Mother", [p.motherName, p.motherPhone]], ["Guardian", [p.guardian]], ["Telegram", [p.telegram]], ["Email", [p.email]], ["Address", [p.address]], ["Pick-up", [p.pickup]], ["Previous school", [p.previousSchool]]]
+      .filter(function(r){ return r[1].some(Boolean); }).map(function(r){ return "<div><b>"+r[0]+":</b> "+escapeHtml(r[1].filter(Boolean).join(" · "))+"</div>"; }).join("");
+    if(!rows) return;
+    box.innerHTML = "<div style='font-weight:800;color:#2e7d32;margin-bottom:3px;'>📇 Family details (updated by the family " + escapeHtml(String(p.updatedAt||"").slice(0,10)) + ")</div>" + rows; box.style.display = "block";
+  } catch(e){}
+}
+
+// ===== 🅳 access requests (teachers ask · Admin / Admissions approve) =====
+function c2AddDays(dateStr, n){ var d = new Date(dateStr + "T00:00:00"); d.setDate(d.getDate() + n); return d.toISOString().slice(0,10); }
+async function c2SendAccessRequest(){
+  var s = allStudents.find(function(x){ return x.id === editingStudentId; }), msg = document.getElementById("c2-req-msg");
+  if(!s) return;
+  var reason = document.getElementById("c2-req-reason").value.trim(), mode = document.getElementById("c2-req-mode").value, days = parseInt(document.getElementById("c2-req-days").value, 10);
+  if(reason.length < 3){ msg.style.cssText = "display:block;color:#c62828;"; msg.textContent = "Please write a short reason."; return; }
+  if(mode === "online" && !s.onlineCourse){ msg.style.cssText = "display:block;color:#c62828;"; msg.textContent = "This student has no online course yet — ask the Admin to enrol them online."; return; }
+  try {
+    var {db, collection, addDoc} = window._fb;
+    await addDoc(collection(db,"accessRequests"), { studentDocId: s.id, studentId: s.studentId || "", studentName: s.nameEn || s.nameKm || "", cls: s.cls || "",
+      mode: mode, onlineCourse: mode === "online" ? (s.onlineCourse || "") : "", days: days, reason: reason, status: "pending",
+      requestedBy: currentTeacherName || (currentUser && currentUser.email) || "", requestedByUid: currentUser && currentUser.uid || "", requestedAt: new Date().toISOString() });
+    msg.style.cssText = "display:block;color:#2e7d32;font-weight:700;"; msg.textContent = "✅ Sent. The Admin will see your request.";
+    document.getElementById("c2-req-reason").value = "";
+  } catch(e){ msg.style.cssText = "display:block;color:#c62828;"; msg.textContent = "Could not send: " + e.message; }
+}
+var c2AccessReqs = [];
+async function c2LoadAccessRequests(){
+  if(!admissionsCanAccess() || !window._fb) return [];
+  try {
+    var {db, collection, query, where} = window._fb;
+    var fs = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    var snap = await fs.getDocs(query(collection(db,"accessRequests"), where("status","==","pending")));
+    c2AccessReqs = snap.docs.map(function(d){ return Object.assign({ id: d.id }, d.data()); }).sort(function(a,b){ return String(a.requestedAt).localeCompare(String(b.requestedAt)); });
+  } catch(e){ console.warn("access requests", e); c2AccessReqs = []; }
+  var n = c2AccessReqs.length, badge = document.getElementById("c2-areq-count");
+  if(badge){ badge.textContent = n; badge.style.display = n ? "inline-block" : "none"; }
+  return c2AccessReqs;
+}
+async function c2AccessRequestToast(){
+  var list = await c2LoadAccessRequests(); if(!list.length || window.__c2AreqToastShown === list.length) return;
+  window.__c2AreqToastShown = list.length;
+  document.getElementById("c2-areq-toast-text").textContent = "🙋 " + list.length + " access request" + (list.length > 1 ? "s" : "") + " from teachers";
+  document.getElementById("c2-areq-toast").style.display = "block";
+}
+async function openAccessRequests(){
+  var box = document.getElementById("c2-areq-list"); box.innerHTML = "<p style='color:#888'>Loading…</p>";
+  document.getElementById("c2-areq-modal").style.display = "block";
+  var list = await c2LoadAccessRequests();
+  if(!list.length){ box.innerHTML = "<p style='color:#888;text-align:center;padding:20px 0;'>✅ No requests waiting.</p>"; return; }
+  box.innerHTML = list.map(function(r){
+    return "<div style='border:1px solid #e3e8f2;border-radius:10px;padding:10px 12px;margin-bottom:10px;'>"
+      + "<div style='font-weight:800;color:#1a1a2e;'>"+escapeHtml(r.studentName)+" <span style='font-family:monospace;color:#888;font-size:.75rem;'>"+escapeHtml(r.studentId)+"</span></div>"
+      + "<div style='font-size:.8rem;margin:3px 0;'>"+(r.mode==="online"?"💻 Online · "+escapeHtml(r.onlineCourse):"🏫 Classroom · "+escapeHtml(r.cls))+" · <b>"+r.days+" days</b></div>"
+      + "<div style='font-size:.8rem;color:#555;background:#f7f8ff;border-radius:6px;padding:6px 8px;'>“"+escapeHtml(r.reason)+"”</div>"
+      + "<div style='font-size:.72rem;color:#888;margin-top:4px;'>Requested by "+escapeHtml(r.requestedBy)+" · "+escapeHtml(String(r.requestedAt).slice(0,16).replace("T"," "))+"</div>"
+      + "<div style='display:flex;gap:6px;margin-top:8px;'><button onclick=\"c2DecideAccess('"+r.id+"',true)\" style='flex:1;background:#2e7d32;color:#fff;border:none;border-radius:7px;padding:8px;font-weight:800;cursor:pointer;font-size:.8rem;'>✅ Approve "+r.days+" days</button>"
+      + "<button onclick=\"c2DecideAccess('"+r.id+"',false)\" style='flex:1;background:#fdecec;color:#c62828;border:1px solid #f5b5b5;border-radius:7px;padding:8px;font-weight:700;cursor:pointer;font-size:.8rem;'>✖ Decline</button></div></div>";
+  }).join("");
+}
+async function c2DecideAccess(reqId, approve){
+  var r = c2AccessReqs.find(function(x){ return x.id === reqId; }); if(!r) return;
+  try {
+    var {db, doc, setDoc} = window._fb, fs = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    var now = new Date().toISOString(), who = currentTeacherName || (currentUser && currentUser.email) || "";
+    if(!approve){ await setDoc(doc(db,"accessRequests",reqId), { status:"declined", decidedBy: who, decidedAt: now }, {merge:true}); return openAccessRequests(); }
+    var sn = await fs.getDoc(doc(db,"students", r.studentDocId)); if(!sn.exists()){ alert("Student not found."); return; }
+    var st = sn.data(), today = new Date().toISOString().slice(0,10), upd = { updatedAt: now };
+    if(r.mode === "online"){
+      var curO = st.onlineUntil && st.onlineUntil > today ? st.onlineUntil : today;
+      upd.online = true; upd.onlineCourse = st.onlineCourse || r.onlineCourse; upd.onlineUntil = c2AddDays(curO, r.days);
+    } else {
+      var curC = st.paidUntil && st.paidUntil > today ? st.paidUntil : today;
+      upd.paidUntil = c2AddDays(curC, r.days);
+    }
+    await setDoc(doc(db,"students", r.studentDocId), upd, {merge:true});
+    await setDoc(doc(db,"accessRequests",reqId), { status:"approved", decidedBy: who, decidedAt: now, newUntil: upd.onlineUntil || upd.paidUntil }, {merge:true});
+    alert("✅ " + r.studentName + " can study until " + (upd.onlineUntil || upd.paidUntil) + ".");
+    if(typeof loadStudents === "function") loadStudents();
+    openAccessRequests();
+  } catch(e){ alert("Could not save: " + e.message); }
+}
+
 // ===== Pay tuition now · approve · receipt PDF =====
 function c2Today(){ return new Date().toISOString().slice(0,10); }
 function c2AddMonths(dateStr, months){
@@ -11353,6 +11488,7 @@ async function submitPaymentClaim(){
 // ── Teacher-facing: the claims queue ──────────────────
 var allPaymentClaims = [];
 async function loadPaymentClaimsCount(){
+  setTimeout(c2AccessRequestToast, 1500);
   var isLocal = window.location.protocol === "file:";
   var claims = [];
   if(isLocal || !window._fb){
@@ -17185,7 +17321,7 @@ body.dash-open #ai-chat-bubble,body.dash-open #ai-chat-panel{display:none !impor
       <button onclick="sdGo(openLeavePage)">📝 Leave Request</button>
       <button onclick="sdGo(openConcernsPage)">🛡️ Report a Concern</button>
       <button onclick="sdGo(openReadingClub)">📖 Reading Club</button>
-      <button onclick="sdGo(openClinic)">🏥 My Child's Health</button>
+      <button onclick="sdGo(openClinic)">🏥 My Child's Health</button> <button onclick="sdGo(openStudentProfilePage)">👤 Student Profile</button> <button onclick="sdGo(openEnrolmentFormPage)">📝 Enrolment Form</button> <button onclick="sdGo(function(){openAgreementPage('contract')})">📜 Study Contract</button> <button onclick="sdGo(function(){openAgreementPage('rules')})">⚖️ School Rules</button>
       <button onclick="sdGo(openExamPortalPage)">🎓 Examination Portal</button>
       <button onclick="sdGo(openMyTestsPage)">📚 My Tests</button>
       <button onclick="sdGo(openQuizPage)">✏️ Quiz &amp; Exams</button>
@@ -19538,7 +19674,252 @@ function clProfileHTML(p, compact){
   return (p.allergies || p.conditions || p.ecPhone) ? html : "<div class='c2p-muted'>No health information yet — the family has not filled in the health profile.</div>"+(compact?"":html);
 }
 // ══════════ families ══════════
-function clProfileForm(){
+
+
+
+// ===== 📜 study contract · ⚖️ school rules =====
+var C2_DOC_DEFAULTS = {"contract": {"en": "STUDY CONTRACT — C2-EPE Digital Academy\n\n1. Enrolment. The student is enrolled in the class or online course shown on the Enrolment Form for the period that has been paid.\n2. Fees. Tuition is paid in advance (1, 3, 6 or 12 months). The admission fee is paid once; the exam fee once per school year. Fees, once paid, are not refundable and cannot be transferred to another student.\n3. Late payment. If fees are not paid by the due date, lessons stay open for 7 more days. After that, lessons are locked until payment is confirmed.\n4. Attendance. The student attends regularly and on time (classroom), or follows the online lessons at least 3 times a week (online). The family informs the school of any absence.\n5. Learning. The student completes homework, tests and online activities honestly, without copying.\n6. Behaviour. The student follows the School Rules. Serious or repeated misconduct may lead to suspension.\n7. Online accounts. The Student ID and PIN are private and must not be shared. The school may close an account that is shared or misused.\n8. Health and safety. The family keeps the health profile and emergency contacts up to date.\n9. Photos and work. The school may share students' work and class photos on school channels; the family may ask in writing for this to stop.\n10. Communication. The family reads school messages and replies promptly. Changes to this contract are announced in the Portal.\n\nBy signing, the parent/guardian confirms they have read and accept this contract.", "km": "កិច្ចសន្យាការសិក្សា — C2-EPE Digital Academy\n\n១. ការចុះឈ្មោះ៖ សិស្សត្រូវបានចុះឈ្មោះក្នុងថ្នាក់ ឬវគ្គ Online ដែលមានក្នុងពាក្យសុំចូលរៀន សម្រាប់រយៈពេលដែលបានបង់ប្រាក់។\n២. ថ្លៃសិក្សា៖ ថ្លៃសិក្សាត្រូវបង់ជាមុន (១ ៣ ៦ ឬ ១២ ខែ)។ ថ្លៃចុះឈ្មោះបង់តែម្តង ហើយថ្លៃប្រឡងបង់ម្តងក្នុងមួយឆ្នាំសិក្សា។ ថ្លៃដែលបានបង់ហើយ មិនអាចដកវិញ ឬផ្ទេរទៅសិស្សផ្សេងបានទេ។\n៣. ការបង់យឺត៖ ប្រសិនបើមិនបង់តាមកាលកំណត់ មេរៀននៅតែបើក ៧ ថ្ងៃទៀត។ ក្រោយនោះ មេរៀនត្រូវបានចាក់សោ រហូតដល់ការបង់ប្រាក់ត្រូវបានបញ្ជាក់។\n៤. វត្តមាន៖ សិស្សមករៀនទៀងទាត់ និងទាន់ពេល (ក្នុងថ្នាក់) ឬរៀន Online យ៉ាងតិច ៣ ដងក្នុងមួយសប្តាហ៍។ គ្រួសារត្រូវជូនដំណឹងសាលាពេលអវត្តមាន។\n៥. ការសិក្សា៖ សិស្សធ្វើកិច្ចការផ្ទះ តេស្ត និងសកម្មភាព Online ដោយស្មោះត្រង់ មិនចម្លង។\n៦. ឥរិយាបថ៖ សិស្សគោរពច្បាប់វិន័យសាលា។ ការប្រព្រឹត្តខុសធ្ងន់ធ្ងរ ឬម្តងហើយម្តងទៀត អាចនាំឱ្យផ្អាកការសិក្សា។\n៧. គណនី Online៖ Student ID និង PIN ជាការសម្ងាត់ មិនត្រូវចែករំលែក។ សាលាអាចបិទគណនីដែលត្រូវបានចែករំលែក ឬប្រើខុស។\n៨. សុខភាព និងសុវត្ថិភាព៖ គ្រួសារធ្វើបច្ចុប្បន្នភាពព័ត៌មានសុខភាព និងលេខទំនាក់ទំនងពេលអាសន្នជានិច្ច។\n៩. រូបថត និងស្នាដៃ៖ សាលាអាចចែករំលែកស្នាដៃ និងរូបថតថ្នាក់រៀននៅលើបណ្តាញសាលា។ គ្រួសារអាចស្នើជាលាយលក្ខណ៍អក្សរឱ្យឈប់។\n១០. ទំនាក់ទំនង៖ គ្រួសារអានសាររបស់សាលា ហើយឆ្លើយតបទាន់ពេល។ ការផ្លាស់ប្តូរកិច្ចសន្យានេះនឹងជូនដំណឹងក្នុង Portal។\n\nដោយចុះហត្ថលេខា ឪពុកម្តាយ/អាណាព្យាបាល បញ្ជាក់ថាបានអាន និងយល់ព្រមលើកិច្ចសន្យានេះ។", "version": 1}, "rules": {"en": "SCHOOL RULES FOR STUDENTS\n\n1. Be on time for every lesson, in class or online.\n2. Wear the school uniform neatly (classroom) and dress properly on camera (online).\n3. Respect teachers, staff and classmates — no bullying, teasing or fighting, in person or online.\n4. Speak English in English lessons as much as you can.\n5. Bring your books and materials, and look after school property.\n6. Keep phones on silent and use them only when the teacher allows.\n7. Do your own work — copying and cheating are not allowed.\n8. Keep the classroom and the school clean; put rubbish in the bin.\n9. Online: keep your camera on when asked, mute when not speaking, and never share your Student ID or PIN.\n10. Ask permission before leaving the classroom or the online lesson.\n11. Tell a teacher at once if you feel unwell or unsafe, or see someone who needs help.\n12. Be kind, be honest, and try your best every day.\n\nBreaking the rules: 1st time — a warning; 2nd time — the family is informed; repeated or serious — a meeting and possible suspension.", "km": "ច្បាប់វិន័យសាលាសម្រាប់សិស្ស\n\n១. មករៀនទាន់ពេលគ្រប់មេរៀន ទាំងក្នុងថ្នាក់ និង Online។\n២. ស្លៀកពាក់ឯកសណ្ឋានសាលាឱ្យបានស្អាត (ក្នុងថ្នាក់) និងស្លៀកពាក់សមរម្យពេលបើកកាមេរ៉ា (Online)។\n៣. គោរពគ្រូ បុគ្គលិក និងមិត្តរួមថ្នាក់ — ហាមសម្លុត ចំអក ឬវាយតប់ ទាំងផ្ទាល់ និង Online។\n៤. និយាយភាសាអង់គ្លេសក្នុងម៉ោងរៀនភាសាអង់គ្លេសឱ្យបានច្រើនតាមដែលអាចធ្វើបាន។\n៥. យកសៀវភៅ និងសម្ភារៈមកជាមួយ និងថែរក្សាទ្រព្យសម្បត្តិសាលា។\n៦. បិទសំឡេងទូរស័ព្ទ និងប្រើតែពេលគ្រូអនុញ្ញាត។\n៧. ធ្វើកិច្ចការដោយខ្លួនឯង — ហាមចម្លង និងបន្លំ។\n៨. រក្សាថ្នាក់រៀន និងសាលាឱ្យស្អាត ហើយបោះសំរាមក្នុងធុង។\n៩. Online៖ បើកកាមេរ៉ាពេលគ្រូស្នើ បិទសំឡេងពេលមិននិយាយ និងមិនដែលចែករំលែក Student ID ឬ PIN។\n១០. សុំការអនុញ្ញាតមុនចេញពីថ្នាក់ ឬមេរៀន Online។\n១១. ប្រាប់គ្រូភ្លាមៗ ពេលមានអារម្មណ៍មិនស្រួល មិនមានសុវត្ថិភាព ឬឃើញនរណាម្នាក់ត្រូវការជំនួយ។\n១២. មានចិត្តល្អ ស្មោះត្រង់ និងខិតខំប្រឹងប្រែងរៀងរាល់ថ្ងៃ។\n\nការបំពានច្បាប់៖ លើកទី១ — ព្រមាន, លើកទី២ — ជូនដំណឹងគ្រួសារ, ច្រើនដង ឬធ្ងន់ធ្ងរ — ជួបពិភាក្សា និងអាចផ្អាកការសិក្សា។", "version": 1}};
+var C2_DOC_TITLES = { contract: "📜 Study Contract · កិច្ចសន្យាការសិក្សា", rules: "⚖️ School Rules · ច្បាប់វិន័យសាលា" };
+var c2Docs = null;
+async function c2LoadDocs(){
+  try { var fs = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"), {db, doc} = window._fb;
+    var sn = await fs.getDoc(doc(db,"settings","schoolDocs")); c2Docs = sn.exists() ? sn.data() : null; } catch(e){ c2Docs = null; }
+  c2Docs = Object.assign({}, C2_DOC_DEFAULTS, c2Docs || {});
+  return c2Docs;
+}
+var AG = { type: "", drawn: false, lang: "km" };
+async function openAgreementPage(type){
+  if(!studentSession) return;
+  AG.type = type; AG.drawn = false;
+  c2pOpen("agree-" + type, C2_DOC_TITLES[type], false);
+  try { await spLoad(); await c2LoadDocs(); } catch(e){ document.getElementById("c2p-body").innerHTML = "<div class='c2p-empty'>Could not load. Please try again.</div>"; return; }
+  var d = c2Docs[type], fs = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"), {db, doc} = window._fb;
+  var key = SP.stu._id + "_" + type + "_v" + (d.version || 1), sn = await fs.getDoc(doc(db,"agreements", key)), signed = sn.exists() ? sn.data() : null;
+  var tabs = "<div style='display:flex;gap:6px;margin-bottom:8px;'><button onclick=\"agLang('km')\" id='ag-km' style='flex:1;padding:8px;border-radius:8px;border:1.5px solid #000080;font-weight:700;cursor:pointer;'>ខ្មែរ</button><button onclick=\"agLang('en')\" id='ag-en' style='flex:1;padding:8px;border-radius:8px;border:1.5px solid #000080;font-weight:700;cursor:pointer;'>English</button></div>";
+  var body = "<div class='c2p-card'>" + tabs + "<div id='ag-text' style='white-space:pre-wrap;line-height:1.65;font-size:.88rem;max-height:420px;overflow-y:auto;background:#fafbff;border-radius:8px;padding:12px;'></div><div style='font-size:.72rem;color:#999;margin-top:6px;'>Version " + (d.version || 1) + "</div></div>";
+  if(signed){
+    body += "<div class='c2p-card' style='background:#e8f5e9;border:1px solid #c8e6c9;'><div style='font-weight:800;color:#2e7d32;'>✅ Signed on " + clEsc(String(signed.agreedAt).slice(0,10)) + " by " + clEsc(signed.signedName) + " (" + clEsc(signed.relation) + ")</div>"
+      + (signed.signature ? "<img src='" + signed.signature + "' alt='Signature' style='max-width:260px;width:100%;background:#fff;border-radius:8px;margin-top:8px;border:1px solid #c8e6c9;'>" : "") + "</div>";
+  } else {
+    body += "<div class='c2p-card'><label style='display:flex;gap:10px;align-items:flex-start;font-size:.88rem;cursor:pointer;'><input type='checkbox' id='ag-ok' style='width:22px;height:22px;margin-top:1px;'> <span>I have read and agree · ខ្ញុំបានអាន និងយល់ព្រម</span></label>"
+      + "<div style='display:grid;grid-template-columns:2fr 1fr;gap:8px;margin-top:10px;'><input id='ag-name' class='c2p-in' maxlength='80' placeholder='Parent / guardian full name'><select id='ag-rel' class='c2p-in'><option>Mother</option><option>Father</option><option>Guardian</option><option>Student (18+)</option></select></div>"
+      + "<div style='font-size:.78rem;color:#555;margin:8px 0 4px;'>✍️ Sign here with your finger or mouse · ចុះហត្ថលេខានៅទីនេះ</div>"
+      + "<canvas id='ag-pad' width='600' height='180' style='width:100%;height:150px;background:#fff;border:2px dashed #9fa8da;border-radius:10px;touch-action:none;'></canvas>"
+      + "<div style='display:flex;gap:8px;margin-top:8px;'><button onclick='agClear()' style='background:#f0f2f5;border:none;border-radius:8px;padding:10px 14px;cursor:pointer;'>🧹 Clear</button><button onclick='agSave()' style='flex:1;background:#000080;color:#FFD700;border:none;border-radius:8px;padding:10px;font-weight:800;cursor:pointer;'>✅ Sign · ចុះហត្ថលេខា</button></div>"
+      + "<div id='ag-msg' style='display:none;margin-top:8px;'></div></div>";
+  }
+  document.getElementById("c2p-body").innerHTML = body;
+  agLang(AG.lang);
+  if(!signed) agPad();
+}
+function agLang(l){ AG.lang = l; var d = c2Docs[AG.type]; document.getElementById("ag-text").textContent = d[l] || d.en;
+  ["km","en"].forEach(function(x){ var b = document.getElementById("ag-" + x); if(b){ b.style.background = x === l ? "#000080" : "#fff"; b.style.color = x === l ? "#FFD700" : "#000080"; } }); }
+function agPad(){
+  var c = document.getElementById("ag-pad"), ctx = c.getContext("2d"), down = false;
+  ctx.lineWidth = 3; ctx.lineCap = "round"; ctx.strokeStyle = "#0b1f4d";
+  var pos = function(e){ var r = c.getBoundingClientRect(), t = e.touches ? e.touches[0] : e; return { x: (t.clientX - r.left) * c.width / r.width, y: (t.clientY - r.top) * c.height / r.height }; };
+  var start = function(e){ down = true; AG.drawn = true; var p = pos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); e.preventDefault(); };
+  var move = function(e){ if(!down) return; var p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); e.preventDefault(); };
+  var end = function(){ down = false; };
+  c.addEventListener("mousedown", start); c.addEventListener("mousemove", move); window.addEventListener("mouseup", end);
+  c.addEventListener("touchstart", start, {passive:false}); c.addEventListener("touchmove", move, {passive:false}); c.addEventListener("touchend", end);
+}
+function agClear(){ var c = document.getElementById("ag-pad"); c.getContext("2d").clearRect(0, 0, c.width, c.height); AG.drawn = false; }
+async function agSave(){
+  var msg = document.getElementById("ag-msg"), name = document.getElementById("ag-name").value.trim();
+  var fail = function(t){ msg.style.cssText = "display:block;color:#c62828;font-size:.84rem;"; msg.textContent = t; };
+  if(!document.getElementById("ag-ok").checked) return fail("Please tick “I have read and agree”.");
+  if(name.length < 2) return fail("Please type your full name.");
+  if(!AG.drawn) return fail("Please sign in the box.");
+  var d = c2Docs[AG.type], sig = document.getElementById("ag-pad").toDataURL("image/png");
+  if(sig.length > 90000){ var c = document.getElementById("ag-pad"), t = document.createElement("canvas"); t.width = 300; t.height = 90; t.getContext("2d").drawImage(c, 0, 0, 300, 90); sig = t.toDataURL("image/png"); }
+  try { var {db, doc, setDoc} = window._fb;
+    await setDoc(doc(db,"agreements", SP.stu._id + "_" + AG.type + "_v" + (d.version || 1)), { studentDocId: SP.stu._id, studentId: SP.stu.studentId, studentName: SP.stu.nameEn || SP.stu.nameKm || "",
+      type: AG.type, version: d.version || 1, signedName: name, relation: document.getElementById("ag-rel").value, signature: sig, agreedAt: new Date().toISOString() });
+    openAgreementPage(AG.type);
+  } catch(e){ fail("Could not save: " + e.message); }
+}
+// staff: who has signed (inside Edit Student)
+async function c2ShowAgreements(s){
+  var box = document.getElementById("c2-family-box"); if(!box) return;
+  try { await c2LoadDocs(); var fs = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"), {db, doc} = window._fb, lines = [];
+    for(var t of ["contract","rules"]){ var sn = await fs.getDoc(doc(db,"agreements", s.id + "_" + t + "_v" + (c2Docs[t].version || 1)));
+      lines.push((t === "contract" ? "📜 Contract" : "⚖️ Rules") + ": " + (sn.exists() ? "✅ signed " + escapeHtml(String(sn.data().agreedAt).slice(0,10)) + " · " + escapeHtml(sn.data().signedName) : "❌ not signed yet")); }
+    box.innerHTML += "<div style='margin-top:6px;padding-top:6px;border-top:1px dashed #c8e6c9;'>" + lines.join("<br>") + "</div>"; box.style.display = "block";
+  } catch(e){}
+}
+// admin: edit the texts
+async function openSchoolDocsEditor(){
+  if(!admissionsCanAccess()){ alert("Only the Admin or the Admissions head can edit these texts."); return; }
+  await c2LoadDocs();
+  var f = function(t, l, label){ return "<label style='font-size:.8rem;font-weight:800;color:#000080;display:block;margin:12px 0 4px;'>"+label+"</label><textarea id='docs-"+t+"-"+l+"' rows='12' style='width:100%;box-sizing:border-box;padding:10px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:.86rem;line-height:1.5;font-family:inherit;'>"+escapeHtml(c2Docs[t][l]||"")+"</textarea>"; };
+  document.getElementById("c2-docs-fields").innerHTML = ["contract","rules"].map(function(t){
+    return "<div style='background:#fff;border-radius:12px;padding:14px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);'><div style='font-weight:800;'>"+C2_DOC_TITLES[t]+" <span style='color:#888;font-weight:400;font-size:.78rem;'>· version "+(c2Docs[t].version||1)+"</span></div>"
+      + f(t,"km","ខ្មែរ") + f(t,"en","English") + "</div>"; }).join("");
+  document.getElementById("c2-docs-msg").style.display = "none";
+  document.getElementById("c2-docs-page").style.display = "block";
+}
+async function c2SaveSchoolDocs(){
+  var out = {}, changed = [];
+  ["contract","rules"].forEach(function(t){
+    var km = document.getElementById("docs-"+t+"-km").value.trim(), en = document.getElementById("docs-"+t+"-en").value.trim(), old = c2Docs[t];
+    var ch = km !== (old.km||"").trim() || en !== (old.en||"").trim(); if(ch) changed.push(t === "contract" ? "Contract" : "Rules");
+    out[t] = { km: km, en: en, version: (old.version || 1) + (ch ? 1 : 0) };
+  });
+  var msg = document.getElementById("c2-docs-msg");
+  if(!changed.length){ msg.style.cssText = "display:block;color:#555;font-size:.85rem;"; msg.textContent = "Nothing changed."; return; }
+  try { var {db, doc, setDoc} = window._fb; out.updatedAt = new Date().toISOString(); out.updatedBy = currentTeacherName || (currentUser && currentUser.email) || "";
+    await setDoc(doc(db,"settings","schoolDocs"), out); c2Docs = out;
+    msg.style.cssText = "display:block;color:#2e7d32;font-weight:700;font-size:.85rem;"; msg.textContent = "✅ Saved (" + changed.join(", ") + " — new version). Families will be asked to sign again.";
+    openSchoolDocsEditor();
+  } catch(e){ msg.style.cssText = "display:block;color:#c62828;"; msg.textContent = "Could not save: " + e.message; }
+}
+
+// ===== 👤 Student profile · 📝 enrolment form (student / parent area) =====
+var SP = { stu: null, prof: {} };
+async function spLoad(){
+  var fs = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"), {db, collection, query, where, doc} = window._fb;
+  var snap = await fs.getDocs(query(collection(db,"students"), where("studentId","==",studentSession.studentId)));
+  if(snap.empty) throw new Error("Student record not found");
+  SP.stu = Object.assign({ _id: snap.docs[0].id }, snap.docs[0].data());
+  var p = await fs.getDoc(doc(db,"studentProfiles", SP.stu._id)); SP.prof = p.exists() ? p.data() : {};
+  return SP;
+}
+function spRow(label, val){ return "<div style='display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed #eee;font-size:.86rem;'><span style='color:#777;min-width:120px;'>"+label+"</span><b style='flex:1;'>"+(val ? clEsc(String(val)) : "<span style='color:#bbb;font-weight:400;'>—</span>")+"</b></div>"; }
+function spStudyText(st){
+  var parts = [];
+  if(st.classroom !== false && st.cls && st.cls !== "Online Class") parts.push("🏫 " + st.cls + (st.paidUntil ? " · paid until " + st.paidUntil : ""));
+  if(st.online) parts.push("💻 " + (st.onlineCourse || "Online") + (st.onlineUntil ? " · until " + st.onlineUntil : ""));
+  return parts.join("  |  ") || (st.cls || "");
+}
+async function openStudentProfilePage(){
+  if(!studentSession){ return; }
+  c2pOpen("profile", "👤 Student Profile · ប្រវត្តិរូបសិស្ស", false);
+  try { await spLoad(); } catch(e){ document.getElementById("c2p-body").innerHTML = "<div class='c2p-empty'>Could not load the profile. Please try again.</div>"; return; }
+  var st = SP.stu, pr = SP.prof, age = st.dob ? Math.floor((Date.now() - new Date(st.dob)) / 31557600000) : "";
+  var photo = st.photo ? "<img src='"+st.photo+"' alt='Student photo' style='width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid #FFD700;'>"
+    : "<div style='width:84px;height:84px;border-radius:50%;background:#000080;color:#FFD700;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:800;'>"+clEsc((st.nameEn||st.nameKm||"S").charAt(0))+"</div>";
+  var inp = function(id, label, val, ph, max, type){ return "<label class='c2p-l'>"+label+"</label><input id='"+id+"' class='c2p-in' type='"+(type||"text")+"' maxlength='"+(max||80)+"' value='"+clEsc(val||"")+"' placeholder='"+clEsc(ph||"")+"'>"; };
+  document.getElementById("c2p-body").innerHTML =
+    "<div class='c2p-card' style='display:flex;gap:14px;align-items:center;'>"+photo+"<div><div style='font-size:1.15rem;font-weight:800;color:#000080;'>"+clEsc(st.nameKm||"")+"</div><div style='font-weight:700;'>"+clEsc(st.nameEn||"")+"</div><div style='font-family:monospace;color:#888;'>ID "+clEsc(st.studentId||"")+"</div></div></div>"
+    + "<div class='c2p-card'><div style='font-weight:800;color:#000080;margin-bottom:4px;'>🎓 School record</div>"
+    + spRow("Date of birth", st.dob ? st.dob + (age !== "" ? " (" + age + " years)" : "") : "") + spRow("Gender", st.gender) + spRow("Studies", spStudyText(st))
+    + spRow("Level test", st.placementLevel) + spRow("Enrolled", (st.enrolledAt || st.createdAt || "").slice(0,10))
+    + "<div style='font-size:.74rem;color:#999;margin-top:6px;'>To change these, please contact the school office.</div></div>"
+    + "<div class='c2p-card'><div style='font-weight:800;color:#000080;margin-bottom:4px;'>👨‍👩‍👧 Family details · ព័ត៌មានគ្រួសារ <span style='font-weight:400;color:#888;font-size:.78rem;'>(you can update)</span></div>"
+    + inp("sp-father","Father's name",pr.fatherName,"",60) + inp("sp-father-ph","Father's phone",pr.fatherPhone,"012 345 678",20,"tel")
+    + inp("sp-mother","Mother's name",pr.motherName,"",60) + inp("sp-mother-ph","Mother's phone",pr.motherPhone,"012 345 678",20,"tel")
+    + inp("sp-guardian","Guardian (if not a parent)",pr.guardian,"Name and relationship",80)
+    + inp("sp-telegram","Telegram (phone or @username)",pr.telegram,"",40) + inp("sp-email","Email",pr.email,"",80,"email")
+    + inp("sp-address","Home address",pr.address,"House, street, village, district, province",160)
+    + inp("sp-prev","Previous school",pr.previousSchool,"",80) + inp("sp-lang","Languages spoken at home",pr.homeLanguages,"Khmer, English…",60)
+    + "<label class='c2p-l'>Pick-up: who may collect the child?</label><textarea id='sp-pickup' class='c2p-in' maxlength='200' rows='2' placeholder='Names and phone numbers'>"+clEsc(pr.pickup||"")+"</textarea>"
+    + "<button onclick='spSave()' style='width:100%;margin-top:10px;background:#000080;color:#FFD700;border:none;border-radius:10px;padding:12px;font-weight:800;cursor:pointer;'>💾 Save · រក្សាទុក</button>"
+    + "<div id='sp-msg' style='display:none;margin-top:8px;'></div></div>";
+}
+async function spSave(){
+  var v = function(id){ return document.getElementById(id).value.trim(); }, msg = document.getElementById("sp-msg");
+  var phones = ["sp-father-ph","sp-mother-ph"].map(v).filter(Boolean);
+  if(phones.some(function(p){ return !/^[+0-9 ()-]{8,20}$/.test(p); })){ msg.style.cssText = "display:block;color:#c62828;font-size:.82rem;"; msg.textContent = "Please check the phone numbers."; return; }
+  var d = { studentId: SP.stu.studentId, studentName: SP.stu.nameEn || SP.stu.nameKm || "", fatherName: v("sp-father"), fatherPhone: v("sp-father-ph"),
+    motherName: v("sp-mother"), motherPhone: v("sp-mother-ph"), guardian: v("sp-guardian"), telegram: v("sp-telegram"), email: v("sp-email"),
+    address: v("sp-address"), previousSchool: v("sp-prev"), homeLanguages: v("sp-lang"), pickup: v("sp-pickup"), updatedAt: new Date().toISOString() };
+  try { var {db, doc, setDoc} = window._fb; await setDoc(doc(db,"studentProfiles", SP.stu._id), d); SP.prof = d;
+    msg.style.cssText = "display:block;color:#2e7d32;font-weight:700;font-size:.85rem;"; msg.textContent = "✅ Saved. Thank you!";
+  } catch(e){ msg.style.cssText = "display:block;color:#c62828;font-size:.82rem;"; msg.textContent = "Could not save: " + e.message; }
+}
+async function openEnrolmentFormPage(){
+  if(!studentSession){ return; }
+  c2pOpen("enrolment", "📝 Enrolment Form · ពាក្យសុំចូលរៀន", false);
+  try { await spLoad(); } catch(e){ document.getElementById("c2p-body").innerHTML = "<div class='c2p-empty'>Could not load the form. Please try again.</div>"; return; }
+  var st = SP.stu, pr = SP.prof, r = function(a, b){ return "<tr><td style='padding:6px 8px;color:#555;width:38%;border:1px solid #e0e0e0;'>"+a+"</td><td style='padding:6px 8px;font-weight:700;border:1px solid #e0e0e0;'>"+(b ? clEsc(String(b)) : "")+"</td></tr>"; };
+  var sec = function(t){ return "<tr><td colspan='2' style='background:#000080;color:#FFD700;font-weight:800;padding:6px 8px;'>"+t+"</td></tr>"; };
+  document.getElementById("c2p-body").innerHTML =
+    "<div class='c2p-card' id='enrol-doc' style='background:#fff;'>"
+    + "<div style='display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid #000080;padding-bottom:8px;margin-bottom:10px;'><div><div style='font-size:1.2rem;font-weight:800;color:#000080;'>C2-EPE Digital Academy</div><div style='color:#b8860b;font-size:.8rem;'>English Proficiency Education</div></div><div style='text-align:right;font-size:.75rem;color:#555;'>Phnom Penh, Cambodia<br>Student ID <b>"+clEsc(st.studentId||"")+"</b></div></div>"
+    + "<div style='text-align:center;font-weight:800;font-size:1.1rem;color:#000080;letter-spacing:2px;margin:6px 0 10px;'>ENROLMENT FORM · ពាក្យសុំចូលរៀន</div>"
+    + "<table style='width:100%;border-collapse:collapse;font-size:.84rem;'>"
+    + sec("1 · Student · សិស្ស") + r("Name (Khmer)", st.nameKm) + r("Name (English)", st.nameEn) + r("Date of birth", st.dob) + r("Gender", st.gender) + r("Languages at home", pr.homeLanguages) + r("Previous school", pr.previousSchool)
+    + sec("2 · Studies · ការសិក្សា") + r("Study type", (st.classroom !== false && st.cls !== "Online Class" ? "Classroom" : "") + (st.online ? (st.classroom !== false && st.cls !== "Online Class" ? " + " : "") + "Online" : "")) + r("Class / course", spStudyText(st)) + r("Level test result", st.placementLevel) + r("Enrolment date", (st.enrolledAt || st.createdAt || "").slice(0,10))
+    + sec("3 · Family · គ្រួសារ") + r("Father", [pr.fatherName, pr.fatherPhone].filter(Boolean).join(" · ")) + r("Mother", [pr.motherName, pr.motherPhone].filter(Boolean).join(" · ")) + r("Guardian", pr.guardian) + r("Telegram / email", [pr.telegram, pr.email].filter(Boolean).join(" · ") || st.parentPhone) + r("Home address", pr.address) + r("Pick-up persons", pr.pickup)
+    + "</table>"
+    + "<div style='display:flex;gap:30px;margin-top:34px;font-size:.78rem;color:#555;'><div style='flex:1;border-top:1px solid #999;text-align:center;padding-top:4px;'>Parent / Guardian signature</div><div style='flex:1;border-top:1px solid #999;text-align:center;padding-top:4px;'>School (Admissions)</div></div>"
+    + "</div>"
+    + "<div style='display:flex;gap:8px;margin-top:10px;'><button onclick=\"openStudentProfilePage()\" style='flex:1;background:#f0f2f5;border:none;border-radius:10px;padding:11px;font-weight:700;cursor:pointer;'>✏️ Update family details</button>"
+    + "<button onclick='spPrintEnrolment()' style='flex:1;background:#000080;color:#FFD700;border:none;border-radius:10px;padding:11px;font-weight:800;cursor:pointer;'>🖨️ Print / Save PDF</button></div>";
+}
+function spPrintEnrolment(){
+  var w = window.open("", "_blank"); if(!w){ alert("Please allow pop-ups to print."); return; }
+  w.document.write("<html><head><title>Enrolment Form " + clEsc(SP.stu.studentId || "") + "</title><meta charset='utf-8'><style>@page{size:A4;margin:14mm}body{font-family:Arial,'Noto Sans Khmer',sans-serif;color:#1a1a2e}</style></head><body>" + document.getElementById("enrol-doc").outerHTML + "<script>window.onload=function(){window.print();}<\/script></body></html>");
+  w.document.close();
+}
+
+// ===== Health profile pickers (allergies · medicines) =====
+var C2_HEALTH_LISTS = { "cl-allergies": {"🍽️ Food · អាហារ": ["Peanuts", "Tree nuts (cashew, almond)", "Milk / dairy", "Eggs", "Wheat / gluten", "Soy", "Fish", "Shellfish (shrimp, crab)", "Squid / octopus", "Sesame", "Corn", "Mango", "Pineapple", "Banana", "Strawberry", "Kiwi", "Citrus fruits", "Tomato", "Coconut", "Durian", "Jackfruit", "Chocolate / cocoa", "Prahok / fermented fish", "Fish sauce", "MSG", "Food colouring", "Chicken", "Beef", "Pork", "Chilli / spicy food"], "💊 Medicine · ថ្នាំ": ["Penicillin", "Amoxicillin", "Cephalosporins", "Sulfa drugs", "Co-trimoxazole", "Erythromycin", "Tetracycline", "Ciprofloxacin", "Metronidazole", "Aspirin", "Ibuprofen", "Paracetamol", "Diclofenac", "Codeine", "Anti-seizure medicine", "Local anaesthetic", "Iodine / contrast dye", "Antimalarial medicine", "Vaccine ingredients", "Antihistamine"], "🐝 Insects & animals · សត្វល្អិត និងសត្វ": ["Bee stings", "Wasp / hornet stings", "Fire ants", "Mosquito bites", "Bed bugs", "Cockroaches", "Dust mites", "Cats", "Dogs", "Bird feathers"], "🌿 Environment & materials · បរិស្ថាន": ["Pollen", "Grass", "Dust", "Mould", "Smoke", "Perfume / strong smells", "Latex (gloves, balloons)", "Nickel / metal jewellery", "Soap / detergent", "Chlorine (swimming pool)", "Sunlight", "Cold air", "Plasters / adhesive tape", "Hair dye", "Paint / glue", "Wool"]}, "cl-medicines": {"🫁 Asthma & breathing · ហឺត": ["Salbutamol inhaler (Ventolin)", "Budesonide inhaler", "Fluticasone inhaler", "Seretide inhaler", "Montelukast", "Inhaler spacer", "Nebuliser", "Prednisolone (steroid tablets)"], "🤧 Allergy · អាឡែកហ្ស៊ី": ["Cetirizine", "Loratadine", "Desloratadine", "Chlorphenamine", "Adrenaline auto-injector (EpiPen)", "Nasal steroid spray"], "⚡ Seizures / epilepsy · ប្រកាច់": ["Sodium valproate", "Carbamazepine", "Levetiracetam", "Lamotrigine", "Phenobarbital", "Phenytoin", "Rescue medicine (diazepam / midazolam)"], "🩸 Diabetes · ទឹកនោមផ្អែម": ["Insulin injection", "Insulin pump", "Metformin", "Glucose tablets", "Glucagon kit", "Blood sugar meter"], "🧠 Attention, mood & sleep": ["Methylphenidate (Ritalin / Concerta)", "Atomoxetine", "Risperidone", "Fluoxetine", "Sertraline", "Melatonin"], "❤️ Heart & blood · បេះដូង និងឈាម": ["Iron tablets", "Folic acid", "Vitamin B12", "Propranolol", "Low-dose aspirin", "Warfarin", "Thalassaemia treatment (deferasirox)", "Hydroxyurea"], "🫃 Stomach · ក្រពះ": ["Omeprazole", "Antacid", "ORS (oral rehydration salts)", "Probiotic", "Lactulose", "Domperidone"], "⚖️ Hormones & thyroid": ["Levothyroxine", "Growth hormone", "Hydrocortisone tablets", "Desmopressin"], "🦠 Antibiotics (current course)": ["Amoxicillin", "Azithromycin", "Cefixime", "Co-trimoxazole", "Antibiotic eye / ear drops"], "🧴 Skin · ស្បែក": ["Eczema moisturiser (emollient)", "Hydrocortisone cream", "Antifungal cream", "Acne treatment", "Medical sunscreen"], "👁️ Eyes & ears": ["Lubricating eye drops", "Allergy eye drops", "Ear drops"], "🍊 Vitamins & supplements": ["Multivitamin", "Vitamin D", "Vitamin C", "Calcium", "Zinc", "Omega-3 / fish oil", "Deworming (albendazole)"], "📋 Other": ["Migraine medicine", "Motion-sickness medicine", "Long-term treatment (details with the nurse)", "Herbal / traditional medicine"]} };
+var C2_NONE = { "cl-allergies": "None · គ្មាន", "cl-medicines": "None · គ្មាន" };
+function c2HpItems(inp){ return inp.value.split(",").map(function(x){ return x.trim(); }).filter(Boolean); }
+function c2HpSet(inp, items){
+  var v = items.join(", ");
+  if(v.length > 200){ alert("That is a lot to list here (200 letters maximum). Please choose the most important ones, or tell the school nurse."); return false; }
+  inp.value = v; inp.dispatchEvent(new Event("input", { bubbles: true })); c2HpChips(inp); return true;
+}
+function c2HpChips(inp){
+  var box = document.getElementById(inp.id + "-chips"); if(!box) return;
+  var items = c2HpItems(inp);
+  box.innerHTML = items.map(function(it, i){ return "<span style='display:inline-flex;align-items:center;gap:4px;background:#e8eaf6;color:#000080;border-radius:14px;padding:3px 4px 3px 10px;font-size:.78rem;font-weight:600;margin:2px;'>"+clEsc(it)+"<button type='button' aria-label='Remove "+clEsc(it)+"' onclick=\"c2HpRemove('"+inp.id+"',"+i+")\" style='border:none;background:#c5cae9;color:#000080;border-radius:50%;width:20px;height:20px;cursor:pointer;line-height:1;'>×</button></span>"; }).join("");
+}
+function c2HpRemove(id, i){ var inp = document.getElementById(id), items = c2HpItems(inp); items.splice(i, 1); c2HpSet(inp, items); var pnl = document.getElementById(id + "-panel"); if(pnl && pnl.style.display !== "none") c2HpRenderList(id); }
+function c2HpToggle(id, item){
+  var inp = document.getElementById(id), items = c2HpItems(inp), none = C2_NONE[id];
+  var k = items.findIndex(function(x){ return x.toLowerCase() === item.toLowerCase(); });
+  if(k >= 0) items.splice(k, 1);
+  else if(item === none) items = [none];
+  else { items = items.filter(function(x){ return x !== none && !/^none$/i.test(x); }); items.push(item); }
+  if(c2HpSet(inp, items)) c2HpRenderList(id);
+}
+function c2HpAddOther(id){
+  var o = document.getElementById(id + "-other"), t = o.value.trim().replace(/,/g, " ");
+  if(!t) return; o.value = ""; var inp = document.getElementById(id), items = c2HpItems(inp).filter(function(x){ return x !== C2_NONE[id]; });
+  if(!items.some(function(x){ return x.toLowerCase() === t.toLowerCase(); })) items.push(t);
+  if(c2HpSet(inp, items)) c2HpRenderList(id);
+}
+function c2HpRenderList(id){
+  var q = (document.getElementById(id + "-q").value || "").toLowerCase().trim(), chosen = c2HpItems(document.getElementById(id)).map(function(x){ return x.toLowerCase(); });
+  var groups = C2_HEALTH_LISTS[id], html = "";
+  var row = function(it){ var on = chosen.indexOf(it.toLowerCase()) >= 0;
+    return "<label style='display:flex;align-items:center;gap:8px;padding:7px 6px;border-radius:7px;cursor:pointer;font-size:.84rem;background:"+(on?"#e8f5e9":"transparent")+";'><input type='checkbox' "+(on?"checked ":"")+"onchange=\"c2HpToggle('"+id+"', this.value)\" value=\""+clEsc(it)+"\" style='width:18px;height:18px;'> "+clEsc(it)+"</label>"; };
+  if(!q) html += row(C2_NONE[id]);
+  Object.keys(groups).forEach(function(g){
+    var items = groups[g].filter(function(it){ return !q || it.toLowerCase().indexOf(q) >= 0; });
+    if(items.length) html += "<div style='font-weight:800;color:#000080;font-size:.78rem;margin:8px 0 2px;'>"+g+"</div>" + items.map(row).join("");
+  });
+  if(!html) html = "<div style='color:#888;font-size:.82rem;padding:8px;'>Not in the list — add it below with “Other”.</div>";
+  document.getElementById(id + "-list").innerHTML = html;
+}
+function c2HpOpen(id){
+  var p = document.getElementById(id + "-panel"), open = p.style.display === "none";
+  p.style.display = open ? "block" : "none";
+  if(open){ document.getElementById(id + "-q").value = ""; c2HpRenderList(id); document.getElementById(id + "-q").focus(); }
+}
+function c2EnhanceHealthPickers(){
+  Object.keys(C2_HEALTH_LISTS).forEach(function(id){
+    var inp = document.getElementById(id); if(!inp || document.getElementById(id + "-chips")) return;
+    var count = Object.keys(C2_HEALTH_LISTS[id]).reduce(function(a, g){ return a + C2_HEALTH_LISTS[id][g].length; }, 0);
+    inp.insertAdjacentHTML("afterend",
+      "<div id='"+id+"-chips' style='margin:4px 0 2px;'></div>"
+      + "<button type='button' onclick=\"c2HpOpen('"+id+"')\" style='background:#000080;color:#FFD700;border:none;border-radius:16px;padding:6px 14px;font-weight:700;font-size:.78rem;cursor:pointer;margin:2px 0 10px;'>➕ Choose from list ("+count+") · ជ្រើសពីបញ្ជី</button>"
+      + "<div id='"+id+"-panel' style='display:none;border:1.5px solid #c5cae9;border-radius:10px;padding:10px;margin:-4px 0 12px;background:#fafbff;'>"
+      + "<input id='"+id+"-q' oninput=\"c2HpRenderList('"+id+"')\" placeholder='🔍 Search…' style='width:100%;padding:8px 10px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:.88rem;box-sizing:border-box;'>"
+      + "<div id='"+id+"-list' style='max-height:260px;overflow-y:auto;margin-top:6px;'></div>"
+      + "<div style='display:flex;gap:6px;margin-top:8px;'><input id='"+id+"-other' maxlength='40' placeholder='Other (type and add)' onkeydown=\"if(event.key==='Enter'){event.preventDefault();c2HpAddOther('"+id+"');}\" style='flex:1;padding:8px 10px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:.85rem;'>"
+      + "<button type='button' onclick=\"c2HpAddOther('"+id+"')\" style='background:#2e7d32;color:#fff;border:none;border-radius:8px;padding:0 14px;font-weight:700;cursor:pointer;'>Add</button>"
+      + "<button type='button' onclick=\"c2HpOpen('"+id+"')\" style='background:#f0f2f5;border:none;border-radius:8px;padding:0 12px;cursor:pointer;'>Done</button></div></div>");
+    inp.addEventListener("input", function(){ c2HpChips(inp); });
+    c2HpChips(inp);
+  });
+}
+
+function clProfileForm(){ setTimeout(c2EnhanceHealthPickers, 0);
   var p = CL.profile || {};
   var inp = function(id, label, val, ph, max){ return "<label class='c2p-l'>"+label+"</label><input id='"+id+"' class='c2p-in' maxlength='"+(max||120)+"' value='"+clEsc(val)+"' placeholder='"+clEsc(ph||"")+"'>"; };
   var chk = function(id, val, text){ return "<label style='display:flex;gap:8px;align-items:flex-start;font-size:.84rem;margin-top:8px'><input type='checkbox' id='"+id+"' style='width:auto;margin-top:3px'"+(val?" checked":"")+"> <span>"+text+"</span></label>"; };

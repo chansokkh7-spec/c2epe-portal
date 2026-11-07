@@ -85,6 +85,17 @@ main{max-width:1240px;margin:0 auto;padding:24px 24px 48px;display:flex;flex-dir
 .access{background:#fff8e1;border:1px solid var(--gold);box-shadow:none}
 .access.ending{background:var(--warn-bg);border-color:#f5b27a}
 .empty{padding:26px;border:1px dashed var(--line);border-radius:14px;text-align:center;color:var(--muted)}
+.modal{position:fixed;inset:0;background:rgba(5,12,32,.7);display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto;z-index:50}
+.modal .card{width:100%;max-width:520px;margin:auto}
+.modal h2{font-size:20px;margin-bottom:4px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 12px}
+.field select,.field textarea{min-height:48px;border:1px solid #c7cfe0;border-radius:12px;padding:10px 12px;font-size:16px;color:var(--ink);font-family:inherit;background:#fff}
+.field.sm input{font-size:16px;letter-spacing:0}
+.ok{display:none;margin-top:12px;padding:12px;border-radius:10px;background:var(--ok-bg);color:var(--ok);font-size:14px}
+.fee{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.banks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.banks button{min-height:40px;border-radius:999px;border:1.5px solid var(--navy);background:#fff;color:var(--navy);padding:0 14px;font-weight:700;cursor:pointer}
+.banks button.on{background:var(--navy);color:#fff}
 @media (max-width:640px){ main{padding:18px 16px 40px} header{padding-left:16px;padding-right:16px} .hero{padding:22px} .hero-text h1{font-size:24px} }
 @media (prefers-reduced-motion:reduce){ *{transition:none!important;animation:none!important} }
 </style>
@@ -115,6 +126,7 @@ main{max-width:1240px;margin:0 auto;padding:24px 24px 48px;display:flex;flex-dir
       <span id="install-text">📲 Install <b>C2-EPE Online</b> on this phone or computer for one-tap lessons.</span>
       <button class="btn btn-gold" id="install-btn" type="button" style="min-height:44px">Install app</button>
     </div>
+    <button class="btn btn-line" id="apply-open" type="button" style="background:transparent;color:#fff;border-color:var(--gold);min-height:52px">📝 New student? Register &amp; try 7 days free · ចុះឈ្មោះ ហើយរៀនសាកល្បង ៧ ថ្ងៃ</button>
     <div class="help">Classroom students sign in on the <a id="hub-link-1" href="#" style="color:var(--gold)">Digital Hub</a> instead. · សិស្សរៀនក្នុងថ្នាក់ សូមចូល Digital Hub។</div>
   </div>
 </section>
@@ -162,6 +174,10 @@ main{max-width:1240px;margin:0 auto;padding:24px 24px 48px;display:flex;flex-dir
           <p>Join your live class, see the schedule and message your teacher in the Digital Hub.</p>
           <a class="btn btn-navy" id="hub-link-2" href="#" style="display:flex;align-items:center;justify-content:center;text-decoration:none">Open live class &amp; chat</a>
         </section>
+        <section class="box" aria-labelledby="pay-title">
+          <h2 id="pay-title">💳 Pay / Renew · បង់ប្រាក់</h2>
+          <div id="pay-list"><p style="color:var(--muted)">Loading…</p></div>
+        </section>
         <section class="box access" id="acc-box" aria-labelledby="acc-title">
           <h2 id="acc-title">Online access</h2>
           <p id="acc-text"></p>
@@ -170,6 +186,88 @@ main{max-width:1240px;margin:0 auto;padding:24px 24px 48px;display:flex;flex-dir
       </aside>
     </div>
   </main>
+</div>
+
+
+<!-- ===== APPLY ===== -->
+<div class="modal hidden" id="apply-modal" role="dialog" aria-modal="true" aria-labelledby="ap-title">
+  <form class="card" id="ap-form" novalidate>
+    <h2 id="ap-title">📝 Register for Online Class</h2>
+    <p style="margin:0 0 14px;color:var(--muted);font-size:14px">ចុះឈ្មោះរៀន Online · Next: a short level test, then 7 days of free lessons (Units 1–3).</p>
+    <div class="grid2">
+      <label class="field sm">Child's name (English) *<input id="ap-en" required maxlength="80" autocomplete="off"></label>
+      <label class="field sm">ឈ្មោះ (ខ្មែរ)<input id="ap-km" maxlength="80" autocomplete="off"></label>
+      <label class="field sm">Date of birth *<input id="ap-dob" type="date" required></label>
+      <label class="field">Gender<select id="ap-gender"><option>Female</option><option>Male</option></select></label>
+      <label class="field">Online course *<select id="ap-course"><option>Online K0</option><option>Online K1</option><option>Online K2</option><option>Online K3</option><option>Online Starters</option><option>Online Movers</option><option>Online Flyers</option><option>Online Beginner</option><option>Online Pre-Intermediate</option><option>Online Intermediate</option><option>Online Upper-Intermediate</option><option>Online Advanced</option><option>Online Proficiency</option><option>Not sure — please advise</option></select></label>
+      <label class="field sm">Parent's name *<input id="ap-parent" required maxlength="80" autocomplete="name"></label>
+      <label class="field sm">Phone / Telegram *<input id="ap-phone" required maxlength="30" inputmode="tel" autocomplete="tel"></label>
+      <label class="field sm">Email<input id="ap-email" type="email" maxlength="80" autocomplete="email"></label>
+    </div>
+    <label class="field">Note (optional)<textarea id="ap-note" rows="2" maxlength="400" placeholder="Best time to call, questions…"></textarea></label>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-gold" id="ap-send" type="submit" style="flex:1">Next: level test ▶</button>
+      <button class="btn btn-line" type="button" data-close="apply-modal">Cancel</button>
+    </div>
+    <div class="err" id="ap-err" role="alert"></div>
+    <div class="ok" id="ap-ok" role="status"></div>
+  </form>
+</div>
+
+
+<!-- ===== PLACEMENT TEST ===== -->
+<div class="modal hidden" id="pt-modal" role="dialog" aria-modal="true" aria-labelledby="pt-title">
+  <div class="card">
+    <h2 id="pt-title">🎯 Level test · តេស្តកម្រិត</h2>
+    <p id="pt-sub" style="margin:0 0 12px;color:var(--muted);font-size:14px"></p>
+    <div id="pt-qs"></div>
+    <div class="err" id="pt-err" role="alert"></div>
+    <button class="btn btn-gold" id="pt-next" type="button" style="width:100%;margin-top:14px">Check my answers ▶</button>
+  </div>
+</div>
+<!-- ===== RESULT + START TRIAL ===== -->
+<div class="modal hidden" id="rs-modal" role="dialog" aria-modal="true" aria-labelledby="rs-title">
+  <div class="card" style="text-align:center">
+    <div style="font-size:44px" aria-hidden="true">🎉</div>
+    <h2 id="rs-title">Your level · កម្រិតរបស់អ្នក</h2>
+    <p id="rs-level" style="font-size:18px;font-weight:700;margin:6px 0"></p>
+    <p id="rs-course" style="margin:0 0 14px;color:var(--muted)"></p>
+    <div class="help" style="background:#fff8e1;color:#6b3f00;border-color:#e8c766;text-align:left">🆓 <b>Free 7-day trial</b> · Units 1–3 of your course. After 7 days, pay to unlock every unit. · រៀនសាកល្បង ៧ ថ្ងៃ (Unit 1–3)</div>
+    <button class="btn btn-gold" id="rs-start" type="button" style="width:100%;margin-top:14px">▶ Start my free trial</button>
+    <div class="err" id="rs-err" role="alert"></div>
+  </div>
+</div>
+<!-- ===== APPROVED: STUDENT ID + PIN ===== -->
+<div class="modal hidden" id="ok-modal" role="dialog" aria-modal="true" aria-labelledby="ok-title">
+  <div class="card" style="text-align:center">
+    <div style="font-size:44px" aria-hidden="true">🎓</div>
+    <h2 id="ok-title">Welcome! Payment confirmed</h2>
+    <p style="margin:4px 0 12px;color:var(--muted)">Write these down — you need them to sign in. · សូមកត់ទុក</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+      <div style="background:var(--navy);color:#fff;border-radius:12px;padding:12px"><div style="font-size:12px;color:var(--gold)">Student ID</div><div id="ok-id" style="font:700 26px Poppins,sans-serif;letter-spacing:.08em"></div></div>
+      <div style="background:var(--navy);color:#fff;border-radius:12px;padding:12px"><div style="font-size:12px;color:var(--gold)">PIN</div><div id="ok-pin" style="font:700 26px Poppins,sans-serif;letter-spacing:.2em"></div></div>
+    </div>
+    <p id="ok-until" style="margin:0 0 12px;font-size:14px"></p>
+    <button class="btn btn-gold" id="ok-go" type="button" style="width:100%">▶ Start learning</button>
+  </div>
+</div>
+
+<!-- ===== PAY ===== -->
+<div class="modal hidden" id="pay-modal" role="dialog" aria-modal="true" aria-labelledby="pm-title">
+  <form class="card" id="pm-form" novalidate>
+    <h2 id="pm-title">💳 Pay with KHQR</h2>
+    <p id="pm-what" style="margin:0;color:var(--muted);font-size:14px"></p>
+    <div class="banks" id="pm-banks"></div>
+    <div id="pm-qr" style="text-align:center;margin:6px 0 12px"></div>
+    <p id="pm-note" style="font-size:13px;color:var(--muted);margin:0 0 12px"></p>
+    <label class="field sm">Transaction reference (from your bank app) *<input id="pm-ref" maxlength="60" autocomplete="off" placeholder="e.g. 12345678"></label>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-gold" id="pm-send" type="submit" style="flex:1">I have paid · ខ្ញុំបានបង់ហើយ</button>
+      <button class="btn btn-line" type="button" data-close="pay-modal">Close</button>
+    </div>
+    <div class="err" id="pm-err" role="alert"></div>
+    <div class="ok" id="pm-ok" role="status"></div>
+  </form>
 </div>
 
 <script type="module">
@@ -189,7 +287,7 @@ const UNITS = {
 // ==========================================================
 
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getFirestore, collection, query, where, getDocs, limit, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+import { getFirestore, collection, query, where, getDocs, limit, doc, getDoc, addDoc, setDoc, updateDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 const app = initializeApp({
   apiKey: 'AIzaSyAmATKmyTWQqqyNDqxbzN4CdTKAyzG1Dq4',
   authDomain: 'c2epe-school-share-and-post.firebaseapp.com',
@@ -248,17 +346,19 @@ async function signIn(ev) {
 function lessonLink(course, n) {
   const base = LESSON_APPS[course];
   const st = JSON.parse(sessionStorage.getItem(SESSION) || '{}');
-  return base ? base + (base.includes('?') ? '&' : '?') + 'unit=' + n + (st.id ? '&sid=' + encodeURIComponent(st.id) : '') : HUB_URL;
+  return base ? base + (base.includes('?') ? '&' : '?') + 'unit=' + n + (st.id ? '&sid=' + encodeURIComponent(st.id) : '') + (st.trial ? '&trial=1' : '') : HUB_URL;
 }
 
 function showDashboard(st) {
   $('signin').classList.add('hidden'); $('dash').classList.remove('hidden');
   const left = daysLeft(st.until);
-  const ended = left !== null && left < 0;
+  const GRACE = 7, graceLeft = left !== null && left < 0 ? GRACE + left : null;   // 7 more days after the paid period
+  const inGrace = !st.trial && graceLeft !== null && graceLeft >= 0;
+  const ended = st.trial ? !!st.ended : (left !== null && graceLeft < 0);
   const initials = st.name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
   $('d-avatar').textContent = initials;
   $('d-name').textContent = st.name;
-  $('d-meta').textContent = 'Student ID ' + st.id + ' · ' + st.course + (st.until ? ' · Online until ' + st.until : '');
+  $('d-meta').textContent = st.trial ? ('🆓 Free trial · ' + st.course + ' · Units 1–3 · ends ' + st.until) : ('Student ID ' + st.id + ' · ' + st.course + (st.until ? ' · Online until ' + st.until : ''));
 
   const units = UNITS[st.course] || [];
   const doneKey = 'c2_online_done_' + st.id, openKey = 'c2_online_opened_' + st.id;
@@ -266,19 +366,27 @@ function showDashboard(st) {
   const next = units.findIndex((_, i) => !done.includes(i + 1));
   $('s-done').textContent = done.length + (units.length ? ' / ' + units.length : '');
   $('s-opened').textContent = opened.length;
-  $('s-days').textContent = left === null ? 'No end date' : ended ? 'Ended' : String(left);
+  $('s-days').textContent = left === null ? 'No end date' : ended ? 'Locked' : inGrace ? graceLeft + ' (grace)' : String(left);
 
   // access box
   const box = $('acc-box');
-  box.classList.toggle('ending', ended || (left !== null && left <= 7));
-  $('acc-text').innerHTML = ended ? 'Your online access ended on <b>' + esc(st.until) + '</b>.'
+  box.classList.toggle('ending', ended || inGrace || (left !== null && left <= 7));
+  $('acc-text').innerHTML = ended ? '🔒 Lessons are locked — payment was due on <b>' + esc(st.until) + '</b>.'
+    : inGrace ? '⚠️ Payment was due on <b>' + esc(st.until) + '</b>. Lessons stay open <b>' + graceLeft + ' more day(s)</b>.'
     : st.until ? 'Active until <b>' + esc(st.until) + '</b>.' : 'Active — no end date set.';
-  $('acc-sub').textContent = ended ? 'Lessons are locked. Please renew at the Front Desk. · សូមបន្តនៅ Front Desk'
+  $('acc-sub').textContent = ended ? 'Pay below — lessons open again as soon as the school confirms. · បង់ប្រាក់ ដើម្បីបើកមេរៀនវិញ'
+    : inGrace ? 'Please pay below before the lessons lock. · សូមបង់ប្រាក់មុនពេលមេរៀនចាក់សោ'
     : (left !== null && left <= 7) ? 'Ends soon — please renew at the Front Desk.' : 'Renew at the Front Desk before the end date.';
 
+  if (st.trial) loadTrialPay(st); else loadPayments(st);
+  let gb = $('grace-banner');
+  if (!gb) { gb = document.createElement('div'); gb.id = 'grace-banner'; gb.setAttribute('role', 'status'); document.querySelector('main').prepend(gb); }
+  gb.style.cssText = (inGrace || (ended && !st.trial)) ? 'display:block;border-radius:14px;padding:14px 18px;font-weight:600;' + (ended ? 'background:#fdecec;color:#8a1c1c;border:1px solid #f5b5b5' : 'background:#fff1e0;color:#7c2d12;border:1px solid #f5b27a') : 'display:none';
+  gb.innerHTML = ended ? '🔒 Lessons are locked because the payment due on <b>' + esc(st.until) + '</b> was not received. Use <b>💳 Pay / Renew</b> — they open again as soon as the school confirms. · មេរៀនត្រូវបានចាក់សោ'
+    : inGrace ? '⚠️ Payment was due on <b>' + esc(st.until) + '</b>. You can keep learning for <b>' + graceLeft + ' more day(s)</b> — please pay with <b>💳 Pay / Renew</b>. · សូមបង់ប្រាក់' : '';
   // continue button
   const cont = $('d-continue');
-  if (ended) { cont.removeAttribute('href'); cont.style.opacity = '.55'; $('d-continue-title').textContent = 'Access ended'; $('d-continue-sub').textContent = 'Renew to keep learning'; }
+  if (ended) { cont.removeAttribute('href'); cont.style.opacity = '.55'; $('d-continue-title').textContent = st.trial ? 'Trial ended' : '🔒 Lessons locked'; $('d-continue-sub').textContent = 'Pay to keep learning · បង់ប្រាក់ដើម្បីបន្ត'; }
   else if (!units.length) { cont.href = HUB_URL; $('d-continue-title').textContent = st.course; $('d-continue-sub').textContent = 'Open your lessons in the Digital Hub'; }
   else {
     const n = (next === -1 ? units.length - 1 : next) + 1;
@@ -295,7 +403,8 @@ function showDashboard(st) {
   if (!units.length) { grid.innerHTML = '<div class="empty" style="grid-column:1/-1">Lessons for ' + esc(st.course) + ' are being prepared. Your teacher will tell you when they open.</div>'; }
   else {
     grid.innerHTML = units.map((t, i) => {
-      const n = i + 1, isDone = done.includes(n), isNow = !isDone && i === next;
+      const n = i + 1, isDone = done.includes(n), isNow = !isDone && i === next, locked = st.trial && n > 3;
+      if (locked) return '<a class="unit" aria-disabled="true" style="opacity:.5"><span class="n">Unit ' + n + ' · 🔒</span><span class="t">' + esc(t) + '</span></a>';
       const cls = isDone ? 'unit done' : isNow ? 'unit now' : 'unit';
       const state = isDone ? 'Done' : isNow ? 'Up next' : '';
       const href = ended ? '' : ' href="' + esc(lessonLink(st.course, n)) + '"';
@@ -308,6 +417,301 @@ function showDashboard(st) {
 }
 
 $('si-form').addEventListener('submit', signIn);
+
+
+// =============== SELF-REGISTRATION · LEVEL TEST · 7-DAY TRIAL ===============
+const TRIAL_KEY = 'c2_online_trial', TRIAL_DAYS = 7, TRIAL_UNITS = 3;
+function defaultPlacementTestConfig(){
+  return {
+    levels: [
+      {
+        id:"starter", label:"Starter", passClass:"Beginner / Elementary (A1)", failClass:"Starters (Pre-A1)",
+        tests:[
+          { title:"Test 1: Basic Words & Pictures", questions:[
+            { text:"🍎 What is this?", options:["Apple","Banana","Car","Dog"], correct:0 },
+            { text:"How many? ⚫⚫⚫", options:["Two","Three","Four","Five"], correct:1 },
+            { text:"What color is this? 🟨", options:["Red","Blue","Yellow","Green"], correct:2 },
+            { text:"🐕 What is this?", options:["Cat","Dog","Bird","Fish"], correct:1 },
+            { text:"☀️ What is this?", options:["Sun","Moon","Star","Cloud"], correct:0 },
+            { text:"How many? 🍎🍎", options:["One","Two","Three","Four"], correct:1 },
+            { text:"🚗 What is this?", options:["Car","Bus","Bike","Boat"], correct:0 },
+            { text:"What color is this? 🟥", options:["Red","Blue","Green","Purple"], correct:0 },
+            { text:"👋 What do you say?", options:["Hello","Sorry","Thank you","Goodnight"], correct:0 },
+            { text:"📚 What is this?", options:["Pen","Book","Chair","Table"], correct:1 }
+          ]}
+        ]
+      },
+      {
+        id:"elementary", label:"Elementary", passClass:"Pre-Intermediate (A2)", failClass:"Beginner / Elementary (A1)",
+        tests:[
+          { title:"Test 1: Incomplete Sentences", questions:[
+            { text:"Can you hear what he is _____?", options:["saying","speaking","telling","talking"], correct:0 },
+            { text:"She hasn't come home _____.", options:["still","already","yet","till"], correct:2 },
+            { text:"I _____ TV yesterday evening.", options:["saw","looked","viewed","watched"], correct:3 },
+            { text:"We live _____ the city centre.", options:["near","next","by","nearby"], correct:0 },
+            { text:"She looks _____ a famous film star.", options:["as","like","similar","same"], correct:1 },
+            { text:"This television gives you the _____ news.", options:["last","latest","least","later"], correct:1 },
+            { text:"I only _____ one mistake in last night's test.", options:["made","done","did","make"], correct:0 },
+            { text:"I want you to tell me the _____ truth.", options:["all","exact","real","whole"], correct:3 },
+            { text:"He is looking _____ a present to buy his girlfriend.", options:["for","at","in","on"], correct:0 },
+            { text:"That's what I would like _____ Christmas.", options:["for","at","in","on"], correct:0 }
+          ]},
+          { title:"Test 2: Prepositions", questions:[
+            { text:"You must not drink and then _____ a car.", options:["lead","drive","take","guide"], correct:1 },
+            { text:"Please be _____ when you cross this road.", options:["careless","carefree","caring","careful"], correct:3 },
+            { text:"Do what you like, I really don't _____.", options:["concern","interested","dislike","mind"], correct:3 },
+            { text:"If you want to _____ that book remember to bring it back.", options:["borrow","lend","loan","owe"], correct:0 },
+            { text:"When your train arrives, I'll _____ you from the station.", options:["take","bring","fetch","remove"], correct:2 },
+            { text:"I always get _____ early in the summer.", options:["up","over","through","on"], correct:0 },
+            { text:"When you first meet someone, you usually shake them _____ the hand.", options:["with","on","in","by"], correct:3 },
+            { text:"I have never _____ her before.", options:["saw","seeing","seen","see"], correct:2 },
+            { text:"The teacher asked her students to do their _____.", options:["housework","homework","home duty","house job"], correct:1 },
+            { text:"The police officer told the children always to tell the _____.", options:["truth","facts","information","truth"], correct:0 }
+          ]}
+        ]
+      },
+      { id:"intermediate", label:"Intermediate", passClass:"Upper-Intermediate (B2)", failClass:"Intermediate (B1)", tests:[] },
+      { id:"advanced", label:"Advanced", passClass:"Proficiency (C2)", failClass:"Advanced (C1)", tests:[] }
+    ],
+    writingPrompt: "Describe your typical day and what you enjoy most about learning English. Write about 150 words."
+  };
+}
+async function sha(text) { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)); return Array.from(new Uint8Array(b)).map((x) => x.toString(16).padStart(2, '0')).join(''); }
+function randomSecret() { const a = new Uint8Array(18); crypto.getRandomValues(a); return Array.from(a).map((x) => x.toString(16).padStart(2, '0')).join(''); }
+function ageFrom(dob) { const d = new Date(dob), n = new Date(); let a = n.getFullYear() - d.getFullYear(); if (n < new Date(n.getFullYear(), d.getMonth(), d.getDate())) a--; return a; }
+function courseForLevel(lv) {
+  const t = String(lv || '');
+  if (/Proficiency/i.test(t)) return 'Online Proficiency';
+  if (/Advanced/i.test(t)) return 'Online Advanced';
+  if (/Upper/i.test(t)) return 'Online Upper-Intermediate';
+  if (/Pre-Intermediate/i.test(t)) return 'Online Pre-Intermediate';
+  if (/Intermediate/i.test(t)) return 'Online Intermediate';
+  if (/Beginner|Elementary/i.test(t)) return 'Online Beginner';
+  if (/Flyers/i.test(t)) return 'Online Flyers';
+  if (/Movers/i.test(t)) return 'Online Movers';
+  return 'Online Starters';
+}
+const trialStore = { get() { return store.get(TRIAL_KEY, null); }, set(v) { store.set(TRIAL_KEY, v); }, clear() { try { localStorage.removeItem(TRIAL_KEY); } catch (e) {} } };
+let reg = null;   // the registration in progress
+
+// step 1 · the registration form (replaces the simple application)
+$('ap-form').addEventListener('submit', async (ev) => {
+  ev.preventDefault(); ev.stopImmediatePropagation();
+  const err = $('ap-err'); err.style.display = 'none';
+  const v = (id) => $(id).value.trim();
+  const miss = [['ap-en', "child's name"], ['ap-dob', 'date of birth'], ['ap-parent', "parent's name"], ['ap-phone', 'phone / Telegram']].filter(([id]) => !v(id));
+  if (miss.length) { err.textContent = 'Please fill in: ' + miss.map((m) => m[1]).join(', ') + '.'; err.style.display = 'block'; $(miss[0][0]).focus(); return; }
+  if (!/^[+0-9 ()-]{8,20}$/.test(v('ap-phone'))) { err.textContent = 'Please enter a phone number we can call or message on Telegram.'; err.style.display = 'block'; $('ap-phone').focus(); return; }
+  const age = ageFrom(v('ap-dob'));
+  if (!(age >= 3 && age <= 80)) { err.textContent = 'Please check the date of birth.'; err.style.display = 'block'; $('ap-dob').focus(); return; }
+  const btn = $('ap-send'); btn.disabled = true; btn.textContent = 'Saving…';
+  try {
+    const secret = randomSecret();
+    const resultKey = await sha('result:' + secret), trialKey = await sha('trial:' + secret);
+    const data = { childNameEn: v('ap-en'), childNameKm: v('ap-km'), dob: v('ap-dob'), gender: $('ap-gender').value,
+      parentName: v('ap-parent'), parentPhone: v('ap-phone'), parentEmail: v('ap-email'),
+      notes: '💻 ONLINE self-registration (7-day trial)' + (v('ap-note') ? ' · ' + v('ap-note') : ''),
+      status: 'pending', studyMode: 'online', levelApplied: 'Online (level test)', onlineCourse: '', resultKey, submittedAt: new Date().toISOString() };
+    const ref = await addDoc(collection(db, 'applications'), data);
+    reg = { appId: ref.id, secret, resultKey, trialKey, name: data.childNameEn, age };
+    closeModal('apply-modal');
+    if (age <= 6) {                        // kindergarten: course by age, no test
+      const course = 'Online K' + Math.max(0, Math.min(3, age - 3));
+      showResult('Kindergarten (age ' + age + ')', course);
+    } else startTest();
+  } catch (e) { console.error(e); err.textContent = 'Could not save right now. Please try again.'; err.style.display = 'block'; }
+  finally { btn.disabled = false; btn.textContent = 'Next: level test ▶'; }
+}, true);
+
+// step 2 · adaptive level test (same rules as the Portal: 70% to go up)
+let pt = null;
+async function startTest() {
+  let cfg = null; try { const sn = await getDoc(doc(db, 'settings', 'placementTest')); cfg = sn.exists() ? sn.data() : null; } catch (e) {}
+  if (!cfg || !Array.isArray(cfg.levels) || !cfg.levels.length) cfg = defaultPlacementTestConfig();
+  let li = 0; while (li < cfg.levels.length && !(cfg.levels[li].tests || []).length) li++;
+  pt = { cfg, li, ti: 0, answers: {} }; renderTest(); openModal('pt-modal');
+}
+function renderTest() {
+  const lv = pt.cfg.levels[pt.li], t = lv.tests[pt.ti]; pt.answers = {};
+  $('pt-sub').textContent = lv.label + ' · ' + t.title + ' — answer every question.';
+  $('pt-qs').innerHTML = t.questions.map((q, i) => '<fieldset style="border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 0 10px"><legend style="font-weight:700;padding:0 6px">' + (i + 1) + '. ' + esc(q.text) + '</legend>'
+    + q.options.map((o, k) => '<label style="display:flex;gap:10px;align-items:center;min-height:40px;cursor:pointer"><input type="radio" name="q' + i + '" value="' + k + '" style="width:20px;height:20px"> ' + esc(o) + '</label>').join('') + '</fieldset>').join('');
+  $('pt-qs').querySelectorAll('input').forEach((r) => r.addEventListener('change', () => { pt.answers[r.name.slice(1)] = Number(r.value); }));
+  $('pt-err').style.display = 'none'; $('pt-modal').scrollTop = 0;
+}
+$('pt-next').addEventListener('click', async () => {
+  const lv = pt.cfg.levels[pt.li], t = lv.tests[pt.ti];
+  if (Object.keys(pt.answers).length < t.questions.length) { $('pt-err').textContent = 'Please answer every question.'; $('pt-err').style.display = 'block'; return; }
+  const score = t.questions.filter((q, i) => pt.answers[i] === q.correct).length;
+  if (score / t.questions.length >= 0.7) {
+    if (pt.ti + 1 < lv.tests.length) { pt.ti++; renderTest(); return; }
+    let ni = pt.li + 1; while (ni < pt.cfg.levels.length && !(pt.cfg.levels[ni].tests || []).length) ni++;
+    if (ni < pt.cfg.levels.length) { pt.li = ni; pt.ti = 0; renderTest(); return; }
+    return finishTest(lv.passClass);
+  }
+  finishTest(lv.failClass);
+});
+async function finishTest(level) {
+  closeModal('pt-modal');
+  try { await updateDoc(doc(db, 'applications', reg.appId), { onlineTestSuggestedLevel: level, onlineTestCompletedAt: new Date().toISOString() }); } catch (e) { console.warn('test result not saved', e); }
+  showResult(level, courseForLevel(level));
+}
+function showResult(level, course) {
+  reg.level = level; reg.course = course;
+  $('rs-level').textContent = level; $('rs-course').textContent = 'Your online course: ' + course;
+  $('rs-err').style.display = 'none'; openModal('rs-modal');
+}
+// step 3 · start the 7-day trial
+$('rs-start').addEventListener('click', async () => {
+  const btn = $('rs-start'); btn.disabled = true; btn.textContent = 'Starting…';
+  try {
+    await setDoc(doc(db, 'trials', reg.trialKey), { appId: reg.appId, name: reg.name, course: reg.course, level: reg.level, maxUnit: TRIAL_UNITS, startedAt: serverTimestamp() });
+    const t = { appId: reg.appId, secret: reg.secret, resultKey: reg.resultKey, trialKey: reg.trialKey, name: reg.name, course: reg.course, level: reg.level, startedAt: new Date().toISOString() };
+    trialStore.set(t); closeModal('rs-modal'); openTrial(t);
+  } catch (e) { console.error(e); $('rs-err').textContent = 'Could not start the trial. Please try again.'; $('rs-err').style.display = 'block'; }
+  finally { btn.disabled = false; btn.textContent = '▶ Start my free trial'; }
+});
+
+// trial dashboard
+let trialPoll = null;
+async function openTrial(t) {
+  // already approved? show the Student ID + PIN
+  if (await checkApproved(t)) return;
+  let started = t.startedAt;
+  try { const sn = await getDoc(doc(db, 'trials', t.trialKey)); if (sn.exists() && sn.data().startedAt && sn.data().startedAt.toDate) started = sn.data().startedAt.toDate().toISOString(); } catch (e) {}
+  const ends = new Date(new Date(started).getTime() + TRIAL_DAYS * 86400000);
+  const st = { id: 'TRIAL', name: t.name, course: t.course, until: ends.toISOString().slice(0, 10), trial: true, ended: Date.now() > ends.getTime() };
+  showDashboard(st);
+  if (trialPoll) clearInterval(trialPoll);
+  trialPoll = setInterval(() => checkApproved(t), 20000);
+}
+async function checkApproved(t) {
+  try {
+    const sn = await getDoc(doc(db, 'admissionResults', t.resultKey));
+    if (!sn.exists()) return false;
+    const r = sn.data();
+    if (trialPoll) clearInterval(trialPoll);
+    $('ok-id').textContent = r.studentId; $('ok-pin').textContent = r.pin;
+    $('ok-until').innerHTML = esc(r.course || '') + (r.until ? ' · active until <b>' + esc(r.until) + '</b>' : '');
+    $('ok-go').onclick = () => {
+      const st = { id: r.studentId, name: r.name || t.name, km: '', course: r.course, until: r.until || '' };
+      sessionStorage.setItem(SESSION, JSON.stringify(st)); trialStore.clear(); closeModal('ok-modal');
+      $('signin').classList.add('hidden'); showDashboard(st);
+    };
+    $('signin').classList.add('hidden'); openModal('ok-modal');
+    return true;
+  } catch (e) { return false; }
+}
+
+// ---------------- Apply for Online Class ----------------
+const openModal = (id) => { $(id).classList.remove('hidden'); const f = $(id).querySelector('input,select,button'); if (f) f.focus(); };
+const closeModal = (id) => $(id).classList.add('hidden');
+document.querySelectorAll('[data-close]').forEach((b) => b.addEventListener('click', () => closeModal(b.dataset.close)));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') ['apply-modal', 'pay-modal'].forEach(closeModal); });
+$('apply-open').addEventListener('click', () => { $('ap-err').style.display = 'none'; $('ap-ok').style.display = 'none'; $('ap-form').querySelectorAll('input,select,textarea,#ap-send').forEach((x) => { x.disabled = false; }); openModal('apply-modal'); });
+$('ap-form').addEventListener('submit', async (ev) => {
+  ev.preventDefault();
+  const err = $('ap-err'); err.style.display = 'none';
+  const v = (id) => $(id).value.trim();
+  const miss = [['ap-en', "child's name"], ['ap-dob', 'date of birth'], ['ap-parent', "parent's name"], ['ap-phone', 'phone / Telegram']].filter(([id]) => !v(id));
+  if (miss.length) { err.textContent = 'Please fill in: ' + miss.map((m) => m[1]).join(', ') + '.'; err.style.display = 'block'; $(miss[0][0]).focus(); return; }
+  if (!/^[+0-9 ()-]{8,20}$/.test(v('ap-phone'))) { err.textContent = 'Please enter a phone number we can call or message on Telegram.'; err.style.display = 'block'; $('ap-phone').focus(); return; }
+  const btn = $('ap-send'); btn.disabled = true; btn.textContent = 'Sending…';
+  try {
+    await addDoc(collection(db, 'applications'), {
+      childNameEn: v('ap-en'), childNameKm: v('ap-km'), dob: v('ap-dob'), gender: $('ap-gender').value,
+      levelApplied: $('ap-course').value, parentName: v('ap-parent'), parentPhone: v('ap-phone'), parentEmail: v('ap-email'),
+      notes: '💻 ONLINE CLASS application (Online Dashboard)' + (v('ap-note') ? ' · ' + v('ap-note') : ''),
+      status: 'pending', studyMode: 'online', onlineCourse: $('ap-course').value, submittedAt: new Date().toISOString()
+    });
+    $('ap-form').querySelectorAll('input,select,textarea').forEach((x) => { x.disabled = true; });
+    const ok = $('ap-ok'); ok.innerHTML = '✅ Thank you! Your application was sent. The Front Desk will contact you on <b>' + esc(v('ap-phone')) + '</b> with the Student ID, PIN and fee. · យើងនឹងទាក់ទងអ្នកឆាប់ៗ។'; ok.style.display = 'block';
+    btn.textContent = 'Sent ✓';
+  } catch (e) { console.error(e); err.textContent = 'Could not send right now. Please try again, or contact the Front Desk.'; err.style.display = 'block'; btn.disabled = false; btn.textContent = 'Send application'; }
+});
+
+
+// trial: choose a plan and pay to become a full student
+async function loadTrialPay(st) {
+  const box = $('pay-list'), t = trialStore.get();
+  let pr = null; try { const sn = await getDoc(doc(db, 'settings', 'tuitionPricing')); pr = sn.exists() ? sn.data() : null; } catch (e) {}
+  const p = ((pr && pr.prices) || {})[st.course] || {};
+  const plans = [[1, '1 month'], [3, '3 months'], [6, '6 months'], [12, '1 year']].filter(([m]) => p[m] > 0);
+  if (!plans.length) { box.innerHTML = '<p style="margin:0">To continue after the trial, please contact the Front Desk (prices for ' + esc(st.course) + ' are not set yet).</p>'; return; }
+  const extras = (p.admission > 0 ? [{ kind: 'admission', name: 'Admission fee', desc: 'One time', amount: Number(p.admission) }] : [])
+    .concat(p.exam > 0 ? [{ kind: 'exam', name: 'Yearly exam fee', desc: 'This school year', amount: Number(p.exam) }] : []);
+  box.innerHTML = '<p style="margin:0 0 8px">' + (st.ended ? '⏰ <b>Your free trial has ended.</b> ' : '') + 'Choose a plan to unlock every unit:</p>'
+    + plans.map(([m, label]) => '<div class="fee"><div><b>' + label + '</b><br><span style="font-size:13px;color:var(--muted)">' + money(p[m])
+      + (extras.length ? ' + ' + extras.map((x) => x.name.toLowerCase() + ' ' + money(x.amount)).join(' + ') : '') + '</span></div>'
+      + '<div style="text-align:right"><b style="font-size:18px">' + money(p[m] + extras.reduce((a, x) => a + x.amount, 0)) + '</b><br><button class="btn btn-gold" data-plan="' + m + '" type="button" style="min-height:40px;margin-top:6px">Pay now</button></div></div>').join('');
+  box.querySelectorAll('[data-plan]').forEach((b) => b.addEventListener('click', () => {
+    const m = Number(b.dataset.plan), label = plans.find((x) => x[0] === m)[1];
+    const lines = [{ kind: 'tuition', name: 'Tuition — ' + st.course, desc: label, amount: Number(p[m]), months: m }].concat(extras);
+    const total = lines.reduce((a, x) => a + x.amount, 0);
+    openPay({ id: '', type: 'Tuition — ' + st.course + ' · ' + label, due: total, cls: st.course, trialPlan: { months: m, lines } });
+  }));
+}
+
+// ---------------- Pay / Renew ----------------
+let payBanks = [], payBank = 0, payFee = null, payStudent = null;
+const money = (n) => '$' + (Number(n) || 0).toFixed(2);
+async function loadPayments(st) {
+  payStudent = st; const box = $('pay-list');
+  try {
+    const snap = await getDocs(query(collection(db, 'fees'), where('studentId', '==', st.id)));
+    const fees = snap.docs.map((d) => ({ id: d.id, ...d.data() }))
+      .map((f) => ({ ...f, due: (Number(f.amount) || 0) - (Number(f.paidAmount) || 0) }))
+      .filter((f) => f.due > 0.004 && f.status !== 'paid')
+      .sort((a, b) => String(a.dueDate || '').localeCompare(String(b.dueDate || '')));
+    if (!fees.length) { box.innerHTML = '<p style="margin:0">✅ Nothing to pay right now. To renew, ask the Front Desk to add next month’s fee — it will appear here.</p>'; return; }
+    box.innerHTML = fees.map((f) => '<div class="fee"><div><b>' + esc(f.type || 'Fee') + '</b><br><span style="font-size:13px;color:var(--muted)">Due ' + esc(f.dueDate || '—') + '</span></div>'
+      + '<div style="text-align:right"><b style="font-size:18px">' + money(f.due) + '</b><br><button class="btn btn-gold" data-fee="' + esc(f.id) + '" type="button" style="min-height:40px;margin-top:6px">Pay now</button></div></div>').join('');
+    box.querySelectorAll('[data-fee]').forEach((b) => b.addEventListener('click', () => openPay(fees.find((f) => f.id === b.dataset.fee))));
+  } catch (e) { console.error(e); box.innerHTML = '<p style="margin:0;color:var(--muted)">Could not load fees. Please try again later.</p>'; }
+}
+async function openPay(fee) {
+  payFee = fee; if (!payStudent) payStudent = { id: '', name: '', course: fee.cls }; $('pm-err').style.display = 'none'; $('pm-ok').style.display = 'none'; $('pm-ref').value = ''; $('pm-ref').disabled = false; $('pm-send').disabled = false; $('pm-send').textContent = 'I have paid · ខ្ញុំបានបង់ហើយ';
+  $('pm-what').innerHTML = esc(fee.type || 'Fee') + ' · <b>' + money(fee.due) + '</b>';
+  let cfg = null; try { const s2 = await getDoc(doc(db, 'ownerSettings', 'paymentQR')); cfg = s2.exists() ? s2.data() : null; } catch (e) {}
+  payBanks = (cfg && cfg.banks) || []; payBank = 0;
+  $('pm-note').textContent = (cfg && cfg.note) || 'Scan the KHQR with your bank app, pay the amount above, then type the transaction reference here.';
+  if (!payBanks.length) { $('pm-banks').innerHTML = ''; $('pm-qr').innerHTML = '<p style="color:#9a3412">No QR code is set up yet. Please pay at the Front Desk.</p>'; }
+  else { $('pm-banks').innerHTML = payBanks.map((b, i) => '<button type="button" data-bank="' + i + '" class="' + (i === 0 ? 'on' : '') + '">' + esc(b.bankName) + '</button>').join('');
+    $('pm-banks').querySelectorAll('[data-bank]').forEach((b) => b.addEventListener('click', () => { payBank = Number(b.dataset.bank); showBank(); }));
+    showBank(); }
+  openModal('pay-modal');
+}
+function showBank() {
+  const b = payBanks[payBank]; $('pm-banks').querySelectorAll('[data-bank]').forEach((x, i) => x.classList.toggle('on', i === payBank));
+  $('pm-qr').innerHTML = b ? '<img src="' + esc(b.qrImageUrl) + '" alt="KHQR code for ' + esc(b.bankName) + '" style="max-width:240px;width:100%;border-radius:12px;border:1px solid var(--line)"><div style="font-weight:700;margin-top:6px">' + esc(b.bankName) + '</div>' : '';
+}
+$('pm-form').addEventListener('submit', async (ev) => {
+  ev.preventDefault();
+  const ref = $('pm-ref').value.trim(), err = $('pm-err'); err.style.display = 'none';
+  if (ref.length < 4) { err.textContent = 'Please type the transaction reference from your bank app.'; err.style.display = 'block'; $('pm-ref').focus(); return; }
+  const btn = $('pm-send'); btn.disabled = true; btn.textContent = 'Sending…';
+  try {
+    const tr = payFee.trialPlan ? trialStore.get() : null;
+    if (tr) {
+      await addDoc(collection(db, 'paymentClaims'), {
+        kind: 'online-apply', appId: tr.appId, resultKey: tr.resultKey, studentId: '', studentName: tr.name, cls: tr.course, level: tr.level || '',
+        feeType: payFee.type, amount: Math.round(payFee.due * 100) / 100, months: payFee.trialPlan.months, lines: payFee.trialPlan.lines,
+        bank: (payBanks[payBank] || {}).bankName || '', reference: ref, status: 'pending', claimedAt: new Date().toISOString(), source: 'online-dashboard'
+      });
+      $('pm-ref').disabled = true; btn.textContent = 'Sent ✓';
+      const ok2 = $('pm-ok'); ok2.textContent = '✅ Thank you! When the school confirms your payment, your Student ID and PIN appear here automatically. · ពេលសាលាបញ្ជាក់ ID និង PIN នឹងបង្ហាញដោយស្វ័យប្រវត្តិ។'; ok2.style.display = 'block';
+      return;
+    }
+    await addDoc(collection(db, 'paymentClaims'), {
+      feeId: payFee.id, studentId: payStudent.id, studentName: payStudent.name, cls: payFee.cls || payStudent.course,
+      feeType: payFee.type || 'Fee', amount: payFee.due, bank: (payBanks[payBank] || {}).bankName || '', reference: ref,
+      status: 'pending', claimedAt: new Date().toISOString(), source: 'online-dashboard', onlineCourse: payStudent.course
+    });
+    $('pm-ref').disabled = true; btn.textContent = 'Sent ✓';
+    const ok = $('pm-ok'); ok.textContent = '✅ Thank you! The Front Desk will check your payment and update your online access. · យើងនឹងពិនិត្យ ហើយបន្តការចូលរៀនរបស់អ្នក។'; ok.style.display = 'block';
+  } catch (e) { console.error(e); err.textContent = 'Could not send right now. Please try again.'; err.style.display = 'block'; btn.disabled = false; btn.textContent = 'I have paid · ខ្ញុំបានបង់ហើយ'; }
+});
+
 // ---- install as an app ----
 let installEvt = null;
 const standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
@@ -322,8 +726,8 @@ if (!standalone && /iphone|ipad|ipod/i.test(navigator.userAgent)) {
   $('install-text').innerHTML = '📲 To install: tap <b>Share</b> ⬆️ then <b>Add to Home Screen</b>.';
   $('install-box').classList.remove('hidden');
 }
-$('out-btn').addEventListener('click', () => { sessionStorage.removeItem(SESSION); $('dash').classList.add('hidden'); $('signin').classList.remove('hidden'); $('si-id').focus(); });
-try { const saved = JSON.parse(sessionStorage.getItem(SESSION) || 'null'); if (saved && saved.id) showDashboard(saved); } catch (e) {}
+$('out-btn').addEventListener('click', () => { sessionStorage.removeItem(SESSION); if (trialPoll) clearInterval(trialPoll); $('dash').classList.add('hidden'); $('signin').classList.remove('hidden'); $('si-id').focus(); });
+try { const saved = JSON.parse(sessionStorage.getItem(SESSION) || 'null'); if (saved && saved.id) showDashboard(saved); else { const tr = trialStore.get(); if (tr) { $('signin').classList.add('hidden'); openTrial(tr); } } } catch (e) {}
 // a lesson app can report a finished unit with: localStorage 'c2_online_done_<StudentID>' = [1,2,…]
 </script>
 </body>

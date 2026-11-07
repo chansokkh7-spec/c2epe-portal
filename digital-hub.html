@@ -2323,7 +2323,7 @@
                     if (!snap.empty) {
                         const d = snap.docs[0].data();
                         if (d.pinSet) { const pinIn = String(pin || '').replace(/\D/g, ''); if (!pinIn) return { id: v, pinProblem: 'missing' }; const k = await c2PinKey(v, pinIn); const ks = await getPortalDb().collection('studentKeys').doc(k).get(); if (!ks.exists || String((ks.data() || {}).studentId) !== String(v).toUpperCase()) return { id: v, pinProblem: 'wrong' }; }
-                        return { id: v, name: d.nameEn || d.nameKm || '', allowedSystems: [], active: d.active !== false && d.status !== 'inactive', cls: d.cls || '', classroom: d.classroom !== false, online: !!d.online, onlineCourse: d.onlineCourse || '', onlineUntil: d.onlineUntil || '', allowReview: !!d.allowReview, fromPortal: true };
+                        return { id: v, name: d.nameEn || d.nameKm || '', allowedSystems: [], active: d.active !== false && d.status !== 'inactive', cls: d.cls || '', paidUntil: d.paidUntil || '', classroom: d.classroom !== false, online: !!d.online, onlineCourse: d.onlineCourse || '', onlineUntil: d.onlineUntil || '', allowReview: !!d.allowReview, fromPortal: true };
                     }
                 }
             } catch (e) { console.error('Could not check the school Portal:', e); }
@@ -2660,10 +2660,20 @@
             return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
         }
         function c2BaseClass(c) { return String(c || '').replace(/-[A-C]$/i, '').trim(); }
+        const C2_GRACE_DAYS = 7;
+        function c2AddDays(d, n) { const x = new Date(d + 'T00:00:00'); x.setDate(x.getDate() + n); return x.toISOString().slice(0, 10); }
+        function c2Today() { return new Date().toISOString().slice(0, 10); }
+        // 'ok' · 'grace' (paid period over, still open for 7 days) · 'locked'
+        function c2PayState(until) {
+            if (!until) return 'ok';
+            const t = c2Today();
+            if (until >= t) return 'ok';
+            return c2AddDays(until, C2_GRACE_DAYS) >= t ? 'grace' : 'locked';
+        }
+        function c2GraceDaysLeft(until) { return Math.max(0, Math.round((new Date(c2AddDays(until, C2_GRACE_DAYS)) - new Date(c2Today())) / 86400000)); }
         function c2OnlineActive(st) {
             if (!st || !st.online) return false;
-            if (!st.onlineUntil) return true;
-            return st.onlineUntil >= new Date().toISOString().slice(0, 10);
+            return c2PayState(st.onlineUntil) !== 'locked';
         }
         function c2ClassIndex(list, c) { return list.indexOf(c); }
         // true when this signed-in student may open this card (staff and the old "restricted" rule are handled by the caller)
@@ -2684,6 +2694,7 @@
                 return false;
             }
             if (st.classroom === false) return false;            // online-only students: no classroom cards
+            if (c2PayState(st.paidUntil) === 'locked') return false;   // classroom fees unpaid more than 7 days
             const cls = c2BaseClass(st.cls);
             if (classes.length) {
                 if (classes.includes(cls)) return true;
@@ -2699,7 +2710,7 @@
         }
         function c2StudentFromFound(found) {
             return { id: found.id, name: found.name, allowedSystems: found.allowedSystems || [], fromPortal: !!found.fromPortal,
-                     cls: found.cls || '', classroom: found.classroom !== false, online: !!found.online,
+                     cls: found.cls || '', paidUntil: found.paidUntil || '', classroom: found.classroom !== false, online: !!found.online,
                      onlineCourse: found.onlineCourse || '', onlineUntil: found.onlineUntil || '', allowReview: !!found.allowReview };
         }
         function c2AccessNote() {
@@ -2718,10 +2729,20 @@
             if (!st || staffRole || !st.fromPortal) { el.style.display = 'none'; return; }
             const parts = [];
             if (st.classroom !== false && st.cls) parts.push('🏫 ' + escapeHtml(st.cls));
-            if (st.online) parts.push('💻 ' + escapeHtml(st.onlineCourse || 'Online') + (c2OnlineActive(st) ? (st.onlineUntil ? ' · until ' + escapeHtml(st.onlineUntil) : '') : ' · <b>ended — please contact the Front Desk</b>'));
+            if (st.online) parts.push('💻 ' + escapeHtml(st.onlineCourse || 'Online') + (st.onlineUntil ? ' · until ' + escapeHtml(st.onlineUntil) : ''));
             el.style.cssText = 'display:block;max-width:1200px;margin:6px auto 14px;padding:10px 16px;border-radius:12px;background:rgba(232,199,102,0.14);border:1px solid rgba(232,199,102,0.55);color:inherit;font-size:0.9rem;line-height:1.5;text-align:center;';
             el.innerHTML = 'បង្ហាញតែមេរៀនរបស់អ្នក · Showing only your lessons: ' + parts.join(' &nbsp;|&nbsp; ') +
                 (st.allowReview ? ' · <i>earlier levels open for review</i>' : '');
+            const warn = [];
+            [['Classroom', st.classroom !== false ? st.paidUntil : ''], ['Online', st.online ? st.onlineUntil : '']].forEach(([label, until]) => {
+                const ps = c2PayState(until);
+                if (ps === 'grace') warn.push('⚠️ ' + label + ' fees were due on ' + escapeHtml(until) + ' — lessons stay open <b>' + c2GraceDaysLeft(until) + ' more day(s)</b>. Please pay in the Portal → 💰 Fee Payment. · សូមបង់ថ្លៃសិក្សា');
+                if (ps === 'locked') warn.push('🔒 ' + label + ' lessons are locked: fees were due on ' + escapeHtml(until) + '. Pay in the Portal → 💰 Fee Payment — they open again as soon as the school confirms. · មេរៀនត្រូវបានចាក់សោ');
+            });
+            if (warn.length) {
+                const locked = warn.some(w => w.startsWith('🔒'));
+                el.innerHTML += '<div style="margin-top:8px;padding:9px 12px;border-radius:10px;font-weight:600;text-align:left;' + (locked ? 'background:#fdecec;color:#8a1c1c;border:1px solid #f5b5b5;' : 'background:#fff1e0;color:#7c2d12;border:1px solid #f5b27a;') + '">' + warn.join('<br>') + '</div>';
+            }
         }
 
         // ===== C2 ACCESS: classes a teacher teaches (Portal "assigned classes", else the Hub staff list) =====

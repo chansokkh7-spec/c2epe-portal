@@ -649,7 +649,8 @@ function logoImgError(img){
         <div class="tools-section-label">💰 Finance</div>
         <button id="tools-fee-btn" onclick="closeToolsMenu();openFeePage()" class="tools-item" style="display:none;">💰 <span>Fee Payment</span></button>
         <button onclick="closeToolsMenu();openPaymentStatusPage()" class="tools-item">✅ <span>Student Payment Status</span></button>
-        <button id="tools-finance-btn" onclick="closeToolsMenu();openFinancePage()" class="tools-item" style="display:none;">📊 <span>Finance Overview</span></button>
+        <button id="tools-pricing-btn" onclick="closeToolsMenu();openTuitionPricingPage()" class="tools-item" style="display:none;">💰 <span>Tuition Pricing</span></button>
+<button id="tools-finance-btn" onclick="closeToolsMenu();openFinancePage()" class="tools-item" style="display:none;">📊 <span>Finance Overview</span></button>
         <button id="tools-payqr-btn" onclick="closeToolsMenu();openPaymentQRSettingsPage()" class="tools-item" style="display:none;">💳 <span>Payment QR (Owner Only)</span></button>
         <button id="tools-dailyclosing-btn" onclick="closeToolsMenu();openDailyClosingPage()" class="tools-item" style="display:none;">💵 <span>Daily Cash Reconciliation</span></button>
         <button id="tools-shop-btn" onclick="closeToolsMenu();openShopPage()" class="tools-item" style="display:none;">🛍️ <span>Bookstore &amp; Uniform Shop</span></button>
@@ -1357,7 +1358,7 @@ function logoImgError(img){
 <optgroup label="Online Advanced"><option>Online Advanced</option><option>Online Proficiency</option></optgroup>
 </select>
 <label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">Online until (end date)</label>
-<input type="date" id="stu-acc-online-until" style="width:100%;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;outline:none;margin-bottom:10px;font-family:inherit;color:#333;box-sizing:border-box;">
+<div style="display:flex;gap:6px;align-items:flex-start;"><input type="date" id="stu-acc-online-until" style="width:100%;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;outline:none;margin-bottom:10px;flex:1;font-family:inherit;color:#333;box-sizing:border-box;"><button type="button" onclick="c2AddMonth()" title="Extend online access by one month" style="background:#fff3c4;border:1.5px solid #e8c766;color:#6b3f00;border-radius:7px;padding:8px 10px;cursor:pointer;font-size:.78rem;font-weight:800;white-space:nowrap;">+1 month</button></div>
 </div>
 <label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">PIN for student / parent login (4 digits)</label>
 <div style="display:flex;gap:6px;margin-bottom:10px;">
@@ -2397,6 +2398,70 @@ function logoImgError(img){
   </div>
 </div>
 
+
+
+<!-- PAY TUITION NOW (parents / students) -->
+<div id="c2-pay-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9995;overflow-y:auto;padding:16px;">
+  <div style="background:#fff;border-radius:14px;max-width:460px;margin:20px auto;overflow:hidden;">
+    <div style="background:#000080;color:#FFD700;padding:14px 18px;display:flex;align-items:center;gap:10px;">
+      <span style="font-weight:800;flex:1;">💳 Pay tuition · បង់ថ្លៃសិក្សា</span>
+      <button onclick="c2ClosePay()" aria-label="Close" style="background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;">✕</button>
+    </div>
+    <div style="padding:16px 18px 20px;">
+      <div id="c2-pay-step1">
+        <label for="c2-pay-course" style="font-size:.76rem;font-weight:700;color:#555;">Class / course · ថ្នាក់ / វគ្គ</label>
+        <select id="c2-pay-course" onchange="c2PayRecalc()" style="width:100%;padding:10px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:.92rem;margin:4px 0 12px;font-family:inherit;"></select>
+        <div style="font-size:.76rem;font-weight:700;color:#555;margin-bottom:6px;">Plan · គម្រោង</div>
+        <div id="c2-pay-plans" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;"></div>
+        <div id="c2-pay-lines" style="background:#f7f8ff;border-radius:10px;padding:10px 12px;font-size:.84rem;"></div>
+        <div id="c2-pay-msg1" style="display:none;margin-top:10px;"></div>
+        <button id="c2-pay-next" onclick="c2PayToQR()" style="width:100%;margin-top:14px;padding:12px;background:#7b1fa2;color:#fff;border:none;border-radius:9px;font-weight:800;font-size:.92rem;cursor:pointer;">Continue to payment ▶</button>
+      </div>
+      <div id="c2-pay-step2" style="display:none;">
+        <div id="c2-pay-sum" style="font-weight:800;color:#000080;margin-bottom:8px;"></div>
+        <div id="c2-pay-banks" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;"></div>
+        <div id="c2-pay-qr" style="text-align:center;margin-bottom:10px;"></div>
+        <label for="c2-pay-ref" style="font-size:.76rem;font-weight:700;color:#555;">Transaction reference (from your bank app) · លេខយោង</label>
+        <input id="c2-pay-ref" maxlength="60" autocomplete="off" placeholder="e.g. 12345678" style="width:100%;padding:10px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:1rem;margin:4px 0 10px;box-sizing:border-box;">
+        <div id="c2-pay-msg2" style="display:none;margin-bottom:10px;"></div>
+        <div style="display:flex;gap:8px;">
+          <button onclick="c2PayBack()" style="padding:12px 14px;background:#f0f2f5;border:none;border-radius:9px;font-weight:700;cursor:pointer;">◀</button>
+          <button id="c2-pay-send" onclick="c2PaySend()" style="flex:1;padding:12px;background:#2e7d32;color:#fff;border:none;border-radius:9px;font-weight:800;font-size:.92rem;cursor:pointer;">✅ I have paid · ខ្ញុំបានបង់ហើយ</button>
+        </div>
+      </div>
+      <div id="c2-pay-step3" style="display:none;text-align:center;padding:10px 0;">
+        <div style="font-size:2.6rem;">⏳</div>
+        <div style="font-weight:800;color:#2e7d32;margin:6px 0;">Thank you! Payment sent for checking.</div>
+        <div style="font-size:.84rem;color:#555;line-height:1.5;">The school will confirm your payment. Your receipt (PDF) will then appear in <b>Fee Payment</b>.<br>សាលានឹងពិនិត្យ ហើយវិក្កយបត្រនឹងបង្ហាញក្នុង Fee Payment។</div>
+        <button onclick="c2ClosePay()" style="margin-top:14px;padding:10px 22px;background:#000080;color:#FFD700;border:none;border-radius:9px;font-weight:800;cursor:pointer;">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- TUITION PRICING — Admin / Admissions / Finance -->
+<div id="tuition-pricing-page" style="display:none;position:fixed;inset:0;background:#f0f2f5;z-index:9990;overflow-y:auto;">
+  <div style="background:#000080;color:#fff;padding:0 20px;height:56px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.3);">
+    <button onclick="closeTuitionPricingPage()" style="background:rgba(255,255,255,.15);color:#fff;border:none;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:.82rem;">← Back</button>
+    <span style="font-weight:800;font-size:1rem;flex:1;">💰 Tuition Pricing · តម្លៃសិក្សា</span>
+    <button onclick="saveTuitionPricing()" style="background:var(--gold);color:var(--navy);border:none;padding:6px 16px;border-radius:20px;font-weight:700;cursor:pointer;font-size:.8rem;">💾 Save</button>
+  </div>
+  <div style="max-width:760px;margin:0 auto;padding:20px 14px 60px;">
+    <div style="background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);margin-bottom:16px;">
+      <label for="tp-class" style="font-size:.78rem;font-weight:700;color:#555;display:block;margin-bottom:4px;">Class or online course · ថ្នាក់ ឬ វគ្គ Online</label>
+      <select id="tp-class" onchange="tpShowClass()" style="width:100%;padding:10px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:.92rem;font-family:inherit;"></select>
+      <div id="tp-inputs" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px;"></div>
+      <label style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:.82rem;">📅 School year starts in
+        <select id="tp-sy" style="padding:6px 8px;border:1.5px solid #e0e0e0;border-radius:7px;font-family:inherit;"><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select>
+        <span style="color:#888;">(for the yearly exam fee)</span></label>
+      <label style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:.82rem;cursor:pointer;"><input type="checkbox" id="tp-copy-group" style="width:18px;height:18px;"> Also use these prices for every class in the same group (<span id="tp-group-name"></span>)</label>
+      <div id="tp-msg" style="display:none;margin-top:10px;"></div>
+    </div>
+    <div style="background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);">
+      <div style="font-weight:800;color:#000080;margin-bottom:8px;">📋 All prices (USD) · tap a row to edit</div>
+      <div style="overflow-x:auto;"><table id="tp-table" style="width:100%;border-collapse:collapse;font-size:.82rem;min-width:680px;"></table></div>
+    </div>
+  </div>
+</div>
 <!-- PAYMENT QR SETTINGS — School Owner ONLY (separate from general Admin) -->
 <div id="payment-qr-settings-page" style="display:none;position:fixed;inset:0;background:#f0f2f5;z-index:9990;overflow-y:auto;">
   <div style="background:#7b1fa2;color:#fff;padding:0 20px;height:56px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.3);">
@@ -2596,7 +2661,10 @@ function logoImgError(img){
       <div style="text-align:center;font-size:.68rem;color:#bbb;margin-top:20px;">Thank you! Generated by the C2-EPE Digital Academy Portal.</div>
     </div>
     <div style="padding:14px 22px 20px;">
-      <button onclick="printFeeReceipt()" style="width:100%;padding:11px;background:#000080;color:#FFD700;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.88rem;">🖨️ Print / Save PDF</button>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+<button onclick="c2DownloadReceiptPdf()" id="c2-pdf-btn" style="flex:1;min-width:140px;padding:11px;background:#FFD700;color:#000080;border:none;border-radius:8px;font-weight:800;cursor:pointer;font-size:.88rem;">⬇️ Download PDF (A5)</button>
+<button onclick="c2PrintSized()" style="flex:1;min-width:140px;padding:11px;background:#000080;color:#FFD700;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.88rem;">🖨️ Print (A5)</button>
+</div>
     </div>
   </div>
 </div>
@@ -6334,6 +6402,7 @@ function toggleToolsMenu(e){
   var dd = document.getElementById("tools-dropdown");
   var financeBtn = document.getElementById("tools-finance-btn");
   if(financeBtn) financeBtn.style.display = financeCanAccess() ? "block" : "none";
+  var pricingBtn = document.getElementById("tools-pricing-btn"); if(pricingBtn) pricingBtn.style.display = (admissionsCanAccess() || financeCanAccess()) ? "block" : "none";
   var payqrBtn = document.getElementById("tools-payqr-btn");
   if(payqrBtn) payqrBtn.style.display = isSchoolOwner() ? "block" : "none";
   var dailyClosingBtn = document.getElementById("tools-dailyclosing-btn");
@@ -7157,6 +7226,13 @@ function stuModeFilter(list){
     if(v === 'ended') return !!s.online && !stuOnlineActive(s);
     return stuMode(s) === v;
   });
+}
+function c2AddMonth(){
+  var el=document.getElementById('stu-acc-online-until'); if(el.disabled) return;
+  var today=new Date().toISOString().slice(0,10);
+  var base=new Date(((el.value&&el.value>today)?el.value:today)+'T00:00:00');
+  var day=base.getDate(); base.setMonth(base.getMonth()+1); if(base.getDate()!==day) base.setDate(0);
+  el.value=base.getFullYear()+'-'+String(base.getMonth()+1).padStart(2,'0')+'-'+String(base.getDate()).padStart(2,'0');
 }
 function toggleOnlineFields(){
   var on = document.getElementById('stu-acc-online').checked;
@@ -9265,7 +9341,7 @@ function renderFamilyFeeCard(f, today){
     + (st!=="paid" && bal>0 ? "<button onclick='openPayNowModal(\""+f.id+"\")' style='flex:1;min-width:130px;background:#7b1fa2;color:#fff;border:none;border-radius:8px;padding:9px 12px;font-size:.8rem;font-weight:700;cursor:pointer'>💳 Pay Now</button>" : "")
     + "</div></div></div>";
 }
-function renderFeeList(fees, today){
+function renderFeeList(fees, today){ setTimeout(c2AddPayTuitionButton, 0);
   var list = document.getElementById("fee-list");
   if(!fees.length){
     list.innerHTML = "<div style=text-align:center;padding:40px;color:#ccc>💰 No fee records found"+(isTeacher?"":"<br><small>When the school adds a payment for your child, it appears here.</small>")+"</div>";
@@ -9594,7 +9670,11 @@ async function renderInvoiceDoc(f, isPaidDoc){
   var no = (isPaidDoc ? "C2EPE-" : "INV-") + String(f.id||"").slice(-6).toUpperCase();
   var dateStr = feeDate(isPaidDoc && f.paidAt ? f.paidAt : (f.updatedAt||f.createdAt||new Date().toISOString()));
   var rows, foot, cols;
-  if(inv && inv.items){
+  if(f.lines && f.lines.length){
+    cols = "<th>Item Name</th><th>Item Description</th><th>Qty</th><th>Amount</th>";
+    rows = f.lines.map(function(l){ return "<tr><td>"+E(l.name)+"</td><td>"+E(l.desc||"")+"</td><td style='text-align:center'>1</td><td style='text-align:right'>"+money(l.amount)+"</td></tr>"; }).join("");
+    foot = "<tr class='inv-tot'><td colspan='3' style='text-align:right'>Total :</td><td style='text-align:right'>"+money(f.amount)+"</td></tr>";
+  } else if(inv && inv.items){
     var hi = function(k){ return k===("a"+inv.plan) ? " class='inv-on'" : ""; };
     cols = "<th>Item Name</th><th>Item Description</th><th>Qty</th><th"+hi("a3")+">Amount/3Ms</th><th"+hi("a6")+">Amount/6Ms</th><th"+hi("a12")+">Amount/1Yr</th>";
     rows = inv.items.map(function(it){ return "<tr"+(it.scholarship?" style='color:#c62828'":"")+"><td>"+E(it.name)+"</td><td>"+E(it.desc)+"</td><td style='text-align:center'>"+E(it.qty)+"</td>"
@@ -10455,6 +10535,335 @@ async function loadPaymentQRConfig(){
   return paymentQRConfig;
 }
 
+
+
+// ===== Pay tuition now · approve · receipt PDF =====
+function c2Today(){ return new Date().toISOString().slice(0,10); }
+function c2AddMonths(dateStr, months){
+  var d = new Date(dateStr + "T00:00:00"), day = d.getDate(); d.setMonth(d.getMonth() + months); if(d.getDate() !== day) d.setDate(0);
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+function c2SchoolYear(cfg, dateStr){
+  var start = (cfg && cfg.schoolYearStartMonth) || 11, d = dateStr ? new Date(dateStr) : new Date(), y = d.getFullYear(), m = d.getMonth()+1;
+  return m >= start ? (y + "-" + (y+1)) : ((y-1) + "-" + y);
+}
+var c2Pay = { student:null, fees:[], cfg:null, course:"", plan:1, lines:[], total:0, banks:[], bank:0 };
+function c2AddPayTuitionButton(){
+  if(isTeacher || !studentSession) return;
+  var list = document.getElementById("fee-list"); if(!list || document.getElementById("c2-pay-open")) return;
+  list.insertAdjacentHTML("afterbegin", "<button id='c2-pay-open' onclick='c2OpenPay()' style='width:100%;margin:0 0 14px;padding:14px;background:linear-gradient(90deg,#7b1fa2,#000080);color:#fff;border:none;border-radius:12px;font-weight:800;font-size:.95rem;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,128,.25);'>💳 Pay tuition now · បង់ថ្លៃសិក្សាឥឡូវ</button>"
+    + (localStorage.getItem("c2_pay_pending_" + studentSession.studentId) ? "<div style='background:#fff8e1;border:1px solid #ffe082;color:#8d6e00;border-radius:10px;padding:9px 12px;margin-bottom:12px;font-size:.8rem;font-weight:700;'>⏳ Your last payment is waiting for the school to confirm. The receipt will appear below.</div>" : ""));
+}
+async function c2OpenPay(){
+  var {db, collection, query, where} = window._fb || {};
+  try {
+    var fs = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    var snap = await fs.getDocs(query(collection(db,"students"), where("studentId","==",studentSession.studentId)));
+    c2Pay.student = snap.empty ? { studentId: studentSession.studentId, nameEn: studentSession.name, cls: studentSession.cls } : Object.assign({ _id: snap.docs[0].id }, snap.docs[0].data());
+    var fsnap = await fs.getDocs(query(collection(db,"fees"), where("studentId","==",studentSession.studentId)));
+    c2Pay.fees = fsnap.docs.map(function(d){ return Object.assign({ id:d.id }, d.data()); });
+  } catch(e){ console.error(e); alert("Could not load your details. Please check the internet and try again."); return; }
+  c2Pay.cfg = await loadTuitionPricing(true);
+  var st = c2Pay.student, opts = [];
+  if(st.classroom !== false && st.cls) opts.push(st.cls);
+  if(st.online && st.onlineCourse) opts.push(st.onlineCourse);
+  if(!opts.length && st.cls) opts.push(st.cls);
+  document.getElementById("c2-pay-course").innerHTML = opts.map(function(c){ return "<option>"+escapeHtml(c)+"</option>"; }).join("");
+  c2Pay.plan = 1;
+  ["c2-pay-step2","c2-pay-step3"].forEach(function(id){ document.getElementById(id).style.display = "none"; });
+  document.getElementById("c2-pay-step1").style.display = "block";
+  document.getElementById("c2-pay-modal").style.display = "block";
+  c2PayRecalc();
+}
+function c2ClosePay(){ document.getElementById("c2-pay-modal").style.display = "none"; }
+function c2PaidBefore(kind, year){
+  return c2Pay.fees.some(function(f){
+    if(f.status !== "paid") return false;
+    if(kind === "admission") return (f.lines||[]).some(function(l){ return l.kind === "admission"; });
+    return (f.lines||[]).some(function(l){ return l.kind === "exam" && l.year === year; });
+  });
+}
+function c2PickPlan(m){ c2Pay.plan = m; c2PayRecalc(); }
+function c2PayRecalc(){
+  var course = document.getElementById("c2-pay-course").value; c2Pay.course = course;
+  var p = (c2Pay.cfg.prices||{})[course] || {}, msg = document.getElementById("c2-pay-msg1");
+  var plans = TP_PLANS.filter(function(pl){ return p[pl.m] > 0; });
+  if(!plans.length){
+    document.getElementById("c2-pay-plans").innerHTML = ""; document.getElementById("c2-pay-lines").innerHTML = "";
+    msg.style.cssText = "display:block;background:#fff3e0;color:#c65a00;padding:9px 12px;border-radius:8px;font-size:.82rem;";
+    msg.textContent = "Prices for " + course + " are not set yet. Please contact the Front Desk.";
+    document.getElementById("c2-pay-next").disabled = true; return;
+  }
+  msg.style.display = "none"; document.getElementById("c2-pay-next").disabled = false;
+  if(!p[c2Pay.plan]) c2Pay.plan = plans[0].m;
+  var one = p[1];
+  document.getElementById("c2-pay-plans").innerHTML = plans.map(function(pl){
+    var on = pl.m === c2Pay.plan, per = p[pl.m]/pl.m, save = one > 0 && pl.m > 1 ? Math.round((1 - per/one)*100) : 0;
+    return "<button onclick='c2PickPlan("+pl.m+")' style='padding:10px;border-radius:10px;cursor:pointer;text-align:left;border:2px solid "+(on?"#7b1fa2":"#e0e0e0")+";background:"+(on?"#f3e5f5":"#fff")+";'>"
+      + "<div style='font-weight:800;color:#000080;font-size:.86rem;'>"+pl.label+" · "+pl.km+"</div><div style='font-size:1.05rem;font-weight:800;'>$"+Number(p[pl.m]).toFixed(2)+"</div>"
+      + "<div style='font-size:.7rem;color:#2e7d32;'>"+(pl.m>1?"$"+per.toFixed(2)+"/month"+(save>0?" · save "+save+"%":""):"&nbsp;")+"</div></button>";
+  }).join("");
+  var today = c2Today(), year = c2SchoolYear(c2Pay.cfg, today), pl = TP_PLANS.find(function(x){ return x.m === c2Pay.plan; });
+  var isOnline = /^Online /.test(course), st = c2Pay.student;
+  var from = isOnline ? ((st.onlineUntil && st.onlineUntil > today) ? st.onlineUntil : today) : ((st.paidUntil && st.paidUntil > today) ? st.paidUntil : today);
+  var lines = [{ kind:"tuition", name:"Tuition — " + course, desc: pl.label + " · " + from + " → " + c2AddMonths(from, pl.m), amount: Number(p[c2Pay.plan]), months: pl.m }];
+  if(p.admission > 0 && !st.admissionPaid && !c2PaidBefore("admission")) lines.push({ kind:"admission", name:"Admission fee", desc:"One time · ថ្លៃចុះឈ្មោះ", amount:Number(p.admission) });
+  if(p.exam > 0 && !c2PaidBefore("exam", year)) lines.push({ kind:"exam", name:"Yearly exam fee", desc:"School year " + year, amount:Number(p.exam), year: year });
+  c2Pay.lines = lines; c2Pay.total = lines.reduce(function(a,l){ return a + l.amount; }, 0);
+  document.getElementById("c2-pay-lines").innerHTML = lines.map(function(l){ return "<div style='display:flex;justify-content:space-between;gap:8px;padding:3px 0;'><span>"+escapeHtml(l.name)+"<br><small style='color:#888;'>"+escapeHtml(l.desc)+"</small></span><b>$"+l.amount.toFixed(2)+"</b></div>"; }).join("")
+    + "<div style='display:flex;justify-content:space-between;border-top:1.5px solid #c5cae9;margin-top:6px;padding-top:6px;font-weight:800;color:#000080;'><span>Total · សរុប</span><span>$"+c2Pay.total.toFixed(2)+"</span></div>";
+}
+async function c2PayToQR(){
+  var cfg = await loadPaymentQRConfig(); c2Pay.banks = (cfg && cfg.banks) || []; c2Pay.bank = 0;
+  document.getElementById("c2-pay-sum").textContent = c2Pay.course + " · Total $" + c2Pay.total.toFixed(2);
+  if(!c2Pay.banks.length){ document.getElementById("c2-pay-banks").innerHTML = ""; document.getElementById("c2-pay-qr").innerHTML = "<div style='color:#c65a00;font-size:.85rem;'>No payment QR is set up yet — please pay at the Front Desk.</div>"; }
+  else c2PayBank(0);
+  document.getElementById("c2-pay-ref").value = ""; document.getElementById("c2-pay-msg2").style.display = "none";
+  document.getElementById("c2-pay-send").disabled = false;
+  document.getElementById("c2-pay-step1").style.display = "none"; document.getElementById("c2-pay-step2").style.display = "block";
+}
+function c2PayBack(){ document.getElementById("c2-pay-step2").style.display = "none"; document.getElementById("c2-pay-step1").style.display = "block"; }
+function c2PayBank(i){
+  c2Pay.bank = i;
+  document.getElementById("c2-pay-banks").innerHTML = c2Pay.banks.map(function(b,k){ return "<button onclick='c2PayBank("+k+")' style='padding:6px 12px;border-radius:16px;border:1.5px solid #7b1fa2;background:"+(k===i?"#7b1fa2":"#fff")+";color:"+(k===i?"#fff":"#7b1fa2")+";font-size:.78rem;font-weight:700;cursor:pointer;'>"+escapeHtml(b.bankName)+"</button>"; }).join("");
+  var b = c2Pay.banks[i];
+  document.getElementById("c2-pay-qr").innerHTML = "<img src='"+b.qrImageUrl+"' alt='KHQR code' style='max-width:220px;width:100%;border-radius:8px;'><div style='font-weight:700;color:#7b1fa2;margin-top:6px;font-size:.85rem;'>"+escapeHtml(b.bankName)+" · $"+c2Pay.total.toFixed(2)+"</div>";
+}
+async function c2PaySend(){
+  var ref = document.getElementById("c2-pay-ref").value.trim(), msg = document.getElementById("c2-pay-msg2");
+  if(ref.length < 4){ msg.style.cssText = "display:block;background:#ffebee;color:#c62828;padding:8px 10px;border-radius:8px;font-size:.8rem;"; msg.textContent = "Please type the transaction reference from your bank app."; return; }
+  var btn = document.getElementById("c2-pay-send"); btn.disabled = true; btn.textContent = "Sending…";
+  var st = c2Pay.student;
+  var data = { kind:"tuition-plan", studentId: studentSession.studentId, studentName: st.nameEn || st.nameKm || studentSession.name, cls: c2Pay.course,
+    feeType: "Tuition — " + c2Pay.course + " · " + (TP_PLANS.find(function(x){ return x.m === c2Pay.plan; }) || {}).label, amount: Math.round(c2Pay.total*100)/100,
+    months: c2Pay.plan, lines: c2Pay.lines, bank: (c2Pay.banks[c2Pay.bank] || {}).bankName || "", reference: ref,
+    status:"pending", claimedAt: new Date().toISOString(), source:"student-dashboard" };
+  try {
+    var {db, collection, addDoc} = window._fb; await addDoc(collection(db,"paymentClaims"), data);
+    try { localStorage.setItem("c2_pay_pending_" + studentSession.studentId, new Date().toISOString()); } catch(e){}
+    document.getElementById("c2-pay-step2").style.display = "none"; document.getElementById("c2-pay-step3").style.display = "block";
+  } catch(e){ msg.style.cssText = "display:block;background:#ffebee;color:#c62828;padding:8px 10px;border-radius:8px;font-size:.8rem;"; msg.textContent = "Could not send: " + e.message; btn.disabled = false; btn.textContent = "✅ I have paid · ខ្ញុំបានបង់ហើយ"; }
+}
+
+// ---- admin: approve an online self-registration (trial → student) ----
+async function c2ApproveOnlineApply(claimId){
+  var c = allPaymentClaims.find(function(x){ return x.id === claimId; }); if(!c) return;
+  if(!admissionsCanAccess()){ alert("Only the Admin or the Admissions head can approve new online students."); return; }
+  if(!c.appId || !c.resultKey){ alert("This payment is missing its registration details."); return; }
+  if(!confirm("Create the online student account for " + c.studentName + " (" + c.cls + ") and approve $" + Number(c.amount).toFixed(2) + "?\nCheck that the money is in the bank first (" + (c.bank||"bank") + " · ref " + (c.reference||"—") + ").")) return;
+  try {
+    var {db, collection, doc, setDoc, addDoc} = window._fb;
+    var fs = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    var appSnap = await fs.getDoc(doc(db,"applications", c.appId)), app = appSnap.exists() ? appSnap.data() : {};
+    if(app.status === "enrolled" && app.enrolledStudentId){ alert("Already enrolled as " + app.enrolledStudentId + "."); return; }
+    var sid = await generateNextStudentId(), pin = genStudentPin(), now = new Date().toISOString(), today = c2Today();
+    var until = c2AddMonths(today, Number(c.months) || 1);
+    var lines = (c.lines || []).map(function(l){ return l.kind === "tuition" ? Object.assign({}, l, { desc: (l.desc||"") + " · " + today + " → " + until }) : (l.kind === "exam" ? Object.assign({}, l, { year: c2SchoolYear(tuitionPricing || {}, today), desc: "School year " + c2SchoolYear(tuitionPricing || {}, today) }) : l); });
+    var stu = { studentId: sid, nameEn: app.childNameEn || c.studentName || "", nameKm: app.childNameKm || "", dob: app.dob || "", gender: app.gender || "",
+      parent: app.parentName || "", parentPhone: app.parentPhone || "", parentEmail: app.parentEmail || "", cls: "Online Class", photo: "",
+      classroom: false, online: true, onlineCourse: c.cls, onlineUntil: until, allowReview: false, pinSet: true,
+      admissionPaid: lines.some(function(l){ return l.kind === "admission"; }), placementLevel: app.onlineTestSuggestedLevel || c.level || "",
+      fromApplicationId: c.appId, createdAt: now, updatedAt: now };
+    var sref = await addDoc(collection(db,"students"), stu);
+    var key = await c2PinKey(sid, pin);
+    await setDoc(doc(db,"studentKeys", key), { studentId: sid, at: now });
+    await setDoc(doc(db,"studentPinAdmin", sref.id), { key: key, studentId: sid, at: now });
+    var fee = { student: stu.nameEn, studentId: sid, studentGender: stu.gender, cls: c.cls, type: c.feeType || ("Tuition — " + c.cls),
+      amount: Number(c.amount), originalAmount: Number(c.amount), discountPercent: 0, paidAmount: Number(c.amount), status: "paid", paymentMethod: "bank",
+      paidAt: now, dueDate: today, term: (lines[0] && lines[0].desc || "").split(" · ")[0], periodStart: today, periodEnd: until, lines: lines,
+      note: "Online registration · paid by " + (c.bank||"bank") + " · ref " + (c.reference||"—") + " · approved by " + (currentTeacherName || (currentUser && currentUser.email) || ""),
+      createdBy: currentTeacherName || "", createdAt: now, updatedAt: now };
+    var fref = await addDoc(collection(db,"fees"), fee);
+    // the family's device is waiting for this — it shows the Student ID and PIN automatically
+    await setDoc(doc(db,"admissionResults", c.resultKey), { studentId: sid, pin: pin, name: stu.nameEn, course: c.cls, until: until, at: now });
+    await setDoc(doc(db,"applications", c.appId), { status: "enrolled", enrolledStudentId: sid, enrolledAt: now, onlineCourse: c.cls }, {merge:true});
+    await setDoc(doc(db,"paymentClaims", claimId), { status: "confirmed", feeId: fref.id, studentId: sid, resolvedAt: now }, {merge:true});
+    allPaymentClaims = allPaymentClaims.filter(function(x){ return x.id !== claimId; });
+    if(typeof renderPaymentClaimsList === "function") renderPaymentClaimsList();
+    if(typeof loadFees === "function") loadFees();
+    if(typeof loadStudents === "function") loadStudents();
+    alert("✅ " + stu.nameEn + " is now an online student.\n\nStudent ID: " + sid + "\nPIN: " + pin + "\nActive until " + until + "\n\nThe ID and PIN also appear automatically on the family's phone.");
+  } catch(e){ console.error(e); alert("Could not approve: " + e.message); }
+}
+
+// ---- admin: approve a tuition payment ----
+async function c2ApproveTuitionClaim(claimId){
+  var c = allPaymentClaims.find(function(x){ return x.id === claimId; }); if(!c) return;
+  if(!(admissionsCanAccess() || financeCanAccess())){ alert("Only the Admin, the Admissions head or the Finance head can approve payments."); return; }
+  if(!confirm("Approve $" + Number(c.amount).toFixed(2) + " from " + c.studentName + " (" + c.cls + ")?\nCheck that the money is in the bank first (" + (c.bank||"bank") + " · ref " + (c.reference||"—") + ").")) return;
+  try {
+    var {db, collection, query, where, doc, setDoc, addDoc} = window._fb;
+    var fs = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    var snap = await fs.getDocs(query(collection(db,"students"), where("studentId","==",c.studentId)));
+    if(snap.empty){ alert("Student " + c.studentId + " was not found."); return; }
+    var sDoc = snap.docs[0], st = sDoc.data(), today = c2Today(), isOnline = /^Online /.test(c.cls);
+    var cur = isOnline ? st.onlineUntil : st.paidUntil, from = (cur && cur > today) ? cur : today, to = c2AddMonths(from, Number(c.months)||1);
+    var lines = (c.lines || []).map(function(l){ return l.kind === "tuition" ? Object.assign({}, l, { desc: (l.desc||"").split(" · ")[0] + " · " + from + " → " + to }) : l; });
+    var now = new Date().toISOString();
+    var fee = { student: st.nameEn || st.nameKm || c.studentName, studentId: c.studentId, studentGender: st.gender || "", cls: c.cls, type: c.feeType || ("Tuition — " + c.cls),
+      amount: Number(c.amount), originalAmount: Number(c.amount), discountPercent: 0, paidAmount: Number(c.amount), status: "paid", paymentMethod: "bank", paidAt: now,
+      dueDate: today, term: lines[0] ? lines[0].desc.split(" · ")[0] : "", periodStart: from, periodEnd: to, lines: lines,
+      note: "Paid by " + (c.bank||"bank") + " · ref " + (c.reference||"—") + " · approved by " + (currentTeacherName || (currentUser && currentUser.email) || ""),
+      createdBy: currentTeacherName || "", createdAt: now, updatedAt: now };
+    var ref = await addDoc(collection(db,"fees"), fee);
+    var upd = { updatedAt: now };
+    if(isOnline){ upd.onlineUntil = to; upd.online = true; } else { upd.paidUntil = to; }
+    if(lines.some(function(l){ return l.kind === "admission"; })) upd.admissionPaid = true;
+    await setDoc(doc(db,"students", sDoc.id), upd, {merge:true});
+    await setDoc(doc(db,"paymentClaims", claimId), { status:"confirmed", feeId: ref.id, resolvedAt: now }, {merge:true});
+    allPaymentClaims = allPaymentClaims.filter(function(x){ return x.id !== claimId; });
+    if(typeof renderPaymentClaimsList === "function") renderPaymentClaimsList();
+    if(typeof loadFees === "function") loadFees();
+    alert("✅ Approved. " + c.studentName + " is paid until " + to + ". The receipt is in Fees (C2EPE-" + ref.id.slice(-6).toUpperCase() + ").");
+  } catch(e){ console.error(e); alert("Could not approve: " + e.message); }
+}
+// ---- receipt → PDF file ----
+function c2LoadHtml2Pdf(){
+  if(window.html2pdf) return Promise.resolve();
+  return new Promise(function(res, rej){ var sc = document.createElement("script"); sc.src = "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"; sc.onload = res; sc.onerror = function(){ rej(new Error("PDF tool could not load")); }; document.head.appendChild(sc); });
+}
+// receipts (paid) use A5; invoices keep A4
+function c2IsReceipt(){ var a = document.getElementById("fee-receipt-print-area"); return !!a && /PAYMENT RECEIPT|PAID IN FULL/i.test(a.innerText); }
+function c2PrintSized(){
+  var st = document.getElementById("c2-page-size"); if(st) st.remove();
+  if(c2IsReceipt()){
+    st = document.createElement("style"); st.id = "c2-page-size";
+    var area = document.getElementById("fee-receipt-print-area"), w = Math.max(area.scrollWidth, 600);
+    for(var el = area.parentElement; el && el !== document.body; el = el.parentElement) el.classList.add("c2-keep");
+    st.textContent = "@media print{@page{size:A5 portrait;margin:6mm}"
+      + "body>*:not(.c2-keep){display:none!important}"
+      + ".c2-keep{position:static!important;inset:auto!important;transform:none!important;overflow:visible!important;max-height:none!important;height:auto!important;width:auto!important;max-width:none!important;margin:0!important;padding:0!important;background:none!important;box-shadow:none!important;border:0!important;display:block!important}"
+      + ".c2-keep>*:not(.c2-keep):not(#fee-receipt-print-area){display:none!important}"
+      + "#fee-receipt-print-area{position:static!important;width:"+w+"px!important;max-width:none!important;margin:0!important;zoom:"+(512/w).toFixed(3)+"}}";
+    document.body.appendChild(st);
+    window.addEventListener("afterprint", function rm(){ var x = document.getElementById("c2-page-size"); if(x) x.remove(); document.querySelectorAll(".c2-keep").forEach(function(e){ e.classList.remove("c2-keep"); }); window.removeEventListener("afterprint", rm); });
+  }
+  window.print();
+}
+async function c2DownloadReceiptPdf(){
+  var btn = document.getElementById("c2-pdf-btn"), area = document.getElementById("fee-receipt-print-area");
+  var no = ((area.innerText.match(/C2EPE-[A-Z0-9]+/) || [])[0]) || ("Receipt-" + Date.now());
+  var receipt = c2IsReceipt();
+  btn.disabled = true; btn.textContent = "Preparing…";
+  // a clean copy at a fixed width, outside the pop-up, so the PDF is the same on every phone and computer
+  var holder = document.createElement("div");
+  holder.style.cssText = "position:absolute;left:0;top:0;width:760px;background:#fff;padding:0;margin:0;z-index:-1;pointer-events:none;";
+  var copy = area.cloneNode(true); copy.removeAttribute("id"); copy.style.cssText = "width:100%;max-width:none;margin:0;padding:18px 22px;box-sizing:border-box;background:#fff;position:static;";
+  holder.appendChild(copy); document.body.appendChild(holder);
+  try {
+    await c2LoadHtml2Pdf();
+    // pass 1: a full picture of the receipt (rendered on a wide page so nothing is cut)
+    var canvas = await html2pdf().set({ margin: 0, html2canvas: { scale: 2, useCORS: true, scrollX: 0, scrollY: 0 }, jsPDF: { unit: "mm", format: "a4", orientation: "portrait" } }).from(copy).toCanvas().get("canvas");
+    // pass 2: that picture scaled to fit the paper (A5 for receipts)
+    await html2pdf().set({ margin: 6, filename: no + ".pdf", image: { type: "jpeg", quality: 0.95 }, jsPDF: { unit: "mm", format: receipt ? "a5" : "a4", orientation: "portrait" } }).from(canvas, "canvas").save();
+  } catch(e){ alert("Could not make the PDF here — use 🖨️ Print and choose “Save as PDF”."); }
+  holder.remove();
+  btn.disabled = false; btn.textContent = "⬇️ Download PDF (A5)";
+}
+
+
+// ===== Tuition pricing (settings/tuitionPricing) =====
+var TP_PLANS = [{m:1,label:"1 month",km:"១ ខែ"},{m:3,label:"3 months",km:"៣ ខែ"},{m:6,label:"6 months",km:"៦ ខែ"},{m:12,label:"1 year",km:"១ ឆ្នាំ"}];
+var TP_EXTRAS = [
+  {key:"admission", label:"Admission fee", km:"ថ្លៃចុះឈ្មោះ", note:"One time — added to a new student's first payment"},
+  {key:"exam", label:"Yearly exam fee", km:"ថ្លៃប្រឡងប្រចាំឆ្នាំ", note:"Once per school year"}
+];
+var TP_GROUPS = [
+  {name:"Kindergarten", list:["K0","K1","K2","K3"]},
+  {name:"Primary", list:["Starters","Movers","Flyers"]},
+  {name:"Secondary", list:["Beginner","Pre-Intermediate","Intermediate","Upper-Intermediate"]},
+  {name:"Master & Exam", list:["Advanced","Proficiency","EAP / Bridge to University","IELTS & TOEFL Prep","Exam Prep"]},
+  {name:"Special classes", list:["Grammar","Writing Skills","Computer","AI","Online Class"]},
+  {name:"Online Kindergarten", list:["Online K0","Online K1","Online K2","Online K3"]},
+  {name:"Online Primary", list:["Online Starters","Online Movers","Online Flyers"]},
+  {name:"Online Secondary", list:["Online Beginner","Online Pre-Intermediate","Online Intermediate","Online Upper-Intermediate"]},
+  {name:"Online Master", list:["Online Advanced","Online Proficiency"]}
+];
+var tuitionPricing = null;
+async function loadTuitionPricing(force){
+  if(tuitionPricing && !force) return tuitionPricing;
+  var isLocal = window.location.protocol === "file:";
+  try {
+    if(isLocal || !window._fb){ tuitionPricing = JSON.parse(localStorage.getItem("c2epe_tuition_pricing")||"null"); }
+    else { var {db, doc, getDoc} = window._fb; var snap = await getDoc(doc(db,"settings","tuitionPricing")); tuitionPricing = snap.exists() ? snap.data() : null; }
+  } catch(e){ console.error("loadTuitionPricing", e); tuitionPricing = null; }
+  if(!tuitionPricing || !tuitionPricing.prices) tuitionPricing = { currency:"USD", prices:{} };
+  return tuitionPricing;
+}
+function tpGroupOf(cls){ return TP_GROUPS.find(function(g){ return g.list.indexOf(cls) >= 0; }); }
+async function openTuitionPricingPage(){
+  if(!(admissionsCanAccess() || financeCanAccess())){ alert("Tuition Pricing is for the Admin, the Admissions head or the Finance head."); return; }
+  await loadTuitionPricing(true);
+  var sel = document.getElementById("tp-class");
+  sel.innerHTML = TP_GROUPS.map(function(g){ return "<optgroup label='"+escapeHtml(g.name)+"'>" + g.list.map(function(c){ return "<option value='"+escapeHtml(c)+"'>"+escapeHtml(c)+"</option>"; }).join("") + "</optgroup>"; }).join("");
+  document.getElementById("tuition-pricing-page").style.display = "block";
+  document.getElementById("tp-sy").value = String(tuitionPricing.schoolYearStartMonth || 11);
+  tpShowClass(); tpRenderTable();
+}
+function closeTuitionPricingPage(){ document.getElementById("tuition-pricing-page").style.display = "none"; }
+function tpShowClass(){
+  var cls = document.getElementById("tp-class").value;
+  var p = (tuitionPricing.prices||{})[cls] || {};
+  document.getElementById("tp-inputs").innerHTML = TP_PLANS.map(function(pl){
+    var v = p[pl.m]; return "<label style='font-size:.76rem;font-weight:700;color:#555;'>"+pl.label+" · "+pl.km
+      + "<div style='display:flex;align-items:center;gap:4px;margin-top:4px;'><span style='font-weight:800;color:#000080;'>$</span><input type='number' min='0' step='0.5' id='tp-p-"+pl.m+"' value='"+(v!=null?v:"")+"' oninput='tpHints()' placeholder='—' style='width:100%;padding:9px 10px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:1rem;font-family:inherit;'></div>"
+      + "<div id='tp-h-"+pl.m+"' style='font-weight:600;color:#2e7d32;margin-top:3px;min-height:1em;font-size:.72rem;'></div></label>";
+  }).join("")
+  + TP_EXTRAS.map(function(x){
+    var v = p[x.key]; return "<label style='font-size:.76rem;font-weight:700;color:#7b1fa2;'>"+x.label+" · "+x.km
+      + "<div style='display:flex;align-items:center;gap:4px;margin-top:4px;'><span style='font-weight:800;color:#7b1fa2;'>$</span><input type='number' min='0' step='0.5' id='tp-x-"+x.key+"' value='"+(v!=null?v:"")+"' placeholder='—' style='width:100%;padding:9px 10px;border:1.5px solid #e1bee7;border-radius:8px;font-size:1rem;font-family:inherit;background:#fdf7ff;'></div>"
+      + "<div style='color:#888;margin-top:3px;font-size:.7rem;font-weight:500;'>"+x.note+"</div></label>";
+  }).join("");
+  var g = tpGroupOf(cls); document.getElementById("tp-group-name").textContent = g ? g.name + ": " + g.list.join(", ") : "";
+  document.getElementById("tp-copy-group").checked = false;
+  document.getElementById("tp-msg").style.display = "none";
+  tpHints();
+}
+function tpHints(){
+  var one = parseFloat(document.getElementById("tp-p-1").value);
+  TP_PLANS.forEach(function(pl){
+    var v = parseFloat(document.getElementById("tp-p-"+pl.m).value), el = document.getElementById("tp-h-"+pl.m);
+    if(!(v > 0)){ el.textContent = ""; return; }
+    var per = v / pl.m, txt = "= $" + per.toFixed(2) + " / month";
+    if(pl.m > 1 && one > 0){ var save = Math.round((1 - per/one) * 100); if(save > 0) txt += " · save " + save + "%"; else if(save < 0) txt += " · ⚠️ more than monthly"; }
+    el.textContent = txt; el.style.color = /⚠️/.test(txt) ? "#c62828" : "#2e7d32";
+  });
+}
+function tpRenderTable(){
+  var rows = [];
+  TP_GROUPS.forEach(function(g){
+    rows.push("<tr><td colspan='7' style='background:#eef0ff;color:#000080;font-weight:800;padding:6px 8px;'>"+escapeHtml(g.name)+"</td></tr>");
+    g.list.forEach(function(c){
+      var p = (tuitionPricing.prices||{})[c] || {};
+      rows.push("<tr onclick=\"document.getElementById('tp-class').value='"+c.replace(/'/g,"\\'")+"';tpShowClass();window.scrollTo({top:0,behavior:'smooth'});\" style='cursor:pointer;border-bottom:1px solid #f0f0f0;'><td style='padding:6px 8px;font-weight:600;'>"+escapeHtml(c)+"</td>"
+        + TP_PLANS.map(function(pl){ var v = p[pl.m]; return "<td style='padding:6px 8px;text-align:right;color:"+(v>0?"#1a1a2e":"#bbb")+";'>"+(v>0?"$"+Number(v).toFixed(2):"—")+"</td>"; }).join("")
+        + TP_EXTRAS.map(function(x){ var v = p[x.key]; return "<td style='padding:6px 8px;text-align:right;color:"+(v>0?"#7b1fa2":"#bbb")+";'>"+(v>0?"$"+Number(v).toFixed(2):"—")+"</td>"; }).join("") + "</tr>");
+    });
+  });
+  document.getElementById("tp-table").innerHTML = "<tr style='text-align:right;color:#777;font-size:.74rem;'><th style='text-align:left;padding:6px 8px;'>Class / course</th>" + TP_PLANS.map(function(pl){ return "<th style='padding:6px 8px;'>"+pl.label+"</th>"; }).join("") + TP_EXTRAS.map(function(x){ return "<th style='padding:6px 8px;color:#7b1fa2;'>"+x.label+"</th>"; }).join("") + "</tr>" + rows.join("");
+}
+async function saveTuitionPricing(){
+  var msg = document.getElementById("tp-msg"), cls = document.getElementById("tp-class").value;
+  var entry = {}, bad = false;
+  TP_PLANS.forEach(function(pl){ var raw = document.getElementById("tp-p-"+pl.m).value; if(raw === "") return; var v = parseFloat(raw); if(!(v >= 0) || v > 100000) bad = true; else entry[pl.m] = Math.round(v*100)/100; });
+  TP_EXTRAS.forEach(function(x){ var raw = document.getElementById("tp-x-"+x.key).value; if(raw === "") return; var v = parseFloat(raw); if(!(v >= 0) || v > 100000) bad = true; else entry[x.key] = Math.round(v*100)/100; });
+  if(bad){ msg.style.cssText="display:block;background:#ffebee;color:#c62828;padding:8px 10px;border-radius:7px;font-size:.82rem;"; msg.textContent="Please type prices as numbers (e.g. 25 or 67.5)."; return; }
+  var targets = [cls];
+  if(document.getElementById("tp-copy-group").checked){ var g = tpGroupOf(cls); if(g) targets = g.list.slice(); }
+  tuitionPricing.prices = tuitionPricing.prices || {};
+  targets.forEach(function(c){ tuitionPricing.prices[c] = Object.assign({}, entry); });
+  tuitionPricing.schoolYearStartMonth = parseInt(document.getElementById("tp-sy").value, 10) || 11;
+  tuitionPricing.currency = "USD"; tuitionPricing.updatedAt = new Date().toISOString(); tuitionPricing.updatedBy = currentTeacherName || (currentUser && currentUser.email) || "";
+  var isLocal = window.location.protocol === "file:";
+  try {
+    if(isLocal || !window._fb) localStorage.setItem("c2epe_tuition_pricing", JSON.stringify(tuitionPricing));
+    else { var {db, doc, setDoc} = window._fb; await setDoc(doc(db,"settings","tuitionPricing"), tuitionPricing); }
+    msg.style.cssText="display:block;background:#e8f5e9;color:#2e7d32;padding:8px 10px;border-radius:7px;font-size:.82rem;";
+    msg.textContent = "✅ Saved for " + (targets.length > 1 ? targets.length + " classes (" + targets.join(", ") + ")" : cls) + ".";
+    tpRenderTable();
+  } catch(e){ msg.style.cssText="display:block;background:#ffebee;color:#c62828;padding:8px 10px;border-radius:7px;font-size:.82rem;"; msg.textContent="Could not save: " + e.message; }
+}
+
 async function openPaymentQRSettingsPage(){
   // Runtime guard — never rely on the menu just being hidden.
   if(!isSchoolOwner()){
@@ -10986,11 +11395,11 @@ function renderPaymentClaimsList(){
     var when = c.claimedAt ? new Date(c.claimedAt).toLocaleString("en-GB",{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"}) : "";
     return "<div style='background:#f9f9fb;border-radius:10px;padding:12px 14px;margin-bottom:10px;'>"
       + "<div style='font-weight:700;font-size:.86rem;color:#1a1a2e;'>"+escapeHtml(c.studentName||"")+" <span style='color:#999;font-weight:400;font-size:.76rem;'>("+escapeHtml(c.cls||"")+")</span></div>"
-      + "<div style='font-size:.8rem;color:#2e7d32;font-weight:700;margin:4px 0;'>💵 Claims paid: $"+(c.amount||0).toFixed(2)+" — "+escapeHtml(c.feeType||"Fee")+"</div>"
+      + "<div style='font-size:.8rem;color:#2e7d32;font-weight:700;margin:4px 0;'>💵 Claims paid: $"+(c.amount||0).toFixed(2)+" — "+escapeHtml(c.feeType||"Fee")+"</div>"+(c.kind==="online-apply"?"<div style=\'font-size:.74rem;background:#fff3c4;color:#6b3f00;border-radius:6px;padding:4px 8px;margin:4px 0;font-weight:800;\'>🆕 New online student (7-day trial)"+(c.level?" · tested level: "+escapeHtml(c.level):"")+"</div>":"")+(c.lines&&c.lines.length?"<div style=\'font-size:.74rem;color:#555;margin:2px 0 4px;\'>"+c.lines.map(function(l){ return escapeHtml(l.name)+" $"+Number(l.amount).toFixed(2); }).join(" · ")+"</div>":"")+(c.source==="online-dashboard"?"<div style=\'font-size:.74rem;background:#fff3c4;color:#6b3f00;border-radius:6px;padding:4px 8px;margin:4px 0;font-weight:700;\'>💻 Online Class payment ("+escapeHtml(c.onlineCourse||"")+") — after confirming, open the student and press <b>+1 month</b> in Studies &amp; Access.</div>":"")
       + (c.bank ? "<div style='font-size:.76rem;color:#666;'>Via: "+escapeHtml(c.bank)+(c.reference?" · Ref: "+escapeHtml(c.reference):"")+"</div>" : "")
       + "<div style='font-size:.7rem;color:#aaa;margin-top:2px;'>"+when+"</div>"
       + "<div style='display:flex;gap:6px;margin-top:8px;'>"
-      + "<button onclick=\"confirmPaymentClaim('"+c.id+"','"+c.feeId+"')\" style='flex:1;background:#2e7d32;color:#fff;border:none;padding:7px;border-radius:6px;font-size:.76rem;font-weight:700;cursor:pointer;'>✅ Confirm &amp; Mark Paid</button>"
+      + (c.kind==="online-apply" ? "<button onclick=\"c2ApproveOnlineApply('"+c.id+"')\" style='flex:1;background:#e8a400;color:#1a1a2e;border:none;padding:7px;border-radius:6px;font-size:.76rem;font-weight:800;cursor:pointer;'>🎓 Approve &amp; create account</button>" : c.kind==="tuition-plan" ? "<button onclick=\"c2ApproveTuitionClaim('"+c.id+"')\" style='flex:1;background:#7b1fa2;color:#fff;border:none;padding:7px;border-radius:6px;font-size:.76rem;font-weight:800;cursor:pointer;'>✅ Approve &amp; create receipt</button>" : "<button onclick=\"confirmPaymentClaim('"+c.id+"','"+c.feeId+"')\" style='flex:1;background:#2e7d32;color:#fff;border:none;padding:7px;border-radius:6px;font-size:.76rem;font-weight:700;cursor:pointer;'>✅ Confirm &amp; Mark Paid</button>")
       + "<button aria-label=\"Close\" onclick=\"dismissPaymentClaim('"+c.id+"')\" style='background:#f5f5f5;border:1px solid #e0e0e0;color:#888;padding:7px 10px;border-radius:6px;font-size:.76rem;cursor:pointer;'>✕</button>"
       + "</div></div>";
   }).join("");
@@ -11480,7 +11889,7 @@ function renderAdmissionsList(){
     return "<div onclick=\"openAppDetailModal('"+a.id+"')\" style='background:#fff;border-radius:10px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:14px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:12px;'>"
       + "<div style='width:40px;height:40px;border-radius:50%;background:#e0f7fa;color:#00838f;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;'>"+(a.childNameEn||"?").charAt(0).toUpperCase()+"</div>"
       + "<div style='flex:1;min-width:0;'>"
-      + "<div style='font-weight:700;font-size:.86rem;color:#1a1a2e;'>"+escapeHtml(a.childNameEn||a.childNameKm||"Unnamed")+"</div>"
+      + "<div style='font-weight:700;font-size:.86rem;color:#1a1a2e;'>"+escapeHtml(a.childNameEn||a.childNameKm||"Unnamed")+(a.studyMode==="online"?" <span style='background:#fff3c4;color:#6b3f00;border-radius:8px;padding:1px 7px;font-size:.62rem;font-weight:800;'>💻 ONLINE · "+escapeHtml(a.onlineCourse||"")+"</span>":"")+"</div>"
       + "<div style='font-size:.74rem;color:#999;'>"+escapeHtml(a.levelApplied||"")+" · Parent: "+escapeHtml(a.parentName||"")+" · "+submitted+"</div>"
       + "</div>"
       + "<span style='background:"+st.color+"1a;color:"+st.color+";padding:3px 10px;border-radius:10px;font-size:.7rem;font-weight:700;white-space:nowrap;'>"+st.label+"</span>"

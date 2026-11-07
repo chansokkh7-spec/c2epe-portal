@@ -756,6 +756,7 @@
                 const mark = v ? (isRecentlyAdded(v.added) ? ' 🆕' : ' 🎬') : '';
                 return `<option value="${u}">Unit ${u}: ${levelData[u].title}${mark}</option>`;
             }).join('');
+            if (typeof OC_TRIAL !== 'undefined' && OC_TRIAL) { [...sel.options].forEach(o => { if (Number(o.value) > 3) { o.disabled = true; o.textContent = '🔒 ' + o.textContent + ' (after the trial)'; } }); }
             // keep the same unit number selected if it still exists for this level
             if (levelData[prevUnit]) {
                 sel.value = prevUnit;
@@ -804,7 +805,7 @@
             const levelData = realCurriculum[state.level];
             const unitNumbers = Object.keys(levelData).map(Number).sort((a, b) => a - b);
             const idx = unitNumbers.indexOf(state.unit);
-            const nextIdx = (idx === -1 ? 0 : idx + 1) % unitNumbers.length;
+            const nextIdx = (idx === -1 ? 0 : idx + 1) % ((typeof OC_TRIAL !== 'undefined' && OC_TRIAL) ? 3 : unitNumbers.length);
             state.unit = unitNumbers[nextIdx];
             document.getElementById('unit-select').value = state.unit;
             renderContent();
@@ -2294,6 +2295,8 @@
         if (Number(OC_Q.get('unit')) >= 1 && Number(OC_Q.get('unit')) <= 29) state.unit = Number(OC_Q.get('unit'));
         const OC_SID = (OC_Q.get('sid') || '').replace(/[^A-Za-z0-9-]/g, '');
         function ocMarkUnitDone() { if (!OC_SID) return; try { const k = 'c2_online_done_' + OC_SID; const d = JSON.parse(localStorage.getItem(k) || '[]'); if (!d.includes(state.unit)) { d.push(state.unit); localStorage.setItem(k, JSON.stringify(d)); } } catch (e) {} }
+        const OC_TRIAL = OC_Q.get('trial') === '1';
+        if (OC_TRIAL && state.unit > 3) state.unit = 1;
         lockLevel('K0');
         loadProgress();
         populateUnitSelect();

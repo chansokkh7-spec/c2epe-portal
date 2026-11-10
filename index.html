@@ -26,7 +26,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, orderBy, query, updateDoc, doc, deleteDoc, arrayUnion, serverTimestamp, getDoc, setDoc, limit, increment } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, onSnapshot, orderBy, query, updateDoc, doc, deleteDoc, arrayUnion, serverTimestamp, getDoc, setDoc, limit, increment, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updatePassword, EmailAuthProvider, reauthenticateWithCredential, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getMessaging, getToken, onMessage, isSupported } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging.js";
@@ -45,7 +45,7 @@ const app  = initializeApp(firebaseConfig);
 const db   = getFirestore(app);
 const stor = getStorage(app);
 const auth = getAuth(app);
-window._fb = { db, stor, auth, collection, addDoc, onSnapshot, orderBy, query,
+window._fb = { db, stor, auth, collection, addDoc, where, getDocs, onSnapshot, orderBy, query,
   updateDoc, doc, deleteDoc, arrayUnion, ref, uploadBytes, getDownloadURL,
   serverTimestamp, getDoc, setDoc, createUserWithEmailAndPassword,
   signInWithEmailAndPassword, signOut, onAuthStateChanged, updatePassword,
@@ -697,7 +697,7 @@ function logoImgError(img){
       </button>
     </div>
  <div style="padding:4px 20px 0;">
- <button id="c2-role-online" onclick="closeRoleSelectModal();showParentModal();setTimeout(function(){var b=document.getElementById('c2-online-box');if(b){b.scrollIntoView({block:'center'});b.style.boxShadow='0 0 0 4px rgba(232,199,102,.6)';setTimeout(function(){b.style.boxShadow='';},1600);}var f=document.getElementById('parent-student-id');if(f)f.focus();},150);" style="width:100%;background:linear-gradient(90deg,#0b1f4d,#1d3a8a);border:2px solid #e8c766;border-radius:12px;padding:12px 10px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 3px 10px rgba(11,31,77,.25);">
+ <button id="c2-role-online" onclick="closeRoleSelectModal();c2OpenOnline();" style="width:100%;background:linear-gradient(90deg,#0b1f4d,#1d3a8a);border:2px solid #e8c766;border-radius:12px;padding:12px 10px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 3px 10px rgba(11,31,77,.25);">
  <span style="font-size:1.6rem;">💻</span>
  <span style="text-align:left;line-height:1.25;"><span style="display:block;font-weight:800;font-size:.95rem;color:#e8c766;">Online Class · ថ្នាក់អនឡាញ</span><span style="display:block;font-size:.72rem;color:#dfe5f5;">Sign in · or register &amp; try 7 days free</span></span>
  </button>
@@ -720,6 +720,29 @@ function logoImgError(img){
   </div>
 </div>
 
+
+<!-- ONLINE CLASS SIGN-IN (online students only) -->
+<div id="c2-online-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9998;align-items:center;justify-content:center;padding:12px;">
+ <div style="background:#fff;border-radius:16px;width:340px;max-width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.3);">
+  <div style="background:linear-gradient(135deg,#0b1f4d,#1d3a8a);padding:18px 22px;color:#fff;text-align:center;border-radius:16px 16px 0 0;border-bottom:3px solid #e8c766;">
+   <div style="font-size:1.9rem;">💻</div>
+   <div style="font-weight:800;font-size:1rem;color:#e8c766;">Online Class · ថ្នាក់អនឡាញ</div>
+   <div style="font-size:.74rem;opacity:.9;margin-top:3px;">For online students only · សម្រាប់សិស្សរៀន Online ប៉ុណ្ណោះ</div>
+  </div>
+  <div style="padding:18px 20px;">
+   <label for="c2-on-id" style="font-size:.75rem;font-weight:700;color:#0b1f4d;display:block;margin-bottom:3px;">Online Student ID · លេខសម្គាល់សិស្ស Online</label>
+   <input type="text" id="c2-on-id" placeholder="e.g. 9482916" inputmode="numeric" maxlength="12" autocomplete="username" style="width:100%;padding:10px 12px;border:1.5px solid #c7cfe0;border-radius:8px;font-size:1.05rem;font-family:monospace;letter-spacing:1px;margin-bottom:10px;box-sizing:border-box;" onkeydown="if(event.key==='Enter')document.getElementById('c2-on-pin').focus()">
+   <label for="c2-on-pin" style="font-size:.75rem;font-weight:700;color:#0b1f4d;display:block;margin-bottom:3px;">PIN (4 digits) · លេខ PIN</label>
+   <input type="password" id="c2-on-pin" placeholder="••••" inputmode="numeric" maxlength="4" autocomplete="current-password" style="width:100%;padding:10px 12px;border:1.5px solid #c7cfe0;border-radius:8px;font-size:1.05rem;font-family:monospace;letter-spacing:4px;margin-bottom:10px;box-sizing:border-box;" onkeydown="if(event.key==='Enter')c2OnlineSignIn()">
+   <div id="c2-on-err" role="alert" style="display:none;color:#c62828;font-size:.78rem;margin-bottom:10px;background:#ffebee;padding:8px 10px;border-radius:6px;"></div>
+   <button id="c2-on-btn" onclick="c2OnlineSignIn()" style="width:100%;padding:12px;background:#0b1f4d;color:#e8c766;border:none;border-radius:8px;font-weight:800;cursor:pointer;font-size:.92rem;">💻 Sign in to Online Class · ចូលរៀន</button>
+   <p style="font-size:.72rem;color:#888;text-align:center;margin:8px 0 12px;">Forgot your PIN? Ask the Front Desk for a new one.</p>
+   <button onclick="location.href='online-dashboard.html#register'" style="width:100%;padding:11px;background:#fffbea;border:2px solid #e8c766;color:#0b1f4d;border-radius:8px;font-weight:800;cursor:pointer;font-size:.84rem;">📝 New student? Register &amp; try 7 days free</button>
+   <p style="font-size:.72rem;color:#888;text-align:center;margin:12px 0 0;">Classroom students: please use <b>Parent</b> or <b>Student</b>.</p>
+   <button onclick="c2CloseOnline()" style="width:100%;padding:8px;margin-top:6px;background:none;border:none;color:#999;cursor:pointer;font-size:.8rem;">Close</button>
+  </div>
+ </div>
+</div>
 <div id="auth-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9998;align-items:center;justify-content:center;">
   <div style="background:#fff;border-radius:16px;padding:0;width:340px;box-shadow:0 8px 40px rgba(0,0,0,.3);overflow:hidden;">
     
@@ -753,7 +776,7 @@ function logoImgError(img){
         style="width:100%;padding:8px;background:none;border:none;color:#aaa;cursor:pointer;font-size:.8rem;">
         Continue as Parent (View only)
       </button>
-<button onclick="closeAuthModal();showParentModal();setTimeout(function(){var b=document.getElementById('c2-online-box');if(b)b.scrollIntoView({block:'center'});},120);" style="width:100%;padding:10px;margin-top:4px;background:#fffbea;border:2px solid #e8c766;color:#0b1f4d;border-radius:8px;font-weight:800;cursor:pointer;font-size:.84rem;">👨‍👩‍👧 Student / Parent · 💻 Online Class</button>
+<button onclick="closeAuthModal();c2OpenOnline();" style="width:100%;padding:10px;margin-top:4px;background:linear-gradient(90deg,#0b1f4d,#1d3a8a);border:2px solid #e8c766;color:#e8c766;border-radius:8px;font-weight:800;cursor:pointer;font-size:.84rem;">💻 Online Class · ថ្នាក់អនឡាញ</button>
     </div>
 
     <!-- Forgot Password Form -->
@@ -1028,12 +1051,7 @@ function logoImgError(img){
           🔓 View My Child's Studies
         </button>
         <p style="font-size:.72rem;color:#999;text-align:center;margin-top:6px;">Don't have a Student ID? Please ask your child's teacher.</p>
-<div id="c2-online-box" style="margin-top:12px;border:2px solid #e8c766;background:#fffbea;border-radius:12px;padding:12px;">
-<div style="font-weight:800;color:#0b1f4d;font-size:.92rem;margin-bottom:2px;">💻 Online Class · ថ្នាក់អនឡាញ</div>
-<div style="font-size:.74rem;color:#6b5a1f;margin-bottom:8px;">Online students: type the Student ID and PIN above, then tap here.</div>
-<button onclick="c2PortalOnlineLogin()" id="c2-online-btn" style="width:100%;padding:11px;background:#0b1f4d;color:#e8c766;border:none;border-radius:8px;font-weight:800;cursor:pointer;font-size:.88rem;margin-bottom:6px;">💻 Go to my Online Class</button>
-<button onclick="location.href='online-dashboard.html#register'" style="width:100%;padding:9px;background:#fff;color:#0b1f4d;border:1.5px solid #0b1f4d;border-radius:8px;font-weight:700;cursor:pointer;font-size:.8rem;">📝 New student? Register &amp; try 7 days free</button>
-</div>
+
       </div>
       <button onclick="closeParentModal()"
         style="width:100%;padding:8px;background:none;border:none;color:#aaa;cursor:pointer;font-size:.8rem;">
@@ -6312,9 +6330,9 @@ async function loginWithStudentId(){
   errEl.style.display = 'none';
   if(!raw){ errEl.style.display='block'; errEl.textContent="Please enter the Student ID."; return; }
   // new IDs are 6 digits (e.g. 482916); older test IDs like C2-EPE0001 still work
-  if(!/^(\d{6}|C2-EPE\d{4,})$/.test(raw)){
+  if(!/^(\d{6,7}|C2-EPE\d{4,})$/.test(raw)){
     errEl.style.display='block';
-    errEl.textContent='The Student ID is the 6-digit number the school gave you (e.g. 482916).';
+    errEl.textContent='The Student ID is the number the school gave you (e.g. 482916).';
     return;
   }
   if(window.location.protocol === 'file:'){
@@ -6349,7 +6367,8 @@ async function loginWithStudentId(){
         if(pinEl) pinEl.focus();
         return;
       }
-      if(pinEl) pinEl.value = '';
+      if(s.online && s.classroom === false){ errEl.style.display='block'; errEl.innerHTML='💻 This is an <b>Online Class</b> Student ID. Please close this window and choose <b>💻 Online Class</b>. · នេះជា ID ថ្នាក់អនឡាញ'; btn.disabled = false; btn.textContent = "🔓 View My Child's Studies"; return; }
+          if(pinEl) pinEl.value = '';
       // baseLevel() strips any leftover "-A/-B/-C" section suffix — needed
       // because older student records created before sections were
       // removed may still have e.g. "K0-A" stored in Firestore. This
@@ -7492,11 +7511,12 @@ function randomStudentId(){
   (window.crypto || window.msCrypto).getRandomValues(a);
   return String(100000 + (a[0] % 900000));
 }
-async function generateNextStudentId(){
+function c2RandomOnlineId(){ var a = new Uint32Array(1); (window.crypto || window.msCrypto).getRandomValues(a); return '9' + String(100000 + (a[0] % 900000)); }
+async function generateNextStudentId(kind){
   var {db, collection, query} = window._fb;
   var {getDocs, where} = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
   for(var tries=0; tries<25; tries++){
-    var candidate = randomStudentId();
+    var candidate = kind === 'online' ? c2RandomOnlineId() : randomStudentId();
     var snap = await getDocs(query(collection(db,"students"), where("studentId","==",candidate)));
     if(snap.empty) return candidate;
   }
@@ -7553,11 +7573,11 @@ async function saveStudent(){
     if(editingStudentId){
       var existing = allStudents.find(function(x){ return x.id===editingStudentId; });
       if(existing && !existing.studentId){
-        data.studentId = await generateNextStudentId();
+        data.studentId = await generateNextStudentId(data.online && data.classroom === false ? 'online' : '');
       }
       await set(docRef(db,"students",editingStudentId), data, {merge:true});
     } else {
-      data.studentId = await generateNextStudentId();
+      data.studentId = await generateNextStudentId(data.online && data.classroom === false ? 'online' : '');
       data.createdAt = new Date().toISOString();
       c2NewRef = await add(collection(db,"students"), data);
     }
@@ -10805,7 +10825,7 @@ async function c2ApproveOnlineApply(claimId){
     var fs = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
     var appSnap = await fs.getDoc(doc(db,"applications", c.appId)), app = appSnap.exists() ? appSnap.data() : {};
     if(app.status === "enrolled" && app.enrolledStudentId){ alert("Already enrolled as " + app.enrolledStudentId + "."); return; }
-    var sid = await generateNextStudentId(), pin = genStudentPin(), now = new Date().toISOString(), today = c2Today();
+    var sid = await generateNextStudentId('online'), pin = genStudentPin(), now = new Date().toISOString(), today = c2Today();
     var until = c2AddMonths(today, Number(c.months) || 1);
     var lines = (c.lines || []).map(function(l){ return l.kind === "tuition" ? Object.assign({}, l, { desc: (l.desc||"") + " · " + today + " → " + until }) : (l.kind === "exam" ? Object.assign({}, l, { year: c2SchoolYear(tuitionPricing || {}, today), desc: "School year " + c2SchoolYear(tuitionPricing || {}, today) }) : l); });
     var stu = { studentId: sid, nameEn: app.childNameEn || c.studentName || "", nameKm: app.childNameKm || "", dob: app.dob || "", gender: app.gender || "",
@@ -17335,7 +17355,7 @@ body.dash-open #ai-chat-bubble,body.dash-open #ai-chat-panel{display:none !impor
       <button onclick="sdGo(openLeavePage)">📝 Leave Request</button>
       <button onclick="sdGo(openConcernsPage)">🛡️ Report a Concern</button>
       <button onclick="sdGo(openReadingClub)">📖 Reading Club</button>
-      <button onclick="sdGo(openClinic)">🏥 My Child's Health</button> <button onclick="sdGo(openStudentProfilePage)">👤 Student Profile</button> <button onclick="sdGo(openEnrolmentFormPage)">📝 Enrolment Form</button> <button onclick="sdGo(function(){openAgreementPage('contract')})">📜 Study Contract</button> <button onclick="sdGo(function(){openAgreementPage('rules')})">⚖️ School Rules</button>
+      <button onclick="sdGo(openClinic)">🏥 My Child's Health</button> <button onclick="sdGo(openStudentProfilePage)">📋 Student Information</button> <button onclick="sdGo(openEnrolmentFormPage)">📝 Enrolment Form</button> <button onclick="sdGo(function(){openAgreementPage('contract')})">📜 Study Contract</button> <button onclick="sdGo(function(){openAgreementPage('rules')})">⚖️ School Rules</button>
       <button onclick="sdGo(openExamPortalPage)">🎓 Examination Portal</button>
       <button onclick="sdGo(openMyTestsPage)">📚 My Tests</button>
       <button onclick="sdGo(openQuizPage)">✏️ Quiz &amp; Exams</button>
@@ -19692,6 +19712,31 @@ function clProfileHTML(p, compact){
 
 
 
+function c2OpenOnline(){ var m = document.getElementById('c2-online-modal'); m.style.display = 'flex'; document.getElementById('c2-on-err').style.display = 'none'; setTimeout(function(){ document.getElementById('c2-on-id').focus(); }, 80); }
+function c2CloseOnline(){ document.getElementById('c2-online-modal').style.display = 'none'; }
+async function c2OnlineSignIn(){
+  var raw = document.getElementById('c2-on-id').value.trim().toUpperCase().replace(/\s+/g,''), pin = document.getElementById('c2-on-pin').value.replace(/\D/g,'');
+  var err = document.getElementById('c2-on-err'), btn = document.getElementById('c2-on-btn');
+  var fail = function(html){ err.style.display = 'block'; err.innerHTML = html; btn.disabled = false; btn.textContent = '💻 Sign in to Online Class · ចូលរៀន'; };
+  err.style.display = 'none';
+  if(!/^(\d{6,7}|C2-EPE\d{4,})$/.test(raw)) return fail('Please type the Online Student ID from the school (e.g. 9482916).');
+  if(!window._fb) return fail('Not connected. Please try again in a moment.');
+  btn.disabled = true; btn.textContent = 'Checking…';
+  try {
+    var {db, collection, query} = window._fb, fs = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    var snap = await fs.getDocs(query(collection(db,'students'), fs.where('studentId','==',raw)));
+    if(snap.empty) return fail('❌ Student ID not found. Please check with the Front Desk.');
+    var d = snap.docs[0], s = d.data();
+    if(!s.online) return fail('🏫 This is a <b>classroom</b> Student ID. Please close this window and choose <b>Parent</b> or <b>Student</b>. · នេះជា ID សិស្សរៀនផ្ទាល់');
+    if(s.pinSet && !(pin && await c2CheckPin(raw, pin))) return fail(pin ? '❌ Incorrect PIN. Please check with the Front Desk.' : '🔑 Please enter the 4-digit PIN.');
+    studentSession = { studentId: raw, docId: d.id, name: s.nameEn || s.nameKm || 'Student', cls: baseLevel(s.cls || ''), online: true, onlineCourse: s.onlineCourse || '', onlineUntil: s.onlineUntil || '',
+      classroom: s.classroom !== false, paidUntil: s.paidUntil || '', allowReview: !!s.allowReview, nameKm: s.nameKm || '' };
+    localStorage.setItem('c2epe_student_session', JSON.stringify(studentSession));
+    document.getElementById('c2-on-pin').value = '';
+    c2HandOver(); location.href = 'online-dashboard.html';
+  } catch(e){ fail('Error: ' + e.message); }
+}
+
 // ===== 💻 Online Class from the Portal (one shared sign-in) =====
 function c2HandOver(){
   if(!studentSession) return;
@@ -19849,6 +19894,52 @@ async function c2SaveSchoolDocs(){
   } catch(e){ msg.style.cssText = "display:block;color:#c62828;"; msg.textContent = "Could not save: " + e.message; }
 }
 
+
+// ===== 📋 Student Information Form (students and parents fill in; both sign) =====
+var SIF_FIELDS = [["A · STUDENT · សិស្ស", [["nickname", "Preferred name / nickname · ឈ្មោះហៅក្រៅ", "text", null], ["placeOfBirth", "Place of birth · ទីកន្លែងកំណើត", "select", ["Phnom Penh", "Banteay Meanchey", "Battambang", "Kampong Cham", "Kampong Chhnang", "Kampong Speu", "Kampong Thom", "Kampot", "Kandal", "Kep", "Koh Kong", "Kratie", "Mondulkiri", "Oddar Meanchey", "Pailin", "Preah Sihanouk", "Preah Vihear", "Prey Veng", "Pursat", "Ratanakiri", "Siem Reap", "Stung Treng", "Svay Rieng", "Takeo", "Tbong Khmum", "Outside Cambodia"]], ["nationality", "Nationality · សញ្ជាតិ", "select", ["Cambodian", "Chinese", "Vietnamese", "Thai", "Lao", "Korean", "Japanese", "Filipino", "Malaysian", "Indian", "American", "British", "Australian", "French", "Other"]], ["firstLanguage", "First language · ភាសាកំណើត", "select", ["Khmer", "English", "Chinese", "Vietnamese", "Thai", "French", "Korean", "Japanese", "Other"]], ["otherLanguages", "Other languages spoken · ភាសាផ្សេងទៀត", "checks", ["Khmer", "English", "Chinese", "Vietnamese", "Thai", "French", "Korean", "Japanese", "Other"]], ["previousSchool", "Previous school · សាលាមុន", "text", null], ["previousGrade", "Previous grade / level · ថ្នាក់មុន", "select", ["None (first school)", "Nursery", "K0", "K1", "K2", "K3", "Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10", "Grade 11", "Grade 12", "University"]], ["learningSupport", "Learning support needs · តម្រូវការជំនួយការសិក្សា", "select", ["None", "Speech / language", "Reading / writing", "Attention / concentration", "Hearing", "Vision", "Other — please explain to the teacher"]]]], ["B · FAMILY · គ្រួសារ", [["livesWith", "The student lives with · សិស្សរស់នៅជាមួយ", "select", ["Both parents", "Mother", "Father", "Grandparents", "Guardian", "Other"]], ["fatherName", "Father's name · ឈ្មោះឪពុក", "text", null], ["fatherOccupation", "Father's occupation · មុខរបរ", "select", ["Business owner", "Office worker", "Government officer", "Teacher", "Doctor / Nurse", "Engineer", "Farmer", "Seller / Trader", "Driver", "Factory worker", "NGO staff", "Banker", "Homemaker", "Student", "Retired", "Other"]], ["fatherPhone", "Father's phone · ទូរស័ព្ទ", "tel", null], ["motherName", "Mother's name · ឈ្មោះម្តាយ", "text", null], ["motherOccupation", "Mother's occupation · មុខរបរ", "select", ["Business owner", "Office worker", "Government officer", "Teacher", "Doctor / Nurse", "Engineer", "Farmer", "Seller / Trader", "Driver", "Factory worker", "NGO staff", "Banker", "Homemaker", "Student", "Retired", "Other"]], ["motherPhone", "Mother's phone · ទូរស័ព្ទ", "tel", null], ["guardian", "Guardian's name (if not a parent) · អាណាព្យាបាល", "text", null], ["guardianRelation", "Guardian is the student's · ត្រូវជា", "select", ["Mother", "Father", "Grandmother", "Grandfather", "Aunt", "Uncle", "Older brother", "Older sister", "Guardian", "Family friend", "Other"]], ["guardianPhone", "Guardian's phone", "tel", null]]], ["C · CONTACT · ទំនាក់ទំនង", [["telegram", "Telegram (phone or @username)", "text", null], ["email", "Email", "email", null], ["province", "Province / city · ខេត្ត/ក្រុង", "select", ["Phnom Penh", "Banteay Meanchey", "Battambang", "Kampong Cham", "Kampong Chhnang", "Kampong Speu", "Kampong Thom", "Kampot", "Kandal", "Kep", "Koh Kong", "Kratie", "Mondulkiri", "Oddar Meanchey", "Pailin", "Preah Sihanouk", "Preah Vihear", "Prey Veng", "Pursat", "Ratanakiri", "Siem Reap", "Stung Treng", "Svay Rieng", "Takeo", "Tbong Khmum"]], ["address", "Home address · អាសយដ្ឋាន", "text", null], ["messageLanguage", "Language for school messages · ភាសាសម្រាប់សារ", "select", ["Khmer", "English", "Khmer and English"]]]], ["D · EMERGENCY AND SAFETY · សុវត្ថិភាព", [["emergencyName", "Emergency contact name · ឈ្មោះ", "text", null], ["emergencyRelation", "Relationship · ត្រូវជា", "select", ["Mother", "Father", "Grandmother", "Grandfather", "Aunt", "Uncle", "Older brother", "Older sister", "Guardian", "Family friend", "Other"]], ["emergencyPhone", "Emergency phone · ទូរស័ព្ទ", "tel", null], ["transport", "How the student comes to school · មកសាលាដោយ", "select", ["Walks", "Brought by parent", "Motorbike", "Car", "Tuk-tuk", "School bus", "Bicycle", "Online student — studies at home"]], ["pickup", "People allowed to collect the student · អ្នកមកទទួល", "textarea", null]]]];
+var SIF_CONSENTS = [["consentPhoto", "I agree that the school may share my child's photos and work on official school channels. · យល់ព្រមឱ្យចែករំលែករូប និងស្នាដៃ", false], ["consentMedical", "In an emergency, the school may give first aid and take my child to a hospital if I cannot be reached. · យល់ព្រមលើការសង្គ្រោះបន្ទាន់", false], ["consentTrips", "My child may join school trips and activities outside school (I will be told first). · យល់ព្រមឱ្យចូលរួមដំណើរកម្សាន្តសិក្សា", false], ["consentData", "I confirm the information is correct, and I agree that the school keeps it safely for education and school administration. · បញ្ជាក់ថាព័ត៌មានត្រឹមត្រូវ", true]];
+var SIF_PADS = {};
+function sifInput(f, val){
+  var key = f[0], label = f[1], type = f[2], opts = f[3], id = "sif-" + key;
+  var lab = "<label class='c2p-l' for='"+id+"'>"+label+"</label>";
+  if(type === "select"){
+    var known = opts.indexOf(val) >= 0, other = val && !known;
+    return lab + "<select id='"+id+"' class='c2p-in' onchange=\"sifOther('"+key+"')\"><option value=''>— choose · ជ្រើសរើស —</option>" + opts.map(function(o){ return "<option"+(o===val?" selected":"")+">"+clEsc(o)+"</option>"; }).join("")
+      + (opts.indexOf("Other") < 0 ? "<option value='__other'"+(other?" selected":"")+">Other (type) · ផ្សេងទៀត</option>" : "") + "</select>"
+      + "<input id='"+id+"-other' class='c2p-in' maxlength='60' placeholder='Please type · សូមវាយ' value='"+(other?clEsc(val):"")+"' style='display:"+(other?"block":"none")+";margin-top:-4px;'>";
+  }
+  if(type === "checks"){
+    var have = String(val||"").split(",").map(function(x){ return x.trim(); });
+    return lab + "<div style='display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;'>" + opts.map(function(o){ return "<label style='display:flex;align-items:center;gap:5px;background:#f2f4fb;border-radius:16px;padding:5px 10px;font-size:.8rem;cursor:pointer;'><input type='checkbox' class='"+id+"' value='"+clEsc(o)+"'"+(have.indexOf(o)>=0?" checked":"")+"> "+clEsc(o)+"</label>"; }).join("") + "</div>";
+  }
+  if(type === "textarea") return lab + "<textarea id='"+id+"' class='c2p-in' rows='2' maxlength='200'>"+clEsc(val||"")+"</textarea>";
+  return lab + "<input id='"+id+"' class='c2p-in' type='"+type+"' maxlength='"+(key==="address"?160:80)+"' value='"+clEsc(val||"")+"'"+(type==="tel"?" inputmode='tel' placeholder='012 345 678'":"")+">";
+}
+function sifOther(key){ var sel = document.getElementById("sif-"+key), o = document.getElementById("sif-"+key+"-other"); if(sel && o){ o.style.display = sel.value === "__other" || sel.value === "Other" ? "block" : "none"; } }
+function sifValue(f){
+  var key = f[0], type = f[2], id = "sif-" + key;
+  if(type === "checks") return Array.prototype.slice.call(document.querySelectorAll("."+id+":checked")).map(function(x){ return x.value; }).join(", ");
+  var el = document.getElementById(id); if(!el) return "";
+  if(type === "select" && (el.value === "__other" || el.value === "Other")){ var o = document.getElementById(id+"-other").value.trim(); return o || (el.value === "Other" ? "Other" : ""); }
+  return el.value.trim();
+}
+function sifPad(id){
+  var c = document.getElementById(id); if(!c) return; var ctx = c.getContext("2d"), down = false; ctx.lineWidth = 3; ctx.lineCap = "round"; ctx.strokeStyle = "#0b1f4d"; SIF_PADS[id] = false;
+  var pos = function(e){ var r = c.getBoundingClientRect(), t = e.touches ? e.touches[0] : e; return { x: (t.clientX - r.left) * c.width / r.width, y: (t.clientY - r.top) * c.height / r.height }; };
+  var start = function(e){ down = true; SIF_PADS[id] = true; var p2 = pos(e); ctx.beginPath(); ctx.moveTo(p2.x, p2.y); e.preventDefault(); };
+  var move = function(e){ if(!down) return; var p2 = pos(e); ctx.lineTo(p2.x, p2.y); ctx.stroke(); e.preventDefault(); };
+  c.addEventListener("mousedown", start); c.addEventListener("mousemove", move); window.addEventListener("mouseup", function(){ down = false; });
+  c.addEventListener("touchstart", start, {passive:false}); c.addEventListener("touchmove", move, {passive:false}); c.addEventListener("touchend", function(){ down = false; });
+}
+function sifClear(id){ var c = document.getElementById(id); c.getContext("2d").clearRect(0, 0, c.width, c.height); SIF_PADS[id] = false; }
+function sifSig(id){ var c = document.getElementById(id), t = document.createElement("canvas"); t.width = 360; t.height = 110; t.getContext("2d").drawImage(c, 0, 0, 360, 110); return t.toDataURL("image/png"); }
+function sifSigBlock(id, who, name, img){
+  return "<div style='flex:1;min-width:230px;'><div style='font-size:.78rem;font-weight:800;color:#000080;margin-bottom:4px;'>"+who+"</div>"
+    + (img ? "<img src='"+img+"' alt='Signature' style='width:100%;max-width:300px;background:#fff;border:1px solid #c5cae9;border-radius:8px;'><div style='font-size:.72rem;color:#2e7d32;margin:2px 0 6px;'>✅ Signed · "+clEsc(name||"")+" — sign again below to replace</div>" : "")
+    + "<canvas id='"+id+"' width='600' height='180' style='width:100%;height:110px;background:#fff;border:2px dashed #9fa8da;border-radius:10px;touch-action:none;'></canvas>"
+    + "<button type='button' onclick=\"sifClear('"+id+"')\" style='margin-top:4px;background:#f0f2f5;border:none;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:.75rem;'>🧹 Clear</button></div>";
+}
+
 // ===== 👤 Student profile · 📝 enrolment form (student / parent area) =====
 var SP = { stu: null, prof: {} };
 async function spLoad(){
@@ -19871,7 +19962,7 @@ function spStudyText(st){
 }
 async function openStudentProfilePage(){
   if(!studentSession){ return; }
-  c2pOpen("profile", "👤 Student Profile · ប្រវត្តិរូបសិស្ស", false);
+  c2pOpen("profile", "📋 Student Information Form · ទម្រង់ព័ត៌មានសិស្ស", false);
   try { await spLoad(); } catch(e){ document.getElementById("c2p-body").innerHTML = "<div class='c2p-empty'>Could not find this student's record. Please contact the school office.</div>"; return; }
   var st = SP.stu, pr = SP.prof, age = st.dob ? Math.floor((Date.now() - new Date(st.dob)) / 31557600000) : "";
   var ph = pr.photo || st.photo;
@@ -19879,41 +19970,52 @@ async function openStudentProfilePage(){
     : "<div id='sp-photo-img' style='width:96px;height:96px;border-radius:50%;background:#000080;color:#FFD700;display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-weight:800;'>"+clEsc((st.nameEn||st.nameKm||"S").charAt(0))+"</div>")
     + "<label style='font-size:.74rem;font-weight:800;color:#000080;background:#FFD700;border-radius:14px;padding:5px 12px;cursor:pointer;'>📷 " + (ph ? "Change photo · ប្តូររូប" : "Add my photo · ដាក់រូប") + "<input type='file' accept='image/*' onchange='spPickPhoto(this)' style='display:none'></label>"
     + "<span id='sp-photo-msg' style='font-size:.7rem;color:#2e7d32;'></span></div>";
-  var inp = function(id, label, val, ph2, max, type){ return "<label class='c2p-l'>"+label+"</label><input id='"+id+"' class='c2p-in' type='"+(type||"text")+"' maxlength='"+(max||80)+"' value='"+clEsc(val||"")+"' placeholder='"+clEsc(ph2||"")+"'>"; };
-  var grid = function(a){ return "<div style='display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0 10px;'>" + a.join("") + "</div>"; };
-  var head = function(t){ return "<div style='font-weight:800;color:#000080;margin:14px 0 4px;padding-top:10px;border-top:1px solid #eef0f6;'>"+t+"</div>"; };
-  document.getElementById("c2p-body").innerHTML = spLockedNote()
-    + "<div class='c2p-card' style='display:flex;gap:16px;align-items:center;flex-wrap:wrap;'>"+photo+"<div style='flex:1;min-width:160px;'><div style='font-size:1.15rem;font-weight:800;color:#000080;'>"+clEsc(st.nameKm||"")+"</div><div style='font-weight:700;'>"+clEsc(st.nameEn||"")+"</div><div style='font-family:monospace;color:#888;'>Student ID "+clEsc(st.studentId||"")+"</div><div style='font-size:.8rem;color:#555;margin-top:2px;'>"+clEsc(spStudyText(st))+"</div></div></div>"
+  var done = pr.signedAt ? "<div style='background:#e8f5e9;color:#2e7d32;border-radius:8px;padding:6px 10px;font-size:.78rem;font-weight:700;margin-top:6px;'>✅ Form signed on " + clEsc(String(pr.signedAt).slice(0,10)) + "</div>" : "<div style='background:#fff3e0;color:#c65a00;border-radius:8px;padding:6px 10px;font-size:.78rem;font-weight:700;margin-top:6px;'>📝 Please complete and sign this form · សូមបំពេញ និងចុះហត្ថលេខា</div>";
+  var html = spLockedNote()
+    + "<div class='c2p-card' style='display:flex;gap:16px;align-items:center;flex-wrap:wrap;'>"+photo+"<div style='flex:1;min-width:170px;'><div style='font-size:1.15rem;font-weight:800;color:#000080;'>"+clEsc(st.nameKm||"")+"</div><div style='font-weight:700;'>"+clEsc(st.nameEn||"")+"</div><div style='font-family:monospace;color:#888;'>Student ID "+clEsc(st.studentId||"")+"</div><div style='font-size:.8rem;color:#555;margin-top:2px;'>"+clEsc(spStudyText(st))+"</div>"+done+"</div></div>"
     + "<div class='c2p-card'><div style='font-weight:800;color:#000080;margin-bottom:4px;'>🎓 School record · ព័ត៌មានសាលា</div>"
-    + spRow("Date of birth", st.dob ? st.dob + (age !== "" ? " (" + age + " years)" : "") : "") + spRow("Gender", st.gender) + spRow("Studies", spStudyText(st))
-    + spRow("Level test", st.placementLevel) + spRow("Enrolled", (st.enrolledAt || st.createdAt || "").slice(0,10))
-    + "<div style='font-size:.74rem;color:#999;margin-top:6px;'>To correct these details, please contact the school office.</div></div>"
-    + "<div class='c2p-card'><div style='font-weight:800;color:#000080;'>✏️ Details you can update · ព័ត៌មានដែលអ្នកអាចកែប្រែ</div>"
-    + head("1 · Student · សិស្ស") + grid([inp("sp-pob","Place of birth · ទីកន្លែងកំណើត",pr.placeOfBirth,"Province",60), inp("sp-nat","Nationality · សញ្ជាតិ",pr.nationality,"Khmer",40), inp("sp-lang","Languages at home · ភាសានៅផ្ទះ",pr.homeLanguages,"Khmer, English",60)])
-    + grid([inp("sp-prev","Previous school · សាលាមុន",pr.previousSchool,"",80), inp("sp-prevg","Previous grade / level · ថ្នាក់មុន",pr.previousGrade,"",40)])
-    + head("2 · Father · ឪពុក") + grid([inp("sp-father","Name · ឈ្មោះ",pr.fatherName,"",60), inp("sp-father-job","Occupation · មុខរបរ",pr.fatherOccupation,"",60), inp("sp-father-ph","Phone · ទូរស័ព្ទ",pr.fatherPhone,"012 345 678",20,"tel")])
-    + head("3 · Mother · ម្តាយ") + grid([inp("sp-mother","Name · ឈ្មោះ",pr.motherName,"",60), inp("sp-mother-job","Occupation · មុខរបរ",pr.motherOccupation,"",60), inp("sp-mother-ph","Phone · ទូរស័ព្ទ",pr.motherPhone,"012 345 678",20,"tel")])
-    + head("4 · Guardian (if not a parent) · អាណាព្យាបាល") + grid([inp("sp-guardian","Name and relationship · ឈ្មោះ និងត្រូវជា",pr.guardian,"e.g. Sok Dara (aunt)",80), inp("sp-guardian-ph","Phone · ទូរស័ព្ទ",pr.guardianPhone,"",20,"tel")])
-    + head("5 · Contact and address · ទំនាក់ទំនង និងអាសយដ្ឋាន") + grid([inp("sp-telegram","Telegram",pr.telegram,"phone or @username",40), inp("sp-email","Email",pr.email,"",80,"email")])
-    + inp("sp-address","Home address · អាសយដ្ឋាន",pr.address,"House, street, village, commune, district, province",160)
-    + head("6 · Emergency contact · ទំនាក់ទំនងពេលអាសន្ន") + grid([inp("sp-em-name","Name · ឈ្មោះ",pr.emergencyName,"",60), inp("sp-em-rel","Relationship · ត្រូវជា",pr.emergencyRelation,"",30), inp("sp-em-ph","Phone · ទូរស័ព្ទ",pr.emergencyPhone,"",20,"tel")])
-    + "<label class='c2p-l'>Who may collect the child? · អ្នកដែលអាចមកទទួលកូន</label><textarea id='sp-pickup' class='c2p-in' maxlength='200' rows='2' placeholder='Names and phone numbers'>"+clEsc(pr.pickup||"")+"</textarea>"
-    + "<button onclick='spSave()' style='width:100%;margin-top:12px;background:#000080;color:#FFD700;border:none;border-radius:10px;padding:12px;font-weight:800;cursor:pointer;'>💾 Save · រក្សាទុក</button>"
+    + spRow("Date of birth", st.dob ? st.dob + (age !== "" ? " (" + age + " years)" : "") : "") + spRow("Gender", st.gender) + spRow("Studies", spStudyText(st)) + spRow("Level test", st.placementLevel)
+    + "<div style='font-size:.74rem;color:#999;margin-top:6px;'>To correct these details, please contact the school office.</div></div>";
+  SIF_FIELDS.forEach(function(sec){
+    html += "<div class='c2p-card'><div style='font-weight:800;color:#000080;margin-bottom:6px;'>"+sec[0]+"</div><div style='display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 12px;'>"
+      + sec[1].map(function(f){ return "<div style='"+(f[2]==="checks"||f[2]==="textarea"||f[0]==="address"?"grid-column:1/-1;":"")+"'>"+sifInput(f, pr[f[0]] || (f[0]==="otherLanguages" ? pr.homeLanguages : ""))+"</div>"; }).join("") + "</div></div>";
+  });
+  html += "<div class='c2p-card'><div style='font-weight:800;color:#000080;margin-bottom:6px;'>E · CONSENTS · ការយល់ព្រម</div>"
+    + SIF_CONSENTS.map(function(c){ return "<label style='display:flex;gap:10px;align-items:flex-start;font-size:.82rem;margin:8px 0;cursor:pointer;'><input type='checkbox' id='sif-"+c[0]+"' style='width:20px;height:20px;flex-shrink:0;margin-top:1px;'"+(pr[c[0]]?" checked":"")+"> <span>"+clEsc(c[1])+(c[2]?" <b style='color:#c62828;'>*</b>":"")+"</span></label>"; }).join("") + "</div>";
+  html += "<div class='c2p-card'><div style='font-weight:800;color:#000080;margin-bottom:6px;'>F · SIGNATURES · ហត្ថលេខា</div>"
+    + "<div style='font-size:.78rem;color:#555;margin-bottom:8px;'>Sign with a finger or the mouse. The parent or guardian must sign; the student signs too when able (age 7+). · ឪពុកម្តាយ/អាណាព្យាបាលត្រូវចុះហត្ថលេខា</div>"
+    + "<div style='display:grid;grid-template-columns:2fr 1fr;gap:8px;'><input id='sif-gname' class='c2p-in' maxlength='80' placeholder='Parent / guardian full name' value='"+clEsc(pr.guardianSignName||"")+"'><select id='sif-grel' class='c2p-in'>"+["Mother","Father","Guardian","Student (18+)"].map(function(o){ return "<option"+(pr.guardianSignRelation===o?" selected":"")+">"+o+"</option>"; }).join("")+"</select></div>"
+    + "<div style='display:flex;gap:14px;flex-wrap:wrap;'>" + sifSigBlock("sif-pad-g", "👨‍👩‍👧 Parent / Guardian signature *", pr.guardianSignName, pr.guardianSignature) + sifSigBlock("sif-pad-s", "🎓 Student signature", pr.studentSignName, pr.studentSignature) + "</div>"
+    + "<button onclick='spSave(true)' style='width:100%;margin-top:14px;background:#000080;color:#FFD700;border:none;border-radius:10px;padding:13px;font-weight:800;cursor:pointer;font-size:.95rem;'>✍️ Save and sign · រក្សាទុក និងចុះហត្ថលេខា</button>"
+    + "<button onclick='spSave(false)' style='width:100%;margin-top:8px;background:#f0f2f5;color:#000080;border:none;border-radius:10px;padding:10px;font-weight:700;cursor:pointer;'>💾 Save draft (sign later)</button>"
     + "<div id='sp-msg' style='display:none;margin-top:8px;'></div></div>";
+  document.getElementById("c2p-body").innerHTML = html;
+  sifPad("sif-pad-g"); sifPad("sif-pad-s");
 }
-async function spSave(){
-  var v = function(id){ var e = document.getElementById(id); return e ? e.value.trim() : ""; }, msg = document.getElementById("sp-msg");
-  var phones = ["sp-father-ph","sp-mother-ph","sp-guardian-ph","sp-em-ph"].map(v).filter(Boolean);
-  if(phones.some(function(p){ return !/^[+0-9 ()-]{8,20}$/.test(p); })){ msg.style.cssText = "display:block;color:#c62828;font-size:.82rem;"; msg.textContent = "Please check the phone numbers."; return; }
-  var d = { studentId: SP.stu.studentId, studentName: SP.stu.nameEn || SP.stu.nameKm || "", placeOfBirth: v("sp-pob"), nationality: v("sp-nat"), homeLanguages: v("sp-lang"),
-    previousSchool: v("sp-prev"), previousGrade: v("sp-prevg"), fatherName: v("sp-father"), fatherOccupation: v("sp-father-job"), fatherPhone: v("sp-father-ph"),
-    motherName: v("sp-mother"), motherOccupation: v("sp-mother-job"), motherPhone: v("sp-mother-ph"), guardian: v("sp-guardian"), guardianPhone: v("sp-guardian-ph"),
-    telegram: v("sp-telegram"), email: v("sp-email"), address: v("sp-address"), emergencyName: v("sp-em-name"), emergencyRelation: v("sp-em-rel"), emergencyPhone: v("sp-em-ph"),
-    pickup: v("sp-pickup"), updatedAt: new Date().toISOString() };
-  if(SP.prof && SP.prof.photo) d.photo = SP.prof.photo;
+async function spSave(sign){
+  var msg = document.getElementById("sp-msg"), fail = function(t){ msg.style.cssText = "display:block;color:#c62828;font-size:.84rem;font-weight:700;"; msg.textContent = t; };
+  var d = { studentId: SP.stu.studentId, studentName: SP.stu.nameEn || SP.stu.nameKm || "", updatedAt: new Date().toISOString() };
+  SIF_FIELDS.forEach(function(sec){ sec[1].forEach(function(f){ d[f[0]] = sifValue(f); }); });
+  SIF_CONSENTS.forEach(function(c){ d[c[0]] = !!document.getElementById("sif-"+c[0]).checked; });
+  var phones = ["fatherPhone","motherPhone","guardianPhone","emergencyPhone"].map(function(k2){ return d[k2]; }).filter(Boolean);
+  if(phones.some(function(x){ return !/^[+0-9 ()-]{8,20}$/.test(x); })) return fail("Please check the phone numbers · សូមពិនិត្យលេខទូរស័ព្ទ");
+  ["photo","studentSignature","studentSignName","guardianSignature","guardianSignName","guardianSignRelation","signedAt"].forEach(function(k2){ if(SP.prof && SP.prof[k2]) d[k2] = SP.prof[k2]; });
+  if(sign){
+    var gname = document.getElementById("sif-gname").value.trim();
+    if(!d.fatherName && !d.motherName && !d.guardian) return fail("Please fill in at least one parent or guardian (section B).");
+    if(!(d.fatherPhone || d.motherPhone || d.guardianPhone)) return fail("Please add at least one parent or guardian phone number.");
+    if(!d.emergencyName || !d.emergencyPhone) return fail("Please add an emergency contact (section D).");
+    if(!d.consentData) return fail("Please tick the last consent box (information is correct) · សូមធីកប្រអប់ចុងក្រោយ");
+    if(gname.length < 2) return fail("Please type the parent / guardian full name.");
+    if(!SIF_PADS["sif-pad-g"] && !d.guardianSignature) return fail("The parent / guardian must sign in the box · សូមចុះហត្ថលេខា");
+    if(SIF_PADS["sif-pad-g"]) d.guardianSignature = sifSig("sif-pad-g");
+    if(SIF_PADS["sif-pad-s"]){ d.studentSignature = sifSig("sif-pad-s"); d.studentSignName = SP.stu.nameEn || SP.stu.nameKm || ""; }
+    d.guardianSignName = gname; d.guardianSignRelation = document.getElementById("sif-grel").value; d.signedAt = new Date().toISOString();
+  }
   try { var {db, doc, setDoc} = window._fb; await setDoc(doc(db,"studentProfiles", SP.stu._id), d); SP.prof = d;
-    msg.style.cssText = "display:block;color:#2e7d32;font-weight:700;font-size:.85rem;"; msg.textContent = "✅ Saved. Thank you! · បានរក្សាទុក";
-  } catch(e){ msg.style.cssText = "display:block;color:#c62828;font-size:.82rem;"; msg.textContent = SP.locked || /permission/i.test(e.message) ? "Saving is not switched on yet — please ask the school office to publish the latest security rules." : "Could not save: " + e.message; }
+    msg.style.cssText = "display:block;color:#2e7d32;font-weight:800;font-size:.88rem;"; msg.textContent = sign ? "✅ Saved and signed. Thank you! · បានរក្សាទុក និងចុះហត្ថលេខា" : "✅ Draft saved · បានរក្សាទុក";
+    if(sign) setTimeout(openStudentProfilePage, 900);
+  } catch(e){ fail(SP.locked || /permission/i.test(e.message) ? "Saving is not switched on yet — please ask the school office to publish the latest security rules." : "Could not save: " + e.message); }
 }
 async function openEnrolmentFormPage(){
   if(!studentSession){ return; }
@@ -19938,21 +20040,24 @@ async function openEnrolmentFormPage(){
     + "<div style='text-align:center;font-weight:800;font-size:1.05rem;color:#000080;letter-spacing:2px;'>STUDENT ENROLMENT FORM</div><div style='text-align:center;font-size:.85rem;color:#000080;margin-bottom:8px;'>ពាក្យសុំចូលរៀន</div>"
     + "<table style='width:100%;border-collapse:collapse;font-size:.82rem;'>"
     + sec("1 · STUDENT INFORMATION · ព័ត៌មានសិស្ស") + r("Student ID", st.studentId) + r("Full name (Khmer) · ឈ្មោះ", st.nameKm) + r("Full name (English)", st.nameEn) + r("Gender · ភេទ", st.gender)
-    + r("Date of birth · ថ្ងៃខែឆ្នាំកំណើត", st.dob) + r("Place of birth · ទីកន្លែងកំណើត", pr.placeOfBirth) + r("Nationality · សញ្ជាតិ", pr.nationality) + r("Languages at home", pr.homeLanguages)
+    + r("Date of birth · ថ្ងៃខែឆ្នាំកំណើត", st.dob) + r("Place of birth · ទីកន្លែងកំណើត", pr.placeOfBirth) + r("Nationality · សញ្ជាតិ", pr.nationality) + r("First language", pr.firstLanguage) + r("Other languages", pr.otherLanguages || pr.homeLanguages) + r("Preferred name", pr.nickname) + r("Lives with", pr.livesWith) + r("Learning support needs", pr.learningSupport)
     + sec("2 · PROGRAMME OF STUDY · កម្មវិធីសិក្សា") + r("Study mode · របៀបសិក្សា", mode) + r("Class / course · ថ្នាក់ / វគ្គ", spStudyText(st)) + r("Level test result", st.placementLevel) + r("Date of enrolment", (st.enrolledAt || st.createdAt || "").slice(0,10))
     + sec("3 · PARENTS / GUARDIAN · ឪពុកម្តាយ / អាណាព្យាបាល") + fam
-    + sec("4 · CONTACT AND ADDRESS · ទំនាក់ទំនង") + r("Home address · អាសយដ្ឋាន", pr.address) + r("Telegram", pr.telegram) + r("Email", pr.email)
-    + sec("5 · EMERGENCY CONTACT AND PICK-UP · ពេលអាសន្ន") + r("Emergency contact", [pr.emergencyName, pr.emergencyRelation, pr.emergencyPhone].filter(Boolean).join(" · ")) + r("Persons allowed to collect the child", pr.pickup)
+    + sec("4 · CONTACT AND ADDRESS · ទំនាក់ទំនង") + r("Home address · អាសយដ្ឋាន", [pr.address, pr.province].filter(Boolean).join(", ")) + r("Telegram", pr.telegram) + r("Email", pr.email) + r("Language for school messages", pr.messageLanguage)
+    + sec("5 · EMERGENCY CONTACT AND PICK-UP · ពេលអាសន្ន") + r("Emergency contact", [pr.emergencyName, pr.emergencyRelation, pr.emergencyPhone].filter(Boolean).join(" · ")) + r("Persons allowed to collect the child", pr.pickup) + r("Transport to school", pr.transport)
     + sec("6 · HEALTH SUMMARY · សុខភាព") + r("Allergies · អាឡែកហ្ស៊ី", hp.allergies) + r("Medical conditions", hp.conditions) + r("Regular medicine", hp.medicines) + r("Blood group", hp.bloodGroup || hp.blood)
     + sec("7 · PREVIOUS EDUCATION · ការសិក្សាមុន") + r("Previous school", pr.previousSchool) + r("Previous grade / level", pr.previousGrade)
+    + sec("8 · CONSENTS · ការយល់ព្រម") + SIF_CONSENTS.map(function(c){ return r(c[1].split(" · ")[0], pr[c[0]] ? "✔ Yes" : "✘ No"); }).join("")
     + "</table>"
     + "<div style='font-size:.76rem;line-height:1.5;margin:10px 0 0;padding:8px 10px;background:#f7f8ff;border-radius:6px;'><b>DECLARATION · សេចក្តីប្រកាស</b><br>I declare that the information in this form is true and complete. I have read and accept the Study Agreement and the Student Code of Conduct, and I will inform the School of any changes.<br>ខ្ញុំសូមប្រកាសថា ព័ត៌មានក្នុងពាក្យសុំនេះពិតប្រាកដ និងពេញលេញ។ ខ្ញុំបានអាន និងយល់ព្រមលើកិច្ចព្រមព្រៀងការសិក្សា និងក្រមប្រតិបត្តិសិស្ស ហើយនឹងជូនដំណឹងសាលាពេលមានការផ្លាស់ប្តូរ។</div>"
-    + "<div style='display:flex;gap:24px;margin-top:30px;font-size:.74rem;color:#555;'><div style='flex:1;border-top:1px solid #999;text-align:center;padding-top:4px;'>Parent / Guardian signature · ហត្ថលេខាអាណាព្យាបាល<br>Date: ......................</div><div style='flex:1;border-top:1px solid #999;text-align:center;padding-top:4px;'>Student signature (age 12+) · ហត្ថលេខាសិស្ស<br>Date: ......................</div></div>"
+    + "<div style='display:flex;gap:24px;margin-top:"+(pr.guardianSignature||pr.studentSignature?"10":"30")+"px;font-size:.74rem;color:#555;'>"
+    + "<div style='flex:1;text-align:center;'>"+(pr.guardianSignature?"<img src='"+pr.guardianSignature+"' alt='' style='height:52px;max-width:100%;'>":"")+"<div style='border-top:1px solid #999;padding-top:4px;'>Parent / Guardian signature · ហត្ថលេខាអាណាព្យាបាល<br>"+E(pr.guardianSignName||"")+(pr.guardianSignRelation?" ("+E(pr.guardianSignRelation)+")":"")+"<br>Date: "+(pr.signedAt?E(String(pr.signedAt).slice(0,10)):"......................")+"</div></div>"
+    + "<div style='flex:1;text-align:center;'>"+(pr.studentSignature?"<img src='"+pr.studentSignature+"' alt='' style='height:52px;max-width:100%;'>":"")+"<div style='border-top:1px solid #999;padding-top:4px;'>Student signature · ហត្ថលេខាសិស្ស<br>"+E(pr.studentSignName||"")+"<br>Date: "+(pr.studentSignature&&pr.signedAt?E(String(pr.signedAt).slice(0,10)):"......................")+"</div></div></div>"
     + "<div style='margin-top:14px;border:1.5px dashed #000080;border-radius:6px;padding:8px 10px;font-size:.74rem;'><b style='color:#000080;'>FOR OFFICE USE ONLY · សម្រាប់ការិយាល័យ</b>"
     + "<div style='display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;margin-top:6px;'><div>Date received: ....................</div><div>Received by: ....................</div><div>Class assigned: ....................</div><div>Receipt no.: ....................</div>"
     + "<div><span style='"+box+"'></span>Documents checked <span style='"+box+"margin-left:8px;'></span>Photo</div><div>Approved by (Principal): ....................</div></div></div>"
     + "</div>"
-    + "<div style='display:flex;gap:8px;margin-top:10px;'><button onclick=\"openStudentProfilePage()\" style='flex:1;background:#f0f2f5;border:none;border-radius:10px;padding:11px;font-weight:700;cursor:pointer;'>✏️ Update details</button>"
+    + "<div style='display:flex;gap:8px;margin-top:10px;'><button onclick=\"openStudentProfilePage()\" style='flex:1;background:#f0f2f5;border:none;border-radius:10px;padding:11px;font-weight:700;cursor:pointer;'>✏️ Fill in / sign the form</button>"
     + "<button onclick='spPrintEnrolment()' style='flex:1;background:#000080;color:#FFD700;border:none;border-radius:10px;padding:11px;font-weight:800;cursor:pointer;'>🖨️ Print / Save PDF (A4)</button></div>";
 }
 function spPrintEnrolment(){

@@ -110,6 +110,47 @@ main{max-width:1240px;margin:0 auto;padding:24px 24px 48px;display:flex;flex-dir
 .banks button.on{background:var(--navy);color:#fff}
 @media (max-width:640px){ main{padding:18px 16px 40px} header{padding-left:16px;padding-right:16px} .hero{padding:22px} .hero-text h1{font-size:24px} }
 @media (prefers-reduced-motion:reduce){ *{transition:none!important;animation:none!important} }
+
+/* ===== compact layout: fits phones, tablets and computers ===== */
+#signin{padding:calc(14px + env(safe-area-inset-top,0px)) 14px 18px;align-items:flex-start}
+@media (min-height:760px){#signin{align-items:center}}
+.signin-box{max-width:400px;gap:12px}
+.signin-head{gap:6px}
+.logo-big{width:clamp(96px,26vw,150px);filter:drop-shadow(0 4px 10px rgba(0,0,0,.3))}
+.signin-head h1{font-size:clamp(19px,5.2vw,24px);line-height:1.2}
+.signin-head p{font-size:13px}
+.tag{font-size:10px;padding:3px 8px}
+.tabs{padding:4px;border-radius:12px}.tabs button{min-height:40px;font-size:13px}
+.card{padding:16px;border-radius:16px}
+.field{margin-bottom:10px;gap:5px;font-size:12px}
+.field input{min-height:44px;font-size:17px;border-radius:10px}
+.btn{min-height:44px;font-size:14px;border-radius:10px}
+.help{padding:10px 12px;font-size:12px;border-radius:12px}
+#apply-open{min-height:44px !important;font-size:13px}
+header{padding-left:14px;padding-right:14px}
+.bar{min-height:54px;gap:10px}.brand{font-size:15px;gap:8px}.logo-small{height:34px}
+main{padding:14px 14px 30px;gap:14px}
+.hero{padding:16px;gap:14px;border-radius:16px}
+.avatar{width:64px;height:64px;font-size:22px}
+.hero-text{flex:1 1 200px}.hero-text h1{font-size:clamp(20px,5vw,26px);margin:0 0 2px}.hero-text .meta{font-size:12.5px}
+.continue{flex:1 1 220px;padding:12px 16px;border-radius:12px}.continue b{font-size:16px}
+.stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.stat{padding:10px 12px;border-radius:12px}.stat .l{font-size:11.5px}.stat .v{font-size:20px;margin-top:2px}
+.cols{gap:14px}
+.lessons{padding:14px;border-radius:14px;flex-basis:520px}.lessons-head h2{font-size:16px}
+.units{grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:8px}
+.unit{padding:10px;min-height:70px;border-radius:10px}.unit .t{font-size:13px}.unit .n{font-size:11px}
+.side{gap:12px;flex-basis:280px}
+.box{padding:14px;border-radius:14px}.box h2{font-size:15px;margin-bottom:6px}.box p{font-size:13px}.box .btn{margin-top:8px}
+.fee{padding:9px 11px;margin-top:8px}
+#staff .stats{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+.tbl{font-size:13px}.tbl td,.tbl th{padding:7px 6px}
+@media (max-width:420px){
+  .stats{gap:8px}.stat{padding:8px 9px}.stat .v{font-size:18px}
+  .units{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .continue{flex-basis:100%}
+}
+@media (min-width:1100px){ main{padding:22px 24px 40px} .stat .v{font-size:24px} }
 </style>
 </head>
 <body>

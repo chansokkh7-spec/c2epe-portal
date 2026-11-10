@@ -747,6 +747,7 @@ function logoImgError(img){
         style="width:100%;padding:8px;background:none;border:none;color:#aaa;cursor:pointer;font-size:.8rem;">
         Continue as Parent (View only)
       </button>
+<button onclick="closeAuthModal();showParentModal();setTimeout(function(){var b=document.getElementById('c2-online-box');if(b)b.scrollIntoView({block:'center'});},120);" style="width:100%;padding:10px;margin-top:4px;background:#fffbea;border:2px solid #e8c766;color:#0b1f4d;border-radius:8px;font-weight:800;cursor:pointer;font-size:.84rem;">👨‍👩‍👧 Student / Parent · 💻 Online Class</button>
     </div>
 
     <!-- Forgot Password Form -->
@@ -1021,6 +1022,12 @@ function logoImgError(img){
           🔓 View My Child's Studies
         </button>
         <p style="font-size:.72rem;color:#999;text-align:center;margin-top:6px;">Don't have a Student ID? Please ask your child's teacher.</p>
+<div id="c2-online-box" style="margin-top:12px;border:2px solid #e8c766;background:#fffbea;border-radius:12px;padding:12px;">
+<div style="font-weight:800;color:#0b1f4d;font-size:.92rem;margin-bottom:2px;">💻 Online Class · ថ្នាក់អនឡាញ</div>
+<div style="font-size:.74rem;color:#6b5a1f;margin-bottom:8px;">Online students: type the Student ID and PIN above, then tap here.</div>
+<button onclick="c2PortalOnlineLogin()" id="c2-online-btn" style="width:100%;padding:11px;background:#0b1f4d;color:#e8c766;border:none;border-radius:8px;font-weight:800;cursor:pointer;font-size:.88rem;margin-bottom:6px;">💻 Go to my Online Class</button>
+<button onclick="location.href='online-dashboard.html#register'" style="width:100%;padding:9px;background:#fff;color:#0b1f4d;border:1.5px solid #0b1f4d;border-radius:8px;font-weight:700;cursor:pointer;font-size:.8rem;">📝 New student? Register &amp; try 7 days free</button>
+</div>
       </div>
       <button onclick="closeParentModal()"
         style="width:100%;padding:8px;background:none;border:none;color:#aaa;cursor:pointer;font-size:.8rem;">
@@ -6343,7 +6350,7 @@ async function loginWithStudentId(){
       // normalizes it on the fly so dropdowns/filters (which now only
       // offer "K0") match correctly without requiring anyone to manually
       // edit old data in the Firebase Console.
-      studentSession = { studentId: raw, docId: d.id, name: s.nameEn || s.nameKm || 'Student', cls: baseLevel(s.cls || '') };
+      studentSession = { studentId: raw, docId: d.id, name: s.nameEn || s.nameKm || 'Student', cls: baseLevel(s.cls || ''), online: !!s.online, onlineCourse: s.onlineCourse || '', onlineUntil: s.onlineUntil || '', classroom: s.classroom !== false, paidUntil: s.paidUntil || '', allowReview: !!s.allowReview, nameKm: s.nameKm || '' };
       localStorage.setItem('c2epe_student_session', JSON.stringify(studentSession));
       parentClass = studentSession.cls;
       localStorage.setItem('c2epe_parent_class', parentClass);
@@ -6357,7 +6364,7 @@ async function loginWithStudentId(){
       // Fresh login only — a returning session restored from localStorage
       // (page reload) shouldn't re-pop this every single time, only the
       // moment the family actually signs in.
-      showWelcomeLevelPopup(studentSession.cls, studentSession.name);
+      if(!window.__c2SkipWelcome) showWelcomeLevelPopup(studentSession.cls, studentSession.name);
     }
   } catch(e){
     errEl.style.display='block';
@@ -6369,7 +6376,7 @@ function updateParentBanner(){
   if(isTeacher) return;
   var banner = document.getElementById('role-banner');
   if(studentSession){
-    banner.innerHTML = '👨‍👩‍👧 Viewing for <strong style="color:#1565c0;">'+studentSession.name+'</strong> ('+studentSession.cls+') &nbsp;|&nbsp; <a href="#" onclick="openStudentSharePage()" style="color:#8e24aa;font-weight:700;">📸 Share My Work</a> &nbsp;|&nbsp; <a href="#" onclick="openExamPortalPage()" style="color:#5e35b1;font-weight:700;">🎓 Examination Portal<span id="exam-link-status"></span></a> &nbsp;|&nbsp; <a href="#" onclick="openMyTestsPage()" style="color:#00695c;font-weight:700;">📚 My Tests</a> &nbsp;|&nbsp; <a href="#" id="parent-notif-link" onclick="requestNotificationPermission()" style="color:#c65a00;font-weight:700;">🔔 Turn On Notifications</a> &nbsp;|&nbsp; <a href="#" onclick="showParentModal()" style="color:#388e3c;font-weight:700;">Switch child</a> &nbsp;|&nbsp; <a href="#" onclick="logoutStudentSession()" style="color:#e53935;font-weight:700;">Log out</a>';
+    banner.innerHTML = '👨‍👩‍👧 Viewing for <strong style="color:#1565c0;">'+studentSession.name+'</strong> ('+studentSession.cls+') &nbsp;|&nbsp; ' + (studentSession.online ? '<a href="#" onclick="c2GoOnline();return false;" style="color:#0b1f4d;background:#e8c766;border-radius:10px;padding:1px 8px;font-weight:800;">💻 My Online Class</a> &nbsp;|&nbsp; ' : '') + '<a href="#" onclick="openStudentSharePage()" style="color:#8e24aa;font-weight:700;">📸 Share My Work</a> &nbsp;|&nbsp; <a href="#" onclick="openExamPortalPage()" style="color:#5e35b1;font-weight:700;">🎓 Examination Portal<span id="exam-link-status"></span></a> &nbsp;|&nbsp; <a href="#" onclick="openMyTestsPage()" style="color:#00695c;font-weight:700;">📚 My Tests</a> &nbsp;|&nbsp; <a href="#" id="parent-notif-link" onclick="requestNotificationPermission()" style="color:#c65a00;font-weight:700;">🔔 Turn On Notifications</a> &nbsp;|&nbsp; <a href="#" onclick="showParentModal()" style="color:#388e3c;font-weight:700;">Switch child</a> &nbsp;|&nbsp; <a href="#" onclick="logoutStudentSession()" style="color:#e53935;font-weight:700;">Log out</a>';
     banner.style.cssText = 'padding:5px 16px;text-align:center;font-size:.8rem;font-weight:600;background:#e8f5e9;border-bottom:2px solid #4caf50;color:#2e7d32;';
     checkFeeDueSoonAlert();
     refreshExamLinkStatus();
@@ -10593,8 +10600,9 @@ async function c2ShowFamilyDetails(s){
     var sn = await fs.getDoc(doc(db,"studentProfiles", s.id)); if(!sn.exists()) return; var p = sn.data();
     var rows = [["Father", [p.fatherName, p.fatherPhone]], ["Mother", [p.motherName, p.motherPhone]], ["Guardian", [p.guardian]], ["Telegram", [p.telegram]], ["Email", [p.email]], ["Address", [p.address]], ["Pick-up", [p.pickup]], ["Previous school", [p.previousSchool]]]
       .filter(function(r){ return r[1].some(Boolean); }).map(function(r){ return "<div><b>"+r[0]+":</b> "+escapeHtml(r[1].filter(Boolean).join(" · "))+"</div>"; }).join("");
-    if(!rows) return;
-    box.innerHTML = "<div style='font-weight:800;color:#2e7d32;margin-bottom:3px;'>📇 Family details (updated by the family " + escapeHtml(String(p.updatedAt||"").slice(0,10)) + ")</div>" + rows; box.style.display = "block";
+    if(!rows && !p.photo) return;
+    var ph = p.photo ? "<div style='display:flex;align-items:center;gap:8px;margin:4px 0;'><img src='"+p.photo+"' alt='Family photo' style='width:46px;height:46px;border-radius:50%;object-fit:cover;'><button type='button' onclick=\"c2UseFamilyPhoto('"+s.id+"')\" style='background:#2e7d32;color:#fff;border:none;border-radius:6px;padding:5px 9px;font-size:.72rem;font-weight:700;cursor:pointer;'>Use as official photo</button></div>" : "";
+    box.innerHTML = "<div style='font-weight:800;color:#2e7d32;margin-bottom:3px;'>📇 Family details (updated by the family " + escapeHtml(String(p.updatedAt||"").slice(0,10)) + ")</div>" + ph + rows; box.style.display = "block";
   } catch(e){}
 }
 
@@ -19677,6 +19685,65 @@ function clProfileHTML(p, compact){
 
 
 
+
+// ===== 💻 Online Class from the Portal (one shared sign-in) =====
+function c2HandOver(){
+  if(!studentSession) return;
+  var st = studentSession;
+  try {
+    sessionStorage.setItem('c2_online_session', JSON.stringify({ id: st.studentId, docId: st.docId, name: st.name, km: st.nameKm || '', course: st.onlineCourse || 'Online', until: st.onlineUntil || '' }));
+    sessionStorage.setItem('seg_student', JSON.stringify({ id: st.studentId, name: st.name, allowedSystems: [], fromPortal: true, cls: st.cls || '', paidUntil: st.paidUntil || '',
+      classroom: st.classroom !== false, online: !!st.online, onlineCourse: st.onlineCourse || '', onlineUntil: st.onlineUntil || '', allowReview: !!st.allowReview }));
+  } catch(e){}
+}
+function c2GoOnline(){
+  if(!studentSession || !studentSession.online){ alert('This Student ID is not enrolled in Online Class. Please contact the Front Desk.'); return; }
+  c2HandOver(); location.href = 'online-dashboard.html';
+}
+async function c2PortalOnlineLogin(){
+  var typed = (document.getElementById('parent-student-id').value || '').trim().toUpperCase().replace(/\s+/g,'');
+  var err = document.getElementById('parent-id-err');
+  if(!typed){ err.style.display = 'block'; err.textContent = 'Please type the Student ID (and PIN) above first.'; document.getElementById('parent-student-id').focus(); return; }
+  var btn = document.getElementById('c2-online-btn'); btn.disabled = true; btn.textContent = 'Checking…';
+  window.__c2SkipWelcome = true;
+  try { await loginWithStudentId(); } finally { window.__c2SkipWelcome = false; btn.disabled = false; btn.textContent = '💻 Go to my Online Class'; }
+  if(studentSession && studentSession.studentId === typed){
+    if(studentSession.online) c2GoOnline();
+    else { showParentModal(); err.style.display = 'block'; err.textContent = 'You are signed in, but this Student ID is not enrolled in Online Class.'; }
+  }
+}
+// ===== 📷 student photo (saved with the family profile) =====
+function c2PhotoToData(file){
+  return new Promise(function(res, rej){
+    var r = new FileReader(); r.onerror = rej;
+    r.onload = function(){ var im = new Image(); im.onerror = rej; im.onload = function(){
+      var S = 320, c = document.createElement('canvas'); c.width = S; c.height = S; var x = c.getContext('2d');
+      var m = Math.min(im.width, im.height); x.drawImage(im, (im.width - m) / 2, (im.height - m) / 2, m, m, 0, 0, S, S);
+      var q = 0.82, out = c.toDataURL('image/jpeg', q); while(out.length > 110000 && q > 0.4){ q -= 0.1; out = c.toDataURL('image/jpeg', q); }
+      res(out); }; im.src = r.result; };
+    r.readAsDataURL(file);
+  });
+}
+async function spPickPhoto(input){
+  var f = input.files && input.files[0], msg = document.getElementById('sp-photo-msg'); if(!f) return;
+  if(!/^image\//.test(f.type)){ msg.textContent = 'Please choose a photo.'; return; }
+  msg.textContent = 'Saving photo…';
+  try {
+    var data = await c2PhotoToData(f), {db, doc, setDoc} = window._fb;
+    await setDoc(doc(db,'studentProfiles', SP.stu._id), { studentId: SP.stu.studentId, studentName: SP.stu.nameEn || SP.stu.nameKm || '', photo: data, updatedAt: new Date().toISOString() }, {merge:true});
+    SP.prof.photo = data; document.getElementById('sp-photo-img').outerHTML = "<img id='sp-photo-img' src='" + data + "' alt='Student photo' style='width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid #FFD700;'>";
+    msg.textContent = '✅ Photo saved.';
+  } catch(e){ msg.textContent = 'Could not save the photo: ' + e.message; }
+  input.value = '';
+}
+async function c2UseFamilyPhoto(docId){
+  try { var fs = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"), {db, doc, setDoc} = window._fb;
+    var sn = await fs.getDoc(doc(db,'studentProfiles', docId)); if(!sn.exists() || !sn.data().photo) return;
+    await setDoc(doc(db,'students', docId), { photo: sn.data().photo, updatedAt: new Date().toISOString() }, {merge:true});
+    alert('✅ The family photo is now the official student photo.'); if(typeof loadStudents === 'function') loadStudents();
+  } catch(e){ alert('Could not set the photo: ' + e.message); }
+}
+
 // ===== 📜 study contract · ⚖️ school rules =====
 var C2_DOC_DEFAULTS = {"contract": {"en": "STUDY CONTRACT — C2-EPE Digital Academy\n\n1. Enrolment. The student is enrolled in the class or online course shown on the Enrolment Form for the period that has been paid.\n2. Fees. Tuition is paid in advance (1, 3, 6 or 12 months). The admission fee is paid once; the exam fee once per school year. Fees, once paid, are not refundable and cannot be transferred to another student.\n3. Late payment. If fees are not paid by the due date, lessons stay open for 7 more days. After that, lessons are locked until payment is confirmed.\n4. Attendance. The student attends regularly and on time (classroom), or follows the online lessons at least 3 times a week (online). The family informs the school of any absence.\n5. Learning. The student completes homework, tests and online activities honestly, without copying.\n6. Behaviour. The student follows the School Rules. Serious or repeated misconduct may lead to suspension.\n7. Online accounts. The Student ID and PIN are private and must not be shared. The school may close an account that is shared or misused.\n8. Health and safety. The family keeps the health profile and emergency contacts up to date.\n9. Photos and work. The school may share students' work and class photos on school channels; the family may ask in writing for this to stop.\n10. Communication. The family reads school messages and replies promptly. Changes to this contract are announced in the Portal.\n\nBy signing, the parent/guardian confirms they have read and accept this contract.", "km": "កិច្ចសន្យាការសិក្សា — C2-EPE Digital Academy\n\n១. ការចុះឈ្មោះ៖ សិស្សត្រូវបានចុះឈ្មោះក្នុងថ្នាក់ ឬវគ្គ Online ដែលមានក្នុងពាក្យសុំចូលរៀន សម្រាប់រយៈពេលដែលបានបង់ប្រាក់។\n២. ថ្លៃសិក្សា៖ ថ្លៃសិក្សាត្រូវបង់ជាមុន (១ ៣ ៦ ឬ ១២ ខែ)។ ថ្លៃចុះឈ្មោះបង់តែម្តង ហើយថ្លៃប្រឡងបង់ម្តងក្នុងមួយឆ្នាំសិក្សា។ ថ្លៃដែលបានបង់ហើយ មិនអាចដកវិញ ឬផ្ទេរទៅសិស្សផ្សេងបានទេ។\n៣. ការបង់យឺត៖ ប្រសិនបើមិនបង់តាមកាលកំណត់ មេរៀននៅតែបើក ៧ ថ្ងៃទៀត។ ក្រោយនោះ មេរៀនត្រូវបានចាក់សោ រហូតដល់ការបង់ប្រាក់ត្រូវបានបញ្ជាក់។\n៤. វត្តមាន៖ សិស្សមករៀនទៀងទាត់ និងទាន់ពេល (ក្នុងថ្នាក់) ឬរៀន Online យ៉ាងតិច ៣ ដងក្នុងមួយសប្តាហ៍។ គ្រួសារត្រូវជូនដំណឹងសាលាពេលអវត្តមាន។\n៥. ការសិក្សា៖ សិស្សធ្វើកិច្ចការផ្ទះ តេស្ត និងសកម្មភាព Online ដោយស្មោះត្រង់ មិនចម្លង។\n៦. ឥរិយាបថ៖ សិស្សគោរពច្បាប់វិន័យសាលា។ ការប្រព្រឹត្តខុសធ្ងន់ធ្ងរ ឬម្តងហើយម្តងទៀត អាចនាំឱ្យផ្អាកការសិក្សា។\n៧. គណនី Online៖ Student ID និង PIN ជាការសម្ងាត់ មិនត្រូវចែករំលែក។ សាលាអាចបិទគណនីដែលត្រូវបានចែករំលែក ឬប្រើខុស។\n៨. សុខភាព និងសុវត្ថិភាព៖ គ្រួសារធ្វើបច្ចុប្បន្នភាពព័ត៌មានសុខភាព និងលេខទំនាក់ទំនងពេលអាសន្នជានិច្ច។\n៩. រូបថត និងស្នាដៃ៖ សាលាអាចចែករំលែកស្នាដៃ និងរូបថតថ្នាក់រៀននៅលើបណ្តាញសាលា។ គ្រួសារអាចស្នើជាលាយលក្ខណ៍អក្សរឱ្យឈប់។\n១០. ទំនាក់ទំនង៖ គ្រួសារអានសាររបស់សាលា ហើយឆ្លើយតបទាន់ពេល។ ការផ្លាស់ប្តូរកិច្ចសន្យានេះនឹងជូនដំណឹងក្នុង Portal។\n\nដោយចុះហត្ថលេខា ឪពុកម្តាយ/អាណាព្យាបាល បញ្ជាក់ថាបានអាន និងយល់ព្រមលើកិច្ចសន្យានេះ។", "version": 1}, "rules": {"en": "SCHOOL RULES FOR STUDENTS\n\n1. Be on time for every lesson, in class or online.\n2. Wear the school uniform neatly (classroom) and dress properly on camera (online).\n3. Respect teachers, staff and classmates — no bullying, teasing or fighting, in person or online.\n4. Speak English in English lessons as much as you can.\n5. Bring your books and materials, and look after school property.\n6. Keep phones on silent and use them only when the teacher allows.\n7. Do your own work — copying and cheating are not allowed.\n8. Keep the classroom and the school clean; put rubbish in the bin.\n9. Online: keep your camera on when asked, mute when not speaking, and never share your Student ID or PIN.\n10. Ask permission before leaving the classroom or the online lesson.\n11. Tell a teacher at once if you feel unwell or unsafe, or see someone who needs help.\n12. Be kind, be honest, and try your best every day.\n\nBreaking the rules: 1st time — a warning; 2nd time — the family is informed; repeated or serious — a meeting and possible suspension.", "km": "ច្បាប់វិន័យសាលាសម្រាប់សិស្ស\n\n១. មករៀនទាន់ពេលគ្រប់មេរៀន ទាំងក្នុងថ្នាក់ និង Online។\n២. ស្លៀកពាក់ឯកសណ្ឋានសាលាឱ្យបានស្អាត (ក្នុងថ្នាក់) និងស្លៀកពាក់សមរម្យពេលបើកកាមេរ៉ា (Online)។\n៣. គោរពគ្រូ បុគ្គលិក និងមិត្តរួមថ្នាក់ — ហាមសម្លុត ចំអក ឬវាយតប់ ទាំងផ្ទាល់ និង Online។\n៤. និយាយភាសាអង់គ្លេសក្នុងម៉ោងរៀនភាសាអង់គ្លេសឱ្យបានច្រើនតាមដែលអាចធ្វើបាន។\n៥. យកសៀវភៅ និងសម្ភារៈមកជាមួយ និងថែរក្សាទ្រព្យសម្បត្តិសាលា។\n៦. បិទសំឡេងទូរស័ព្ទ និងប្រើតែពេលគ្រូអនុញ្ញាត។\n៧. ធ្វើកិច្ចការដោយខ្លួនឯង — ហាមចម្លង និងបន្លំ។\n៨. រក្សាថ្នាក់រៀន និងសាលាឱ្យស្អាត ហើយបោះសំរាមក្នុងធុង។\n៩. Online៖ បើកកាមេរ៉ាពេលគ្រូស្នើ បិទសំឡេងពេលមិននិយាយ និងមិនដែលចែករំលែក Student ID ឬ PIN។\n១០. សុំការអនុញ្ញាតមុនចេញពីថ្នាក់ ឬមេរៀន Online។\n១១. ប្រាប់គ្រូភ្លាមៗ ពេលមានអារម្មណ៍មិនស្រួល មិនមានសុវត្ថិភាព ឬឃើញនរណាម្នាក់ត្រូវការជំនួយ។\n១២. មានចិត្តល្អ ស្មោះត្រង់ និងខិតខំប្រឹងប្រែងរៀងរាល់ថ្ងៃ។\n\nការបំពានច្បាប់៖ លើកទី១ — ព្រមាន, លើកទី២ — ជូនដំណឹងគ្រួសារ, ច្រើនដង ឬធ្ងន់ធ្ងរ — ជួបពិភាក្សា និងអាចផ្អាកការសិក្សា។", "version": 1}};
 var C2_DOC_TITLES = { contract: "📜 Study Contract · កិច្ចសន្យាការសិក្សា", rules: "⚖️ School Rules · ច្បាប់វិន័យសាលា" };
@@ -19797,8 +19864,11 @@ async function openStudentProfilePage(){
   c2pOpen("profile", "👤 Student Profile · ប្រវត្តិរូបសិស្ស", false);
   try { await spLoad(); } catch(e){ document.getElementById("c2p-body").innerHTML = "<div class='c2p-empty'>Could not load the profile. Please try again.</div>"; return; }
   var st = SP.stu, pr = SP.prof, age = st.dob ? Math.floor((Date.now() - new Date(st.dob)) / 31557600000) : "";
-  var photo = st.photo ? "<img src='"+st.photo+"' alt='Student photo' style='width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid #FFD700;'>"
-    : "<div style='width:84px;height:84px;border-radius:50%;background:#000080;color:#FFD700;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:800;'>"+clEsc((st.nameEn||st.nameKm||"S").charAt(0))+"</div>";
+  var ph = pr.photo || st.photo;
+  var photo = "<div style='display:flex;flex-direction:column;align-items:center;gap:4px;'>" + (ph ? "<img id='sp-photo-img' src='"+ph+"' alt='Student photo' style='width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid #FFD700;'>"
+    : "<div id='sp-photo-img' style='width:84px;height:84px;border-radius:50%;background:#000080;color:#FFD700;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:800;'>"+clEsc((st.nameEn||st.nameKm||"S").charAt(0))+"</div>")
+    + "<label style='font-size:.72rem;font-weight:700;color:#000080;background:#FFD700;border-radius:12px;padding:3px 10px;cursor:pointer;'>📷 " + (ph ? "Change photo" : "Add photo") + "<input type='file' accept='image/*' capture='user' onchange='spPickPhoto(this)' style='display:none'></label>"
+    + "<span id='sp-photo-msg' style='font-size:.7rem;color:#2e7d32;'></span></div>";
   var inp = function(id, label, val, ph, max, type){ return "<label class='c2p-l'>"+label+"</label><input id='"+id+"' class='c2p-in' type='"+(type||"text")+"' maxlength='"+(max||80)+"' value='"+clEsc(val||"")+"' placeholder='"+clEsc(ph||"")+"'>"; };
   document.getElementById("c2p-body").innerHTML =
     "<div class='c2p-card' style='display:flex;gap:14px;align-items:center;'>"+photo+"<div><div style='font-size:1.15rem;font-weight:800;color:#000080;'>"+clEsc(st.nameKm||"")+"</div><div style='font-weight:700;'>"+clEsc(st.nameEn||"")+"</div><div style='font-family:monospace;color:#888;'>ID "+clEsc(st.studentId||"")+"</div></div></div>"
@@ -19824,6 +19894,7 @@ async function spSave(){
   var d = { studentId: SP.stu.studentId, studentName: SP.stu.nameEn || SP.stu.nameKm || "", fatherName: v("sp-father"), fatherPhone: v("sp-father-ph"),
     motherName: v("sp-mother"), motherPhone: v("sp-mother-ph"), guardian: v("sp-guardian"), telegram: v("sp-telegram"), email: v("sp-email"),
     address: v("sp-address"), previousSchool: v("sp-prev"), homeLanguages: v("sp-lang"), pickup: v("sp-pickup"), updatedAt: new Date().toISOString() };
+  if(SP.prof && SP.prof.photo) d.photo = SP.prof.photo;
   try { var {db, doc, setDoc} = window._fb; await setDoc(doc(db,"studentProfiles", SP.stu._id), d); SP.prof = d;
     msg.style.cssText = "display:block;color:#2e7d32;font-weight:700;font-size:.85rem;"; msg.textContent = "✅ Saved. Thank you!";
   } catch(e){ msg.style.cssText = "display:block;color:#c62828;font-size:.82rem;"; msg.textContent = "Could not save: " + e.message; }

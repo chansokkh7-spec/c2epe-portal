@@ -195,7 +195,8 @@ main{max-width:1240px;margin:0 auto;padding:24px 24px 48px;display:flex;flex-dir
   </header>
   <main>
     <section class="hero" aria-label="Welcome">
-      <div class="avatar" id="d-avatar" aria-hidden="true"></div>
+      <div style="position:relative;flex-shrink:0"><div class="avatar" id="d-avatar" aria-hidden="true"></div>
+        <label id="photo-wrap" title="Add or change my photo" style="position:absolute;right:-4px;bottom:-4px;width:34px;height:34px;border-radius:50%;background:#fff;color:var(--navy);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.3);font-size:17px"><span id="photo-lbl">📷</span><input id="photo-in" type="file" accept="image/*" capture="user" style="display:none" aria-label="Add or change my photo"></label></div>
       <div class="hero-text">
         <div class="hi">Welcome back · សូមស្វាគមន៍</div>
         <h1 id="d-name"></h1>
@@ -235,7 +236,7 @@ main{max-width:1240px;margin:0 auto;padding:24px 24px 48px;display:flex;flex-dir
         <section class="box" aria-labelledby="docs-title">
           <h2 id="docs-title">👤 Profile &amp; documents</h2>
           <p>Family details, enrolment form, study contract, school rules, health profile and receipts. Sign in with the same Student ID and PIN.</p>
-          <a class="btn btn-line" href="index.html" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;text-decoration:none">Open the School Portal</a>
+          <a class="btn btn-line" href="index.html" style="display:flex;align-items:center;justify-content:center;text-decoration:none">Open the School Portal</a>
         </section>
         <section class="box access" id="acc-box" aria-labelledby="acc-title">
           <h2 id="acc-title">Online access</h2>
@@ -334,13 +335,14 @@ main{max-width:1240px;margin:0 auto;padding:24px 24px 48px;display:flex;flex-dir
 const HUB_URL = 'digital-hub.html';      // where classroom students, live class and chat live
 // One lesson app per online course. Each link opens a unit with ?unit=N. Leave '' until the app is uploaded.
 const LESSON_APPS = {
-  'Online K0': 'Online-K0-app.html', 'Online K1': 'Online-K1-app.html', 'Online K2': '', 'Online K3': '',
+  'Online K0': 'Online-K0-app.html', 'Online K1': 'Online-K1-app.html', 'Online K2': 'Online-K2-app.html', 'Online K3': '',
   'Online Starters': '', 'Online Movers': '', 'Online Flyers': '',
   'Online Beginner': '', 'Online Pre-Intermediate': '', 'Online Intermediate': '', 'Online Upper-Intermediate': '',
   'Online Advanced': '', 'Online Proficiency': ''
 };
 // Unit titles per course (Online K0 is written; others appear when their lessons are ready)
 const UNITS = {
+  'Online K2': ["Off to School", "Rooms in a House", "Herbs and Spices", "Under the Sea", "How Does It Feel?", "Nature Walk", "3D Shapes", "Telling the Time", "People Who Help", "At the Airport", "Counting by Tens", "Money and Saving", "Rice Farm", "Inside My Body", "Healthy Habits", "Amazing Places", "Orchestra", "Khmer Food", "Ways to Travel", "Let's Play Sports", "Clothes for All Weather", "My Weekend", "Bigger and Smaller", "Around Town", "Beautiful Cambodia", "Being a Good Friend", "Science Fun", "Computer Time", "Ready for K3!"],
   'Online K1': ["My Morning", "Around My House", "Fruit Salad", "Market Day", "More Colours", "Jungle Friends", "Sky and Weather", "How Do You Feel?", "Playground Games", "Little Helpers", "Counting to 18", "Patterns", "Birds", "Feeling Sick", "Building Things", "Into Space", "Let's Cook", "Ice Cream Shop", "Dinosaurs", "Fairy Tales", "Hobbies", "Where Is It?", "Throw and Catch", "Accessories", "Cambodian Festivals", "Kind Manners", "Our Planet", "Finding the Way", "Ready for K2!"],
   'Online K0': ['Hello, Friends!','My Room','Bath Time','Yummy Snacks','Farm Babies','Bugs in the Garden','Huge and Little','Pretend Play','Sounds','Up and Down','At the Beach','Vegetables','Birthday Party','Rainy Day','Things That Go','Night Sky','My Garden','Breakfast Time','At the Zoo','Cleaning Up','Music Fun','Opposites','Silly Faces','Winter Fun','Picnic Day','Body Moves','Pond Life','Camping','Hooray! Well Done!']
 };
@@ -393,7 +395,8 @@ async function signIn(ev) {
       if (!ks.exists() || String(ks.data().studentId) !== id) { showError('Incorrect PIN. Ask the Front Desk if you forgot it.'); $('si-pin').focus(); return; }
     }
     if (!s.online) { showError('This Student ID is not enrolled in Online Class. Classroom students use the Digital Hub.'); return; }
-    const st = { id, name: s.nameEn || s.nameKm || 'Student', km: s.nameKm || '', course: s.onlineCourse || 'Online', until: s.onlineUntil || '' };
+    const st = { id, docId: snap.docs[0].id, name: s.nameEn || s.nameKm || 'Student', km: s.nameKm || '', course: s.onlineCourse || 'Online', until: s.onlineUntil || '' };
+    shareSignIn(st, s);
     sessionStorage.setItem(SESSION, JSON.stringify(st));
     $('si-id').value = ''; $('si-pin').value = '';
     showDashboard(st);
@@ -416,7 +419,7 @@ function showDashboard(st) {
   const inGrace = !st.trial && graceLeft !== null && graceLeft >= 0;
   const ended = st.trial ? !!st.ended : (left !== null && graceLeft < 0);
   const initials = st.name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
-  $('d-avatar').textContent = initials;
+  $('d-avatar').textContent = initials; $('photo-wrap').style.display = st.docId && !st.trial ? 'flex' : 'none'; loadPhoto(st);
   $('d-name').textContent = st.name;
   $('d-meta').textContent = st.trial ? ('🆓 Free trial · ' + st.course + ' · Units 1–3 · ends ' + st.until) : ('Student ID ' + st.id + ' · ' + st.course + (st.until ? ' · Online until ' + st.until : ''));
 
@@ -890,6 +893,45 @@ async function requestAccess(r, btn) {
 $('tab-staff').addEventListener('click', async () => { localStorage.setItem('c2_online_last_tab', 'staff'); try { const { a } = await auth(); if (a.currentUser && !staff) openStaff(a.currentUser); } catch (e) {} });
 $('tab-stu').addEventListener('click', () => localStorage.setItem('c2_online_last_tab', 'student'));
 
+
+// ---- one sign-in for the Online Dashboard, the School Portal and the Hub (same browser tab) ----
+function shareSignIn(st, s) {
+  try {
+    localStorage.setItem('c2epe_student_session', JSON.stringify({ studentId: st.id, docId: st.docId, name: st.name, cls: String(s.cls || '').replace(/-[A-C]$/, ''),
+      online: !!s.online, onlineCourse: s.onlineCourse || '', onlineUntil: s.onlineUntil || '', classroom: s.classroom !== false, paidUntil: s.paidUntil || '', allowReview: !!s.allowReview, nameKm: s.nameKm || '' }));
+    localStorage.setItem('c2epe_parent_class', String(s.cls || '').replace(/-[A-C]$/, ''));
+    sessionStorage.setItem('seg_student', JSON.stringify({ id: st.id, name: st.name, allowedSystems: [], fromPortal: true, cls: s.cls || '', paidUntil: s.paidUntil || '',
+      classroom: s.classroom !== false, online: !!s.online, onlineCourse: s.onlineCourse || '', onlineUntil: s.onlineUntil || '', allowReview: !!s.allowReview }));
+  } catch (e) {}
+}
+// ---- 📷 the student's own photo (tap the round picture) ----
+function photoToData(file) {
+  return new Promise((res, rej) => {
+    const r = new FileReader(); r.onerror = rej;
+    r.onload = () => { const im = new Image(); im.onerror = rej; im.onload = () => {
+      const S = 320, c = document.createElement('canvas'); c.width = S; c.height = S; const x = c.getContext('2d'), m = Math.min(im.width, im.height);
+      x.drawImage(im, (im.width - m) / 2, (im.height - m) / 2, m, m, 0, 0, S, S);
+      let q = 0.82, out = c.toDataURL('image/jpeg', q); while (out.length > 110000 && q > 0.4) { q -= 0.1; out = c.toDataURL('image/jpeg', q); }
+      res(out); }; im.src = r.result; };
+    r.readAsDataURL(file);
+  });
+}
+function paintAvatar(src) { const a = $('d-avatar'); if (src) { a.style.backgroundImage = 'url(' + src + ')'; a.style.backgroundSize = 'cover'; a.style.backgroundPosition = 'center'; a.dataset.txt = a.textContent; a.textContent = ''; } }
+async function loadPhoto(st) {
+  const a = $('d-avatar'); a.style.backgroundImage = ''; 
+  if (!st.docId) return;
+  try { const sn = await getDoc(doc(db, 'studentProfiles', st.docId)); if (sn.exists() && sn.data().photo) paintAvatar(sn.data().photo); } catch (e) {}
+}
+$('photo-in').addEventListener('change', async (ev) => {
+  const f = ev.target.files && ev.target.files[0], st = JSON.parse(sessionStorage.getItem(SESSION) || '{}'); ev.target.value = '';
+  if (!f || !st.docId) return;
+  const lbl = $('photo-lbl'); lbl.textContent = '…';
+  try { const data = await photoToData(f);
+    await setDoc(doc(db, 'studentProfiles', st.docId), { studentId: st.id, studentName: st.name, photo: data, updatedAt: new Date().toISOString() }, { merge: true });
+    paintAvatar(data); lbl.textContent = '📷';
+  } catch (e) { lbl.textContent = '📷'; alert('Could not save the photo. Please try again.'); }
+});
+
 // ---- install as an app ----
 let installEvt = null;
 const standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
@@ -905,6 +947,7 @@ if (!standalone && /iphone|ipad|ipod/i.test(navigator.userAgent)) {
   $('install-box').classList.remove('hidden');
 }
 $('out-btn').addEventListener('click', () => { sessionStorage.removeItem(SESSION); if (trialPoll) clearInterval(trialPoll); $('dash').classList.add('hidden'); $('signin').classList.remove('hidden'); $('si-id').focus(); });
+if (location.hash === '#register') { setTimeout(() => { if (!$('signin').classList.contains('hidden')) $('apply-open').click(); }, 300); }
 try { const saved = JSON.parse(sessionStorage.getItem(SESSION) || 'null'); if (saved && saved.id) showDashboard(saved); else { const tr = trialStore.get(); if (tr) { $('signin').classList.add('hidden'); openTrial(tr); } } } catch (e) {}
 // a lesson app can report a finished unit with: localStorage 'c2_online_done_<StudentID>' = [1,2,…]
 </script>

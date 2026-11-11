@@ -219,6 +219,9 @@ main{padding:14px 14px 30px;gap:14px}
       <aside class="side">
         <section class="box" id="sf-pay-box"><h2>💳 Payments waiting</h2><div id="sf-pay"></div></section>
         <section class="box" id="sf-trial-box"><h2>🆓 Free trials</h2><div id="sf-trials"></div></section>
+        <section class="box" id="sf-price-box"><h2>💰 Tuition prices</h2><p>Prices, plans (1 · 3 · 6 · 12 months), admission and exam fees, and the province discount are set in the School Portal.</p>
+          <p style="font-size:12px;color:var(--muted);margin-top:6px">Portal → sign in as Admin → ☰ <b>Tools</b> → <b>💰 Tuition Pricing</b></p>
+          <a class="btn btn-gold" href="index.html#tuition-pricing" style="display:flex;align-items:center;justify-content:center;text-decoration:none">Open Tuition Pricing</a></section>
         <section class="box"><h2>📚 Lessons (all units open)</h2><div id="sf-lessons"></div></section>
         <section class="box"><h2>📹 Live class &amp; chat</h2><p>Teach live and message students in the Digital Hub.</p><a class="btn btn-navy" id="hub-link-4" href="digital-hub.html" style="display:flex;align-items:center;justify-content:center;text-decoration:none">Open Digital Hub</a></section>
       </aside>
@@ -868,7 +871,7 @@ async function openStaff(user) {
   staff = { user, role, name, courses: role === 'admin' ? ALL_ONLINE : courses };
   $('signin').classList.add('hidden'); $('dash').classList.add('hidden'); $('staff').classList.remove('hidden');
   $('sf-role').textContent = role === 'admin' ? 'ADMIN' : 'TEACHER'; $('sf-name').textContent = '👋 ' + name;
-  $('sf-pay-box').classList.toggle('hidden', role !== 'admin'); $('sf-trial-box').classList.toggle('hidden', role !== 'admin');
+  $('sf-pay-box').classList.toggle('hidden', role !== 'admin'); $('sf-trial-box').classList.toggle('hidden', role !== 'admin'); $('sf-price-box').classList.toggle('hidden', role !== 'admin');
   $('sf-q').value = ''; $('sf-status').value = '';
   $('sf-course').innerHTML = '<option value="">All my courses</option>' + staff.courses.map((c) => '<option>' + esc(c) + '</option>').join('');
   $('sf-lessons').innerHTML = staff.courses.filter((c) => LESSON_APPS[c]).map((c) => '<a class="btn btn-line" style="display:flex;align-items:center;justify-content:center;text-decoration:none;margin-top:8px" target="_blank" rel="noopener" href="' + esc(LESSON_APPS[c]) + '">📘 ' + esc(c) + '</a>').join('')

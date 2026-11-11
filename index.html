@@ -10962,6 +10962,13 @@ function tpProvEx(){
   ex.textContent = one > 0 ? ("Example — " + cls + ", 1 month: Phnom Penh $" + one.toFixed(2) + " → Province $" + (Math.round(one * (100 - d)) / 100).toFixed(2)) : ("Province students pay " + d + "% less.");
 }
 
+
+// open Tuition Pricing straight away when arriving with #tuition-pricing (link from the Online dashboard)
+(function(){ if(location.hash !== '#tuition-pricing') return; var tries = 0;
+  var t = setInterval(function(){ tries++;
+    if(typeof admissionsCanAccess === 'function' && window._fb && currentUser && (admissionsCanAccess() || financeCanAccess())){ clearInterval(t); history.replaceState(null, '', location.pathname); openTuitionPricingPage(); }
+    else if(tries > 40){ clearInterval(t); }
+  }, 500); })();
 // ===== Tuition pricing (settings/tuitionPricing) =====
 var TP_PLANS = [{m:1,label:"1 month",km:"១ ខែ"},{m:3,label:"3 months",km:"៣ ខែ"},{m:6,label:"6 months",km:"៦ ខែ"},{m:12,label:"1 year",km:"១ ឆ្នាំ"}];
 var TP_EXTRAS = [

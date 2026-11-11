@@ -17695,6 +17695,9 @@ function sdOpenReport(){
       <button id="td-adm-dashboard" onclick="tdGo(openAdminDashboard)">🛡️ Admin Dashboard (staff)</button>
       <button id="td-adm-finance" onclick="tdGo(openFinancePage)">📊 Finance Overview</button>
       <button id="td-adm-fees" onclick="tdGo(openFeePage)">💰 Fee Payment</button>
+ <button id="td-adm-pricing" onclick="tdGo(openTuitionPricingPage)">🏷️ Tuition Pricing</button>
+ <button id="td-adm-areq" onclick="tdGo(openAccessRequests)">🙋 Access Requests</button>
+ <button id="td-adm-docs" onclick="tdGo(openSchoolDocsEditor)">📜 Contract &amp; Rules</button>
       <button id="td-adm-idcards" onclick="tdGo(openIDCardPage)">🪪 Student ID Cards</button>
       <h4>MORE</h4>
       <button onclick="tdAllTools(event)">🛠️ All Tools</button>
@@ -17807,7 +17810,7 @@ async function tdRefresh(){
   var show = function(id, on){ var el = document.getElementById(id); if(el) el.style.display = on ? '' : 'none'; };
   show('td-adm-admissions', canAdmissions); show('td-adm-frontdesk', canAdmissions);
   show('td-adm-dashboard', isAdm || (typeof currentAdminDeptHead !== 'undefined' && currentAdminDeptHead === 'hr'));
-  show('td-adm-finance', canFinance); show('td-adm-fees', canFinance || isAdm); show('td-adm-idcards', isAdm || canAdmissions);
+  show('td-adm-finance', canFinance); show('td-adm-fees', canFinance || isAdm); show('td-adm-idcards', isAdm || canAdmissions); show('td-adm-pricing', canAdmissions || canFinance || isAdm); show('td-adm-areq', canAdmissions || isAdm); show('td-adm-docs', canAdmissions || isAdm);
   show('td-adm-h', canAdmissions || canFinance || isAdm);
   show('td-adm-analytics', typeof anCan === 'function' && anCan());
   show('td-adm-staff', typeof spCan === 'function' && spCan());

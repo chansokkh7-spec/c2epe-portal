@@ -304,6 +304,7 @@ main{padding:14px 14px 30px;gap:14px}
       <label class="field sm">Parent's name *<input id="ap-parent" required maxlength="80" autocomplete="name"></label>
       <label class="field sm">Phone / Telegram *<input id="ap-phone" required maxlength="30" inputmode="tel" autocomplete="tel"></label>
       <label class="field sm">Email<input id="ap-email" type="email" maxlength="80" autocomplete="email"></label>
+      <label class="field">Province / city * · ខេត្ត/ក្រុង<select id="ap-prov" required><option value="">— choose —</option><option>Phnom Penh</option><option>Banteay Meanchey</option><option>Battambang</option><option>Kampong Cham</option><option>Kampong Chhnang</option><option>Kampong Speu</option><option>Kampong Thom</option><option>Kampot</option><option>Kandal</option><option>Kep</option><option>Koh Kong</option><option>Kratie</option><option>Mondulkiri</option><option>Oddar Meanchey</option><option>Pailin</option><option>Preah Sihanouk</option><option>Preah Vihear</option><option>Prey Veng</option><option>Pursat</option><option>Ratanakiri</option><option>Siem Reap</option><option>Stung Treng</option><option>Svay Rieng</option><option>Takeo</option><option>Tbong Khmum</option><option>Outside Cambodia</option></select></label>
     </div>
     <label class="field">Note (optional)<textarea id="ap-note" rows="2" maxlength="400" placeholder="Best time to call, questions…"></textarea></label>
     <div style="display:flex;gap:10px;flex-wrap:wrap">
@@ -604,7 +605,7 @@ $('ap-form').addEventListener('submit', async (ev) => {
   ev.preventDefault(); ev.stopImmediatePropagation();
   const err = $('ap-err'); err.style.display = 'none';
   const v = (id) => $(id).value.trim();
-  const miss = [['ap-en', "child's name"], ['ap-dob', 'date of birth'], ['ap-parent', "parent's name"], ['ap-phone', 'phone / Telegram']].filter(([id]) => !v(id));
+  const miss = [['ap-en', "child's name"], ['ap-dob', 'date of birth'], ['ap-parent', "parent's name"], ['ap-phone', 'phone / Telegram'], ['ap-prov', 'province / city']].filter(([id]) => !v(id));
   if (miss.length) { err.textContent = 'Please fill in: ' + miss.map((m) => m[1]).join(', ') + '.'; err.style.display = 'block'; $(miss[0][0]).focus(); return; }
   if (!/^[+0-9 ()-]{8,20}$/.test(v('ap-phone'))) { err.textContent = 'Please enter a phone number we can call or message on Telegram.'; err.style.display = 'block'; $('ap-phone').focus(); return; }
   const age = ageFrom(v('ap-dob'));
@@ -614,11 +615,11 @@ $('ap-form').addEventListener('submit', async (ev) => {
     const secret = randomSecret();
     const resultKey = await sha('result:' + secret), trialKey = await sha('trial:' + secret);
     const data = { childNameEn: v('ap-en'), childNameKm: v('ap-km'), dob: v('ap-dob'), gender: $('ap-gender').value,
-      parentName: v('ap-parent'), parentPhone: v('ap-phone'), parentEmail: v('ap-email'),
+      parentName: v('ap-parent'), parentPhone: v('ap-phone'), parentEmail: v('ap-email'), province: v('ap-prov'),
       notes: '💻 ONLINE self-registration (7-day trial)' + (v('ap-note') ? ' · ' + v('ap-note') : ''),
       status: 'pending', studyMode: 'online', levelApplied: 'Online (level test)', onlineCourse: '', resultKey, submittedAt: new Date().toISOString() };
     const ref = await addDoc(collection(db, 'applications'), data);
-    reg = { appId: ref.id, secret, resultKey, trialKey, name: data.childNameEn, age };
+    reg = { appId: ref.id, secret, resultKey, trialKey, name: data.childNameEn, age, province: v('ap-prov') };
     closeModal('apply-modal');
     if (age <= 6) {                        // kindergarten: course by age, no test
       const course = 'Online K' + Math.max(0, Math.min(3, age - 3));
@@ -671,7 +672,7 @@ $('rs-start').addEventListener('click', async () => {
   const btn = $('rs-start'); btn.disabled = true; btn.textContent = 'Starting…';
   try {
     await setDoc(doc(db, 'trials', reg.trialKey), { appId: reg.appId, name: reg.name, course: reg.course, level: reg.level, maxUnit: TRIAL_UNITS, startedAt: serverTimestamp() });
-    const t = { appId: reg.appId, secret: reg.secret, resultKey: reg.resultKey, trialKey: reg.trialKey, name: reg.name, course: reg.course, level: reg.level, startedAt: new Date().toISOString() };
+    const t = { appId: reg.appId, secret: reg.secret, resultKey: reg.resultKey, trialKey: reg.trialKey, name: reg.name, course: reg.course, level: reg.level, province: reg.province || '', startedAt: new Date().toISOString() };
     trialStore.set(t); closeModal('rs-modal'); openTrial(t);
   } catch (e) { console.error(e); $('rs-err').textContent = 'Could not start the trial. Please try again.'; $('rs-err').style.display = 'block'; }
   finally { btn.disabled = false; btn.textContent = '▶ Start my free trial'; }
@@ -740,18 +741,21 @@ $('ap-form').addEventListener('submit', async (ev) => {
 async function loadTrialPay(st) {
   const box = $('pay-list'), t = trialStore.get();
   let pr = null; try { const sn = await getDoc(doc(db, 'settings', 'tuitionPricing')); pr = sn.exists() ? sn.data() : null; } catch (e) {}
-  const p = ((pr && pr.prices) || {})[st.course] || {};
+  const tr0 = trialStore.get() || {}, zone = tr0.province && tr0.province !== 'Phnom Penh' ? 'province' : 'pp';
+  const disc = zone === 'province' && pr && +pr.provinceDiscount > 0 && (pr.provinceOnline !== false) ? +pr.provinceDiscount : 0;
+  const p0 = ((pr && pr.prices) || {})[st.course] || {}, p = {};
+  Object.keys(p0).forEach((k) => { const v = p0[k]; p[k] = typeof v === 'number' && disc && (/^\d+$/.test(k) || pr.provinceFees) ? Math.round(v * (100 - disc)) / 100 : v; });
   const plans = [[1, '1 month'], [3, '3 months'], [6, '6 months'], [12, '1 year']].filter(([m]) => p[m] > 0);
   if (!plans.length) { box.innerHTML = '<p style="margin:0">To continue after the trial, please contact the Front Desk (prices for ' + esc(st.course) + ' are not set yet).</p>'; return; }
   const extras = (p.admission > 0 ? [{ kind: 'admission', name: 'Admission fee', desc: 'One time', amount: Number(p.admission) }] : [])
     .concat(p.exam > 0 ? [{ kind: 'exam', name: 'Yearly exam fee', desc: 'This school year', amount: Number(p.exam) }] : []);
-  box.innerHTML = '<p style="margin:0 0 8px">' + (st.ended ? '⏰ <b>Your free trial has ended.</b> ' : '') + 'Choose a plan to unlock every unit:</p>'
+  box.innerHTML = '<p style="margin:0 0 8px">' + (st.ended ? '⏰ <b>Your free trial has ended.</b> ' : '') + 'Choose a plan to unlock every unit:' + (disc ? ' <span class="pill p-ok">🌾 Province rate −' + disc + '%</span>' : '') + '</p>'
     + plans.map(([m, label]) => '<div class="fee"><div><b>' + label + '</b><br><span style="font-size:13px;color:var(--muted)">' + money(p[m])
       + (extras.length ? ' + ' + extras.map((x) => x.name.toLowerCase() + ' ' + money(x.amount)).join(' + ') : '') + '</span></div>'
       + '<div style="text-align:right"><b style="font-size:18px">' + money(p[m] + extras.reduce((a, x) => a + x.amount, 0)) + '</b><br><button class="btn btn-gold" data-plan="' + m + '" type="button" style="min-height:40px;margin-top:6px">Pay now</button></div></div>').join('');
   box.querySelectorAll('[data-plan]').forEach((b) => b.addEventListener('click', () => {
     const m = Number(b.dataset.plan), label = plans.find((x) => x[0] === m)[1];
-    const lines = [{ kind: 'tuition', name: 'Tuition — ' + st.course, desc: label, amount: Number(p[m]), months: m }].concat(extras);
+    const lines = [{ kind: 'tuition', name: 'Tuition — ' + st.course, desc: label + (disc ? ' · 🌾 Province rate −' + disc + '%' : ''), amount: Number(p[m]), months: m }].concat(extras);
     const total = lines.reduce((a, x) => a + x.amount, 0);
     openPay({ id: '', type: 'Tuition — ' + st.course + ' · ' + label, due: total, cls: st.course, trialPlan: { months: m, lines } });
   }));
@@ -799,7 +803,7 @@ $('pm-form').addEventListener('submit', async (ev) => {
     const tr = payFee.trialPlan ? trialStore.get() : null;
     if (tr) {
       await addDoc(collection(db, 'paymentClaims'), {
-        kind: 'online-apply', appId: tr.appId, resultKey: tr.resultKey, studentId: '', studentName: tr.name, cls: tr.course, level: tr.level || '',
+        kind: 'online-apply', appId: tr.appId, resultKey: tr.resultKey, studentId: '', studentName: tr.name, cls: tr.course, level: tr.level || '', province: tr.province || '', priceZone: tr.province && tr.province !== 'Phnom Penh' ? 'province' : 'pp',
         feeType: payFee.type, amount: Math.round(payFee.due * 100) / 100, months: payFee.trialPlan.months, lines: payFee.trialPlan.lines,
         bank: (payBanks[payBank] || {}).bankName || '', reference: ref, status: 'pending', claimedAt: new Date().toISOString(), source: 'online-dashboard'
       });

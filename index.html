@@ -1394,6 +1394,8 @@ function logoImgError(img){
 <label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">Online until (end date)</label>
 <div style="display:flex;gap:6px;align-items:flex-start;"><input type="date" id="stu-acc-online-until" style="width:100%;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;outline:none;margin-bottom:10px;flex:1;font-family:inherit;color:#333;box-sizing:border-box;"><button type="button" onclick="c2AddMonth()" title="Extend online access by one month" style="background:#fff3c4;border:1.5px solid #e8c766;color:#6b3f00;border-radius:7px;padding:8px 10px;cursor:pointer;font-size:.78rem;font-weight:800;white-space:nowrap;">+1 month</button></div>
 </div>
+<label for="stu-acc-zone" style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">Price zone · តំបន់តម្លៃ</label>
+<select id="stu-acc-zone" style="width:100%;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.85rem;margin-bottom:10px;font-family:inherit;color:#333;box-sizing:border-box;"><option value="pp">🏙️ Phnom Penh · ភ្នំពេញ</option><option value="province">🌾 Province · ខេត្ត (province discount)</option></select>
 <label style="font-size:.75rem;font-weight:600;color:#555;display:block;margin-bottom:3px;">PIN for student / parent login (4 digits)</label>
 <div style="display:flex;gap:6px;margin-bottom:10px;">
 <input type="text" id="stu-acc-pin" inputmode="numeric" maxlength="4" placeholder="none" style="flex:1;padding:8px 11px;border:1.5px solid #e0e0e0;border-radius:7px;font-size:.95rem;font-family:monospace;letter-spacing:4px;outline:none;">
@@ -2527,6 +2529,16 @@ function logoImgError(img){
       <label style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:.82rem;">📅 School year starts in
         <select id="tp-sy" style="padding:6px 8px;border:1.5px solid #e0e0e0;border-radius:7px;font-family:inherit;"><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select>
         <span style="color:#888;">(for the yearly exam fee)</span></label>
+      <div style="margin-top:12px;padding:10px 12px;background:#f1f8e9;border:1px solid #c5e1a5;border-radius:10px;font-size:.82rem;">
+        <div style="font-weight:800;color:#33691e;margin-bottom:6px;">🌾 Province discount · បញ្ចុះតម្លៃខេត្ត</div>
+        <label style="display:inline-flex;align-items:center;gap:6px;">Province students pay <input type="number" id="tp-prov" min="0" max="80" step="1" style="width:64px;padding:5px 8px;border:1.5px solid #c5e1a5;border-radius:6px;"> % less than Phnom Penh</label>
+        <div style="display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:6px;">
+          <label style="display:inline-flex;align-items:center;gap:5px;"><input type="checkbox" id="tp-prov-online" style="margin:0"> Online courses</label>
+          <label style="display:inline-flex;align-items:center;gap:5px;"><input type="checkbox" id="tp-prov-class" style="margin:0"> Classroom classes</label>
+          <label style="display:inline-flex;align-items:center;gap:5px;"><input type="checkbox" id="tp-prov-fees" style="margin:0"> Admission &amp; exam fees too</label>
+        </div>
+        <div id="tp-prov-ex" style="color:#33691e;margin-top:6px;"></div>
+      </div>
       <label style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:.82rem;cursor:pointer;"><input type="checkbox" id="tp-copy-group" style="width:18px;height:18px;"> Also use these prices for every class in the same group (<span id="tp-group-name"></span>)</label>
       <div id="tp-msg" style="display:none;margin-top:10px;"></div>
     </div>
@@ -7331,6 +7343,7 @@ function fillAccessFields(s){
   document.getElementById('stu-acc-online').checked = !!s.online;
   document.getElementById('stu-acc-online-course').value = s.onlineCourse || '';
   document.getElementById('stu-acc-online-until').value = s.onlineUntil || '';
+  document.getElementById('stu-acc-zone').value = s.priceZone === 'province' ? 'province' : 'pp';
   document.getElementById('stu-acc-pin').value = '';
   document.getElementById('stu-acc-pin').placeholder = s.pinSet ? 'set ✓ — type a new PIN to change' : 'none';
   c2AccessEditable();
@@ -7339,9 +7352,9 @@ function fillAccessFields(s){
 }
 function c2AccessEditable(){
   var can = admissionsCanAccess();
-  ['stu-acc-classroom','stu-acc-online','stu-acc-online-course','stu-acc-online-until','stu-acc-pin','stu-acc-review'].forEach(function(id){ var el=document.getElementById(id); if(el) el.disabled = !can; });
+  ['stu-acc-classroom','stu-acc-online','stu-acc-online-course','stu-acc-online-until','stu-acc-pin','stu-acc-review','stu-acc-zone'].forEach(function(id){ var el=document.getElementById(id); if(el) el.disabled = !can; });
   var box = document.getElementById('stu-access-box'); if(box) box.style.opacity = '1';
-  ['stu-acc-classroom','stu-acc-online','stu-acc-online-course','stu-acc-online-until','stu-acc-pin','stu-acc-review'].forEach(function(id){ var el=document.getElementById(id); if(el && el.closest('label')) el.closest('label').style.opacity = can ? '1' : '.55'; });
+  ['stu-acc-classroom','stu-acc-online','stu-acc-online-course','stu-acc-online-until','stu-acc-pin','stu-acc-review','stu-acc-zone'].forEach(function(id){ var el=document.getElementById(id); if(el && el.closest('label')) el.closest('label').style.opacity = can ? '1' : '.55'; });
   var ra = document.getElementById('c2-req-area'); if(ra){ ra.style.display = (!can && editingStudentId) ? 'block' : 'none'; document.getElementById('c2-req-msg').style.display = 'none'; document.getElementById('c2-req-reason').value = ''; }
   box && (box.title = can ? '' : 'Only the Admin or the Admissions head can change study access and PINs');
 }
@@ -7353,6 +7366,7 @@ function collectAccessFields(){
     onlineCourse: document.getElementById('stu-acc-online-course').value,
     onlineUntil: document.getElementById('stu-acc-online-until').value,
     allowReview: document.getElementById('stu-acc-review').checked,
+    priceZone: document.getElementById('stu-acc-zone').value === 'province' ? 'province' : 'pp',
     _newPin: pin
   };
 }
@@ -10755,7 +10769,7 @@ function c2PaidBefore(kind, year){
 function c2PickPlan(m){ c2Pay.plan = m; c2PayRecalc(); }
 function c2PayRecalc(){
   var course = document.getElementById("c2-pay-course").value; c2Pay.course = course;
-  var p = (c2Pay.cfg.prices||{})[course] || {}, msg = document.getElementById("c2-pay-msg1");
+  var p = c2ZonePrices((c2Pay.cfg.prices||{})[course] || {}, course, c2Pay.student && c2Pay.student.priceZone, c2Pay.cfg), msg = document.getElementById("c2-pay-msg1");
   var plans = TP_PLANS.filter(function(pl){ return p[pl.m] > 0; });
   if(!plans.length){
     document.getElementById("c2-pay-plans").innerHTML = ""; document.getElementById("c2-pay-lines").innerHTML = "";
@@ -10778,6 +10792,7 @@ function c2PayRecalc(){
   var lines = [{ kind:"tuition", name:"Tuition — " + course, desc: pl.label + " · " + from + " → " + c2AddMonths(from, pl.m), amount: Number(p[c2Pay.plan]), months: pl.m }];
   if(p.admission > 0 && !st.admissionPaid && !c2PaidBefore("admission")) lines.push({ kind:"admission", name:"Admission fee", desc:"One time · ថ្លៃចុះឈ្មោះ", amount:Number(p.admission) });
   if(p.exam > 0 && !c2PaidBefore("exam", year)) lines.push({ kind:"exam", name:"Yearly exam fee", desc:"School year " + year, amount:Number(p.exam), year: year });
+  if(p.__discount){ lines[0].desc += " · 🌾 Province rate −" + p.__discount + "%"; }
   c2Pay.lines = lines; c2Pay.total = lines.reduce(function(a,l){ return a + l.amount; }, 0);
   document.getElementById("c2-pay-lines").innerHTML = lines.map(function(l){ return "<div style='display:flex;justify-content:space-between;gap:8px;padding:3px 0;'><span>"+escapeHtml(l.name)+"<br><small style='color:#888;'>"+escapeHtml(l.desc)+"</small></span><b>$"+l.amount.toFixed(2)+"</b></div>"; }).join("")
     + "<div style='display:flex;justify-content:space-between;border-top:1.5px solid #c5cae9;margin-top:6px;padding-top:6px;font-weight:800;color:#000080;'><span>Total · សរុប</span><span>$"+c2Pay.total.toFixed(2)+"</span></div>";
@@ -10832,7 +10847,7 @@ async function c2ApproveOnlineApply(claimId){
       parent: app.parentName || "", parentPhone: app.parentPhone || "", parentEmail: app.parentEmail || "", cls: "Online Class", photo: "",
       classroom: false, online: true, onlineCourse: c.cls, onlineUntil: until, allowReview: false, pinSet: true,
       admissionPaid: lines.some(function(l){ return l.kind === "admission"; }), placementLevel: app.onlineTestSuggestedLevel || c.level || "",
-      fromApplicationId: c.appId, createdAt: now, updatedAt: now };
+      fromApplicationId: c.appId, priceZone: c.priceZone === "province" ? "province" : "pp", province: c.province || "", createdAt: now, updatedAt: now };
     var sref = await addDoc(collection(db,"students"), stu);
     var key = await c2PinKey(sid, pin);
     await setDoc(doc(db,"studentKeys", key), { studentId: sid, at: now });
@@ -10931,6 +10946,22 @@ async function c2DownloadReceiptPdf(){
 }
 
 
+
+// ===== 🌾 province prices (percentage off the Phnom Penh price) =====
+function c2ZoneApplies(cfg, course){ var d = +(cfg && cfg.provinceDiscount) || 0; if(d <= 0) return 0; var online = /^Online /.test(course || ""); return (online ? cfg.provinceOnline !== false : !!cfg.provinceClassroom) ? d : 0; }
+function c2ZonePrices(p, course, zone, cfg){
+  var d = zone === "province" ? c2ZoneApplies(cfg, course) : 0; if(!d) return p;
+  var out = {}, f = function(v){ return Math.round(v * (100 - d)) / 100; };
+  Object.keys(p).forEach(function(k){ var v = p[k]; out[k] = (typeof v === "number" && v > 0 && (/^\d+$/.test(k) || cfg.provinceFees)) ? f(v) : v; });
+  out.__discount = d; return out;
+}
+function tpProvEx(){
+  var d = parseFloat(document.getElementById("tp-prov").value) || 0, ex = document.getElementById("tp-prov-ex");
+  if(d <= 0){ ex.textContent = "No province discount."; return; }
+  var cls = document.getElementById("tp-class").value, one = parseFloat(document.getElementById("tp-p-1").value) || 0;
+  ex.textContent = one > 0 ? ("Example — " + cls + ", 1 month: Phnom Penh $" + one.toFixed(2) + " → Province $" + (Math.round(one * (100 - d)) / 100).toFixed(2)) : ("Province students pay " + d + "% less.");
+}
+
 // ===== Tuition pricing (settings/tuitionPricing) =====
 var TP_PLANS = [{m:1,label:"1 month",km:"១ ខែ"},{m:3,label:"3 months",km:"៣ ខែ"},{m:6,label:"6 months",km:"៦ ខែ"},{m:12,label:"1 year",km:"១ ឆ្នាំ"}];
 var TP_EXTRAS = [
@@ -10967,6 +10998,11 @@ async function openTuitionPricingPage(){
   sel.innerHTML = TP_GROUPS.map(function(g){ return "<optgroup label='"+escapeHtml(g.name)+"'>" + g.list.map(function(c){ return "<option value='"+escapeHtml(c)+"'>"+escapeHtml(c)+"</option>"; }).join("") + "</optgroup>"; }).join("");
   document.getElementById("tuition-pricing-page").style.display = "block";
   document.getElementById("tp-sy").value = String(tuitionPricing.schoolYearStartMonth || 11);
+  document.getElementById("tp-prov").value = tuitionPricing.provinceDiscount || 0;
+  document.getElementById("tp-prov-online").checked = tuitionPricing.provinceOnline !== false;
+  document.getElementById("tp-prov-class").checked = !!tuitionPricing.provinceClassroom;
+  document.getElementById("tp-prov-fees").checked = !!tuitionPricing.provinceFees;
+  ["tp-prov","tp-prov-online","tp-prov-class","tp-prov-fees"].forEach(function(id){ document.getElementById(id).oninput = document.getElementById(id).onchange = tpProvEx; }); tpProvEx();
   tpShowClass(); tpRenderTable();
 }
 function closeTuitionPricingPage(){ document.getElementById("tuition-pricing-page").style.display = "none"; }
@@ -11022,6 +11058,10 @@ async function saveTuitionPricing(){
   tuitionPricing.prices = tuitionPricing.prices || {};
   targets.forEach(function(c){ tuitionPricing.prices[c] = Object.assign({}, entry); });
   tuitionPricing.schoolYearStartMonth = parseInt(document.getElementById("tp-sy").value, 10) || 11;
+  tuitionPricing.provinceDiscount = Math.max(0, Math.min(80, parseFloat(document.getElementById("tp-prov").value) || 0));
+  tuitionPricing.provinceOnline = document.getElementById("tp-prov-online").checked;
+  tuitionPricing.provinceClassroom = document.getElementById("tp-prov-class").checked;
+  tuitionPricing.provinceFees = document.getElementById("tp-prov-fees").checked;
   tuitionPricing.currency = "USD"; tuitionPricing.updatedAt = new Date().toISOString(); tuitionPricing.updatedBy = currentTeacherName || (currentUser && currentUser.email) || "";
   var isLocal = window.location.protocol === "file:";
   try {
@@ -11565,7 +11605,7 @@ function renderPaymentClaimsList(){
     var when = c.claimedAt ? new Date(c.claimedAt).toLocaleString("en-GB",{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"}) : "";
     return "<div style='background:#f9f9fb;border-radius:10px;padding:12px 14px;margin-bottom:10px;'>"
       + "<div style='font-weight:700;font-size:.86rem;color:#1a1a2e;'>"+escapeHtml(c.studentName||"")+" <span style='color:#999;font-weight:400;font-size:.76rem;'>("+escapeHtml(c.cls||"")+")</span></div>"
-      + "<div style='font-size:.8rem;color:#2e7d32;font-weight:700;margin:4px 0;'>💵 Claims paid: $"+(c.amount||0).toFixed(2)+" — "+escapeHtml(c.feeType||"Fee")+"</div>"+(c.kind==="online-apply"?"<div style=\'font-size:.74rem;background:#fff3c4;color:#6b3f00;border-radius:6px;padding:4px 8px;margin:4px 0;font-weight:800;\'>🆕 New online student (7-day trial)"+(c.level?" · tested level: "+escapeHtml(c.level):"")+"</div>":"")+(c.lines&&c.lines.length?"<div style=\'font-size:.74rem;color:#555;margin:2px 0 4px;\'>"+c.lines.map(function(l){ return escapeHtml(l.name)+" $"+Number(l.amount).toFixed(2); }).join(" · ")+"</div>":"")+(c.source==="online-dashboard"?"<div style=\'font-size:.74rem;background:#fff3c4;color:#6b3f00;border-radius:6px;padding:4px 8px;margin:4px 0;font-weight:700;\'>💻 Online Class payment ("+escapeHtml(c.onlineCourse||"")+") — after confirming, open the student and press <b>+1 month</b> in Studies &amp; Access.</div>":"")
+      + "<div style='font-size:.8rem;color:#2e7d32;font-weight:700;margin:4px 0;'>💵 Claims paid: $"+(c.amount||0).toFixed(2)+" — "+escapeHtml(c.feeType||"Fee")+"</div>"+(c.kind==="online-apply"?"<div style=\'font-size:.74rem;background:#fff3c4;color:#6b3f00;border-radius:6px;padding:4px 8px;margin:4px 0;font-weight:800;\'>🆕 New online student (7-day trial)"+(c.level?" · tested level: "+escapeHtml(c.level):"")+(c.province?" · "+(c.priceZone==="province"?"🌾 ":"🏙️ ")+escapeHtml(c.province):"")+"</div>":"")+(c.lines&&c.lines.length?"<div style=\'font-size:.74rem;color:#555;margin:2px 0 4px;\'>"+c.lines.map(function(l){ return escapeHtml(l.name)+" $"+Number(l.amount).toFixed(2); }).join(" · ")+"</div>":"")+(c.source==="online-dashboard"?"<div style=\'font-size:.74rem;background:#fff3c4;color:#6b3f00;border-radius:6px;padding:4px 8px;margin:4px 0;font-weight:700;\'>💻 Online Class payment ("+escapeHtml(c.onlineCourse||"")+") — after confirming, open the student and press <b>+1 month</b> in Studies &amp; Access.</div>":"")
       + (c.bank ? "<div style='font-size:.76rem;color:#666;'>Via: "+escapeHtml(c.bank)+(c.reference?" · Ref: "+escapeHtml(c.reference):"")+"</div>" : "")
       + "<div style='font-size:.7rem;color:#aaa;margin-top:2px;'>"+when+"</div>"
       + "<div style='display:flex;gap:6px;margin-top:8px;'>"

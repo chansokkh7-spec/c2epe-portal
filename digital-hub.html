@@ -1065,7 +1065,8 @@
             font-size: 0.8rem;
             float: right;
         }
-    </style>
+    body.ap-picking #systemGrid, body.ap-picking #levelFilterBar { display: none !important; }
+</style>
 </head>
 <body>
 
@@ -2897,6 +2898,7 @@
         };
 
         function filterCategory(category, button) {
+            apPrevActive = null; document.body.classList.remove('ap-picking');
             currentCategory = category;
             currentLevel = 'all';
             document.querySelectorAll('.filter-buttons .filter-btn:not(.level-btn)').forEach(btn => btn.classList.remove('active'));
@@ -2928,7 +2930,20 @@
             const out = document.getElementById('appPracticesPick'); if (!out) return;
             out.textContent = practicePick && PRACTICE_SHORT[practicePick] ? ' · ' + PRACTICE_SHORT[practicePick] : '';
         }
+        // While App Practices is open and nothing is picked yet: only its button is lit and the cards below are hidden.
+        // Closing it without picking brings back the previous button and cards.
+        let apPrevActive = null;
         function setPanel(btnId, bodyId, open) {
+            if (bodyId === 'appPracticesBody') {
+                if (open && !practicePick) {
+                    apPrevActive = [...document.querySelectorAll('.filter-buttons .filter-btn.active:not(.level-btn)')];
+                    apPrevActive.forEach(b => b.classList.remove('active'));
+                    document.body.classList.add('ap-picking');
+                } else if (!open) {
+                    document.body.classList.remove('ap-picking');
+                    if (apPrevActive) { apPrevActive.forEach(b => b.classList.add('active')); apPrevActive = null; }
+                }
+            }
             const btn = document.getElementById(btnId);
             const body = document.getElementById(bodyId);
             if (body) body.hidden = !open;

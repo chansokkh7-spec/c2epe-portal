@@ -1103,7 +1103,7 @@
                 <button class="filter-btn" id="filterEnglishBtnUI" onclick="filterCategory('english', this)">English</button>
                 <button class="filter-btn" id="filterHealthBtnUI" onclick="filterCategory('health', this)">Health</button>
                 <button class="filter-btn" id="filterTechBtnUI" onclick="filterCategory('tech', this)">Technology</button>
-                <button class="filter-btn" id="filterOnlineBtnUI" onclick="filterCategory('online', this)">Online Class</button>
+                <button class="filter-btn" id="filterOnlineBtnUI" onclick="filterCategory('online', this)">Live Class</button>
                 <button type="button" class="filter-btn app-practices-toggle" id="appPracticesToggle" aria-expanded="false" aria-controls="appPracticesBody" onclick="toggleAppPractices()"><span id="appPracticesTitle">App Practices</span><span id="appPracticesPick"></span> <span class="app-practices-chevron" aria-hidden="true">▾</span></button>
                 <button type="button" class="filter-btn app-practices-toggle" id="speakRoomToggle" aria-expanded="false" aria-controls="speakRoomBody" onclick="toggleSpeakRoom()"><span id="speakRoomTitle">Speak Room</span> <span class="app-practices-chevron" aria-hidden="true">▾</span></button>
                 <button type="button" class="filter-btn app-practices-toggle" id="videoLibToggle" aria-expanded="false" aria-controls="videoLibBody" onclick="toggleVideoLibrary()"><span>🎬 Video Library</span></button>
@@ -2067,6 +2067,7 @@
                 filterHealth: 'សុខភាព',
                 filterTech: 'បច្ចេកវិទ្យា',
                 filterOnline: 'ថ្នាក់អនឡាញ',
+                filterOnlineBtn: 'ថ្នាក់ផ្ទាល់',
                 filterPronunciation: 'ការបញ្ចេញសំឡេង និងការនិយាយ',
                 filterListening: 'ការស្តាប់ និងការយល់ដឹង',
                 filterGames: 'ល្បែងអន្តរកម្ម',
@@ -2125,6 +2126,7 @@
                 filterHealth: 'Health',
                 filterTech: 'Technology',
                 filterOnline: 'Online Class',
+                filterOnlineBtn: 'Live Class',
                 filterPronunciation: 'Pronunciation & Speaking',
                 filterListening: 'Listening & Comprehension',
                 filterGames: 'Interactive Games & Practice',
@@ -2191,7 +2193,7 @@
             document.getElementById('filterEnglishBtnUI').textContent = t('filterEnglish');
             document.getElementById('filterHealthBtnUI').textContent = t('filterHealth');
             document.getElementById('filterTechBtnUI').textContent = t('filterTech');
-            document.getElementById('filterOnlineBtnUI').textContent = t('filterOnline');
+            document.getElementById('filterOnlineBtnUI').textContent = t('filterOnlineBtn');
             { const el = document.getElementById('filterPronunciationBtnUI'); if (el) el.textContent = t('filterPronunciation'); }
             { const el = document.getElementById('filterListeningBtnUI'); if (el) el.textContent = t('filterListening'); }
             document.getElementById('labelTitle').textContent = t('labelTitle');

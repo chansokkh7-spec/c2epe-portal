@@ -365,6 +365,10 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
 .idc-back-box-lbl{font-size:6.5px;color:#c9a227;font-weight:700;letter-spacing:.6px;margin-bottom:3px;}
 .idc-back-box-val{font-size:9px;color:#dde6f5;font-weight:600;line-height:1.45;}
 .idc-back-box-val .idc-emerg{color:#f5d76e;font-size:11px;display:block;margin-top:2px;}
+.idc-emerg .idc-tel{white-space:nowrap;display:inline-block;}
+.idc-rules{display:inline-block;text-align:left;}
+.idc-rules>div{display:flex;gap:4px;}
+.idc-rules>div>b{font-weight:600;min-width:9px;}
 #idc-qr-container{display:flex;justify-content:center;align-items:center;margin:2px 0;}
 #idc-qr-container img,#idc-qr-container canvas{width:44px!important;height:44px!important;border-radius:3px;}
 .idc-back-url{font-size:7px;color:#e8c84a;text-align:center;margin-top:5px;letter-spacing:.5px;}
@@ -4245,7 +4249,7 @@ function logoImgError(img){
                 </div>
                 <div class="idc-back-box full">
                   <div class="idc-back-box-lbl">CARD RULES</div>
-                  <div class="idc-back-box-val">1. Carry this card at school every day.<br>2. Report a lost card to the school office.<br>3. Valid until the date on the front.</div>
+                  <div class="idc-back-box-val"><div class="idc-rules"><div><b>1.</b><span>Carry this card at school every day.</span></div><div><b>2.</b><span>Report a lost card to the school office.</span></div><div><b>3.</b><span>Valid until the date on the front.</span></div></div></div>
                 </div>
               </div>
               <div class="idc-back-url">C2 IS NOT JUST A LEVEL — IT'S A STANDARD OF EXCELLENCE</div>
@@ -7810,7 +7814,12 @@ function idcUpdate(){
   setTxt("idc-d-dob", dobShow, "Date of Birth");
   setTxt("idc-d-phone", phone, "Phone Number");
   // if no emergency number is entered, the school office number is printed
-  document.getElementById("idc-d-emerg").textContent = emerg || phone || "School office: 015 555 631";
+  // the phone number always stays on one line; a label before it ("School office:") goes on the line above
+  (function(el, txt){
+    var esc = String(txt).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; });
+    var m = esc.match(/^(.*?)\s*(\+?\d[\d\s().-]{4,}\d)\s*$/);
+    el.innerHTML = m ? (m[1] ? m[1] + "<br>" : "") + '<span class="idc-tel">' + m[2] + "</span>" : esc;
+  })(document.getElementById("idc-d-emerg"), emerg || phone || "School office: 015 555 631");
   document.getElementById("idc-d-id").textContent    = "ID: " + (id || "—");
 
   var warn = document.getElementById("idc-warn");

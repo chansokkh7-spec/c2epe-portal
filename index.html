@@ -633,6 +633,7 @@ function logoImgError(img){
         <button onclick="closeToolsMenu();openQuizPage()" class="tools-item">📝 <span>Quiz &amp; Exams</span></button>
         <button onclick="closeToolsMenu();openExamContentPage()" class="tools-item">🎓 <span>Manage Exam Content</span></button>
         <button onclick="closeToolsMenu();openTestLibraryPage()" class="tools-item">📚 <span>Test Library</span></button>
+        <button onclick="closeToolsMenu();openLevelUpTest()" class="tools-item">🌉 <span>Level-Up Test (Upstream Bridge)</span></button>
         <button onclick="closeToolsMenu();openExamGradingPage()" class="tools-item">🖋️ <span>Grade Writing &amp; Speaking</span></button>
         <button onclick="closeToolsMenu();openExamSchedulePage()" class="tools-item">🗓️ <span>Exam Schedule (open/close)</span></button>
         <button onclick="closeToolsMenu();openCertificatesPage()" class="tools-item">🏅 <span>Certificates</span></button>
@@ -21308,5 +21309,25 @@ async function hrPunctuality(days){
 }
 </script>
 
+
+<!-- LEVEL-UP TEST (Upstream Bridge) — for students moving from a lower level to a higher level -->
+<div id="levelup-test-page" style="display:none;position:fixed;inset:0;background:#f0f2f5;z-index:9990;flex-direction:column;">
+  <div style="background:#000080;color:#FFD700;height:56px;display:flex;align-items:center;gap:10px;padding:0 12px;flex-shrink:0;">
+    <button onclick="closeLevelUpTest()" style="background:rgba(255,255,255,.15);color:#fff;border:none;padding:5px 12px;border-radius:20px;cursor:pointer;font-size:.82rem;">← Back</button>
+    <span style="font-weight:800;font-size:1rem;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">🌉 Level-Up Test · Upstream Bridge</span>
+    <a href="upstream-bridge-test.html" target="_blank" rel="noopener" style="background:var(--gold);color:var(--navy);padding:5px 12px;border-radius:20px;font-weight:700;font-size:.78rem;text-decoration:none;white-space:nowrap;">↗ Full screen</a>
+  </div>
+  <iframe id="levelup-test-frame" title="Level-Up Test" style="flex:1;width:100%;border:0;background:#fff;" allow="autoplay; microphone"></iframe>
+</div>
+<script>
+function openLevelUpTest(){
+  var pg = document.getElementById("levelup-test-page"), fr = document.getElementById("levelup-test-frame");
+  if(!fr.getAttribute("src")) fr.setAttribute("src", "upstream-bridge-test.html?v=20261114");
+  pg.style.display = "flex"; document.body.style.overflow = "hidden";
+}
+function closeLevelUpTest(){
+  document.getElementById("levelup-test-page").style.display = "none"; document.body.style.overflow = "";
+}
+</script>
 </body>
 </html>

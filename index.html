@@ -18270,6 +18270,13 @@ async function loadMyCertificates(){
     if(!host){ host = document.createElement("div"); host.id = "print-host"; document.body.appendChild(host); }
     host.innerHTML = "";
     var copy = src.cloneNode(true);
+    // copy pictures as ready-made data (no second download while printing); cross-site photos keep their link
+    var oImgs = src.querySelectorAll("img"), cImgs = copy.querySelectorAll("img");
+    Array.prototype.forEach.call(cImgs, function(im, i){ try {
+      var o = oImgs[i]; if(!o || !o.complete || !o.naturalWidth || /^data:/.test(o.src)) return;
+      var cv = document.createElement("canvas"); cv.width = o.naturalWidth; cv.height = o.naturalHeight;
+      cv.getContext("2d").drawImage(o, 0, 0); im.src = cv.toDataURL("image/png");
+    } catch(e){} });
     // canvases (QR codes) don't copy their drawing — swap them for pictures
     var from = src.querySelectorAll("canvas"), to = copy.querySelectorAll("canvas");
     to.forEach(function(c, i){ try {
@@ -18295,7 +18302,15 @@ async function loadMyCertificates(){
     document.body.classList.add("print-one");
     var done = function(){ document.body.classList.remove("print-one"); host.innerHTML = ""; window.removeEventListener("afterprint", done); };
     window.addEventListener("afterprint", done);
-    nativePrint();
+    // pictures in the copy (school logo, student photo) must finish loading before printing, or they print as empty boxes
+    var pics = Array.prototype.slice.call(host.querySelectorAll("img"));
+    pics.forEach(function(im){ im.loading = "eager"; im.src = im.src; });
+    var ready = pics.map(function(im){ return new Promise(function(res){
+      if(im.complete && im.naturalWidth) return (im.decode ? im.decode().then(res, res) : res());
+      im.addEventListener("load", function(){ (im.decode ? im.decode().then(res, res) : res()); }, {once:true});
+      im.addEventListener("error", res, {once:true});
+    }); });
+    Promise.race([Promise.all(ready), new Promise(function(r){ setTimeout(r, 2500); })]).then(function(){ setTimeout(nativePrint, 150); });
     // some phones don't send "afterprint": clean up at the next tap instead of on a timer (a timer could empty the page mid-print)
     setTimeout(function(){ document.addEventListener("click", function once(){ if(document.body.classList.contains("print-one")) done(); }, {once:true}); }, 500);
   };

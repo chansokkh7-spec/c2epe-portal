@@ -21495,7 +21495,7 @@ function closeLevelUpTest(){
     list.forEach(function(b){ (by[b.level] = by[b.level] || []).push(b); });
     var html = '';
     if (isStaff()) html += '<div class="ll-tip">👩‍🏫 <b>Teachers:</b> press <b>⬆ Upload MP3</b> (top right) to add audio. You can create a new book in the same window. Pupils only see the play buttons; scripts and answers are shown to teachers only.</div>';
-    if (LL.err) html += '<div class="ll-tip" style="border-color:#e53935;background:#ffebee">⚠️ Could not load uploaded books (check the internet or the Firestore rules).</div>';
+    if (LL.err && isStaff()) html += '<div class="ll-tip" style="border-color:#e53935;background:#ffebee">⚠️ Teacher uploads could not be loaded' + (String(LL.err && LL.err.code || '').indexOf('permission') !== -1 ? ': Firestore rules do not allow <b>listeningBooks</b> / <b>listeningTracks</b> yet. Built-in books still work.' : ' (check the internet). Built-in books still work.') + '</div>';
     html += '<div class="ll-bar"><input id="ll-q" type="search" placeholder="Search a book or level…" value="' + esc(LL.q) + '"></div>';
     html += '<div class="ll-chips">' + levels.map(function(l){ return '<button class="ll-chip' + (l === LL.level ? ' on' : '') + '" data-l="' + esc(l) + '">' + esc(l) + '</button>'; }).join('') + '</div>';
     var lvls = Object.keys(by).sort(natural);

@@ -555,6 +555,7 @@ function logoImgError(img){
         <button onclick="closeClubsMenu();window.open('it-club-hub.html', '_blank', 'noopener,noreferrer')" class="tools-item">💻 <span>ICT Club</span></button>
         <button onclick="closeClubsMenu();window.open('digital-hub.html?open=games', '_blank', 'noopener,noreferrer')" class="tools-item">🎮 <span>Game Hub</span></button>
         <button onclick="closeClubsMenu();window.open('digital-library.html', '_blank')" class="tools-item">📚 <span>SEG Digital Library</span></button>
+        <button onclick="closeClubsMenu();openListeningLibrary()" id="listening-library-btn" class="tools-item">🎧 <span>Listening Library</span></button>
         <button onclick="closeClubsMenu();window.open('digital-hub.html?open=practice', '_blank', 'noopener,noreferrer')" class="tools-item">🎯 <span>GEP Practice Hub</span></button>
       </div>
     </div>
@@ -633,7 +634,6 @@ function logoImgError(img){
         <button onclick="closeToolsMenu();openQuizPage()" class="tools-item">📝 <span>Quiz &amp; Exams</span></button>
         <button onclick="closeToolsMenu();openExamContentPage()" class="tools-item">🎓 <span>Manage Exam Content</span></button>
         <button onclick="closeToolsMenu();openTestLibraryPage()" class="tools-item">📚 <span>Test Library</span></button>
-        <button onclick="closeToolsMenu();window.open('listening/index.html?teacher=1','_blank','noopener,noreferrer')" class="tools-item" title="Listening audio for all levels and books (opens in a new tab)">🎧 <span>Listening Library</span></button>
         <button onclick="closeToolsMenu();openLevelUpTest()" class="tools-item">🌉 <span>Level-Up Test (Upstream Bridge)</span></button>
         <button onclick="closeToolsMenu();openExamGradingPage()" class="tools-item">🖋️ <span>Grade Writing &amp; Speaking</span></button>
         <button onclick="closeToolsMenu();openExamSchedulePage()" class="tools-item">🗓️ <span>Exam Schedule (open/close)</span></button>
@@ -21330,5 +21330,319 @@ function closeLevelUpTest(){
   document.getElementById("levelup-test-page").style.display = "none"; document.body.style.overflow = "";
 }
 </script>
+
+<!-- ═══════════════ LISTENING LIBRARY (in-app page) ═══════════════
+     Opened from ☰ Apps & Services → 🎧 Listening Library.
+     • Everyone can listen. Teachers can create books and upload MP3s
+       (stored on Cloudinary, list saved in Firestore collections
+       "listeningBooks" and "listeningTracks").
+     • Scripts / answers are shown to teachers only.
+     • Built-in books from listening/library.js (if that folder exists)
+       are shown too, read-only. -->
+<div id="listening-page" style="display:none;position:fixed;inset:0;background:#f4f6fb;z-index:9990;overflow-y:auto;">
+<style>
+#listening-page{font-family:inherit;color:#14204a}
+#listening-page .ll-head{background:linear-gradient(135deg,#000080,#0b1a5c);border-bottom:3px solid #FFD700;padding:0 16px;height:58px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:10}
+#listening-page .ll-head h2{margin:0;color:#FFD700;font-size:1.05rem;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#listening-page .ll-back{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);padding:6px 12px;border-radius:20px;cursor:pointer;font-size:.8rem}
+#listening-page .ll-gold{background:#FFD700;color:#000080;border:none;padding:8px 14px;border-radius:20px;font-weight:700;font-size:.8rem;cursor:pointer;white-space:nowrap}
+#listening-page .ll-ghost{background:#fff;color:#000080;border:1.5px solid #000080;padding:6px 12px;border-radius:18px;font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap}
+#listening-page .ll-red{background:#fff;color:#c62828;border:1.5px solid #e57373;padding:5px 10px;border-radius:16px;font-weight:700;font-size:.74rem;cursor:pointer}
+#listening-page .ll-wrap{max-width:1060px;margin:0 auto;padding:16px}
+#listening-page .ll-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+#listening-page .ll-bar input{flex:1;min-width:200px;padding:10px 12px;border:1.5px solid #cfd6ea;border-radius:10px;font-size:.92rem;font-family:inherit}
+#listening-page .ll-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+#listening-page .ll-chip{border:1.5px solid #000080;background:#fff;color:#000080;border-radius:18px;padding:6px 13px;font-weight:700;font-size:.8rem;cursor:pointer}
+#listening-page .ll-chip.on{background:#000080;color:#FFD700}
+#listening-page .ll-lvl{margin:16px 0 8px;font-weight:700;color:#000080;border-bottom:2px solid #FFD700;padding-bottom:4px}
+#listening-page .ll-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+#listening-page .ll-book{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,128,.08);cursor:pointer;border:1px solid #e3e8f5}
+#listening-page .ll-cov{height:104px;background:linear-gradient(140deg,#000080,#1c3470);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#FFD700;font-weight:700;text-align:center;padding:8px;border-bottom:3px solid #FFD700}
+#listening-page .ll-cov .ic{font-size:1.8rem}
+#listening-page .ll-bi{padding:9px 12px;font-size:.8rem;color:#6b7390}
+#listening-page .ll-bi b{display:block;color:#14204a;font-size:.9rem}
+#listening-page .ll-sec{background:#fff;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,128,.08);margin-bottom:12px;overflow:hidden;border:1px solid #e3e8f5}
+#listening-page .ll-sh{background:#000080;color:#FFD700;padding:10px 14px;font-weight:700}
+#listening-page .ll-tr{padding:11px 14px;border-top:1px solid #eef1f8}
+#listening-page .ll-tr:first-of-type{border-top:none}
+#listening-page .ll-trh{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#listening-page .ll-num{background:#c9973a;color:#fff;border-radius:50%;min-width:26px;height:26px;padding:0 5px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem}
+#listening-page .ll-trt{font-weight:700;flex:1;min-width:140px}
+#listening-page audio{width:100%;margin-top:7px;height:38px}
+#listening-page .ll-script{display:none;margin-top:8px;background:#f7f9ff;border-radius:10px;padding:9px 13px;font-size:.88rem;line-height:1.6;white-space:pre-wrap}
+#listening-page .ll-script.on{display:block}
+#listening-page .ll-ans{color:#0a7a3a;font-weight:700}
+#listening-page .ll-tip{background:#fff8d6;border-left:4px solid #FFD700;padding:9px 13px;border-radius:8px;font-size:.85rem;margin-bottom:12px;line-height:1.5}
+#listening-page .ll-empty{text-align:center;color:#6b7390;padding:30px}
+#listening-page .ll-tag{font-size:.7rem;background:#eef1fb;color:#000080;border-radius:8px;padding:2px 7px;font-weight:700}
+#ll-modal{display:none;position:fixed;inset:0;background:rgba(0,0,40,.55);z-index:9995;align-items:center;justify-content:center;padding:12px}
+#ll-modal .box{background:#fff;border-radius:16px;width:520px;max-width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+#ll-modal .bh{background:#000080;color:#FFD700;padding:12px 16px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+#ll-modal .bh button{background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer}
+#ll-modal .bb{padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+#ll-modal label{font-size:.76rem;color:#555;font-weight:700;display:block;margin-bottom:3px}
+#ll-modal input,#ll-modal select,#ll-modal textarea{width:100%;box-sizing:border-box;padding:9px 11px;border:1.5px solid #d9dde6;border-radius:10px;font-size:.88rem;font-family:inherit}
+#ll-modal textarea{min-height:70px}
+#ll-modal .hint{font-size:.74rem;color:#777}
+#ll-modal .prog{height:8px;background:#eef1f8;border-radius:6px;overflow:hidden;display:none}
+#ll-modal .prog div{height:100%;width:0;background:linear-gradient(90deg,#c9973a,#FFD700);transition:width .2s}
+#ll-modal .bf{padding:12px 16px;border-top:1px solid #eee;display:flex;gap:8px;justify-content:flex-end}
+#ll-modal .bf button{padding:9px 16px;border-radius:20px;font-weight:700;cursor:pointer;font-size:.84rem}
+#ll-modal .ok{background:#000080;color:#FFD700;border:none}
+#ll-modal .no{background:#fff;color:#333;border:1px solid #d9dde6}
+</style>
+  <div class="ll-head">
+    <button class="ll-back" onclick="llBack()">← Back</button>
+    <h2 id="ll-title">🎧 Listening Library</h2>
+    <button class="ll-gold" id="ll-upload-btn" style="display:none" onclick="llOpenUpload()">⬆ Upload MP3</button>
+  </div>
+  <div class="ll-wrap" id="ll-body"><div class="ll-empty">Loading…</div></div>
+</div>
+<div id="ll-modal"><div class="box"><div class="bh"><span id="ll-m-title"></span><button onclick="llCloseModal()" aria-label="Close">✕</button></div>
+  <div class="bb" id="ll-m-body"></div><div class="bf" id="ll-m-foot"></div></div></div>
+<script>
+(function(){
+  var LL = { books: [], tracks: [], builtin: [], view: 'home', bookId: null, level: 'All', q: '', loaded: false };
+  window._LL = LL;
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function isStaff(){ return typeof isTeacher !== 'undefined' && isTeacher; }
+  function isAdminUser(){ return typeof currentUser !== 'undefined' && currentUser && currentUser.email === ADMIN_EMAIL; }
+  function myEmail(){ return (typeof currentUser !== 'undefined' && currentUser && currentUser.email) || ''; }
+  function natural(a, b){ return String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: 'base' }); }
+  function mmss(s){ s = Math.round(s || 0); return s ? Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0') : ''; }
+
+  function loadBuiltin(){
+    return new Promise(function(res){
+      if (window.LIBRARY) { res(window.LIBRARY); return; }
+      var sc = document.createElement('script');
+      sc.src = 'listening/library.js?v=' + Date.now();
+      sc.onload = function(){ res(window.LIBRARY || []); };
+      sc.onerror = function(){ res([]); };
+      document.head.appendChild(sc);
+    });
+  }
+  async function loadAll(){
+    var fb = window._fb;
+    LL.builtin = (await loadBuiltin()).map(function(b){
+      return { id: 'builtin:' + b.id, title: b.title, level: b.level, icon: b.icon || '📝', builtin: true, note: b.note,
+        tracks: b.sections.reduce(function(all, s){ return all.concat(s.tracks.map(function(t){
+          return { section: (s.group ? s.group + ' · ' : '') + s.title, title: t.title, n: t.n,
+                   url: 'listening/' + b.folder + '/' + t.file, secs: t.secs,
+                   script: (t.script || []).join('\n'), answer: t.key || '' }; })); }, []) };
+    });
+    try {
+      var bs = await fb.getDocs(fb.collection(fb.db, 'listeningBooks'));
+      LL.books = bs.docs.map(function(d){ var x = d.data(); x.id = d.id; return x; });
+      var ts = await fb.getDocs(fb.collection(fb.db, 'listeningTracks'));
+      LL.tracks = ts.docs.map(function(d){ var x = d.data(); x.id = d.id; return x; });
+    } catch (e) { console.warn('Listening Library: could not load from Firestore', e); LL.books = []; LL.tracks = []; LL.err = e; }
+    LL.loaded = true;
+  }
+  function allBooks(){
+    var own = LL.books.map(function(b){
+      return { id: b.id, title: b.title, level: b.level || 'Other', icon: b.icon || '🎧', builtin: false, createdBy: b.createdBy,
+               tracks: LL.tracks.filter(function(t){ return t.bookId === b.id; }) };
+    });
+    return LL.builtin.concat(own);
+  }
+
+  window.openListeningLibrary = async function(){
+    document.getElementById('listening-page').style.display = 'block';
+    if (typeof setAiWidgetVisible === 'function') setAiWidgetVisible(false);
+    document.getElementById('ll-upload-btn').style.display = isStaff() ? '' : 'none';
+    LL.view = 'home';
+    document.getElementById('ll-body').innerHTML = '<div class="ll-empty">Loading…</div>';
+    await loadAll();
+    render();
+  };
+  window.closeListeningLibrary = function(){
+    document.querySelectorAll('#listening-page audio').forEach(function(a){ a.pause(); });
+    document.getElementById('listening-page').style.display = 'none';
+  };
+  window.llBack = function(){
+    if (LL.view === 'book') { LL.view = 'home'; render(); } else closeListeningLibrary();
+  };
+
+  function render(){ LL.view === 'book' ? renderBook() : renderHome(); document.getElementById('listening-page').scrollTop = 0; }
+
+  function renderHome(){
+    document.getElementById('ll-title').textContent = '🎧 Listening Library';
+    var books = allBooks();
+    var levels = ['All'].concat(books.map(function(b){ return b.level; }).filter(function(v, i, a){ return a.indexOf(v) === i; }).sort(natural));
+    var list = books.filter(function(b){
+      return (LL.level === 'All' || b.level === LL.level) && (!LL.q || (b.title + ' ' + b.level).toLowerCase().indexOf(LL.q) !== -1);
+    });
+    var by = {};
+    list.forEach(function(b){ (by[b.level] = by[b.level] || []).push(b); });
+    var html = '';
+    if (isStaff()) html += '<div class="ll-tip">👩‍🏫 <b>Teachers:</b> press <b>⬆ Upload MP3</b> (top right) to add audio. You can create a new book in the same window. Pupils only see the play buttons; scripts and answers are shown to teachers only.</div>';
+    if (LL.err) html += '<div class="ll-tip" style="border-color:#e53935;background:#ffebee">⚠️ Could not load uploaded books (check the internet or the Firestore rules).</div>';
+    html += '<div class="ll-bar"><input id="ll-q" type="search" placeholder="Search a book or level…" value="' + esc(LL.q) + '"></div>';
+    html += '<div class="ll-chips">' + levels.map(function(l){ return '<button class="ll-chip' + (l === LL.level ? ' on' : '') + '" data-l="' + esc(l) + '">' + esc(l) + '</button>'; }).join('') + '</div>';
+    var lvls = Object.keys(by).sort(natural);
+    if (!lvls.length) html += '<div class="ll-empty">No book yet.' + (isStaff() ? ' Press ⬆ Upload MP3 to add the first one.' : '') + '</div>';
+    lvls.forEach(function(lv){
+      html += '<div class="ll-lvl">' + esc(lv) + '</div><div class="ll-grid">' + by[lv].sort(function(a, b){ return natural(a.title, b.title); }).map(function(b){
+        return '<div class="ll-book" data-id="' + esc(b.id) + '"><div class="ll-cov"><div class="ic">' + esc(b.icon) + '</div>' + esc(b.title) + '</div>'
+          + '<div class="ll-bi"><b>' + esc(b.level) + '</b>' + b.tracks.length + ' tracks' + (b.builtin ? ' · <span class="ll-tag">C2-EPE tests</span>' : '') + '</div></div>';
+      }).join('') + '</div>';
+    });
+    var body = document.getElementById('ll-body');
+    body.innerHTML = html;
+    var q = document.getElementById('ll-q');
+    q.oninput = function(){ LL.q = q.value.trim().toLowerCase(); renderHome(); var n = document.getElementById('ll-q'); n.focus(); n.setSelectionRange(999, 999); };
+    body.querySelectorAll('.ll-chip').forEach(function(c){ c.onclick = function(){ LL.level = c.getAttribute('data-l'); renderHome(); }; });
+    body.querySelectorAll('.ll-book').forEach(function(c){ c.onclick = function(){ LL.view = 'book'; LL.bookId = c.getAttribute('data-id'); render(); }; });
+  }
+
+  function renderBook(){
+    var b = allBooks().filter(function(x){ return x.id === LL.bookId; })[0];
+    if (!b) { LL.view = 'home'; return renderHome(); }
+    document.getElementById('ll-title').textContent = '🎧 ' + b.title;
+    var staff = isStaff(), canManage = staff && !b.builtin && (isAdminUser() || b.createdBy === myEmail());
+    var secs = {}, order = [];
+    b.tracks.slice().sort(function(x, y){ return natural(x.section, y.section) || natural(x.n || '', y.n || '') || natural(x.title, y.title); })
+      .forEach(function(t){ var s = t.section || 'Tracks'; if (!secs[s]) { secs[s] = []; order.push(s); } secs[s].push(t); });
+    var html = '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px">'
+      + '<div><b style="font-size:1.1rem;color:#000080">' + esc(b.title) + '</b><div style="font-size:.8rem;color:#6b7390">' + esc(b.level) + ' · ' + b.tracks.length + ' tracks</div></div>'
+      + '<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><label style="font-size:.8rem;font-weight:700;color:#000080">Speed <select id="ll-spd" style="padding:5px;border-radius:8px;border:1.5px solid #cfd6ea"><option>0.8</option><option>0.9</option><option selected>1</option><option>1.1</option></select></label>'
+      + (staff && !b.builtin ? '<button class="ll-ghost" onclick="llOpenUpload(\'' + esc(b.id) + '\')">⬆ Add MP3</button>' : '')
+      + (canManage ? '<button class="ll-red" onclick="llDeleteBook(\'' + esc(b.id) + '\')">🗑 Delete book</button>' : '') + '</div></div>';
+    if (b.note) html += '<div class="ll-tip">' + esc(b.note) + '</div>';
+    if (!order.length) html += '<div class="ll-empty">No audio yet.' + (staff ? ' Press ⬆ Add MP3.' : '') + '</div>';
+    order.forEach(function(s, si){
+      html += '<div class="ll-sec"><div class="ll-sh">' + esc(s) + '</div>' + secs[s].map(function(t, ti){
+        var id = 'll-s' + si + '_' + ti, hasS = staff && (t.script || t.answer);
+        var mine = staff && !b.builtin && (isAdminUser() || t.createdBy === myEmail());
+        return '<div class="ll-tr"><div class="ll-trh"><span class="ll-num">' + esc(t.n || (ti + 1)) + '</span><span class="ll-trt">' + esc(t.title) + '</span>'
+          + (t.secs ? '<span style="font-size:.76rem;color:#6b7390">⏱ ' + mmss(t.secs) + '</span>' : '')
+          + (hasS ? '<button class="ll-ghost" onclick="document.getElementById(\'' + id + '\').classList.toggle(\'on\')">📄 Script & answers</button>' : '')
+          + (mine ? '<button class="ll-ghost" onclick="llEditTrack(\'' + esc(t.id) + '\')">✏️</button><button class="ll-red" onclick="llDeleteTrack(\'' + esc(t.id) + '\')">🗑</button>' : '')
+          + '</div><audio controls preload="none" src="' + esc(encodeURI(t.url).replace(/%25/g, '%')) + '"></audio>'
+          + (hasS ? '<div class="ll-script" id="' + id + '">' + esc(t.script) + (t.answer ? '<div class="ll-ans">Answers: ' + esc(t.answer) + '</div>' : '') + '</div>' : '')
+          + '</div>';
+      }).join('') + '</div>';
+    });
+    var body = document.getElementById('ll-body');
+    body.innerHTML = html;
+    var spd = document.getElementById('ll-spd');
+    function rate(){ body.querySelectorAll('audio').forEach(function(a){ a.playbackRate = parseFloat(spd.value); }); }
+    spd.onchange = rate;
+    body.querySelectorAll('audio').forEach(function(a){ a.onplay = function(){ a.playbackRate = parseFloat(spd.value);
+      body.querySelectorAll('audio').forEach(function(o){ if (o !== a) o.pause(); }); }; });
+  }
+
+  // ───────── modal helpers ─────────
+  function modal(title, bodyHtml, footHtml){
+    document.getElementById('ll-m-title').textContent = title;
+    document.getElementById('ll-m-body').innerHTML = bodyHtml;
+    document.getElementById('ll-m-foot').innerHTML = footHtml;
+    document.getElementById('ll-modal').style.display = 'flex';
+  }
+  window.llCloseModal = function(){ if (LL.busy) return; document.getElementById('ll-modal').style.display = 'none'; };
+
+  // ───────── upload ─────────
+  window.llOpenUpload = function(bookId){
+    if (!isStaff()) return;
+    var own = LL.books.slice().sort(function(a, b){ return natural((a.level || '') + a.title, (b.level || '') + b.title); });
+    var levels = own.map(function(b){ return b.level; }).concat(LL.builtin.map(function(b){ return b.level; })).filter(function(v, i, a){ return v && a.indexOf(v) === i; });
+    var opts = own.map(function(b){ return '<option value="' + esc(b.id) + '"' + (b.id === bookId ? ' selected' : '') + '>' + esc((b.level ? b.level + ' – ' : '') + b.title) + '</option>'; }).join('');
+    modal('⬆ Upload MP3',
+      '<div><label>Book</label><select id="ll-u-book"><option value="__new">➕ New book…</option>' + opts + '</select></div>'
+      + '<div id="ll-u-new" style="display:flex;gap:8px;flex-wrap:wrap"><div style="flex:1;min-width:160px"><label>New book title</label><input id="ll-u-title" placeholder="e.g. Beehive 2 – Student Book"></div>'
+      + '<div style="flex:1;min-width:140px"><label>Level</label><input id="ll-u-level" list="ll-levels" placeholder="e.g. Beehive 2"><datalist id="ll-levels">' + levels.map(function(l){ return '<option value="' + esc(l) + '">'; }).join('') + '</datalist></div></div>'
+      + '<div><label>Section (unit / test)</label><input id="ll-u-sec" placeholder="e.g. Unit 1  or  Monthly Test 3"><div class="hint">Tracks with the same section are grouped together.</div></div>'
+      + '<div><label>MP3 files (you can choose many)</label><input id="ll-u-files" type="file" accept="audio/*,.mp3" multiple><div class="hint">The title of each track = the file name (you can edit it later with ✏️).</div></div>'
+      + '<div><label>Script (optional, teachers only)</label><textarea id="ll-u-script" placeholder="One sentence per line"></textarea></div>'
+      + '<div><label>Answers (optional, teachers only)</label><input id="ll-u-ans" placeholder="e.g. 1 a, 2 c, 3 b"></div>'
+      + '<div class="hint" id="ll-u-hint2">Script and answers are added to every file uploaded now – best when you upload one file at a time.</div>'
+      + '<div class="prog" id="ll-u-prog"><div></div></div><div class="hint" id="ll-u-status"></div>',
+      '<button class="no" onclick="llCloseModal()">Cancel</button><button class="ok" id="ll-u-go" onclick="llDoUpload()">Upload</button>');
+    var sel = document.getElementById('ll-u-book');
+    function sync(){ document.getElementById('ll-u-new').style.display = sel.value === '__new' ? 'flex' : 'none'; }
+    sel.onchange = sync; if (bookId) sel.value = bookId; else if (own.length) sel.value = own[0].id; sync();
+  };
+
+  function fileDuration(file){
+    return new Promise(function(res){
+      try { var a = new Audio(); var u = URL.createObjectURL(file); a.preload = 'metadata';
+        a.onloadedmetadata = function(){ var d = a.duration; URL.revokeObjectURL(u); res(isFinite(d) ? Math.round(d) : 0); };
+        a.onerror = function(){ URL.revokeObjectURL(u); res(0); }; a.src = u; } catch (e) { res(0); }
+    });
+  }
+
+  window.llDoUpload = async function(){
+    var fb = window._fb, sel = document.getElementById('ll-u-book').value;
+    var files = Array.prototype.slice.call(document.getElementById('ll-u-files').files || []);
+    var sec = document.getElementById('ll-u-sec').value.trim();
+    var st = document.getElementById('ll-u-status'), bar = document.getElementById('ll-u-prog');
+    if (!files.length) { alert('Please choose at least one MP3 file.'); return; }
+    if (!sec) { alert('Please type a section, e.g. "Unit 1".'); return; }
+    var bookId = sel;
+    LL.busy = true; document.getElementById('ll-u-go').disabled = true; bar.style.display = 'block';
+    try {
+      if (sel === '__new') {
+        var title = document.getElementById('ll-u-title').value.trim(), level = document.getElementById('ll-u-level').value.trim();
+        if (!title || !level) { throw new Error('Please type the new book title and level.'); }
+        var ref = await fb.addDoc(fb.collection(fb.db, 'listeningBooks'), { title: title, level: level, icon: '🎧', createdBy: myEmail(), createdAt: fb.serverTimestamp() });
+        LL.books.push({ id: ref.id, title: title, level: level, icon: '🎧', createdBy: myEmail() }); bookId = ref.id;
+      }
+      var script = document.getElementById('ll-u-script').value.trim(), ans = document.getElementById('ll-u-ans').value.trim();
+      for (var i = 0; i < files.length; i++) {
+        var f = files[i];
+        st.textContent = 'Uploading ' + (i + 1) + ' / ' + files.length + ': ' + f.name;
+        var secs = await fileDuration(f);
+        var up = await uploadToCloudinary(f, function(p){ bar.firstChild.style.width = Math.round(((i + p) / files.length) * 100) + '%'; });
+        var tr = { bookId: bookId, section: sec, title: f.name.replace(/\.[^.]+$/, '').replace(/[_]+/g, ' '), url: up.url, secs: secs,
+                   script: script, answer: ans, createdBy: myEmail(), createdAt: fb.serverTimestamp() };
+        var r = await fb.addDoc(fb.collection(fb.db, 'listeningTracks'), tr);
+        tr.id = r.id; LL.tracks.push(tr);
+      }
+      bar.firstChild.style.width = '100%'; st.textContent = '✅ Done – ' + files.length + ' file(s) uploaded.';
+      LL.busy = false; llCloseModal(); LL.view = 'book'; LL.bookId = bookId; render();
+    } catch (e) {
+      LL.busy = false; document.getElementById('ll-u-go').disabled = false;
+      st.textContent = '❌ ' + (e && e.message ? e.message : e);
+    }
+  };
+
+  // ───────── edit / delete ─────────
+  window.llEditTrack = function(id){
+    var t = LL.tracks.filter(function(x){ return x.id === id; })[0]; if (!t) return;
+    modal('✏️ Edit track',
+      '<div><label>Title</label><input id="ll-e-title" value="' + esc(t.title) + '"></div>'
+      + '<div><label>Section</label><input id="ll-e-sec" value="' + esc(t.section) + '"></div>'
+      + '<div><label>Script (teachers only)</label><textarea id="ll-e-script">' + esc(t.script || '') + '</textarea></div>'
+      + '<div><label>Answers (teachers only)</label><input id="ll-e-ans" value="' + esc(t.answer || '') + '"></div>',
+      '<button class="no" onclick="llCloseModal()">Cancel</button><button class="ok" onclick="llSaveTrack(\'' + esc(id) + '\')">Save</button>');
+  };
+  window.llSaveTrack = async function(id){
+    var fb = window._fb, t = LL.tracks.filter(function(x){ return x.id === id; })[0];
+    var upd = { title: document.getElementById('ll-e-title').value.trim() || t.title, section: document.getElementById('ll-e-sec').value.trim() || t.section,
+                script: document.getElementById('ll-e-script').value.trim(), answer: document.getElementById('ll-e-ans').value.trim() };
+    try { await fb.updateDoc(fb.doc(fb.db, 'listeningTracks', id), upd); Object.assign(t, upd); llCloseModal(); render(); }
+    catch (e) { alert('Could not save: ' + (e.message || e)); }
+  };
+  window.llDeleteTrack = async function(id){
+    if (!confirm('Delete this track from the Listening Library?')) return;
+    try { await window._fb.deleteDoc(window._fb.doc(window._fb.db, 'listeningTracks', id));
+      LL.tracks = LL.tracks.filter(function(x){ return x.id !== id; }); render(); }
+    catch (e) { alert('Could not delete: ' + (e.message || e)); }
+  };
+  window.llDeleteBook = async function(id){
+    var n = LL.tracks.filter(function(x){ return x.bookId === id; }).length;
+    if (!confirm('Delete this book' + (n ? ' and its ' + n + ' track(s)' : '') + '?')) return;
+    try {
+      var fb = window._fb;
+      for (var t of LL.tracks.filter(function(x){ return x.bookId === id; })) await fb.deleteDoc(fb.doc(fb.db, 'listeningTracks', t.id));
+      await fb.deleteDoc(fb.doc(fb.db, 'listeningBooks', id));
+      LL.tracks = LL.tracks.filter(function(x){ return x.bookId !== id; }); LL.books = LL.books.filter(function(x){ return x.id !== id; });
+      LL.view = 'home'; render();
+    } catch (e) { alert('Could not delete: ' + (e.message || e)); }
+  };
+})();
+</script>
+<!-- ═══════════════ END LISTENING LIBRARY ═══════════════ -->
+
 </body>
 </html>

@@ -21411,15 +21411,24 @@ function closeLevelUpTest(){
   function natural(a, b){ return String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: 'base' }); }
   function mmss(s){ s = Math.round(s || 0); return s ? Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0') : ''; }
 
-  function loadBuiltin(){
+  /* library.js can live in "listening/" (MP3s in listening/<folder>/) or in the site root (MP3s next to it).
+     We try listening/ first, then the root, so either upload layout works. */
+  function loadScript(src){
     return new Promise(function(res){
-      if (window.LIBRARY) { res(window.LIBRARY); return; }
       var sc = document.createElement('script');
-      sc.src = 'listening/library.js?v=' + Date.now();
-      sc.onload = function(){ res(window.LIBRARY || []); };
-      sc.onerror = function(){ res([]); };
+      sc.src = src + '?v=' + Date.now();
+      sc.onload = function(){ res(true); };
+      sc.onerror = function(){ res(false); };
       document.head.appendChild(sc);
     });
+  }
+  async function loadBuiltin(){
+    if (window.LIBRARY) return window.LIBRARY;
+    LL.libBase = 'listening/';
+    if (await loadScript('listening/library.js') && window.LIBRARY) return window.LIBRARY;
+    LL.libBase = '';
+    if (await loadScript('library.js') && window.LIBRARY) return window.LIBRARY;
+    return [];
   }
   async function loadAll(){
     var fb = window._fb;
@@ -21427,7 +21436,8 @@ function closeLevelUpTest(){
       return { id: 'builtin:' + b.id, title: b.title, level: b.level, icon: b.icon || '📝', builtin: true, note: b.note,
         tracks: b.sections.reduce(function(all, s){ return all.concat(s.tracks.map(function(t){
           return { section: (s.group ? s.group + ' · ' : '') + s.title, title: t.title, n: t.n,
-                   url: 'listening/' + b.folder + '/' + t.file, secs: t.secs,
+                   url: (LL.libBase || '') + (b.folder ? b.folder + '/' : '') + t.file,
+                   alt: [(LL.libBase || '') + t.file, 'listening/' + (b.folder ? b.folder + '/' : '') + t.file, t.file], secs: t.secs,
                    script: (t.script || []).join('\n'), answer: t.key || '' }; })); }, []) };
     });
     try {
@@ -21454,6 +21464,15 @@ function closeLevelUpTest(){
     document.getElementById('ll-body').innerHTML = '<div class="ll-empty">Loading…</div>';
     await loadAll();
     render();
+  };
+  /* If an MP3 is not where library.js says, try the other places (root, listening/) before giving up. */
+  window.llAudioFallback = function(a){
+    var alts = (a.dataset.alt || '').split('|').filter(Boolean);
+    if (!alts.length) return;
+    a.dataset.alt = alts.slice(1).join('|');
+    a.src = alts[0];
+    a.load();
+    a.play().catch(function(){});   /* MP3s load only when Play is pressed, so keep playing from the new place */
   };
   window.closeListeningLibrary = function(){
     document.querySelectorAll('#listening-page audio').forEach(function(a){ a.pause(); });
@@ -21501,7 +21520,8 @@ function closeLevelUpTest(){
     document.getElementById('ll-title').textContent = '🎧 ' + b.title;
     var staff = isStaff(), canManage = staff && !b.builtin && (isAdminUser() || b.createdBy === myEmail());
     var secs = {}, order = [];
-    b.tracks.slice().sort(function(x, y){ return natural(x.section, y.section) || natural(x.n || '', y.n || '') || natural(x.title, y.title); })
+    /* Books from library.js keep the order written in the file (Unit → Monthly → Mid-term → Final); uploaded books are sorted. */
+    (b.builtin ? b.tracks.slice() : b.tracks.slice().sort(function(x, y){ return natural(x.section, y.section) || natural(x.n || '', y.n || '') || natural(x.title, y.title); }))
       .forEach(function(t){ var s = t.section || 'Tracks'; if (!secs[s]) { secs[s] = []; order.push(s); } secs[s].push(t); });
     var html = '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px">'
       + '<div><b style="font-size:1.1rem;color:#000080">' + esc(b.title) + '</b><div style="font-size:.8rem;color:#6b7390">' + esc(b.level) + ' · ' + b.tracks.length + ' tracks</div></div>'
@@ -21518,7 +21538,8 @@ function closeLevelUpTest(){
           + (t.secs ? '<span style="font-size:.76rem;color:#6b7390">⏱ ' + mmss(t.secs) + '</span>' : '')
           + (hasS ? '<button class="ll-ghost" onclick="document.getElementById(\'' + id + '\').classList.toggle(\'on\')">📄 Script & answers</button>' : '')
           + (mine ? '<button class="ll-ghost" onclick="llEditTrack(\'' + esc(t.id) + '\')">✏️</button><button class="ll-red" onclick="llDeleteTrack(\'' + esc(t.id) + '\')">🗑</button>' : '')
-          + '</div><audio controls preload="none" src="' + esc(encodeURI(t.url).replace(/%25/g, '%')) + '"></audio>'
+          + '</div><audio controls preload="none" src="' + esc(encodeURI(t.url).replace(/%25/g, '%')) + '"'
+          + (t.alt ? ' data-alt="' + esc(t.alt.filter(function(u){ return u !== t.url; }).map(function(u){ return encodeURI(u); }).join('|')) + '" onerror="llAudioFallback(this)"' : '') + '></audio>'
           + (hasS ? '<div class="ll-script" id="' + id + '">' + esc(t.script) + (t.answer ? '<div class="ll-ans">Answers: ' + esc(t.answer) + '</div>' : '') + '</div>' : '')
           + '</div>';
       }).join('') + '</div>';

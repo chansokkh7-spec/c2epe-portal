@@ -1,0 +1,34 @@
+C2-EPE LISTENING LIBRARY – របៀបបន្ថែមសៀវភៅថ្មី
+==============================================
+
+ការរៀបចំ folder
+---------------
+listening/
+  index.html                  ← ទំព័រ Listening Library (កុំកែ)
+  library.js                  ← បញ្ជីសៀវភៅទាំងអស់ (កែតែឯកសារនេះ)
+  beehive-starter-tests/      ← MP3 របស់សៀវភៅនីមួយៗ នៅក្នុង folder ផ្ទាល់ខ្លួន
+  beehive-2-student-book/     ← (ឧទាហរណ៍ សៀវភៅថ្មី)
+
+បន្ថែមសៀវភៅថ្មី (៤ ជំហាន)
+--------------------------
+1. បង្កើត folder ថ្មីក្នុង listening/  ឧ. listening/beehive-2-student-book/
+   (ប្រើអក្សរតូច និង "-" ជំនួសដកឃ្លា)
+2. ដាក់ឯកសារ MP3 ទាំងអស់របស់សៀវភៅនោះ ចូលក្នុង folder នោះ។
+3. បើក library.js ចម្លង TEMPLATE នៅខាងក្រោម ហើយបិទភ្ជាប់ពីមុខបន្ទាត់ចុងក្រោយ  ];
+   បំពេញ៖ id, level, title, folder និងបញ្ជី tracks (ឈ្មោះឯកសារ MP3 ត្រូវតែដូចគ្នាទាំងស្រុង)។
+4. Upload folder ថ្មី និង library.js ទៅ website។ សៀវភៅថ្មីនឹងបង្ហាញដោយស្វ័យប្រវត្តិ។
+   មិនចាំបាច់កែ index.html របស់ប្រព័ន្ធទេ។
+
+ចំណាំ
+-----
+- level ដូចគ្នា (ឧ. "Beehive 2") = សៀវភៅនឹងនៅជាមួយគ្នាក្នុងក្រុមតែមួយ។
+- group (ឧ. "Units 1–4") = ផ្ទាំង (tab) នៅក្នុងសៀវភៅ។
+- script និង key (ចម្លើយ) គឺមិនចាំបាច់ទេ។ បើមាន វាបង្ហាញតែក្នុង Teacher mode ប៉ុណ្ណោះ។
+- រាល់សញ្ញា , { } [ ] " ត្រូវតែត្រឹមត្រូវ។ បើសៀវភៅមិនបង្ហាញ ពិនិត្យសញ្ញាក្បៀស (,) ពីមុខ {។
+
+Link សម្រាប់ប្រើ
+---------------
+- គ្រូ (មាន script + ចម្លើយ + ទាញយក MP3):  listening/index.html?teacher=1
+  (ប៊ូតុង 🎧 Listening Library ក្នុង Tools បើក link នេះ)
+- សិស្ស (ស្ដាប់តែប៉ុណ្ណោះ គ្មានចម្លើយ):     listening/index.html
+- Link ទៅសៀវភៅមួយក្បាលផ្ទាល់:              listening/index.html#book=beehive-starter-tests

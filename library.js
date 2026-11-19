@@ -5579,6 +5579,834 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "upstream-a1-tests",
+ "level": "Upstream A1+",
+ "icon": "📝",
+ "title": "Upstream Beginner A1+ – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "upstream-a1-tests",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Starter Unit: Let's start",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-ut-unit-test-starter-unit-let-s-start-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "This is an envelope.",
+      "This is an eraser.",
+      "This is a bag.",
+      "I love popcorn.",
+      "This is a pencil."
+     ],
+     "key": "1 envelope (a), 2 eraser (a), 3 bag (b), 4 popcorn (a), 5 pencil (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-ut-unit-test-starter-unit-let-s-start-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "Let's have a pizza.",
+      "The telephone is ringing.",
+      "This is a dictionary.",
+      "This is a sharpener.",
+      "This is a pen."
+     ],
+     "key": "1 pizza, 2 telephone, 3 dictionary, 4 sharpener, 5 pen"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Friends all over the world",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-ut-unit-test-unit-1-friends-all-over-the-world-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "I'm from Italy.",
+      "I'm from Turkey.",
+      "I'm from Russia.",
+      "I'm from Britain.",
+      "I'm from Greece."
+     ],
+     "key": "1 Italy (a), 2 Turkey (b), 3 Russia (a), 4 Britain (a), 5 Greece (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-ut-unit-test-unit-1-friends-all-over-the-world-ex2.mp3",
+     "secs": 70,
+     "script": [
+      "She's American.",
+      "She's Japanese.",
+      "She's French.",
+      "She's Brazilian.",
+      "I'm from Mexico."
+     ],
+     "key": "1 American, 2 Japanese, 3 French, 4 Brazilian, 5 Mexico"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Family and friends",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-ut-unit-test-unit-2-family-and-friends-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "This is my grandfather.",
+      "This is my brother.",
+      "I can play tennis.",
+      "This is my grandmother.",
+      "I can ride a horse."
+     ],
+     "key": "1 grandfather (a), 2 brother (a), 3 play tennis (b), 4 grandmother (a), 5 ride a horse (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-ut-unit-test-unit-2-family-and-friends-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "I can play chess.",
+      "This is my uncle.",
+      "This is my father.",
+      "I can dive.",
+      "This is my mother."
+     ],
+     "key": "1 play chess, 2 uncle, 3 father, 4 dive, 5 mother"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Day by day",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-ut-unit-test-unit-3-day-by-day-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "I get up at seven o'clock.",
+      "She's a chef.",
+      "She's a vet.",
+      "I walk the dog every morning.",
+      "I go jogging in the park."
+     ],
+     "key": "1 get up (a), 2 chef (b), 3 vet (a), 4 walk the dog (b), 5 go jogging (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-ut-unit-test-unit-3-day-by-day-ex2.mp3",
+     "secs": 77,
+     "script": [
+      "I go to school by bus.",
+      "My dad reads the newspaper every day.",
+      "I do my homework in the evening.",
+      "I have breakfast at eight o'clock.",
+      "She's a police officer."
+     ],
+     "key": "1 go to school, 2 read the newspaper, 3 do homework, 4 have breakfast, 5 police officer"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Home sweet home",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-ut-unit-test-unit-4-home-sweet-home-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "Is there a cinema near here?",
+      "There's a mirror in the room.",
+      "Is there a hospital near here?",
+      "Is there a bank near here?",
+      "Is there a supermarket near here?"
+     ],
+     "key": "1 cinema (a), 2 mirror (c), 3 hospital (a), 4 bank (b), 5 supermarket (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-ut-unit-test-unit-4-home-sweet-home-ex2.mp3",
+     "secs": 76,
+     "script": [
+      "Is there a post office near here?",
+      "Is there a train station near here?",
+      "There's a fridge in the room.",
+      "There's a lamp in the room.",
+      "Is there a baker's near here?"
+     ],
+     "key": "1 post office, 2 train station, 3 fridge, 4 lamp, 5 baker's"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Food, glorious food",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-ut-unit-test-unit-5-food-glorious-food-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "Can I have a jar of jam, please?",
+      "Can I have a glass of cola, please?",
+      "Would you like a cup of coffee?",
+      "I love cakes.",
+      "I'd like some chocolate, please."
+     ],
+     "key": "1 jar (c), 2 glass (b), 3 coffee (a), 4 cakes (a), 5 chocolate (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-ut-unit-test-unit-5-food-glorious-food-ex2.mp3",
+     "secs": 76,
+     "script": [
+      "Can I have a tin of tuna, please?",
+      "Can I have a cup of tea, please?",
+      "Can I have a loaf of bread, please?",
+      "I love hot dogs.",
+      "I love burgers."
+     ],
+     "key": "1 tin, 2 cup, 3 loaf, 4 hot dogs, 5 burgers"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Weather and clothes",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-ut-unit-test-unit-6-weather-and-clothes-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "I'm wearing a tie.",
+      "It's windy today.",
+      "It's sunny today.",
+      "It's foggy today.",
+      "I'm wearing a scarf."
+     ],
+     "key": "1 tie (c), 2 windy (b), 3 sunny (b), 4 foggy (c), 5 scarf (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-ut-unit-test-unit-6-weather-and-clothes-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "I'm wearing sunglasses.",
+      "It's cold today.",
+      "I'm wearing socks.",
+      "I'm wearing boots.",
+      "It's raining today."
+     ],
+     "key": "1 sunglasses, 2 cold, 3 socks, 4 boots, 5 raining"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Lives in the past",
+   "info": "Test paper page 20",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-ut-unit-test-unit-7-lives-in-the-past-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "He was a writer.",
+      "They hunted buffalo.",
+      "They hunted deer.",
+      "He was a shepherd.",
+      "They hunted seals."
+     ],
+     "key": "1 writer (c), 2 buffalo (b), 3 deer (b), 4 shepherd (b), 5 seals (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-ut-unit-test-unit-7-lives-in-the-past-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "He was a singer.",
+      "He was a president.",
+      "He was an actor.",
+      "He was a footballer.",
+      "The Inuit lived in igloos."
+     ],
+     "key": "1 singer, 2 president, 3 actor, 4 footballer, 5 igloos"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Animals and stories",
+   "info": "Test paper page 23",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-ut-unit-test-unit-8-animals-and-stories-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "It had four flippers.",
+      "Look at the horse!",
+      "It had big wings.",
+      "Look at the chimp!",
+      "It had a long neck."
+     ],
+     "key": "1 flippers (c), 2 horse (c), 3 wings (c), 4 chimp (b), 5 neck (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-ut-unit-test-unit-8-animals-and-stories-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "Look at the dinosaur!",
+      "It had short legs.",
+      "Look at the shark!",
+      "It had a long tail.",
+      "It had a small head."
+     ],
+     "key": "1 dinosaur, 2 legs, 3 shark, 4 tail, 5 head"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Sports and the future",
+   "info": "Test paper page 26",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-ut-unit-test-unit-9-sports-and-the-future-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "I'm going to go trekking.",
+      "Don't forget your skis!",
+      "Don't forget your racket!",
+      "I'm going to go cycling.",
+      "Don't forget your life jacket!"
+     ],
+     "key": "1 trekking (a), 2 skis (b), 3 racket (a), 4 cycling (c), 5 life jacket (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-ut-unit-test-unit-9-sports-and-the-future-ex2.mp3",
+     "secs": 76,
+     "script": [
+      "Don't forget your rucksack!",
+      "I'm going to play ice hockey.",
+      "I'm going to go surfing.",
+      "I'm going to go snorkelling.",
+      "I'm going to do karate."
+     ],
+     "key": "1 rucksack, 2 ice hockey, 3 surfing, 4 snorkelling, 5 karate"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Travelling",
+   "info": "Test paper page 28",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-ut-unit-test-unit-10-travelling-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "My suitcase is very heavy.",
+      "Have you got your ticket?",
+      "Don't forget your passport!",
+      "We visited the jungle.",
+      "We visited the mountain."
+     ],
+     "key": "1 suitcase (c), 2 ticket (a), 3 passport (a), 4 jungle (a), 5 mountain (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-ut-unit-test-unit-10-travelling-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "We travelled by train.",
+      "We visited the beach.",
+      "Do I need a visa?",
+      "We travelled by coach.",
+      "We travelled by boat."
+     ],
+     "key": "1 train, 2 beach, 3 visa, 4 coach, 5 boat"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-mt-monthly-test-1-ex1.mp3",
+     "secs": 56,
+     "script": [
+      "I'm from Russia.",
+      "I'm from Japan.",
+      "I'm from Britain.",
+      "I'm from Turkey."
+     ],
+     "key": "1 Russia (b), 2 Japan (b), 3 Britain (c), 4 Turkey (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-mt-monthly-test-1-ex2.mp3",
+     "secs": 56,
+     "script": [
+      "She's Chinese.",
+      "She's Brazilian.",
+      "She's Spanish.",
+      "I'm from Italy."
+     ],
+     "key": "1 Chinese, 2 Brazilian, 3 Spanish, 4 Italy"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-mt-monthly-test-2-ex1.mp3",
+     "secs": 56,
+     "script": [
+      "I'm from Russia.",
+      "This is my grandmother.",
+      "I'm from Britain.",
+      "This is my brother."
+     ],
+     "key": "1 Russia (a), 2 grandmother (c), 3 Britain (a), 4 brother (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-mt-monthly-test-2-ex2.mp3",
+     "secs": 57,
+     "script": [
+      "I can ride a horse.",
+      "She's American.",
+      "I can ride a bike.",
+      "I'm from Japan."
+     ],
+     "key": "1 ride a horse, 2 American, 3 ride a bike, 4 Japan"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-mt-monthly-test-3-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "She's a pilot.",
+      "Is there a chemist's near here?",
+      "She's a chef.",
+      "There's a bed in the room."
+     ],
+     "key": "1 pilot (c), 2 chemist's (c), 3 chef (b), 4 bed (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-mt-monthly-test-3-ex2.mp3",
+     "secs": 63,
+     "script": [
+      "Is there a museum near here?",
+      "I go jogging in the park.",
+      "Is there a train station near here?",
+      "My mum does the shopping on Saturdays."
+     ],
+     "key": "1 museum, 2 go jogging, 3 train station, 4 do the shopping"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 10",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-mt-monthly-test-4-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "Is there a museum near here?",
+      "I'd like some soup, please.",
+      "Is there a train station near here?",
+      "Let's have a pizza."
+     ],
+     "key": "1 museum (b), 2 soup (b), 3 train station (c), 4 pizza (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-mt-monthly-test-4-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "I love cakes.",
+      "Is there a library near here?",
+      "Can I have a packet of biscuits, please?",
+      "There's a mirror in the room."
+     ],
+     "key": "1 cakes, 2 library, 3 packet, 4 mirror"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-mt-monthly-test-5-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "I'm wearing a swimsuit.",
+      "It's hot today.",
+      "I'm wearing trousers.",
+      "I'm wearing boots."
+     ],
+     "key": "1 swimsuit (c), 2 hot (a), 3 trousers (a), 4 boots (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-mt-monthly-test-5-ex2.mp3",
+     "secs": 58,
+     "script": [
+      "I'm wearing socks.",
+      "It's raining today.",
+      "It's cloudy today.",
+      "I'm wearing a dress."
+     ],
+     "key": "1 socks, 2 raining, 3 cloudy, 4 dress"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 16",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-mt-monthly-test-6-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "I'm wearing boots.",
+      "They hunted seals.",
+      "I'm wearing trousers.",
+      "They travelled in kayaks."
+     ],
+     "key": "1 boots (c), 2 seals (a), 3 trousers (b), 4 kayaks (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-mt-monthly-test-6-ex2.mp3",
+     "secs": 58,
+     "script": [
+      "He was a teacher.",
+      "I'm wearing socks.",
+      "They travelled on sleds.",
+      "It's cloudy today."
+     ],
+     "key": "1 teacher, 2 socks, 3 sleds, 4 cloudy"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 19",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-mt-monthly-test-7-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "It had a long neck.",
+      "Don't forget your life jacket!",
+      "Look at the gorilla!",
+      "I'm going to go rafting."
+     ],
+     "key": "1 neck (c), 2 life jacket (b), 3 gorilla (b), 4 rafting (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-mt-monthly-test-7-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "I'm going to go cycling.",
+      "It had big fins.",
+      "I'm going to go surfing.",
+      "It had big eyes."
+     ],
+     "key": "1 cycling, 2 fins, 3 surfing, 4 eyes"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 22",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-mt-monthly-test-8-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "I'm going to go cycling.",
+      "We visited the river.",
+      "Don't forget your skis!",
+      "Have you got your ticket?"
+     ],
+     "key": "1 cycling (b), 2 river (c), 3 skis (b), 4 ticket (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-mt-monthly-test-8-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "We travelled by coach.",
+      "I'm going to do karate.",
+      "We visited the beach.",
+      "Don't forget your rucksack!"
+     ],
+     "key": "1 coach, 2 karate, 3 beach, 4 rucksack"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "I'm from Japan.",
+      "I can play baseball.",
+      "She's a vet.",
+      "I'm from Turkey.",
+      "I can dive."
+     ],
+     "key": "1 Japan (b), 2 play baseball (c), 3 vet (b), 4 Turkey (c), 5 dive (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "This is my sister.",
+      "My dad reads the newspaper every day.",
+      "She's French.",
+      "I can take photos.",
+      "I get up at seven o'clock."
+     ],
+     "key": "1 sister, 2 read the newspaper, 3 French, 4 take photos, 5 get up"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "It's snowing today.",
+      "He was a student.",
+      "Look at the dolphin!",
+      "I'm wearing a scarf.",
+      "They travelled in kayaks."
+     ],
+     "key": "1 snowing (b), 2 student (b), 3 dolphin (b), 4 scarf (c), 5 kayaks (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "They hunted deer.",
+      "Look at the bird!",
+      "I'm wearing trousers.",
+      "He was a teacher.",
+      "Look at the dinosaur!"
+     ],
+     "key": "1 deer, 2 bird, 3 trousers, 4 teacher, 5 dinosaur"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-fin-final-test-semester-1-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "I'm from Italy.",
+      "I can ride a bike.",
+      "She's a mechanic.",
+      "Is there a supermarket near here?",
+      "I love hot dogs."
+     ],
+     "key": "1 Italy (b), 2 ride a bike (a), 3 mechanic (b), 4 supermarket (a), 5 hot dogs (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-fin-final-test-semester-1-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "This is my aunt.",
+      "She's a police officer.",
+      "There's a mirror in the room.",
+      "Can I have a loaf of bread, please?",
+      "I'm from Japan."
+     ],
+     "key": "1 aunt, 2 police officer, 3 mirror, 4 loaf, 5 Japan"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "up1-fin-final-test-semester-1-ex3.mp3",
+     "secs": 72,
+     "script": [
+      "I go jogging in the park.",
+      "Is there a supermarket near here?",
+      "I love sandwiches.",
+      "I'm from Greece.",
+      "I can take photos."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up1-fin-final-test-semester-2-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "It's sunny today.",
+      "They travelled on sleds.",
+      "It had big eyes.",
+      "Don't forget your skis!",
+      "My suitcase is very heavy."
+     ],
+     "key": "1 sunny (a), 2 sleds (b), 3 eyes (c), 4 skis (b), 5 suitcase (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up1-fin-final-test-semester-2-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "They hunted seals.",
+      "It had a long tail.",
+      "Don't forget your life jacket!",
+      "We travelled by boat.",
+      "I'm wearing gloves."
+     ],
+     "key": "1 seals, 2 tail, 3 life jacket, 4 boat, 5 gloves"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "up1-fin-final-test-semester-2-ex3.mp3",
+     "secs": 70,
+     "script": [
+      "Look at the shark!",
+      "Don't forget your ice skates!",
+      "We visited the beach.",
+      "I'm wearing a dress.",
+      "He was a singer."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

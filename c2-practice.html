@@ -74,10 +74,15 @@ function norm(s){return String(s).toLowerCase().replace(/[‘’`]/g,"'").replac
 function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
 
 function loadData(prefix, cb){
-  var s=document.createElement('script');
-  s.src=prefix+'.js?v='+Date.now();
-  s.onload=cb; s.onerror=function(){main.innerHTML='<div class="msg"><div class="big">⚠️</div>Cannot load the exercises. Check your internet connection.</div>';};
-  document.head.appendChild(s);
+  /* data file may sit next to this page (practice/up2.js) or in the site root (../up2.js) */
+  var tries=[prefix+'.js', '../'+prefix+'.js'];
+  (function next(){
+    if(!tries.length){main.innerHTML='<div class="msg"><div class="big">⚠️</div>Cannot load the exercises. Check your internet connection.</div>';return;}
+    var s=document.createElement('script');
+    s.src=tries.shift()+'?v='+Date.now();
+    s.onload=function(){ if(window.PRACTICE) cb(); else next(); }; s.onerror=next;
+    document.head.appendChild(s);
+  })();
 }
 var prefix = (ID.split('-')[0]) || Q.get('l') || 'up2';
 loadData(prefix, start);
@@ -110,10 +115,16 @@ function listen(t, D){
   document.getElementById('sub').textContent='Listen to each exercise. Every item is said twice.';
   var h='';
   t.tracks.forEach(function(x){
-    h+='<div class="card trk"><h2><span class="n">'+x.n+'</span>'+esc(x.title)+'</h2><audio controls preload="none" src="'+(D.audio||'')+x.file+'"></audio></div>';
+    h+='<div class="card trk"><h2><span class="n">'+x.n+'</span>'+esc(x.title)+'</h2><audio controls preload="metadata" data-f="'+esc(x.file)+'"></audio></div>';
   });
   main.innerHTML=h+'<p class="note" style="margin:0;text-align:center">ស្ដាប់ហើយសរសេរចម្លើយលើក្រដាសតេស្ត។ លេខលំហាត់ត្រូវនឹងលេខលើក្រដាស។</p>';
   var as=main.querySelectorAll('audio');
+  /* MP3s may be in listening/<folder>/ or flat in the site root – try each place */
+  as.forEach(function(a){
+    var f=a.getAttribute('data-f'), alts=[(D.audio||'')+f, '../'+f, f];
+    a.addEventListener('error',function(){ if(alts.length){a.src=alts.shift();} });
+    a.src=alts.shift();
+  });
   as.forEach(function(a){a.addEventListener('play',function(){as.forEach(function(b){if(b!==a)b.pause();});});});
 }
 

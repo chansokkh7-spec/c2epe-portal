@@ -3149,7 +3149,7 @@ window.LIBRARY = [
      "n": 1,
      "title": "Exercise 1 – Listen and tick ✓.",
      "file": "b4-ut-unit-test-unit-1-the-world-of-animals-ex1.mp3",
-     "secs": 76,
+     "secs": 72,
      "script": [
       "Look! It's an octopus.",
       "This animal can roar.",
@@ -3163,7 +3163,7 @@ window.LIBRARY = [
      "n": 2,
      "title": "Exercise 2 – Listen and circle the correct word.",
      "file": "b4-ut-unit-test-unit-1-the-world-of-animals-ex2.mp3",
-     "secs": 76,
+     "secs": 73,
      "script": [
       "This animal can chew.",
       "Look! It's a giant tortoise.",
@@ -3198,7 +3198,7 @@ window.LIBRARY = [
      "n": 2,
      "title": "Exercise 2 – Listen and circle the correct word.",
      "file": "b4-ut-unit-test-unit-2-fun-at-home-ex2.mp3",
-     "secs": 74,
+     "secs": 73,
      "script": [
       "Let's make lemonade.",
       "Let's go for a walk.",
@@ -3254,7 +3254,7 @@ window.LIBRARY = [
      "n": 1,
      "title": "Exercise 1 – Listen and tick ✓.",
      "file": "b4-ut-unit-test-unit-4-attractions-ex1.mp3",
-     "secs": 72,
+     "secs": 71,
      "script": [
       "I bought a postcard.",
       "I bought a button.",
@@ -3268,7 +3268,7 @@ window.LIBRARY = [
      "n": 2,
      "title": "Exercise 2 – Listen and circle the correct word.",
      "file": "b4-ut-unit-test-unit-4-attractions-ex2.mp3",
-     "secs": 74,
+     "secs": 72,
      "script": [
       "I went to the gift shop.",
       "Look at the art gallery!",
@@ -3289,7 +3289,7 @@ window.LIBRARY = [
      "n": 1,
      "title": "Exercise 1 – Listen and tick ✓.",
      "file": "b4-ut-unit-test-unit-5-our-community-ex1.mp3",
-     "secs": 71,
+     "secs": 70,
      "script": [
       "They use ovens.",
       "They put away books.",
@@ -3303,7 +3303,7 @@ window.LIBRARY = [
      "n": 2,
      "title": "Exercise 2 – Listen and circle the correct word.",
      "file": "b4-ut-unit-test-unit-5-our-community-ex2.mp3",
-     "secs": 70,
+     "secs": 69,
      "script": [
       "They cut hair.",
       "She's a barber.",
@@ -3324,7 +3324,7 @@ window.LIBRARY = [
      "n": 1,
      "title": "Exercise 1 – Listen and tick ✓.",
      "file": "b4-ut-unit-test-unit-6-future-travel-ex1.mp3",
-     "secs": 79,
+     "secs": 78,
      "script": [
       "Go down.",
       "Go left.",
@@ -3338,7 +3338,7 @@ window.LIBRARY = [
      "n": 2,
      "title": "Exercise 2 – Listen and circle the correct word.",
      "file": "b4-ut-unit-test-unit-6-future-travel-ex2.mp3",
-     "secs": 74,
+     "secs": 72,
      "script": [
       "Go through.",
       "Cars will be flying.",
@@ -3359,7 +3359,7 @@ window.LIBRARY = [
      "n": 1,
      "title": "Exercise 1 – Listen and tick ✓.",
      "file": "b4-ut-unit-test-unit-7-making-music-ex1.mp3",
-     "secs": 73,
+     "secs": 72,
      "script": [
       "It's made of rubber.",
       "I can play the trumpet.",
@@ -3394,7 +3394,7 @@ window.LIBRARY = [
      "n": 1,
      "title": "Exercise 1 – Listen and tick ✓.",
      "file": "b4-ut-unit-test-unit-8-the-world-of-games-ex1.mp3",
-     "secs": 74,
+     "secs": 72,
      "script": [
       "In this game, you race.",
       "This is my controller.",
@@ -3408,7 +3408,7 @@ window.LIBRARY = [
      "n": 2,
      "title": "Exercise 2 – Listen and circle the correct word.",
      "file": "b4-ut-unit-test-unit-8-the-world-of-games-ex2.mp3",
-     "secs": 74,
+     "secs": 73,
      "script": [
       "This is my monitor.",
       "In this game, you keep.",
@@ -3429,7 +3429,7 @@ window.LIBRARY = [
      "n": 1,
      "title": "Exercise 1 – Listen and tick ✓.",
      "file": "b4-ut-unit-test-unit-9-aches-and-pains-ex1.mp3",
-     "secs": 70,
+     "secs": 69,
      "script": [
       "I have a stomachache.",
       "I hurt my toe.",
@@ -3443,7 +3443,7 @@ window.LIBRARY = [
      "n": 2,
      "title": "Exercise 2 – Listen and circle the correct word.",
      "file": "b4-ut-unit-test-unit-9-aches-and-pains-ex2.mp3",
-     "secs": 73,
+     "secs": 72,
      "script": [
       "I hurt my finger.",
       "You might bruise.",
@@ -3464,7 +3464,7 @@ window.LIBRARY = [
      "n": 1,
      "title": "Exercise 1 – Listen and tick ✓.",
      "file": "b4-ut-unit-test-unit-10-exciting-adventures-ex1.mp3",
-     "secs": 76,
+     "secs": 75,
      "script": [
       "I'd like to go scuba diving.",
       "I'd like to go white-water rafting.",
@@ -3499,7 +3499,7 @@ window.LIBRARY = [
      "n": 1,
      "title": "Exercise 1 – Listen and tick ✓.",
      "file": "b4-mt-monthly-test-1-ex1.mp3",
-     "secs": 60,
+     "secs": 57,
      "script": [
       "Look! It's a lion.",
       "Look! It's a sloth.",
@@ -3512,7 +3512,7 @@ window.LIBRARY = [
      "n": 2,
      "title": "Exercise 2 – Listen and circle the correct word.",
      "file": "b4-mt-monthly-test-1-ex2.mp3",
-     "secs": 60,
+     "secs": 59,
      "script": [
       "This animal can dive.",
       "This animal can chew.",
@@ -3532,7 +3532,7 @@ window.LIBRARY = [
      "n": 1,
      "title": "Exercise 1 – Listen and tick ✓.",
      "file": "b4-mt-monthly-test-2-ex1.mp3",
-     "secs": 60,
+     "secs": 58,
      "script": [
       "Look! It's a lion.",
       "I'm watching a drama.",
@@ -3545,7 +3545,7 @@ window.LIBRARY = [
      "n": 2,
      "title": "Exercise 2 – Listen and circle the correct word.",
      "file": "b4-mt-monthly-test-2-ex2.mp3",
-     "secs": 60,
+     "secs": 59,
      "script": [
       "Let's make a bracelet.",
       "This animal can sleep.",
@@ -3565,7 +3565,7 @@ window.LIBRARY = [
      "n": 1,
      "title": "Exercise 1 – Listen and tick ✓.",
      "file": "b4-mt-monthly-test-3-ex1.mp3",
-     "secs": 61,
+     "secs": 60,
      "script": [
       "Yesterday we had to play an instrument.",
       "I bought a guidebook.",
@@ -3611,7 +3611,7 @@ window.LIBRARY = [
      "n": 2,
      "title": "Exercise 2 – Listen and circle the correct word.",
      "file": "b4-mt-monthly-test-4-ex2.mp3",
-     "secs": 57,
+     "secs": 58,
      "script": [
       "They cut hair.",
       "Look at the amusement park!",
@@ -3664,7 +3664,7 @@ window.LIBRARY = [
      "n": 1,
      "title": "Exercise 1 – Listen and tick ✓.",
      "file": "b4-mt-monthly-test-6-ex1.mp3",
-     "secs": 60,
+     "secs": 59,
      "script": [
       "Go up.",
       "It's made of rubber.",
@@ -3710,7 +3710,7 @@ window.LIBRARY = [
      "n": 2,
      "title": "Exercise 2 – Listen and circle the correct word.",
      "file": "b4-mt-monthly-test-7-ex2.mp3",
-     "secs": 59,
+     "secs": 58,
      "script": [
       "I have a cough.",
       "In this game, you race.",
@@ -3730,7 +3730,7 @@ window.LIBRARY = [
      "n": 1,
      "title": "Exercise 1 – Listen and tick ✓.",
      "file": "b4-mt-monthly-test-8-ex1.mp3",
-     "secs": 58,
+     "secs": 57,
      "script": [
       "I have a cough.",
       "I'd like to see a whale.",
@@ -3743,7 +3743,7 @@ window.LIBRARY = [
      "n": 2,
      "title": "Exercise 2 – Listen and circle the correct word.",
      "file": "b4-mt-monthly-test-8-ex2.mp3",
-     "secs": 61,
+     "secs": 60,
      "script": [
       "I'd like to see a tour.",
       "You might bruise.",
@@ -3763,7 +3763,7 @@ window.LIBRARY = [
      "n": 1,
      "title": "Exercise 1 – Listen and tick ✓.",
      "file": "b4-mid-mid-term-test-semester-1-ex1.mp3",
-     "secs": 74,
+     "secs": 73,
      "script": [
       "Look! It's a butterfly.",
       "I'm watching the news.",
@@ -3777,7 +3777,7 @@ window.LIBRARY = [
      "n": 2,
      "title": "Exercise 2 – Listen and circle the correct word.",
      "file": "b4-mid-mid-term-test-semester-1-ex2.mp3",
-     "secs": 77,
+     "secs": 75,
      "script": [
       "Let's make a card.",
       "Yesterday we had to do an experiment.",
@@ -3798,7 +3798,7 @@ window.LIBRARY = [
      "n": 1,
      "title": "Exercise 1 – Listen and tick ✓.",
      "file": "b4-mid-mid-term-test-semester-2-ex1.mp3",
-     "secs": 80,
+     "secs": 78,
      "script": [
       "In the future, people will travel by supersonic jet.",
       "I can play the piano.",
@@ -3833,7 +3833,7 @@ window.LIBRARY = [
      "n": 1,
      "title": "Exercise 1 – Listen and tick ✓.",
      "file": "b4-fin-final-test-semester-1-ex1.mp3",
-     "secs": 73,
+     "secs": 72,
      "script": [
       "Look! It's an octopus.",
       "Let's make lemonade.",
@@ -3847,7 +3847,7 @@ window.LIBRARY = [
      "n": 2,
      "title": "Exercise 2 – Listen and circle the correct word.",
      "file": "b4-fin-final-test-semester-1-ex2.mp3",
-     "secs": 76,
+     "secs": 74,
      "script": [
       "I'm watching a documentary.",
       "Yesterday we had to ask a question.",
@@ -3896,7 +3896,7 @@ window.LIBRARY = [
      "n": 2,
      "title": "Exercise 2 – Listen and circle the correct word.",
      "file": "b4-fin-final-test-semester-2-ex2.mp3",
-     "secs": 71,
+     "secs": 70,
      "script": [
       "It's made of rubber.",
       "This is my tablet.",
@@ -3910,7 +3910,7 @@ window.LIBRARY = [
      "n": 3,
      "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
      "file": "b4-fin-final-test-semester-2-ex3.mp3",
-     "secs": 73,
+     "secs": 72,
      "script": [
       "In this game, you score.",
       "I have a fever.",
@@ -3919,6 +3919,834 @@ window.LIBRARY = [
       "It's made of cardboard."
      ],
      "key": "1 ✓, 2 ✓, 3 ✗, 4 ✓, 5 ✓"
+    }
+   ]
+  }
+ ]
+},
+{
+ "id": "beehive-5-tests",
+ "level": "Beehive 5",
+ "icon": "📝",
+ "title": "Beehive 5 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "beehive-5-tests",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Starter Unit",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and write the number.",
+     "file": "b5-ut-unit-test-starter-unit-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "Four hundred and one.",
+      "Two hundred and fifty.",
+      "Four hundred and seventy-five.",
+      "One hundred and one.",
+      "One hundred and twenty-five."
+     ],
+     "key": "1 401, 2 250, 3 475, 4 101, 5 125"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-ut-unit-test-starter-unit-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "It's cold today, isn't it?",
+      "She can swim, can't she?",
+      "I'm one metre tall.",
+      "You like pizza, don't you?",
+      "It's ten centimetres long."
+     ],
+     "key": "1 isn't it, 2 can't she, 3 metre, 4 don't you, 5 centimetres"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Travel in the city",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-ut-unit-test-unit-1-travel-in-the-city-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "Our flight is at ten o'clock.",
+      "Don't forget your passport.",
+      "Don't forget your suitcase.",
+      "We're going to the motorway.",
+      "The plane will arrive at ten o'clock."
+     ],
+     "key": "1 flight (a), 2 passport (b), 3 suitcase (a), 4 motorway (a), 5 arrive (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-ut-unit-test-unit-1-travel-in-the-city-ex2.mp3",
+     "secs": 77,
+     "script": [
+      "We're going to the petrol station.",
+      "Don't forget your ticket.",
+      "We're going to the city centre.",
+      "The plane will leave at ten o'clock.",
+      "Let's go to the travel agent's."
+     ],
+     "key": "1 petrol station, 2 ticket, 3 city centre, 4 leave, 5 travel agent's"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: The seasons",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-ut-unit-test-unit-2-the-seasons-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "In this season, we pick fruit.",
+      "In this season, we check the weather forecast.",
+      "Tomorrow it will be stormy.",
+      "Tomorrow it will be dry.",
+      "Tomorrow it will be wet."
+     ],
+     "key": "1 pick fruit (a), 2 check the weather forecast (a), 3 stormy (b), 4 dry (a), 5 wet (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-ut-unit-test-unit-2-the-seasons-ex2.mp3",
+     "secs": 77,
+     "script": [
+      "It's twenty degrees Celsius.",
+      "In this season, we grow vegetables.",
+      "Tomorrow it will be warm.",
+      "In this season, we shovel the snow.",
+      "In this season, we sow seeds."
+     ],
+     "key": "1 degrees Celsius, 2 grow vegetables, 3 warm, 4 shovel the snow, 5 sow seeds"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: The environment",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-ut-unit-test-unit-3-the-environment-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "Let's plant a tree.",
+      "We must recycle more.",
+      "Let's make an insect hotel.",
+      "Turn off the lights to save electricity.",
+      "There's too much packaging on this food."
+     ],
+     "key": "1 plant a tree (a), 2 recycle (b), 3 make an insect hotel (a), 4 electricity (b), 5 packaging (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-ut-unit-test-unit-3-the-environment-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "Let's reuse a shopping bag.",
+      "Let's swap books.",
+      "There's a lot of pollution in the river.",
+      "Let's borrow books.",
+      "We ate the leftovers for lunch."
+     ],
+     "key": "1 reuse a shopping bag, 2 swap, 3 pollution, 4 borrow, 5 leftovers"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: A trip to the theatre",
+   "info": "Test paper page 14",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-ut-unit-test-unit-4-a-trip-to-the-theatre-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "Cheer up! Don't be sad.",
+      "Look at the actors.",
+      "Look at the actor!",
+      "Can you try on this costume?",
+      "Don't worry about it."
+     ],
+     "key": "1 cheer up (a), 2 look at (c), 3 actor (a), 4 try on (b), 5 worry about (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-ut-unit-test-unit-4-a-trip-to-the-theatre-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "Can you turn on the lights?",
+      "Look at the lights!",
+      "Look at the audience!",
+      "Look at the curtain!",
+      "Look at the play!"
+     ],
+     "key": "1 turn on, 2 lights, 3 audience, 4 curtain, 5 play"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: World food",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-ut-unit-test-unit-5-world-food-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "I've never eaten hummus.",
+      "I've never eaten kebabs.",
+      "I'd like a pie, please.",
+      "I'd like a stew, please.",
+      "I'd like a taco, please."
+     ],
+     "key": "1 hummus (c), 2 kebabs (b), 3 pie (a), 4 stew (a), 5 taco (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-ut-unit-test-unit-5-world-food-ex2.mp3",
+     "secs": 77,
+     "script": [
+      "I'd like a curry, please.",
+      "I've never eaten fried rice.",
+      "I've never eaten falafel.",
+      "I've never eaten spaghetti.",
+      "I've never eaten dumplings."
+     ],
+     "key": "1 curry, 2 fried rice, 3 falafel, 4 spaghetti, 5 dumplings"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Let's connect",
+   "info": "Test paper page 20",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-ut-unit-test-unit-6-let-s-connect-ex1.mp3",
+     "secs": 78,
+     "script": [
+      "I don't use social media.",
+      "Look at our school website.",
+      "I use my laptop to search the internet.",
+      "I use my laptop to send an email.",
+      "I use my laptop to text a friend."
+     ],
+     "key": "1 social media (c), 2 website (b), 3 search the internet (b), 4 send an email (c), 5 text a friend (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-ut-unit-test-unit-6-let-s-connect-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "I've downloaded a new app.",
+      "I use my laptop to click on an icon.",
+      "Let's take a selfie.",
+      "I need a password.",
+      "I'm online."
+     ],
+     "key": "1 app, 2 click on an icon, 3 selfie, 4 password, 5 online"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: In the countryside",
+   "info": "Test paper page 23",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-ut-unit-test-unit-7-in-the-countryside-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "Look at the wildlife.",
+      "Don't forget the tent.",
+      "Don't forget the sunglasses.",
+      "Look at the stream.",
+      "Don't forget the sleeping bag."
+     ],
+     "key": "1 wildlife (c), 2 tent (b), 3 sunglasses (b), 4 stream (b), 5 sleeping bag (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-ut-unit-test-unit-7-in-the-countryside-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "Don't damage the plants.",
+      "Look at the hill.",
+      "Look at the map.",
+      "Let's hike up the hill.",
+      "Don't forget the torch."
+     ],
+     "key": "1 damage, 2 hill, 3 map, 4 hike, 5 torch"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: A journey to space",
+   "info": "Test paper page 26",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-ut-unit-test-unit-8-a-journey-to-space-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "The rocket will orbit the Earth.",
+      "Look at the rocket.",
+      "The rocket will launch soon.",
+      "Look at the oxygen.",
+      "Look at the astronaut."
+     ],
+     "key": "1 orbit (c), 2 rocket (c), 3 launch (c), 4 oxygen (b), 5 astronaut (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-ut-unit-test-unit-8-a-journey-to-space-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "The rocket will land on the moon.",
+      "Look at the space station.",
+      "Look at space.",
+      "There isn't any gravity.",
+      "Look at the moon."
+     ],
+     "key": "1 land, 2 space station, 3 space, 4 gravity, 5 moon"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Life in the past",
+   "info": "Test paper page 29",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-ut-unit-test-unit-9-life-in-the-past-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "Look at the hut.",
+      "He wanted to get a job.",
+      "He wanted to study for an exam.",
+      "He wanted to retire.",
+      "Look at the stairs."
+     ],
+     "key": "1 hut (a), 2 get a job (b), 3 study for an exam (a), 4 retire (c), 5 stairs (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-ut-unit-test-unit-9-life-in-the-past-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "Look at the jewellery.",
+      "Look at the horse and cart.",
+      "Look at the smoke.",
+      "He wanted to leave home.",
+      "He wanted to go to university."
+     ],
+     "key": "1 jewellery, 2 horse and cart, 3 smoke, 4 leave home, 5 go to university"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Helping our community",
+   "info": "Test paper page 32",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-ut-unit-test-unit-10-helping-our-community-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I'm going to tell jokes.",
+      "I'm going to build a stage.",
+      "I'm going to grill burgers.",
+      "I'm busy.",
+      "I'm frightened."
+     ],
+     "key": "1 tell jokes (c), 2 build a stage (a), 3 grill burgers (a), 4 busy (a), 5 frightened (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-ut-unit-test-unit-10-helping-our-community-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "I'm tired.",
+      "I'm going to carry tables.",
+      "I'm going to put up decorations.",
+      "I'm going to make a banner.",
+      "I'm surprised."
+     ],
+     "key": "1 tired, 2 carry tables, 3 put up decorations, 4 make a banner, 5 surprised"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-mt-monthly-test-1-ex1.mp3",
+     "secs": 61,
+     "script": [
+      "We're going to the platform.",
+      "We're going to the city centre.",
+      "Our flight is at ten o'clock.",
+      "Let's go to the travel agent's."
+     ],
+     "key": "1 platform (b), 2 city centre (b), 3 flight (c), 4 travel agent's (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-mt-monthly-test-1-ex2.mp3",
+     "secs": 62,
+     "script": [
+      "The plane will leave at ten o'clock.",
+      "Don't forget your suitcase.",
+      "We're going to the petrol station.",
+      "We're going to the fire station."
+     ],
+     "key": "1 leave, 2 suitcase, 3 petrol station, 4 fire station"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-mt-monthly-test-2-ex1.mp3",
+     "secs": 62,
+     "script": [
+      "We're going to the platform.",
+      "In this season, we check the weather forecast.",
+      "Our flight is at ten o'clock.",
+      "In this season, we pick fruit."
+     ],
+     "key": "1 platform (a), 2 check the weather forecast (c), 3 flight (a), 4 pick fruit (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-mt-monthly-test-2-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "Tomorrow it will be bright.",
+      "Don't forget your ticket.",
+      "Tomorrow it will be stormy.",
+      "We're going to the motorway."
+     ],
+     "key": "1 bright, 2 ticket, 3 stormy, 4 motorway"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-mt-monthly-test-3-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "We ate the leftovers for lunch.",
+      "Don't worry about it.",
+      "Let's swap books.",
+      "Look at the lights!"
+     ],
+     "key": "1 leftovers (c), 2 worry about (c), 3 swap (b), 4 lights (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-mt-monthly-test-3-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "Let's join in with the song.",
+      "Turn off the lights to save electricity.",
+      "Look at the actors.",
+      "Let's turn off the tap."
+     ],
+     "key": "1 join in, 2 electricity, 3 look at, 4 turn off the tap"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-mt-monthly-test-4-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "Cheer up! Don't be sad.",
+      "I've never eaten spring rolls.",
+      "Don't worry about it.",
+      "I'd like a curry, please."
+     ],
+     "key": "1 cheer up (b), 2 spring rolls (b), 3 worry about (c), 4 curry (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-mt-monthly-test-4-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "I've never eaten fried rice.",
+      "Look at the actors.",
+      "I've never eaten kebabs.",
+      "Calm down! Don't worry."
+     ],
+     "key": "1 fried rice, 2 look at, 3 kebabs, 4 calm down"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-mt-monthly-test-5-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "I'm online.",
+      "I need a password.",
+      "I use my laptop to print a document.",
+      "I don't use social media."
+     ],
+     "key": "1 online (c), 2 password (a), 3 print a document (a), 4 social media (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-mt-monthly-test-5-ex2.mp3",
+     "secs": 64,
+     "script": [
+      "She sent me a funny emoji.",
+      "I listen to music with my headphones.",
+      "I've downloaded a new app.",
+      "I use my laptop to text a friend."
+     ],
+     "key": "1 emoji, 2 headphones, 3 app, 4 text a friend"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-mt-monthly-test-6-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "I'm online.",
+      "Look at the wildlife.",
+      "I use my laptop to search the internet.",
+      "Look at the map."
+     ],
+     "key": "1 online (c), 2 wildlife (a), 3 search the internet (b), 4 map (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-mt-monthly-test-6-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "Let's hike up the hill.",
+      "She sent me a funny emoji.",
+      "Don't forget the tent.",
+      "I listen to music with my headphones."
+     ],
+     "key": "1 hike, 2 emoji, 3 tent, 4 headphones"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-mt-monthly-test-7-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "It needs a lot of fuel.",
+      "He wanted to retire.",
+      "Look at the engine.",
+      "Look at the purse."
+     ],
+     "key": "1 fuel (c), 2 retire (b), 3 engine (b), 4 purse (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-mt-monthly-test-7-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "He wanted to study for an exam.",
+      "Look at the astronaut.",
+      "He wanted to go to university.",
+      "There isn't any gravity."
+     ],
+     "key": "1 study for an exam, 2 astronaut, 3 go to university, 4 gravity"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-mt-monthly-test-8-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "He wanted to study for an exam.",
+      "I'm excited.",
+      "He wanted to retire.",
+      "I'm going to build a stage."
+     ],
+     "key": "1 study for an exam (b), 2 excited (c), 3 retire (b), 4 build a stage (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-mt-monthly-test-8-ex2.mp3",
+     "secs": 63,
+     "script": [
+      "I'm going to make a banner.",
+      "Look at the jewellery.",
+      "I'm going to enter a fancy dress competition.",
+      "He wanted to go to university."
+     ],
+     "key": "1 make a banner, 2 jewellery, 3 enter a fancy dress competition, 4 go to university"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "We're going to the motorway.",
+      "Tomorrow it will be warm.",
+      "There's a lot of pollution in the river.",
+      "Don't forget your passport.",
+      "Tomorrow it will be icy."
+     ],
+     "key": "1 motorway (b), 2 warm (c), 3 pollution (b), 4 passport (c), 5 icy (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "Tomorrow it will be wet.",
+      "Turn off the lights to save electricity.",
+      "Our flight is at ten o'clock.",
+      "It's twenty degrees Celsius.",
+      "We must recycle more."
+     ],
+     "key": "1 wet, 2 electricity, 3 flight, 4 degrees Celsius, 5 recycle"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 76,
+     "script": [
+      "I use my laptop to search the internet.",
+      "Don't forget the whistle.",
+      "The rocket will land on the moon.",
+      "I use my laptop to print a document.",
+      "Don't forget the charger."
+     ],
+     "key": "1 search the internet (b), 2 whistle (b), 3 land (b), 4 print a document (c), 5 charger (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "Be careful! You might get lost.",
+      "Look at the oxygen.",
+      "Let's take a selfie.",
+      "Look at the wildlife.",
+      "Look at Earth."
+     ],
+     "key": "1 get lost, 2 oxygen, 3 selfie, 4 wildlife, 5 Earth"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-fin-final-test-semester-1-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "Our flight is at ten o'clock.",
+      "In this season, we shovel the snow.",
+      "There's a lot of pollution in the river.",
+      "Calm down! Don't worry.",
+      "I've never eaten dumplings."
+     ],
+     "key": "1 flight (b), 2 shovel the snow (a), 3 pollution (b), 4 calm down (a), 5 dumplings (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-fin-final-test-semester-1-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "Tomorrow it will be wet.",
+      "Let's reuse a shopping bag.",
+      "Can you try on this costume?",
+      "I'd like a taco, please.",
+      "The plane will arrive at ten o'clock."
+     ],
+     "key": "1 wet, 2 reuse a shopping bag, 3 try on, 4 taco, 5 arrive"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "b5-fin-final-test-semester-1-ex3.mp3",
+     "secs": 74,
+     "script": [
+      "Let's turn off the tap.",
+      "Look at the curtain!",
+      "I'd like a curry, please.",
+      "We're going to the city centre.",
+      "In this season, we grow vegetables."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b5-fin-final-test-semester-2-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I use my laptop to send an email.",
+      "Let's hike up the hill.",
+      "Look at the engine.",
+      "Look at the smoke.",
+      "I'm going to build a stage."
+     ],
+     "key": "1 send an email (a), 2 hike (b), 3 engine (c), 4 smoke (b), 5 build a stage (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b5-fin-final-test-semester-2-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "Don't forget the sleeping bag.",
+      "Look at Earth.",
+      "Look at the jewellery.",
+      "I'm going to put up decorations.",
+      "I use my laptop to make a video call."
+     ],
+     "key": "1 sleeping bag, 2 Earth, 3 jewellery, 4 put up decorations, 5 make a video call"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "b5-fin-final-test-semester-2-ex3.mp3",
+     "secs": 73,
+     "script": [
+      "The rocket will launch soon.",
+      "He wanted to get married.",
+      "I'm busy.",
+      "I use my laptop to text a friend.",
+      "Don't forget the torch."
+     ],
+     "key": "1 ✓, 2 ✗, 3 ✗, 4 ✓, 5 ✗"
     }
    ]
   }

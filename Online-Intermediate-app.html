@@ -2219,10 +2219,10 @@
 
         // 10 · Spelling Tiles: tap the letters in the right order
         let ocSp = { i: 0, words: [], built: '' };
-        function oc_spelling(c, u) { ocSp = { i: 0, words: shuffle(u.vocab.filter(w => /^[A-Za-z]{2,9}$/.test(w))).slice(0, 5), built: '' }; ocSpShow(); }
+        function oc_spelling(c, u) { ocSp = { i: 0, words: shuffle(u.vocab.filter(w => /^[A-Za-z]{2,9}$/.test(w))).slice(0, 5), built: '', ok: 0, miss: false }; ocSpShow(); }
         function ocSpShow() {
             const c = document.getElementById('module-content'), u = ocUnit();
-            if (!ocSp.words.length || ocSp.i >= ocSp.words.length) { c.innerHTML = ocDone('🔤 Spelling Tiles', 'You spelled every word!'); triggerConfetti(); return; }
+            if (!ocSp.words.length || ocSp.i >= ocSp.words.length) { c.innerHTML = ocDone('🔤 Spelling Tiles', (ocSp.words.length ? `${ocSp.ok} / ${ocSp.words.length} words spelled right the first time` : 'You spelled every word!')); triggerConfetti(); return; }
             const w = ocSp.words[ocSp.i]; ocSp.built = '';
             const tiles = shuffle(w.toUpperCase().split(''));
             c.innerHTML = ocHead('🔤 Spelling Tiles', `Look and listen, then tap the letters in order. (${ocSp.i + 1}/${ocSp.words.length})`) + ocBox(
@@ -2235,14 +2235,14 @@
         }
         function ocSpTap(L, btn) {
             const w = ocSp.words[ocSp.i].toUpperCase(), msg = document.getElementById('sp-msg');
-            if (L !== w[ocSp.built.length]) { msg.className = 'mt-3 font-bold text-red-500'; msg.textContent = '❌ Try another letter!'; return; }
+            if (L !== w[ocSp.built.length]) { msg.className = 'mt-3 font-bold text-red-500'; ocSp.miss = true; msg.textContent = '❌ Try another letter!'; return; }
             ocSp.built += L; btn.disabled = true; btn.classList.add('opacity-30');
             document.getElementById('sp-built').textContent = (ocSp.built + '_'.repeat(w.length - ocSp.built.length)).split('').join(' ');
             msg.textContent = '';
             if (ocSp.built === w) {
                 msg.className = 'mt-3 font-bold text-green-600';
                 msg.textContent = award(unitKey('spell-' + w), 2) ? '🎉 Great spelling! (+2 ⭐)' : '🎉 Great spelling!';
-                speak(ocSp.words[ocSp.i]); ocSp.i++; setTimeout(ocSpShow, 1300);
+                if (!ocSp.miss) ocSp.ok++; ocSp.miss = false; speak(ocSp.words[ocSp.i]); ocSp.i++; setTimeout(ocSpShow, 1300);
             }
         }
 
@@ -2250,11 +2250,11 @@
         let ocSe = { i: 0, list: [], built: [] };
         function oc_sentence(c, u) {
             const list = (u.grammar.example.match(/[^.!?]+[.!?]/g) || [u.grammar.example]).map(x => x.trim()).filter(x => x.split(' ').length >= 2);
-            ocSe = { i: 0, list, built: [] }; ocSeShow();
+            ocSe = { i: 0, list, built: [], ok: 0, miss: false }; ocSeShow();
         }
         function ocSeShow() {
             const c = document.getElementById('module-content');
-            if (ocSe.i >= ocSe.list.length) { c.innerHTML = ocDone('💬 Sentence Building', 'You built every sentence!'); triggerConfetti(); return; }
+            if (ocSe.i >= ocSe.list.length) { c.innerHTML = ocDone('💬 Sentence Building', (ocSe.list.length ? `${ocSe.ok} / ${ocSe.list.length} sentences right the first time` : 'You built every sentence!')); triggerConfetti(); return; }
             const sen = ocSe.list[ocSe.i]; ocSe.built = [];
             const words = sen.split(' '); let mix = shuffle(words); for (let t = 0; t < 5 && mix.join(' ') === sen; t++) mix = shuffle(words);
             c.innerHTML = ocHead('💬 Sentence Building', `Listen, then tap the words in order. (${ocSe.i + 1}/${ocSe.list.length})`) + ocBox(
@@ -2267,13 +2267,13 @@
         }
         function ocSeTap(w, btn) {
             const want = ocSe.list[ocSe.i].split(' '), msg = document.getElementById('se-msg');
-            if (w !== want[ocSe.built.length]) { msg.className = 'mt-3 font-bold text-red-500'; msg.textContent = '❌ Listen again and try another word.'; return; }
+            if (w !== want[ocSe.built.length]) { msg.className = 'mt-3 font-bold text-red-500'; ocSe.miss = true; msg.textContent = '❌ Listen again and try another word.'; return; }
             ocSe.built.push(w); btn.disabled = true; btn.classList.add('opacity-30');
             document.getElementById('se-built').textContent = ocSe.built.join(' '); msg.textContent = '';
             if (ocSe.built.length === want.length) {
                 msg.className = 'mt-3 font-bold text-green-600';
                 msg.textContent = award(unitKey('sentence-' + ocSe.i), 3) ? '🌟 Perfect sentence! (+3 ⭐)' : '🌟 Perfect sentence!';
-                speak(ocSe.list[ocSe.i]); ocSe.i++; setTimeout(ocSeShow, 1600);
+                if (!ocSe.miss) ocSe.ok++; ocSe.miss = false; speak(ocSe.list[ocSe.i]); ocSe.i++; setTimeout(ocSeShow, 1600);
             }
         }
 

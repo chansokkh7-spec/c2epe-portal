@@ -19,7 +19,7 @@ main{max-width:760px;margin:0 auto;padding:14px 12px 120px}
 .who{display:flex;gap:8px;margin-bottom:12px}
 .who{flex-wrap:wrap}
 .who input{flex:1;min-width:120px;padding:10px 12px;border:1.5px solid #d6dbe8;border-radius:10px;font-size:16px}
-.who input.need{border-color:var(--bad);background:#fdecea}
+.who input.need,.who select.need{border-color:var(--bad);background:#fdecea}
 .me{background:#fff;border:1px solid #e6e9f2;border-radius:12px;padding:10px 12px;flex:1;display:flex;align-items:center;gap:8px;font-weight:600}
 .me small{color:#1e8e3e;font-weight:700}
 .sent{font-size:13px;margin-top:2px}
@@ -197,7 +197,13 @@ function practice(S, id){
   if(ME&&ME.login){
     main.innerHTML='<div class="who"><div class="me">👤 '+esc(ME.name)+(ME.cls?' · '+esc(ME.cls):'')+' <small>✓ signed in</small></div></div>';
   } else {
-    main.innerHTML='<div class="who"><input id="nm" placeholder="Your name / ឈ្មោះ"><input id="cl" placeholder="Class / ថ្នាក់" style="max-width:140px"></div>';
+    var LV=[['Kindergarten',['K0','K1','K2','K3']],['Young Learners',[['Starters','Starters (Pre-A1)'],['Movers','Movers (A1)'],['Flyers','Flyers (A2)']]],
+            ['General English',[['Beginner','Beginner / Elementary (A1)'],['Pre-Intermediate','Pre-Intermediate (A2)'],['Intermediate','Intermediate (B1)'],['Upper-Intermediate','Upper-Intermediate (B2)']]],
+            ['Advanced English',[['Advanced','Advanced (C1)'],['Proficiency','Proficiency (C2)']]],
+            ['Academic',[['EAP / Bridge to University','EAP / Bridge to University'],['IELTS & TOEFL Prep','IELTS & TOEFL Preparation']]],
+            ['Specialized',[['Exam Prep','Standard Exam Prep'],['Online Class','Online Class'],['Grammar','Grammar'],['Writing Skills','Writing Skills'],['Computer','Computer Class'],['AI','AI Class']]]];
+    main.innerHTML='<div class="who"><input id="nm" placeholder="Your name / ឈ្មោះ"><select id="cl" style="flex:1;min-width:150px;padding:10px;border:1.5px solid #d6dbe8;border-radius:10px;font-size:16px;background:#fff">'
+      +'<option value="">Your level / កម្រិត</option>'+LV.map(function(g){return '<optgroup label="'+g[0]+'">'+g[1].map(function(l){l=typeof l==='string'?[l,l]:l;return '<option value="'+esc(l[0])+'">'+esc(l[1])+'</option>';}).join('')+'</optgroup>';}).join('')+'</select></div>';
     var w0=ME||{}; document.getElementById('nm').value=w0.name||store('c2p-name')||''; document.getElementById('cl').value=w0.cls||'';
   }
   var nm={get value(){ var m=who(); return m?m.name:''; }};
@@ -247,7 +253,7 @@ function practice(S, id){
       if(!(ME&&ME.login)){
         var a=document.getElementById('nm'), b=document.getElementById('cl');
         a.classList.toggle('need',!a.value.trim()); b.classList.toggle('need',!b.value.trim());
-        if(!a.value.trim()||!b.value.trim()){ sc.innerHTML='<span style="color:var(--bad);font-size:15px">✍️ Write your name and class first / សរសេរឈ្មោះ និងថ្នាក់</span>'; window.scrollTo({top:0,behavior:'smooth'}); a.value.trim()?b.focus():a.focus(); return; }
+        if(!a.value.trim()||!b.value.trim()){ sc.innerHTML='<span style="color:var(--bad);font-size:15px">✍️ Write your name and choose your level / សរសេរឈ្មោះ និងជ្រើសកម្រិត</span>'; window.scrollTo({top:0,behavior:'smooth'}); a.value.trim()?b.focus():a.focus(); return; }
         store('c2p-who', JSON.stringify({name:a.value.trim(), cls:b.value.trim()})); ME=who();
       }
       var r=0; checks.forEach(function(c){if(c.check())r++;});

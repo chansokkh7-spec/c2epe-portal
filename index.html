@@ -21671,64 +21671,136 @@ function closeLevelUpTest(){
 <div id="pr-page" style="display:none;position:fixed;inset:0;background:#f4f6fb;z-index:9990;overflow-y:auto;">
 <style>
 #pr-page{font-family:inherit;color:#14204a}
-#pr-page .pr-head{background:linear-gradient(135deg,#000080,#0b1a5c);border-bottom:3px solid #FFD700;padding:0 16px;height:58px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:10}
+#pr-page .pr-head{background:linear-gradient(135deg,#000080,#0b1a5c);border-bottom:3px solid #FFD700;padding:0 14px;height:58px;display:flex;align-items:center;gap:8px;position:sticky;top:0;z-index:20}
 #pr-page .pr-head h2{margin:0;color:#FFD700;font-size:1.05rem;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #pr-page .pr-back{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);padding:6px 12px;border-radius:20px;cursor:pointer;font-size:.8rem}
-#pr-page .pr-gold{background:#FFD700;color:#000080;border:none;padding:8px 14px;border-radius:20px;font-weight:700;font-size:.8rem;cursor:pointer;white-space:nowrap}
-#pr-page .pr-wrap{max-width:1200px;margin:0 auto;padding:16px}
-#pr-page .pr-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
-#pr-page .pr-chip{border:1.5px solid #000080;background:#fff;color:#000080;border-radius:18px;padding:6px 13px;font-weight:700;font-size:.8rem;cursor:pointer}
-#pr-page .pr-chip.on{background:#000080;color:#FFD700}
+#pr-page .pr-gold{background:#FFD700;color:#000080;border:none;padding:8px 13px;border-radius:20px;font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap}
+#pr-page .pr-ghost{background:rgba(255,255,255,.12);color:#FFD700;border:1px solid rgba(255,215,0,.6);padding:7px 12px;border-radius:20px;font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap}
+#pr-page .pr-layout{display:flex;gap:16px;max-width:1300px;margin:0 auto;padding:16px;align-items:flex-start}
+#pr-page .pr-side{width:250px;flex:none;position:sticky;top:74px;max-height:calc(100vh - 90px);overflow-y:auto}
+#pr-page .pr-main{flex:1;min-width:0}
+#pr-page .pr-grp{background:#fff;border-radius:14px;margin-bottom:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,128,.08)}
+#pr-page .pr-grp h4{margin:0;padding:11px 14px;color:#fff;font-size:.88rem}
+#pr-page .pr-lv{display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:.84rem;cursor:pointer;border-top:1px solid #f0f2f8}
+#pr-page .pr-lv:hover{background:#f4f6fb}
+#pr-page .pr-lv.on{background:#eef1ff;font-weight:800;color:#000080}
+#pr-page .pr-lv .dot{width:8px;height:8px;border-radius:50%;flex:none}
+#pr-page .pr-lv .cnt{margin-left:auto;background:#000080;color:#FFD700;border-radius:10px;font-size:.68rem;padding:1px 7px;font-weight:700}
+#pr-page .pr-lv .cnt.z{background:#e3e6ef;color:#8a90a6}
+#pr-page h3.pr-t{margin:2px 0 12px;font-size:1.15rem;color:#000080}
+#pr-page .pr-books{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-bottom:16px}
+#pr-page .pr-book{background:#fff;border-radius:14px;padding:13px 14px;border:1px solid #e3e8f5;box-shadow:0 2px 8px rgba(0,0,128,.06);cursor:pointer;position:relative}
+#pr-page .pr-book:hover{border-color:#FFD700}
+#pr-page .pr-book .s{font-size:.7rem;font-weight:800;color:#c9a227;text-transform:uppercase;letter-spacing:.4px}
+#pr-page .pr-book .n{font-weight:800;color:#000080;margin:2px 0 8px;font-size:.95rem}
+#pr-page .pr-book .m{display:flex;gap:12px;font-size:.75rem;color:#6b7390}
+#pr-page .pr-book .m b{display:block;font-size:1.05rem;color:#14204a}
+#pr-page .pr-book .none{font-size:.78rem;color:#8a90a6}
 #pr-page .pr-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
-#pr-page .pr-bar select,#pr-page .pr-bar input{padding:9px 11px;border:1.5px solid #cfd6ea;border-radius:10px;font-size:.88rem;font-family:inherit;background:#fff}
-#pr-page .pr-bar input{flex:1;min-width:160px}
-#pr-page .pr-stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
-#pr-page .pr-stat{background:#fff;border:1px solid #e3e8f5;border-radius:12px;padding:10px 14px;min-width:120px}
-#pr-page .pr-stat b{display:block;font-size:1.3rem;color:#000080}
-#pr-page .pr-stat span{font-size:.75rem;color:#6b7390}
-#pr-page .pr-tbl{overflow:auto;background:#fff;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,128,.08);border:1px solid #e3e8f5;max-height:70vh}
+#pr-page .pr-bar select,#pr-page .pr-bar input{padding:9px 11px;border:1.5px solid #cfd6ea;border-radius:10px;font-size:.86rem;font-family:inherit;background:#fff}
+#pr-page .pr-bar input{flex:1;min-width:150px}
+#pr-page .pr-chip{border:1.5px solid #000080;background:#fff;color:#000080;border-radius:18px;padding:6px 13px;font-weight:700;font-size:.78rem;cursor:pointer}
+#pr-page .pr-tbl{overflow:auto;background:#fff;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,128,.08);border:1px solid #e3e8f5;max-height:68vh}
 #pr-page table{border-collapse:separate;border-spacing:0;font-size:.8rem}
-#pr-page th,#pr-page td{padding:6px 8px;border-bottom:1px solid #eef1f8;text-align:center;white-space:nowrap}
+#pr-page th,#pr-page td{padding:6px 9px;border-bottom:1px solid #eef1f8;text-align:center;white-space:nowrap}
 #pr-page thead th{position:sticky;top:0;background:#000080;color:#FFD700;z-index:2;font-weight:700}
-#pr-page thead th.set{writing-mode:vertical-rl;transform:rotate(180deg);height:150px;font-weight:600;font-size:.72rem;max-width:34px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#pr-page thead th.set{writing-mode:vertical-rl;transform:rotate(180deg);height:150px;font-weight:600;font-size:.72rem;max-width:34px;overflow:hidden;text-overflow:ellipsis}
 #pr-page td.nm,#pr-page th.nm{position:sticky;left:0;background:#fff;text-align:left;z-index:1;font-weight:700;cursor:pointer;color:#000080}
 #pr-page thead th.nm{z-index:3;background:#000080;color:#FFD700}
 #pr-page td.c{min-width:34px;font-weight:700;border-radius:6px}
 #pr-page .g{background:#d7f2df;color:#13692f}#pr-page .y{background:#fff3c4;color:#7a5a00}#pr-page .r{background:#fde0de;color:#a52a1f}#pr-page .e{color:#c4c9d6}
-#pr-page .pr-empty{text-align:center;color:#6b7390;padding:30px;background:#fff;border-radius:14px}
-#pr-page .pr-tip{background:#fff8d6;border-left:4px solid #FFD700;padding:9px 13px;border-radius:8px;font-size:.85rem;margin-bottom:12px;line-height:1.5}
+#pr-page .pr-empty{text-align:center;color:#6b7390;padding:26px;background:#fff;border-radius:14px}
+#pr-page .pr-tip{background:#fff8d6;border-left:4px solid #FFD700;padding:9px 13px;border-radius:8px;font-size:.83rem;margin-bottom:12px;line-height:1.5}
+#pr-page .pr-crumb{font-size:.82rem;margin-bottom:8px}
+#pr-page .pr-crumb a{color:#000080;font-weight:700;cursor:pointer;text-decoration:underline}
+#pr-page .pr-sum td{text-align:left}
+#pr-page .pr-sidebtn{display:none}
+@media (max-width:800px){
+  #pr-page .pr-layout{flex-direction:column;padding:10px}
+  #pr-page .pr-side{width:100%;position:static;max-height:none;display:none}
+  #pr-page .pr-side.open{display:block}
+  #pr-page .pr-sidebtn{display:inline-block}
+  #pr-page .pr-head .lbl{display:none}
+}
 #pr-modal{display:none;position:fixed;inset:0;background:rgba(0,0,40,.55);z-index:9995;align-items:center;justify-content:center;padding:12px}
-#pr-modal .box{background:#fff;border-radius:16px;width:620px;max-width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
-#pr-modal .bh{background:#000080;color:#FFD700;padding:12px 16px;font-weight:700;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
+#pr-modal .box{background:#fff;border-radius:16px;width:760px;max-width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+#pr-modal .bh{background:#000080;color:#FFD700;padding:12px 16px;font-weight:700;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:2}
 #pr-modal .bh button{background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer}
 #pr-modal table{width:100%;border-collapse:collapse;font-size:.84rem}
-#pr-modal td,#pr-modal th{padding:7px 10px;border-bottom:1px solid #eef1f8;text-align:left}
+#pr-modal td,#pr-modal th{padding:7px 9px;border-bottom:1px solid #eef1f8;text-align:left}
+#pr-modal .c{text-align:center;border-radius:6px;font-weight:700}
+#pr-modal .g{background:#d7f2df;color:#13692f}#pr-modal .y{background:#fff3c4;color:#7a5a00}#pr-modal .r{background:#fde0de;color:#a52a1f}
+#pr-modal input,#pr-modal select{width:100%;padding:7px 8px;border:1.5px solid #cfd6ea;border-radius:8px;font-size:.82rem;font-family:inherit;box-sizing:border-box}
+#pr-modal .btn{background:#000080;color:#FFD700;border:none;border-radius:20px;padding:9px 16px;font-weight:700;cursor:pointer;font-size:.82rem}
+#pr-modal .btn.l{background:#eef1ff;color:#000080}
+#pr-modal .del{background:#fde0de;color:#a52a1f;border:none;border-radius:8px;padding:6px 9px;cursor:pointer}
+#pr-modal .hint{font-size:.78rem;color:#6b7390;line-height:1.5;padding:8px 6px}
 </style>
   <div class="pr-head">
     <button class="pr-back" onclick="prClose()">← Back</button>
+    <button class="pr-ghost pr-sidebtn" onclick="document.querySelector('#pr-page .pr-side').classList.toggle('open')">☰ Levels</button>
     <h2>📊 Practice Results</h2>
-    <button class="pr-gold" onclick="prCsv()">⬇ Excel (CSV)</button>
+    <button class="pr-ghost" id="pr-admin-btn" style="display:none" onclick="prBooksEditor()">⚙️ <span class="lbl">Books &amp; Levels</span></button>
+    <button class="pr-gold" onclick="prCsv()">⬇ <span class="lbl">Excel (CSV)</span></button>
   </div>
-  <div class="pr-wrap" id="pr-body"><div class="pr-empty">Loading…</div></div>
+  <div class="pr-layout">
+    <div class="pr-side" id="pr-side"></div>
+    <div class="pr-main" id="pr-body"><div class="pr-empty">Loading…</div></div>
+  </div>
 </div>
 <div id="pr-modal"><div class="box"><div class="bh"><span id="pr-m-title"></span><button onclick="document.getElementById('pr-modal').style.display='none'" aria-label="Close">✕</button></div><div id="pr-m-body" style="padding:6px 10px 14px"></div></div></div>
 <script>
 (function(){
-  /* Books that have QR practice pages. Add a line here when a new level gets QR codes. */
-  var PR_LEVELS = [
-    ['bs', 'Beehive Starter'], ['b1', 'Beehive 1'], ['b2', 'Beehive 2'], ['b3', 'Beehive 3'], ['b4', 'Beehive 4'], ['b5', 'Beehive 5'], ['b6', 'Beehive 6'],
-    ['up1', 'Upstream A1+'], ['up2', 'Upstream A2'], ['up3', 'Upstream B1']
+  /* ---- portal levels (same as the portal menu) ---- */
+  var PR_GROUPS = [
+    { name: '🎒 Kindergarten', col: '#1a237e', levels: [['K0', 'K0'], ['K1', 'K1'], ['K2', 'K2'], ['K3', 'K3']] },
+    { name: '📊 CEFR English Levels', col: '#3949ab', levels: [['Starters', 'Starters (Pre-A1)'], ['Movers', 'Movers (A1)'], ['Flyers', 'Flyers (A2)'],
+        ['Beginner', 'Beginner / Elementary (A1)'], ['Pre-Intermediate', 'Pre-Intermediate (A2)'], ['Intermediate', 'Intermediate (B1)'],
+        ['Upper-Intermediate', 'Upper-Intermediate (B2)'], ['Advanced', 'Advanced (C1)'], ['Proficiency', 'Proficiency (C2)']] },
+    { name: '🎓 Academic & Professional', col: '#bf360c', levels: [['EAP / Bridge to University', 'EAP / Bridge to University'], ['IELTS & TOEFL Prep', 'IELTS & TOEFL Preparation']] },
+    { name: '🌟 Specialized Courses', col: '#c62828', levels: [['Exam Prep', 'Standard Exam Prep'], ['Online Class', 'Online Class'], ['Grammar', 'Grammar'],
+        ['Writing Skills', 'Writing Skills'], ['Computer', 'Computer Class'], ['AI', 'AI Class']] }
   ];
-  var PR = { prefix: null, rows: {}, sets: {}, cls: '', days: '30', q: '', view: [] };
+  var PR_SERIES = ['Beehive', 'Upstream', 'C2-EPE App', 'Cambridge', 'Oxford', 'Express Publishing', 'Other'];
+  /* default books – the Admin can change everything in ⚙️ Books & Levels (saved in Firebase: practiceConfig/books) */
+  var PR_DEFAULT_BOOKS = [
+    { name: 'Beehive Starter', series: 'Beehive', level: 'Starters', prefix: 'bs' },
+    { name: 'Beehive 1', series: 'Beehive', level: 'Starters', prefix: 'b1' },
+    { name: 'Beehive 2', series: 'Beehive', level: 'Movers', prefix: 'b2' },
+    { name: 'Beehive 3', series: 'Beehive', level: 'Movers', prefix: 'b3' },
+    { name: 'Beehive 4', series: 'Beehive', level: 'Flyers', prefix: 'b4' },
+    { name: 'Beehive 5', series: 'Beehive', level: 'Flyers', prefix: 'b5' },
+    { name: 'Beehive 6', series: 'Beehive', level: 'Flyers', prefix: 'b6' },
+    { name: 'Upstream Beginner A1+', series: 'Upstream', level: 'Beginner', prefix: 'up1' },
+    { name: 'Upstream Elementary A2', series: 'Upstream', level: 'Pre-Intermediate', prefix: 'up2' },
+    { name: 'Upstream Pre-Intermediate B1', series: 'Upstream', level: 'Intermediate', prefix: 'up3' },
+    { name: 'C2-EPE Kindergarten K0', series: 'C2-EPE App', level: 'K0', prefix: '' }
+  ];
+  var LVNAME = {}; PR_GROUPS.forEach(function(g){ g.levels.forEach(function(l){ LVNAME[l[0]] = l[1]; }); });
+
+  var PR = { books: null, rows: {}, sets: {}, students: null, level: null, book: null, cls: '', days: '30', q: '', view: [], list: [] };
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   function isStaff(){ return typeof isTeacher !== 'undefined' && isTeacher; }
+  function isAdm(){ try { return !!(currentUser && currentUser.email === ADMIN_EMAIL); } catch (e) { return false; } }
   function body(h){ document.getElementById('pr-body').innerHTML = h; }
   function natural(a, b){ return String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: 'base' }); }
+  function colour(p){ return p >= 80 ? 'g' : p >= 50 ? 'y' : 'r'; }
+  function base(c){ try { return typeof baseLevel === 'function' ? baseLevel(c || '') : (c || ''); } catch (e) { return c || ''; } }
+  function skey(r){ return r.studentId ? 'id:' + r.studentId : 'nm:' + (r.studentName || '').trim().toLowerCase() + '|' + base(r.cls).toLowerCase(); }
+  function since(){ return PR.days === 'all' ? '' : new Date(Date.now() - (+PR.days) * 864e5).toISOString(); }
 
-  /* show the menu button to teachers / admin only */
   setInterval(function(){ var b = document.getElementById('practice-results-btn'); if (b) b.style.display = isStaff() ? '' : 'none'; }, 1500);
 
+  /* ---------------- data ---------------- */
+  async function loadBooks(force){
+    if (PR.books && !force) return PR.books;
+    var fb = window._fb;
+    try { var s = await fb.getDoc(fb.doc(fb.db, 'practiceConfig', 'books')); PR.books = s.exists() && Array.isArray(s.data().list) ? s.data().list : PR_DEFAULT_BOOKS.slice(); }
+    catch (e) { PR.books = PR_DEFAULT_BOOKS.slice(); }
+    return PR.books;
+  }
   function loadSets(p){
+    if (!p) return Promise.resolve({});
     if (PR.sets[p]) return Promise.resolve(PR.sets[p]);
     return new Promise(function(res){
       var tries = [p + '.js', 'practice/' + p + '.js'];
@@ -21741,96 +21813,216 @@ function closeLevelUpTest(){
       })();
     });
   }
-  async function loadRows(p){
+  async function loadRows(p, force){
+    if (!p) return [];
+    if (PR.rows[p] && !force) return PR.rows[p];
     var fb = window._fb;
     var snap = await fb.getDocs(fb.query(fb.collection(fb.db, 'practiceResults'), fb.where('prefix', '==', p)));
     PR.rows[p] = snap.docs.map(function(d){ var x = d.data(); x.id = d.id; return x; });
+    return PR.rows[p];
   }
+  async function loadStudents(){
+    if (PR.students) return PR.students;
+    try { var fb = window._fb, snap = await fb.getDocs(fb.collection(fb.db, 'students'));
+      PR.students = snap.docs.map(function(d){ var s = d.data(); return { studentId: s.studentId || '', name: s.nameEn || s.nameKm || '', cls: base(s.cls || ''), rawCls: s.cls || '' }; }); }
+    catch (e) { PR.students = []; }
+    return PR.students;
+  }
+  function booksOf(lv){ return (PR.books || []).filter(function(b){ return b.level === lv; }); }
+  function inPeriod(rows){ var s = since(), q = PR.q.toLowerCase();
+    return rows.filter(function(r){ return (!s || (r.at || '') >= s) && (!q || (r.studentName || '').toLowerCase().indexOf(q) >= 0); }); }
 
+  /* ---------------- open / close ---------------- */
   window.openPracticeResults = async function(){
     document.getElementById('pr-page').style.display = 'block';
     document.body.style.overflow = 'hidden';
-    if (!isStaff()) { body('<div class="pr-empty">🔒 For teachers only. Please log in as a teacher.</div>'); return; }
-    if (!PR.prefix) PR.prefix = 'up2';
-    await prShow(PR.prefix);
+    document.getElementById('pr-admin-btn').style.display = isAdm() ? '' : 'none';
+    if (!isStaff()) { document.getElementById('pr-side').innerHTML = ''; body('<div class="pr-empty">🔒 For teachers only. Please log in as a teacher.</div>'); return; }
+    await loadBooks();
+    side();
+    if (!PR.level) { var first = (PR.books.filter(function(b){ return b.prefix; })[0] || {}).level || 'Starters'; PR.level = first; }
+    prLevel(PR.level);
   };
   window.prClose = function(){ document.getElementById('pr-page').style.display = 'none'; document.body.style.overflow = ''; };
 
-  window.prShow = async function(p, reload){
-    PR.prefix = p;
-    body(chips() + '<div class="pr-empty">Loading…</div>');
-    try { if (reload || !PR.rows[p]) await loadRows(p); await loadSets(p); }
-    catch (e) { body(chips() + '<div class="pr-empty">⚠️ Could not load results: ' + esc(e.message || e) + '</div>'); return; }
-    render();
-  };
-  function chips(){
-    return '<div class="pr-chips">' + PR_LEVELS.map(function(l){
-      return '<button class="pr-chip' + (l[0] === PR.prefix ? ' on' : '') + '" onclick="prShow(\'' + l[0] + '\')">' + esc(l[1]) + '</button>'; }).join('') + '</div>';
+  function side(){
+    document.getElementById('pr-side').innerHTML = PR_GROUPS.map(function(g){
+      return '<div class="pr-grp"><h4 style="background:' + g.col + '">' + esc(g.name) + '</h4>' + g.levels.map(function(l){
+        var n = booksOf(l[0]).length;
+        return '<div class="pr-lv' + (l[0] === PR.level ? ' on' : '') + '" onclick="prLevel(\'' + l[0].replace(/'/g, "\\'") + '\')"><span class="dot" style="background:' + g.col + '"></span>' + esc(l[1])
+          + '<span class="cnt' + (n ? '' : ' z') + '">' + n + '</span></div>'; }).join('') + '</div>';
+    }).join('');
   }
-  function filtered(){
-    var rows = PR.rows[PR.prefix] || [], since = PR.days === 'all' ? '' : new Date(Date.now() - (+PR.days) * 864e5).toISOString();
-    var q = PR.q.toLowerCase();
-    return rows.filter(function(r){
-      return (!PR.cls || (r.cls || '') === PR.cls) && (!since || (r.at || '') >= since) && (!q || (r.studentName || '').toLowerCase().indexOf(q) >= 0);
-    });
-  }
-  function skey(r){ return r.studentId ? 'id:' + r.studentId : 'nm:' + (r.studentName || '').trim().toLowerCase() + '|' + (r.cls || '').trim().toLowerCase(); }
-  function colour(p){ return p >= 80 ? 'g' : p >= 50 ? 'y' : 'r'; }
 
-  function render(){
-    var all = PR.rows[PR.prefix] || [], rows = filtered(), sets = PR.sets[PR.prefix] || {};
-    var classes = Array.from(new Set(all.map(function(r){ return r.cls || ''; }).filter(Boolean))).sort(natural);
-    var bar = '<div class="pr-bar">'
-      + '<select onchange="PRset(\'cls\',this.value)"><option value="">All classes</option>' + classes.map(function(c){ return '<option' + (c === PR.cls ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join('') + '</select>'
+  /* ---------------- level view ---------------- */
+  window.prLevel = async function(lv, force){
+    PR.level = lv; PR.book = null; side();
+    document.getElementById('pr-side').classList.remove('open');
+    var books = booksOf(lv);
+    body('<h3 class="pr-t">' + esc(LVNAME[lv] || lv) + '</h3><div class="pr-empty">Loading…</div>');
+    try { await Promise.all(books.map(function(b){ return Promise.all([loadRows(b.prefix, force), loadSets(b.prefix)]); }).concat([loadStudents()])); }
+    catch (e) { body('<h3 class="pr-t">' + esc(LVNAME[lv] || lv) + '</h3><div class="pr-empty">⚠️ Could not load results: ' + esc(e.message || e) + '</div>'); return; }
+    renderLevel();
+  };
+  function bar(withCls, classes){
+    return '<div class="pr-bar">'
+      + (withCls ? '<select onchange="PRset(\'cls\',this.value)"><option value="">All classes</option>' + classes.map(function(c){ return '<option' + (c === PR.cls ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join('') + '</select>' : '')
       + '<select onchange="PRset(\'days\',this.value)">' + [['7', 'Last 7 days'], ['30', 'Last 30 days'], ['90', 'Last 3 months'], ['all', 'All time']].map(function(d){ return '<option value="' + d[0] + '"' + (d[0] === PR.days ? ' selected' : '') + '>' + d[1] + '</option>'; }).join('') + '</select>'
       + '<input placeholder="🔎 Search student name" value="' + esc(PR.q) + '" oninput="PRset(\'q\',this.value,1)">'
-      + '<button class="pr-chip" onclick="prShow(PR_cur(),1)">↻ Refresh</button></div>';
-    var tip = '<div class="pr-tip">Each cell shows the student\'s <b>best score (%)</b> for that worksheet / homework. 🟩 80%+ · 🟨 50–79% · 🟥 below 50% · – not done yet. Click a name to see every attempt. '
-      + 'Scores arrive when students scan the QR code in their book and press <b>Check ✓</b>.</div>';
-    if (!all.length) { body(chips() + bar + tip + '<div class="pr-empty">No results yet for this book.</div>'); return; }
-    // students and best scores
+      + '<button class="pr-chip" onclick="' + (PR.book ? 'prBook(' + PR.book.i + ',1)' : 'prLevel(PR_lv(),1)') + '">↻ Refresh</button></div>';
+  }
+  window.PR_lv = function(){ return PR.level; };
+  function renderLevel(){
+    var lv = PR.level, books = booksOf(lv);
+    var head = '<h3 class="pr-t">' + esc(LVNAME[lv] || lv) + '</h3>';
+    if (!books.length) {
+      body(head + '<div class="pr-empty">No books are linked to this level yet.' + (isAdm() ? '<br><br><button class="pr-chip" onclick="prBooksEditor()">⚙️ Add a book</button>' : '') + '</div>');
+      return;
+    }
+    // book cards
+    var cards = books.map(function(b){
+      var i = PR.books.indexOf(b), rows = b.prefix ? inPeriod(PR.rows[b.prefix] || []) : [];
+      if (!b.prefix) return '<div class="pr-book" style="cursor:default"><div class="s">' + esc(b.series) + '</div><div class="n">' + esc(b.name) + '</div><div class="none">No online practice yet</div></div>';
+      var st = {}; rows.forEach(function(r){ var k = skey(r), s = st[k] || (st[k] = {}); if (!s[r.setId] || r.pct > s[r.setId]) s[r.setId] = r.pct; });
+      var ks = Object.keys(st), avg = ks.length ? Math.round(ks.reduce(function(a, k){ var v = Object.values(st[k]); return a + v.reduce(function(x, y){ return x + y; }, 0) / v.length; }, 0) / ks.length) : 0;
+      return '<div class="pr-book" onclick="prBook(' + i + ')"><div class="s">' + esc(b.series) + '</div><div class="n">' + esc(b.name) + '</div>'
+        + '<div class="m"><div><b>' + ks.length + '</b>students</div><div><b>' + rows.length + '</b>attempts</div><div><b class="' + (ks.length ? colour(avg) : '') + '" style="padding:0 4px;border-radius:5px">' + (ks.length ? avg + '%' : '–') + '</b>average</div></div></div>';
+    }).join('');
+    // students of this level: enrolled + anyone with results in these books
+    var people = {};
+    (PR.students || []).filter(function(s){ return s.cls === lv; }).forEach(function(s){ var k = s.studentId ? 'id:' + s.studentId : 'nm:' + s.name.toLowerCase() + '|' + lv.toLowerCase();
+      people[k] = { name: s.name, cls: s.rawCls || lv, sid: s.studentId, login: true, per: {}, last: '' }; });
+    books.forEach(function(b){ if (!b.prefix) return;
+      inPeriod(PR.rows[b.prefix] || []).forEach(function(r){
+        var k = skey(r), p = people[k] || (people[k] = { name: r.studentName || '?', cls: r.cls || '', sid: r.studentId, login: r.login, per: {}, last: '' });
+        var pb = p.per[b.prefix] || (p.per[b.prefix] = {}); if (!pb[r.setId] || r.pct > pb[r.setId]) pb[r.setId] = r.pct;
+        if ((r.at || '') > p.last) p.last = r.at || '';
+      }); });
+    var q = PR.q.toLowerCase();
+    var list = Object.keys(people).map(function(k){ var p = people[k]; p.key = k; return p; })
+      .filter(function(p){ return !q || p.name.toLowerCase().indexOf(q) >= 0; })
+      .sort(function(a, b){ return natural(a.name, b.name); });
+    PR.list = list; PR.view = [];
+    books.forEach(function(b){ if (b.prefix) PR.view = PR.view.concat(inPeriod(PR.rows[b.prefix] || []).map(function(r){ r._book = b.name; return r; })); });
+    var qb = books.filter(function(b){ return b.prefix; });
+    var th = '<tr><th class="nm">Student</th><th>Class</th>' + qb.map(function(b){ return '<th>' + esc(b.name) + '</th>'; }).join('') + '<th>Last active</th></tr>';
+    var tb = list.map(function(p, i){
+      return '<tr><td class="nm" onclick="prStudent(' + i + ')">' + esc(p.name) + (p.login ? '' : ' <span title="typed name, not signed in" style="color:#b26a00">✎</span>') + '</td><td>' + esc(p.cls) + '</td>'
+        + qb.map(function(b){ var pb = p.per[b.prefix], n = pb ? Object.keys(pb).length : 0, tot = Object.keys(PR.sets[b.prefix] || {}).length;
+            if (!n) return '<td class="c e">–</td>';
+            var avg = Math.round(Object.values(pb).reduce(function(x, y){ return x + y; }, 0) / n);
+            return '<td class="c ' + colour(avg) + '" title="' + n + ' worksheet(s) done">' + avg + '% <span style="font-weight:400;font-size:.7rem">(' + n + (tot ? '/' + tot : '') + ')</span></td>'; }).join('')
+        + '<td style="color:#6b7390">' + esc((p.last || '').slice(0, 10) || '–') + '</td></tr>';
+    }).join('');
+    var tip = '<div class="pr-tip">Click a book to see every worksheet and test. In the student table each cell is the student\'s <b>average best score</b> in that book, and (done / total) worksheets. 🟩 80%+ · 🟨 50–79% · 🟥 below 50% · – not started. Students enrolled in <b>' + esc(LVNAME[lv] || lv) + '</b> are listed even if they have not practised yet.</div>';
+    body(head + '<div class="pr-books">' + cards + '</div>' + bar(false) + tip
+      + (list.length ? '<div class="pr-tbl"><table><thead>' + th + '</thead><tbody>' + tb + '</tbody></table></div>' : '<div class="pr-empty">No students yet for this level.</div>'));
+  }
+
+  /* ---------------- book view (worksheet matrix) ---------------- */
+  window.prBook = async function(i, force){
+    var b = PR.books[i]; if (!b) return; PR.book = { i: i, b: b };
+    body('<div class="pr-empty">Loading…</div>');
+    try { await loadRows(b.prefix, force); await loadSets(b.prefix); } catch (e) { body('<div class="pr-empty">⚠️ ' + esc(e.message || e) + '</div>'); return; }
+    renderBook();
+  };
+  function renderBook(){
+    var b = PR.book.b, all = PR.rows[b.prefix] || [], sets = PR.sets[b.prefix] || {};
+    var classes = Array.from(new Set(all.map(function(r){ return r.cls || ''; }).filter(Boolean))).sort(natural);
+    var rows = inPeriod(all).filter(function(r){ return !PR.cls || (r.cls || '') === PR.cls; });
+    var crumb = '<div class="pr-crumb"><a onclick="prLevel(PR_lv())">' + esc(LVNAME[PR.level] || PR.level) + '</a> › ' + esc(b.name) + '</div>';
+    var head = crumb + '<h3 class="pr-t">' + esc(b.name) + '</h3>' + bar(true, classes);
+    if (!rows.length) { PR.view = []; body(head + '<div class="pr-empty">No results for these filters yet.</div>'); return; }
     var studs = {}, used = {};
     rows.forEach(function(r){
-      var k = skey(r), s = studs[k] || (studs[k] = { name: r.studentName || '?', cls: r.cls || '', login: r.login, best: {}, n: 0, last: '' });
-      s.n++; if ((r.at || '') > s.last) s.last = r.at || '';
-      var b = s.best[r.setId]; if (!b || r.pct > b.pct) s.best[r.setId] = { pct: r.pct, score: r.score, total: r.total, tries: (b ? b.tries : 0) + 1 }; else b.tries++;
+      var k = skey(r), s = studs[k] || (studs[k] = { name: r.studentName || '?', cls: r.cls || '', login: r.login, best: {} });
+      var x = s.best[r.setId]; if (!x || r.pct > x.pct) s.best[r.setId] = { pct: r.pct, score: r.score, total: r.total, tries: (x ? x.tries : 0) + 1 }; else x.tries++;
       used[r.setId] = r.setTitle || r.setId;
     });
     var order = Object.keys(sets).filter(function(k){ return used[k]; });
     Object.keys(used).forEach(function(k){ if (order.indexOf(k) < 0) order.push(k); });
     var list = Object.keys(studs).map(function(k){ var s = studs[k]; s.key = k; var v = Object.keys(s.best).map(function(i){ return s.best[i].pct; });
-      s.avg = v.length ? Math.round(v.reduce(function(a, b){ return a + b; }, 0) / v.length) : 0; s.done = v.length; return s; })
-      .sort(function(a, b){ return natural(a.cls, b.cls) || natural(a.name, b.name); });
-    PR.view = rows; PR.list = list;
-    var stats = '<div class="pr-stats"><div class="pr-stat"><b>' + list.length + '</b><span>students</span></div><div class="pr-stat"><b>' + rows.length + '</b><span>attempts</span></div>'
-      + '<div class="pr-stat"><b>' + order.length + '</b><span>worksheets done</span></div><div class="pr-stat"><b>' + (list.length ? Math.round(list.reduce(function(a, s){ return a + s.avg; }, 0) / list.length) : 0) + '%</b><span>average score</span></div></div>';
+      s.avg = v.length ? Math.round(v.reduce(function(a, c){ return a + c; }, 0) / v.length) : 0; s.done = v.length; return s; })
+      .sort(function(a, c){ return natural(a.cls, c.cls) || natural(a.name, c.name); });
+    PR.view = rows.map(function(r){ r._book = b.name; return r; }); PR.list = list;
     var th = '<tr><th class="nm">Student</th><th>Class</th><th>Done</th><th>Avg</th>' + order.map(function(k){ return '<th class="set" title="' + esc(used[k]) + '">' + esc(used[k]) + '</th>'; }).join('') + '</tr>';
     var tb = list.map(function(s, i){
-      return '<tr><td class="nm" onclick="prStudent(' + i + ')">' + esc(s.name) + (s.login ? '' : ' <span title="typed name, not signed in" style="color:#b26a00">✎</span>') + '</td><td>' + esc(s.cls) + '</td><td>' + s.done + '</td><td class="c ' + colour(s.avg) + '">' + s.avg + '%</td>'
-        + order.map(function(k){ var b = s.best[k]; return b ? '<td class="c ' + colour(b.pct) + '" title="' + b.score + '/' + b.total + ' · ' + b.tries + ' attempt(s)">' + b.pct + '</td>' : '<td class="c e">–</td>'; }).join('') + '</tr>';
+      return '<tr><td class="nm" onclick="prStudent(' + i + ')">' + esc(s.name) + (s.login ? '' : ' <span style="color:#b26a00">✎</span>') + '</td><td>' + esc(s.cls) + '</td><td>' + s.done + '</td><td class="c ' + colour(s.avg) + '">' + s.avg + '%</td>'
+        + order.map(function(k){ var x = s.best[k]; return x ? '<td class="c ' + colour(x.pct) + '" title="' + x.score + '/' + x.total + ' · ' + x.tries + ' attempt(s)">' + x.pct + '</td>' : '<td class="c e">–</td>'; }).join('') + '</tr>';
     }).join('');
-    body(chips() + bar + tip + stats + (list.length ? '<div class="pr-tbl"><table><thead>' + th + '</thead><tbody>' + tb + '</tbody></table></div>' : '<div class="pr-empty">No results match these filters.</div>'));
+    body(head + '<div class="pr-tbl"><table><thead>' + th + '</thead><tbody>' + tb + '</tbody></table></div>');
   }
-  window.PR_cur = function(){ return PR.prefix; };
+
   var qt;
-  window.PRset = function(k, v, debounce){ PR[k] = v; if (debounce) { clearTimeout(qt); qt = setTimeout(function(){ render(); var i = document.querySelector('#pr-page .pr-bar input'); if (i) { i.focus(); i.setSelectionRange(i.value.length, i.value.length); } }, 350); } else render(); };
-  window.prStudent = function(i){
-    var s = PR.list[i]; if (!s) return;
-    var mine = PR.view.filter(function(r){ return skey(r) === s.key; }).sort(function(a, b){ return (b.at || '').localeCompare(a.at || ''); });
-    document.getElementById('pr-m-title').textContent = s.name + (s.cls ? ' · ' + s.cls : '');
-    document.getElementById('pr-m-body').innerHTML = '<table><tr><th>Date</th><th>Worksheet / Homework</th><th>Score</th></tr>' + mine.map(function(r){
-      return '<tr><td>' + esc((r.at || '').replace('T', ' ').slice(0, 16)) + '</td><td>' + esc(r.setTitle || r.setId) + '</td><td class="c ' + colour(r.pct) + '" style="text-align:center;border-radius:6px">' + r.score + '/' + r.total + '</td></tr>'; }).join('') + '</table>';
+  window.PRset = function(k, v, debounce){
+    PR[k] = v;
+    var go = function(){ if (PR.book) renderBook(); else renderLevel(); };
+    if (debounce) { clearTimeout(qt); qt = setTimeout(function(){ go(); var i = document.querySelector('#pr-page .pr-bar input'); if (i) { i.focus(); i.setSelectionRange(i.value.length, i.value.length); } }, 350); } else go();
+  };
+
+  /* ---------------- one student, every book ---------------- */
+  window.prStudent = async function(i){
+    var p = PR.list[i]; if (!p) return;
+    var key = p.key, mine = [];
+    var linked = (PR.books || []).filter(function(b){ return b.prefix; });
+    document.getElementById('pr-m-title').textContent = p.name + (p.cls ? ' · ' + p.cls : '');
+    document.getElementById('pr-m-body').innerHTML = '<div class="hint">Loading all books…</div>';
+    document.getElementById('pr-modal').style.display = 'flex';
+    await Promise.all(linked.map(function(b){ return loadRows(b.prefix).catch(function(){ return []; }); }));
+    linked.forEach(function(b){ (PR.rows[b.prefix] || []).forEach(function(r){ if (skey(r) === key) { r._book = b.name; mine.push(r); } }); });
+    mine.sort(function(a, b){ return (b.at || '').localeCompare(a.at || ''); });
+    var per = {}; mine.forEach(function(r){ var x = per[r._book] || (per[r._book] = { n: 0, best: {} }); x.n++; if (!x.best[r.setId] || r.pct > x.best[r.setId]) x.best[r.setId] = r.pct; });
+    var sum = Object.keys(per).map(function(bk){ var v = Object.values(per[bk].best), a = Math.round(v.reduce(function(x, y){ return x + y; }, 0) / v.length);
+      return '<tr><td><b>' + esc(bk) + '</b></td><td>' + v.length + ' worksheet(s)</td><td>' + per[bk].n + ' attempt(s)</td><td class="c ' + colour(a) + '">' + a + '%</td></tr>'; }).join('');
+    document.getElementById('pr-m-body').innerHTML = (mine.length ? '<div class="hint"><b>All books</b></div><table class="pr-sum">' + sum + '</table><div class="hint" style="margin-top:8px"><b>Every attempt</b></div>'
+      + '<table><tr><th>Date</th><th>Book</th><th>Worksheet / Test</th><th>Score</th></tr>' + mine.map(function(r){
+        return '<tr><td>' + esc((r.at || '').replace('T', ' ').slice(0, 16)) + '</td><td>' + esc(r._book) + '</td><td>' + esc(r.setTitle || r.setId) + '</td><td class="c ' + colour(r.pct) + '">' + r.score + '/' + r.total + '</td></tr>'; }).join('') + '</table>'
+      : '<div class="hint">This student has not practised online yet.</div>');
+  };
+
+  /* ---------------- ⚙️ Books & Levels (Admin) ---------------- */
+  window.prBooksEditor = function(){
+    if (!isAdm()) { alert('Admin only'); return; }
+    var lvOpts = function(sel){ return PR_GROUPS.map(function(g){ return '<optgroup label="' + esc(g.name) + '">' + g.levels.map(function(l){ return '<option value="' + esc(l[0]) + '"' + (l[0] === sel ? ' selected' : '') + '>' + esc(l[1]) + '</option>'; }).join('') + '</optgroup>'; }).join(''); };
+    var row = function(b){ return '<tr><td><input class="bk-n" value="' + esc(b.name) + '" placeholder="Book name"></td>'
+      + '<td><input class="bk-s" list="pr-series" value="' + esc(b.series) + '" placeholder="Series"></td>'
+      + '<td><select class="bk-l">' + lvOpts(b.level) + '</select></td>'
+      + '<td><input class="bk-p" value="' + esc(b.prefix || '') + '" placeholder="e.g. up4" style="width:80px"></td>'
+      + '<td><button class="del" onclick="this.closest(\'tr\').remove()" title="Remove">🗑</button></td></tr>'; };
+    window.__prRow = row;
+    document.getElementById('pr-m-title').textContent = '⚙️ Books & Levels';
+    document.getElementById('pr-m-body').innerHTML = '<div class="hint">Link each book to a level of the portal. <b>QR code</b> is the short code of the book\'s online practice (bs, b1, b2, up1, up2, up3…). Leave it empty for books without QR practice yet – they still show in their level.</div>'
+      + '<datalist id="pr-series">' + PR_SERIES.map(function(s){ return '<option value="' + esc(s) + '">'; }).join('') + '</datalist>'
+      + '<table><thead><tr><th>Book name</th><th>Series</th><th>Portal level</th><th>QR code</th><th></th></tr></thead><tbody id="pr-bk">' + PR.books.map(row).join('') + '</tbody></table>'
+      + '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="btn l" onclick="document.getElementById(\'pr-bk\').insertAdjacentHTML(\'beforeend\', __prRow({name:\'\',series:\'\',level:\'Starters\',prefix:\'\'}))">＋ Add book</button>'
+      + '<button class="btn l" onclick="if(confirm(\'Reset to the default list?\')){PR_resetBooks()}">↺ Default list</button><span style="flex:1"></span>'
+      + '<button class="btn" onclick="PR_saveBooks(this)">💾 Save</button></div>';
     document.getElementById('pr-modal').style.display = 'flex';
   };
+  window.PR_resetBooks = function(){ PR.books = PR_DEFAULT_BOOKS.slice(); prBooksEditor(); };
+  window.PR_saveBooks = async function(btn){
+    var list = [];
+    document.querySelectorAll('#pr-bk tr').forEach(function(tr){
+      var n = tr.querySelector('.bk-n').value.trim(); if (!n) return;
+      list.push({ name: n, series: tr.querySelector('.bk-s').value.trim() || 'Other', level: tr.querySelector('.bk-l').value, prefix: tr.querySelector('.bk-p').value.trim().toLowerCase() });
+    });
+    btn.disabled = true; btn.textContent = 'Saving…';
+    try {
+      var fb = window._fb;
+      await fb.setDoc(fb.doc(fb.db, 'practiceConfig', 'books'), { list: list, updatedAt: new Date().toISOString(), by: (currentUser && currentUser.email) || '' });
+      PR.books = list; document.getElementById('pr-modal').style.display = 'none'; side(); prLevel(PR.level);
+    } catch (e) { alert('Could not save: ' + (e.message || e)); btn.disabled = false; btn.textContent = '💾 Save'; }
+  };
+
+  /* ---------------- CSV ---------------- */
   window.prCsv = function(){
-    var rows = PR.view || []; if (!rows.length) return;
-    var lvl = (PR_LEVELS.filter(function(l){ return l[0] === PR.prefix; })[0] || [0, PR.prefix])[1];
-    var head = ['Date', 'Student', 'Student ID', 'Class', 'Book', 'Worksheet / Homework', 'Score', 'Total', 'Percent', 'Attempt', 'Signed in'];
+    var rows = PR.view || []; if (!rows.length) { alert('No results to export.'); return; }
+    var head = ['Date', 'Student', 'Student ID', 'Class', 'Level', 'Book', 'Worksheet / Test', 'Score', 'Total', 'Percent', 'Attempt', 'Signed in'];
     var lines = [head].concat(rows.slice().sort(function(a, b){ return (a.at || '').localeCompare(b.at || ''); }).map(function(r){
-      return [(r.at || '').replace('T', ' ').slice(0, 16), r.studentName, r.studentId, r.cls, lvl, r.setTitle, r.score, r.total, r.pct, r.attempt, r.login ? 'yes' : 'no']; }));
+      return [(r.at || '').replace('T', ' ').slice(0, 16), r.studentName, r.studentId, r.cls, LVNAME[PR.level] || PR.level, r._book || '', r.setTitle, r.score, r.total, r.pct, r.attempt, r.login ? 'yes' : 'no']; }));
     var csv = '﻿' + lines.map(function(l){ return l.map(function(v){ v = String(v == null ? '' : v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }).join(','); }).join('\r\n');
     var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
-    a.download = 'Practice_Results_' + lvl.replace(/\W+/g, '_') + (PR.cls ? '_' + PR.cls : '') + '.csv'; a.click();
+    a.download = 'Practice_Results_' + String((PR.book ? PR.book.b.name : (LVNAME[PR.level] || PR.level))).replace(/\W+/g, '_') + '.csv'; a.click();
   };
 })();
 </script>

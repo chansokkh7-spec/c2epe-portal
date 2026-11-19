@@ -4751,6 +4751,834 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "beehive-6-tests",
+ "level": "Beehive 6",
+ "icon": "📝",
+ "title": "Beehive 6 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "beehive-6-tests",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Starter Unit",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and write the item.",
+     "file": "b6-ut-unit-test-starter-unit-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "Boil the water in the kettle.",
+      "Wash your hands with soap.",
+      "The spoons are in the drawer.",
+      "Put the milk in the fridge.",
+      "Put the ice cream in the freezer."
+     ],
+     "key": "1 kettle, 2 soap, 3 drawer, 4 fridge, 5 freezer"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-ut-unit-test-starter-unit-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "The kitchen is so messy!",
+      "It was such a big fridge!",
+      "The shower is so cold!",
+      "They were such nice people!",
+      "It was such a long day!"
+     ],
+     "key": "1 so, 2 such a, 3 so , 4 such, 5 such a "
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: The world of work",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-ut-unit-test-unit-1-the-world-of-work-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "He works in a hair salon.",
+      "She works at the court.",
+      "He works in a newsroom.",
+      "She's a programmer.",
+      "He works in a clinic."
+     ],
+     "key": "1 hair salon (a), 2 court (b), 3 newsroom (a), 4 programmer (a), 5 clinic (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-ut-unit-test-unit-1-the-world-of-work-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "She's a hairdresser.",
+      "He works in a studio.",
+      "She's a lawyer.",
+      "He works in a department store.",
+      "He works in a laboratory."
+     ],
+     "key": "1 hairdresser, 2 studio, 3 lawyer, 4 department store, 5 laboratory"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Health and medicine",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-ut-unit-test-unit-2-health-and-medicine-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "My heart hurts.",
+      "I've got a wound on my leg.",
+      "I hope you get better soon.",
+      "I need a prescription.",
+      "I need an appointment."
+     ],
+     "key": "1 heart (a), 2 wound (a), 3 get better (b), 4 prescription (a), 5 appointment (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-ut-unit-test-unit-2-health-and-medicine-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "It's an emergency!",
+      "My neck hurts.",
+      "I need a cast.",
+      "My wrist hurts.",
+      "My shoulder hurts."
+     ],
+     "key": "1 emergency, 2 neck, 3 cast, 4 wrist, 5 shoulder"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Let's go!",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-ut-unit-test-unit-3-let-s-go-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "The plane is going to take off.",
+      "We travelled by air.",
+      "Look at the brochure.",
+      "We went through security.",
+      "Look at the tour guide."
+     ],
+     "key": "1 take off (a), 2 by air (b), 3 brochure (a), 4 security (b), 5 tour guide (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-ut-unit-test-unit-3-let-s-go-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "It's time to board the plane.",
+      "Look at the backpacker.",
+      "We travelled by sea.",
+      "Please go to gate twelve.",
+      "Look at the waiting room."
+     ],
+     "key": "1 board, 2 backpacker, 3 by sea, 4 gate, 5 waiting room"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: At the art gallery",
+   "info": "Test paper page 14",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-ut-unit-test-unit-4-at-the-art-gallery-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "This painting is abstract.",
+      "Look at the foreground.",
+      "This painting is pale.",
+      "Look at the mural.",
+      "This painting is detailed."
+     ],
+     "key": "1 abstract (a), 2 foreground (c), 3 pale (a), 4 mural (b), 5 detailed (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-ut-unit-test-unit-4-at-the-art-gallery-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "This painting is simple.",
+      "Look at the collage.",
+      "Look at the background.",
+      "Look at the shadow.",
+      "Look at the installation."
+     ],
+     "key": "1 simple, 2 collage, 3 background, 4 shadow, 5 installation"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Let's play music!",
+   "info": "Test paper page 16",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-ut-unit-test-unit-5-let-s-play-music-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "She's a busker.",
+      "She's a songwriter.",
+      "I love classical music.",
+      "I love folk music.",
+      "I love pop music."
+     ],
+     "key": "1 busker (c), 2 songwriter (b), 3 classical (a), 4 folk (a), 5 pop (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-ut-unit-test-unit-5-let-s-play-music-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "I love jazz music.",
+      "She's a DJ.",
+      "She's a vocalist.",
+      "She sings in a choir.",
+      "She's a conductor."
+     ],
+     "key": "1 jazz, 2 DJ, 3 vocalist, 4 choir, 5 conductor"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Science and inventions",
+   "info": "Test paper page 19",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-ut-unit-test-unit-6-science-and-inventions-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "This is a wheel.",
+      "This is a battery.",
+      "Now melt it.",
+      "Now freeze it.",
+      "Now stir it."
+     ],
+     "key": "1 wheel (c), 2 battery (b), 3 melt (b), 4 freeze (c), 5 stir (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-ut-unit-test-unit-6-science-and-inventions-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "This is a submarine.",
+      "Now float it.",
+      "This is a compass.",
+      "This is a light bulb.",
+      "This is a calculator."
+     ],
+     "key": "1 submarine, 2 float, 3 compass, 4 light bulb, 5 calculator"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Let's go shopping!",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-ut-unit-test-unit-7-let-s-go-shopping-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "I'd like to order a jumper online.",
+      "Does this jumper look nice?",
+      "Does this tie look nice?",
+      "I'll pay for it.",
+      "Does this suit look nice?"
+     ],
+     "key": "1 order (c), 2 jumper (b), 3 tie (b), 4 pay for (b), 5 suit (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-ut-unit-test-unit-7-let-s-go-shopping-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "It's a bargain!",
+      "Does this necklace look nice?",
+      "Look at the receipt.",
+      "Does this scarf look nice?",
+      "They will deliver it tomorrow."
+     ],
+     "key": "1 bargain, 2 necklace, 3 receipt, 4 scarf, 5 deliver"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Our planet",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-ut-unit-test-unit-8-our-planet-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "The scenery is beautiful.",
+      "We visited the harbour.",
+      "We visited the valley.",
+      "There was a flood.",
+      "We visited the monument."
+     ],
+     "key": "1 scenery (c), 2 harbour (c), 3 valley (c), 4 flood (b), 5 monument (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-ut-unit-test-unit-8-our-planet-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "There was a thunderstorm.",
+      "There was a volcanic eruption.",
+      "There was a drought.",
+      "We visited the sand dune.",
+      "We visited the riverbank."
+     ],
+     "key": "1 thunderstorm, 2 volcanic eruption, 3 drought, 4 sand dune, 5 riverbank"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: At the wildlife park",
+   "info": "Test paper page 27",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-ut-unit-test-unit-9-at-the-wildlife-park-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "Look at the chameleon!",
+      "It's got scales.",
+      "It's got whiskers.",
+      "It's got flippers.",
+      "Look at the seagull!"
+     ],
+     "key": "1 chameleon (a), 2 scales (b), 3 whiskers (a), 4 flippers (c), 5 seagull (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-ut-unit-test-unit-9-at-the-wildlife-park-ex2.mp3",
+     "secs": 70,
+     "script": [
+      "Look at the leopard!",
+      "Look at the parrot!",
+      "Look at the squirrel!",
+      "It's got bones.",
+      "It's got antlers."
+     ],
+     "key": "1 leopard, 2 parrot, 3 squirrel, 4 bones, 5 antlers"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Celebrations",
+   "info": "Test paper page 29",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-ut-unit-test-unit-10-celebrations-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "It was deafening.",
+      "It was enormous.",
+      "I was terrified.",
+      "Look at the acrobats!",
+      "I love face painting."
+     ],
+     "key": "1 deafening (c), 2 enormous (a), 3 terrified (a), 4 acrobats (a), 5 face painting (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-ut-unit-test-unit-10-celebrations-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "Let's go to the carnival.",
+      "It was tiny.",
+      "It was crowded.",
+      "It was deserted.",
+      "Look at the fireworks!"
+     ],
+     "key": "1 carnival, 2 tiny, 3 crowded, 4 deserted, 5 fireworks"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-mt-monthly-test-1-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "She's a mechanic.",
+      "She's a lawyer.",
+      "He works in a hair salon.",
+      "He works in a laboratory."
+     ],
+     "key": "1 mechanic (b), 2 lawyer (b), 3 hair salon (c), 4 laboratory (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-mt-monthly-test-1-ex2.mp3",
+     "secs": 58,
+     "script": [
+      "He works in a department store.",
+      "He works in a newsroom.",
+      "She's a hairdresser.",
+      "She's a cleaner."
+     ],
+     "key": "1 department store, 2 newsroom, 3 hairdresser, 4 cleaner"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-mt-monthly-test-2-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "She's a mechanic.",
+      "I've got a wound on my leg.",
+      "He works in a hair salon.",
+      "My heart hurts."
+     ],
+     "key": "1 mechanic (a), 2 wound (c), 3 hair salon (a), 4 heart (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-mt-monthly-test-2-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "I need an operation.",
+      "He works in a studio.",
+      "I hope you get better soon.",
+      "She's a programmer."
+     ],
+     "key": "1 operation, 2 studio, 3 get better, 4 programmer"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-mt-monthly-test-3-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "Look at the waiting room.",
+      "Look at the shadow.",
+      "Put your hand luggage here.",
+      "Look at the collage."
+     ],
+     "key": "1 waiting room (c), 2 shadow (c), 3 hand luggage (b), 4 collage (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-mt-monthly-test-3-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "This painting is simple.",
+      "The plane is going to take off.",
+      "Look at the installation.",
+      "Walk through the metal detector."
+     ],
+     "key": "1 simple, 2 take off, 3 installation, 4 metal detector"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-mt-monthly-test-4-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "This painting is abstract.",
+      "She's a songwriter.",
+      "Look at the shadow.",
+      "She's a sound engineer."
+     ],
+     "key": "1 abstract (b), 2 songwriter (b), 3 shadow (c), 4 sound engineer (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-mt-monthly-test-4-ex2.mp3",
+     "secs": 57,
+     "script": [
+      "She's a conductor.",
+      "Look at the collage.",
+      "She's a DJ.",
+      "Look at the mobile."
+     ],
+     "key": "1 conductor, 2 collage, 3 DJ, 4 mobile"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-mt-monthly-test-5-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "This is a calculator.",
+      "This is a light bulb.",
+      "Now heat it.",
+      "This is a wheel."
+     ],
+     "key": "1 calculator (c), 2 light bulb (a), 3 heat (a), 4 wheel (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-mt-monthly-test-5-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "This is a virtual reality headset.",
+      "This is a 3D printer.",
+      "This is a submarine.",
+      "Now stir it."
+     ],
+     "key": "1 virtual reality headset, 2 3D printer, 3 submarine, 4 stir"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-mt-monthly-test-6-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "This is a calculator.",
+      "I'd like to order a jumper online.",
+      "Now melt it.",
+      "Look at the receipt."
+     ],
+     "key": "1 calculator (c), 2 order (a), 3 melt (b), 4 receipt (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-mt-monthly-test-6-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "Does this blouse look nice?",
+      "This is a 3D printer.",
+      "Can I pay in cash?",
+      "Now stir it."
+     ],
+     "key": "1 blouse, 2 3D printer, 3 cash, 4 stir"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 20",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-mt-monthly-test-7-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "We visited the monument.",
+      "It's got flippers.",
+      "We visited the desert.",
+      "Look at the deer!"
+     ],
+     "key": "1 monument (c), 2 flippers (b), 3 desert (b), 4 deer (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-mt-monthly-test-7-ex2.mp3",
+     "secs": 58,
+     "script": [
+      "It's got whiskers.",
+      "There was a hurricane.",
+      "It's got antlers.",
+      "We visited the seaside."
+     ],
+     "key": "1 whiskers, 2 hurricane, 3 antlers, 4 seaside"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 23",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-mt-monthly-test-8-ex1.mp3",
+     "secs": 56,
+     "script": [
+      "It's got whiskers.",
+      "Look at the spectators!",
+      "It's got flippers.",
+      "It was enormous."
+     ],
+     "key": "1 whiskers (b), 2 spectators (c), 3 flippers (b), 4 enormous (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-mt-monthly-test-8-ex2.mp3",
+     "secs": 57,
+     "script": [
+      "It was deserted.",
+      "Look at the leopard!",
+      "I was exhausted.",
+      "It's got antlers."
+     ],
+     "key": "1 deserted, 2 leopard, 3 exhausted, 4 antlers"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "She's a programmer.",
+      "I need an X-ray.",
+      "Please go to gate twelve.",
+      "He works in a clinic.",
+      "My ankle hurts."
+     ],
+     "key": "1 programmer (b), 2 X-ray (c), 3 gate (b), 4 clinic (c), 5 ankle (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "I need an appointment.",
+      "Look at the tour guide.",
+      "He works in a hair salon.",
+      "It's an emergency!",
+      "Look at the brochure."
+     ],
+     "key": "1 appointment, 2 tour guide, 3 hair salon, 4 emergency, 5 brochure"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "Now melt it.",
+      "Does this scarf look nice?",
+      "We visited the seaside.",
+      "This is a light bulb.",
+      "They will deliver it tomorrow."
+     ],
+     "key": "1 melt (b), 2 scarf (b), 3 seaside (b), 4 light bulb (c), 5 deliver (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "Does this tie look nice?",
+      "We visited the harbour.",
+      "Now boil it.",
+      "I'll pay for it.",
+      "We visited the sand dune."
+     ],
+     "key": "1 tie, 2 harbour, 3 boil, 4 pay for, 5 sand dune"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-fin-final-test-semester-1-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "He works in a hair salon.",
+      "My ankle hurts.",
+      "We travelled by sea.",
+      "This painting is pale.",
+      "She's a conductor."
+     ],
+     "key": "1 hair salon (b), 2 ankle (a), 3 by sea (b), 4 pale (a), 5 conductor (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-fin-final-test-semester-1-ex2.mp3",
+     "secs": 69,
+     "script": [
+      "I need an operation.",
+      "Look at the brochure.",
+      "Look at the mobile.",
+      "She's a busker.",
+      "She's a cleaner."
+     ],
+     "key": "1 operation, 2 brochure, 3 mobile, 4 busker, 5 cleaner"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "b6-fin-final-test-semester-1-ex3.mp3",
+     "secs": 71,
+     "script": [
+      "Look at the waiting room.",
+      "This painting is abstract.",
+      "She sings in a choir.",
+      "She's a lawyer.",
+      "I hope you get better soon."
+     ],
+     "key": "1 ✓, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b6-fin-final-test-semester-2-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "Now freeze it.",
+      "They will deliver it tomorrow.",
+      "We visited the sand dune.",
+      "It's got tentacles.",
+      "It was tiny."
+     ],
+     "key": "1 freeze (a), 2 deliver (b), 3 sand dune (c), 4 tentacles (b), 5 tiny (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b6-fin-final-test-semester-2-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "Does this suit look nice?",
+      "We visited the seaside.",
+      "Look at the squirrel!",
+      "Look at the spectators!",
+      "Now boil it."
+     ],
+     "key": "1 suit, 2 seaside, 3 squirrel, 4 spectators, 5 boil"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "b6-fin-final-test-semester-2-ex3.mp3",
+     "secs": 72,
+     "script": [
+      "We visited the monument.",
+      "It's got bones.",
+      "It was crowded.",
+      "This is a battery.",
+      "I'd like to order a jumper online."
+     ],
+     "key": "1 ✓, 2 ✗, 3 ✓, 4 ✓, 5 ✓"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

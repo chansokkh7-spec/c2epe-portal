@@ -556,6 +556,7 @@ function logoImgError(img){
         <button onclick="closeClubsMenu();window.open('digital-hub.html?open=games', '_blank', 'noopener,noreferrer')" class="tools-item">🎮 <span>Game Hub</span></button>
         <button onclick="closeClubsMenu();window.open('digital-library.html', '_blank')" class="tools-item">📚 <span>SEG Digital Library</span></button>
         <button onclick="closeClubsMenu();openListeningLibrary()" id="listening-library-btn" class="tools-item">🎧 <span>Listening Library</span></button>
+        <button onclick="closeClubsMenu();openPracticeResults()" id="practice-results-btn" class="tools-item" style="display:none">📊 <span>Practice Results</span></button>
         <button onclick="closeClubsMenu();window.open('digital-hub.html?open=practice', '_blank', 'noopener,noreferrer')" class="tools-item">🎯 <span>GEP Practice Hub</span></button>
       </div>
     </div>
@@ -21665,5 +21666,174 @@ function closeLevelUpTest(){
 </script>
 <!-- ═══════════════ END LISTENING LIBRARY ═══════════════ -->
 
+
+<!-- ================= 📊 PRACTICE RESULTS (scores sent from c2-practice.html QR pages) ================= -->
+<div id="pr-page" style="display:none;position:fixed;inset:0;background:#f4f6fb;z-index:9990;overflow-y:auto;">
+<style>
+#pr-page{font-family:inherit;color:#14204a}
+#pr-page .pr-head{background:linear-gradient(135deg,#000080,#0b1a5c);border-bottom:3px solid #FFD700;padding:0 16px;height:58px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:10}
+#pr-page .pr-head h2{margin:0;color:#FFD700;font-size:1.05rem;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#pr-page .pr-back{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);padding:6px 12px;border-radius:20px;cursor:pointer;font-size:.8rem}
+#pr-page .pr-gold{background:#FFD700;color:#000080;border:none;padding:8px 14px;border-radius:20px;font-weight:700;font-size:.8rem;cursor:pointer;white-space:nowrap}
+#pr-page .pr-wrap{max-width:1200px;margin:0 auto;padding:16px}
+#pr-page .pr-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+#pr-page .pr-chip{border:1.5px solid #000080;background:#fff;color:#000080;border-radius:18px;padding:6px 13px;font-weight:700;font-size:.8rem;cursor:pointer}
+#pr-page .pr-chip.on{background:#000080;color:#FFD700}
+#pr-page .pr-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+#pr-page .pr-bar select,#pr-page .pr-bar input{padding:9px 11px;border:1.5px solid #cfd6ea;border-radius:10px;font-size:.88rem;font-family:inherit;background:#fff}
+#pr-page .pr-bar input{flex:1;min-width:160px}
+#pr-page .pr-stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+#pr-page .pr-stat{background:#fff;border:1px solid #e3e8f5;border-radius:12px;padding:10px 14px;min-width:120px}
+#pr-page .pr-stat b{display:block;font-size:1.3rem;color:#000080}
+#pr-page .pr-stat span{font-size:.75rem;color:#6b7390}
+#pr-page .pr-tbl{overflow:auto;background:#fff;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,128,.08);border:1px solid #e3e8f5;max-height:70vh}
+#pr-page table{border-collapse:separate;border-spacing:0;font-size:.8rem}
+#pr-page th,#pr-page td{padding:6px 8px;border-bottom:1px solid #eef1f8;text-align:center;white-space:nowrap}
+#pr-page thead th{position:sticky;top:0;background:#000080;color:#FFD700;z-index:2;font-weight:700}
+#pr-page thead th.set{writing-mode:vertical-rl;transform:rotate(180deg);height:150px;font-weight:600;font-size:.72rem;max-width:34px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#pr-page td.nm,#pr-page th.nm{position:sticky;left:0;background:#fff;text-align:left;z-index:1;font-weight:700;cursor:pointer;color:#000080}
+#pr-page thead th.nm{z-index:3;background:#000080;color:#FFD700}
+#pr-page td.c{min-width:34px;font-weight:700;border-radius:6px}
+#pr-page .g{background:#d7f2df;color:#13692f}#pr-page .y{background:#fff3c4;color:#7a5a00}#pr-page .r{background:#fde0de;color:#a52a1f}#pr-page .e{color:#c4c9d6}
+#pr-page .pr-empty{text-align:center;color:#6b7390;padding:30px;background:#fff;border-radius:14px}
+#pr-page .pr-tip{background:#fff8d6;border-left:4px solid #FFD700;padding:9px 13px;border-radius:8px;font-size:.85rem;margin-bottom:12px;line-height:1.5}
+#pr-modal{display:none;position:fixed;inset:0;background:rgba(0,0,40,.55);z-index:9995;align-items:center;justify-content:center;padding:12px}
+#pr-modal .box{background:#fff;border-radius:16px;width:620px;max-width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+#pr-modal .bh{background:#000080;color:#FFD700;padding:12px 16px;font-weight:700;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
+#pr-modal .bh button{background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer}
+#pr-modal table{width:100%;border-collapse:collapse;font-size:.84rem}
+#pr-modal td,#pr-modal th{padding:7px 10px;border-bottom:1px solid #eef1f8;text-align:left}
+</style>
+  <div class="pr-head">
+    <button class="pr-back" onclick="prClose()">← Back</button>
+    <h2>📊 Practice Results</h2>
+    <button class="pr-gold" onclick="prCsv()">⬇ Excel (CSV)</button>
+  </div>
+  <div class="pr-wrap" id="pr-body"><div class="pr-empty">Loading…</div></div>
+</div>
+<div id="pr-modal"><div class="box"><div class="bh"><span id="pr-m-title"></span><button onclick="document.getElementById('pr-modal').style.display='none'" aria-label="Close">✕</button></div><div id="pr-m-body" style="padding:6px 10px 14px"></div></div></div>
+<script>
+(function(){
+  /* Books that have QR practice pages. Add a line here when a new level gets QR codes. */
+  var PR_LEVELS = [
+    ['bs', 'Beehive Starter'], ['b1', 'Beehive 1'], ['b2', 'Beehive 2'], ['b3', 'Beehive 3'], ['b4', 'Beehive 4'], ['b5', 'Beehive 5'], ['b6', 'Beehive 6'],
+    ['up1', 'Upstream A1+'], ['up2', 'Upstream A2'], ['up3', 'Upstream B1']
+  ];
+  var PR = { prefix: null, rows: {}, sets: {}, cls: '', days: '30', q: '', view: [] };
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function isStaff(){ return typeof isTeacher !== 'undefined' && isTeacher; }
+  function body(h){ document.getElementById('pr-body').innerHTML = h; }
+  function natural(a, b){ return String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: 'base' }); }
+
+  /* show the menu button to teachers / admin only */
+  setInterval(function(){ var b = document.getElementById('practice-results-btn'); if (b) b.style.display = isStaff() ? '' : 'none'; }, 1500);
+
+  function loadSets(p){
+    if (PR.sets[p]) return Promise.resolve(PR.sets[p]);
+    return new Promise(function(res){
+      var tries = [p + '.js', 'practice/' + p + '.js'];
+      (function next(){
+        if (!tries.length) { PR.sets[p] = {}; return res({}); }
+        delete window.PRACTICE;
+        var s = document.createElement('script'); s.src = tries.shift() + '?v=' + Date.now();
+        s.onload = function(){ if (window.PRACTICE) { PR.sets[p] = window.PRACTICE.sets || {}; delete window.PRACTICE; res(PR.sets[p]); } else next(); };
+        s.onerror = next; document.head.appendChild(s);
+      })();
+    });
+  }
+  async function loadRows(p){
+    var fb = window._fb;
+    var snap = await fb.getDocs(fb.query(fb.collection(fb.db, 'practiceResults'), fb.where('prefix', '==', p)));
+    PR.rows[p] = snap.docs.map(function(d){ var x = d.data(); x.id = d.id; return x; });
+  }
+
+  window.openPracticeResults = async function(){
+    document.getElementById('pr-page').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    if (!isStaff()) { body('<div class="pr-empty">🔒 For teachers only. Please log in as a teacher.</div>'); return; }
+    if (!PR.prefix) PR.prefix = 'up2';
+    await prShow(PR.prefix);
+  };
+  window.prClose = function(){ document.getElementById('pr-page').style.display = 'none'; document.body.style.overflow = ''; };
+
+  window.prShow = async function(p, reload){
+    PR.prefix = p;
+    body(chips() + '<div class="pr-empty">Loading…</div>');
+    try { if (reload || !PR.rows[p]) await loadRows(p); await loadSets(p); }
+    catch (e) { body(chips() + '<div class="pr-empty">⚠️ Could not load results: ' + esc(e.message || e) + '</div>'); return; }
+    render();
+  };
+  function chips(){
+    return '<div class="pr-chips">' + PR_LEVELS.map(function(l){
+      return '<button class="pr-chip' + (l[0] === PR.prefix ? ' on' : '') + '" onclick="prShow(\'' + l[0] + '\')">' + esc(l[1]) + '</button>'; }).join('') + '</div>';
+  }
+  function filtered(){
+    var rows = PR.rows[PR.prefix] || [], since = PR.days === 'all' ? '' : new Date(Date.now() - (+PR.days) * 864e5).toISOString();
+    var q = PR.q.toLowerCase();
+    return rows.filter(function(r){
+      return (!PR.cls || (r.cls || '') === PR.cls) && (!since || (r.at || '') >= since) && (!q || (r.studentName || '').toLowerCase().indexOf(q) >= 0);
+    });
+  }
+  function skey(r){ return r.studentId ? 'id:' + r.studentId : 'nm:' + (r.studentName || '').trim().toLowerCase() + '|' + (r.cls || '').trim().toLowerCase(); }
+  function colour(p){ return p >= 80 ? 'g' : p >= 50 ? 'y' : 'r'; }
+
+  function render(){
+    var all = PR.rows[PR.prefix] || [], rows = filtered(), sets = PR.sets[PR.prefix] || {};
+    var classes = Array.from(new Set(all.map(function(r){ return r.cls || ''; }).filter(Boolean))).sort(natural);
+    var bar = '<div class="pr-bar">'
+      + '<select onchange="PRset(\'cls\',this.value)"><option value="">All classes</option>' + classes.map(function(c){ return '<option' + (c === PR.cls ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join('') + '</select>'
+      + '<select onchange="PRset(\'days\',this.value)">' + [['7', 'Last 7 days'], ['30', 'Last 30 days'], ['90', 'Last 3 months'], ['all', 'All time']].map(function(d){ return '<option value="' + d[0] + '"' + (d[0] === PR.days ? ' selected' : '') + '>' + d[1] + '</option>'; }).join('') + '</select>'
+      + '<input placeholder="🔎 Search student name" value="' + esc(PR.q) + '" oninput="PRset(\'q\',this.value,1)">'
+      + '<button class="pr-chip" onclick="prShow(PR_cur(),1)">↻ Refresh</button></div>';
+    var tip = '<div class="pr-tip">Each cell shows the student\'s <b>best score (%)</b> for that worksheet / homework. 🟩 80%+ · 🟨 50–79% · 🟥 below 50% · – not done yet. Click a name to see every attempt. '
+      + 'Scores arrive when students scan the QR code in their book and press <b>Check ✓</b>.</div>';
+    if (!all.length) { body(chips() + bar + tip + '<div class="pr-empty">No results yet for this book.</div>'); return; }
+    // students and best scores
+    var studs = {}, used = {};
+    rows.forEach(function(r){
+      var k = skey(r), s = studs[k] || (studs[k] = { name: r.studentName || '?', cls: r.cls || '', login: r.login, best: {}, n: 0, last: '' });
+      s.n++; if ((r.at || '') > s.last) s.last = r.at || '';
+      var b = s.best[r.setId]; if (!b || r.pct > b.pct) s.best[r.setId] = { pct: r.pct, score: r.score, total: r.total, tries: (b ? b.tries : 0) + 1 }; else b.tries++;
+      used[r.setId] = r.setTitle || r.setId;
+    });
+    var order = Object.keys(sets).filter(function(k){ return used[k]; });
+    Object.keys(used).forEach(function(k){ if (order.indexOf(k) < 0) order.push(k); });
+    var list = Object.keys(studs).map(function(k){ var s = studs[k]; s.key = k; var v = Object.keys(s.best).map(function(i){ return s.best[i].pct; });
+      s.avg = v.length ? Math.round(v.reduce(function(a, b){ return a + b; }, 0) / v.length) : 0; s.done = v.length; return s; })
+      .sort(function(a, b){ return natural(a.cls, b.cls) || natural(a.name, b.name); });
+    PR.view = rows; PR.list = list;
+    var stats = '<div class="pr-stats"><div class="pr-stat"><b>' + list.length + '</b><span>students</span></div><div class="pr-stat"><b>' + rows.length + '</b><span>attempts</span></div>'
+      + '<div class="pr-stat"><b>' + order.length + '</b><span>worksheets done</span></div><div class="pr-stat"><b>' + (list.length ? Math.round(list.reduce(function(a, s){ return a + s.avg; }, 0) / list.length) : 0) + '%</b><span>average score</span></div></div>';
+    var th = '<tr><th class="nm">Student</th><th>Class</th><th>Done</th><th>Avg</th>' + order.map(function(k){ return '<th class="set" title="' + esc(used[k]) + '">' + esc(used[k]) + '</th>'; }).join('') + '</tr>';
+    var tb = list.map(function(s, i){
+      return '<tr><td class="nm" onclick="prStudent(' + i + ')">' + esc(s.name) + (s.login ? '' : ' <span title="typed name, not signed in" style="color:#b26a00">✎</span>') + '</td><td>' + esc(s.cls) + '</td><td>' + s.done + '</td><td class="c ' + colour(s.avg) + '">' + s.avg + '%</td>'
+        + order.map(function(k){ var b = s.best[k]; return b ? '<td class="c ' + colour(b.pct) + '" title="' + b.score + '/' + b.total + ' · ' + b.tries + ' attempt(s)">' + b.pct + '</td>' : '<td class="c e">–</td>'; }).join('') + '</tr>';
+    }).join('');
+    body(chips() + bar + tip + stats + (list.length ? '<div class="pr-tbl"><table><thead>' + th + '</thead><tbody>' + tb + '</tbody></table></div>' : '<div class="pr-empty">No results match these filters.</div>'));
+  }
+  window.PR_cur = function(){ return PR.prefix; };
+  var qt;
+  window.PRset = function(k, v, debounce){ PR[k] = v; if (debounce) { clearTimeout(qt); qt = setTimeout(function(){ render(); var i = document.querySelector('#pr-page .pr-bar input'); if (i) { i.focus(); i.setSelectionRange(i.value.length, i.value.length); } }, 350); } else render(); };
+  window.prStudent = function(i){
+    var s = PR.list[i]; if (!s) return;
+    var mine = PR.view.filter(function(r){ return skey(r) === s.key; }).sort(function(a, b){ return (b.at || '').localeCompare(a.at || ''); });
+    document.getElementById('pr-m-title').textContent = s.name + (s.cls ? ' · ' + s.cls : '');
+    document.getElementById('pr-m-body').innerHTML = '<table><tr><th>Date</th><th>Worksheet / Homework</th><th>Score</th></tr>' + mine.map(function(r){
+      return '<tr><td>' + esc((r.at || '').replace('T', ' ').slice(0, 16)) + '</td><td>' + esc(r.setTitle || r.setId) + '</td><td class="c ' + colour(r.pct) + '" style="text-align:center;border-radius:6px">' + r.score + '/' + r.total + '</td></tr>'; }).join('') + '</table>';
+    document.getElementById('pr-modal').style.display = 'flex';
+  };
+  window.prCsv = function(){
+    var rows = PR.view || []; if (!rows.length) return;
+    var lvl = (PR_LEVELS.filter(function(l){ return l[0] === PR.prefix; })[0] || [0, PR.prefix])[1];
+    var head = ['Date', 'Student', 'Student ID', 'Class', 'Book', 'Worksheet / Homework', 'Score', 'Total', 'Percent', 'Attempt', 'Signed in'];
+    var lines = [head].concat(rows.slice().sort(function(a, b){ return (a.at || '').localeCompare(b.at || ''); }).map(function(r){
+      return [(r.at || '').replace('T', ' ').slice(0, 16), r.studentName, r.studentId, r.cls, lvl, r.setTitle, r.score, r.total, r.pct, r.attempt, r.login ? 'yes' : 'no']; }));
+    var csv = '﻿' + lines.map(function(l){ return l.map(function(v){ v = String(v == null ? '' : v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }).join(','); }).join('\r\n');
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+    a.download = 'Practice_Results_' + lvl.replace(/\W+/g, '_') + (PR.cls ? '_' + PR.cls : '') + '.csv'; a.click();
+  };
+})();
+</script>
+<!-- ================= /PRACTICE RESULTS ================= -->
 </body>
 </html>

@@ -31,6 +31,11 @@ main{max-width:760px;margin:0 auto;padding:14px 12px 120px}
 .pic{font-size:44px;line-height:1;margin:2px 0 6px 28px;display:block}
 .pic .emo{font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
 .pic svg{width:52px;height:52px}
+.many{display:flex;flex-wrap:wrap;gap:2px;margin:2px 0 6px 28px;max-width:260px}
+.many .pic{font-size:26px;margin:0;display:inline-block}
+.many .pic svg{width:28px;height:28px}
+.opts button .pic{font-size:40px;margin:0;display:inline-block}
+.opts button .pic svg{width:44px;height:44px}
 .opts{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0 28px}
 .opts button{border:1.5px solid #cdd4e4;background:#fff;border-radius:22px;padding:8px 14px;font-size:16px;cursor:pointer;color:var(--ink);text-align:left}
 .opts button.sel{background:var(--navy);border-color:var(--navy);color:#fff}
@@ -147,7 +152,7 @@ function practice(S, id){
       if(e.type==='choice'){
         var o=$('<div class="opts"></div>'), pick=-1;
         it.opts.forEach(function(op, oi){
-          var b=$('<button type="button">'+esc(op)+'</button>');
+          var b=$('<button type="button">'+(e.html?op:esc(op))+'</button>');
           b.onclick=function(){ if(d.dataset.done)return; pick=oi; o.querySelectorAll('button').forEach(function(x){x.classList.remove('sel');}); b.classList.add('sel'); };
           o.appendChild(b);
         });

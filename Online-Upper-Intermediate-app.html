@@ -1805,7 +1805,7 @@
             phonicsGame.locked = false;
             const g = phonicsGame;
             if (g.index >= g.rounds.length) {
-                const perfect = g.score === g.rounds.length;
+                const perfect = g.score === g.rounds.length; try { window.C2REPORT && C2REPORT('Phonics Game', g.score, g.rounds.length, state); } catch (e) {}
                 const got = perfect && award(unitKey('phonics-game'), 3);
                 if (perfect) triggerConfetti();
                 box.innerHTML = `
@@ -2154,7 +2154,7 @@
             quizState.locked = false;
             if (quizState.qIndex >= quizState.order.length) {
                 const total = quizState.order.length;
-                const pct = Math.round((quizState.score / total) * 100);
+                const pct = Math.round((quizState.score / total) * 100); try { window.C2REPORT && C2REPORT('Vocabulary Quiz', quizState.score, total, state); } catch (e) {}
                 const bestKey = state.level + '|' + unitKey('quiz');
                 const best = progress.bestQuiz[bestKey] || 0;
                 const earned = Math.max(0, quizState.score - best) * 2;
@@ -2213,7 +2213,7 @@
         // ===================== ONLINE CLASS · 9 extra modules =====================
         const ocBox = (inner, color) => `<div class="bg-${color}-50 border-2 border-dashed border-${color}-300 rounded-2xl p-6 text-center">${inner}</div>`;
         const ocHead = (t, sub) => `<h2 class="text-xl font-bold text-blue-800 mb-1">${t}</h2><p class="text-gray-600 mb-4">${sub}</p>`;
-        const ocDone = (t, msg) => `${ocHead(t, '')}<div class="bg-green-50 border-2 border-green-300 rounded-2xl p-8 text-center"><div class="text-5xl mb-3">🎉</div><p class="text-xl font-bold text-green-700">${msg}</p></div>`;
+        const ocDone = (t, msg) => { try { const _m = String(msg).match(/(\d+)\s*\/\s*(\d+)/); if (_m && window.C2REPORT) C2REPORT(t, +_m[1], +_m[2], state); } catch (e) {} return `${ocHead(t, '')}<div class="bg-green-50 border-2 border-green-300 rounded-2xl p-8 text-center"><div class="text-5xl mb-3">🎉</div><p class="text-xl font-bold text-green-700">${msg}</p></div>`; };
         const ocSay = (w) => `<button onclick="speak('${jsArg(w)}')" class="text-blue-600 underline text-sm cursor-pointer">🔊 Hear it</button>`;
         const ocUnit = () => realCurriculum[state.level][state.unit];
 
@@ -2486,5 +2486,6 @@
             }).observe(document.querySelector('.tab-btn[data-tab="grammar"]'));
         }
     </script>
+<script src="c2-report.js"></script>
 </body>
 </html>

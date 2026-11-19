@@ -111,7 +111,7 @@ function send(d, sc){
   var tag=function(t,c){ if(sc){ var x=document.createElement('div'); x.className='sent'; x.style.color=c; x.textContent=t; sc.appendChild(x);} };
   if(!window.C2SAVE){ var q=queue(); q.push(d); store('c2p-queue', JSON.stringify(q.slice(-50))); tag('⏳ Score saved – will send to teacher later','#b26a00'); return; }
   window.C2SAVE(d).then(function(){ tag('📤 Sent to your teacher ✓','#1e8e3e'); })
-    .catch(function(){ var q=queue(); q.push(d); store('c2p-queue', JSON.stringify(q.slice(-50))); tag('⏳ Not sent yet – will try again','#b26a00'); });
+    .catch(function(e){ var q=queue(); q.push(d); store('c2p-queue', JSON.stringify(q.slice(-50))); tag('⏳ Not sent yet ('+((e&&(e.code||e.message))||'offline')+') – will try again','#b26a00'); });
 }
 window.C2FLUSH=function(){
   var q=queue(); if(!q.length||!window.C2SAVE) return; store('c2p-queue','[]');

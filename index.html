@@ -21716,7 +21716,12 @@ function closeLevelUpTest(){
 #pr-page .pr-sum td{text-align:left}
 #pr-page .pr-sidebtn{display:none}
 @media (max-width:800px){
-  #pr-page .pr-layout{flex-direction:column;padding:10px}
+  #pr-page .pr-layout{flex-direction:column;padding:10px;align-items:stretch}
+  #pr-page .pr-main{width:100%;max-width:100%}
+  #pr-page .pr-books{grid-template-columns:1fr 1fr;gap:8px}
+  #pr-page .pr-book{padding:10px}
+  #pr-page .pr-book .m{gap:8px;flex-wrap:wrap}
+  #pr-page .pr-tbl,#pr-page .pr-tip{max-width:100%;box-sizing:border-box}
   #pr-page .pr-side{width:100%;position:static;max-height:none;display:none}
   #pr-page .pr-side.open{display:block}
   #pr-page .pr-sidebtn{display:inline-block}
@@ -21741,6 +21746,7 @@ function closeLevelUpTest(){
     <button class="pr-ghost pr-sidebtn" onclick="document.querySelector('#pr-page .pr-side').classList.toggle('open')">☰ Levels</button>
     <h2>📊 Practice Results</h2>
     <button class="pr-ghost" id="pr-admin-btn" style="display:none" onclick="prBooksEditor()">⚙️ <span class="lbl">Books &amp; Levels</span></button>
+    <button class="pr-ghost" onclick="prLatest()" title="Newest scores from every book and app">🕒 <span class="lbl">Latest</span></button>
     <button class="pr-gold" onclick="prCsv()">⬇ <span class="lbl">Excel (CSV)</span></button>
   </div>
   <div class="pr-layout">
@@ -21819,8 +21825,14 @@ function closeLevelUpTest(){
   async function loadBooks(force){
     if (PR.books && !force) return PR.books;
     var fb = window._fb;
-    try { var s = await fb.getDoc(fb.doc(fb.db, 'practiceConfig', 'books')); PR.books = s.exists() && Array.isArray(s.data().list) ? s.data().list : PR_DEFAULT_BOOKS.slice(); }
+    var removed = [];
+    try { var s = await fb.getDoc(fb.doc(fb.db, 'practiceConfig', 'books'));
+      if (s.exists() && Array.isArray(s.data().list)) { PR.books = s.data().list; removed = s.data().removed || []; } else PR.books = PR_DEFAULT_BOOKS.slice(); }
     catch (e) { PR.books = PR_DEFAULT_BOOKS.slice(); }
+    /* books added to the default list later (e.g. the school apps) appear automatically, unless the Admin deleted them */
+    var have = {}; PR.books.forEach(function(b){ have[b.prefix || ('|' + b.name)] = 1; });
+    PR_DEFAULT_BOOKS.forEach(function(b){ var k = b.prefix || ('|' + b.name); if (!have[k] && removed.indexOf(k) < 0) PR.books.push(b); });
+    PR.removed = removed;
     return PR.books;
   }
   function loadSets(p){
@@ -22038,9 +22050,27 @@ function closeLevelUpTest(){
     btn.disabled = true; btn.textContent = 'Saving…';
     try {
       var fb = window._fb;
-      await fb.setDoc(fb.doc(fb.db, 'practiceConfig', 'books'), { list: list, updatedAt: new Date().toISOString(), by: (currentUser && currentUser.email) || '' });
+      var keep = {}; list.forEach(function(b){ keep[b.prefix || ('|' + b.name)] = 1; });
+      var removed = PR_DEFAULT_BOOKS.map(function(b){ return b.prefix || ('|' + b.name); }).filter(function(k){ return !keep[k]; });
+      await fb.setDoc(fb.doc(fb.db, 'practiceConfig', 'books'), { list: list, removed: removed, updatedAt: new Date().toISOString(), by: (currentUser && currentUser.email) || '' });
       PR.books = list; document.getElementById('pr-modal').style.display = 'none'; side(); prLevel(PR.level);
     } catch (e) { alert('Could not save: ' + (e.message || e)); btn.disabled = false; btn.textContent = '💾 Save'; }
+  };
+
+  /* ---------------- newest scores from every book (to check that scores arrive) ---------------- */
+  window.prLatest = async function(){
+    document.getElementById('pr-m-title').textContent = '🕒 Latest scores (all books and apps)';
+    document.getElementById('pr-m-body').innerHTML = '<div class="hint">Loading…</div>';
+    document.getElementById('pr-modal').style.display = 'flex';
+    try {
+      var fb = window._fb, snap = await fb.getDocs(fb.query(fb.collection(fb.db, 'practiceResults'), fb.orderBy('at', 'desc'), fb.limit(40)));
+      var names = {}; (PR.books || []).forEach(function(b){ if (b.prefix) names[b.prefix] = b.name; });
+      var rows = snap.docs.map(function(d){ return d.data(); });
+      document.getElementById('pr-m-body').innerHTML = rows.length
+        ? '<div class="hint">The newest ' + rows.length + ' scores received. If a student\'s score is not here, it did not reach the school database.</div><table><tr><th>Date</th><th>Student</th><th>Level</th><th>Book / App</th><th>Activity</th><th>Score</th></tr>'
+          + rows.map(function(r){ return '<tr><td>' + esc((r.at || '').replace('T', ' ').slice(0, 16)) + '</td><td>' + esc(r.studentName) + '</td><td>' + esc(r.cls) + '</td><td>' + esc(names[r.prefix] || r.level || r.prefix) + '</td><td>' + esc(r.setTitle) + '</td><td class="c ' + colour(r.pct) + '">' + r.score + '/' + r.total + '</td></tr>'; }).join('') + '</table>'
+        : '<div class="hint">⚠️ No scores have reached the school database yet. Ask a student to finish one activity, then press 🕒 Latest again.</div>';
+    } catch (e) { document.getElementById('pr-m-body').innerHTML = '<div class="hint">⚠️ Could not read scores: ' + esc(e.code || e.message || e) + '</div>'; }
   };
 
   /* ---------------- CSV ---------------- */

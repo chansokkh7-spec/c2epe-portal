@@ -3095,6 +3095,834 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "beehive-4-tests",
+ "level": "Beehive 4",
+ "icon": "📝",
+ "title": "Beehive 4 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "beehive-4-tests",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Starter Unit",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and write what they need.",
+     "file": "b4-ut-unit-test-starter-unit-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "We need a bag of carrots.",
+      "We need a kilogram of potatoes.",
+      "We need a box of pasta.",
+      "We need two hundred grams of butter.",
+      "We need twelve eggs."
+     ],
+     "key": "1 a bag of carrots, 2 a kilogram of potatoes, 3 a box of pasta, 4 200 grams of butter, 5 twelve eggs"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-ut-unit-test-starter-unit-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "How much butter do we need?",
+      "How many apples do we need?",
+      "We need a bottle of juice.",
+      "We need a kilogram of rice.",
+      "We need a box of cereal."
+     ],
+     "key": "1 much, 2 many, 3 bottle, 4 kilogram, 5 box"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: The World of Animals",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-ut-unit-test-unit-1-the-world-of-animals-ex1.mp3",
+     "secs": 76,
+     "script": [
+      "Look! It's an octopus.",
+      "This animal can roar.",
+      "This animal can dive.",
+      "Look! It's a butterfly.",
+      "This animal can make a nest."
+     ],
+     "key": "1 octopus (a), 2 roar (b), 3 dive (a), 4 butterfly (a), 5 make a nest (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-ut-unit-test-unit-1-the-world-of-animals-ex2.mp3",
+     "secs": 76,
+     "script": [
+      "This animal can chew.",
+      "Look! It's a giant tortoise.",
+      "This animal can leap.",
+      "This animal can stretch.",
+      "Look! It's a sloth."
+     ],
+     "key": "1 chew, 2 giant tortoise, 3 leap, 4 stretch, 5 sloth"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Fun at Home",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-ut-unit-test-unit-2-fun-at-home-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I'm watching a talk show.",
+      "I'm watching a sports program.",
+      "Let's have a party.",
+      "I'm watching a drama.",
+      "Let's make a model."
+     ],
+     "key": "1 talk show (a), 2 sports program (a), 3 have a party (b), 4 drama (a), 5 make a model (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-ut-unit-test-unit-2-fun-at-home-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "Let's make lemonade.",
+      "Let's go for a walk.",
+      "I'm watching a game show.",
+      "I'm watching a documentary.",
+      "I'm watching a comedy."
+     ],
+     "key": "1 make lemonade, 2 go for a walk, 3 game show, 4 documentary, 5 comedy"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: My Week at School",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-ut-unit-test-unit-3-my-week-at-school-ex1.mp3",
+     "secs": 78,
+     "script": [
+      "My favorite subject is geography.",
+      "Yesterday we had to write a story.",
+      "My favorite subject is science.",
+      "My favorite subject is art.",
+      "Yesterday we had to do an experiment."
+     ],
+     "key": "1 geography (a), 2 write a story (b), 3 science (a), 4 art (b), 5 do an experiment (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-ut-unit-test-unit-3-my-week-at-school-ex2.mp3",
+     "secs": 79,
+     "script": [
+      "My favorite subject is math.",
+      "My favorite subject is music.",
+      "My favorite subject is English.",
+      "My favorite subject is history.",
+      "Yesterday we had to have recess."
+     ],
+     "key": "1 math, 2 music, 3 English, 4 history, 5 have recess"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Attractions",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-ut-unit-test-unit-4-attractions-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I bought a postcard.",
+      "I bought a button.",
+      "I bought a guidebook.",
+      "Look at the aquarium!",
+      "I went to the post office."
+     ],
+     "key": "1 postcard (a), 2 button (c), 3 guidebook (a), 4 aquarium (b), 5 post office (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-ut-unit-test-unit-4-attractions-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "I went to the gift shop.",
+      "Look at the art gallery!",
+      "Look at the amusement park!",
+      "Look at the jellyfish!",
+      "I bought a mug."
+     ],
+     "key": "1 gift shop, 2 art gallery, 3 amusement park, 4 jellyfish, 5 mug"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Our Community",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-ut-unit-test-unit-5-our-community-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "They use ovens.",
+      "They put away books.",
+      "They design houses.",
+      "She's a photographer.",
+      "They bring food."
+     ],
+     "key": "1 use ovens (c), 2 put away books (b), 3 design houses (a), 4 photographer (a), 5 bring food (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-ut-unit-test-unit-5-our-community-ex2.mp3",
+     "secs": 70,
+     "script": [
+      "They cut hair.",
+      "She's a barber.",
+      "She's a baker.",
+      "She's a waiter.",
+      "They interview people."
+     ],
+     "key": "1 cut hair, 2 barber, 3 baker, 4 waiter, 5 interview people"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Future Travel",
+   "info": "Test paper page 16",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-ut-unit-test-unit-6-future-travel-ex1.mp3",
+     "secs": 79,
+     "script": [
+      "Go down.",
+      "Go left.",
+      "In the future, people will travel by supersonic jet.",
+      "In the future, people will travel by spaceship.",
+      "In the future, people will travel by monorail."
+     ],
+     "key": "1 down (c), 2 left (b), 3 supersonic jet (b), 4 spaceship (c), 5 monorail (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-ut-unit-test-unit-6-future-travel-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "Go through.",
+      "Cars will be flying.",
+      "Go into.",
+      "In the future, people will travel by hoverboard.",
+      "Go straight ahead."
+     ],
+     "key": "1 through, 2 flying, 3 into, 4 hoverboard, 5 straight ahead"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Making Music",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-ut-unit-test-unit-7-making-music-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "It's made of rubber.",
+      "I can play the trumpet.",
+      "I can play the saxophone.",
+      "It's made of cardboard.",
+      "I can play the violin."
+     ],
+     "key": "1 rubber (c), 2 trumpet (b), 3 saxophone (b), 4 cardboard (b), 5 violin (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-ut-unit-test-unit-7-making-music-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "I can play the piano.",
+      "It's made of metal.",
+      "It's made of glass.",
+      "It's made of plastic.",
+      "It's made of silver."
+     ],
+     "key": "1 piano, 2 metal, 3 glass, 4 plastic, 5 silver"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: The World of Games",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-ut-unit-test-unit-8-the-world-of-games-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "In this game, you race.",
+      "This is my controller.",
+      "In this game, you collect.",
+      "This is my mouse.",
+      "In this game, you hide."
+     ],
+     "key": "1 race (c), 2 controller (c), 3 collect (c), 4 mouse (b), 5 hide (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-ut-unit-test-unit-8-the-world-of-games-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "This is my monitor.",
+      "In this game, you keep.",
+      "This is my speaker.",
+      "In this game, you move.",
+      "In this game, you pick."
+     ],
+     "key": "1 monitor, 2 keep, 3 speaker, 4 move, 5 pick"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Aches and Pains",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-ut-unit-test-unit-9-aches-and-pains-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "I have a stomachache.",
+      "I hurt my toe.",
+      "I have a cough.",
+      "You might fall.",
+      "I have a headache."
+     ],
+     "key": "1 stomachache (a), 2 toe (b), 3 cough (a), 4 fall (c), 5 headache (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-ut-unit-test-unit-9-aches-and-pains-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "I hurt my finger.",
+      "You might bruise.",
+      "I have a cold.",
+      "I have a backache.",
+      "Be careful! Don't hurt yourself."
+     ],
+     "key": "1 finger, 2 bruise, 3 cold, 4 backache, 5 hurt"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Exciting Adventures",
+   "info": "Test paper page 27",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-ut-unit-test-unit-10-exciting-adventures-ex1.mp3",
+     "secs": 76,
+     "script": [
+      "I'd like to go scuba diving.",
+      "I'd like to go white-water rafting.",
+      "I'd like to go rock climbing.",
+      "I'd like to see a safari.",
+      "I'd like to see a pyramid."
+     ],
+     "key": "1 go scuba diving (c), 2 go white-water rafting (a), 3 go rock climbing (a), 4 safari (a), 5 pyramid (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-ut-unit-test-unit-10-exciting-adventures-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "I'd like to see a tour.",
+      "I'd like to go horseback riding.",
+      "I'd like to see a mountain.",
+      "I'd like to go snowboarding.",
+      "I'd like to go kayaking."
+     ],
+     "key": "1 tour, 2 go horseback riding, 3 mountain, 4 go snowboarding, 5 go kayaking"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-mt-monthly-test-1-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "Look! It's a lion.",
+      "Look! It's a sloth.",
+      "Look! It's an eagle.",
+      "This animal can roar."
+     ],
+     "key": "1 lion (b), 2 sloth (b), 3 eagle (c), 4 roar (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-mt-monthly-test-1-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "This animal can dive.",
+      "This animal can chew.",
+      "This animal can stretch.",
+      "Look! It's a cheetah."
+     ],
+     "key": "1 dive, 2 chew, 3 stretch, 4 cheetah"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-mt-monthly-test-2-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "Look! It's a lion.",
+      "I'm watching a drama.",
+      "Look! It's an eagle.",
+      "I'm watching a sports program."
+     ],
+     "key": "1 lion (a), 2 drama (c), 3 eagle (a), 4 sports program (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-mt-monthly-test-2-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "Let's make a bracelet.",
+      "This animal can sleep.",
+      "Let's go for a walk.",
+      "This animal can make a nest."
+     ],
+     "key": "1 make a bracelet, 2 sleep, 3 go for a walk, 4 make a nest"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-mt-monthly-test-3-ex1.mp3",
+     "secs": 61,
+     "script": [
+      "Yesterday we had to play an instrument.",
+      "I bought a guidebook.",
+      "Yesterday we had to ask a question.",
+      "Look at the jellyfish!"
+     ],
+     "key": "1 play an instrument (c), 2 guidebook (c), 3 ask a question (b), 4 jellyfish (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-mt-monthly-test-3-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "Look at the art gallery!",
+      "My favorite subject is art.",
+      "I bought a button.",
+      "My favorite subject is English."
+     ],
+     "key": "1 art gallery, 2 art, 3 button, 4 English"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-mt-monthly-test-4-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "I bought a key ring.",
+      "They design houses.",
+      "I bought a guidebook.",
+      "They take care of people."
+     ],
+     "key": "1 key ring (b), 2 design houses (b), 3 guidebook (c), 4 take care of people (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-mt-monthly-test-4-ex2.mp3",
+     "secs": 57,
+     "script": [
+      "They cut hair.",
+      "Look at the amusement park!",
+      "They bring food.",
+      "I bought a button."
+     ],
+     "key": "1 cut hair, 2 amusement park, 3 bring food, 4 button"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 14",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-mt-monthly-test-5-ex1.mp3",
+     "secs": 55,
+     "script": [
+      "Go up.",
+      "Go straight ahead.",
+      "Go right.",
+      "Cars will be flying."
+     ],
+     "key": "1 up (c), 2 straight ahead (a), 3 right (a), 4 flying (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-mt-monthly-test-5-ex2.mp3",
+     "secs": 56,
+     "script": [
+      "Go over.",
+      "Cars will be electric.",
+      "Go into.",
+      "Go left."
+     ],
+     "key": "1 over, 2 electric, 3 into, 4 left"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-mt-monthly-test-6-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "Go up.",
+      "It's made of rubber.",
+      "In the future, people will travel by supersonic jet.",
+      "It's made of plastic."
+     ],
+     "key": "1 up (c), 2 rubber (a), 3 supersonic jet (b), 4 plastic (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-mt-monthly-test-6-ex2.mp3",
+     "secs": 58,
+     "script": [
+      "It's made of silver.",
+      "Go through.",
+      "I can play the piano.",
+      "Cars will be electric."
+     ],
+     "key": "1 silver, 2 through, 3 piano, 4 electric"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 20",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-mt-monthly-test-7-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "In this game, you hide.",
+      "I hurt my toe.",
+      "This is my tablet.",
+      "I have a cold."
+     ],
+     "key": "1 hide (c), 2 toe (b), 3 tablet (b), 4 cold (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-mt-monthly-test-7-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "I have a cough.",
+      "In this game, you race.",
+      "I have a toothache.",
+      "In this game, you guess."
+     ],
+     "key": "1 cough, 2 race, 3 toothache, 4 guess"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 23",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-mt-monthly-test-8-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "I have a cough.",
+      "I'd like to see a whale.",
+      "I have a stomachache.",
+      "I've seen the Northern Lights."
+     ],
+     "key": "1 cough (b), 2 whale (c), 3 stomachache (b), 4 Northern Lights (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-mt-monthly-test-8-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "I'd like to see a tour.",
+      "You might bruise.",
+      "I'd like to go horseback riding.",
+      "Be careful! Don't burn yourself."
+     ],
+     "key": "1 tour, 2 bruise, 3 go horseback riding, 4 burn"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "Look! It's a butterfly.",
+      "I'm watching the news.",
+      "Yesterday we had to write a story.",
+      "This animal can roar.",
+      "I'm watching a cartoon."
+     ],
+     "key": "1 butterfly (b), 2 news (c), 3 write a story (b), 4 roar (c), 5 cartoon (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 77,
+     "script": [
+      "Let's make a card.",
+      "Yesterday we had to do an experiment.",
+      "Look! It's an octopus.",
+      "Let's send messages.",
+      "Yesterday we had to ask a question."
+     ],
+     "key": "1 make a card, 2 do an experiment, 3 octopus, 4 send messages, 5 ask a question"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "In the future, people will travel by supersonic jet.",
+      "I can play the piano.",
+      "In this game, you score.",
+      "In the future, people will travel by high-speed train.",
+      "I can play the drum."
+     ],
+     "key": "1 supersonic jet (b), 2 piano (b), 3 score (b), 4 high-speed train (c), 5 drum (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "It's made of gold.",
+      "This is my mouse.",
+      "Go through.",
+      "I can play the saxophone.",
+      "This is my speaker."
+     ],
+     "key": "1 gold, 2 mouse, 3 through, 4 saxophone, 5 speaker"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-fin-final-test-semester-1-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "Look! It's an octopus.",
+      "Let's make lemonade.",
+      "My favorite subject is music.",
+      "Look at the art gallery!",
+      "They interview people."
+     ],
+     "key": "1 octopus (b), 2 make lemonade (a), 3 music (b), 4 art gallery (a), 5 interview people (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-fin-final-test-semester-1-ex2.mp3",
+     "secs": 76,
+     "script": [
+      "I'm watching a documentary.",
+      "Yesterday we had to ask a question.",
+      "I went to the post office.",
+      "They cut hair.",
+      "Look! It's a butterfly."
+     ],
+     "key": "1 documentary, 2 ask a question, 3 post office, 4 cut hair, 5 butterfly"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "b4-fin-final-test-semester-1-ex3.mp3",
+     "secs": 72,
+     "script": [
+      "My favorite subject is music.",
+      "I went to the bookstore.",
+      "They use ovens.",
+      "Look! It's a sloth.",
+      "Let's have a party."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b4-fin-final-test-semester-2-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "In the future, people will travel by spaceship.",
+      "It's made of silver.",
+      "This is my computer.",
+      "I hurt my toe.",
+      "I'd like to see a safari."
+     ],
+     "key": "1 spaceship (a), 2 silver (b), 3 computer (c), 4 toe (b), 5 safari (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b4-fin-final-test-semester-2-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "It's made of rubber.",
+      "This is my tablet.",
+      "I have a backache.",
+      "I'd like to see a pyramid.",
+      "Go into."
+     ],
+     "key": "1 rubber, 2 tablet, 3 backache, 4 pyramid, 5 into"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "b4-fin-final-test-semester-2-ex3.mp3",
+     "secs": 73,
+     "script": [
+      "In this game, you score.",
+      "I have a fever.",
+      "I'd like to go white-water rafting.",
+      "Go straight ahead.",
+      "It's made of cardboard."
+     ],
+     "key": "1 ✓, 2 ✓, 3 ✗, 4 ✓, 5 ✓"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

@@ -7993,6 +7993,799 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "upstream-b2-tests",
+ "level": "Upstream B2",
+ "icon": "📝",
+ "title": "Upstream Intermediate B2 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "upstream-b2-tests",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: My Home is my Castle",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-ut-unit-test-unit-1-my-home-is-my-castle-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "We've got a new vacuum cleaner.",
+      "We've got a new washing machine.",
+      "We've got a new dishwasher.",
+      "They live in a villa.",
+      "We've got a new cooker."
+     ],
+     "key": "1 vacuum cleaner (a), 2 washing machine (b), 3 dishwasher (a), 4 villa (a), 5 cooker (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-ut-unit-test-unit-1-my-home-is-my-castle-ex2.mp3",
+     "secs": 77,
+     "script": [
+      "They live in a terraced house.",
+      "We've got a new microwave.",
+      "We've got a new refrigerator.",
+      "They live in a detached house.",
+      "We've got a new air conditioner."
+     ],
+     "key": "1 terraced house, 2 microwave, 3 refrigerator, 4 detached house, 5 air conditioner"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: While there's life, there's hope",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-ut-unit-test-unit-2-while-there-s-life-there-s-hope-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "She's got wrinkles.",
+      "She felt delighted.",
+      "She felt miserable.",
+      "She felt ecstatic.",
+      "She felt terrified."
+     ],
+     "key": "1 wrinkles (a), 2 delighted (a), 3 miserable (b), 4 ecstatic (a), 5 terrified (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-ut-unit-test-unit-2-while-there-s-life-there-s-hope-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "He's got spiky hair.",
+      "She felt bored.",
+      "She's got dimples.",
+      "He wears glasses.",
+      "She's got freckles."
+     ],
+     "key": "1 spiky hair, 2 bored, 3 dimples, 4 glasses, 5 freckles"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Travel Broadens the Mind",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-ut-unit-test-unit-3-travel-broadens-the-mind-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "Don't forget your umbrella!",
+      "We stayed in a tent.",
+      "Look at the cruise liner!",
+      "Don't forget your goggles!",
+      "Don't forget your guidebook!"
+     ],
+     "key": "1 umbrella (a), 2 tent (b), 3 cruise liner (a), 4 goggles (b), 5 guidebook (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-ut-unit-test-unit-3-travel-broadens-the-mind-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "Don't forget your gloves!",
+      "Don't forget your binoculars!",
+      "Don't forget your rucksack!",
+      "Don't forget your boots!",
+      "We stayed in a caravan."
+     ],
+     "key": "1 gloves, 2 binoculars, 3 rucksack, 4 boots, 5 caravan"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Earth is Dearer than Gold",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-ut-unit-test-unit-4-earth-is-dearer-than-gold-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "Drought is a big problem.",
+      "Use public transport.",
+      "Use the rubbish bin.",
+      "Deforestation is a big problem.",
+      "Ride a bicycle."
+     ],
+     "key": "1 drought (a), 2 public transport (c), 3 rubbish bin (a), 4 deforestation (b), 5 bicycle (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-ut-unit-test-unit-4-earth-is-dearer-than-gold-ex2.mp3",
+     "secs": 77,
+     "script": [
+      "Look at the wind farm.",
+      "Recycling is important.",
+      "Oil spill is a big problem.",
+      "Global warming is a big problem.",
+      "Tree planting helps the planet."
+     ],
+     "key": "1 wind farm, 2 recycling, 3 oil spill, 4 global warming, 5 tree planting"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Early to Bed ...",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-ut-unit-test-unit-5-early-to-bed-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "I've got a sore throat.",
+      "I've got hay fever.",
+      "I suffer from insomnia.",
+      "I've got flu.",
+      "He suffers from asthma."
+     ],
+     "key": "1 sore throat (c), 2 hay fever (b), 3 insomnia (a), 4 flu (a), 5 asthma (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-ut-unit-test-unit-5-early-to-bed-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "I've got cramp.",
+      "She's very sociable.",
+      "She's very perfectionist.",
+      "I've got indigestion.",
+      "I've got a headache."
+     ],
+     "key": "1 cramp, 2 sociable, 3 perfectionist, 4 indigestion, 5 headache"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Better Safe than Sorry",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-ut-unit-test-unit-6-better-safe-than-sorry-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I've got a mobile phone.",
+      "I've got a blender.",
+      "I've got a fax machine.",
+      "I've got a laptop.",
+      "I've got a camcorder."
+     ],
+     "key": "1 mobile phone (c), 2 blender (b), 3 fax machine (b), 4 laptop (c), 5 camcorder (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-ut-unit-test-unit-6-better-safe-than-sorry-ex2.mp3",
+     "secs": 76,
+     "script": [
+      "The arsonist was arrested.",
+      "The kidnapper was arrested.",
+      "The smuggler was arrested.",
+      "The burglar was arrested.",
+      "The shoplifter was arrested."
+     ],
+     "key": "1 arsonist, 2 kidnapper, 3 smuggler, 4 burglar, 5 shoplifter"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Penny Wise, Pound Foolish",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-ut-unit-test-unit-7-penny-wise-pound-foolish-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "I bought a tuxedo.",
+      "Let's go to the chemist's.",
+      "Let's go to the butcher's.",
+      "I bought new trainers.",
+      "Let's go to the florist's."
+     ],
+     "key": "1 tuxedo (c), 2 chemist's (b), 3 butcher's (b), 4 trainers (b), 5 florist's (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-ut-unit-test-unit-7-penny-wise-pound-foolish-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "I bought a waistcoat.",
+      "I wear sandals in summer.",
+      "I bought a jacket.",
+      "I bought a blouse.",
+      "Let's go to the boutique."
+     ],
+     "key": "1 waistcoat, 2 sandals, 3 jacket, 4 blouse, 5 boutique"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: You Are What you Eat",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-ut-unit-test-unit-8-you-are-what-you-eat-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "I'd like some mushroom.",
+      "I've never eaten oysters.",
+      "I'd like some salmon.",
+      "Pass me the knife, please.",
+      "Pass me the wooden spoon, please."
+     ],
+     "key": "1 mushroom (c), 2 oysters (c), 3 salmon (c), 4 knife (b), 5 wooden spoon (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-ut-unit-test-unit-8-you-are-what-you-eat-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "I'd like some cauliflower.",
+      "Pass me the grater, please.",
+      "Pass me the peeler, please.",
+      "Pass me the frying pan, please.",
+      "Pass the olives, please."
+     ],
+     "key": "1 cauliflower, 2 grater, 3 peeler, 4 frying pan, 5 olives"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Every Man to his Taste",
+   "info": "Test paper page 27",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-ut-unit-test-unit-9-every-man-to-his-taste-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "I'd love to try scuba diving.",
+      "I need a helmet.",
+      "Put on your boxing gloves.",
+      "I'd love to try fly fishing.",
+      "Don't forget your skis!"
+     ],
+     "key": "1 scuba diving (a), 2 helmet (b), 3 boxing gloves (a), 4 fly fishing (c), 5 skis (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-ut-unit-test-unit-9-every-man-to-his-taste-ex2.mp3",
+     "secs": 77,
+     "script": [
+      "He shot it with a bow and arrow.",
+      "I'd love to try rock climbing.",
+      "I'd love to try snowboarding.",
+      "I'd love to try hang-gliding.",
+      "I'd love to try tennis."
+     ],
+     "key": "1 bow and arrow, 2 rock climbing, 3 snowboarding, 4 hang-gliding, 5 tennis"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Spread the News",
+   "info": "Test paper page 30",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-ut-unit-test-unit-10-spread-the-news-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "Let's watch a soap opera.",
+      "Let's watch a documentary.",
+      "Let's watch a horror film.",
+      "There was a forest fire.",
+      "There was an explosion."
+     ],
+     "key": "1 soap opera (c), 2 documentary (a), 3 horror film (a), 4 forest fire (a), 5 explosion (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-ut-unit-test-unit-10-spread-the-news-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "Let's watch an action film.",
+      "Let's watch a thriller.",
+      "There was an earthquake.",
+      "Let's watch a science fiction.",
+      "There was a famine."
+     ],
+     "key": "1 action film, 2 thriller, 3 earthquake, 4 science fiction, 5 famine"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-mt-monthly-test-1-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "They live in a block of flats.",
+      "They live in a castle.",
+      "We've got a new vacuum cleaner.",
+      "We've got a new refrigerator."
+     ],
+     "key": "1 block of flats (b), 2 castle (b), 3 vacuum cleaner (c), 4 refrigerator (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-mt-monthly-test-1-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "We've got a new air conditioner.",
+      "They live in a farmhouse.",
+      "They live in a terraced house.",
+      "We've got a new cooker."
+     ],
+     "key": "1 air conditioner, 2 farmhouse, 3 terraced house, 4 cooker"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-mt-monthly-test-2-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "They live in a block of flats.",
+      "She felt delighted.",
+      "We've got a new vacuum cleaner.",
+      "She's got wrinkles."
+     ],
+     "key": "1 block of flats (a), 2 delighted (c), 3 vacuum cleaner (a), 4 wrinkles (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-mt-monthly-test-2-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "She felt ecstatic.",
+      "They live in a farmhouse.",
+      "She felt furious.",
+      "They live in a detached house."
+     ],
+     "key": "1 ecstatic, 2 farmhouse, 3 furious, 4 detached house"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-mt-monthly-test-3-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "We stayed in a hotel.",
+      "Use the rubbish bin.",
+      "Don't forget your sunscreen!",
+      "Flood is a big problem."
+     ],
+     "key": "1 hotel (c), 2 rubbish bin (c), 3 sunscreen (b), 4 flood (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-mt-monthly-test-3-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "Recycling is important.",
+      "Don't forget your umbrella!",
+      "Ride a bicycle.",
+      "Don't forget your goggles!"
+     ],
+     "key": "1 recycling, 2 umbrella, 3 bicycle, 4 goggles"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-mt-monthly-test-4-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "Drought is a big problem.",
+      "I've got hay fever.",
+      "Tree planting helps the planet.",
+      "I've got flu."
+     ],
+     "key": "1 drought (b), 2 hay fever (b), 3 tree planting (c), 4 flu (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-mt-monthly-test-4-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "She's very sentimental.",
+      "Oil spill is a big problem.",
+      "She's very confident.",
+      "Use public transport."
+     ],
+     "key": "1 sentimental, 2 oil spill, 3 confident, 4 public transport"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-mt-monthly-test-5-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "I've got a laptop.",
+      "I've got a mobile phone.",
+      "The burglar was arrested.",
+      "I've got a kettle."
+     ],
+     "key": "1 laptop (c), 2 mobile phone (a), 3 burglar (a), 4 kettle (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-mt-monthly-test-5-ex2.mp3",
+     "secs": 62,
+     "script": [
+      "The thief was arrested.",
+      "The shoplifter was arrested.",
+      "The hijacker was arrested.",
+      "The arsonist was arrested."
+     ],
+     "key": "1 thief, 2 shoplifter, 3 hijacker, 4 arsonist"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-mt-monthly-test-6-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "I've got a laptop.",
+      "I bought a tuxedo.",
+      "I've got a fax machine.",
+      "I bought a sweater."
+     ],
+     "key": "1 laptop (c), 2 tuxedo (a), 3 fax machine (b), 4 sweater (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-mt-monthly-test-6-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "I bought a blouse.",
+      "The forger was arrested.",
+      "Let's go to the greengrocer's.",
+      "I've got a mobile phone."
+     ],
+     "key": "1 blouse, 2 forger, 3 greengrocer's, 4 mobile phone"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-mt-monthly-test-7-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "Pass the olives, please.",
+      "Don't forget your skis!",
+      "I love lentil soup.",
+      "I'd love to try cycling."
+     ],
+     "key": "1 olives (c), 2 skis (b), 3 lentils (b), 4 cycling (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-mt-monthly-test-7-ex2.mp3",
+     "secs": 62,
+     "script": [
+      "I'd love to try fly fishing.",
+      "I'd like some mushroom.",
+      "I'd love to try snowboarding.",
+      "I have yogurt for breakfast."
+     ],
+     "key": "1 fly fishing, 2 mushroom, 3 snowboarding, 4 yogurt"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-mt-monthly-test-8-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "I'd love to try fly fishing.",
+      "There was a volcanic eruption.",
+      "I need a helmet.",
+      "Let's watch a documentary."
+     ],
+     "key": "1 fly fishing (b), 2 volcanic eruption (c), 3 helmet (b), 4 documentary (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-mt-monthly-test-8-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "Let's watch a romantic comedy.",
+      "I'd love to try tennis.",
+      "There was an earthquake.",
+      "He shot it with a bow and arrow."
+     ],
+     "key": "1 romantic comedy, 2 tennis, 3 earthquake, 4 bow and arrow"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "They live in a villa.",
+      "She felt bored.",
+      "Don't forget your boots!",
+      "We've got a new washing machine.",
+      "She felt furious."
+     ],
+     "key": "1 villa (b), 2 bored (c), 3 boots (b), 4 washing machine (c), 5 furious (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "She felt delighted.",
+      "We stayed in a caravan.",
+      "They live in a farmhouse.",
+      "He's got sideburns.",
+      "Look at the airport!"
+     ],
+     "key": "1 delighted, 2 caravan, 3 farmhouse, 4 sideburns, 5 airport"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I've got a fax machine.",
+      "Let's go to the boutique.",
+      "I'd like some mushroom.",
+      "I've got a laptop.",
+      "Let's go to the butcher's."
+     ],
+     "key": "1 fax machine (b), 2 boutique (b), 3 mushroom (b), 4 laptop (c), 5 butcher's (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "Let's go to the bakery.",
+      "Pass me the frying pan, please.",
+      "The forger was arrested.",
+      "Let's go to the florist's.",
+      "Pass me the sieve, please."
+     ],
+     "key": "1 bakery, 2 frying pan, 3 forger, 4 florist's, 5 sieve"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-fin-final-test-semester-1-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "We've got a new vacuum cleaner.",
+      "He's got spiky hair.",
+      "Look at the passport!",
+      "Acid rain is a big problem.",
+      "He suffers from asthma."
+     ],
+     "key": "1 vacuum cleaner (b), 2 spiky hair (a), 3 passport (b), 4 acid rain (a), 5 asthma (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-fin-final-test-semester-1-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "He's got a beard.",
+      "We stayed in a caravan.",
+      "Tree planting helps the planet.",
+      "She's very conservative.",
+      "They live in a block of flats."
+     ],
+     "key": "1 beard, 2 caravan, 3 tree planting, 4 conservative, 5 block of flats"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "up4-fin-final-test-semester-1-ex3.mp3",
+     "secs": 72,
+     "script": [
+      "Don't forget your guidebook!",
+      "Recycling is important.",
+      "I've got a sore throat.",
+      "They live in a castle.",
+      "She felt bored."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up4-fin-final-test-semester-2-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "I've got a fax machine.",
+      "Let's go to the department store.",
+      "I have yogurt for breakfast.",
+      "I need a helmet.",
+      "Let's watch a soap opera."
+     ],
+     "key": "1 fax machine (a), 2 department store (b), 3 yogurt (c), 4 helmet (b), 5 soap opera (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up4-fin-final-test-semester-2-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "Let's go to the florist's.",
+      "I'd like some aubergine.",
+      "Don't forget your skis!",
+      "Let's watch a science fiction.",
+      "I've got a blender."
+     ],
+     "key": "1 florist's, 2 aubergine, 3 skis, 4 science fiction, 5 blender"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "up4-fin-final-test-semester-2-ex3.mp3",
+     "secs": 73,
+     "script": [
+      "I'd like some salmon.",
+      "I'd love to try snowboarding.",
+      "Let's watch a romantic comedy.",
+      "I've got a kettle.",
+      "I bought a sweater."
+     ],
+     "key": "1 ✓, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

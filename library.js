@@ -6407,6 +6407,799 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "upstream-a2-tests",
+ "level": "Upstream A2",
+ "icon": "📝",
+ "title": "Upstream Elementary A2 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "upstream-a2-tests",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Work and free time",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-ut-unit-test-unit-1-work-and-free-time-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "We often go camping at weekends.",
+      "I go swimming on Saturdays.",
+      "Let's rent DVDs tonight.",
+      "She's a waiter.",
+      "They go dancing every Saturday."
+     ],
+     "key": "1 go camping (a), 2 go swimming (b), 3 rent DVDs (a), 4 waiter (a), 5 go dancing (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-ut-unit-test-unit-1-work-and-free-time-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "We usually eat out on Fridays.",
+      "Let's have a barbecue in the garden.",
+      "She's a mechanic.",
+      "I like to cook for friends.",
+      "She's a nurse."
+     ],
+     "key": "1 eat out, 2 have a barbecue, 3 mechanic, 4 cook for friends, 5 nurse"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: People and the past",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-ut-unit-test-unit-2-people-and-the-past-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "He was a famous astronaut.",
+      "He was a famous singer.",
+      "The house has got a garage.",
+      "The house has got a staircase.",
+      "The house has got a fireplace."
+     ],
+     "key": "1 astronaut (a), 2 singer (a), 3 garage (b), 4 staircase (a), 5 fireplace (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-ut-unit-test-unit-2-people-and-the-past-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "The house has got a garden.",
+      "He was a famous writer.",
+      "The house has got a basement.",
+      "The house has got a chimney.",
+      "The house has got a balcony."
+     ],
+     "key": "1 garden, 2 writer, 3 basement, 4 chimney, 5 balcony"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Holidays and festivals",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-ut-unit-test-unit-3-holidays-and-festivals-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "I've been white water rafting.",
+      "We travelled by motorbike.",
+      "We travelled by coach.",
+      "My dad loves fishing.",
+      "We travelled by plane."
+     ],
+     "key": "1 white water rafting (a), 2 motorbike (b), 3 coach (a), 4 fishing (b), 5 plane (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-ut-unit-test-unit-3-holidays-and-festivals-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "I've tried windsurfing.",
+      "People wear colourful costumes.",
+      "We went sunbathing on the beach.",
+      "I've been horse riding.",
+      "I've been snorkelling."
+     ],
+     "key": "1 windsurfing, 2 costumes, 3 sunbathing, 4 horse riding, 5 snorkelling"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: The world around us",
+   "info": "Test paper page 10",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-ut-unit-test-unit-4-the-world-around-us-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "It's hot today.",
+      "Look at the forest!",
+      "Look at the waterfall!",
+      "It's snowy today.",
+      "Look at the river!"
+     ],
+     "key": "1 hot (a), 2 forest (c), 3 waterfall (a), 4 snowy (b), 5 river (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-ut-unit-test-unit-4-the-world-around-us-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "It's windy today.",
+      "Look at the lake!",
+      "It's sunny today.",
+      "It's cloudy today.",
+      "It's foggy today."
+     ],
+     "key": "1 windy, 2 lake, 3 sunny, 4 cloudy, 5 foggy"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Disasters and accidents",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-ut-unit-test-unit-5-disasters-and-accidents-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "I've hurt my knee.",
+      "I've hurt my wrist.",
+      "There was a storm.",
+      "There was a hurricane.",
+      "There was a volcano."
+     ],
+     "key": "1 knee (c), 2 wrist (b), 3 storm (a), 4 hurricane (a), 5 volcano (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-ut-unit-test-unit-5-disasters-and-accidents-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "I've hurt my back.",
+      "I've hurt my elbow.",
+      "I've hurt my ankle.",
+      "There was a flood.",
+      "There was a tornado."
+     ],
+     "key": "1 back, 2 elbow, 3 ankle, 4 flood, 5 tornado"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Health matters",
+   "info": "Test paper page 14",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-ut-unit-test-unit-6-health-matters-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "You need to see the optician.",
+      "I've got a cough.",
+      "I've got headache.",
+      "I've got toothache.",
+      "I've got a cold."
+     ],
+     "key": "1 optician (c), 2 cough (b), 3 headache (b), 4 toothache (c), 5 cold (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-ut-unit-test-unit-6-health-matters-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "You need to see the dentist.",
+      "Call an ambulance!",
+      "You need to see the nurse.",
+      "I've got stomach ache.",
+      "You need to see the chemist."
+     ],
+     "key": "1 dentist, 2 ambulance, 3 nurse, 4 stomach ache, 5 chemist"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Food and shopping",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-ut-unit-test-unit-7-food-and-shopping-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "I'd like a pizza, please.",
+      "I'd like some chips, please.",
+      "Let's go to the jeweller's.",
+      "I'd like a salad, please.",
+      "Let's go to the florist's."
+     ],
+     "key": "1 pizza (c), 2 chips (b), 3 jeweller's (b), 4 salad (b), 5 florist's (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-ut-unit-test-unit-7-food-and-shopping-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "Let's go to the baker's.",
+      "Let's go to the greengrocer's.",
+      "Let's go to the bookshop.",
+      "Let's go to the butcher's.",
+      "I'd like an ice cream, please."
+     ],
+     "key": "1 baker's, 2 greengrocer's, 3 bookshop, 4 butcher's, 5 ice cream"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Hobbies and entertainment",
+   "info": "Test paper page 19",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-ut-unit-test-unit-8-hobbies-and-entertainment-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "I'd like to see a western.",
+      "I'd like to see a musical.",
+      "I'd like to see a horror film.",
+      "I love cycling.",
+      "I'd like to see a comedy."
+     ],
+     "key": "1 western (c), 2 musical (c), 3 horror (c), 4 cycling (b), 5 comedy (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-ut-unit-test-unit-8-hobbies-and-entertainment-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "I love mountaineering.",
+      "I'd like to see a cartoon.",
+      "I love skydiving.",
+      "I'd like to see a science fiction film.",
+      "I love badminton."
+     ],
+     "key": "1 mountaineering, 2 cartoon, 3 skydiving, 4 science fiction, 5 badminton"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Gadgets and inventions",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-ut-unit-test-unit-9-gadgets-and-inventions-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "This is a quartz clock.",
+      "This is a keyboard.",
+      "This is a printer.",
+      "I eat cornflakes for breakfast.",
+      "This is a vacuum cleaner."
+     ],
+     "key": "1 quartz clock (a), 2 keyboard (b), 3 printer (a), 4 cornflakes (c), 5 vacuum cleaner (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-ut-unit-test-unit-9-gadgets-and-inventions-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "This is a microwave.",
+      "This is a toaster.",
+      "This is a modem.",
+      "This is a safety razor.",
+      "This is a tower."
+     ],
+     "key": "1 microwave, 2 toaster, 3 modem, 4 safety razor, 5 tower"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Mysteries and the future",
+   "info": "Test paper page 23",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-ut-unit-test-unit-10-mysteries-and-the-future-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "Look at the planets!",
+      "We live on the Earth.",
+      "Look! It's a monster!",
+      "The Sun is a star.",
+      "Recycling is important."
+     ],
+     "key": "1 planets (c), 2 Earth (a), 3 monster (a), 4 Sun (a), 5 recycling (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-ut-unit-test-unit-10-mysteries-and-the-future-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "Look at the stars!",
+      "Look! It's a fairy!",
+      "Pollution is a big problem.",
+      "Deforestation is a big problem.",
+      "Look! It's a witch!"
+     ],
+     "key": "1 stars, 2 fairy, 3 pollution, 4 deforestation, 5 witch"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-mt-monthly-test-1-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "She's a journalist.",
+      "She's a pilot.",
+      "We often go camping at weekends.",
+      "She's a teacher."
+     ],
+     "key": "1 journalist (b), 2 pilot (b), 3 go camping (c), 4 teacher (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-mt-monthly-test-1-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "Let's have a barbecue in the garden.",
+      "I go swimming on Saturdays.",
+      "She's a mechanic.",
+      "They go dancing every Saturday."
+     ],
+     "key": "1 have a barbecue, 2 go swimming, 3 mechanic, 4 go dancing"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-mt-monthly-test-2-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "She's a journalist.",
+      "He was a famous singer.",
+      "We often go camping at weekends.",
+      "He was a famous astronaut."
+     ],
+     "key": "1 journalist (a), 2 singer (c), 3 go camping (a), 4 astronaut (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-mt-monthly-test-2-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "The house has got a garden.",
+      "Let's rent DVDs tonight.",
+      "The house has got a basement.",
+      "Let's go to the cinema."
+     ],
+     "key": "1 garden, 2 rent DVDs, 3 basement, 4 go to the cinema"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-mt-monthly-test-3-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "We travelled by cruise ship.",
+      "Look at the valley!",
+      "We went sunbathing on the beach.",
+      "It's windy today."
+     ],
+     "key": "1 cruise ship (c), 2 valley (c), 3 sunbathing (b), 4 windy (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-mt-monthly-test-3-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "Look at the desert!",
+      "I've been white water rafting.",
+      "Look at the lake!",
+      "My dad loves fishing."
+     ],
+     "key": "1 desert, 2 white water rafting, 3 lake, 4 fishing"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-mt-monthly-test-4-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "It's hot today.",
+      "There was a plane crash.",
+      "It's freezing today.",
+      "I've hurt my ankle."
+     ],
+     "key": "1 hot (b), 2 plane crash (b), 3 freezing (c), 4 ankle (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-mt-monthly-test-4-ex2.mp3",
+     "secs": 57,
+     "script": [
+      "There was a storm.",
+      "Look at the ocean!",
+      "There was a tornado.",
+      "It's rainy today."
+     ],
+     "key": "1 storm, 2 ocean, 3 tornado, 4 rainy"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-mt-monthly-test-5-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "You need to see the doctor.",
+      "You need to see the dentist.",
+      "He's in hospital.",
+      "I've got a cold."
+     ],
+     "key": "1 doctor (c), 2 dentist (a), 3 hospital (a), 4 cold (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-mt-monthly-test-5-ex2.mp3",
+     "secs": 58,
+     "script": [
+      "I've got a cough.",
+      "I've got headache.",
+      "I've got toothache.",
+      "I've got a temperature."
+     ],
+     "key": "1 cough, 2 headache, 3 toothache, 4 temperature"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 16",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-mt-monthly-test-6-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "You need to see the doctor.",
+      "I'd like a salad, please.",
+      "You need to see the dentist.",
+      "Let's go to the florist's."
+     ],
+     "key": "1 doctor (c), 2 salad (a), 3 dentist (b), 4 florist's (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-mt-monthly-test-6-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "I'd like some sandwiches, please.",
+      "You need to see the optician.",
+      "Let's go to the greengrocer's.",
+      "I've got a sore throat."
+     ],
+     "key": "1 sandwiches, 2 optician, 3 greengrocer's, 4 sore throat"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-mt-monthly-test-7-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "I love cycling.",
+      "I eat cornflakes for breakfast.",
+      "I'd like to see a musical.",
+      "This is a printer."
+     ],
+     "key": "1 cycling (c), 2 cornflakes (b), 3 musical (b), 4 printer (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-mt-monthly-test-7-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "This is a modem.",
+      "I'd like to see a cartoon.",
+      "I need some Post-it notes.",
+      "I'd like to see a comedy."
+     ],
+     "key": "1 modem, 2 cartoon, 3 Post-it notes, 4 comedy"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 20",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-mt-monthly-test-8-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "This is a keyboard.",
+      "Look at the moon!",
+      "I eat cornflakes for breakfast.",
+      "Look at the alien!"
+     ],
+     "key": "1 keyboard (b), 2 moon (c), 3 cornflakes (b), 4 alien (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-mt-monthly-test-8-ex2.mp3",
+     "secs": 57,
+     "script": [
+      "Look at the planets!",
+      "This is a printer.",
+      "Look! It's a witch!",
+      "This is a mouse."
+     ],
+     "key": "1 planets, 2 printer, 3 witch, 4 mouse"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "She's a waiter.",
+      "He was a famous painter.",
+      "We travelled by coach.",
+      "I go swimming on Saturdays.",
+      "The house has got a garden."
+     ],
+     "key": "1 waiter (b), 2 painter (c), 3 coach (b), 4 go swimming (c), 5 garden (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "The house has got a fireplace.",
+      "We travelled by cruise ship.",
+      "She's a teacher.",
+      "He was a famous inventor.",
+      "We travelled by underground."
+     ],
+     "key": "1 fireplace, 2 cruise ship, 3 teacher, 4 inventor, 5 underground"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I've got headache.",
+      "I'd like an ice cream, please.",
+      "I'd like to see a horror film.",
+      "He's in hospital.",
+      "I'd like a salad, please."
+     ],
+     "key": "1 headache (b), 2 ice cream (b), 3 horror (b), 4 hospital (c), 5 salad (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "I'd like some sandwiches, please.",
+      "My dad loves fishing.",
+      "You need to see the dentist.",
+      "Let's go to the baker's.",
+      "I'd like to see a cartoon."
+     ],
+     "key": "1 sandwiches, 2 fishing, 3 dentist, 4 baker's, 5 cartoon"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-fin-final-test-semester-1-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "We often go camping at weekends.",
+      "He was a famous explorer.",
+      "We watched the fireworks.",
+      "Look at the waterfall!",
+      "I've hurt my ankle."
+     ],
+     "key": "1 go camping (b), 2 explorer (a), 3 fireworks (b), 4 waterfall (a), 5 ankle (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-fin-final-test-semester-1-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "He was a famous painter.",
+      "We travelled by train.",
+      "Look at the ocean!",
+      "I've hurt my hand.",
+      "She's a hairdresser."
+     ],
+     "key": "1 painter, 2 train, 3 ocean, 4 hand, 5 hairdresser"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "up2-fin-final-test-semester-1-ex3.mp3",
+     "secs": 71,
+     "script": [
+      "We went sunbathing on the beach.",
+      "Look at the desert!",
+      "I've hurt my knee.",
+      "She's a waiter.",
+      "He was a famous inventor."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up2-fin-final-test-semester-2-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "I've got toothache.",
+      "Let's go to the jeweller's.",
+      "I'd like to see a western.",
+      "This is a printer.",
+      "Look at the planets!"
+     ],
+     "key": "1 toothache (a), 2 jeweller's (b), 3 western (c), 4 printer (b), 5 planets (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up2-fin-final-test-semester-2-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "Let's go to the butcher's.",
+      "I'd like to see a ballet.",
+      "This is a mouse.",
+      "The Sun is a star.",
+      "I've got earache."
+     ],
+     "key": "1 butcher's, 2 ballet, 3 mouse, 4 Sun, 5 earache"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "up2-fin-final-test-semester-2-ex3.mp3",
+     "secs": 72,
+     "script": [
+      "I'd like to see a musical.",
+      "This is a mouse.",
+      "The Sun is a star.",
+      "You need to see the optician.",
+      "I'd like some chips, please."
+     ],
+     "key": "1 ✓, 2 ✗, 3 ✗, 4 ✓, 5 ✓"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

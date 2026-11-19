@@ -7200,6 +7200,799 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "upstream-b1-tests",
+ "level": "Upstream B1",
+ "icon": "📝",
+ "title": "Upstream Pre-Intermediate B1 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "upstream-b1-tests",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Heroes and Villains",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-ut-unit-test-unit-1-heroes-and-villains-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "He's got glasses.",
+      "He's got a beard.",
+      "He's got curly hair.",
+      "He's got wrinkles.",
+      "He's bald."
+     ],
+     "key": "1 glasses (a), 2 beard (b), 3 curly hair (a), 4 wrinkles (a), 5 bald (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-ut-unit-test-unit-1-heroes-and-villains-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "He's very kind-hearted.",
+      "He's got a ponytail.",
+      "He's very greedy.",
+      "He's got freckles.",
+      "He's very cruel."
+     ],
+     "key": "1 kind-hearted, 2 ponytail, 3 greedy, 4 freckles, 5 cruel"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Lifestyles",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-ut-unit-test-unit-2-lifestyles-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "She's a security guard.",
+      "She's a pilot.",
+      "Let's meet at the police station.",
+      "Let's meet at the stadium.",
+      "Let's meet at the bank."
+     ],
+     "key": "1 security guard (a), 2 pilot (a), 3 police station (b), 4 stadium (a), 5 bank (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-ut-unit-test-unit-2-lifestyles-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "She's a firefighter.",
+      "She's a nurse.",
+      "Let's meet at the library.",
+      "She's a librarian.",
+      "Let's meet at the museum."
+     ],
+     "key": "1 firefighter, 2 nurse, 3 library, 4 librarian, 5 museum"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Earth Calling",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-ut-unit-test-unit-3-earth-calling-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "Global warming is a big problem.",
+      "Save the rhino!",
+      "Save the gorilla!",
+      "Save the elephant!",
+      "Acid rain is a big problem."
+     ],
+     "key": "1 global warming (a), 2 rhino (b), 3 gorilla (a), 4 elephant (b), 5 acid rain (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-ut-unit-test-unit-3-earth-calling-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "Recycling is a big problem.",
+      "Deforestation is a big problem.",
+      "Save the turtle!",
+      "Solar power is a big problem.",
+      "Save the whale!"
+     ],
+     "key": "1 recycling, 2 deforestation, 3 turtle, 4 solar power, 5 whale"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Travellers' Tales",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-ut-unit-test-unit-4-travellers-tales-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "Don't forget your compass!",
+      "Don't forget your tent!",
+      "Don't forget your torch!",
+      "We went on a cruise.",
+      "Don't forget your sunglasses!"
+     ],
+     "key": "1 compass (a), 2 tent (c), 3 torch (a), 4 cruise (b), 5 sunglasses (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-ut-unit-test-unit-4-travellers-tales-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "Don't forget your passport!",
+      "We went on a city break.",
+      "We went backpacking.",
+      "We went camping.",
+      "Don't forget your sun cream!"
+     ],
+     "key": "1 passport, 2 city break, 3 backpacking, 4 camping, 5 sun cream"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: On Offer",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-ut-unit-test-unit-5-on-offer-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I bought a new necklace.",
+      "I bought some new trainers.",
+      "I bought a new tie.",
+      "I'm going to the chemist's.",
+      "I bought some new gloves."
+     ],
+     "key": "1 necklace (c), 2 trainers (b), 3 tie (a), 4 chemist's (a), 5 gloves (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-ut-unit-test-unit-5-on-offer-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "I bought a new watch.",
+      "I'm going to the butcher's.",
+      "I'm going to the florist's.",
+      "I'm going to the newsagent's.",
+      "I bought a new scarf."
+     ],
+     "key": "1 watch, 2 butcher's, 3 florist's, 4 newsagent's, 5 scarf"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Happy Days!",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-ut-unit-test-unit-6-happy-days-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "Look at the presents!",
+      "We had a great wedding.",
+      "We had a great birthday.",
+      "We had a great Valentine's Day.",
+      "We had a great Halloween."
+     ],
+     "key": "1 presents (c), 2 wedding (b), 3 birthday (b), 4 Valentine's Day (c), 5 Halloween (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-ut-unit-test-unit-6-happy-days-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "Look at the fireworks!",
+      "Look at the balloons!",
+      "Look at the candles!",
+      "We had a great Christmas.",
+      "Look at the costume!"
+     ],
+     "key": "1 fireworks, 2 balloons, 3 candles, 4 Christmas, 5 costume"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Eating Out!",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-ut-unit-test-unit-7-eating-out-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "Boil the vegetables.",
+      "Chop the vegetables.",
+      "Can you pass me the chopsticks, please?",
+      "Can you pass me the teapot, please?",
+      "Can you pass me the bowl, please?"
+     ],
+     "key": "1 boil (c), 2 chop (b), 3 chopsticks (b), 4 teapot (b), 5 bowl (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-ut-unit-test-unit-7-eating-out-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "Peel the vegetables.",
+      "Can you pass me the knife, please?",
+      "Bake the vegetables.",
+      "Roast the vegetables.",
+      "Can you pass me the fork, please?"
+     ],
+     "key": "1 peel, 2 knife, 3 bake, 4 roast, 5 fork"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Fit for Life",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-ut-unit-test-unit-8-fit-for-life-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "I love cycling.",
+      "I've got backache.",
+      "I love boxing.",
+      "I love golf.",
+      "I love tennis."
+     ],
+     "key": "1 cycling (c), 2 backache (c), 3 boxing (c), 4 golf (b), 5 tennis (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-ut-unit-test-unit-8-fit-for-life-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "I've got a cut.",
+      "I love volleyball.",
+      "I've got a bruise.",
+      "I love karate.",
+      "I love basketball."
+     ],
+     "key": "1 cut, 2 volleyball, 3 bruise, 4 karate, 5 basketball"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Going Out!",
+   "info": "Test paper page 27",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-ut-unit-test-unit-9-going-out-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "Let's watch an action film.",
+      "Look at the painting!",
+      "Look at the audience!",
+      "Let's watch a documentary film.",
+      "Look at the sculpture!"
+     ],
+     "key": "1 action (a), 2 painting (b), 3 audience (a), 4 documentary (c), 5 sculpture (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-ut-unit-test-unit-9-going-out-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "Look at the ticket!",
+      "Let's watch a cartoon film.",
+      "Let's watch a science fiction film.",
+      "Let's watch a comedy film.",
+      "Let's watch a horror film."
+     ],
+     "key": "1 ticket, 2 cartoon, 3 science fiction, 4 comedy, 5 horror"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Fast Forward",
+   "info": "Test paper page 30",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-ut-unit-test-unit-10-fast-forward-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "This is my degree.",
+      "This is my lecture.",
+      "This is my laboratory.",
+      "I've got a new digital camera.",
+      "I've got a new games console."
+     ],
+     "key": "1 degree (c), 2 lecture (a), 3 laboratory (a), 4 digital camera (a), 5 games console (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-ut-unit-test-unit-10-fast-forward-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "I've got some new headphones.",
+      "This is my timetable.",
+      "I've got a new mobile phone.",
+      "This is my homework.",
+      "This is my classmate."
+     ],
+     "key": "1 headphones, 2 timetable, 3 mobile phone, 4 homework, 5 classmate"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-mt-monthly-test-1-ex1.mp3",
+     "secs": 56,
+     "script": [
+      "He's got wrinkles.",
+      "He's got curly hair.",
+      "He's got glasses.",
+      "He's got a beard."
+     ],
+     "key": "1 wrinkles (b), 2 curly hair (b), 3 glasses (c), 4 beard (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-mt-monthly-test-1-ex2.mp3",
+     "secs": 57,
+     "script": [
+      "He's got a ponytail.",
+      "He's very loyal.",
+      "He's very cruel.",
+      "He's very honest."
+     ],
+     "key": "1 ponytail, 2 loyal, 3 cruel, 4 honest"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-mt-monthly-test-2-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "He's got wrinkles.",
+      "Let's meet at the stadium.",
+      "He's got curly hair.",
+      "Let's meet at the police station."
+     ],
+     "key": "1 wrinkles (a), 2 stadium (c), 3 curly hair (a), 4 police station (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-mt-monthly-test-2-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "Let's meet at the town hall.",
+      "He's very kind-hearted.",
+      "Let's meet at the post office.",
+      "He's bald."
+     ],
+     "key": "1 town hall, 2 kind-hearted, 3 post office, 4 bald"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-mt-monthly-test-3-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "Save the tiger!",
+      "Don't forget your map!",
+      "Recycling is a big problem.",
+      "We went camping."
+     ],
+     "key": "1 tiger (c), 2 map (c), 3 recycling (b), 4 camping (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-mt-monthly-test-3-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "We went backpacking.",
+      "Flooding is a big problem.",
+      "Don't forget your sunglasses!",
+      "Save the whale!"
+     ],
+     "key": "1 backpacking, 2 flooding, 3 sunglasses, 4 whale"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-mt-monthly-test-4-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "Don't forget your map!",
+      "I bought a new tie.",
+      "Don't forget your torch!",
+      "I bought a new wallet."
+     ],
+     "key": "1 map (b), 2 tie (b), 3 torch (c), 4 wallet (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-mt-monthly-test-4-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "I bought a new watch.",
+      "We went backpacking.",
+      "I bought some new gloves.",
+      "Don't forget your tent!"
+     ],
+     "key": "1 watch, 2 backpacking, 3 gloves, 4 tent"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-mt-monthly-test-5-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "Look at the parade!",
+      "Look at the fireworks!",
+      "Look at the decorations!",
+      "We had a great Valentine's Day."
+     ],
+     "key": "1 parade (c), 2 fireworks (a), 3 decorations (a), 4 Valentine's Day (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-mt-monthly-test-5-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "We had a great graduation.",
+      "We had a great wedding.",
+      "We had a great birthday.",
+      "We had a great Easter."
+     ],
+     "key": "1 graduation, 2 wedding, 3 birthday, 4 Easter"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-mt-monthly-test-6-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "Look at the decorations!",
+      "Chop the vegetables.",
+      "Look at the fireworks!",
+      "Can you pass me the spoon, please?"
+     ],
+     "key": "1 decorations (c), 2 chop (a), 3 fireworks (b), 4 spoon (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-mt-monthly-test-6-ex2.mp3",
+     "secs": 58,
+     "script": [
+      "Peel the vegetables.",
+      "Look at the presents!",
+      "Roast the vegetables.",
+      "Look at the candles!"
+     ],
+     "key": "1 peel, 2 presents, 3 roast, 4 candles"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-mt-monthly-test-7-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "I've got a nosebleed.",
+      "Look at the sculpture!",
+      "I love karate.",
+      "Let's watch a romance film."
+     ],
+     "key": "1 nosebleed (c), 2 sculpture (b), 3 karate (b), 4 romance (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-mt-monthly-test-7-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "Let's watch a documentary film.",
+      "I've got backache.",
+      "Let's watch a science fiction film.",
+      "I've got a headache."
+     ],
+     "key": "1 documentary, 2 backache, 3 science fiction, 4 headache"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-mt-monthly-test-8-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "Let's watch a documentary film.",
+      "I've got a new printer.",
+      "Look at the painting!",
+      "This is my lecture."
+     ],
+     "key": "1 documentary (b), 2 printer (c), 3 painting (b), 4 lecture (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-mt-monthly-test-8-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "This is my uniform.",
+      "Let's watch a horror film.",
+      "I've got a new mobile phone.",
+      "Look at the ticket!"
+     ],
+     "key": "1 uniform, 2 horror, 3 mobile phone, 4 ticket"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "He's got a beard.",
+      "She's a firefighter.",
+      "Deforestation is a big problem.",
+      "He's bald.",
+      "She's a pilot."
+     ],
+     "key": "1 beard (b), 2 firefighter (c), 3 deforestation (b), 4 bald (c), 5 pilot (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "Let's meet at the hospital.",
+      "Flooding is a big problem.",
+      "He's very ambitious.",
+      "Let's meet at the stadium.",
+      "Save the panda!"
+     ],
+     "key": "1 hospital, 2 flooding, 3 ambitious, 4 stadium, 5 panda"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "We had a great Christmas.",
+      "Can you pass me the fork, please?",
+      "I love volleyball.",
+      "Look at the decorations!",
+      "Can you pass me the frying pan, please?"
+     ],
+     "key": "1 Christmas (b), 2 fork (b), 3 volleyball (b), 4 decorations (c), 5 frying pan (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "Slice the vegetables.",
+      "I love basketball.",
+      "We had a great New Year.",
+      "Can you pass me the knife, please?",
+      "I've got a headache."
+     ],
+     "key": "1 slice, 2 basketball, 3 New Year, 4 knife, 5 headache"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-fin-final-test-semester-1-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "He's got glasses.",
+      "She's a firefighter.",
+      "Flooding is a big problem.",
+      "Don't forget your passport!",
+      "I bought a new watch."
+     ],
+     "key": "1 glasses (b), 2 firefighter (a), 3 flooding (b), 4 passport (a), 5 watch (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-fin-final-test-semester-1-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "Let's meet at the museum.",
+      "Save the gorilla!",
+      "Don't forget your sun cream!",
+      "I'm going to the baker's.",
+      "He's very ambitious."
+     ],
+     "key": "1 museum, 2 gorilla, 3 sun cream, 4 baker's, 5 ambitious"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "up3-fin-final-test-semester-1-ex3.mp3",
+     "secs": 71,
+     "script": [
+      "Save the rhino!",
+      "We went on a safari.",
+      "I'm going to the butcher's.",
+      "He's got curly hair.",
+      "She's a sales assistant."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up3-fin-final-test-semester-2-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "We had a great birthday.",
+      "Can you pass me the frying pan, please?",
+      "I've got backache.",
+      "Look at the painting!",
+      "This is my degree."
+     ],
+     "key": "1 birthday (a), 2 frying pan (b), 3 backache (c), 4 painting (b), 5 degree (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up3-fin-final-test-semester-2-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "Grill the vegetables.",
+      "I've got a black eye.",
+      "Look at the gallery!",
+      "This is my lecture.",
+      "We had a great Valentine's Day."
+     ],
+     "key": "1 grill, 2 black eye, 3 gallery, 4 lecture, 5 Valentine's Day"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "up3-fin-final-test-semester-2-ex3.mp3",
+     "secs": 72,
+     "script": [
+      "I love golf.",
+      "Let's watch a science fiction film.",
+      "This is my exam.",
+      "Look at the candles!",
+      "Can you pass me the teapot, please?"
+     ],
+     "key": "1 ✓, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

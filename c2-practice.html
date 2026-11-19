@@ -43,6 +43,7 @@ main{max-width:760px;margin:0 auto;padding:14px 12px 120px}
 .opts button .pic svg{width:44px;height:44px}
 .opts{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0 28px}
 .opts button{border:1.5px solid #cdd4e4;background:#fff;border-radius:22px;padding:8px 14px;font-size:16px;cursor:pointer;color:var(--ink);text-align:left}
+.opts.big button{font-size:22px;font-weight:700;min-width:58px;text-align:center}
 .opts button.sel{background:var(--navy);border-color:var(--navy);color:#fff}
 .opts button.right{background:var(--ok);border-color:var(--ok);color:#fff}
 .opts button.wrong{background:var(--bad);border-color:var(--bad);color:#fff}
@@ -155,7 +156,22 @@ function index(D){
 }
 
 /* ---------- listening page ---------- */
+function setAudio(a, f){
+  var D=window.PRACTICE||{}, alts=[(D.audio||'')+f, '../'+f, f];
+  a.addEventListener('error',function(){ if(alts.length){a.src=alts.shift();} });
+  a.addEventListener('play',function(){ document.querySelectorAll('audio').forEach(function(b){ if(b!==a) b.pause(); }); });
+  a.src=alts.shift();
+}
+function unk(k){ try{ return JSON.parse(decodeURIComponent(escape(atob(k.split('').reverse().join(''))))); }catch(e){ return null; } }
 function listen(t, D){
+  if(t.tracks.some(function(x){return x.ex;})){
+    var S={title:'🎧 '+t.title, sub:'Listen, then answer below. Every item is said twice. Press Check ✓ at the end. / ស្ដាប់ ហើយឆ្លើយ', listening:true,
+      ex:t.tracks.map(function(x){
+        var e=x.ex?JSON.parse(JSON.stringify(x.ex)):{type:'none',items:[]};
+        e.items.forEach(function(it){ if(it.k!==undefined){ it.a=unk(it.k); delete it.k; } });
+        e.n=x.n; e.title=x.title; e.audio=x.file; return e; })};
+    return practice(S, T);
+  }
   document.getElementById('ttl').textContent='🎧 '+t.title;
   document.getElementById('sub').textContent='Listen to each exercise. Every item is said twice.';
   var h='';
@@ -187,7 +203,8 @@ function practice(S, id){
   var nm={get value(){ var m=who(); return m?m.name:''; }};
   var checks=[], total=0;
   S.ex.forEach(function(e, ei){
-    var c=$('<div class="card"><h2><span class="n">'+(ei+1)+'</span><span>'+esc(e.title)+'</span></h2></div>');
+    var c=$('<div class="card"><h2><span class="n">'+(e.n||ei+1)+'</span><span>'+esc(e.title)+'</span></h2></div>');
+    if(e.audio){ var au=$('<audio controls preload="metadata" style="width:100%;margin:2px 0 6px"></audio>'); c.appendChild(au); setAudio(au, e.audio); }
     if(e.text) c.appendChild($('<div class="text">'+esc(e.text)+'</div>'));
     if(e.bank) c.appendChild($('<div class="bank">'+e.bank.map(function(b){return '<span>'+esc(b)+'</span>';}).join('')+'</div>'));
     e.items.forEach(function(it, ii){
@@ -196,7 +213,7 @@ function practice(S, id){
       d.appendChild($('<div class="q"><span class="k">'+(ii+1)+'</span><span>'+q+'</span></div>'));
       if(it.pic) d.appendChild($('<div>'+it.pic+'</div>'));
       if(e.type==='choice'){
-        var o=$('<div class="opts"></div>'), pick=-1;
+        var o=$('<div class="opts'+(e.big?' big':'')+'"></div>'), pick=-1;
         it.opts.forEach(function(op, oi){
           var b=$('<button type="button">'+(e.html?op:esc(op))+'</button>');
           b.onclick=function(){ if(d.dataset.done)return; pick=oi; o.querySelectorAll('button').forEach(function(x){x.classList.remove('sel');}); b.classList.add('sel'); };
@@ -240,7 +257,7 @@ function practice(S, id){
       go.textContent='Try again ↺'; go.className='btn alt'; done=true; window.scrollTo({top:0,behavior:'smooth'});
       var n=parseInt(store('c2p-n-'+id)||'0',10)+1; store('c2p-n-'+id, String(n));
       var now=new Date();
-      send({prefix:prefix, level:(window.PRACTICE&&window.PRACTICE.level)||prefix, setId:id, setTitle:S.title,
+      send({prefix:prefix, level:(window.PRACTICE&&window.PRACTICE.level)||prefix, setId:id, setTitle:S.listening?S.title.replace('🎧 ','')+' · Listening':S.title, kind:S.listening?'listening':'practice',
             studentId:ME.studentId||'', studentName:ME.name, cls:ME.cls||'', login:!!ME.login,
             score:r, total:total, pct:Math.round(r*100/Math.max(1,total)), attempt:n,
             at:now.toISOString(), day:now.toISOString().slice(0,10)}, sc);

@@ -1,0 +1,44 @@
+/* C2-EPE Practice Results – list of books.
+   Every new book Claude makes comes with an updated copy of this file: upload it to the portal
+   and the book appears in 📊 Practice Results by itself (no need to change index.html).
+   level must be one of: K0 K1 K2 K3 Starters Movers Flyers Beginner Pre-Intermediate Intermediate
+   Upper-Intermediate Advanced Proficiency, 'EAP / Bridge to University', 'IELTS & TOEFL Prep',
+   'Exam Prep', 'Online Class', Grammar, 'Writing Skills', Computer, AI */
+window.C2_PRACTICE_BOOKS = [
+  {"name": "Beehive Starter", "series": "Beehive", "level": "Starters", "prefix": "bs"},
+  {"name": "Beehive 1", "series": "Beehive", "level": "Starters", "prefix": "b1"},
+  {"name": "Beehive 2", "series": "Beehive", "level": "Movers", "prefix": "b2"},
+  {"name": "Beehive 3", "series": "Beehive", "level": "Movers", "prefix": "b3"},
+  {"name": "Beehive 4", "series": "Beehive", "level": "Flyers", "prefix": "b4"},
+  {"name": "Beehive 5", "series": "Beehive", "level": "Flyers", "prefix": "b5"},
+  {"name": "Beehive 6", "series": "Beehive", "level": "Flyers", "prefix": "b6"},
+  {"name": "Upstream Beginner A1+", "series": "Upstream", "level": "Beginner", "prefix": "up1"},
+  {"name": "Upstream Elementary A2", "series": "Upstream", "level": "Pre-Intermediate", "prefix": "up2"},
+  {"name": "Upstream Pre-Intermediate B1", "series": "Upstream", "level": "Intermediate", "prefix": "up3"},
+  {"name": "Upstream Intermediate B2", "series": "Upstream", "level": "Upper-Intermediate", "prefix": "up4"},
+  {"name": "C2-EPE Kindergarten K0 (Video book)", "series": "C2-EPE App", "level": "K0", "prefix": ""},
+  {"name": "Online K0 (App)", "series": "C2-EPE App", "level": "K0", "prefix": "app-online-k0"},
+  {"name": "Online K1 (App)", "series": "C2-EPE App", "level": "K1", "prefix": "app-online-k1"},
+  {"name": "Online K2 (App)", "series": "C2-EPE App", "level": "K2", "prefix": "app-online-k2"},
+  {"name": "Online K3 (App)", "series": "C2-EPE App", "level": "K3", "prefix": "app-online-k3"},
+  {"name": "Online Starters (App)", "series": "C2-EPE App", "level": "Starters", "prefix": "app-online-starters"},
+  {"name": "Online Movers (App)", "series": "C2-EPE App", "level": "Movers", "prefix": "app-online-movers"},
+  {"name": "Online Flyers (App)", "series": "C2-EPE App", "level": "Flyers", "prefix": "app-online-flyers"},
+  {"name": "Online Beginner (App)", "series": "C2-EPE App", "level": "Beginner", "prefix": "app-online-beginner"},
+  {"name": "Online Pre-Intermediate (App)", "series": "C2-EPE App", "level": "Pre-Intermediate", "prefix": "app-online-pre-intermediate"},
+  {"name": "Online Intermediate (App)", "series": "C2-EPE App", "level": "Intermediate", "prefix": "app-online-intermediate"},
+  {"name": "Online Upper-Intermediate (App)", "series": "C2-EPE App", "level": "Upper-Intermediate", "prefix": "app-online-upper-intermediate"},
+  {"name": "Online Advanced (App)", "series": "C2-EPE App", "level": "Advanced", "prefix": "app-online-advanced"},
+  {"name": "Online Proficiency (App)", "series": "C2-EPE App", "level": "Proficiency", "prefix": "app-online-proficiency"},
+  {"name": "Online Class – Primary A1 Book1 (App)", "series": "C2-EPE App", "level": "Online Class", "prefix": "app-online-class-primary-a1-book1"},
+  {"name": "Online Class – Primary A1 Book2 (App)", "series": "C2-EPE App", "level": "Online Class", "prefix": "app-online-class-primary-a1-book2"},
+  {"name": "Online Class – Primary A1 Book3 (App)", "series": "C2-EPE App", "level": "Online Class", "prefix": "app-online-class-primary-a1-book3"},
+  {"name": "Online Class – Primary A2 Book1 (App)", "series": "C2-EPE App", "level": "Online Class", "prefix": "app-online-class-primary-a2-book1"},
+  {"name": "Online Class – Primary A2 Book2 (App)", "series": "C2-EPE App", "level": "Online Class", "prefix": "app-online-class-primary-a2-book2"},
+  {"name": "Online Class – Primary A2 Book3 (App)", "series": "C2-EPE App", "level": "Online Class", "prefix": "app-online-class-primary-a2-book3"},
+  {"name": "Online Class – Secondary B1 Book1 (App)", "series": "C2-EPE App", "level": "Online Class", "prefix": "app-online-class-secondary-b1-book1"},
+  {"name": "Online Class – Secondary B1 Book3 (App)", "series": "C2-EPE App", "level": "Online Class", "prefix": "app-online-class-secondary-b1-book3"},
+  {"name": "Online Class – Secondary B2 Book1 (App)", "series": "C2-EPE App", "level": "Online Class", "prefix": "app-online-class-secondary-b2-book1"},
+  {"name": "Online Class – Secondary B2 Book2 (App)", "series": "C2-EPE App", "level": "Online Class", "prefix": "app-online-class-secondary-b2-book2"},
+  {"name": "Online Class – Secondary B2 Book3 (App)", "series": "C2-EPE App", "level": "Online Class", "prefix": "app-online-class-secondary-b2-book3"}
+];

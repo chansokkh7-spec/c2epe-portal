@@ -611,8 +611,2491 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "beehive-1-tests",
+ "level": "Beehive 1",
+ "icon": "📝",
+ "title": "Beehive 1 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "beehive-1-tests",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Starter Unit",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and write the number.",
+     "file": "b1-ut-unit-test-starter-unit-ex1.mp3",
+     "secs": 63,
+     "script": [
+      "Six.",
+      "Three.",
+      "Seven.",
+      "Ten.",
+      "One."
+     ],
+     "key": "1 6, 2 3, 3 7, 4 10, 5 1"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and write the name.",
+     "file": "b1-ut-unit-test-starter-unit-ex2.mp3",
+     "secs": 82,
+     "script": [
+      "How do you spell Nina? N, I, N, A.",
+      "How do you spell Lucy? L, U, C, Y.",
+      "How do you spell Ravi? R, A, V, I.",
+      "How do you spell Hector? H, E, C, T, O, R.",
+      "How do you spell Tang? T, A, N, G."
+     ],
+     "key": "1 Nina, 2 Lucy, 3 Ravi, 4 Hector, 5 Tang"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: At school",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-ut-unit-test-unit-1-at-school-ex1.mp3",
+     "secs": 66,
+     "script": [
+      "It's purple.",
+      "It's red.",
+      "It's green.",
+      "It's a door.",
+      "It's a chair."
+     ],
+     "key": "1 purple (a), 2 red (b), 3 green (a), 4 door (a), 5 chair (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-ut-unit-test-unit-1-at-school-ex2.mp3",
+     "secs": 66,
+     "script": [
+      "It's brown.",
+      "It's orange.",
+      "It's a desk.",
+      "It's yellow.",
+      "It's a board."
+     ],
+     "key": "1 brown, 2 orange, 3 desk, 4 yellow, 5 board"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: My things",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-ut-unit-test-unit-2-my-things-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "I've got a kite.",
+      "I've got a skipping rope.",
+      "This is my ruler.",
+      "This is my bag.",
+      "This is my pen."
+     ],
+     "key": "1 kite (a), 2 skipping rope (a), 3 ruler (b), 4 bag (a), 5 pen (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-ut-unit-test-unit-2-my-things-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "I've got a boat.",
+      "This is my pencil.",
+      "I've got a teddy.",
+      "I've got a plane.",
+      "I've got a board game."
+     ],
+     "key": "1 boat, 2 pencil, 3 teddy, 4 plane, 5 board game"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Fun with friends",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-ut-unit-test-unit-3-fun-with-friends-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "I can play basketball.",
+      "I can't talk.",
+      "I can't catch.",
+      "I can play football.",
+      "I can draw."
+     ],
+     "key": "1 play basketball (a), 2 talk (b), 3 catch (a), 4 play football (b), 5 draw (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-ut-unit-test-unit-3-fun-with-friends-ex2.mp3",
+     "secs": 69,
+     "script": [
+      "I can dance.",
+      "I can sing.",
+      "I can't fly.",
+      "I can read.",
+      "I can't run."
+     ],
+     "key": "1 dance, 2 sing, 3 fly, 4 read, 5 run"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Outdoors",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-ut-unit-test-unit-4-outdoors-ex1.mp3",
+     "secs": 67,
+     "script": [
+      "It's a spider.",
+      "There's a plant.",
+      "There's a beach.",
+      "It's a dog.",
+      "There's a lake."
+     ],
+     "key": "1 spider (a), 2 plant (c), 3 beach (a), 4 dog (b), 5 lake (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-ut-unit-test-unit-4-outdoors-ex2.mp3",
+     "secs": 67,
+     "script": [
+      "It's a fish.",
+      "It's a cat.",
+      "There's a shell.",
+      "It's a snake.",
+      "It's a duck."
+     ],
+     "key": "1 fish, 2 cat, 3 shell, 4 snake, 5 duck"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: My body",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-ut-unit-test-unit-5-my-body-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "It's got wings.",
+      "This is my mouth.",
+      "These are my arms.",
+      "These are my eyes.",
+      "It's got ears."
+     ],
+     "key": "1 wings (c), 2 mouth (b), 3 arms (a), 4 eyes (a), 5 ears (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-ut-unit-test-unit-5-my-body-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "It's got a tail.",
+      "These are my hands.",
+      "This is my face.",
+      "It's got a beak.",
+      "These are my feet."
+     ],
+     "key": "1 tail, 2 hands, 3 face, 4 beak, 5 feet"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: My family",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-ut-unit-test-unit-6-my-family-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "I'm thirsty.",
+      "She's my sister.",
+      "She's my mum.",
+      "He's my dad.",
+      "She's my grandma."
+     ],
+     "key": "1 thirsty (c), 2 sister (b), 3 mum (b), 4 dad (c), 5 grandma (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-ut-unit-test-unit-6-my-family-ex2.mp3",
+     "secs": 67,
+     "script": [
+      "I'm happy.",
+      "I'm hungry.",
+      "I'm cold.",
+      "I'm hot.",
+      "He's my uncle."
+     ],
+     "key": "1 happy, 2 hungry, 3 cold, 4 hot, 5 uncle"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: My clothes",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-ut-unit-test-unit-7-my-clothes-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "Put on your hat.",
+      "Put on your jacket.",
+      "Put on your shoes.",
+      "Put on your cap.",
+      "Put on your socks."
+     ],
+     "key": "1 hat (c), 2 jacket (b), 3 shoes (b), 4 cap (b), 5 socks (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-ut-unit-test-unit-7-my-clothes-ex2.mp3",
+     "secs": 69,
+     "script": [
+      "It's old.",
+      "It's beautiful.",
+      "Put on your trousers.",
+      "It's new.",
+      "It's short."
+     ],
+     "key": "1 old, 2 beautiful, 3 trousers, 4 new, 5 short"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Food",
+   "info": "Test paper page 19",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-ut-unit-test-unit-8-food-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "Can I have some salad, please?",
+      "I like grapes.",
+      "Can I have some soup, please?",
+      "I like kiwis.",
+      "Can I have some pizza, please?"
+     ],
+     "key": "1 salad (c), 2 grapes (c), 3 soup (c), 4 kiwis (b), 5 pizza (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-ut-unit-test-unit-8-food-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "Can I have some ice cream, please?",
+      "I like pears.",
+      "I like oranges.",
+      "Can I have some juice, please?",
+      "I like bananas."
+     ],
+     "key": "1 ice cream, 2 pears, 3 oranges, 4 juice, 5 bananas"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: At home",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-ut-unit-test-unit-9-at-home-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "She's in the kitchen.",
+      "Look at the bookcase.",
+      "She's in the living room.",
+      "She's in the bathroom.",
+      "Look at the mirror."
+     ],
+     "key": "1 kitchen (a), 2 bookcase (b), 3 living room (a), 4 bathroom (c), 5 mirror (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-ut-unit-test-unit-9-at-home-ex2.mp3",
+     "secs": 70,
+     "script": [
+      "She's in the dining room.",
+      "She's in the bedroom.",
+      "She's upstairs.",
+      "Look at the bed.",
+      "Look at the wardrobe."
+     ],
+     "key": "1 dining room, 2 bedroom, 3 upstairs, 4 bed, 5 wardrobe"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: At the farm",
+   "info": "Test paper page 23",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-ut-unit-test-unit-10-at-the-farm-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "It's quiet.",
+      "They're goats.",
+      "They're chickens.",
+      "They're sheep.",
+      "They're horses."
+     ],
+     "key": "1 quiet (c), 2 goat (a), 3 chicken (a), 4 sheep (a), 5 horse (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-ut-unit-test-unit-10-at-the-farm-ex2.mp3",
+     "secs": 68,
+     "script": [
+      "They're cows.",
+      "It's dirty.",
+      "They're mice.",
+      "It's clean.",
+      "It's noisy."
+     ],
+     "key": "1 cow, 2 dirty, 3 mouse, 4 clean, 5 noisy"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-mt-monthly-test-1-ex1.mp3",
+     "secs": 53,
+     "script": [
+      "It's yellow.",
+      "It's a board.",
+      "It's a clock.",
+      "It's a chair."
+     ],
+     "key": "1 yellow (b), 2 board (b), 3 clock (c), 4 chair (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-mt-monthly-test-1-ex2.mp3",
+     "secs": 54,
+     "script": [
+      "It's brown.",
+      "It's pink.",
+      "It's blue.",
+      "It's a bin."
+     ],
+     "key": "1 brown, 2 pink, 3 blue, 4 bin"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-mt-monthly-test-2-ex1.mp3",
+     "secs": 55,
+     "script": [
+      "It's yellow.",
+      "This is my bag.",
+      "It's a board.",
+      "This is my ruler."
+     ],
+     "key": "1 yellow (a), 2 bag (c), 3 board (a), 4 ruler (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-mt-monthly-test-2-ex2.mp3",
+     "secs": 56,
+     "script": [
+      "This is my book.",
+      "It's purple.",
+      "I've got a plane.",
+      "It's green."
+     ],
+     "key": "1 book, 2 purple, 3 plane, 4 green"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-mt-monthly-test-3-ex1.mp3",
+     "secs": 55,
+     "script": [
+      "I can't run.",
+      "There's a shell.",
+      "I can play tennis.",
+      "It's a fish."
+     ],
+     "key": "1 run (c), 2 shell (c), 3 play tennis (b), 4 fish (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-mt-monthly-test-3-ex2.mp3",
+     "secs": 57,
+     "script": [
+      "There's a tree.",
+      "I can play basketball.",
+      "There's a plant.",
+      "I can read."
+     ],
+     "key": "1 tree, 2 play basketball, 3 plant, 4 read"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-mt-monthly-test-4-ex1.mp3",
+     "secs": 55,
+     "script": [
+      "It's a spider.",
+      "These are my legs.",
+      "It's a duck.",
+      "It's got ears."
+     ],
+     "key": "1 spider (b), 2 legs (b), 3 duck (c), 4 ears (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-mt-monthly-test-4-ex2.mp3",
+     "secs": 57,
+     "script": [
+      "This is my body.",
+      "There's a beach.",
+      "These are my hands.",
+      "There's a tree."
+     ],
+     "key": "1 body, 2 beach, 3 hands, 4 tree"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-mt-monthly-test-5-ex1.mp3",
+     "secs": 54,
+     "script": [
+      "I'm sad.",
+      "I'm happy.",
+      "I'm hot.",
+      "She's my grandma."
+     ],
+     "key": "1 sad (c), 2 happy (a), 3 hot (a), 4 grandma (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-mt-monthly-test-5-ex2.mp3",
+     "secs": 56,
+     "script": [
+      "She's my sister.",
+      "She's my mum.",
+      "He's my dad.",
+      "I'm cold."
+     ],
+     "key": "1 sister, 2 mum, 3 dad, 4 cold"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-mt-monthly-test-6-ex1.mp3",
+     "secs": 55,
+     "script": [
+      "I'm sad.",
+      "Put on your hat.",
+      "She's my mum.",
+      "Put on your cap."
+     ],
+     "key": "1 sad (c), 2 hat (a), 3 mum (b), 4 cap (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-mt-monthly-test-6-ex2.mp3",
+     "secs": 56,
+     "script": [
+      "Put on your shoes.",
+      "I'm cold.",
+      "Put on your socks.",
+      "I'm hungry."
+     ],
+     "key": "1 shoes, 2 cold, 3 socks, 4 hungry"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-mt-monthly-test-7-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "Can I have some pizza, please?",
+      "She's in the bathroom.",
+      "Can I have some ice cream, please?",
+      "She's in the kitchen."
+     ],
+     "key": "1 pizza (c), 2 bathroom (b), 3 ice cream (b), 4 kitchen (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-mt-monthly-test-7-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "She's in the living room.",
+      "I like bananas.",
+      "Look at the mirror.",
+      "Can I have some salad, please?"
+     ],
+     "key": "1 living room, 2 bananas, 3 mirror, 4 salad"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-mt-monthly-test-8-ex1.mp3",
+     "secs": 56,
+     "script": [
+      "Look at the bookcase.",
+      "It's noisy.",
+      "She's in the bathroom.",
+      "They're donkeys."
+     ],
+     "key": "1 bookcase (b), 2 noisy (c), 3 bathroom (b), 4 donkey (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-mt-monthly-test-8-ex2.mp3",
+     "secs": 56,
+     "script": [
+      "They're sheep.",
+      "Look at the wall.",
+      "It's small.",
+      "She's in the garden."
+     ],
+     "key": "1 sheep, 2 wall, 3 small, 4 garden"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "It's a board.",
+      "I've got a robot.",
+      "I can't catch.",
+      "It's red.",
+      "This is my book."
+     ],
+     "key": "1 board (b), 2 robot (c), 3 catch (b), 4 red (c), 5 book (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 69,
+     "script": [
+      "This is my rubber.",
+      "I can sing.",
+      "It's a chair.",
+      "I've got a ball.",
+      "I can't jump."
+     ],
+     "key": "1 rubber, 2 sing, 3 chair, 4 ball, 5 jump"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "She's my mum.",
+      "Put on your trousers.",
+      "I like grapes.",
+      "I'm hot.",
+      "Put on your T-shirt."
+     ],
+     "key": "1 mum (b), 2 trousers (b), 3 grapes (b), 4 hot (c), 5 T-shirt (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 68,
+     "script": [
+      "Put on your hat.",
+      "I like apples.",
+      "I'm happy.",
+      "It's colourful.",
+      "I like pears."
+     ],
+     "key": "1 hat, 2 apples, 3 happy, 4 colourful, 5 pears"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-fin-final-test-semester-1-ex1.mp3",
+     "secs": 67,
+     "script": [
+      "It's purple.",
+      "I've got a board game.",
+      "I can't fly.",
+      "It's a duck.",
+      "It's got a nose."
+     ],
+     "key": "1 purple (b), 2 board game (a), 3 fly (b), 4 duck (a), 5 nose (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-fin-final-test-semester-1-ex2.mp3",
+     "secs": 69,
+     "script": [
+      "This is my pen.",
+      "I can't swim.",
+      "There's a flower.",
+      "These are my eyes.",
+      "It's brown."
+     ],
+     "key": "1 pen, 2 swim, 3 flower, 4 eyes, 5 brown"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "b1-fin-final-test-semester-1-ex3.mp3",
+     "secs": 68,
+     "script": [
+      "I can draw.",
+      "There's a tree.",
+      "It's got wings.",
+      "It's a board.",
+      "I've got a plane."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b1-fin-final-test-semester-2-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "He's my dad.",
+      "Put on your socks.",
+      "I like grapes.",
+      "She's in the garden.",
+      "They're sheep."
+     ],
+     "key": "1 dad (a), 2 socks (b), 3 grapes (c), 4 garden (b), 5 sheep (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b1-fin-final-test-semester-2-ex2.mp3",
+     "secs": 70,
+     "script": [
+      "Put on your trousers.",
+      "Can I have some juice, please?",
+      "Look at the bookcase.",
+      "They're chickens.",
+      "I'm cold."
+     ],
+     "key": "1 trousers, 2 juice, 3 bookcase, 4 chicken, 5 cold"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "b1-fin-final-test-semester-2-ex3.mp3",
+     "secs": 70,
+     "script": [
+      "Can I have some soup, please?",
+      "Look at the floor.",
+      "It's noisy.",
+      "She's my grandma.",
+      "Put on your shoes."
+     ],
+     "key": "1 ✓, 2 ✗, 3 ✓, 4 ✓, 5 ✓"
+    }
+   ]
+  }
+ ]
+},
+{
+ "id": "beehive-2-tests",
+ "level": "Beehive 2",
+ "icon": "📝",
+ "title": "Beehive 2 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "beehive-2-tests",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Starter Unit",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and write the number.",
+     "file": "b2-ut-unit-test-starter-unit-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "Eighty-eight.",
+      "Sixty-two.",
+      "Fifteen.",
+      "Sixteen.",
+      "Thirty-four."
+     ],
+     "key": "1 88, 2 62, 3 15, 4 16, 5 34"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and write the name.",
+     "file": "b2-ut-unit-test-starter-unit-ex2.mp3",
+     "secs": 80,
+     "script": [
+      "How do you spell Ben? B, E, N.",
+      "How do you spell Nina? N, I, N, A.",
+      "How do you spell Emma? E, M, M, A.",
+      "How do you spell May? M, A, Y.",
+      "How do you spell Maria? M, A, R, I, A."
+     ],
+     "key": "1 Ben, 2 Nina, 3 Emma, 4 May, 5 Maria"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Time for school",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-ut-unit-test-unit-1-time-for-school-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I've got a pencil sharpener.",
+      "I've got my trainers.",
+      "I've got a pencil case.",
+      "I've got a football shirt.",
+      "I've got a folder."
+     ],
+     "key": "1 pencil sharpener (a), 2 trainers (b), 3 pencil case (a), 4 football shirt (a), 5 folder (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-ut-unit-test-unit-1-time-for-school-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "I've got a glue stick.",
+      "I've got my football boots.",
+      "I've got a water bottle.",
+      "I've got my shorts.",
+      "I've got a tracksuit."
+     ],
+     "key": "1 glue stick, 2 football boots, 3 water bottle, 4 shorts, 5 tracksuit"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Mealtime",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-ut-unit-test-unit-2-mealtime-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "I have cereal for lunch.",
+      "I have biscuits for lunch.",
+      "I like beans.",
+      "I like cucumbers.",
+      "I like peppers."
+     ],
+     "key": "1 cereal (a), 2 biscuits (a), 3 beans (b), 4 cucumbers (a), 5 peppers (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-ut-unit-test-unit-2-mealtime-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "I like peas.",
+      "I have chips for lunch.",
+      "I have yoghurt for lunch.",
+      "I have meatballs for lunch.",
+      "I like carrots."
+     ],
+     "key": "1 peas, 2 chips, 3 yoghurt, 4 meatballs, 5 carrots"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Wild animals",
+   "info": "Test paper page 10",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-ut-unit-test-unit-3-wild-animals-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "Look! It's a giraffe.",
+      "They eat meat.",
+      "They eat insects.",
+      "Look! It's a hippo.",
+      "Look! It's a penguin."
+     ],
+     "key": "1 giraffe (a), 2 meat (b), 3 insects (a), 4 hippo (b), 5 penguin (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-ut-unit-test-unit-3-wild-animals-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "Look! It's an elephant.",
+      "Look! It's a tiger.",
+      "They eat seeds.",
+      "Look! It's a zebra.",
+      "They eat grass."
+     ],
+     "key": "1 elephant, 2 tiger, 3 seeds, 4 zebra, 5 grass"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: My favourite things",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-ut-unit-test-unit-4-my-favourite-things-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "I'm wearing jeans.",
+      "It's my bracelet.",
+      "I'm wearing a coat.",
+      "It's my video game.",
+      "It's my watch."
+     ],
+     "key": "1 jeans (a), 2 bracelet (c), 3 coat (a), 4 video game (b), 5 watch (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-ut-unit-test-unit-4-my-favourite-things-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "I'm wearing a hoodie.",
+      "I'm wearing boots.",
+      "It's my trophy.",
+      "It's my helicopter.",
+      "It's my poster."
+     ],
+     "key": "1 hoodie, 2 boots, 3 trophy, 4 helicopter, 5 poster"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Around town",
+   "info": "Test paper page 14",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-ut-unit-test-unit-5-around-town-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "I can see a lorry.",
+      "I can see a bike.",
+      "There's a school in my street.",
+      "There's a supermarket in my street.",
+      "There's a toy shop in my street."
+     ],
+     "key": "1 lorry (c), 2 bike (b), 3 school (a), 4 supermarket (a), 5 toy shop (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-ut-unit-test-unit-5-around-town-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "I can see a train.",
+      "I can see a van.",
+      "There's a hospital in my street.",
+      "There's a park in my street.",
+      "There's a bus stop in my street."
+     ],
+     "key": "1 train, 2 van, 3 hospital, 4 park, 5 bus stop"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: At the weekend",
+   "info": "Test paper page 16",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-ut-unit-test-unit-6-at-the-weekend-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "She's doing judo.",
+      "She's listening to music.",
+      "She's playing ice hockey.",
+      "She's playing badminton.",
+      "She's playing chess."
+     ],
+     "key": "1 do judo (c), 2 listen to music (b), 3 play ice hockey (b), 4 play badminton (c), 5 play chess (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-ut-unit-test-unit-6-at-the-weekend-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "She's playing with friends.",
+      "She's reading comics.",
+      "She's playing tag.",
+      "She's playing dominoes.",
+      "She's playing Frisbee."
+     ],
+     "key": "1 play with friends, 2 read comics, 3 play tag, 4 play dominoes, 5 play Frisbee"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: My day",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-ut-unit-test-unit-7-my-day-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "It's one forty-five.",
+      "I have a shower every day.",
+      "I go to bed every day.",
+      "It's one fifty.",
+      "I get up every day."
+     ],
+     "key": "1 one forty-five (c), 2 have a shower (b), 3 go to bed (b), 4 one fifty (b), 5 get up (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-ut-unit-test-unit-7-my-day-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "It's one o'clock.",
+      "It's one twenty.",
+      "I get dressed every day.",
+      "It's one fifteen.",
+      "I go to school every day."
+     ],
+     "key": "1 one o'clock, 2 one twenty, 3 get dressed, 4 one fifteen, 5 go to school"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: My talents",
+   "info": "Test paper page 20",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-ut-unit-test-unit-8-my-talents-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "I'm good at painting pictures.",
+      "I'm good at juggling.",
+      "I can throw.",
+      "I can skateboard.",
+      "I can ride a bike."
+     ],
+     "key": "1 paint pictures (c), 2 juggle (c), 3 throw (c), 4 skateboard (b), 5 ride a bike (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-ut-unit-test-unit-8-my-talents-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "I can bounce.",
+      "I can hop.",
+      "I'm good at playing the keyboard.",
+      "I can kick.",
+      "I'm good at doing gymnastics."
+     ],
+     "key": "1 bounce, 2 hop, 3 play the keyboard, 4 kick, 5 do gymnastics"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: My home",
+   "info": "Test paper page 22",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-ut-unit-test-unit-9-my-home-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "There's a plate on the table.",
+      "There's a fork on the table.",
+      "There's a glass on the table.",
+      "There's a spoon on the table.",
+      "There's a vase in the living room."
+     ],
+     "key": "1 plate (a), 2 fork (b), 3 glass (a), 4 spoon (c), 5 vase (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-ut-unit-test-unit-9-my-home-ex2.mp3",
+     "secs": 78,
+     "script": [
+      "There's a shelf in the living room.",
+      "There are curtains in the living room.",
+      "There's a painting in the living room.",
+      "There's a fireplace in the living room.",
+      "There's a coffee table in the living room."
+     ],
+     "key": "1 shelf, 2 curtains, 3 painting, 4 fireplace, 5 coffee table"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Days out",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-ut-unit-test-unit-10-days-out-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "It was cloudy.",
+      "It was snowy.",
+      "It was foggy.",
+      "I was at the castle on Saturday.",
+      "I was at the skate park on Saturday."
+     ],
+     "key": "1 cloudy (c), 2 snowy (a), 3 foggy (a), 4 castle (a), 5 skate park (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-ut-unit-test-unit-10-days-out-ex2.mp3",
+     "secs": 76,
+     "script": [
+      "It was rainy.",
+      "It was windy.",
+      "I was at the wildlife park on Saturday.",
+      "I was at the funfair on Saturday.",
+      "I was at the adventure playground on Saturday."
+     ],
+     "key": "1 rainy, 2 windy, 3 wildlife park, 4 funfair, 5 adventure playground"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-mt-monthly-test-1-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "I've got a folder.",
+      "I've got a water bottle.",
+      "I've got a dictionary.",
+      "I've got my trainers."
+     ],
+     "key": "1 folder (b), 2 water bottle (b), 3 dictionary (c), 4 trainers (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-mt-monthly-test-1-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "I've got a football shirt.",
+      "I've got a sports bag.",
+      "I've got a lunch box.",
+      "I've got a pencil case."
+     ],
+     "key": "1 football shirt, 2 sports bag, 3 lunch box, 4 pencil case"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-mt-monthly-test-2-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "I've got a folder.",
+      "I like peppers.",
+      "I've got a water bottle.",
+      "I like cucumbers."
+     ],
+     "key": "1 folder (a), 2 peppers (c), 3 water bottle (a), 4 cucumbers (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-mt-monthly-test-2-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "I like potatoes.",
+      "I've got my shorts.",
+      "I have sandwiches for lunch.",
+      "I've got my football boots."
+     ],
+     "key": "1 potatoes, 2 shorts, 3 sandwiches, 4 football boots"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-mt-monthly-test-3-ex1.mp3",
+     "secs": 56,
+     "script": [
+      "They eat grass.",
+      "I'm wearing a coat.",
+      "They eat meat.",
+      "It's my video game."
+     ],
+     "key": "1 grass (c), 2 coat (c), 3 meat (b), 4 video game (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-mt-monthly-test-3-ex2.mp3",
+     "secs": 58,
+     "script": [
+      "It's my puppet.",
+      "Look! It's a penguin.",
+      "I'm wearing boots.",
+      "Look! It's a giraffe."
+     ],
+     "key": "1 puppet, 2 penguin, 3 boots, 4 giraffe"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-mt-monthly-test-4-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "I'm wearing jeans.",
+      "I can see a bike.",
+      "It's my helicopter.",
+      "There's a hospital in my street."
+     ],
+     "key": "1 jeans (b), 2 bike (b), 3 helicopter (c), 4 hospital (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-mt-monthly-test-4-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "I can see a motorbike.",
+      "It's my guitar.",
+      "There's a bus stop in my street.",
+      "I'm wearing sandals."
+     ],
+     "key": "1 motorbike, 2 guitar, 3 bus stop, 4 sandals"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-mt-monthly-test-5-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "She's reading comics.",
+      "She's playing with friends.",
+      "She's flying a kite.",
+      "She's playing chess."
+     ],
+     "key": "1 read comics (c), 2 play with friends (a), 3 fly a kite (a), 4 play chess (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-mt-monthly-test-5-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "She's watching TV.",
+      "She's playing badminton.",
+      "She's playing tag.",
+      "She's listening to music."
+     ],
+     "key": "1 watch TV, 2 play badminton, 3 play tag, 4 listen to music"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-mt-monthly-test-6-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "She's reading comics.",
+      "It's one forty-five.",
+      "She's playing ice hockey.",
+      "It's one twenty."
+     ],
+     "key": "1 read comics (c), 2 one forty-five (a), 3 play ice hockey (b), 4 one twenty (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-mt-monthly-test-6-ex2.mp3",
+     "secs": 58,
+     "script": [
+      "It's one fifteen.",
+      "She's playing badminton.",
+      "It's one fifty.",
+      "She's playing chess."
+     ],
+     "key": "1 one fifteen, 2 play badminton, 3 one fifty, 4 play chess"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-mt-monthly-test-7-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "I'm good at acting.",
+      "There's a painting in the living room.",
+      "I'm good at playing the keyboard.",
+      "There's a glass on the table."
+     ],
+     "key": "1 act (c), 2 painting (b), 3 play the keyboard (b), 4 glass (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-mt-monthly-test-7-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "There's a fork on the table.",
+      "I can bounce.",
+      "There's a plate on the table.",
+      "I'm good at juggling."
+     ],
+     "key": "1 fork, 2 bounce, 3 plate, 4 juggle"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-mt-monthly-test-8-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "There's a spoon on the table.",
+      "I was at the adventure playground on Saturday.",
+      "There's a glass on the table.",
+      "It was sunny."
+     ],
+     "key": "1 spoon (b), 2 adventure playground (c), 3 glass (b), 4 sunny (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-mt-monthly-test-8-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "I was at the funfair on Saturday.",
+      "There's a knife on the table.",
+      "It was rainy.",
+      "There's a coffee table in the living room."
+     ],
+     "key": "1 funfair, 2 knife, 3 rainy, 4 coffee table"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "I've got a pencil case.",
+      "I have chicken for lunch.",
+      "They eat insects.",
+      "I've got my trainers.",
+      "I have biscuits for lunch."
+     ],
+     "key": "1 pencil case (b), 2 chicken (c), 3 insects (b), 4 trainers (c), 5 biscuits (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "I like carrots.",
+      "Look! It's a tiger.",
+      "I've got a pencil sharpener.",
+      "I like potatoes.",
+      "They eat leaves."
+     ],
+     "key": "1 carrots, 2 tiger, 3 pencil sharpener, 4 potatoes, 5 leaves"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "She's playing ice hockey.",
+      "I do my homework every day.",
+      "I'm good at doing gymnastics.",
+      "She's playing Frisbee.",
+      "I brush my hair every day."
+     ],
+     "key": "1 play ice hockey (b), 2 do my homework (b), 3 do gymnastics (b), 4 play Frisbee (c), 5 brush my hair (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "I get up every day.",
+      "I can skip.",
+      "She's listening to music.",
+      "I go to bed every day.",
+      "I can skateboard."
+     ],
+     "key": "1 get up, 2 skip, 3 listen to music, 4 go to bed, 5 skateboard"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-fin-final-test-semester-1-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "I've got a pencil sharpener.",
+      "I have meatballs for lunch.",
+      "They eat seeds.",
+      "It's my helicopter.",
+      "I can see a van."
+     ],
+     "key": "1 pencil sharpener (b), 2 meatballs (a), 3 seeds (b), 4 helicopter (a), 5 van (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-fin-final-test-semester-1-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "I have chicken for lunch.",
+      "They eat insects.",
+      "It's my poster.",
+      "There's a park in my street.",
+      "I've got a pencil case."
+     ],
+     "key": "1 chicken, 2 insects, 3 poster, 4 park, 5 pencil case"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "b2-fin-final-test-semester-1-ex3.mp3",
+     "secs": 72,
+     "script": [
+      "Look! It's a penguin.",
+      "I'm wearing pyjamas.",
+      "There's a school in my street.",
+      "I've got a folder.",
+      "I have sandwiches for lunch."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✓, 5 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b2-fin-final-test-semester-2-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "She's playing badminton.",
+      "It's one o'clock.",
+      "I'm good at playing the keyboard.",
+      "There's an armchair in the living room.",
+      "It was snowy."
+     ],
+     "key": "1 play badminton (a), 2 one o'clock (b), 3 play the keyboard (c), 4 armchair (b), 5 snowy (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b2-fin-final-test-semester-2-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "I get up every day.",
+      "I'm good at doing gymnastics.",
+      "There's a knife on the table.",
+      "I was at the castle on Saturday.",
+      "She's doing judo."
+     ],
+     "key": "1 get up, 2 do gymnastics, 3 knife, 4 castle, 5 do judo"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "b2-fin-final-test-semester-2-ex3.mp3",
+     "secs": 71,
+     "script": [
+      "I'm good at juggling.",
+      "There's a fork on the table.",
+      "It was rainy.",
+      "She's playing chess.",
+      "It's one forty-five."
+     ],
+     "key": "1 ✓, 2 ✗, 3 ✓, 4 ✓, 5 ✓"
+    }
+   ]
+  }
+ ]
+},
+{
+ "id": "beehive-3-tests",
+ "level": "Beehive 3",
+ "icon": "📝",
+ "title": "Beehive 3 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "beehive-3-tests",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Starter Unit",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and write the birthday.",
+     "file": "b3-ut-unit-test-starter-unit-ex1.mp3",
+     "secs": 79,
+     "script": [
+      "My birthday is June twenty-first.",
+      "My birthday is March second.",
+      "My birthday is July twelfth.",
+      "My birthday is January twenty-second.",
+      "My birthday is February first."
+     ],
+     "key": "1 June 21st, 2 March 2nd, 3 July 12th, 4 January 22nd, 5 February 1st"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and write the month.",
+     "file": "b3-ut-unit-test-starter-unit-ex2.mp3",
+     "secs": 90,
+     "script": [
+      "How do you spell September? S, E, P, T, E, M, B, E, R.",
+      "How do you spell April? A, P, R, I, L.",
+      "How do you spell January? J, A, N, U, A, R, Y.",
+      "How do you spell February? F, E, B, R, U, A, R, Y.",
+      "How do you spell July? J, U, L, Y."
+     ],
+     "key": "1 September, 2 April, 3 January, 4 February, 5 July"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Our Friends",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-ut-unit-test-unit-1-our-friends-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "He's very young.",
+      "He's very fast.",
+      "My friend has curly hair.",
+      "My friend has glasses.",
+      "He's very strong."
+     ],
+     "key": "1 young (a), 2 fast (b), 3 curly hair (a), 4 glasses (a), 5 strong (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-ut-unit-test-unit-1-our-friends-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "My friend has short hair.",
+      "He's very tall.",
+      "My friend has straight hair.",
+      "My friend has light hair.",
+      "He's very brave."
+     ],
+     "key": "1 short hair, 2 tall, 3 straight hair, 4 light hair, 5 brave"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: In the City",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-ut-unit-test-unit-2-in-the-city-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "I'm going to the mall.",
+      "I'm going to the museum.",
+      "Let's take photos in the city.",
+      "Let's meet friends in the city.",
+      "Let's watch a movie in the city."
+     ],
+     "key": "1 mall (a), 2 museum (a), 3 take photos (b), 4 meet friends (a), 5 watch a movie (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-ut-unit-test-unit-2-in-the-city-ex2.mp3",
+     "secs": 76,
+     "script": [
+      "I'm going to the library.",
+      "Let's catch a train in the city.",
+      "I'm going to the restaurant.",
+      "I'm going to the recreation center.",
+      "I'm going to the college."
+     ],
+     "key": "1 library, 2 catch a train, 3 restaurant, 4 recreation center, 5 college"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Our Busy World",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-ut-unit-test-unit-3-our-busy-world-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "She's a pilot.",
+      "I want to drive.",
+      "She's a vet.",
+      "I want to sell things.",
+      "I want to work with animals."
+     ],
+     "key": "1 pilot (a), 2 drive (b), 3 vet (a), 4 sell things (b), 5 work with animals (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-ut-unit-test-unit-3-our-busy-world-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "She's a scientist.",
+      "I want to cook food.",
+      "She's a coach.",
+      "I want to work outside.",
+      "She's a salesperson."
+     ],
+     "key": "1 scientist, 2 cook food, 3 coach, 4 work outside, 5 salesperson"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Let's Explore!",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-ut-unit-test-unit-4-let-s-explore-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "The path was steep.",
+      "There was a picnic area.",
+      "The path was huge.",
+      "There was a forest.",
+      "There was a river."
+     ],
+     "key": "1 steep (a), 2 picnic area (c), 3 huge (a), 4 forest (b), 5 river (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-ut-unit-test-unit-4-let-s-explore-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "There was a parking lot.",
+      "The path was wide.",
+      "The path was muddy.",
+      "The path was narrow.",
+      "There was a bridge."
+     ],
+     "key": "1 parking lot, 2 wide, 3 muddy, 4 narrow, 5 bridge"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Healthy Living",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-ut-unit-test-unit-5-healthy-living-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "I like to play video games.",
+      "I like to do art.",
+      "Remember to exercise.",
+      "Remember to eat fruit.",
+      "Remember to play outside."
+     ],
+     "key": "1 play video games (c), 2 do art (b), 3 exercise (a), 4 eat fruit (a), 5 play outside (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-ut-unit-test-unit-5-healthy-living-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "I like to do karate.",
+      "I like to go fishing.",
+      "Remember to drink water.",
+      "Remember to go to the dentist.",
+      "Remember to wash your hands."
+     ],
+     "key": "1 do karate, 2 go fishing, 3 drink water, 4 go to the dentist, 5 wash your hands"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: In the Kitchen",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-ut-unit-test-unit-6-in-the-kitchen-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "Now serve it.",
+      "We need some chili peppers.",
+      "We need some flour.",
+      "We need some mushrooms.",
+      "We need some tomatoes."
+     ],
+     "key": "1 serve (c), 2 chili peppers (b), 3 flour (b), 4 mushrooms (c), 5 tomatoes (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-ut-unit-test-unit-6-in-the-kitchen-ex2.mp3",
+     "secs": 70,
+     "script": [
+      "Now mix it.",
+      "We need some onions.",
+      "Now measure it.",
+      "We need some milk.",
+      "Now pour it."
+     ],
+     "key": "1 mix, 2 onions, 3 measure, 4 milk, 5 pour"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Family Life",
+   "info": "Test paper page 19",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-ut-unit-test-unit-7-family-life-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "Yesterday I washed the dishes.",
+      "Yesterday I watered the plants.",
+      "Last week we set the table.",
+      "Last week we dressed up.",
+      "Last week we prepared food."
+     ],
+     "key": "1 wash the dishes (c), 2 water the plants (b), 3 set the table (b), 4 dress up (b), 5 prepare food (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-ut-unit-test-unit-7-family-life-ex2.mp3",
+     "secs": 76,
+     "script": [
+      "Yesterday I cleaned my room.",
+      "Yesterday I cleared the table.",
+      "Last week we invited guests.",
+      "Yesterday I cooked the dinner.",
+      "Last week we cleaned up."
+     ],
+     "key": "1 clean my room, 2 clear the table, 3 invite guests, 4 cook the dinner, 5 clean up"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Our History",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-ut-unit-test-unit-8-our-history-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "There was a theater in the Roman town.",
+      "Look at this old comb.",
+      "There was a street in the Roman town.",
+      "Look at this old fan.",
+      "There were walls in the Roman town."
+     ],
+     "key": "1 theater (c), 2 comb (c), 3 street (c), 4 fan (b), 5 walls (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-ut-unit-test-unit-8-our-history-ex2.mp3",
+     "secs": 76,
+     "script": [
+      "Look at this old helmet.",
+      "Look at this old cup.",
+      "Look at this old lamp.",
+      "There was a market in the Roman town.",
+      "There was a town hall in the Roman town."
+     ],
+     "key": "1 helmet, 2 cup, 3 lamp, 4 market, 5 town hall"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: School Life",
+   "info": "Test paper page 23",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-ut-unit-test-unit-9-school-life-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "We're in the cafeteria.",
+      "You must be on time.",
+      "You must share.",
+      "You must not shout.",
+      "We're in the music room."
+     ],
+     "key": "1 cafeteria (a), 2 be on time (b), 3 share (a), 4 shout (c), 5 music room (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-ut-unit-test-unit-9-school-life-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "We're in the hallway.",
+      "You must not run inside.",
+      "We're in the computer room.",
+      "We're in the art room.",
+      "We're in the gym."
+     ],
+     "key": "1 hallway, 2 run inside, 3 computer room, 4 art room, 5 gym"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Vacation Plans",
+   "info": "Test paper page 25",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-ut-unit-test-unit-10-vacation-plans-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "Don't forget your swimsuit.",
+      "Don't forget your raincoat.",
+      "Don't forget your camera.",
+      "I'm going to have a barbecue.",
+      "I'm going to see a show."
+     ],
+     "key": "1 swimsuit (c), 2 raincoat (a), 3 camera (a), 4 have a barbecue (a), 5 see a show (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-ut-unit-test-unit-10-vacation-plans-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "I'm going to go hiking.",
+      "Don't forget your towel.",
+      "I'm going to visit a castle.",
+      "Don't forget your backpack.",
+      "Don't forget your sunscreen."
+     ],
+     "key": "1 go hiking, 2 towel, 3 visit a castle, 4 backpack, 5 sunscreen"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-mt-monthly-test-1-ex1.mp3",
+     "secs": 56,
+     "script": [
+      "He's very strong.",
+      "My friend has glasses.",
+      "He's very fast.",
+      "He's very young."
+     ],
+     "key": "1 strong (b), 2 glasses (b), 3 fast (c), 4 young (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-mt-monthly-test-1-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "My friend has long hair.",
+      "My friend has curly hair.",
+      "My friend has light hair.",
+      "My friend has dark hair."
+     ],
+     "key": "1 long hair, 2 curly hair, 3 light hair, 4 dark hair"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-mt-monthly-test-2-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "He's very strong.",
+      "I'm going to the museum.",
+      "He's very fast.",
+      "I'm going to the mall."
+     ],
+     "key": "1 strong (a), 2 museum (c), 3 fast (a), 4 mall (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-mt-monthly-test-2-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "Let's catch a train in the city.",
+      "My friend has long hair.",
+      "Let's take photos in the city.",
+      "My friend has dark hair."
+     ],
+     "key": "1 catch a train, 2 long hair, 3 take photos, 4 dark hair"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-mt-monthly-test-3-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "I want to work outside.",
+      "The path was huge.",
+      "I want to cook food.",
+      "There was a rock."
+     ],
+     "key": "1 work outside (c), 2 huge (c), 3 cook food (b), 4 rock (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-mt-monthly-test-3-ex2.mp3",
+     "secs": 58,
+     "script": [
+      "There was a picnic area.",
+      "She's a salesperson.",
+      "The path was flat.",
+      "She's a pilot."
+     ],
+     "key": "1 picnic area, 2 salesperson, 3 flat, 4 pilot"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 10",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-mt-monthly-test-4-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "The path was steep.",
+      "I like to do art.",
+      "The path was huge.",
+      "Remember to play outside."
+     ],
+     "key": "1 steep (b), 2 do art (b), 3 huge (c), 4 play outside (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-mt-monthly-test-4-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "I like to go swimming.",
+      "There was a parking lot.",
+      "I like to do karate.",
+      "There was a forest."
+     ],
+     "key": "1 go swimming, 2 parking lot, 3 do karate, 4 forest"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-mt-monthly-test-5-ex1.mp3",
+     "secs": 56,
+     "script": [
+      "Now chop it.",
+      "Now mix it.",
+      "We need some onions.",
+      "Now serve it."
+     ],
+     "key": "1 chop (c), 2 mix (a), 3 onions (a), 4 serve (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-mt-monthly-test-5-ex2.mp3",
+     "secs": 58,
+     "script": [
+      "Now add it.",
+      "We need some chili peppers.",
+      "We need some butter.",
+      "Now pour it."
+     ],
+     "key": "1 add, 2 chili peppers, 3 butter, 4 pour"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 16",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-mt-monthly-test-6-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "Now chop it.",
+      "Yesterday I watered the plants.",
+      "Now pour it.",
+      "Last week we prepared food."
+     ],
+     "key": "1 chop (c), 2 water the plants (a), 3 pour (b), 4 prepare food (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-mt-monthly-test-6-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "Last week we set the table.",
+      "We need some butter.",
+      "Last week we dressed up.",
+      "We need some sugar."
+     ],
+     "key": "1 set the table, 2 butter, 3 dress up, 4 sugar"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 19",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-mt-monthly-test-7-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "There were walls in the Roman town.",
+      "You must be on time.",
+      "Look at this old lamp.",
+      "We're in the field."
+     ],
+     "key": "1 walls (c), 2 be on time (b), 3 lamp (b), 4 field (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-mt-monthly-test-7-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "We're in the gym.",
+      "Look at this old bowl.",
+      "We're in the music room.",
+      "There was a street in the Roman town."
+     ],
+     "key": "1 gym, 2 bowl, 3 music room, 4 street"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-mt-monthly-test-8-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "You must share.",
+      "Don't forget your camera.",
+      "You must not run inside.",
+      "Don't forget your backpack."
+     ],
+     "key": "1 share (b), 2 camera (c), 3 run inside (b), 4 backpack (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-mt-monthly-test-8-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "I'm going to go to the beach.",
+      "We're in the music room.",
+      "Don't forget your raincoat.",
+      "We're in the field."
+     ],
+     "key": "1 go to the beach, 2 music room, 3 raincoat, 4 field"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "My friend has curly hair.",
+      "Let's go shopping in the city.",
+      "She's a scientist.",
+      "My friend has glasses.",
+      "I'm going to the station."
+     ],
+     "key": "1 curly hair (b), 2 go shopping (c), 3 scientist (b), 4 glasses (c), 5 station (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "Let's meet friends in the city.",
+      "She's an ambulance driver.",
+      "He's very strong.",
+      "I'm going to the museum.",
+      "She's a coach."
+     ],
+     "key": "1 meet friends, 2 ambulance driver, 3 strong, 4 museum, 5 coach"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "We need some flour.",
+      "Last week we decorated.",
+      "Look at this old lamp.",
+      "Now mix it.",
+      "Last week we prepared food."
+     ],
+     "key": "1 flour (b), 2 decorate (b), 3 lamp (b), 4 mix (c), 5 prepare food (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "Yesterday I washed the dishes.",
+      "Look at this old bowl.",
+      "Now pour it.",
+      "Last week we set the table.",
+      "Look at this old cup."
+     ],
+     "key": "1 wash the dishes, 2 bowl, 3 pour, 4 set the table, 5 cup"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-fin-final-test-semester-1-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "He's very young.",
+      "I'm going to the museum.",
+      "I want to sell things.",
+      "There was a parking lot.",
+      "I like to play video games."
+     ],
+     "key": "1 young (b), 2 museum (a), 3 sell things (b), 4 parking lot (a), 5 play video games (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-fin-final-test-semester-1-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "I'm going to the station.",
+      "She's a coach.",
+      "There was a forest.",
+      "Remember to go to the dentist.",
+      "He's very strong."
+     ],
+     "key": "1 station, 2 coach, 3 forest, 4 go to the dentist, 5 strong"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "b3-fin-final-test-semester-1-ex3.mp3",
+     "secs": 72,
+     "script": [
+      "I want to work with animals.",
+      "There was a path.",
+      "I like to do art.",
+      "He's very funny.",
+      "I'm going to the recreation center."
+     ],
+     "key": "1 ✓, 2 ✗, 3 ✓, 4 ✓, 5 ✗"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "b3-fin-final-test-semester-2-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "We need some mushrooms.",
+      "Last week we decorated.",
+      "Look at this old comb.",
+      "You must be on time.",
+      "I'm going to have a barbecue."
+     ],
+     "key": "1 mushrooms (a), 2 decorate (b), 3 comb (c), 4 be on time (b), 5 have a barbecue (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "b3-fin-final-test-semester-2-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "Last week we cleaned up.",
+      "Look at this old bowl.",
+      "You must not shout.",
+      "Don't forget your raincoat.",
+      "We need some butter."
+     ],
+     "key": "1 clean up, 2 bowl, 3 shout, 4 raincoat, 5 butter"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "b3-fin-final-test-semester-2-ex3.mp3",
+     "secs": 73,
+     "script": [
+      "There was a market in the Roman town.",
+      "We're in the field.",
+      "I'm going to see a show.",
+      "Now chop it.",
+      "Yesterday I loaded the dishwasher."
+     ],
+     "key": "1 ✓, 2 ✓, 3 ✗, 4 ✓, 5 ✗"
+    }
+   ]
+  }
+ ]
 }
-
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{
   id: "beehive-2-student-book",          // short name, no spaces

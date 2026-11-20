@@ -129,6 +129,19 @@ input.w.wrong{border-color:var(--bad);background:#fdecea}
 .res .sh{font-size:26px;letter-spacing:2px}
 .res b{font-size:22px;color:var(--navy)}
 .scr{font-size:13px;color:#555;margin-top:8px}
+
+.trk{background:#f3f5fa;border-radius:8px;padding:6px 10px;font-size:13px;color:#555;margin-bottom:8px}
+input.w.kv,.tk .bt button.kv{color:#d93025;font-weight:700;border-color:#d93025}
+.abc button.kv{border-color:#d93025}.abc button.kv .bx{color:#d93025;border-color:#d93025}
+body.print{background:#fff}
+body.print .hint,body.print .pal,body.print .bar{display:none}
+body.print main{padding-bottom:0}
+body.print .card{break-inside:avoid;box-shadow:none;border:1px solid #d6dbe8}
+body.print .paper.pb{break-before:page}
+body.print header{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+body.print input.w{border:none;border-bottom:1.5px solid #333;border-radius:0;background:transparent}
+@media print{ body{print-color-adjust:exact;-webkit-print-color-adjust:exact} }
+body.print input.w::placeholder{color:transparent}
 </style>
 </head>
 <body>
@@ -179,7 +192,7 @@ setTimeout(function(){ if(window.C2FLUSH) window.C2FLUSH(); }, 3000);
    Listening (4 parts, 20 marks) + Reading & Writing (5 parts, 25 marks)
    ============================================================================== */
 var Q = new URLSearchParams(location.search);
-var ID = Q.get('t') || 'yle-s1';
+var ID = Q.get('t');
 var main = document.getElementById('main');
 var SVGNS = 'http://www.w3.org/2000/svg';
 function $(h){var d=document.createElement('div');d.innerHTML=h.trim();return d.firstElementChild;}
@@ -188,25 +201,95 @@ function svgEl(tag, at){ var e=document.createElementNS(SVGNS, tag); for(var k i
 var COL={red:'#e53935',blue:'#1e88e5',green:'#43a047',yellow:'#fdd835',orange:'#fb8c00',pink:'#f48fb1',purple:'#8e24aa',brown:'#795548',black:'#212121',grey:'#9e9e9e',white:'#ffffff'};
 var LCHK=[], RCHK=[];
 
+var PRINT = Q.get('print')==='1', KEY = Q.get('key')==='1';
+function BG(kind, W, H){
+  var r=function(x,y,w,h,f){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+f+'"/>';};
+  if(kind==='beach') return r(0,0,W,H*.2,'#e3f4ff')+r(0,H*.2,W,H*.3,'#a9d8f2')+r(0,H*.5,W,H*.5,'#f6e3a9');
+  if(kind==='beach4') return r(0,0,W,92,'#e3f4ff')+r(0,92,W,92,'#a9d8f2')+'<path d="M0 100 q20 -8 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="#fff" stroke-width="2"/>'+r(0,184,W,96,'#f6e3a9');
+  if(kind==='classroom') return r(0,0,W,H*.62,'#fdf3d7')+r(0,H*.62,W,H*.38,'#e2c79f')+'<rect x="140" y="18" width="120" height="62" rx="4" fill="#2f5d46" stroke="#7a5a2f" stroke-width="5"/>';
+  if(kind==='room'||kind==='room2'){ var o=r(0,0,W,H*.62,'#f3ecfb')+r(0,H*.62,W,H*.38,'#e2c79f');
+    if(kind==='room') o+='<rect x="265" y="35" width="70" height="70" fill="#dff1ff" stroke="#8a6b3f" stroke-width="4"/><line x1="300" y1="35" x2="300" y2="105" stroke="#8a6b3f" stroke-width="2"/>'
+      +'<rect x="135" y="176" width="140" height="9" fill="#c49a62" stroke="#6d4c25" stroke-width="2"/><rect x="145" y="185" width="8" height="58" fill="#c49a62" stroke="#6d4c25" stroke-width="2"/><rect x="257" y="185" width="8" height="58" fill="#c49a62" stroke="#6d4c25" stroke-width="2"/>'
+      +'<rect x="318" y="150" width="8" height="95" fill="#c49a62" stroke="#6d4c25" stroke-width="2"/><rect x="278" y="203" width="48" height="8" fill="#c49a62" stroke="#6d4c25" stroke-width="2"/><rect x="280" y="211" width="6" height="34" fill="#c49a62" stroke="#6d4c25" stroke-width="2"/>';
+    return o; }
+  if(kind==='garden'||kind==='garden2'){ var g=r(0,0,W,H*.35,'#e3f4ff')+r(0,H*.35,W,H*.65,'#c5e7ad')
+      +'<rect x="86" y="95" width="18" height="100" fill="#8d6e4a"/><circle cx="95" cy="82" r="48" fill="#6dbb5a"/>'
+      +'<rect x="270" y="98" width="120" height="102" fill="#f4e1c1" stroke="#6d4c25" stroke-width="2"/><polygon points="258,100 330,45 402,100" fill="#c0634a" stroke="#6d4c25" stroke-width="2"/><rect x="318" y="150" width="26" height="50" fill="#9a6b3e"/>';
+    if(kind==='garden') g+='<ellipse cx="200" cy="240" rx="55" ry="20" fill="#9fd3f0" stroke="#5aa7d6" stroke-width="2"/>';
+    return g; }
+  return r(0,0,W,H*.4,'#dff1ff')+r(0,H*.4,W,H*.6,'#bfe3a5')+'<path d="M0 '+(H*.83)+' Q'+(W/2)+' '+(H*.72)+' '+W+' '+(H*.85)+' L'+W+' '+(H*.9)+' Q'+(W/2)+' '+(H*.78)+' 0 '+(H*.88)+' Z" fill="#e9dcc0"/>';
+}
+var ST='stroke="#333" stroke-width="2"';
+var SH={
+  ball:function(){return '<circle class="c" r="16" fill="#fff" '+ST+'/><path d="M-11 -11 Q0 0 -11 11 M11 -11 Q0 0 11 11" fill="none" stroke="#999" stroke-width="1"/>';},
+  fish:function(){return '<ellipse class="c" rx="20" ry="10" fill="#fff" '+ST+'/><polygon class="c" points="20,0 34,-11 34,11" fill="#fff" '+ST+'/><circle cx="-10" cy="-3" r="2" fill="#333"/>';},
+  kite:function(){return '<path d="M0 30 Q10 70 -5 110" fill="none" stroke="#555" stroke-width="1.5"/><polygon class="c" points="0,-30 22,0 0,30 -22,0" fill="#fff" '+ST+'/><path d="M0 -30 V30 M-22 0 H22" stroke="#999" stroke-width="1"/>';},
+  hat:function(){return '<path class="c" d="M-22 4 Q0 -36 22 4 Z" fill="#fff" '+ST+'/><ellipse class="c" cy="6" rx="32" ry="6" fill="#fff" '+ST+'/>';},
+  duck:function(){return '<ellipse class="c" rx="24" ry="12" fill="#fff" '+ST+'/><circle class="c" cx="20" cy="-18" r="10" fill="#fff" '+ST+'/><polygon points="29,-20 40,-17 29,-13" fill="#fb8c00" '+ST+'/><circle cx="22" cy="-21" r="1.8" fill="#333"/>';},
+  boat:function(){return '<line x1="0" y1="0" x2="0" y2="-52" '+ST+'/><polygon points="4,-48 4,-6 40,-6" fill="#fff" '+ST+'/><polygon class="c" points="-55,0 55,0 38,28 -38,28" fill="#fff" '+ST+'/>';},
+  car:function(){return '<path class="c" d="M-42 6 v-16 h16 l10 -14 h30 l10 14 h18 v16 z" fill="#fff" '+ST+'/><rect x="-14" y="-20" width="12" height="9" fill="#dff1ff" stroke="#333"/><rect x="2" y="-20" width="12" height="9" fill="#dff1ff" stroke="#333"/><circle cx="-24" cy="8" r="8" fill="#333"/><circle cx="24" cy="8" r="8" fill="#333"/>';},
+  book:function(){return '<rect class="c" x="-20" y="-14" width="40" height="28" rx="2" fill="#fff" '+ST+'/><line x1="0" y1="-14" x2="0" y2="14" stroke="#333" stroke-width="1.5"/>';},
+  apple:function(){return '<circle class="c" r="14" fill="#fff" '+ST+'/><path d="M0 -14 q2 -8 6 -10" fill="none" stroke="#6d4c25" stroke-width="2.5"/><ellipse cx="9" cy="-19" rx="6" ry="3" fill="#43a047"/>';},
+  flower:function(){var p='';for(var i=0;i<5;i++){var a=i*72*Math.PI/180;p+='<circle class="c" cx="'+(Math.sin(a)*11).toFixed(1)+'" cy="'+(-Math.cos(a)*11).toFixed(1)+'" r="8" fill="#fff" '+ST+'/>';}
+    return '<path d="M0 8 V40" stroke="#43a047" stroke-width="3"/><ellipse cx="7" cy="28" rx="7" ry="3" fill="#43a047"/>'+p+'<circle r="6" fill="#fdd835" '+ST+'/>';},
+  bird:function(){return '<polygon class="c" points="-14,0 -28,-8 -26,6" fill="#fff" '+ST+'/><ellipse class="c" rx="16" ry="10" fill="#fff" '+ST+'/><circle class="c" cx="13" cy="-9" r="7" fill="#fff" '+ST+'/><polygon points="19,-10 27,-8 19,-6" fill="#fb8c00"/><circle cx="15" cy="-10" r="1.5" fill="#333"/>';},
+  bag:function(){return '<path d="M-10 -14 Q0 -30 10 -14" fill="none" stroke="#333" stroke-width="3"/><rect class="c" x="-20" y="-14" width="40" height="32" rx="5" fill="#fff" '+ST+'/>';},
+  sock:function(){return '<path class="c" d="M-6 -22 h14 v22 q0 6 -6 10 l-14 6 q-10 2 -10 -6 q0 -6 8 -8 l8 -4 z" fill="#fff" '+ST+'/>';},
+  cup:function(){return '<path d="M12 -8 q12 0 10 10 q-2 8 -12 6" fill="none" stroke="#333" stroke-width="2.5"/><path class="c" d="M-14 -14 h28 l-4 28 h-20 z" fill="#fff" '+ST+'/>';}
+};
+function colourPic(P){
+  var bg=P.bg==='beach'?'beach4':P.bg;
+  var o='<svg viewBox="0 0 400 280" class="scene">'+BG(bg,400,280);
+  P.objs.forEach(function(ob){ o+='<g data-c="'+ob[0]+'" transform="translate('+ob[2]+' '+ob[3]+') scale('+ob[4]+')">'+SH[ob[1]]()+'</g>'; });
+  return o+'</svg>';
+}
+
+
+var EMBED=!!window.YLE_ALL;
+function openTest(id){ ID=id; LCHK=[]; RCHK=[]; var ob=document.querySelector('.bar'); if(ob) ob.remove(); main.innerHTML=''; window.scrollTo(0,0);
+  if(!id) return listPage(); start(window.YLE_ALL[id]); }
 (function load(){
+  if(EMBED){ return openTest(ID && window.YLE_ALL[ID] ? ID : null); }
+  if(!ID){ return listPage(); }
   var s=document.createElement('script'); s.src=ID+'.js?v='+Date.now();
   s.onload=function(){ start(window.YLE); };
   s.onerror=function(){ main.innerHTML='<div class="msg"><div class="big">😕</div>Test not found: '+esc(ID)+'</div>'; };
   document.head.appendChild(s);
 })();
 
+
+function listPage(){
+  document.getElementById('lv').textContent='C2-EPE Young Learners';
+  document.getElementById('ttl').textContent='C2-EPE Starters Test Preparation';
+  document.getElementById('sub').textContent='Practice for the Pre A1 Starters exam · Listening & Reading and Writing';
+  var s=document.createElement('script'); s.src='yle-index.js?v='+Date.now();
+  if(EMBED){ s={}; setTimeout(function(){ s.onload(); },0); }
+  s.onload=function(){
+    var L=window.YLE_INDEX||[], groups={};
+    L.forEach(function(t){ (groups[t.level]=groups[t.level]||[]).push(t); });
+    var h='';
+    for(var g in groups){ h+='<div class="paper">🏅 '+esc(g)+' <small>'+groups[g].length+' tests</small></div>';
+      groups[g].forEach(function(t){ var n=parseInt(store('c2p-n-'+t.id)||'0',10);
+        h+='<a class="card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;cursor:pointer" '+(EMBED?'onclick="openTest(\''+t.id+'\')"':'href="c2-yle.html?t='+encodeURIComponent(t.id)+'"')+'>'
+          +'<span style="width:42px;height:42px;font-size:18px;font-weight:700;background:var(--gold);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:none">'+t.num+'</span><span style="flex:1"><b style="color:var(--navy);font-size:17px">'+esc(t.title)+'</b><br><small style="color:#666">'+esc(t.desc||'')+(n?' · ✓ done '+n+'×':'')+'</small></span><span style="font-size:22px">▶</span></a>'; }); }
+    main.innerHTML=h||'<div class="msg">No tests yet.</div>';
+  };
+  if(EMBED) return;
+  s.onerror=function(){ main.innerHTML='<div class="msg"><div class="big">😕</div>yle-index.js not found</div>'; };
+  document.head.appendChild(s);
+}
 function card(n, title, marks){
   return $('<div class="card"><div class="pt">Part '+n+'</div><h2><span class="n">'+n+'</span><span>'+esc(title)+'</span><span class="q5">'+marks+' questions</span></h2></div>');
 }
 function audioEl(D, f){
+  if(PRINT){ var m=f.match(/part(\d)/); return $('<div class="trk">🎧 Listening Part '+(m?m[1]:'')+' – scan the QR code on page 1 to listen.</div>'); }
   var a=$('<audio controls preload="metadata" style="width:100%;margin:0 0 8px"></audio>');
   a.src=(D.audio||'')+f;
   a.onerror=function(){ if(a.dataset.alt) return; a.dataset.alt=1; a.src=f; };
   return a;
 }
-function scene(items, vb, bg){
-  var s=svgEl('svg',{viewBox:vb,'class':'scene'});
-  (bg||[]).forEach(function(b){ s.appendChild(svgEl(b[0], b[1])); });
+function scene(items, vb, bgKind, yoff){
+  var s=$('<div><svg xmlns="http://www.w3.org/2000/svg" viewBox="'+vb+'" class="scene"><g transform="translate(0 '+(yoff||0)+')">'+BG(bgKind,400,300)+'</g></svg></div>').firstElementChild;
   items.forEach(function(it){
     if(!it[1]) return;
     var t=svgEl('text',{x:it[2], y:it[3], 'font-size':it[4], 'class':'e', 'data-id':it[0]}); t.textContent=it[1]; s.appendChild(t);
@@ -226,13 +309,13 @@ function winput(ph){ return $('<input class="w" autocomplete="off" autocapitaliz
 function L1(D, P){
   var c=card(1, P.title, 5); c.appendChild(audioEl(D, P.file));
   c.appendChild($('<div class="hint">👆 Tap a <b>name</b>, then tap the <b>person</b> in the picture. / ចុចឈ្មោះ រួចចុចមនុស្សក្នុងរូប</div>'));
-  var bg=[['rect',{x:0,y:40,width:400,height:120,fill:'#dff1ff'}],['rect',{x:0,y:160,width:400,height:180,fill:'#bfe3a5'}],
-          ['path',{d:'M0 250 Q200 215 400 255 L400 275 Q200 240 0 270 Z',fill:'#e9dcc0'}]];
   var items=P.scene.map(function(it){ return [it[0],it[1],it[2],it[3]+40,it[4]]; });
-  var s=scene(items,'0 0 400 385',bg);
+  var s=scene(items,'0 0 400 385',P.bg||'park',40);
+  s.insertBefore(svgEl('rect',{x:0,y:0,width:400,height:40,fill:'#fff'}), s.firstChild.nextSibling); s.appendChild(svgEl('rect',{x:0,y:340,width:400,height:45,fill:'#fff'}));
+  var tx=[].slice.call(s.querySelectorAll('text.e')); tx.forEach(function(t){ s.appendChild(t); });
   var owner={}; for(var p in P.people) P.people[p].forEach(function(id){ owner[id]=p; });
   var anchor={}; for(var p2 in P.people){ var f=P.scene.filter(function(x){return x[0]===P.people[p2][0];})[0]; anchor[p2]=[f[2], f[3]+40]; }
-  var lines=svgEl('g',{}); s.insertBefore(lines, s.firstChild.nextSibling.nextSibling.nextSibling);
+  var lines=svgEl('g',{}); s.appendChild(lines);
   var top=P.names.slice(0,4), bot=P.names.slice(4), chips={}, pos={};
   function row(arr,y){ var w=400/arr.length; arr.forEach(function(nm,i){ var cx=w*i+w/2; pos[nm]=[cx, y<100?y+14:y-14];
       var g=svgEl('g',{'class':'nm'}); g.appendChild(svgEl('rect',{x:cx-34,y:y-14,width:68,height:28,rx:14})); var t=svgEl('text',{x:cx,y:y}); t.textContent=nm; g.appendChild(t);
@@ -251,7 +334,8 @@ function L1(D, P){
   var key=unk(P.k);
   LCHK.push({n:5, check:function(){ done=true; var r=0; for(var nm in key){ var ok=link[nm]===key[nm]; r+=ok; chips[nm].dataset.st=ok?'r':'w'; if(!ok&&!link[nm]) {} }
       for(var x in link) if(!(x in key) && x!==P.example[0]) chips[x].dataset.st='w'; draw(); return r; },
-    reset:function(){ done=false; link={}; link[P.example[0]]=P.example[1]; for(var n in chips) delete chips[n].dataset.st; draw(); }});
+    reset:function(){ done=false; link={}; link[P.example[0]]=P.example[1]; for(var n in chips) delete chips[n].dataset.st; draw(); },
+    key:function(){ done=true; for(var nm in key) link[nm]=key[nm]; draw(); }});
 }
 function L2(D, P){
   var c=card(2, P.title, 5); c.appendChild(audioEl(D, P.file));
@@ -261,7 +345,8 @@ function L2(D, P){
   P.items.forEach(function(it,i){ var d=$('<div class="yn"><span class="k" style="color:#1e6fd9;font-weight:700">'+(i+1)+'</span><span class="s">'+esc(it.q.replace(/\s*_{3}\s*$/,'')).replace(/  /g,' ')+'</span></div>');
     var inp=winput(''); d.appendChild(inp); c.appendChild(d); ins.push([inp, unk(it.k)]); });
   main.appendChild(c);
-  LCHK.push({n:5, check:function(){ var r=0; ins.forEach(function(x){ r+=textCheck(x[0],x[1]); }); return r; }, reset:function(){ ins.forEach(function(x){textReset(x[0]);}); }});
+  LCHK.push({n:5, check:function(){ var r=0; ins.forEach(function(x){ r+=textCheck(x[0],x[1]); }); return r; }, reset:function(){ ins.forEach(function(x){textReset(x[0]);}); },
+    key:function(){ ins.forEach(function(x){ x[0].value=x[1][0]; x[0].readOnly=true; x[0].classList.add('kv'); }); }});
 }
 function abcRow(q, opts, cb, exAns){
   var d=$('<div class="it"><div class="q"><span>'+esc(q)+'</span></div></div>'), g=$('<div class="abc"></div>'), bs=[];
@@ -278,43 +363,26 @@ function L3(D, P){
     c.appendChild(r[0]); rows.push([st, r[1], unk(it.k)]); });
   main.appendChild(c);
   LCHK.push({n:5, check:function(){ var s=0; rows.forEach(function(x){ x[0].done=1; var ok=x[0].pick===x[2]; s+=ok; if(x[0].pick>=0) x[1][x[0].pick].classList.add(ok?'right':'wrong'); if(!ok) x[1][x[2]].classList.add('right'); }); return s; },
-    reset:function(){ rows.forEach(function(x){ x[0].done=0; x[0].pick=-1; x[1].forEach(function(b){ b.className=''; b.querySelector('.bx').textContent=''; }); }); }});
-}
-function beach(){
-  var S='stroke="#333" stroke-width="2"';
-  return '<svg viewBox="0 0 400 280" class="scene">'
-   +'<rect x="0" y="0" width="400" height="92" fill="#e3f4ff"/><rect x="0" y="92" width="400" height="92" fill="#a9d8f2"/>'
-   +'<path d="M0 100 q20 -8 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="#fff" stroke-width="2"/>'
-   +'<rect x="0" y="184" width="400" height="96" fill="#f6e3a9"/>'
-   +'<path d="M80 75 Q110 160 150 250" fill="none" stroke="#555" stroke-width="1.5"/>'
-   +'<g data-c="kite"><polygon points="80,14 102,45 80,76 58,45" fill="#fff" '+S+'/></g>'
-   +'<line x1="290" y1="88" x2="290" y2="140" '+S+'/><polygon points="294,92 294,134 330,134" fill="#fff" '+S+'/>'
-   +'<g data-c="fishBoat"><ellipse cx="262" cy="133" rx="13" ry="6.5" fill="#fff" '+S+'/><polygon points="249,133 239,126 239,140" fill="#fff" '+S+'/></g>'
-   +'<g data-c="boat"><polygon points="235,140 345,140 328,168 252,168" fill="#fff" '+S+'/></g>'
-   +'<g data-c="fishSea"><ellipse cx="120" cy="155" rx="20" ry="10" fill="#fff" '+S+'/><polygon points="140,155 155,144 155,166" fill="#fff" '+S+'/><circle cx="110" cy="152" r="2" fill="#333"/></g>'
-   +'<g data-c="ballSea"><circle cx="45" cy="125" r="14" fill="#fff" '+S+'/></g>'
-   +'<g data-c="duck"><ellipse cx="190" cy="130" rx="24" ry="12" fill="#fff" '+S+'/><circle cx="210" cy="112" r="10" fill="#fff" '+S+'/></g><polygon points="219,110 230,113 219,117" fill="#fb8c00" '+S+'/><circle cx="212" cy="109" r="1.8" fill="#333"/>'
-   +'<g data-c="ballSand"><circle cx="330" cy="238" r="17" fill="#fff" '+S+'/></g>'
-   +'<g data-c="hat"><path d="M178 240 Q200 200 222 240 Z" fill="#fff" '+S+'/><ellipse cx="200" cy="242" rx="32" ry="6" fill="#fff" '+S+'/></g>'
-   +'<g data-c="spade"><rect x="60" y="215" width="6" height="34" fill="#fff" '+S+'/><path d="M52 248 h22 v10 q-11 12 -22 0 z" fill="#fff" '+S+'/></g>'
-   +'</svg>';
+    reset:function(){ rows.forEach(function(x){ x[0].done=0; x[0].pick=-1; x[1].forEach(function(b){ b.className=''; b.querySelector('.bx').textContent=''; }); }); },
+    key:function(){ rows.forEach(function(x){ x[0].done=1; x[0].pick=x[2]; x[1][x[2]].querySelector('.bx').textContent='✓'; x[1][x[2]].classList.add('kv'); }); }});
 }
 function L4(D, P){
   var c=card(4, P.title, 5); c.appendChild(audioEl(D, P.file));
   c.appendChild($('<div class="hint">🎨 Choose a <b>colour</b>, then tap the thing in the picture. / ជ្រើសពណ៌ រួចចុចលើរបស់ក្នុងរូប</div>'));
   var pal=$('<div class="pal"></div>'), cur=null;
   P.colours.forEach(function(k){ var b=$('<button type="button" title="'+k+'" style="background:'+COL[k]+'"></button>'); b.onclick=function(){ cur=k; pal.querySelectorAll('button').forEach(function(x){x.classList.toggle('sel',x===b);}); }; pal.appendChild(b); });
-  var s=$('<div>'+beach()+'</div>').firstElementChild; c.appendChild(s); c.appendChild(pal);
+  var s=$('<div>'+colourPic(P)+'</div>').firstElementChild; c.appendChild(s); c.appendChild(pal);
   var fill={}, done=false;
-  function paint(g,k){ g.querySelectorAll('ellipse,circle,polygon,path,rect').forEach(function(e){ if(e.getAttribute('r')==='2'||e.getAttribute('r')==='1.8') return; e.setAttribute('fill', k?COL[k]:'#fff'); }); }
+  function paint(g,k){ g.querySelectorAll('.c').forEach(function(e){ e.setAttribute('fill', k?COL[k]:'#fff'); }); }
   s.querySelectorAll('g[data-c]').forEach(function(g){ var id=g.dataset.c; g.style.cursor='pointer';
     if(id===P.example[0]){ paint(g,P.example[1]); return; }
     g.addEventListener('click', function(){ if(done||!cur) return; fill[id]=cur; paint(g,cur); }); });
   main.appendChild(c);
   var key=unk(P.k);
   LCHK.push({n:5, check:function(){ done=true; var r=0, miss=[]; for(var id in key){ if(fill[id]===key[id]) r++; else miss.push(id); }
-      var note=$('<div class="note" style="margin-left:0">'+(miss.length?'✔ Answers: '+Object.keys(key).map(function(id){return id.replace(/([A-Z])/g,' $1').toLowerCase()+' – <b style="color:'+(COL[key[id]]==='#fdd835'?'#b8a000':COL[key[id]])+'">'+key[id]+'</b>';}).join(' · '):'🌈 All correct!')+'</div>'); c.appendChild(note); c._note=note; return r; },
-    reset:function(){ done=false; fill={}; s.querySelectorAll('g[data-c]').forEach(function(g){ if(g.dataset.c!==P.example[0]) paint(g,null); }); if(c._note){c._note.remove(); c._note=null;} }});
+      var note=$('<div class="note" style="margin-left:0">'+(miss.length?'✔ Answers: '+Object.keys(key).map(function(id){return id.replace(/([A-Z])/g,' $1').toLowerCase().replace(/ (sea|boat|sand|tree|house|table|floor|ground)$/,' ($1)')+' – <b style="color:'+(COL[key[id]]==='#fdd835'?'#b8a000':COL[key[id]])+'">'+key[id]+'</b>';}).join(' · '):'🌈 All correct!')+'</div>'); c.appendChild(note); c._note=note; return r; },
+    reset:function(){ done=false; fill={}; s.querySelectorAll('g[data-c]').forEach(function(g){ if(g.dataset.c!==P.example[0]) paint(g,null); }); if(c._note){c._note.remove(); c._note=null;} },
+    key:function(){ done=true; for(var id in key){ fill[id]=key[id]; } for(var id in key) paint(s.querySelector('g[data-c="'+id+'"]'), key[id]); }});
 }
 
 /* ---------------- READING & WRITING ---------------- */
@@ -332,16 +400,18 @@ function R1(D, P){
     c.appendChild(d); rows.push([st,b,unk(it.k)]); });
   main.appendChild(c);
   RCHK.push({n:5, check:function(){ var r=0; rows.forEach(function(x){ x[0].done=1; var ok=x[0].v===x[2]; r+=ok; x[1].classList.add(ok?'right':'wrong'); if(!ok) x[1].textContent=x[2]?'✓':'✗'; }); return r; },
-    reset:function(){ rows.forEach(function(x){ x[0].done=0; x[0].v=null; x[1].className=''; x[1].textContent=''; }); }});
+    reset:function(){ rows.forEach(function(x){ x[0].done=0; x[0].v=null; x[1].className=''; x[1].textContent=''; }); },
+    key:function(){ rows.forEach(function(x){ x[0].done=1; x[0].v=x[2]; x[1].textContent=x[2]?'✓':'✗'; x[1].classList.add('kv'); }); }});
 }
 function R2(D, P){
   var c=card(2, P.title, 5);
-  c.appendChild(scene(P.scene,'0 0 400 300',[['rect',{x:0,y:0,width:400,height:170,fill:'#e3f4ff'}],['rect',{x:0,y:170,width:400,height:130,fill:'#c5e7ad'}]]));
+  c.appendChild(scene(P.scene,'0 0 400 300',P.bg||'park',0));
   P.examples.forEach(function(e){ c.appendChild($('<div class="exrow" style="margin-top:8px">Example: '+esc(e[0])+' <span class="a">'+e[1]+'</span></div>')); });
   var ins=[];
   P.items.forEach(function(it,i){ var d=$('<div class="yn"><span class="k" style="color:#1e6fd9;font-weight:700">'+(i+1)+'</span><span class="s">'+esc(it.q)+'</span></div>'); var inp=winput('yes / no'); d.appendChild(inp); c.appendChild(d); ins.push([inp,unk(it.k)]); });
   main.appendChild(c);
-  RCHK.push({n:5, check:function(){ var r=0; ins.forEach(function(x){ r+=textCheck(x[0],x[1]); }); return r; }, reset:function(){ ins.forEach(function(x){textReset(x[0]);}); }});
+  RCHK.push({n:5, check:function(){ var r=0; ins.forEach(function(x){ r+=textCheck(x[0],x[1]); }); return r; }, reset:function(){ ins.forEach(function(x){textReset(x[0]);}); },
+    key:function(){ ins.forEach(function(x){ x[0].value=x[1][0]; x[0].readOnly=true; x[0].classList.add('kv'); }); }});
 }
 function letters(l){ return '<span class="letters">'+l.split('').map(function(x){return '<span>'+esc(x)+'</span>';}).join('')+'</span>'; }
 function R3(D, P){
@@ -351,7 +421,8 @@ function R3(D, P){
   P.items.forEach(function(it,i){ var a=unk(it.k); var d=$('<div class="lt3"><span class="k" style="color:#1e6fd9;font-weight:700">'+(i+1)+'</span><span class="e">'+it.pic+'</span>'+letters(it.letters)+'</div>');
     var inp=winput(''); inp.maxLength=12; d.appendChild(inp); c.appendChild(d); ins.push([inp,a]); });
   main.appendChild(c);
-  RCHK.push({n:5, check:function(){ var r=0; ins.forEach(function(x){ r+=textCheck(x[0],x[1]); }); return r; }, reset:function(){ ins.forEach(function(x){textReset(x[0]);}); }});
+  RCHK.push({n:5, check:function(){ var r=0; ins.forEach(function(x){ r+=textCheck(x[0],x[1]); }); return r; }, reset:function(){ ins.forEach(function(x){textReset(x[0]);}); },
+    key:function(){ ins.forEach(function(x){ x[0].value=x[1][0]; x[0].readOnly=true; x[0].classList.add('kv'); }); }});
 }
 function R4(D, P){
   var c=card(4, P.title, 5);
@@ -362,7 +433,8 @@ function R4(D, P){
   var t=$('<div class="text gtext">'+html+'</div>'); c.appendChild(t);
   t.querySelectorAll('input').forEach(function(inp){ ins.push([inp,[key[inp.dataset.n-1]]]); });
   main.appendChild(c);
-  RCHK.push({n:5, check:function(){ var r=0; ins.forEach(function(x){ r+=textCheck(x[0],x[1]); }); return r; }, reset:function(){ ins.forEach(function(x){textReset(x[0]);}); }});
+  RCHK.push({n:5, check:function(){ var r=0; ins.forEach(function(x){ r+=textCheck(x[0],x[1]); }); return r; }, reset:function(){ ins.forEach(function(x){textReset(x[0]);}); },
+    key:function(){ ins.forEach(function(x){ x[0].value=x[1][0]; x[0].readOnly=true; x[0].classList.add('kv'); }); }});
 }
 function R5(D, P){
   var c=card(5, P.title, 5), ins=[], n=0;
@@ -376,7 +448,8 @@ function R5(D, P){
       fr.appendChild(d); });
     c.appendChild(fr); });
   main.appendChild(c);
-  RCHK.push({n:5, check:function(){ var r=0; ins.forEach(function(x){ r+=textCheck(x[0],x[1]); }); return r; }, reset:function(){ ins.forEach(function(x){textReset(x[0]);}); }});
+  RCHK.push({n:5, check:function(){ var r=0; ins.forEach(function(x){ r+=textCheck(x[0],x[1]); }); return r; }, reset:function(){ ins.forEach(function(x){textReset(x[0]);}); },
+    key:function(){ ins.forEach(function(x){ x[0].value=x[1][0]; x[0].readOnly=true; x[0].classList.add('kv'); }); }});
 }
 
 /* ---------------- page ---------------- */
@@ -386,10 +459,17 @@ function start(D){
   document.getElementById('lv').textContent='C2-EPE Young Learners · '+D.level;
   document.getElementById('ttl').textContent=D.title;
   document.getElementById('sub').textContent='Listening (20) · Reading & Writing (25)';
+  if(PRINT){ document.body.classList.add('print'); document.getElementById('sub').textContent=(KEY?'Teacher\'s edition · answers':'Student\'s edition')+' · Listening (20) · Reading & Writing (25)';
+    [L1,L2,L3,L4].forEach(function(f,i){ if(i===0) main.appendChild($('<div class="paper">🎧 Listening <small>4 parts · 20 questions · about 20 minutes</small></div>')); f(D, D.L[i]); });
+    main.appendChild($('<div class="paper pb">📖 Reading &amp; Writing <small>5 parts · 25 questions · 20 minutes</small></div>'));
+    [R1,R2,R3,R4,R5].forEach(function(f,i){ f(D, D.R[i]); });
+    if(KEY) LCHK.concat(RCHK).forEach(function(c){ c.key(); });
+    window.YLE_READY=true; return; }
   var ME=who();
   if(ME&&ME.login){ main.innerHTML='<div class="who"><div class="me">👤 '+esc(ME.name)+(ME.cls?' · '+esc(ME.cls):'')+' <small>✓ signed in</small></div></div>'; }
   else { main.innerHTML='<div class="who"><input id="nm" placeholder="Your name / ឈ្មោះ"><input id="cl" placeholder="Class / ថ្នាក់"></div>';
     var w0=ME||{}; document.getElementById('nm').value=w0.name||''; document.getElementById('cl').value=w0.cls||''; }
+  if(EMBED) main.insertBefore($('<button type="button" class="btn alt" style="margin-bottom:10px" onclick="openTest(null)">← All tests</button>'), main.firstChild);
   var res=$('<div class="res" style="display:none"></div>'); main.appendChild(res);
   main.appendChild($('<div class="paper">🎧 Listening <small>4 parts · 20 questions · about 20 minutes</small></div>'));
   [L1,L2,L3,L4].forEach(function(f,i){ f(D, D.L[i]); });
@@ -415,6 +495,7 @@ function start(D){
         +'<div>📖 Reading &amp; Writing<br><b>'+rr+' / 25</b><div class="sh">'+shields(rr,25)+'</div><div class="scr">Parts: '+rp.join(' · ')+'</div></div></div>';
       res.style.display='block';
       sc.textContent=star+' '+tot+' / 45'; go.textContent='Try again ↺'; go.className='btn alt'; done=true; window.scrollTo({top:0,behavior:'smooth'});
+      try{ if(window.parent!==window) window.parent.postMessage({type:'gameroom-score', score:tot, total:45, level:'Starters'}, '*'); }catch(e){}
       var n=parseInt(store('c2p-n-'+D.id)||'0',10)+1; store('c2p-n-'+D.id, String(n));
       var now=new Date();
       send({prefix:'yle-s', level:D.level, setId:D.id, setTitle:D.title, kind:'yle-test',

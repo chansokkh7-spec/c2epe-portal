@@ -14257,6 +14257,869 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "empower-a1-tests",
+ "level": "Empower A1",
+ "icon": "📝",
+ "title": "Empower A1 Starter – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "empower-a1-tests",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Hello!",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-ut-unit-test-unit-1-hello-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "She's from Britain.",
+      "She's from China.",
+      "She's from Japan.",
+      "She's from Brazil.",
+      "She's from Italy."
+     ],
+     "key": "1 Britain (a), 2 China (b), 3 Japan (a), 4 Brazil (a), 5 Italy (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-ut-unit-test-unit-1-hello-ex2.mp3",
+     "secs": 69,
+     "script": [
+      "He's Turkish.",
+      "He's British.",
+      "He's Brazilian.",
+      "He's Chinese.",
+      "She's from Mexico."
+     ],
+     "key": "1 Turkish, 2 British, 3 Brazilian, 4 Chinese, 5 Mexico"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: All about me",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-ut-unit-test-unit-2-all-about-me-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "This is my book.",
+      "This is my phone.",
+      "This is my computer.",
+      "This is my newspaper.",
+      "This is my umbrella."
+     ],
+     "key": "1 book (a), 2 phone (a), 3 computer (b), 4 newspaper (a), 5 umbrella (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-ut-unit-test-unit-2-all-about-me-ex2.mp3",
+     "secs": 70,
+     "script": [
+      "It's very new.",
+      "It's very boring.",
+      "This is my ticket.",
+      "It's very small.",
+      "This is my key."
+     ],
+     "key": "1 new, 2 boring, 3 ticket, 4 small, 5 key"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Food and drink",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-ut-unit-test-unit-3-food-and-drink-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I like rice.",
+      "Can I have some water, please?",
+      "Can I have some milk, please?",
+      "Can I have some fruit juice, please?",
+      "I like eggs."
+     ],
+     "key": "1 rice (a), 2 water (b), 3 milk (a), 4 fruit juice (b), 5 eggs (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-ut-unit-test-unit-3-food-and-drink-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "I like cheese.",
+      "I like meat.",
+      "Can I have a banana, please?",
+      "I like pizza.",
+      "Can I have an apple, please?"
+     ],
+     "key": "1 cheese, 2 meat, 3 banana, 4 pizza, 5 apple"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: My life and my family",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-ut-unit-test-unit-4-my-life-and-my-family-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "This is my husband.",
+      "This is my daughter.",
+      "This is my wife.",
+      "This is my father.",
+      "This is my sister."
+     ],
+     "key": "1 husband (a), 2 daughter (c), 3 wife (a), 4 father (b), 5 sister (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-ut-unit-test-unit-4-my-life-and-my-family-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "I go to the gym every day.",
+      "This is my mother.",
+      "I live in Phnom Penh.",
+      "I study at university.",
+      "I speak English."
+     ],
+     "key": "1 go, 2 mother, 3 live, 4 study, 5 speak"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Places",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-ut-unit-test-unit-5-places-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "There's a bath in the room.",
+      "There's a car park at the hotel.",
+      "There's a towel in the room.",
+      "Where's the restaurant?",
+      "There's a shower in the room."
+     ],
+     "key": "1 bath (c), 2 car park (b), 3 towel (a), 4 restaurant (a), 5 shower (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-ut-unit-test-unit-5-places-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "Is there a room for tonight?",
+      "Where's the station?",
+      "Where's the café?",
+      "Where's the swimming pool?",
+      "There's a pillow in the room."
+     ],
+     "key": "1 room, 2 station, 3 café, 4 swimming pool, 5 pillow"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Work and routines",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-ut-unit-test-unit-6-work-and-routines-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "I have lunch at seven o'clock.",
+      "She's a teacher.",
+      "She's a doctor.",
+      "She's a taxi driver.",
+      "She's a waiter."
+     ],
+     "key": "1 have lunch (c), 2 teacher (b), 3 doctor (b), 4 taxi driver (c), 5 waiter (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-ut-unit-test-unit-6-work-and-routines-ex2.mp3",
+     "secs": 76,
+     "script": [
+      "I wake up at seven o'clock.",
+      "I go to bed at seven o'clock.",
+      "I finish work at seven o'clock.",
+      "She's a chef.",
+      "I have breakfast at seven o'clock."
+     ],
+     "key": "1 wake up, 2 go to bed, 3 finish work, 4 chef, 5 have breakfast"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Shopping and fashion",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-ut-unit-test-unit-7-shopping-and-fashion-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "How much is this bag?",
+      "How much is this chair?",
+      "I like your skirt.",
+      "How much is this clock?",
+      "I like your shoes."
+     ],
+     "key": "1 bag (c), 2 chair (b), 3 skirt (b), 4 clock (b), 5 shoes (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-ut-unit-test-unit-7-shopping-and-fashion-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "I like your shirt.",
+      "I like your jeans.",
+      "I like your jacket.",
+      "I like your T-shirt.",
+      "How much is this glass?"
+     ],
+     "key": "1 shirt, 2 jeans, 3 jacket, 4 T-shirt, 5 glass"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Past events",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-ut-unit-test-unit-8-past-events-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "Yesterday I read a book.",
+      "Yesterday I played football.",
+      "Yesterday I watched a film.",
+      "Yesterday I went to a party.",
+      "Yesterday I listened to music."
+     ],
+     "key": "1 read a book (c), 2 played football (c), 3 watched a film (c), 4 went to a party (b), 5 listened to music (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-ut-unit-test-unit-8-past-events-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "Yesterday I went to the cinema.",
+      "I was at home a year ago.",
+      "Yesterday I went shopping.",
+      "I was at home this morning.",
+      "I was at home two days ago."
+     ],
+     "key": "1 went to the cinema, 2 a year ago, 3 went shopping, 4 this morning, 5 two days ago"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Holidays",
+   "info": "Test paper page 19",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-ut-unit-test-unit-9-holidays-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I go to work by bike.",
+      "I love spring.",
+      "It's rainy today.",
+      "I go to work by metro.",
+      "I go to work by taxi."
+     ],
+     "key": "1 bike (a), 2 spring (b), 3 rainy (a), 4 metro (c), 5 taxi (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-ut-unit-test-unit-9-holidays-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "It's windy today.",
+      "I love winter.",
+      "It's cloudy today.",
+      "I go to work by tram.",
+      "I go to work by train."
+     ],
+     "key": "1 windy, 2 winter, 3 cloudy, 4 tram, 5 train"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Here and now",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-ut-unit-test-unit-10-here-and-now-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "She's in the bedroom.",
+      "She's in the bathroom.",
+      "She's in the garden.",
+      "She's in the garage.",
+      "She's in the hall."
+     ],
+     "key": "1 bedroom (c), 2 bathroom (a), 3 garden (a), 4 garage (a), 5 hall (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-ut-unit-test-unit-10-here-and-now-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "She's in the kitchen.",
+      "I'm in a taxi now.",
+      "I'm at the cinema now.",
+      "I'm in bed now.",
+      "I'm at work now."
+     ],
+     "key": "1 kitchen, 2 in a taxi, 3 at the cinema, 4 in bed, 5 at work"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 11: Achievers",
+   "info": "Test paper page 23",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-ut-unit-test-unit-11-achievers-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "I finished school in",
+      "2. I can cook.",
+      "I can ride a bike.",
+      "I can dance.",
+      "I can drive a car."
+     ],
+     "key": "1 finish school (b), 2 cook (a), 3 ride a bike (c), 4 dance (c), 5 drive a car (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-ut-unit-test-unit-11-achievers-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "I can ride a horse.",
+      "I can paint.",
+      "She went to university in Paris.",
+      "He stopped working at sixty.",
+      "They got married last year."
+     ],
+     "key": "1 ride a horse, 2 paint, 3 go to university, 4 stop working, 5 get married"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 12: Plans",
+   "info": "Test paper page 25",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-ut-unit-test-unit-12-plans-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "I'm going to exercise at the gym.",
+      "I'm going to clean a room.",
+      "I'm going to visit Paris.",
+      "I'm going to use a computer.",
+      "I'm going to do your homework."
+     ],
+     "key": "1 exercise at the gym (b), 2 clean a room (c), 3 visit Paris (c), 4 use a computer (c), 5 do your homework (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-ut-unit-test-unit-12-plans-ex2.mp3",
+     "secs": 80,
+     "script": [
+      "I'm going to visit my friend next year.",
+      "I'm going to visit my friend in two weeks.",
+      "I'm going to visit my friend tomorrow.",
+      "I'm going to visit my friend this Friday.",
+      "I'm going to visit my friend next week."
+     ],
+     "key": "1 next year, 2 in two weeks, 3 tomorrow, 4 this Friday, 5 next week"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-mt-monthly-test-1-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "She's from Japan.",
+      "This is my phone.",
+      "She's from Brazil.",
+      "This is my ticket."
+     ],
+     "key": "1 Japan (b), 2 phone (b), 3 Brazil (c), 4 ticket (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-mt-monthly-test-1-ex2.mp3",
+     "secs": 56,
+     "script": [
+      "It's very new.",
+      "He's Mexican.",
+      "It's very big.",
+      "She's from China."
+     ],
+     "key": "1 new, 2 Mexican, 3 big, 4 China"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-mt-monthly-test-2-ex1.mp3",
+     "secs": 56,
+     "script": [
+      "This is my umbrella.",
+      "I like bread.",
+      "This is my book.",
+      "I like cheese."
+     ],
+     "key": "1 umbrella (a), 2 bread (c), 3 book (a), 4 cheese (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-mt-monthly-test-2-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "Can I have some cake, please?",
+      "It's very small.",
+      "Can I have some water, please?",
+      "It's very difficult."
+     ],
+     "key": "1 cake, 2 small, 3 water, 4 difficult"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-mt-monthly-test-3-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "Can I have some tea, please?",
+      "This is my husband.",
+      "I like cheese.",
+      "This is my mother."
+     ],
+     "key": "1 tea (c), 2 husband (c), 3 cheese (b), 4 mother (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-mt-monthly-test-3-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "I go to the gym every day.",
+      "I'd like a cheese sandwich.",
+      "This is my brother.",
+      "Can I have an apple, please?"
+     ],
+     "key": "1 go, 2 sandwich, 3 brother, 4 apple"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-mt-monthly-test-4-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "There's a towel in the room.",
+      "I finish work at seven o'clock.",
+      "There's a car park at the hotel.",
+      "I have lunch at seven o'clock."
+     ],
+     "key": "1 towel (b), 2 finish work (b), 3 car park (c), 4 have lunch (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-mt-monthly-test-4-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "I go to bed at seven o'clock.",
+      "Where's the park?",
+      "I have breakfast at seven o'clock.",
+      "There's wi-fi in the room."
+     ],
+     "key": "1 go to bed, 2 park, 3 have breakfast, 4 wi-fi"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-mt-monthly-test-5-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "I like your shirt.",
+      "Yesterday I went shopping.",
+      "How much is this plant?",
+      "Yesterday I had a pizza."
+     ],
+     "key": "1 shirt (c), 2 went shopping (a), 3 plant (a), 4 had a pizza (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-mt-monthly-test-5-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "I was at home this morning.",
+      "I like your jeans.",
+      "Yesterday I went to a party.",
+      "How much is this cup?"
+     ],
+     "key": "1 this morning, 2 jeans, 3 went to a party, 4 cup"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-mt-monthly-test-6-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "Yesterday I listened to music.",
+      "I go to work by plane.",
+      "Yesterday I watched a film.",
+      "It's cloudy today."
+     ],
+     "key": "1 listened to music (c), 2 plane (a), 3 watched a film (b), 4 cloudy (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-mt-monthly-test-6-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "I go to work by bike.",
+      "I was at home this morning.",
+      "I love spring.",
+      "Yesterday I read a book."
+     ],
+     "key": "1 bike, 2 this morning, 3 spring, 4 read a book"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-mt-monthly-test-7-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "I go to work by taxi.",
+      "She's in the kitchen.",
+      "I love spring.",
+      "She's in the garden."
+     ],
+     "key": "1 taxi (c), 2 kitchen (b), 3 spring (b), 4 garden (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-mt-monthly-test-7-ex2.mp3",
+     "secs": 58,
+     "script": [
+      "I'm at the cinema now.",
+      "It's snowy today.",
+      "I'm at the station now.",
+      "It's sunny today."
+     ],
+     "key": "1 at the cinema, 2 snowy, 3 at the station, 4 sunny"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-mt-monthly-test-8-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "I can ride a horse.",
+      "I'm going to visit Paris.",
+      "I can dance.",
+      "I'm going to use a computer."
+     ],
+     "key": "1 ride a horse (b), 2 visit Paris (c), 3 dance (b), 4 use a computer (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-mt-monthly-test-8-ex2.mp3",
+     "secs": 62,
+     "script": [
+      "I'm going to visit my friend tomorrow.",
+      "They got married last year.",
+      "I'm going to visit my friend next year.",
+      "He stopped working at sixty."
+     ],
+     "key": "1 tomorrow, 2 get married, 3 next year, 4 stop working"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "She's from Spain.",
+      "This is my ticket.",
+      "I like meat.",
+      "She's from China.",
+      "This is my watch."
+     ],
+     "key": "1 Spain (b), 2 ticket (c), 3 meat (b), 4 China (c), 5 watch (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "It's very old.",
+      "Can I have some milk, please?",
+      "He's Brazilian.",
+      "It's very big.",
+      "Can I have an apple, please?"
+     ],
+     "key": "1 old, 2 milk, 3 Brazilian, 4 big, 5 apple"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "How much is this clock?",
+      "Yesterday I went shopping.",
+      "It's rainy today.",
+      "I like your dress.",
+      "Yesterday I watched a film."
+     ],
+     "key": "1 clock (b), 2 went shopping (b), 3 rainy (b), 4 dress (c), 5 watched a film (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "I was at home yesterday.",
+      "I go to work by train.",
+      "How much is this cup?",
+      "I was at home last weekend.",
+      "I love winter."
+     ],
+     "key": "1 yesterday, 2 train, 3 cup, 4 last weekend, 5 winter"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-fin-final-test-semester-1-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "She's from Britain.",
+      "This is my watch.",
+      "Can I have some fruit juice, please?",
+      "This is my sister.",
+      "There's a pillow in the room."
+     ],
+     "key": "1 Britain (b), 2 watch (a), 3 fruit juice (b), 4 sister (a), 5 pillow (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-fin-final-test-semester-1-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "It's very big.",
+      "Can I have an apple, please?",
+      "This is my father.",
+      "Is there a room for tonight?",
+      "She's a chef."
+     ],
+     "key": "1 big, 2 apple, 3 father, 4 room, 5 chef"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "em1-fin-final-test-semester-1-ex3.mp3",
+     "secs": 70,
+     "script": [
+      "I'd like a cheese sandwich.",
+      "This is my mother.",
+      "There's a bath in the room.",
+      "She's a chef.",
+      "She's from Japan."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "em1-fin-final-test-semester-2-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "How much is this bag?",
+      "Yesterday I played football.",
+      "It's cloudy today.",
+      "She's in the dining room.",
+      "I can cook."
+     ],
+     "key": "1 bag (a), 2 played football (b), 3 cloudy (c), 4 dining room (b), 5 cook (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "em1-fin-final-test-semester-2-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "I was at home last week.",
+      "I go to work by tram.",
+      "She's in the garden.",
+      "I finished school in",
+      "5. I'm going to do your homework."
+     ],
+     "key": "1 last week, 2 tram, 3 garden, 4 finish school, 5 do your homework"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "em1-fin-final-test-semester-2-ex3.mp3",
+     "secs": 71,
+     "script": [
+      "I go to work by plane.",
+      "She's in the dining room.",
+      "I can paint.",
+      "I'm going to clean a room.",
+      "I like your skirt."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✓, 5 ✗"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

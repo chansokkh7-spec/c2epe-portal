@@ -16846,6 +16846,799 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "empower-b1plus-tests",
+ "level": "Empower B1+",
+ "icon": "📝",
+ "title": "Empower B1+ Intermediate – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Talk",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-1-talk-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "It was absolutely filthy.",
+      "It was absolutely tiny.",
+      "It was absolutely enormous.",
+      "It was absolutely boiling.",
+      "It was absolutely miserable."
+     ],
+     "key": "1 filthy (a), 2 tiny (b), 3 enormous (a), 4 boiling (a), 5 miserable (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-1-talk-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "He admitted his mistake.",
+      "Please forgive me.",
+      "They always argue about money.",
+      "She insisted on paying.",
+      "It was absolutely furious."
+     ],
+     "key": "1 admit, 2 forgive, 3 argue, 4 insist, 5 furious"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Modern life",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-2-modern-life-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "I can't live without my smartphone.",
+      "We have a 3D printer at school.",
+      "I can't live without my smartwatch.",
+      "My colleague helped me.",
+      "I downloaded a new app."
+     ],
+     "key": "1 smartphone (a), 2 3D printer (a), 3 smartwatch (b), 4 colleague (a), 5 app (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-2-modern-life-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "I've applied for a job.",
+      "The Wi-Fi isn't working.",
+      "The salary is good.",
+      "I can't live without my laptop.",
+      "He got a promotion."
+     ],
+     "key": "1 apply for a job, 2 Wi-Fi, 3 salary, 4 laptop, 5 promotion"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Relationships",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-3-relationships-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "She's my best friend.",
+      "She's my neighbour.",
+      "She's my cousin.",
+      "She's my colleague.",
+      "She's my partner."
+     ],
+     "key": "1 best friend (a), 2 neighbour (b), 3 cousin (a), 4 colleague (b), 5 partner (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-3-relationships-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "She's my flatmate.",
+      "We get together every Sunday.",
+      "We fell out last year.",
+      "He's my twin brother.",
+      "She's my classmate."
+     ],
+     "key": "1 flatmate, 2 get together, 3 fall out, 4 twin, 5 classmate"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Personality",
+   "info": "Test paper page 10",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-4-personality-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "She's very generous.",
+      "She's very lazy.",
+      "She's very stubborn.",
+      "She's very confident.",
+      "She's very calm."
+     ],
+     "key": "1 generous (a), 2 lazy (c), 3 stubborn (a), 4 confident (b), 5 calm (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-4-personality-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "He's a skilful player.",
+      "She succeeded in passing the test.",
+      "She's very cheerful.",
+      "She's very talented.",
+      "She's very curious."
+     ],
+     "key": "1 skilful, 2 succeed in, 3 cheerful, 4 talented, 5 curious"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: The natural world",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-5-the-natural-world-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "Look at the rainforest.",
+      "Look at the valley.",
+      "Look at the cave.",
+      "Look at the stream.",
+      "Look at the coast."
+     ],
+     "key": "1 rainforest (c), 2 valley (b), 3 cave (a), 4 stream (a), 5 coast (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-5-the-natural-world-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "Look at the waterfall.",
+      "It's a strange creature.",
+      "We must limit pollution.",
+      "Look at the desert.",
+      "Look at the bay."
+     ],
+     "key": "1 waterfall, 2 creature, 3 limit, 4 desert, 5 bay"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Different cultures",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-6-different-cultures-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "This food is sweet.",
+      "This food is creamy.",
+      "This food is sour.",
+      "This food is fresh.",
+      "This food is cooked."
+     ],
+     "key": "1 sweet (c), 2 creamy (b), 3 sour (b), 4 fresh (c), 5 cooked (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-6-different-cultures-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "Mash the potatoes.",
+      "Add some salt.",
+      "Stir the soup.",
+      "This food is crunchy.",
+      "Squeeze the lemon."
+     ],
+     "key": "1 mash, 2 add, 3 stir, 4 crunchy, 5 squeeze"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: House and home",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-7-house-and-home-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "Where's the attic?",
+      "Where's the terrace?",
+      "Where's the steps?",
+      "Where's the balcony?",
+      "Where's the doorbell?"
+     ],
+     "key": "1 attic (c), 2 terrace (b), 3 steps (b), 4 balcony (b), 5 doorbell (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-7-house-and-home-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "The rent is very high.",
+      "I work in the city centre.",
+      "What a beautiful view!",
+      "We moved house last year.",
+      "Where's the block of flats?"
+     ],
+     "key": "1 rent, 2 city centre, 3 view, 4 move house, 5 block of flats"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Information",
+   "info": "Test paper page 19",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-8-information-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "I sent an email.",
+      "I made a video.",
+      "We had a meeting.",
+      "Look at this poster.",
+      "We had a chat."
+     ],
+     "key": "1 email (c), 2 video (c), 3 meeting (c), 4 poster (b), 5 chat (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-8-information-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "I listen to a podcast every day.",
+      "They warned us about the storm.",
+      "Take a flyer.",
+      "I suggest going early.",
+      "Remind me to call him."
+     ],
+     "key": "1 podcast, 2 warn, 3 flyer, 4 suggest, 5 remind"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Entertainment",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-9-entertainment-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "The pianist was amazing.",
+      "The orchestra was amazing.",
+      "The violinist was amazing.",
+      "The audience was amazing.",
+      "The guitarist was amazing."
+     ],
+     "key": "1 pianist (a), 2 orchestra (b), 3 violinist (a), 4 audience (c), 5 guitarist (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-9-entertainment-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "The film was shocking.",
+      "The film was fascinating.",
+      "I was embarrassed.",
+      "I was amused.",
+      "The singer was amazing."
+     ],
+     "key": "1 shocking, 2 fascinating, 3 embarrassed, 4 amused, 5 singer"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Opportunities",
+   "info": "Test paper page 23",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-10-opportunities-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "Look at the net.",
+      "Look at the court.",
+      "Look at the track.",
+      "Look at the medal.",
+      "Look at the trophy."
+     ],
+     "key": "1 net (c), 2 court (a), 3 track (a), 4 medal (a), 5 trophy (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-ut-unit-test-unit-10-opportunities-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "Look at the competitor.",
+      "Take care of yourself.",
+      "You can make a difference.",
+      "Let's take a break.",
+      "You're making progress."
+     ],
+     "key": "1 competitor, 2 take care of, 3 make a difference, 4 take a break, 5 make progress"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mt-monthly-test-1-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "It was absolutely enormous.",
+      "It was absolutely freezing.",
+      "It was absolutely boiling.",
+      "It was absolutely tiny."
+     ],
+     "key": "1 enormous (b), 2 freezing (b), 3 boiling (c), 4 tiny (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mt-monthly-test-1-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "He greeted us at the door.",
+      "She insisted on paying.",
+      "My parents encourage me.",
+      "It was absolutely filthy."
+     ],
+     "key": "1 greet, 2 insist, 3 encourage, 4 filthy"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mt-monthly-test-2-ex1.mp3",
+     "secs": 61,
+     "script": [
+      "It was absolutely enormous.",
+      "I can't live without my smartphone.",
+      "It was absolutely boiling.",
+      "We have a 3D printer at school."
+     ],
+     "key": "1 enormous (a), 2 smartphone (c), 3 boiling (a), 4 3D printer (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mt-monthly-test-2-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "He got a promotion.",
+      "He complained about the food.",
+      "My employer is very kind.",
+      "Please forgive me."
+     ],
+     "key": "1 promotion, 2 complain, 3 employer, 4 forgive"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mt-monthly-test-3-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "She's my flatmate.",
+      "She's very generous.",
+      "She's my colleague.",
+      "She's very cheerful."
+     ],
+     "key": "1 flatmate (c), 2 generous (c), 3 colleague (b), 4 cheerful (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mt-monthly-test-3-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "She's very lazy.",
+      "I get on with my sister.",
+      "I'm good at drawing.",
+      "I look after my brother."
+     ],
+     "key": "1 lazy, 2 get on with, 3 be good at, 4 look after"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mt-monthly-test-4-ex1.mp3",
+     "secs": 56,
+     "script": [
+      "She's very generous.",
+      "Look at the valley.",
+      "She's very stubborn.",
+      "Look at the waterfall."
+     ],
+     "key": "1 generous (b), 2 valley (b), 3 stubborn (c), 4 waterfall (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mt-monthly-test-4-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "Animals need water to survive.",
+      "She's very lazy.",
+      "Buy local food.",
+      "She succeeded in passing the test."
+     ],
+     "key": "1 survive, 2 lazy, 3 local, 4 succeed in"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mt-monthly-test-5-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "This food is cooked.",
+      "This food is raw.",
+      "This food is sweet.",
+      "This food is fresh."
+     ],
+     "key": "1 cooked (c), 2 raw (a), 3 sweet (a), 4 fresh (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mt-monthly-test-5-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "Mash the potatoes.",
+      "This food is crunchy.",
+      "This food is creamy.",
+      "Mix everything together."
+     ],
+     "key": "1 mash, 2 crunchy, 3 creamy, 4 mix"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mt-monthly-test-6-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "This food is raw.",
+      "Where's the balcony?",
+      "This food is cooked.",
+      "Where's the steps?"
+     ],
+     "key": "1 raw (c), 2 balcony (a), 3 cooked (b), 4 steps (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mt-monthly-test-6-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "Where's the terrace?",
+      "Fry the meat in oil.",
+      "They live in the suburbs.",
+      "This food is sweet."
+     ],
+     "key": "1 terrace, 2 fry, 3 suburbs, 4 sweet"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mt-monthly-test-7-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "Look at this poster.",
+      "The drummer was amazing.",
+      "I made a video.",
+      "The DJ was amazing."
+     ],
+     "key": "1 poster (c), 2 drummer (b), 3 video (b), 4 DJ (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mt-monthly-test-7-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "The film was terrifying.",
+      "I suggest going early.",
+      "I was amused.",
+      "She advised me to rest."
+     ],
+     "key": "1 terrifying, 2 suggest, 3 amused, 4 advise"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mt-monthly-test-8-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "The audience was amazing.",
+      "Look at the referee.",
+      "The orchestra was amazing.",
+      "Look at the track."
+     ],
+     "key": "1 audience (b), 2 referee (c), 3 orchestra (b), 4 track (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mt-monthly-test-8-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "I need to make a decision.",
+      "The violinist was amazing.",
+      "Do your best.",
+      "The film was amusing."
+     ],
+     "key": "1 make a decision, 2 violinist, 3 do your best, 4 amusing"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "It was absolutely freezing.",
+      "The Wi-Fi isn't working.",
+      "She's my classmate.",
+      "It was absolutely tiny.",
+      "My colleague helped me."
+     ],
+     "key": "1 freezing (b), 2 Wi-Fi (c), 3 classmate (b), 4 tiny (c), 5 colleague (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "He's flying a drone.",
+      "She's my flatmate.",
+      "They always argue about money.",
+      "I've applied for a job.",
+      "She takes after her mother."
+     ],
+     "key": "1 drone, 2 flatmate, 3 argue, 4 apply for a job, 5 take after"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "This food is crunchy.",
+      "Where's the basement?",
+      "We had a meeting.",
+      "This food is sweet.",
+      "Where's the doorbell?"
+     ],
+     "key": "1 crunchy (b), 2 basement (b), 3 meeting (b), 4 sweet (c), 5 doorbell (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "I love my neighbourhood.",
+      "Look at this poster.",
+      "This food is dried.",
+      "What a beautiful view!",
+      "He refused to pay."
+     ],
+     "key": "1 neighbourhood, 2 poster, 3 dried, 4 view, 5 refuse"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-fin-final-test-semester-1-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "It was absolutely filthy.",
+      "He's flying a drone.",
+      "She's my cousin.",
+      "She's very calm.",
+      "Look at the rainforest."
+     ],
+     "key": "1 filthy (b), 2 drone (a), 3 cousin (b), 4 calm (a), 5 rainforest (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-fin-final-test-semester-1-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "I've applied for a job.",
+      "I look after my brother.",
+      "He's a gifted musician.",
+      "Animals need water to survive.",
+      "It was absolutely freezing."
+     ],
+     "key": "1 apply for a job, 2 look after, 3 gifted, 4 survive, 5 freezing"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-fin-final-test-semester-1-ex3.mp3",
+     "secs": 72,
+     "script": [
+      "He's my twin brother.",
+      "She's very cheerful.",
+      "Look at the stream.",
+      "It was absolutely miserable.",
+      "I can't live without my smartwatch."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-fin-final-test-semester-2-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "This food is creamy.",
+      "Where's the terrace?",
+      "I sent an email.",
+      "The violinist was amazing.",
+      "Look at the referee."
+     ],
+     "key": "1 creamy (a), 2 terrace (b), 3 email (c), 4 violinist (b), 5 referee (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-fin-final-test-semester-2-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "The traffic is terrible.",
+      "We had a meeting.",
+      "The DJ was amazing.",
+      "Look at the net.",
+      "Stir the soup."
+     ],
+     "key": "1 traffic, 2 meeting, 3 DJ, 4 net, 5 stir"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em4-fin-final-test-semester-2-ex3.mp3",
+     "secs": 70,
+     "script": [
+      "We had a chat.",
+      "The singer was amazing.",
+      "Look at the opponent.",
+      "This food is cooked.",
+      "Where's the basement?"
+     ],
+     "key": "1 ✓, 2 ✓, 3 ✗, 4 ✓, 5 ✗"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

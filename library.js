@@ -12711,6 +12711,779 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "phonics-2-tests",
+ "level": "Phonics 2",
+ "icon": "📝",
+ "title": "Phonics & Literacy 2 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "phonics-2-tests",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: ir/ur, air, ear",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-ut-unit-test-unit-1-ir-ur-air-ear-ex1.mp3",
+     "secs": 54,
+     "script": [
+      "Purple.",
+      "Fair.",
+      "Stairs.",
+      "Shirt."
+     ],
+     "key": "1 purple (a), 2 fair (c), 3 stairs (b), 4 shirt (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-ut-unit-test-unit-1-ir-ur-air-ear-ex2.mp3",
+     "secs": 54,
+     "script": [
+      "Fair.",
+      "Purple.",
+      "Beard.",
+      "Chair."
+     ],
+     "key": "1 air (fair), 2 ir / ur (purple), 3 ear (beard), 4 air (chair)"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: oo, th, rhyming words",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-ut-unit-test-unit-2-oo-th-rhyming-words-ex1.mp3",
+     "secs": 54,
+     "script": [
+      "Mother.",
+      "Wood.",
+      "Hat.",
+      "Brother."
+     ],
+     "key": "1 mother (a), 2 wood (c), 3 hat (b), 4 brother (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-ut-unit-test-unit-2-oo-th-rhyming-words-ex2.mp3",
+     "secs": 54,
+     "script": [
+      "Book.",
+      "Brother.",
+      "Cook.",
+      "Feather."
+     ],
+     "key": "1 oo (book), 2 th (brother), 3 oo (cook), 4 th (feather)"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Long a, e, i",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-ut-unit-test-unit-3-long-a-e-i-ex1.mp3",
+     "secs": 53,
+     "script": [
+      "Night.",
+      "Bee.",
+      "Happy.",
+      "Kite."
+     ],
+     "key": "1 night (c), 2 bee (b), 3 happy (a), 4 kite (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-ut-unit-test-unit-3-long-a-e-i-ex2.mp3",
+     "secs": 53,
+     "script": [
+      "Tree.",
+      "Play.",
+      "Pie.",
+      "Happy."
+     ],
+     "key": "1 ee / ea / y (tree), 2 ai / a_e / ay (play), 3 igh / i_e / ie / y (pie), 4 ee / ea / y (happy)"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Long o, u, magic e",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-ut-unit-test-unit-4-long-o-u-magic-e-ex1.mp3",
+     "secs": 55,
+     "script": [
+      "Moon.",
+      "Nose.",
+      "Cake.",
+      "Blue."
+     ],
+     "key": "1 moon (c), 2 nose (c), 3 cake (a), 4 blue (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-ut-unit-test-unit-4-long-o-u-magic-e-ex2.mp3",
+     "secs": 54,
+     "script": [
+      "Flute.",
+      "Moon.",
+      "Rose.",
+      "Bike."
+     ],
+     "key": "1 a_e / i_e / o_e / u_e (flute), 2 oo / ue / u_e / ew (moon), 3 oa / ow / o_e (rose), 4 a_e / i_e / o_e / u_e (bike)"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: sk/sc, gr/br, clusters",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-ut-unit-test-unit-5-sk-sc-gr-br-clusters-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "Skate.",
+      "Bread.",
+      "Glue.",
+      "Bridge."
+     ],
+     "key": "1 skate (c), 2 bread (c), 3 glue (b), 4 bridge (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-ut-unit-test-unit-5-sk-sc-gr-br-clusters-ex2.mp3",
+     "secs": 57,
+     "script": [
+      "Grapes.",
+      "Ski.",
+      "Star.",
+      "Green."
+     ],
+     "key": "1 gr / br (grapes), 2 sk / sc (ski), 3 dr / tr / st / sw / gl / fl (star), 4 gr / br (green)"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Soft c, double letters, rhymes",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-ut-unit-test-unit-6-soft-c-double-letters-rhymes-ex1.mp3",
+     "secs": 56,
+     "script": [
+      "Face.",
+      "Doll.",
+      "Yellow.",
+      "Rice."
+     ],
+     "key": "1 face (b), 2 doll (a), 3 yellow (a), 4 rice (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-ut-unit-test-unit-6-soft-c-double-letters-rhymes-ex2.mp3",
+     "secs": 55,
+     "script": [
+      "Chess.",
+      "Rice.",
+      "Puffin.",
+      "Mice."
+     ],
+     "key": "1 ss / ll / ff / zz (chess), 2 ce / ci (rice), 3 ss / ll / ff / zz (puffin), 4 ce / ci (mice)"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Plurals, -nt, -st",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-ut-unit-test-unit-7-plurals-nt-st-ex1.mp3",
+     "secs": 54,
+     "script": [
+      "Vest.",
+      "Tent.",
+      "Socks.",
+      "Chest."
+     ],
+     "key": "1 vest (c), 2 tent (a), 3 socks (c), 4 chest (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-ut-unit-test-unit-7-plurals-nt-st-ex2.mp3",
+     "secs": 55,
+     "script": [
+      "Vest.",
+      "Paint.",
+      "Cats.",
+      "Chest."
+     ],
+     "key": "1 -st (vest), 2 -nt (paint), 3 -s (cats), 4 -st (chest)"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: -y, ch/sh/th review",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-ut-unit-test-unit-8-y-ch-sh-th-review-ex1.mp3",
+     "secs": 55,
+     "script": [
+      "Fish.",
+      "Shell.",
+      "Mouth.",
+      "Baby."
+     ],
+     "key": "1 fish (b), 2 shell (b), 3 mouth (c), 4 baby (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-ut-unit-test-unit-8-y-ch-sh-th-review-ex2.mp3",
+     "secs": 56,
+     "script": [
+      "Sky.",
+      "Mouth.",
+      "Baby.",
+      "Catch."
+     ],
+     "key": "1 -y (sky), 2 ch / sh / th (mouth), 3 -y (baby), 4 ch / sh / th (catch)"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: More plurals",
+   "info": "Test paper page 19",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-ut-unit-test-unit-9-more-plurals-ex1.mp3",
+     "secs": 54,
+     "script": [
+      "Geese.",
+      "Shoes.",
+      "Sheep.",
+      "Fish."
+     ],
+     "key": "1 geese (b), 2 shoes (b), 3 sheep (a), 4 fish (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-ut-unit-test-unit-9-more-plurals-ex2.mp3",
+     "secs": 56,
+     "script": [
+      "Dresses.",
+      "Boxes.",
+      "Socks.",
+      "Shoes."
+     ],
+     "key": "1 -s / -es (dresses), 2 -s / -es (boxes), 3 -s / -es (socks), 4 -s / -es (shoes)"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Nouns, adjectives, verbs",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-ut-unit-test-unit-10-nouns-adjectives-verbs-ex1.mp3",
+     "secs": 55,
+     "script": [
+      "Hot.",
+      "Cake.",
+      "Rabbit.",
+      "Happy."
+     ],
+     "key": "1 hot (a), 2 cake (a), 3 rabbit (a), 4 happy (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen. Is it the same picture? Tick ✓ or cross ✗.",
+     "file": "ph2-ut-unit-test-unit-10-nouns-adjectives-verbs-ex2.mp3",
+     "secs": 56,
+     "script": [
+      "Run.",
+      "Rabbit.",
+      "Big.",
+      "Hot."
+     ],
+     "key": "1 ✓, 2 ✗, 3 ✗, 4 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-mt-monthly-test-1-ex1.mp3",
+     "secs": 52,
+     "script": [
+      "Earring.",
+      "Turtle.",
+      "Ear.",
+      "Stairs."
+     ],
+     "key": "1 earring (c), 2 turtle (b), 3 ear (a), 4 stairs (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-mt-monthly-test-1-ex2.mp3",
+     "secs": 51,
+     "script": [
+      "Chair.",
+      "Purple.",
+      "Fair.",
+      "Fair."
+     ],
+     "key": "1 air (chair), 2 ir / ur (purple), 3 air (fair), 4 air (fair)"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-mt-monthly-test-2-ex1.mp3",
+     "secs": 51,
+     "script": [
+      "Beard.",
+      "Father.",
+      "Ear.",
+      "Cat."
+     ],
+     "key": "1 beard (c), 2 father (c), 3 ear (c), 4 cat (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-mt-monthly-test-2-ex2.mp3",
+     "secs": 52,
+     "script": [
+      "Chair.",
+      "Wood.",
+      "Purple.",
+      "Wood."
+     ],
+     "key": "1 air (chair), 2 oo (wood), 3 ir / ur (purple), 4 oo (wood)"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-mt-monthly-test-3-ex1.mp3",
+     "secs": 52,
+     "script": [
+      "Play.",
+      "Bee.",
+      "Kite.",
+      "Snail."
+     ],
+     "key": "1 play (b), 2 bee (a), 3 kite (a), 4 snail (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-mt-monthly-test-3-ex2.mp3",
+     "secs": 53,
+     "script": [
+      "Cry.",
+      "Rain.",
+      "Night.",
+      "Rain."
+     ],
+     "key": "1 igh / i_e / ie / y (cry), 2 ai / a_e / ay (rain), 3 igh / i_e / ie / y (night), 4 ai / a_e / ay (rain)"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-mt-monthly-test-4-ex1.mp3",
+     "secs": 53,
+     "script": [
+      "Cake.",
+      "Star.",
+      "Nose.",
+      "Flag."
+     ],
+     "key": "1 cake (a), 2 star (c), 3 nose (b), 4 flag (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-mt-monthly-test-4-ex2.mp3",
+     "secs": 53,
+     "script": [
+      "Moon.",
+      "Bread.",
+      "Bike.",
+      "Flag."
+     ],
+     "key": "1 oo / ue / u_e / ew (moon), 2 gr / br (bread), 3 a_e / i_e / o_e / u_e (bike), 4 dr / tr / st / sw / gl / fl (flag)"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-mt-monthly-test-5-ex1.mp3",
+     "secs": 52,
+     "script": [
+      "Chess.",
+      "Rice.",
+      "Goat.",
+      "Boat."
+     ],
+     "key": "1 chess (a), 2 rice (c), 3 goat (c), 4 boat (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-mt-monthly-test-5-ex2.mp3",
+     "secs": 52,
+     "script": [
+      "Doll.",
+      "Chess.",
+      "Mice.",
+      "Buzz."
+     ],
+     "key": "1 ss / ll / ff / zz (doll), 2 ss / ll / ff / zz (chess), 3 ce / ci (mice), 4 ss / ll / ff / zz (buzz)"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-mt-monthly-test-6-ex1.mp3",
+     "secs": 53,
+     "script": [
+      "Yellow.",
+      "Cups.",
+      "Puffin.",
+      "Tent."
+     ],
+     "key": "1 yellow (b), 2 cups (c), 3 puffin (a), 4 tent (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-mt-monthly-test-6-ex2.mp3",
+     "secs": 52,
+     "script": [
+      "Chess.",
+      "Cups.",
+      "Circle.",
+      "Paint."
+     ],
+     "key": "1 ss / ll / ff / zz (chess), 2 -s (cups), 3 ce / ci (circle), 4 -nt (paint)"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-mt-monthly-test-7-ex1.mp3",
+     "secs": 52,
+     "script": [
+      "Catch.",
+      "Mouth.",
+      "Sky.",
+      "Happy."
+     ],
+     "key": "1 catch (c), 2 mouth (b), 3 sky (a), 4 happy (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-mt-monthly-test-7-ex2.mp3",
+     "secs": 53,
+     "script": [
+      "Happy.",
+      "Mouth.",
+      "Fly.",
+      "Catch."
+     ],
+     "key": "1 -y (happy), 2 ch / sh / th (mouth), 3 -y (fly), 4 ch / sh / th (catch)"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-mt-monthly-test-8-ex1.mp3",
+     "secs": 53,
+     "script": [
+      "Shoes.",
+      "Big.",
+      "Mice.",
+      "Run."
+     ],
+     "key": "1 shoes (a), 2 big (c), 3 mice (a), 4 run (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-mt-monthly-test-8-ex2.mp3",
+     "secs": 55,
+     "script": [
+      "Shoes.",
+      "Boxes.",
+      "Boxes.",
+      "Dresses."
+     ],
+     "key": "1 -s / -es (shoes), 2 -s / -es (boxes), 3 -s / -es (boxes), 4 -s / -es (dresses)"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 64,
+     "script": [
+      "Nurse.",
+      "Cat.",
+      "Honey.",
+      "Beard.",
+      "Book."
+     ],
+     "key": "1 nurse (a), 2 cat (c), 3 honey (c), 4 beard (a), 5 book (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 62,
+     "script": [
+      "Chair.",
+      "Wood.",
+      "Bee.",
+      "Stairs.",
+      "Father."
+     ],
+     "key": "1 air (chair), 2 oo (wood), 3 ee / ea / y (bee), 4 air (stairs), 5 th (father)"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 64,
+     "script": [
+      "Mice.",
+      "Vest.",
+      "Bath.",
+      "Circle.",
+      "Nest."
+     ],
+     "key": "1 mice (b), 2 vest (c), 3 bath (a), 4 circle (b), 5 nest (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 65,
+     "script": [
+      "Pencil.",
+      "Nest.",
+      "Shell.",
+      "Rice.",
+      "Nest."
+     ],
+     "key": "1 ce / ci (pencil), 2 -st (nest), 3 ch / sh / th (shell), 4 ce / ci (rice), 5 -st (nest)"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-fin-final-test-semester-1-ex1.mp3",
+     "secs": 64,
+     "script": [
+      "Nurse.",
+      "Cat.",
+      "Sea.",
+      "Cake.",
+      "Flag."
+     ],
+     "key": "1 nurse (b), 2 cat (c), 3 sea (b), 4 cake (c), 5 flag (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-fin-final-test-semester-1-ex2.mp3",
+     "secs": 64,
+     "script": [
+      "Girl.",
+      "Father.",
+      "Cake.",
+      "Cake.",
+      "Scarf."
+     ],
+     "key": "1 ir / ur (girl), 2 th (father), 3 ai / a_e / ay (cake), 4 a_e / i_e / o_e / u_e (cake), 5 sk / sc (scarf)"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen. Is it the same picture? Tick ✓ or cross ✗.",
+     "file": "ph2-fin-final-test-semester-1-ex3.mp3",
+     "secs": 65,
+     "script": [
+      "Snail.",
+      "Boat.",
+      "Bird.",
+      "Fair.",
+      "Shirt."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✗, 4 ✓, 5 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓ the picture.",
+     "file": "ph2-fin-final-test-semester-2-ex1.mp3",
+     "secs": 64,
+     "script": [
+      "Face.",
+      "Ant.",
+      "Bath.",
+      "Geese.",
+      "Big."
+     ],
+     "key": "1 face (b), 2 ant (b), 3 bath (a), 4 geese (b), 5 big (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the sound.",
+     "file": "ph2-fin-final-test-semester-2-ex2.mp3",
+     "secs": 66,
+     "script": [
+      "Face.",
+      "Tent.",
+      "Mouth.",
+      "Dresses.",
+      "Pencil."
+     ],
+     "key": "1 ce / ci (face), 2 -nt (tent), 3 ch / sh / th (mouth), 4 -s / -es (dresses), 5 ce / ci (pencil)"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen. Is it the same picture? Tick ✓ or cross ✗.",
+     "file": "ph2-fin-final-test-semester-2-ex3.mp3",
+     "secs": 66,
+     "script": [
+      "Rabbit.",
+      "Mouth.",
+      "Dresses.",
+      "Nest.",
+      "Mice."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

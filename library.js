@@ -8786,6 +8786,799 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "upstream-b2plus-tests",
+ "level": "Upstream B2+",
+ "icon": "📝",
+ "title": "Upstream Upper Intermediate B2+ – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "upstream-b2plus-tests",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Something to Shout About!",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-ut-unit-test-unit-1-something-to-shout-about-ex1.mp3",
+     "secs": 76,
+     "script": [
+      "They had a house-warming party.",
+      "We celebrated the anniversary.",
+      "We had a party for his retirement.",
+      "We celebrated the wedding.",
+      "We celebrated the birth of their son."
+     ],
+     "key": "1 house-warming (a), 2 anniversary (b), 3 retirement (a), 4 wedding (a), 5 birth (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-ut-unit-test-unit-1-something-to-shout-about-ex2.mp3",
+     "secs": 77,
+     "script": [
+      "Success needs team spirit.",
+      "Success needs self-motivation.",
+      "Success needs ambition.",
+      "Success needs persistence.",
+      "Her graduation was in June."
+     ],
+     "key": "1 team spirit, 2 self-motivation, 3 ambition, 4 persistence, 5 graduation"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Escape Artists",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-ut-unit-test-unit-2-escape-artists-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "We had a picnic in the park.",
+      "We went on a cruise.",
+      "Look at the cartoon!",
+      "Look at the documentary!",
+      "Look at the roller coaster!"
+     ],
+     "key": "1 picnic (a), 2 cruise (a), 3 cartoon (b), 4 documentary (a), 5 roller coaster (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-ut-unit-test-unit-2-escape-artists-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "We went on a fishing trip.",
+      "Look at the darkroom!",
+      "We went hiking.",
+      "Look at the colander!",
+      "Look at the saddle!"
+     ],
+     "key": "1 fishing trip, 2 darkroom, 3 hiking, 4 colander, 5 saddle"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: People Power",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-ut-unit-test-unit-3-people-power-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "This is my brother-in-law.",
+      "They are a nuclear family.",
+      "This is my niece.",
+      "This is my stepmother.",
+      "This is my great uncle."
+     ],
+     "key": "1 brother-in-law (a), 2 nuclear family (b), 3 niece (a), 4 stepmother (b), 5 great uncle (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-ut-unit-test-unit-3-people-power-ex2.mp3",
+     "secs": 77,
+     "script": [
+      "My great grandparents lived to ninety.",
+      "He is very self-centred.",
+      "I live with my extended family.",
+      "This is my half brother.",
+      "He is very self-reliant."
+     ],
+     "key": "1 great grandparents, 2 self-centred, 3 extended family, 4 half brother, 5 self-reliant"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Growing Concerns",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-ut-unit-test-unit-4-growing-concerns-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "The judge arrived at court.",
+      "Littering is a crime.",
+      "Kidnapping is a crime.",
+      "Mugging is a crime.",
+      "Fraud is a crime."
+     ],
+     "key": "1 judge (a), 2 littering (c), 3 kidnapping (a), 4 mugging (b), 5 fraud (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-ut-unit-test-unit-4-growing-concerns-ex2.mp3",
+     "secs": 76,
+     "script": [
+      "The juror arrived at court.",
+      "Vandalism is a crime.",
+      "The constable arrived at court.",
+      "The solicitor arrived at court.",
+      "The witness arrived at court."
+     ],
+     "key": "1 juror, 2 vandalism, 3 constable, 4 solicitor, 5 witness"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Our Changing World",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-ut-unit-test-unit-5-our-changing-world-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "Look at the smart card!",
+      "Look at the scanner!",
+      "The doctor gave me antibiotics.",
+      "I need a new navigator.",
+      "I need a new website."
+     ],
+     "key": "1 smart card (c), 2 scanner (b), 3 antibiotics (a), 4 navigator (a), 5 website (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-ut-unit-test-unit-5-our-changing-world-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "Look at the satellite!",
+      "I need a new mouse.",
+      "Check the update.",
+      "I need a new terminal.",
+      "I need a new wallpaper."
+     ],
+     "key": "1 satellite, 2 mouse, 3 update, 4 terminal, 5 wallpaper"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: A Job Well Done",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-ut-unit-test-unit-6-a-job-well-done-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "She earns a good salary.",
+      "She works as a firefighter.",
+      "She works as a surgeon.",
+      "She works as a programmer.",
+      "Ask about the head office."
+     ],
+     "key": "1 salary (c), 2 firefighter (b), 3 surgeon (b), 4 programmer (c), 5 head office (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-ut-unit-test-unit-6-a-job-well-done-ex2.mp3",
+     "secs": 76,
+     "script": [
+      "Please send two references.",
+      "Ask about the apprentice.",
+      "She works as a graphic designer.",
+      "We work flexi-time.",
+      "She works as a civil servant."
+     ],
+     "key": "1 references, 2 apprentice, 3 graphic designer, 4 flexi-time, 5 civil servant"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Fit for Life",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-ut-unit-test-unit-7-fit-for-life-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I love skydiving.",
+      "I've hurt my eardrum.",
+      "I've hurt my nostril.",
+      "I love ice skating.",
+      "I've hurt my skull."
+     ],
+     "key": "1 skydiving (c), 2 eardrum (b), 3 nostril (b), 4 ice skating (b), 5 skull (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-ut-unit-test-unit-7-fit-for-life-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "I love wrestling.",
+      "I love boxing.",
+      "I love snooker.",
+      "I've hurt my palm.",
+      "I love archery."
+     ],
+     "key": "1 wrestling, 2 boxing, 3 snooker, 4 palm, 5 archery"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Live and Learn",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-ut-unit-test-unit-8-live-and-learn-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "Pass me the abacus, please.",
+      "Use the reference books.",
+      "I've got a diploma tomorrow.",
+      "I've got an essay tomorrow.",
+      "I've got a lecture tomorrow."
+     ],
+     "key": "1 abacus (c), 2 reference books (c), 3 diploma (c), 4 essay (b), 5 lecture (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-ut-unit-test-unit-8-live-and-learn-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "Pass me the globe, please.",
+      "I've got a syllabus tomorrow.",
+      "I've got a seminar tomorrow.",
+      "Pass me the compass, please.",
+      "Pass me the test tube, please."
+     ],
+     "key": "1 globe, 2 syllabus, 3 seminar, 4 compass, 5 test tube"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: The Image Business",
+   "info": "Test paper page 27",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-ut-unit-test-unit-9-the-image-business-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "He's wearing a cowboy hat.",
+      "Let's watch a murder mystery.",
+      "Let's watch an epic.",
+      "Let's watch an action adventure.",
+      "He's wearing a tank-top."
+     ],
+     "key": "1 cowboy hat (a), 2 murder mystery (b), 3 epic (a), 4 action adventure (c), 5 tank-top (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-ut-unit-test-unit-9-the-image-business-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "He's wearing dungarees.",
+      "Let's watch a film noir.",
+      "He's wearing a leather jacket.",
+      "He's wearing a bomber jacket.",
+      "He's wearing a waistcoat."
+     ],
+     "key": "1 dungarees, 2 film noir, 3 leather jacket, 4 bomber jacket, 5 waistcoat"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Shop Around",
+   "info": "Test paper page 30",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-ut-unit-test-unit-10-shop-around-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "Look at that brochure!",
+      "Look at that radio jingle!",
+      "Let's go to the farmer's market.",
+      "Let's go to the car boot sale.",
+      "Let's go to the second-hand shop."
+     ],
+     "key": "1 brochure (c), 2 radio jingle (a), 3 farmer's market (a), 4 car boot sale (a), 5 second-hand shop (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-ut-unit-test-unit-10-shop-around-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "Look at that neon sign!",
+      "Let's go to the hypermarket.",
+      "Look at that full-page spread!",
+      "Let's go to the delicatessen.",
+      "Let's go to the boutique."
+     ],
+     "key": "1 neon sign, 2 hypermarket, 3 full-page spread, 4 delicatessen, 5 boutique"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-mt-monthly-test-1-ex1.mp3",
+     "secs": 61,
+     "script": [
+      "We had a party for his retirement.",
+      "We celebrated the engagement.",
+      "We celebrated the wedding.",
+      "We celebrated the anniversary."
+     ],
+     "key": "1 retirement (b), 2 engagement (b), 3 wedding (c), 4 anniversary (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-mt-monthly-test-1-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "Success needs foresight.",
+      "Success needs persistence.",
+      "Success needs charisma.",
+      "They had a house-warming party."
+     ],
+     "key": "1 foresight, 2 persistence, 3 charisma, 4 house-warming"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-mt-monthly-test-2-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "We had a party for his retirement.",
+      "Look at the documentary!",
+      "We celebrated the engagement.",
+      "Look at the cartoon!"
+     ],
+     "key": "1 retirement (a), 2 documentary (c), 3 engagement (a), 4 cartoon (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-mt-monthly-test-2-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "Look at the camera!",
+      "Success needs determination.",
+      "Look at the saddle!",
+      "Success needs self-motivation."
+     ],
+     "key": "1 camera, 2 determination, 3 saddle, 4 self-motivation"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-mt-monthly-test-3-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "This is my half brother.",
+      "The constable arrived at court.",
+      "I live with my extended family.",
+      "Murder is a crime."
+     ],
+     "key": "1 half brother (c), 2 constable (c), 3 extended family (b), 4 murder (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-mt-monthly-test-3-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "Kidnapping is a crime.",
+      "He is very self-centred.",
+      "The solicitor arrived at court.",
+      "This is my stepmother."
+     ],
+     "key": "1 kidnapping, 2 self-centred, 3 solicitor, 4 stepmother"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-mt-monthly-test-4-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "The judge arrived at court.",
+      "I need a new hacker.",
+      "The witness arrived at court.",
+      "Look at the solar panel!"
+     ],
+     "key": "1 judge (b), 2 hacker (b), 3 witness (c), 4 solar panel (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-mt-monthly-test-4-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "Check the update.",
+      "Embezzlement is a crime.",
+      "I need a new mouse.",
+      "The prosecutor arrived at court."
+     ],
+     "key": "1 update, 2 embezzlement, 3 mouse, 4 prosecutor"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-mt-monthly-test-5-ex1.mp3",
+     "secs": 61,
+     "script": [
+      "Ask about the head office.",
+      "I worked overtime last week.",
+      "She works as a graphic designer.",
+      "She works as a dental hygienist."
+     ],
+     "key": "1 head office (c), 2 overtime (a), 3 graphic designer (a), 4 dental hygienist (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-mt-monthly-test-5-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "Ask about the apprentice.",
+      "The workers went on strike.",
+      "She earns a good salary.",
+      "The job has great perks."
+     ],
+     "key": "1 apprentice, 2 strike, 3 salary, 4 perks"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-mt-monthly-test-6-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "Ask about the head office.",
+      "I love skydiving.",
+      "She works as a firefighter.",
+      "I love wrestling."
+     ],
+     "key": "1 head office (c), 2 skydiving (a), 3 firefighter (b), 4 wrestling (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-mt-monthly-test-6-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "I've hurt my jaw.",
+      "She works as a sound technician.",
+      "I love rowing.",
+      "She works as a talent scout."
+     ],
+     "key": "1 jaw, 2 sound technician, 3 rowing, 4 talent scout"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-mt-monthly-test-7-ex1.mp3",
+     "secs": 61,
+     "script": [
+      "Pass me the test tube, please.",
+      "Let's watch a murder mystery.",
+      "Pass me the compass, please.",
+      "Let's watch a romantic comedy."
+     ],
+     "key": "1 test tube (c), 2 murder mystery (b), 3 compass (b), 4 romantic comedy (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-mt-monthly-test-7-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "Let's watch a film noir.",
+      "Pass me the globe, please.",
+      "He's wearing a waistcoat.",
+      "I've got a diploma tomorrow."
+     ],
+     "key": "1 film noir, 2 globe, 3 waistcoat, 4 diploma"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-mt-monthly-test-8-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "Let's watch an epic.",
+      "Let's go to the car boot sale.",
+      "He's wearing a suit.",
+      "Let's go to the antiques shop."
+     ],
+     "key": "1 epic (b), 2 car boot sale (c), 3 suit (b), 4 antiques shop (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-mt-monthly-test-8-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "Look at that flier!",
+      "She's wearing stilettos.",
+      "Look at that radio jingle!",
+      "He's wearing a leather jacket."
+     ],
+     "key": "1 flier, 2 stilettos, 3 radio jingle, 4 leather jacket"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "We celebrated the engagement.",
+      "Let's go to the rock concert.",
+      "They are a nuclear family.",
+      "We celebrated the anniversary.",
+      "Look at the camera!"
+     ],
+     "key": "1 engagement (b), 2 rock concert (c), 3 nuclear family (b), 4 anniversary (c), 5 camera (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "Look at the saddle!",
+      "He is very self-disciplined.",
+      "Success needs ambition.",
+      "Let's go to the fitness centre.",
+      "He is very self-indulgent."
+     ],
+     "key": "1 saddle, 2 self-disciplined, 3 ambition, 4 fitness centre, 5 self-indulgent"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "She works as a firefighter.",
+      "I've hurt my spine.",
+      "Pass me the microscope, please.",
+      "She works as a sound technician.",
+      "I love snooker."
+     ],
+     "key": "1 firefighter (b), 2 spine (b), 3 microscope (b), 4 sound technician (c), 5 snooker (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "I love skydiving.",
+      "Use the reference books.",
+      "I worked overtime last week.",
+      "I've hurt my kneecap.",
+      "Pass me the easel, please."
+     ],
+     "key": "1 skydiving, 2 reference books, 3 overtime, 4 kneecap, 5 easel"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-fin-final-test-semester-1-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "They had a house-warming party.",
+      "Let's go to the cinema.",
+      "I live with my extended family.",
+      "Fraud is a crime.",
+      "I need a new website."
+     ],
+     "key": "1 house-warming (b), 2 cinema (a), 3 extended family (b), 4 fraud (a), 5 website (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-fin-final-test-semester-1-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "Look at the roller coaster!",
+      "This is my great uncle.",
+      "The witness arrived at court.",
+      "I need a new terminal.",
+      "We had a party for his retirement."
+     ],
+     "key": "1 roller coaster, 2 great uncle, 3 witness, 4 terminal, 5 retirement"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "up5-fin-final-test-semester-1-ex3.mp3",
+     "secs": 74,
+     "script": [
+      "I live with my extended family.",
+      "Murder is a crime.",
+      "I need a new navigator.",
+      "We celebrated the birth of their son.",
+      "Let's go to the museum."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up5-fin-final-test-semester-2-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "She works as a surgeon.",
+      "I love snooker.",
+      "Use the reference books.",
+      "Let's watch a slapstick comedy.",
+      "Let's go to the farmer's market."
+     ],
+     "key": "1 surgeon (a), 2 snooker (b), 3 reference books (c), 4 slapstick comedy (b), 5 farmer's market (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up5-fin-final-test-semester-2-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "I love rowing.",
+      "Pass me the microscope, please.",
+      "Let's watch a murder mystery.",
+      "Let's go to the antiques shop.",
+      "She works as a graphic designer."
+     ],
+     "key": "1 rowing, 2 microscope, 3 murder mystery, 4 antiques shop, 5 graphic designer"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "up5-fin-final-test-semester-2-ex3.mp3",
+     "secs": 72,
+     "script": [
+      "I've got a tutorial tomorrow.",
+      "Let's watch a western.",
+      "Look at that flier!",
+      "Ask about the head office.",
+      "I love skydiving."
+     ],
+     "key": "1 ✗, 2 ✓, 3 ✗, 4 ✓, 5 ✓"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

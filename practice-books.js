@@ -40,5 +40,6 @@ window.C2_PRACTICE_BOOKS = [
   {"name": "Online Class – Secondary B1 Book3 (App)", "series": "C2-EPE App", "level": "Online Class", "prefix": "app-online-class-secondary-b1-book3"},
   {"name": "Online Class – Secondary B2 Book1 (App)", "series": "C2-EPE App", "level": "Online Class", "prefix": "app-online-class-secondary-b2-book1"},
   {"name": "Online Class – Secondary B2 Book2 (App)", "series": "C2-EPE App", "level": "Online Class", "prefix": "app-online-class-secondary-b2-book2"},
-  {"name": "Online Class – Secondary B2 Book3 (App)", "series": "C2-EPE App", "level": "Online Class", "prefix": "app-online-class-secondary-b2-book3"}
+  {"name": "Online Class – Secondary B2 Book3 (App)", "series": "C2-EPE App", "level": "Online Class", "prefix": "app-online-class-secondary-b2-book3"},
+  {"name": "Upstream Upper Intermediate B2+", "series": "Upstream", "level": "Upper-Intermediate", "prefix": "up5"}
 ];

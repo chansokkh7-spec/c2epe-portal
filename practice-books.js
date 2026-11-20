@@ -45,6 +45,7 @@ window.C2_PRACTICE_BOOKS = [
   {"name": "Upstream Advanced C1", "series": "Upstream", "level": "Advanced", "prefix": "up6"},
   {"name": "Upstream Proficiency C2", "series": "Upstream", "level": "Proficiency", "prefix": "up7"},
   {"name": "Empower A1 Starter (2nd ed.)", "series": "Cambridge", "level": "Beginner", "prefix": "em1"},
+  {"name": "Empower A2 Elementary (2nd ed.)", "series": "Cambridge", "level": "Pre-Intermediate", "prefix": "em2"},
   {"name": "Phonics & Literacy 1 (Beehive Phonics)", "series": "Phonics", "level": "K1", "prefix": "ph1"},
   {"name": "Phonics & Literacy Starter (Beehive Phonics)", "series": "Phonics", "level": "K0", "prefix": "phs"},
   {"name": "Phonics & Literacy 2 (Beehive Phonics)", "series": "Phonics", "level": "K2", "prefix": "ph2"},

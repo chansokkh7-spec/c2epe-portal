@@ -15120,6 +15120,869 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "empower-a2-tests",
+ "level": "Empower A2",
+ "icon": "📝",
+ "title": "Empower A2 Elementary – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: People",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-1-people-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "She's from Pakistan.",
+      "She's from Nigeria.",
+      "She's from Ireland.",
+      "She's from Argentina.",
+      "She's from Russia."
+     ],
+     "key": "1 Pakistan (a), 2 Nigeria (b), 3 Ireland (a), 4 Argentina (a), 5 Russia (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-1-people-ex2.mp3",
+     "secs": 67,
+     "script": [
+      "They're poor.",
+      "It's old.",
+      "It's wonderful.",
+      "It's modern.",
+      "She's from Canada."
+     ],
+     "key": "1 poor, 2 old, 3 wonderful, 4 modern, 5 Canada"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Work and study",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-2-work-and-study-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "She's an engineer.",
+      "She's a mechanic.",
+      "Where's my calculator?",
+      "She's a nurse.",
+      "Where's my pencil?"
+     ],
+     "key": "1 engineer (a), 2 mechanic (a), 3 calculator (b), 4 nurse (a), 5 pencil (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-2-work-and-study-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "I have an exam tomorrow.",
+      "Where's my laptop?",
+      "She's a police officer.",
+      "She's an artist.",
+      "She's a pilot."
+     ],
+     "key": "1 exam, 2 laptop, 3 police officer, 4 artist, 5 pilot"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Daily life",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-3-daily-life-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I've got a smartphone.",
+      "I've got a games console.",
+      "I've got a smartwatch.",
+      "I've got headphones.",
+      "I've got a printer."
+     ],
+     "key": "1 smartphone (a), 2 games console (b), 3 smartwatch (a), 4 headphones (b), 5 printer (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-3-daily-life-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "I've got a camera.",
+      "I go to the gym at the weekend.",
+      "I usually get up early.",
+      "I've got a keyboard.",
+      "I've got a tablet."
+     ],
+     "key": "1 camera, 2 at the weekend, 3 usually, 4 keyboard, 5 tablet"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Food",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-4-food-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "I need a bag.",
+      "I need a jar.",
+      "I need a cup.",
+      "I'd like a burger.",
+      "I need a box."
+     ],
+     "key": "1 bag (a), 2 jar (c), 3 cup (a), 4 burger (b), 5 box (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-4-food-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "I need a can.",
+      "I'd like some carrots.",
+      "I'd like some curry.",
+      "I'd like some garlic.",
+      "I need a bowl."
+     ],
+     "key": "1 can, 2 carrots, 3 curry, 4 garlic, 5 bowl"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Places",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-5-places-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "There's a sofa in my room.",
+      "There's a desk in my room.",
+      "There's a shelf in my room.",
+      "Where's the sports centre?",
+      "There's a bed in my room."
+     ],
+     "key": "1 sofa (c), 2 desk (b), 3 shelf (a), 4 sports centre (a), 5 bed (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-5-places-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "There's a fridge in my room.",
+      "Where's the post office?",
+      "Where's the theatre?",
+      "Where's the police station?",
+      "There's an armchair in my room."
+     ],
+     "key": "1 fridge, 2 post office, 3 theatre, 4 police station, 5 armchair"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Family",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-6-family-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "They're twins.",
+      "This is my grandmother.",
+      "These are my grandchildren.",
+      "These are my parents.",
+      "This is my uncle."
+     ],
+     "key": "1 twins (c), 2 grandmother (b), 3 grandchildren (b), 4 parents (c), 5 uncle (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-6-family-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "The wedding was in June.",
+      "We went on holiday to Kep.",
+      "We moved to the city.",
+      "This is my grandfather.",
+      "They got married in 2010."
+     ],
+     "key": "1 wedding, 2 holiday, 3 moved, 4 grandfather, 5 married"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Trips",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-7-trips-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "We went by train.",
+      "We went by bicycle.",
+      "We went by underground.",
+      "We went by plane.",
+      "We went by taxi."
+     ],
+     "key": "1 train (c), 2 bicycle (b), 3 underground (b), 4 plane (b), 5 taxi (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-7-trips-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "The bus is slow.",
+      "The bus is safe.",
+      "The bus is fast.",
+      "The bus is comfortable.",
+      "We went by motorbike."
+     ],
+     "key": "1 slow, 2 safe, 3 fast, 4 comfortable, 5 motorbike"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Fit and healthy",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-8-fit-and-healthy-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "My ear hurts.",
+      "My eye hurts.",
+      "My leg hurts.",
+      "I love sailing.",
+      "My arm hurts."
+     ],
+     "key": "1 ear (c), 2 eye (c), 3 leg (c), 4 sailing (b), 5 arm (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-8-fit-and-healthy-ex2.mp3",
+     "secs": 70,
+     "script": [
+      "I love running.",
+      "My foot hurts.",
+      "I love golf.",
+      "My hand hurts.",
+      "I love tennis."
+     ],
+     "key": "1 running, 2 foot, 3 golf, 4 hand, 5 tennis"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Clothes and shopping",
+   "info": "Test paper page 19",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-9-clothes-and-shopping-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I'm wearing a ring.",
+      "I've got some coins.",
+      "Can I pay by credit card?",
+      "I'm wearing socks.",
+      "I'm wearing shorts."
+     ],
+     "key": "1 ring (a), 2 coins (b), 3 credit card (a), 4 socks (c), 5 shorts (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-9-clothes-and-shopping-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "Here's your receipt.",
+      "Do you need a shopping bag?",
+      "It costs one euro.",
+      "I'm wearing trainers.",
+      "I'm wearing a necklace."
+     ],
+     "key": "1 receipt, 2 shopping bag, 3 euro, 4 trainers, 5 necklace"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Communication",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-10-communication-ex1.mp3",
+     "secs": 76,
+     "script": [
+      "I check emails every day.",
+      "I download an app every day.",
+      "I post a photo every day.",
+      "I search online every day.",
+      "I charge your phone every day."
+     ],
+     "key": "1 check emails (c), 2 download an app (a), 3 post a photo (a), 4 search online (a), 5 charge your phone (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-10-communication-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "I send a text every day.",
+      "She speaks Russian.",
+      "She speaks Portuguese.",
+      "She speaks Khmer.",
+      "She speaks Arabic."
+     ],
+     "key": "1 send a text, 2 Russian, 3 Portuguese, 4 Khmer, 5 Arabic"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 11: Entertainment",
+   "info": "Test paper page 23",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-11-entertainment-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "Let's go to the festival.",
+      "Listen to the piano!",
+      "Listen to the saxophone!",
+      "Listen to the violin!",
+      "Listen to the drums!"
+     ],
+     "key": "1 festival (b), 2 piano (a), 3 saxophone (c), 4 violin (c), 5 drums (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-11-entertainment-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "I've flown in a helicopter.",
+      "Listen to the singer!",
+      "I've bought a new phone.",
+      "I've heard this song.",
+      "Let's go to the concert."
+     ],
+     "key": "1 flown, 2 singer, 3 bought, 4 heard, 5 concert"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 12: Travel",
+   "info": "Test paper page 25",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-12-travel-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "Next summer I'm going to go skiing.",
+      "Next summer I'm going to go camping.",
+      "Next summer I'm going to stay in a hotel.",
+      "Next summer I'm going to visit a museum.",
+      "Next summer I'm going to go sightseeing."
+     ],
+     "key": "1 go skiing (b), 2 go camping (c), 3 stay in a hotel (c), 4 visit a museum (c), 5 go sightseeing (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-ut-unit-test-unit-12-travel-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "Get on the bus here.",
+      "I look after my sister.",
+      "I get up at seven.",
+      "When do you come back?",
+      "I'm looking for my keys."
+     ],
+     "key": "1 get on, 2 look after, 3 get up, 4 come back, 5 look for"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mt-monthly-test-1-ex1.mp3",
+     "secs": 56,
+     "script": [
+      "She's from Ireland.",
+      "She's a mechanic.",
+      "She's from Argentina.",
+      "She's a lawyer."
+     ],
+     "key": "1 Ireland (b), 2 mechanic (b), 3 Argentina (c), 4 lawyer (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mt-monthly-test-1-ex2.mp3",
+     "secs": 58,
+     "script": [
+      "Where's my laptop?",
+      "It's terrible.",
+      "Where's my dictionary?",
+      "She's from Nigeria."
+     ],
+     "key": "1 laptop, 2 terrible, 3 dictionary, 4 Nigeria"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mt-monthly-test-2-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "Where's my laptop?",
+      "I've got a smartphone.",
+      "She's a nurse.",
+      "I've got a printer."
+     ],
+     "key": "1 laptop (a), 2 smartphone (c), 3 nurse (a), 4 printer (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mt-monthly-test-2-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "I go to the gym at the weekend.",
+      "Where's my dictionary?",
+      "I never get up early.",
+      "Where's my notebook?"
+     ],
+     "key": "1 at the weekend, 2 dictionary, 3 never, 4 notebook"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mt-monthly-test-3-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "I've got a camera.",
+      "I need a carton.",
+      "I've got headphones.",
+      "I'd like some garlic."
+     ],
+     "key": "1 camera (c), 2 carton (c), 3 headphones (b), 4 garlic (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mt-monthly-test-3-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "I'd like some curry.",
+      "I always get up early.",
+      "I need a box.",
+      "I go to the gym once a week."
+     ],
+     "key": "1 curry, 2 always, 3 box, 4 once a week"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mt-monthly-test-4-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "There's a shelf in my room.",
+      "They're twins.",
+      "There's a desk in my room.",
+      "These are my grandchildren."
+     ],
+     "key": "1 shelf (b), 2 twins (b), 3 desk (c), 4 grandchildren (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mt-monthly-test-4-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "We went on holiday to Kep.",
+      "Where's the stadium?",
+      "I grew up in a small town.",
+      "There's a mirror in my room."
+     ],
+     "key": "1 holiday, 2 stadium, 3 grew up, 4 mirror"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 14",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mt-monthly-test-5-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "We went by taxi.",
+      "I love football.",
+      "We went by motorbike.",
+      "I love volleyball."
+     ],
+     "key": "1 taxi (c), 2 football (a), 3 motorbike (a), 4 volleyball (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mt-monthly-test-5-ex2.mp3",
+     "secs": 58,
+     "script": [
+      "My ear hurts.",
+      "The bus is crowded.",
+      "I love golf.",
+      "We went by tram."
+     ],
+     "key": "1 ear, 2 crowded, 3 golf, 4 tram"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 16",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mt-monthly-test-6-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "My foot hurts.",
+      "I'm wearing a T-shirt.",
+      "My arm hurts.",
+      "It costs one euro."
+     ],
+     "key": "1 foot (c), 2 T-shirt (a), 3 arm (b), 4 euro (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mt-monthly-test-6-ex2.mp3",
+     "secs": 58,
+     "script": [
+      "I'm wearing a ring.",
+      "My ear hurts.",
+      "I've got some coins.",
+      "I love football."
+     ],
+     "key": "1 ring, 2 ear, 3 coins, 4 football"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mt-monthly-test-7-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "I'm wearing shorts.",
+      "I send a text every day.",
+      "I've got some coins.",
+      "I post a photo every day."
+     ],
+     "key": "1 shorts (c), 2 send a text (b), 3 coins (b), 4 post a photo (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mt-monthly-test-7-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "She speaks Portuguese.",
+      "It costs one pound.",
+      "She speaks English.",
+      "Can I pay in cash?"
+     ],
+     "key": "1 Portuguese, 2 pound, 3 English, 4 cash"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mt-monthly-test-8-ex1.mp3",
+     "secs": 62,
+     "script": [
+      "Listen to the saxophone!",
+      "Next summer I'm going to stay in a hotel.",
+      "Listen to the singer!",
+      "Next summer I'm going to visit a museum."
+     ],
+     "key": "1 saxophone (b), 2 stay in a hotel (c), 3 singer (b), 4 visit a museum (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mt-monthly-test-8-ex2.mp3",
+     "secs": 58,
+     "script": [
+      "I get up at seven.",
+      "Listen to the piano!",
+      "Get on the bus here.",
+      "I've eaten sushi."
+     ],
+     "key": "1 get up, 2 piano, 3 get on, 4 eaten"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "She's from Australia.",
+      "She's a lawyer.",
+      "I've got a tablet.",
+      "She's from Nigeria.",
+      "Where's my dictionary?"
+     ],
+     "key": "1 Australia (b), 2 lawyer (c), 3 tablet (b), 4 Nigeria (c), 5 dictionary (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "Let's go to the library.",
+      "I sometimes get up early.",
+      "It's wonderful.",
+      "She's an artist.",
+      "I go to the gym once a week."
+     ],
+     "key": "1 library, 2 sometimes, 3 wonderful, 4 artist, 5 once a week"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "We went by plane.",
+      "I love football.",
+      "Can I pay by credit card?",
+      "We went by underground.",
+      "I love tennis."
+     ],
+     "key": "1 plane (b), 2 football (b), 3 credit card (b), 4 underground (c), 5 tennis (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "My arm hurts.",
+      "I'm wearing a necklace.",
+      "We went by motorbike.",
+      "My hand hurts.",
+      "Do you need a shopping bag?"
+     ],
+     "key": "1 arm, 2 necklace, 3 motorbike, 4 hand, 5 shopping bag"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-fin-final-test-semester-1-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "She's from Pakistan.",
+      "I have an exam tomorrow.",
+      "I've got a smartwatch.",
+      "I'd like some carrots.",
+      "There's an armchair in my room."
+     ],
+     "key": "1 Pakistan (b), 2 exam (a), 3 smartwatch (b), 4 carrots (a), 5 armchair (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-fin-final-test-semester-1-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "She's an artist.",
+      "I go to the gym once a week.",
+      "I need a box.",
+      "There's a fridge in my room.",
+      "These are my parents."
+     ],
+     "key": "1 artist, 2 once a week, 3 box, 4 fridge, 5 parents"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-fin-final-test-semester-1-ex3.mp3",
+     "secs": 70,
+     "script": [
+      "I've got a keyboard.",
+      "I need a bottle.",
+      "There's a sofa in my room.",
+      "This is my aunt.",
+      "She's from Ireland."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-fin-final-test-semester-2-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "We went by train.",
+      "My mouth hurts.",
+      "It costs one euro.",
+      "I take a selfie every day.",
+      "Listen to the piano!"
+     ],
+     "key": "1 train (a), 2 mouth (b), 3 euro (c), 4 take a selfie (b), 5 piano (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-fin-final-test-semester-2-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "My nose hurts.",
+      "I'm wearing trainers.",
+      "I post a photo every day.",
+      "Listen to the guitar!",
+      "Next summer I'm going to go sightseeing."
+     ],
+     "key": "1 nose, 2 trainers, 3 post a photo, 4 guitar, 5 go sightseeing"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em2-fin-final-test-semester-2-ex3.mp3",
+     "secs": 74,
+     "script": [
+      "I'm wearing a T-shirt.",
+      "I take a selfie every day.",
+      "Listen to the singer!",
+      "Next summer I'm going to go camping.",
+      "We went by bicycle."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✓, 5 ✗"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

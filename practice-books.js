@@ -44,6 +44,10 @@ window.C2_PRACTICE_BOOKS = [
   {"name": "Upstream Upper Intermediate B2+", "series": "Upstream", "level": "Upper-Intermediate", "prefix": "up5"},
   {"name": "Upstream Advanced C1", "series": "Upstream", "level": "Advanced", "prefix": "up6"},
   {"name": "Upstream Proficiency C2", "series": "Upstream", "level": "Proficiency", "prefix": "up7"},
-  {"name": "Phonics & Literacy 1 (Beehive Phonics)", "series": "Phonics", "level": "K3", "prefix": "ph1"},
-  {"name": "Phonics & Literacy Starter (Beehive Phonics)", "series": "Phonics", "level": "K0", "prefix": "phs"}
+  {"name": "Phonics & Literacy 1 (Beehive Phonics)", "series": "Phonics", "level": "K1", "prefix": "ph1"},
+  {"name": "Phonics & Literacy Starter (Beehive Phonics)", "series": "Phonics", "level": "K0", "prefix": "phs"},
+  {"name": "Digital Book K0 – Phonics Starter", "series": "C2-EPE Digital Book", "level": "K0", "prefix": "kb-phs"},
+  {"name": "Digital Book K1 – Phonics 1", "series": "C2-EPE Digital Book", "level": "K1", "prefix": "kb-ph1"},
+  {"name": "Digital Book K2 – Phonics 2", "series": "C2-EPE Digital Book", "level": "K2", "prefix": "kb-ph2"},
+  {"name": "Digital Book K3 – C2-EPE Phonics 3", "series": "C2-EPE Digital Book", "level": "K3", "prefix": "kb-pk3"}
 ];

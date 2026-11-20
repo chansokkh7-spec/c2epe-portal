@@ -10372,6 +10372,799 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "upstream-c2-tests",
+ "level": "Upstream C2",
+ "icon": "📝",
+ "title": "Upstream Proficiency C2 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "upstream-c2-tests",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Getting the Message Across",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-ut-unit-test-unit-1-getting-the-message-across-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "Have you seen the telegram?",
+      "She began to frown.",
+      "She began to sneer.",
+      "Have you seen the fax machine?",
+      "She began to shriek."
+     ],
+     "key": "1 telegram (a), 2 frown (b), 3 sneer (a), 4 fax machine (a), 5 shriek (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-ut-unit-test-unit-1-getting-the-message-across-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "She began to stammer.",
+      "She began to mumble.",
+      "Have you seen the headset?",
+      "She began to smirk.",
+      "Have you seen the answering machine?"
+     ],
+     "key": "1 stammer, 2 mumble, 3 headset, 4 smirk, 5 answering machine"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: The Happiest Days of your Life?",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-ut-unit-test-unit-2-the-happiest-days-of-your-life-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "We visited the kindergarten.",
+      "We visited the library.",
+      "The tuition fees are very high.",
+      "She won a scholarship.",
+      "He is a fresher."
+     ],
+     "key": "1 kindergarten (a), 2 library (a), 3 tuition fees (b), 4 scholarship (a), 5 fresher (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-ut-unit-test-unit-2-the-happiest-days-of-your-life-ex2.mp3",
+     "secs": 77,
+     "script": [
+      "We went to the graduation ceremony.",
+      "We visited the university.",
+      "He was a university dropout.",
+      "We visited the boarding school.",
+      "The dean gave a speech."
+     ],
+     "key": "1 graduation, 2 university, 3 dropout, 4 boarding school, 5 dean"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Extra! Extra!",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-ut-unit-test-unit-3-extra-extra-ex1.mp3",
+     "secs": 77,
+     "script": [
+      "Look at the broadsheet.",
+      "I watched a soap opera last night.",
+      "I watched a quiz show last night.",
+      "I watched a chat show last night.",
+      "The weather forecaster predicted rain."
+     ],
+     "key": "1 broadsheet (a), 2 soap opera (b), 3 quiz show (a), 4 chat show (b), 5 weather forecaster (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-ut-unit-test-unit-3-extra-extra-ex2.mp3",
+     "secs": 77,
+     "script": [
+      "He's a real couch potato.",
+      "He is a famous columnist.",
+      "I watched a current affairs programme last night.",
+      "Look at the satellite dish.",
+      "I watched a commercial last night."
+     ],
+     "key": "1 couch potato, 2 columnist, 3 current affairs, 4 satellite dish, 5 commercial"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Planes, Trains and Automobiles!",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-ut-unit-test-unit-4-planes-trains-and-automobiles-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "We travelled by yacht.",
+      "The plane is on the runway.",
+      "We travelled by hot-air balloon.",
+      "We went through customs.",
+      "We drove along the motorway."
+     ],
+     "key": "1 yacht (a), 2 runway (c), 3 hot-air balloon (a), 4 customs (b), 5 motorway (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-ut-unit-test-unit-4-planes-trains-and-automobiles-ex2.mp3",
+     "secs": 77,
+     "script": [
+      "Show me your boarding pass, please.",
+      "We travelled by tram.",
+      "We travelled by motorbike.",
+      "Turn left at the roundabout.",
+      "We waited in the departure lounge."
+     ],
+     "key": "1 boarding pass, 2 tram, 3 motorbike, 4 roundabout, 5 departure lounge"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: The Science of Life",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-ut-unit-test-unit-5-the-science-of-life-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "The nurse brought the bandage.",
+      "The nurse brought the pill.",
+      "The nurse brought the X-ray.",
+      "I've got a fever.",
+      "I've got a migraine."
+     ],
+     "key": "1 bandage (c), 2 pill (b), 3 X-ray (a), 4 fever (a), 5 migraine (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-ut-unit-test-unit-5-the-science-of-life-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "The nurse brought the crutches.",
+      "I've got the flu.",
+      "I've got a rash.",
+      "I've got a sore throat.",
+      "The nurse brought the prescription."
+     ],
+     "key": "1 crutches, 2 flu, 3 rash, 4 sore throat, 5 prescription"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: The Art of Entertainment",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-ut-unit-test-unit-6-the-art-of-entertainment-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "Listen to the accordion!",
+      "We went to the ballet.",
+      "We listened to the orchestra.",
+      "We went to the musical.",
+      "We went to the exhibition."
+     ],
+     "key": "1 accordion (c), 2 ballet (b), 3 orchestra (b), 4 musical (c), 5 exhibition (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-ut-unit-test-unit-6-the-art-of-entertainment-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "Watch the conductor!",
+      "Listen to the choir!",
+      "Listen to the piano!",
+      "We went to the opera.",
+      "Listen to the drum kit!"
+     ],
+     "key": "1 conductor, 2 choir, 3 piano, 4 opera, 5 drum kit"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Born to Win!",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-ut-unit-test-unit-7-born-to-win-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "Every spectator cheered.",
+      "She ran a marathon.",
+      "She is good at fencing.",
+      "The coach was delighted.",
+      "She is good at weightlifting."
+     ],
+     "key": "1 spectator (c), 2 marathon (b), 3 fencing (b), 4 coach (b), 5 weightlifting (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-ut-unit-test-unit-7-born-to-win-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "She broke the world record.",
+      "She is good at rowing.",
+      "She is good at surfing.",
+      "She stood on the podium.",
+      "He won a gold medal."
+     ],
+     "key": "1 world record, 2 rowing, 3 surfing, 4 podium, 5 medal"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Respect!",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-ut-unit-test-unit-8-respect-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "The campaign was a success.",
+      "Put your vote in the ballot box.",
+      "Parliament passed the law.",
+      "We must defend human rights.",
+      "Which candidate will win?"
+     ],
+     "key": "1 campaign (c), 2 ballot box (c), 3 parliament (c), 4 human rights (b), 5 candidate (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-ut-unit-test-unit-8-respect-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "We must fight homelessness.",
+      "The president made a speech.",
+      "We must fight poverty.",
+      "The election is in May.",
+      "There was a protest in the city."
+     ],
+     "key": "1 homelessness, 2 president, 3 poverty, 4 election, 5 protest"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Another Day, Another Dollar",
+   "info": "Test paper page 27",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-ut-unit-test-unit-9-another-day-another-dollar-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "She works as a pilot.",
+      "The deadline is Friday.",
+      "It's in the filing cabinet.",
+      "She works as a journalist.",
+      "She works as a plumber."
+     ],
+     "key": "1 pilot (a), 2 deadline (b), 3 filing cabinet (a), 4 journalist (c), 5 plumber (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-ut-unit-test-unit-9-another-day-another-dollar-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "He opened his briefcase.",
+      "The meeting starts at ten.",
+      "I've got an interview tomorrow.",
+      "She works as a lawyer.",
+      "She works as an architect."
+     ],
+     "key": "1 briefcase, 2 meeting, 3 interview, 4 lawyer, 5 architect"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Our Planet, Our Home",
+   "info": "Test paper page 30",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-ut-unit-test-unit-10-our-planet-our-home-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "Flood is a serious problem.",
+      "The oil slick killed many birds.",
+      "Look at the compost.",
+      "Drought is a serious problem.",
+      "Look at the coral reef."
+     ],
+     "key": "1 flood (c), 2 oil slick (a), 3 compost (a), 4 drought (a), 5 coral reef (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-ut-unit-test-unit-10-our-planet-our-home-ex2.mp3",
+     "secs": 76,
+     "script": [
+      "Recycling is very important.",
+      "Look at the bottle bank.",
+      "Look at the rainforest.",
+      "We must protect endangered species.",
+      "Look at the wind turbine."
+     ],
+     "key": "1 recycling, 2 bottle bank, 3 rainforest, 4 endangered species, 5 wind turbine"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-mt-monthly-test-1-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "Have you seen the pager?",
+      "Have you seen the answering machine?",
+      "Have you seen the mobile phone?",
+      "She began to frown."
+     ],
+     "key": "1 pager (b), 2 answering machine (b), 3 mobile phone (c), 4 frown (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-mt-monthly-test-1-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "She began to stammer.",
+      "She began to pout.",
+      "She began to sneer.",
+      "Have you seen the noticeboard?"
+     ],
+     "key": "1 stammer, 2 pout, 3 sneer, 4 noticeboard"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-mt-monthly-test-2-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "Have you seen the pager?",
+      "My tutor is very helpful.",
+      "Have you seen the answering machine?",
+      "He is a fresher."
+     ],
+     "key": "1 pager (a), 2 tutor (c), 3 answering machine (a), 4 fresher (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-mt-monthly-test-2-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "She is a real bookworm.",
+      "She began to grin.",
+      "She is an undergraduate.",
+      "She began to shriek."
+     ],
+     "key": "1 bookworm, 2 grin, 3 undergraduate, 4 shriek"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-mt-monthly-test-3-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "I watched a documentary last night.",
+      "We travelled by yacht.",
+      "He's a real couch potato.",
+      "We travelled by motorbike."
+     ],
+     "key": "1 documentary (c), 2 yacht (c), 3 couch potato (b), 4 motorbike (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-mt-monthly-test-3-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "We stopped on the hard shoulder.",
+      "Look at the tabloid.",
+      "We went through customs.",
+      "The weather forecaster predicted rain."
+     ],
+     "key": "1 hard shoulder, 2 tabloid, 3 customs, 4 weather forecaster"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-mt-monthly-test-4-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "We travelled by yacht.",
+      "The nurse brought the crutches.",
+      "We waited in the departure lounge.",
+      "The nurse brought the X-ray."
+     ],
+     "key": "1 yacht (b), 2 crutches (b), 3 departure lounge (c), 4 X-ray (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-mt-monthly-test-4-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "The nurse brought the pill.",
+      "We travelled by helicopter.",
+      "The nurse brought the syringe.",
+      "We went through customs."
+     ],
+     "key": "1 pill, 2 helicopter, 3 syringe, 4 customs"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-mt-monthly-test-5-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "Listen to the trumpet!",
+      "Watch the conductor!",
+      "Listen to the saxophone!",
+      "We went to the musical."
+     ],
+     "key": "1 trumpet (c), 2 conductor (a), 3 saxophone (a), 4 musical (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-mt-monthly-test-5-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "We went to the circus.",
+      "We went to the ballet.",
+      "We listened to the orchestra.",
+      "We went to the festival."
+     ],
+     "key": "1 circus, 2 ballet, 3 orchestra, 4 festival"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-mt-monthly-test-6-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "Listen to the saxophone!",
+      "Every spectator cheered.",
+      "The critic loved the show.",
+      "She is good at cycling."
+     ],
+     "key": "1 saxophone (c), 2 spectator (a), 3 critic (b), 4 cycling (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-mt-monthly-test-6-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "She is good at rowing.",
+      "Listen to the drum kit!",
+      "They lifted the trophy.",
+      "We went to the exhibition."
+     ],
+     "key": "1 rowing, 2 drum kit, 3 trophy, 4 exhibition"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-mt-monthly-test-7-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "Which candidate will win?",
+      "She works as an accountant.",
+      "He works as a volunteer.",
+      "It's in the filing cabinet."
+     ],
+     "key": "1 candidate (c), 2 accountant (b), 3 volunteer (b), 4 filing cabinet (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-mt-monthly-test-7-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "Check your payslip.",
+      "Parliament passed the law.",
+      "She works as a journalist.",
+      "There was a protest in the city."
+     ],
+     "key": "1 payslip, 2 parliament, 3 journalist, 4 protest"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-mt-monthly-test-8-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "Check your payslip.",
+      "Look at the solar panel.",
+      "I've got an interview tomorrow.",
+      "Look at the compost."
+     ],
+     "key": "1 payslip (b), 2 solar panel (c), 3 interview (b), 4 compost (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-mt-monthly-test-8-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "Deforestation is a serious problem.",
+      "She works as a lawyer.",
+      "Look at the rainforest.",
+      "She works as a journalist."
+     ],
+     "key": "1 deforestation, 2 lawyer, 3 rainforest, 4 journalist"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "Have you seen the fax machine?",
+      "We visited the campus.",
+      "He is a famous columnist.",
+      "She began to frown.",
+      "We visited the library."
+     ],
+     "key": "1 fax machine (b), 2 campus (c), 3 columnist (b), 4 frown (c), 5 library (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "She is an undergraduate.",
+      "I watched a quiz show last night.",
+      "Have you seen the telegram?",
+      "She is a real bookworm.",
+      "I watched a commercial last night."
+     ],
+     "key": "1 undergraduate, 2 quiz show, 3 telegram, 4 bookworm, 5 commercial"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "We went to the opera.",
+      "She is good at weightlifting.",
+      "Put your vote in the ballot box.",
+      "The critic loved the show.",
+      "She is good at cycling."
+     ],
+     "key": "1 opera (b), 2 weightlifting (b), 3 ballot box (b), 4 critic (c), 5 cycling (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "The referee blew the whistle.",
+      "The campaign was a success.",
+      "We went to the festival.",
+      "She is good at javelin.",
+      "He works as a volunteer."
+     ],
+     "key": "1 referee, 2 campaign, 3 festival, 4 javelin, 5 volunteer"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-fin-final-test-semester-1-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "Have you seen the telegram?",
+      "We visited the hall of residence.",
+      "I watched a chat show last night.",
+      "We travelled by tram.",
+      "The nurse brought the syringe."
+     ],
+     "key": "1 telegram (b), 2 hall of residence (a), 3 chat show (b), 4 tram (a), 5 syringe (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-fin-final-test-semester-1-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "We visited the campus.",
+      "I watched a quiz show last night.",
+      "We waited in the departure lounge.",
+      "The nurse brought the prescription.",
+      "Have you seen the pager?"
+     ],
+     "key": "1 campus, 2 quiz show, 3 departure lounge, 4 prescription, 5 pager"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "up7-fin-final-test-semester-1-ex3.mp3",
+     "secs": 75,
+     "script": [
+      "The press officer answered questions.",
+      "We drove along the motorway.",
+      "The nurse brought the bandage.",
+      "Have you seen the answering machine?",
+      "She won a scholarship."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up7-fin-final-test-semester-2-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "We listened to the orchestra.",
+      "He is the world champion.",
+      "Put your vote in the ballot box.",
+      "It's in the filing cabinet.",
+      "Look at the wind turbine."
+     ],
+     "key": "1 orchestra (a), 2 champion (b), 3 ballot box (c), 4 filing cabinet (b), 5 wind turbine (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up7-fin-final-test-semester-2-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "She stood on the podium.",
+      "We must fight unemployment.",
+      "She works as a lawyer.",
+      "Smog is a serious problem.",
+      "Listen to the piano!"
+     ],
+     "key": "1 podium, 2 unemployment, 3 lawyer, 4 smog, 5 piano"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "up7-fin-final-test-semester-2-ex3.mp3",
+     "secs": 73,
+     "script": [
+      "The president made a speech.",
+      "She works as a pilot.",
+      "The oil slick killed many birds.",
+      "Watch the conductor!",
+      "She stood on the podium."
+     ],
+     "key": "1 ✓, 2 ✓, 3 ✗, 4 ✓, 5 ✗"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

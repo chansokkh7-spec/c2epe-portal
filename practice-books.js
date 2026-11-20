@@ -44,5 +44,6 @@ window.C2_PRACTICE_BOOKS = [
   {"name": "Upstream Upper Intermediate B2+", "series": "Upstream", "level": "Upper-Intermediate", "prefix": "up5"},
   {"name": "Upstream Advanced C1", "series": "Upstream", "level": "Advanced", "prefix": "up6"},
   {"name": "Upstream Proficiency C2", "series": "Upstream", "level": "Proficiency", "prefix": "up7"},
-  {"name": "Phonics & Literacy 1 (Beehive Phonics)", "series": "Phonics", "level": "K3", "prefix": "ph1"}
+  {"name": "Phonics & Literacy 1 (Beehive Phonics)", "series": "Phonics", "level": "K3", "prefix": "ph1"},
+  {"name": "Phonics & Literacy Starter (Beehive Phonics)", "series": "Phonics", "level": "K0", "prefix": "phs"}
 ];

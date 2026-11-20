@@ -9579,6 +9579,799 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "upstream-c1-tests",
+ "level": "Upstream C1",
+ "icon": "📝",
+ "title": "Upstream Advanced C1 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "upstream-c1-tests",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Crossing Barriers",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-ut-unit-test-unit-1-crossing-barriers-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "Everyone began to clap.",
+      "She began to wave.",
+      "Please whisper in the library.",
+      "I got a phone call from my boss.",
+      "We met at an international conference."
+     ],
+     "key": "1 clap (a), 2 wave (b), 3 whisper (a), 4 phone call (a), 5 conference (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-ut-unit-test-unit-1-crossing-barriers-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "She started to weep.",
+      "He couldn't stop yawning.",
+      "He sent me a text message.",
+      "Don't yell at me!",
+      "They sent the contract by fax."
+     ],
+     "key": "1 weep, 2 yawn, 3 text message, 4 yell, 5 fax"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Moods & Feelings",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-ut-unit-test-unit-2-moods-feelings-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "He feels depressed today.",
+      "He feels lonely today.",
+      "He was as sick as a parrot.",
+      "He feels cheerful today.",
+      "He is as proud as a peacock."
+     ],
+     "key": "1 depressed (a), 2 lonely (a), 3 parrot (b), 4 cheerful (a), 5 peacock (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-ut-unit-test-unit-2-moods-feelings-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "She is as wise as an owl.",
+      "He is as cunning as a fox.",
+      "He feels nervous today.",
+      "He feels frightened today.",
+      "He feels furious today."
+     ],
+     "key": "1 owl, 2 fox, 3 nervous, 4 frightened, 5 furious"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Making a Living",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-ut-unit-test-unit-3-making-a-living-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "She works as a stockbroker.",
+      "She got a promotion.",
+      "She works as a camp leader.",
+      "Her salary is very good.",
+      "There is a vacancy in our office."
+     ],
+     "key": "1 stockbroker (a), 2 promotion (b), 3 camp leader (a), 4 salary (b), 5 vacancy (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-ut-unit-test-unit-3-making-a-living-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "She works as a nurse.",
+      "She works as a town crier.",
+      "She works as a security guard.",
+      "The job has great perks.",
+      "I worked overtime last week."
+     ],
+     "key": "1 nurse, 2 town crier, 3 security guard, 4 perks, 5 overtime"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Make Yourself at Home",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-ut-unit-test-unit-4-make-yourself-at-home-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "They live in a villa.",
+      "It's in the shed.",
+      "They live in a mansion.",
+      "It's in the patio.",
+      "It's in the cellar."
+     ],
+     "key": "1 villa (a), 2 shed (c), 3 mansion (a), 4 patio (b), 5 cellar (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-ut-unit-test-unit-4-make-yourself-at-home-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "It's in the balcony.",
+      "They live in a houseboat.",
+      "They live in a farmhouse.",
+      "It's in the larder.",
+      "It's in the landing."
+     ],
+     "key": "1 balcony, 2 houseboat, 3 farmhouse, 4 larder, 5 landing"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Modern Living",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-ut-unit-test-unit-5-modern-living-ex1.mp3",
+     "secs": 76,
+     "script": [
+      "The paparazzi followed her everywhere.",
+      "I read about it in the obituaries.",
+      "He always looks smart.",
+      "She's a real fashion victim.",
+      "I watch a soap opera every night."
+     ],
+     "key": "1 paparazzi (c), 2 obituaries (b), 3 smart (a), 4 fashion victim (a), 5 soap opera (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-ut-unit-test-unit-5-modern-living-ex2.mp3",
+     "secs": 77,
+     "script": [
+      "He always looks trendy.",
+      "He reads a tabloid every day.",
+      "I read it in the gossip column.",
+      "I found the flat in the classified ads.",
+      "She is a famous celebrity."
+     ],
+     "key": "1 trendy, 2 tabloid, 3 gossip column, 4 classified ads, 5 celebrity"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Going Places",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-ut-unit-test-unit-6-going-places-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "Don't forget your guidebook!",
+      "He is a pilgrim.",
+      "He is a backpacker.",
+      "He is a sightseer.",
+      "He is a rambler."
+     ],
+     "key": "1 guidebook (c), 2 pilgrim (b), 3 backpacker (b), 4 sightseer (c), 5 rambler (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-ut-unit-test-unit-6-going-places-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "Don't forget your suitcase!",
+      "Don't forget your camera!",
+      "Don't forget your souvenir!",
+      "He is an explorer.",
+      "Don't forget your sunglasses!"
+     ],
+     "key": "1 suitcase, 2 camera, 3 souvenir, 4 explorer, 5 sunglasses"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: History",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-ut-unit-test-unit-7-history-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "The soldier marched all night.",
+      "The general gave the order.",
+      "The revolution changed the country.",
+      "The admiral commanded the fleet.",
+      "They carried a large banner."
+     ],
+     "key": "1 soldier (c), 2 general (b), 3 revolution (b), 4 admiral (b), 5 banner (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-ut-unit-test-unit-7-history-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "They went on hunger strike.",
+      "He is a pacifist.",
+      "She was a suffragette.",
+      "There was a demonstration in the square.",
+      "The battle lasted for days."
+     ],
+     "key": "1 hunger strike, 2 pacifist, 3 suffragette, 4 demonstration, 5 battle"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Learning Lessons",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-ut-unit-test-unit-8-learning-lessons-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "My school report was excellent.",
+      "Let's meet in the staff room.",
+      "He got a detention.",
+      "Let's meet in the music room.",
+      "She is writing her thesis."
+     ],
+     "key": "1 school report (c), 2 staff room (c), 3 detention (c), 4 music room (b), 5 thesis (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-ut-unit-test-unit-8-learning-lessons-ex2.mp3",
+     "secs": 77,
+     "script": [
+      "I have a tutorial with my professor.",
+      "Let's meet in the gymnasium.",
+      "We have a seminar today.",
+      "Let's meet in the canteen.",
+      "Let's meet in the computer lab."
+     ],
+     "key": "1 tutorial, 2 gymnasium, 3 seminar, 4 canteen, 5 computer lab"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Planet Issues",
+   "info": "Test paper page 27",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-ut-unit-test-unit-9-planet-issues-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "Acid rain damages forests.",
+      "There is too much packaging.",
+      "Solar energy is clean.",
+      "Don't drop rubbish.",
+      "The rubbish goes to a landfill site."
+     ],
+     "key": "1 acid rain (a), 2 packaging (b), 3 solar energy (a), 4 rubbish (c), 5 landfill site (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-ut-unit-test-unit-9-planet-issues-ex2.mp3",
+     "secs": 78,
+     "script": [
+      "The forest is their natural habitat.",
+      "Is nuclear power safe?",
+      "Global warming is getting worse.",
+      "Air pollution is a serious problem.",
+      "We must stop deforestation."
+     ],
+     "key": "1 habitat, 2 nuclear power, 3 global warming, 4 air pollution, 5 deforestation"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: The Cycle of Life",
+   "info": "Test paper page 30",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-ut-unit-test-unit-10-the-cycle-of-life-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "He is middle-aged.",
+      "He is a teenager.",
+      "Could I have some chicken, please?",
+      "He is an adult.",
+      "Could I have some spinach, please?"
+     ],
+     "key": "1 middle-aged (c), 2 teenager (a), 3 chicken (a), 4 adult (a), 5 spinach (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-ut-unit-test-unit-10-the-cycle-of-life-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "He is a baby.",
+      "Could I have some cornflakes, please?",
+      "Could I have a cookie, please?",
+      "Could I have some cheesecake, please?",
+      "Could I have some rice, please?"
+     ],
+     "key": "1 baby, 2 cornflakes, 3 cookie, 4 cheesecake, 5 rice"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-mt-monthly-test-1-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "Don't yell at me!",
+      "They sent the contract by fax.",
+      "She wrote me a letter.",
+      "We met at an international conference."
+     ],
+     "key": "1 yell (b), 2 fax (b), 3 letter (c), 4 conference (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-mt-monthly-test-1-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "She started to weep.",
+      "The children began to giggle.",
+      "He gave me a wink.",
+      "We sent our friends a postcard."
+     ],
+     "key": "1 weep, 2 giggle, 3 wink, 4 postcard"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-mt-monthly-test-2-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "Don't yell at me!",
+      "He feels cheerful today.",
+      "She wrote me a letter.",
+      "He feels lonely today."
+     ],
+     "key": "1 yell (a), 2 cheerful (c), 3 letter (a), 4 lonely (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-mt-monthly-test-2-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "She is as slow as a snail.",
+      "She began to wave.",
+      "He is as cunning as a fox.",
+      "He couldn't stop yawning."
+     ],
+     "key": "1 snail, 2 wave, 3 fox, 4 yawn"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-mt-monthly-test-3-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "He gets a good pension.",
+      "They live in a villa.",
+      "She works as a nurse.",
+      "They live in a farmhouse."
+     ],
+     "key": "1 pension (c), 2 villa (c), 3 nurse (b), 4 farmhouse (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-mt-monthly-test-3-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "It's in the attic.",
+      "She works as a stockbroker.",
+      "It's in the porch.",
+      "She works as a chimney sweep."
+     ],
+     "key": "1 attic, 2 stockbroker, 3 porch, 4 chimney sweep"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-mt-monthly-test-4-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "They live in a villa.",
+      "The story hit the headlines.",
+      "It's in the cellar.",
+      "He always looks trendy."
+     ],
+     "key": "1 villa (b), 2 headlines (b), 3 cellar (c), 4 trendy (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-mt-monthly-test-4-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "He reads a tabloid every day.",
+      "It's in the porch.",
+      "I watch a soap opera every night.",
+      "It's in the attic."
+     ],
+     "key": "1 tabloid, 2 porch, 3 soap opera, 4 attic"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-mt-monthly-test-5-ex1.mp3",
+     "secs": 59,
+     "script": [
+      "Don't forget your passport!",
+      "Don't forget your suitcase!",
+      "Don't forget your sun cream!",
+      "He is a sightseer."
+     ],
+     "key": "1 passport (c), 2 suitcase (a), 3 sun cream (a), 4 sightseer (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-mt-monthly-test-5-ex2.mp3",
+     "secs": 58,
+     "script": [
+      "He is a commuter.",
+      "He is a pilgrim.",
+      "He is a backpacker.",
+      "He is a tourist."
+     ],
+     "key": "1 commuter, 2 pilgrim, 3 backpacker, 4 tourist"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-mt-monthly-test-6-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "Don't forget your sun cream!",
+      "The admiral commanded the fleet.",
+      "Don't forget your suitcase!",
+      "They carried a large banner."
+     ],
+     "key": "1 sun cream (c), 2 admiral (a), 3 suitcase (b), 4 banner (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-mt-monthly-test-6-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "The army decided to surrender.",
+      "Don't forget your guidebook!",
+      "He is a pacifist.",
+      "He is a rambler."
+     ],
+     "key": "1 surrender, 2 guidebook, 3 pacifist, 4 rambler"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-mt-monthly-test-7-ex1.mp3",
+     "secs": 62,
+     "script": [
+      "She is writing her thesis.",
+      "The rubbish goes to a landfill site.",
+      "The lecture starts at nine.",
+      "We must protect endangered species."
+     ],
+     "key": "1 thesis (c), 2 landfill site (b), 3 lecture (b), 4 endangered species (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-mt-monthly-test-7-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "Don't drop rubbish.",
+      "My school report was excellent.",
+      "Global warming is getting worse.",
+      "She got a grant to study."
+     ],
+     "key": "1 rubbish, 2 school report, 3 global warming, 4 grant"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-mt-monthly-test-8-ex1.mp3",
+     "secs": 60,
+     "script": [
+      "Don't drop rubbish.",
+      "Could I have some pasta, please?",
+      "There is too much packaging.",
+      "Could I have some chicken, please?"
+     ],
+     "key": "1 rubbish (b), 2 pasta (c), 3 packaging (b), 4 chicken (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-mt-monthly-test-8-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "She is elderly.",
+      "Is nuclear power safe?",
+      "Could I have a cookie, please?",
+      "Put it in the recycling bin."
+     ],
+     "key": "1 elderly, 2 nuclear power, 3 cookie, 4 recycling bin"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "They sent the contract by fax.",
+      "He feels proud today.",
+      "She got a promotion.",
+      "She began to wave.",
+      "He is as brave as a lion."
+     ],
+     "key": "1 fax (b), 2 proud (c), 3 promotion (b), 4 wave (c), 5 lion (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 77,
+     "script": [
+      "He is as stubborn as a mule.",
+      "The wage is paid every week.",
+      "We met at an international conference.",
+      "He feels frightened today.",
+      "There is a vacancy in our office."
+     ],
+     "key": "1 mule, 2 wage, 3 conference, 4 frightened, 5 vacancy"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "He is an explorer.",
+      "The battle lasted for days.",
+      "Let's meet in the science lab.",
+      "Don't forget your sun cream!",
+      "France was a close ally."
+     ],
+     "key": "1 explorer (b), 2 battle (b), 3 science lab (b), 4 sun cream (c), 5 ally (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "She was a suffragette.",
+      "Let's meet in the gymnasium.",
+      "He is a globetrotter.",
+      "There was a demonstration in the square.",
+      "She got a grant to study."
+     ],
+     "key": "1 suffragette, 2 gymnasium, 3 globetrotter, 4 demonstration, 5 grant"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-fin-final-test-semester-1-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "Everyone began to clap.",
+      "She is as wise as an owl.",
+      "She works as a taxi driver.",
+      "It's in the attic.",
+      "She's a real fashion victim."
+     ],
+     "key": "1 clap (b), 2 owl (a), 3 taxi driver (b), 4 attic (a), 5 fashion victim (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-fin-final-test-semester-1-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "He is as cunning as a fox.",
+      "I worked overtime last week.",
+      "It's in the larder.",
+      "His style is unconventional.",
+      "We needed an interpreter."
+     ],
+     "key": "1 fox, 2 overtime, 3 larder, 4 unconventional, 5 interpreter"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "up6-fin-final-test-semester-1-ex3.mp3",
+     "secs": 73,
+     "script": [
+      "Her salary is very good.",
+      "It's in the patio.",
+      "I read it in the gossip column.",
+      "The children began to giggle.",
+      "He feels frightened today."
+     ],
+     "key": "1 ✗, 2 ✓, 3 ✗, 4 ✓, 5 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "up6-fin-final-test-semester-2-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "He is a backpacker.",
+      "The revolution changed the country.",
+      "She got a grant to study.",
+      "Don't drop rubbish.",
+      "Could I have some rice, please?"
+     ],
+     "key": "1 backpacker (a), 2 revolution (b), 3 grant (c), 4 rubbish (b), 5 rice (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "up6-fin-final-test-semester-2-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "He is a pacifist.",
+      "Let's meet in the gymnasium.",
+      "Is nuclear power safe?",
+      "He is an adult.",
+      "He is a globetrotter."
+     ],
+     "key": "1 pacifist, 2 gymnasium, 3 nuclear power, 4 adult, 5 globetrotter"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "up6-fin-final-test-semester-2-ex3.mp3",
+     "secs": 74,
+     "script": [
+      "Let's meet in the corridor.",
+      "They built a wind farm.",
+      "Could I have a cookie, please?",
+      "Don't forget your passport!",
+      "The battle lasted for days."
+     ],
+     "key": "1 ✗, 2 ✓, 3 ✗, 4 ✓, 5 ✓"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

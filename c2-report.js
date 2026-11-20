@@ -58,7 +58,7 @@
   function queue() { try { return JSON.parse(ls('c2p-queue') || '[]'); } catch (e) { return []; } }
   function send(d) {
     getFb().then(function (s) { return s(d); }).then(function () { toast('📤 Score sent to your teacher ✓'); })
-      .catch(function (e) { var q = queue(); q.push(d); ls('c2p-queue', JSON.stringify(q.slice(-50))); toast('⏳ Score not sent yet (' + ((e && (e.code || e.message)) || 'offline') + ') – will try again', '#b26a00'); });
+      .catch(function () { var q = queue(); q.push(d); ls('c2p-queue', JSON.stringify(q.slice(-50))); toast('⏳ Score saved – will send later', '#b26a00'); });
   }
   /* activity: name of the game/quiz, score/total: numbers, st: the app's state ({level, unit}) */
   window.C2REPORT = function (activity, score, total, st) {

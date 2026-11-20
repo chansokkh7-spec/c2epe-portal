@@ -18432,6 +18432,799 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "empower-c1-tests",
+ "level": "Empower C1",
+ "icon": "📝",
+ "title": "Empower C1 Advanced – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Language",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-1-language-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I learn words with flashcards.",
+      "Look at the translator app.",
+      "Put on your headphones.",
+      "Look at the dictionary.",
+      "Look at the dolphin."
+     ],
+     "key": "1 flashcards (a), 2 translator app (b), 3 headphones (a), 4 dictionary (a), 5 dolphin (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-1-language-ex2.mp3",
+     "secs": 76,
+     "script": [
+      "They speak a local dialect.",
+      "I don't understand the technical jargon.",
+      "Her fluency is impressive.",
+      "I picked up some Thai on holiday.",
+      "Look at the chimpanzee."
+     ],
+     "key": "1 dialect, 2 jargon, 3 fluency, 4 pick up, 5 chimpanzee"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Going to extremes",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-2-going-to-extremes-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "Look at the desert.",
+      "Look at the hot spring.",
+      "Look at the thunderstorm.",
+      "Look at the snowstorm.",
+      "Look at the roller coaster."
+     ],
+     "key": "1 desert (a), 2 hot spring (a), 3 thunderstorm (b), 4 snowstorm (a), 5 roller coaster (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-2-going-to-extremes-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "The baby crawled to the door.",
+      "The soldiers marched past.",
+      "Look at the chilli.",
+      "We strolled along the beach.",
+      "Look at the iceberg."
+     ],
+     "key": "1 crawl, 2 march, 3 chilli, 4 stroll, 5 iceberg"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Travel and adventure",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-3-travel-and-adventure-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "Look at the island.",
+      "Look at the lake.",
+      "Look at the beach.",
+      "Look at the waterfall.",
+      "Look at the forest."
+     ],
+     "key": "1 island (a), 2 lake (b), 3 beach (a), 4 waterfall (b), 5 forest (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-3-travel-and-adventure-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "Look at the mountain range.",
+      "The hotel was luxurious.",
+      "It's a deprived part of the city.",
+      "Look at the cave.",
+      "Look at the canyon."
+     ],
+     "key": "1 mountain range, 2 luxurious, 3 deprived, 4 cave, 5 canyon"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Consciousness",
+   "info": "Test paper page 10",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-4-consciousness-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "Look at the diary.",
+      "Look at the hand.",
+      "Look at the photo album.",
+      "Look at the eye.",
+      "Look at the nose."
+     ],
+     "key": "1 diary (a), 2 hand (c), 3 photo album (a), 4 eye (b), 5 nose (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-4-consciousness-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "I had a gut feeling something was wrong.",
+      "I memorised the poem.",
+      "Look at the brain.",
+      "Trust your intuition.",
+      "Look at the tongue."
+     ],
+     "key": "1 gut feeling, 2 memorise, 3 brain, 4 intuition, 5 tongue"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Fairness",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-5-fairness-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "Look at the thief.",
+      "The police found new evidence.",
+      "Look at the prison.",
+      "Look at the detective.",
+      "Look at the police officer."
+     ],
+     "key": "1 thief (c), 2 evidence (b), 3 prison (a), 4 detective (a), 5 police officer (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-5-fairness-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "Look at the lawyer.",
+      "The salary is excellent.",
+      "The job has great perks.",
+      "Look at the courtroom.",
+      "Look at the judge."
+     ],
+     "key": "1 lawyer, 2 salary, 3 perks, 4 courtroom, 5 judge"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Perspectives",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-6-perspectives-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "She looks heartbroken.",
+      "She looks delighted.",
+      "She looks relieved.",
+      "She looks anxious.",
+      "She looks exhausted."
+     ],
+     "key": "1 heartbroken (c), 2 delighted (b), 3 relieved (b), 4 anxious (c), 5 exhausted (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-6-perspectives-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "The colours are very vivid.",
+      "The picture is monochrome.",
+      "It's an eye-catching poster.",
+      "She looks furious.",
+      "The sky looks dramatic."
+     ],
+     "key": "1 vivid, 2 monochrome, 3 eye-catching, 4 furious, 5 dramatic"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Connections",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-7-connections-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "Look at the smartphone.",
+      "Look at the 3D printer.",
+      "Look at the smartwatch.",
+      "Look at the laptop.",
+      "Look at the drone."
+     ],
+     "key": "1 smartphone (c), 2 3D printer (b), 3 smartwatch (b), 4 laptop (b), 5 drone (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-7-connections-ex2.mp3",
+     "secs": 76,
+     "script": [
+      "They use state-of-the-art equipment.",
+      "It's a friendly neighbourhood.",
+      "The job is time-consuming.",
+      "Our friendship is important to me.",
+      "Look at the satellite."
+     ],
+     "key": "1 state-of-the-art, 2 neighbourhood, 3 time-consuming, 4 friendship, 5 satellite"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Body and health",
+   "info": "Test paper page 19",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-8-body-and-health-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "Look at the walking stick.",
+      "Look at the water bottle.",
+      "I bought new running shoes.",
+      "Look at the bed.",
+      "Look at the yoga mat."
+     ],
+     "key": "1 walking stick (c), 2 water bottle (c), 3 running shoes (c), 4 bed (b), 5 yoga mat (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-8-body-and-health-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "Look at the alarm clock.",
+      "We help elderly people.",
+      "Take these pills.",
+      "Life expectancy is rising.",
+      "I overslept this morning."
+     ],
+     "key": "1 alarm clock, 2 elderly, 3 pills, 4 life expectancy, 5 oversleep"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Cities",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-9-cities-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "Look at the stadium.",
+      "Look at the temple.",
+      "Look at the factory.",
+      "Look at the cottage.",
+      "Look at the bridge."
+     ],
+     "key": "1 stadium (a), 2 temple (b), 3 factory (a), 4 cottage (c), 5 bridge (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-9-cities-ex2.mp3",
+     "secs": 71,
+     "script": [
+      "They restored the castle.",
+      "The room is cramped.",
+      "They renamed the street.",
+      "They rebuilt the bridge.",
+      "Look at the castle."
+     ],
+     "key": "1 restore, 2 cramped, 3 rename, 4 rebuild, 5 castle"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Occasions",
+   "info": "Test paper page 23",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-10-occasions-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "Look at the mirror.",
+      "Look at the four-leaf clover.",
+      "Look at the fireworks!",
+      "Light the candles.",
+      "Look at the lantern."
+     ],
+     "key": "1 mirror (c), 2 four-leaf clover (a), 3 fireworks (a), 4 candles (a), 5 lantern (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-ut-unit-test-unit-10-occasions-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "Look at the black cat.",
+      "He always boasts about his car.",
+      "She insisted on paying.",
+      "He pleaded for help.",
+      "He muttered something angrily."
+     ],
+     "key": "1 black cat, 2 boast, 3 insist, 4 plead, 5 mutter"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mt-monthly-test-1-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "Put on your headphones.",
+      "Look at the parrot.",
+      "Look at the dictionary.",
+      "Look at the translator app."
+     ],
+     "key": "1 headphones (b), 2 parrot (b), 3 dictionary (c), 4 translator app (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mt-monthly-test-1-ex2.mp3",
+     "secs": 63,
+     "script": [
+      "Teenagers use a lot of slang.",
+      "I picked up some Thai on holiday.",
+      "Their children are bilingual.",
+      "I learn words with flashcards."
+     ],
+     "key": "1 slang, 2 pick up, 3 bilingual, 4 flashcards"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mt-monthly-test-2-ex1.mp3",
+     "secs": 56,
+     "script": [
+      "Put on your headphones.",
+      "Look at the desert.",
+      "Look at the dictionary.",
+      "Look at the chilli."
+     ],
+     "key": "1 headphones (a), 2 desert (c), 3 dictionary (a), 4 chilli (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mt-monthly-test-2-ex2.mp3",
+     "secs": 62,
+     "script": [
+      "I tiptoed past the bedroom.",
+      "He has a strong accent.",
+      "The baby crawled to the door.",
+      "I don't understand the technical jargon."
+     ],
+     "key": "1 tiptoe, 2 accent, 3 crawl, 4 jargon"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mt-monthly-test-3-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "Look at the mountain range.",
+      "Look at the diary.",
+      "Look at the waterfall.",
+      "Look at the brain."
+     ],
+     "key": "1 mountain range (c), 2 diary (c), 3 waterfall (b), 4 brain (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mt-monthly-test-3-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "Look at the hand.",
+      "It's an affluent area.",
+      "That's a logical answer.",
+      "The town became prosperous."
+     ],
+     "key": "1 hand, 2 affluent, 3 logical, 4 prosperous"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mt-monthly-test-4-ex1.mp3",
+     "secs": 58,
+     "script": [
+      "Look at the diary.",
+      "The police found new evidence.",
+      "Look at the photo album.",
+      "Look at the lawyer."
+     ],
+     "key": "1 diary (b), 2 evidence (b), 3 photo album (c), 4 lawyer (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mt-monthly-test-4-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "Please sign the contract.",
+      "Look at the hand.",
+      "Fifty workers face redundancy.",
+      "I memorised the poem."
+     ],
+     "key": "1 contract, 2 hand, 3 redundancy, 4 memorise"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mt-monthly-test-5-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "She looks exhausted.",
+      "She looks embarrassed.",
+      "She looks heartbroken.",
+      "She looks anxious."
+     ],
+     "key": "1 exhausted (c), 2 embarrassed (a), 3 heartbroken (a), 4 anxious (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mt-monthly-test-5-ex2.mp3",
+     "secs": 59,
+     "script": [
+      "The colours are very vivid.",
+      "She looks furious.",
+      "She looks delighted.",
+      "The landscape looks bleak."
+     ],
+     "key": "1 vivid, 2 furious, 3 delighted, 4 bleak"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mt-monthly-test-6-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "She looks embarrassed.",
+      "Look at the laptop.",
+      "She looks exhausted.",
+      "Look at the smartwatch."
+     ],
+     "key": "1 embarrassed (c), 2 laptop (a), 3 exhausted (b), 4 smartwatch (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mt-monthly-test-6-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "Look at the 3D printer.",
+      "The colours are very subtle.",
+      "I renewed my gym membership.",
+      "She looks heartbroken."
+     ],
+     "key": "1 3D printer, 2 subtle, 3 membership, 4 heartbroken"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mt-monthly-test-7-ex1.mp3",
+     "secs": 57,
+     "script": [
+      "Look at the bed.",
+      "Look at the skyscraper.",
+      "Look at the water bottle.",
+      "Look at the tower."
+     ],
+     "key": "1 bed (c), 2 skyscraper (b), 3 water bottle (b), 4 tower (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mt-monthly-test-7-ex2.mp3",
+     "secs": 61,
+     "script": [
+      "The flat is spacious.",
+      "Life expectancy is rising.",
+      "They rebuilt the bridge.",
+      "I had a nap after lunch."
+     ],
+     "key": "1 spacious, 2 life expectancy, 3 rebuild, 4 nap"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mt-monthly-test-8-ex1.mp3",
+     "secs": 56,
+     "script": [
+      "Look at the cottage.",
+      "Look at the wedding ring.",
+      "Look at the temple.",
+      "Look at the fireworks!"
+     ],
+     "key": "1 cottage (b), 2 wedding ring (c), 3 temple (b), 4 fireworks (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mt-monthly-test-8-ex2.mp3",
+     "secs": 60,
+     "script": [
+      "Don't mumble – speak clearly.",
+      "Look at the factory.",
+      "They love to gossip.",
+      "They plan to redevelop the area."
+     ],
+     "key": "1 mumble, 2 factory, 3 gossip, 4 redevelop"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "Look at the parrot.",
+      "Look at the chilli.",
+      "Look at the canyon.",
+      "Look at the translator app.",
+      "Look at the parachute."
+     ],
+     "key": "1 parrot (b), 2 chilli (c), 3 canyon (b), 4 translator app (c), 5 parachute (b)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mid-mid-term-test-semester-1-ex2.mp3",
+     "secs": 75,
+     "script": [
+      "I wandered around the town.",
+      "Her family is very wealthy.",
+      "Her fluency is impressive.",
+      "He staggered across the room.",
+      "The town became prosperous."
+     ],
+     "key": "1 wander, 2 wealthy, 3 fluency, 4 stagger, 5 prosperous"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "She looks furious.",
+      "Look at the robot.",
+      "I bought new running shoes.",
+      "She looks heartbroken.",
+      "Look at the drone."
+     ],
+     "key": "1 furious (b), 2 robot (b), 3 running shoes (b), 4 heartbroken (c), 5 drone (a)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-mid-mid-term-test-semester-2-ex2.mp3",
+     "secs": 73,
+     "script": [
+      "The app is very user-friendly.",
+      "Look at the bed.",
+      "She looks astonished.",
+      "The job is time-consuming.",
+      "I want to stay fit."
+     ],
+     "key": "1 user-friendly, 2 bed, 3 astonished, 4 time-consuming, 5 fit"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-fin-final-test-semester-1-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "I learn words with flashcards.",
+      "Look at the parachute.",
+      "Look at the beach.",
+      "Look at the nose.",
+      "Look at the thief."
+     ],
+     "key": "1 flashcards (b), 2 parachute (a), 3 beach (b), 4 nose (a), 5 thief (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-fin-final-test-semester-1-ex2.mp3",
+     "secs": 74,
+     "script": [
+      "He staggered across the room.",
+      "The town became prosperous.",
+      "Let's make a rational decision.",
+      "Please sign the contract.",
+      "Look at the parrot."
+     ],
+     "key": "1 stagger, 2 prosperous, 3 rational, 4 contract, 5 parrot"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-fin-final-test-semester-1-ex3.mp3",
+     "secs": 70,
+     "script": [
+      "Look at the cave.",
+      "Look at the brain.",
+      "Look at the detective.",
+      "Look at the dolphin.",
+      "Look at the snowstorm."
+     ],
+     "key": "1 ✗, 2 ✗, 3 ✓, 4 ✗, 5 ✓"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick ✓.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-fin-final-test-semester-2-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "She looks delighted.",
+      "Look at the 3D printer.",
+      "Look at the walking stick.",
+      "Look at the factory.",
+      "Look at the wedding ring."
+     ],
+     "key": "1 delighted (a), 2 3D printer (b), 3 walking stick (c), 4 factory (b), 5 wedding ring (c)"
+    },
+    {
+     "n": 2,
+     "title": "Exercise 2 – Listen and circle the correct word.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-fin-final-test-semester-2-ex2.mp3",
+     "secs": 72,
+     "script": [
+      "She applied for citizenship.",
+      "I bought new running shoes.",
+      "Look at the tower.",
+      "Look at the mirror.",
+      "It's an eye-catching poster."
+     ],
+     "key": "1 citizenship, 2 running shoes, 3 tower, 4 mirror, 5 eye-catching"
+    },
+    {
+     "n": 3,
+     "title": "Exercise 3 – Listen and tick ✓ or cross ✗.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/em6-fin-final-test-semester-2-ex3.mp3",
+     "secs": 70,
+     "script": [
+      "Look at the yoga mat.",
+      "Look at the castle.",
+      "Look at the ladder.",
+      "She looks exhausted.",
+      "Look at the robot."
+     ],
+     "key": "1 ✓, 2 ✓, 3 ✗, 4 ✓, 5 ✗"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

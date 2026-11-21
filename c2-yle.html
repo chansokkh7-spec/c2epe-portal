@@ -142,6 +142,31 @@ body.print header{print-color-adjust:exact;-webkit-print-color-adjust:exact}
 body.print input.w{border:none;border-bottom:1.5px solid #333;border-radius:0;background:transparent}
 @media print{ body{print-color-adjust:exact;-webkit-print-color-adjust:exact} }
 body.print input.w::placeholder{color:transparent}
+
+.pics8{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:6px 0 10px}
+.pics8 div{border:1.5px solid #cdd4e4;border-radius:10px;text-align:center;padding:4px}
+.pics8 .e{display:block;font-size:40px;font-family:"Noto Color Emoji","Apple Color Emoji",sans-serif}
+.pics8 b{color:var(--navy)}
+.mrow{display:flex;align-items:center;gap:8px;padding:7px 0;border-top:1px dashed #e3e6ee;flex-wrap:wrap}
+.mrow .s{min-width:90px;font-weight:600}
+.lts{display:flex;gap:4px;flex-wrap:wrap}
+.lts button,.opts button{border:1.5px solid #cdd4e4;background:#fff;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:15px;font-family:inherit;text-align:left}
+.lts button.sel,.opts button.sel{border-color:var(--navy);background:#eef2fb}
+.lts button.right,.opts button.right{border-color:var(--ok);background:#eaf6ee}
+.lts button.wrong,.opts button.wrong{border-color:var(--bad);background:#fdecea}
+.lts button.kv,.opts button.kv{border-color:#d93025;color:#d93025}
+.opts{display:flex;flex-direction:column;gap:5px;margin:6px 0 4px}
+.c3{display:flex;align-items:flex-start;gap:8px;padding:4px 0}
+.c3 .opts{flex-direction:row;flex-wrap:wrap;margin:0}
+.ftext{font-size:15px;line-height:1.6;margin:4px 0 6px}
+.frames3{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.frames3 .bigpic{font-size:34px}
+textarea.story{width:100%;box-sizing:border-box;border:1.5px solid #cdd4e4;border-radius:10px;padding:10px;font-size:16px;font-family:inherit}
+.gap{color:#1e6fd9}
+
+details.book{background:#fff;border-radius:12px;margin:8px 0;padding:4px 12px;border:1px solid #e3e6ee}
+details.book summary{cursor:pointer;font-weight:700;color:var(--navy);font-size:17px;padding:8px 0}
+details.book summary small{color:#888;font-weight:400;margin-left:6px}
 </style>
 </head>
 <body>
@@ -260,18 +285,24 @@ function openTest(id){ ID=id; LCHK=[]; RCHK=[]; var ob=document.querySelector('.
 
 function listPage(){
   document.getElementById('lv').textContent='C2-EPE Young Learners';
-  document.getElementById('ttl').textContent='C2-EPE Starters Test Preparation';
-  document.getElementById('sub').textContent='Practice for the Pre A1 Starters exam · Listening & Reading and Writing';
+  document.getElementById('ttl').textContent='C2-EPE Test Preparation';
+  document.getElementById('sub').textContent='Starters · Movers · Flyers – Listening & Reading and Writing';
   var s=document.createElement('script'); s.src='yle-index.js?v='+Date.now();
   if(EMBED){ s={}; setTimeout(function(){ s.onload(); },0); }
   s.onload=function(){
-    var L=window.YLE_INDEX||[], groups={};
+    var L=window.YLE_INDEX||[], groups={}, order=['Starters','Movers','Flyers'];
     L.forEach(function(t){ (groups[t.level]=groups[t.level]||[]).push(t); });
+    var lv=Object.keys(groups); if(lv.length===1){ document.getElementById('ttl').textContent='C2-EPE '+lv[0]+' Test Preparation'; document.getElementById('sub').textContent='Practice for the '+({Starters:'Pre A1 Starters',Movers:'A1 Movers',Flyers:'A2 Flyers'}[lv[0]]||lv[0])+' exam · Listening & Reading and Writing'; }
     var h='';
-    for(var g in groups){ h+='<div class="paper">🏅 '+esc(g)+' <small>'+groups[g].length+' tests</small></div>';
-      groups[g].forEach(function(t){ var n=parseInt(store('c2p-n-'+t.id)||'0',10);
-        h+='<a class="card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;cursor:pointer" '+(EMBED?'onclick="openTest(\''+t.id+'\')"':'href="c2-yle.html?t='+encodeURIComponent(t.id)+'"')+'>'
-          +'<span style="width:42px;height:42px;font-size:18px;font-weight:700;background:var(--gold);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:none">'+t.num+'</span><span style="flex:1"><b style="color:var(--navy);font-size:17px">'+esc(t.title)+'</b><br><small style="color:#666">'+esc(t.desc||'')+(n?' · ✓ done '+n+'×':'')+'</small></span><span style="font-size:22px">▶</span></a>'; }); }
+    order.concat(Object.keys(groups).filter(function(g){return order.indexOf(g)<0;})).forEach(function(g){ if(!groups[g]) return;
+      var books={}; groups[g].forEach(function(t){ (books[t.book]=books[t.book]||[]).push(t); });
+      h+='<div class="paper">🏅 '+esc(g)+' <small>'+Object.keys(books).length+' books · '+groups[g].length+' tests</small></div>';
+      Object.keys(books).sort(function(a,b){return a-b;}).forEach(function(bk){
+        h+='<details class="book"'+(Object.keys(books).length<=2?' open':'')+'><summary>📘 '+esc(g)+' Book '+bk+' <small>'+books[bk].length+' tests</small></summary>';
+        books[bk].forEach(function(t){ var n=parseInt(store('c2p-n-'+t.id)||'0',10);
+          h+='<a class="card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;cursor:pointer;margin:8px 0" '+(EMBED?'onclick="openTest(\''+t.id+'\')"':'href="c2-yle.html?t='+encodeURIComponent(t.id)+'"')+'>'
+            +'<span style="width:42px;height:42px;font-size:18px;font-weight:700;background:var(--gold);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:none">'+t.tb+'</span><span style="flex:1"><b style="color:var(--navy);font-size:17px">Test '+t.tb+'</b><br><small style="color:#666">'+esc(t.desc||'')+(n?' · ✓ done '+n+'×':'')+'</small></span><span style="font-size:22px">▶</span></a>'; });
+        h+='</details>'; }); });
     main.innerHTML=h||'<div class="msg">No tests yet.</div>';
   };
   if(EMBED) return;
@@ -307,7 +338,7 @@ function winput(ph){ return $('<input class="w" autocomplete="off" autocapitaliz
 
 /* ---------------- LISTENING ---------------- */
 function L1(D, P){
-  var c=card(1, P.title, 5); c.appendChild(audioEl(D, P.file));
+  var c=card(P.n, P.title, P.q||5); c.appendChild(audioEl(D, P.file));
   c.appendChild($('<div class="hint">👆 Tap a <b>name</b>, then tap the <b>person</b> in the picture. / ចុចឈ្មោះ រួចចុចមនុស្សក្នុងរូប</div>'));
   var items=P.scene.map(function(it){ return [it[0],it[1],it[2],it[3]+40,it[4]]; });
   var s=scene(items,'0 0 400 385',P.bg||'park',40);
@@ -338,7 +369,7 @@ function L1(D, P){
     key:function(){ done=true; for(var nm in key) link[nm]=key[nm]; draw(); }});
 }
 function L2(D, P){
-  var c=card(2, P.title, 5); c.appendChild(audioEl(D, P.file));
+  var c=card(P.n, P.title, P.q||5); c.appendChild(audioEl(D, P.file));
   c.appendChild($('<div class="bigpic">'+esc(P.pic)+'</div>'));
   P.examples.forEach(function(e){ c.appendChild($('<div class="exrow">Example: '+esc(e[0])+' <span class="a">'+esc(e[1])+'</span></div>')); });
   var ins=[];
@@ -355,7 +386,7 @@ function abcRow(q, opts, cb, exAns){
   d.appendChild(g); return [d, bs];
 }
 function L3(D, P){
-  var c=card(3, P.title, 5); c.appendChild(audioEl(D, P.file));
+  var c=card(P.n, P.title, P.q||5); c.appendChild(audioEl(D, P.file));
   var ex=abcRow('Example: '+P.example[0], P.example[1], null, P.example[2]); ex[0].style.opacity=.75; c.appendChild(ex[0]);
   var rows=[];
   P.items.forEach(function(it,i){ var st={pick:-1};
@@ -367,7 +398,7 @@ function L3(D, P){
     key:function(){ rows.forEach(function(x){ x[0].done=1; x[0].pick=x[2]; x[1][x[2]].querySelector('.bx').textContent='✓'; x[1][x[2]].classList.add('kv'); }); }});
 }
 function L4(D, P){
-  var c=card(4, P.title, 5); c.appendChild(audioEl(D, P.file));
+  var c=card(P.n, P.title, P.q||5); c.appendChild(audioEl(D, P.file));
   c.appendChild($('<div class="hint">🎨 Choose a <b>colour</b>, then tap the thing in the picture. / ជ្រើសពណ៌ រួចចុចលើរបស់ក្នុងរូប</div>'));
   var pal=$('<div class="pal"></div>'), cur=null;
   P.colours.forEach(function(k){ var b=$('<button type="button" title="'+k+'" style="background:'+COL[k]+'"></button>'); b.onclick=function(){ cur=k; pal.querySelectorAll('button').forEach(function(x){x.classList.toggle('sel',x===b);}); }; pal.appendChild(b); });
@@ -391,7 +422,7 @@ function tickRow(pic, q, val, ex){
   return d;
 }
 function R1(D, P){
-  var c=card(1, P.title, 5);
+  var c=card(P.n, P.title, P.q||5);
   P.examples.forEach(function(e){ var d=tickRow(e[0], e[1], e[2], true); d.querySelector('button').textContent=e[2]?'✓':'✗'; c.appendChild(d); });
   c.appendChild($('<div class="hint" style="margin-top:8px"><b>Questions</b> – tap the box: ✓ / ✗</div>'));
   var rows=[];
@@ -404,7 +435,7 @@ function R1(D, P){
     key:function(){ rows.forEach(function(x){ x[0].done=1; x[0].v=x[2]; x[1].textContent=x[2]?'✓':'✗'; x[1].classList.add('kv'); }); }});
 }
 function R2(D, P){
-  var c=card(2, P.title, 5);
+  var c=card(P.n, P.title, P.q||5);
   c.appendChild(scene(P.scene,'0 0 400 300',P.bg||'park',0));
   P.examples.forEach(function(e){ c.appendChild($('<div class="exrow" style="margin-top:8px">Example: '+esc(e[0])+' <span class="a">'+e[1]+'</span></div>')); });
   var ins=[];
@@ -415,7 +446,7 @@ function R2(D, P){
 }
 function letters(l){ return '<span class="letters">'+l.split('').map(function(x){return '<span>'+esc(x)+'</span>';}).join('')+'</span>'; }
 function R3(D, P){
-  var c=card(3, P.title, 5);
+  var c=card(P.n, P.title, P.q||5);
   c.appendChild($('<div class="lt3" style="border:none;opacity:.8"><span class="e">'+P.example[0]+'</span>'+letters(P.example[1])+'<span class="exrow" style="margin:0">Example: <span class="a">'+esc(P.example[2])+'</span></span></div>'));
   var ins=[];
   P.items.forEach(function(it,i){ var a=unk(it.k); var d=$('<div class="lt3"><span class="k" style="color:#1e6fd9;font-weight:700">'+(i+1)+'</span><span class="e">'+it.pic+'</span>'+letters(it.letters)+'</div>');
@@ -425,7 +456,7 @@ function R3(D, P){
     key:function(){ ins.forEach(function(x){ x[0].value=x[1][0]; x[0].readOnly=true; x[0].classList.add('kv'); }); }});
 }
 function R4(D, P){
-  var c=card(4, P.title, 5);
+  var c=card(P.n, P.title, P.q||5);
   c.appendChild($('<div class="wb">'+P.bank.map(function(b){return '<div><span class="e">'+b[1]+'</span>'+esc(b[0])+'</div>';}).join('')+'</div>'));
   c.appendChild($('<div style="font-weight:700;color:var(--navy);text-align:center;margin:4px 0">'+esc(P.head)+'</div>'));
   var key=unk(P.k), ins=[];
@@ -437,7 +468,7 @@ function R4(D, P){
     key:function(){ ins.forEach(function(x){ x[0].value=x[1][0]; x[0].readOnly=true; x[0].classList.add('kv'); }); }});
 }
 function R5(D, P){
-  var c=card(5, P.title, 5), ins=[], n=0;
+  var c=card(P.n, P.title, P.q||5), ins=[], n=0;
   P.frames.forEach(function(f){ var fr=$('<div class="frame"><div class="bigpic">'+f.pic+'</div></div>');
     f.q.forEach(function(q){ var d;
       if(q.ex!==undefined){ d=$('<div class="fq"><span class="s">Example: '+esc(q.q)+'</span><span class="exrow" style="margin:0"><span class="a">'+esc(q.ex)+'</span></span></div>'); }
@@ -452,17 +483,164 @@ function R5(D, P){
     key:function(){ ins.forEach(function(x){ x[0].value=x[1][0]; x[0].readOnly=true; x[0].classList.add('kv'); }); }});
 }
 
+/* ---------------- MOVERS / FLYERS part types ---------------- */
+function inputsPart(c, ins, arr){ arr.push({n:ins.length, check:function(){ var r=0; ins.forEach(function(x){ r+=textCheck(x[0],x[1]); }); return r; },
+  reset:function(){ ins.forEach(function(x){textReset(x[0]);}); }, key:function(){ ins.forEach(function(x){ x[0].value=x[1][0]; x[0].readOnly=true; x[0].classList.add('kv'); }); }}); }
+function choiceRows(c, rows, arr){ /* rows: [st, buttons, keyIndex] */
+  arr.push({n:rows.length, check:function(){ var s=0; rows.forEach(function(x){ x[0].done=1; var ok=x[0].pick===x[2]; s+=ok; if(x[0].pick>=0) x[1][x[0].pick].classList.add(ok?'right':'wrong'); if(!ok) x[1][x[2]].classList.add('right'); }); return s; },
+    reset:function(){ rows.forEach(function(x){ x[0].done=0; x[0].pick=-1; x[1].forEach(function(b){ b.classList.remove('sel','right','wrong','kv'); }); }); },
+    key:function(){ rows.forEach(function(x){ x[0].done=1; x[0].pick=x[2]; x[1][x[2]].classList.add('sel','kv'); }); }});
+}
+function optButtons(opts, letters){ var g=$('<div class="opts"></div>'), st={pick:-1}, bs=[];
+  opts.forEach(function(o,i){ var b=$('<button type="button"><b>'+(letters?'ABCDEFGH'[i]+'</b> ':'</b>')+esc(o)+'</button>'); b.onclick=function(){ if(st.done) return; st.pick=i; bs.forEach(function(x,j){ x.classList.toggle('sel',j===i); }); }; g.appendChild(b); bs.push(b); });
+  return [g, st, bs]; }
+/* Listening – match people/days to pictures A–H */
+function LM(D, P){
+  var c=card(P.n, P.title, P.q||5); c.appendChild(audioEl(D, P.file));
+  c.appendChild($('<div class="pics8">'+P.pics.map(function(p,i){ return '<div><span class="e">'+p+'</span><b>'+'ABCDEFGH'[i]+'</b></div>'; }).join('')+'</div>'));
+  c.appendChild($('<div class="exrow">Example: '+esc(P.example[0])+' <span class="a">'+'ABCDEFGH'[P.example[1]]+'</span></div>'));
+  var rows=[];
+  P.items.forEach(function(it,i){ var d=$('<div class="mrow"><span class="k" style="color:#1e6fd9;font-weight:700">'+(i+1)+'</span><span class="s">'+esc(it.q)+'</span></div>');
+    var st={pick:-1}, bs=[], g=$('<span class="lts"></span>');
+    P.pics.forEach(function(p,j){ var b=$('<button type="button">'+'ABCDEFGH'[j]+'</button>'); b.onclick=function(){ if(st.done) return; st.pick=j; bs.forEach(function(x,k){ x.classList.toggle('sel',k===j); }); }; g.appendChild(b); bs.push(b); });
+    d.appendChild(g); c.appendChild(d); rows.push([st,bs,unk(it.k)]); });
+  main.appendChild(c); choiceRows(c, rows, LCHK);
+}
+/* Listening – colour and write */
+function LCW(D, P){
+  var c=card(P.n, P.title, P.q||5); c.appendChild(audioEl(D, P.file));
+  c.appendChild($('<div class="hint">🎨 Choose a <b>colour</b>, then tap the thing. ✏️ Write the words in the boxes. / ជ្រើសពណ៌ រួចចុចលើរូប ហើយសរសេរពាក្យក្នុងប្រអប់</div>'));
+  var pal=$('<div class="pal"></div>'), cur=null;
+  P.colours.forEach(function(k){ var b=$('<button type="button" title="'+k+'" style="background:'+COL[k]+'"></button>'); b.onclick=function(){ cur=k; pal.querySelectorAll('button').forEach(function(x){x.classList.toggle('sel',x===b);}); }; pal.appendChild(b); });
+  var s=$('<div>'+colourPic(P)+'</div>').firstElementChild; c.appendChild(s); c.appendChild(pal);
+  var fill={}, done=false;
+  function paint(g,k){ g.querySelectorAll('.c').forEach(function(e){ e.setAttribute('fill', k?COL[k]:'#fff'); }); }
+  s.querySelectorAll('g[data-c]').forEach(function(g){ var id=g.dataset.c; g.style.cursor='pointer';
+    if(id===P.example[0]){ paint(g,P.example[1]); return; }
+    g.addEventListener('click', function(){ if(done||!cur) return; fill[id]=cur; paint(g,cur); }); });
+  var ins=[];
+  P.writes.forEach(function(w){ var d=$('<div class="yn"><span class="s">✏️ '+esc(w.label)+'</span></div>'), inp=winput(''); d.appendChild(inp); c.appendChild(d); ins.push([inp,unk(w.k)]); });
+  main.appendChild(c);
+  var key=unk(P.k);
+  LCHK.push({n:5, check:function(){ done=true; var r=0, miss=0; for(var id in key){ if(fill[id]===key[id]) r++; else miss++; }
+      ins.forEach(function(x){ r+=textCheck(x[0],x[1]); });
+      if(miss){ var note=$('<div class="note" style="margin-left:0">✔ Colours: '+Object.keys(key).map(function(id){return esc(P.names&&P.names[id]||id)+' – <b>'+key[id]+'</b>';}).join(' · ')+'</div>'); c.appendChild(note); c._note=note; } return r; },
+    reset:function(){ done=false; fill={}; s.querySelectorAll('g[data-c]').forEach(function(g){ if(g.dataset.c!==P.example[0]) paint(g,null); }); ins.forEach(function(x){textReset(x[0]);}); if(c._note){c._note.remove(); c._note=null;} },
+    key:function(){ done=true; for(var id in key){ fill[id]=key[id]; paint(s.querySelector('g[data-c="'+id+'"]'), key[id]); } ins.forEach(function(x){ x[0].value=x[1][0]; x[0].readOnly=true; x[0].classList.add('kv'); }); }});
+}
+/* R&W – definitions → write the word (word bank with pictures) */
+function RD(D, P){
+  var c=card(P.n, P.title, P.q||5);
+  c.appendChild($('<div class="wb">'+P.bank.map(function(b){return '<div><span class="e">'+b[1]+'</span>'+esc(b[0])+'</div>';}).join('')+'</div>'));
+  c.appendChild($('<div class="exrow">Example: '+esc(P.example[0])+' <span class="a">'+esc(P.example[1])+'</span></div>'));
+  var ins=[];
+  P.items.forEach(function(it,i){ var d=$('<div class="yn"><span class="k" style="color:#1e6fd9;font-weight:700">'+(i+1)+'</span><span class="s">'+esc(it.q)+'</span></div>'), inp=winput(''); d.appendChild(inp); c.appendChild(d); ins.push([inp,unk(it.k)]); });
+  main.appendChild(c); inputsPart(c, ins, RCHK);
+}
+/* R&W – conversation: choose the best answer */
+function RDG(D, P){
+  var c=card(P.n, P.title, P.q||5);
+  if(P.intro) c.appendChild($('<div class="hint" style="font-size:14px">'+esc(P.intro)+'</div>'));
+  var ex=P.example; c.appendChild($('<div class="exrow">Example: <b>'+esc(ex[0])+'</b> '+esc(ex[1])+'<br>→ <span class="a">'+esc(ex[2])+'</span></div>'));
+  var rows=[];
+  P.items.forEach(function(it,i){ var d=$('<div class="it"><div class="q"><span class="k" style="color:#1e6fd9;font-weight:700">'+(i+1)+'</span> <b>'+esc(it.who)+'</b> '+esc(it.q)+'</div></div>'), o=optButtons(it.opts, true);
+    d.appendChild(o[0]); c.appendChild(d); rows.push([o[1], o[2], unk(it.k)]); });
+  main.appendChild(c); choiceRows(c, rows, RCHK);
+}
+/* R&W – story with gaps from a word bank + choose the best title */
+function RSG(D, P){
+  var c=card(P.n, P.title, P.q||6);
+  c.appendChild($('<div class="wb">'+P.bank.map(function(b){return '<div><span class="e">'+b[1]+'</span>'+esc(b[0])+'</div>';}).join('')+'</div>'));
+  var key=unk(P.k), ins=[];
+  var html=esc(P.text).replace('(example) '+P.example, '<span class="a">'+esc(P.example)+'</span>').replace(/\((\d)\) ___/g, function(m,n){ return '<b>('+n+')</b> <input class="w" data-n="'+n+'" autocomplete="off" autocapitalize="off" spellcheck="false">'; });
+  var t=$('<div class="text gtext">'+html+'</div>'); c.appendChild(t);
+  t.querySelectorAll('input').forEach(function(inp){ ins.push([inp,[key[inp.dataset.n-1]]]); });
+  main.appendChild(c); inputsPart(c, ins, RCHK);
+  var d=$('<div class="it" style="margin-top:10px"><div class="q"><span class="k" style="color:#1e6fd9;font-weight:700">6</span> Now choose the best name for the story. Tick one box.</div></div>'), o=optButtons(P.titles, true);
+  d.appendChild(o[0]); c.appendChild(d); choiceRows(c, [[o[1], o[2], unk(P.tk)]], RCHK);
+}
+/* R&W – cloze with A/B/C under the text */
+function RC3(D, P){
+  var c=card(P.n, P.title, P.q||5);
+  if(P.head) c.appendChild($('<div style="font-weight:700;color:var(--navy);text-align:center;margin:4px 0">'+esc(P.head)+'</div>'));
+  var html=esc(P.text).replace(/\((\d+)\) ___/g, function(m,n){ return '<b class="gap" data-n="'+n+'">('+n+') ______</b>'; }).replace('(example) '+esc(P.example), '<span class="a">'+esc(P.example)+'</span>');
+  c.appendChild($('<div class="text gtext">'+html+'</div>'));
+  var rows=[];
+  P.items.forEach(function(it,i){ var d=$('<div class="c3"><span class="k" style="color:#1e6fd9;font-weight:700">'+(i+1)+'</span></div>'), o=optButtons(it.opts, true);
+    d.appendChild(o[0]); c.appendChild(d); rows.push([o[1], o[2], unk(it.k)]);
+    o[2].forEach(function(b,j){ b.addEventListener('click', function(){ var g=c.querySelector('.gap[data-n="'+(i+1)+'"]'); if(g&&!o[1].done) g.textContent='('+(i+1)+') '+it.opts[j]; }); }); });
+  main.appendChild(c); choiceRows(c, rows, RCHK);
+}
+/* R&W – story with pictures; complete sentences with 1–3 words */
+function RSW(D, P){
+  var c=card(P.n, P.title, P.q||7), ins=[], n=0;
+  if(P.intro) c.appendChild($('<div class="hint" style="font-size:14px">'+esc(P.intro)+'</div>'));
+  P.frames.forEach(function(f){ var fr=$('<div class="frame"><div class="bigpic">'+f.pic+'</div><div class="ftext">'+esc(f.text)+'</div></div>');
+    f.q.forEach(function(q){ var d;
+      if(q.ex!==undefined){ d=$('<div class="fq"><span class="s">Example: '+esc(q.q).replace('___','<span class="a">'+esc(q.ex)+'</span>')+'</span></div>'); }
+      else { n++; var parts=q.q.split('___'); d=$('<div class="fq"><span class="k" style="color:#1e6fd9;font-weight:700">'+n+'</span><span class="s">'+esc(parts[0])+'</span></div>');
+        var inp=winput(''); inp.style.width='150px'; d.appendChild(inp); if(parts[1]) d.appendChild($('<span>'+esc(parts[1])+'</span>')); ins.push([inp,unk(q.k)]); }
+      fr.appendChild(d); });
+    c.appendChild(fr); });
+  main.appendChild(c); inputsPart(c, ins, RCHK);
+}
+/* R&W – look at the picture: complete, answer, then write 2 own sentences (counted when written) */
+function RPW(D, P){
+  var c=card(P.n, P.title, P.q||6);
+  c.appendChild(scene(P.scene,'0 0 400 300',P.bg||'park',0));
+  var ins=[], n=0;
+  P.examples.forEach(function(e){ c.appendChild($('<div class="exrow" style="margin-top:8px">Example: '+esc(e[0]).replace('___','<span class="a">'+esc(e[1])+'</span>')+'</div>')); });
+  P.items.forEach(function(it){ n++; var parts=it.q.split('___'); var d=$('<div class="fq"><span class="k" style="color:#1e6fd9;font-weight:700">'+n+'</span><span class="s">'+esc(parts[0])+'</span></div>'), inp=winput(''); inp.style.width='150px';
+    d.appendChild(inp); if(parts[1]) d.appendChild($('<span>'+esc(parts[1])+'</span>')); c.appendChild(d); ins.push([inp,unk(it.k)]); });
+  main.appendChild(c); inputsPart(c, ins, RCHK);
+  var fr=[];
+  for(var i=0;i<(P.free||2);i++){ n++; var d=$('<div class="fq"><span class="k" style="color:#1e6fd9;font-weight:700">'+n+'</span><span class="s">Now write a sentence about the picture.</span></div>'), inp=$('<input class="w" style="width:100%;margin-top:4px" autocomplete="off">'); d.appendChild(inp); c.appendChild(d); fr.push(inp); }
+  freePart(c, fr, 3, P.freeKey||[]);
+}
+function freePart(c, fr, minWords, samples){
+  RCHK.push({n:fr.length, check:function(){ var r=0; fr.forEach(function(inp){ var w=inp.value.trim().split(/\s+/).filter(Boolean).length; var ok=w>=minWords; r+=ok; inp.readOnly=true; inp.classList.add(ok?'right':'wrong'); }); 
+      var note=$('<div class="note" style="margin-left:0">✍️ Your teacher will check your sentences.'+(samples.length?' Example: '+esc(samples.join(' / ')):'')+'</div>'); c.appendChild(note); c._fn=note; return r; },
+    reset:function(){ fr.forEach(function(inp){ inp.value=''; inp.readOnly=false; inp.className='w'; }); if(c._fn){c._fn.remove(); c._fn=null;} },
+    key:function(){ fr.forEach(function(inp,i){ inp.value=samples[i]||samples[0]||''; inp.readOnly=true; inp.classList.add('kv'); }); }});
+}
+/* R&W – cloze: write one word in each gap (no word bank) */
+function RCW(D, P){
+  var c=card(P.n, P.title, P.q||5);
+  if(P.head) c.appendChild($('<div style="font-weight:700;color:var(--navy);text-align:center;margin:4px 0">'+esc(P.head)+'</div>'));
+  var key=unk(P.k), ins=[];
+  var html=esc(P.text).replace('(example) '+esc(P.example), '<span class="a">'+esc(P.example)+'</span>').replace(/\((\d)\) ___/g, function(m,n){ return '<b>('+n+')</b> <input class="w" data-n="'+n+'" autocomplete="off" autocapitalize="off" spellcheck="false">'; });
+  var t=$('<div class="text gtext">'+html+'</div>'); c.appendChild(t);
+  t.querySelectorAll('input').forEach(function(inp){ ins.push([inp,key[inp.dataset.n-1]]); });
+  main.appendChild(c); inputsPart(c, ins, RCHK);
+}
+/* R&W – write a story from 3 pictures (20+ words) */
+function RWS(D, P){
+  var c=card(P.n, P.title, P.q||5);
+  c.appendChild($('<div class="frames3">'+P.frames.map(function(f){return '<div class="frame"><div class="bigpic">'+f+'</div></div>';}).join('')+'</div>'));
+  var ta=$('<textarea class="story" rows="6" placeholder="Write 20 or more words…"></textarea>'), wc=$('<div class="hint">0 words</div>');
+  ta.addEventListener('input', function(){ wc.textContent=ta.value.trim().split(/\s+/).filter(Boolean).length+' words'; });
+  c.appendChild(ta); c.appendChild(wc); main.appendChild(c);
+  var q=P.q||5;
+  RCHK.push({n:q, check:function(){ var w=ta.value.trim().split(/\s+/).filter(Boolean).length; ta.readOnly=true; var r=Math.min(q, Math.floor(w/20*q));
+      var note=$('<div class="note" style="margin-left:0">✍️ '+w+' words. Your teacher will check your story.'+(P.sample?' Example story: '+esc(P.sample):'')+'</div>'); c.appendChild(note); c._fn=note; return r; },
+    reset:function(){ ta.value=''; ta.readOnly=false; wc.textContent='0 words'; if(c._fn){c._fn.remove(); c._fn=null;} },
+    key:function(){ ta.value=P.sample||''; ta.readOnly=true; }});
+}
+
 /* ---------------- page ---------------- */
 function shields(r,t){ var n=Math.max(1,Math.min(5,Math.round(r/t*5))); return '🛡️'.repeat(n)+'<span style="opacity:.25">'+'🛡️'.repeat(5-n)+'</span>'; }
 function start(D){
   document.title=D.title+' – C2-EPE';
   document.getElementById('lv').textContent='C2-EPE Young Learners · '+D.level;
   document.getElementById('ttl').textContent=D.title;
-  document.getElementById('sub').textContent='Listening (20) · Reading & Writing (25)';
-  if(PRINT){ document.body.classList.add('print'); document.getElementById('sub').textContent=(KEY?'Teacher\'s edition · answers':'Student\'s edition')+' · Listening (20) · Reading & Writing (25)';
-    [L1,L2,L3,L4].forEach(function(f,i){ if(i===0) main.appendChild($('<div class="paper">🎧 Listening <small>4 parts · 20 questions · about 20 minutes</small></div>')); f(D, D.L[i]); });
-    main.appendChild($('<div class="paper pb">📖 Reading &amp; Writing <small>5 parts · 25 questions · 20 minutes</small></div>'));
-    [R1,R2,R3,R4,R5].forEach(function(f,i){ f(D, D.R[i]); });
+  var LF={lines:L1,write:L2,abc:L3,colour:L4,match:LM,colourwrite:LCW}, RF={tick:R1,yesno:R2,letters:R3,gaps:R4,story:R5,defs:RD,dialog:RDG,storygap:RSG,cloze3:RC3,storywrite:RSW,picwrite:RPW,clozeword:RCW,writestory:RWS};
+  var LT=D.L.reduce(function(a,p){return a+(p.q||5);},0), RT=D.R.reduce(function(a,p){return a+(p.q||5);},0), TT=LT+RT;
+  var TM=D.times||{L:'about 20 minutes',R:'20 minutes'};
+  var LH='<div class="paper">🎧 Listening <small>'+D.L.length+' parts · '+LT+' questions · '+TM.L+'</small></div>', RH='<div class="paper pb">📖 Reading &amp; Writing <small>'+D.R.length+' parts · '+RT+' questions · '+TM.R+'</small></div>';
+  document.getElementById('sub').textContent='Listening ('+LT+') · Reading & Writing ('+RT+')';
+  if(PRINT){ document.body.classList.add('print'); document.getElementById('sub').textContent=(KEY?'Teacher\'s edition · answers':'Student\'s edition')+' · Listening ('+LT+') · Reading & Writing ('+RT+')';
+    main.appendChild($(LH)); D.L.forEach(function(P){ LF[P.type](D, P); });
+    main.appendChild($(RH)); D.R.forEach(function(P){ RF[P.type](D, P); });
     if(KEY) LCHK.concat(RCHK).forEach(function(c){ c.key(); });
     window.YLE_READY=true; return; }
   var ME=who();
@@ -471,11 +649,9 @@ function start(D){
     var w0=ME||{}; document.getElementById('nm').value=w0.name||''; document.getElementById('cl').value=w0.cls||''; }
   if(EMBED) main.insertBefore($('<button type="button" class="btn alt" style="margin-bottom:10px" onclick="openTest(null)">← All tests</button>'), main.firstChild);
   var res=$('<div class="res" style="display:none"></div>'); main.appendChild(res);
-  main.appendChild($('<div class="paper">🎧 Listening <small>4 parts · 20 questions · about 20 minutes</small></div>'));
-  [L1,L2,L3,L4].forEach(function(f,i){ f(D, D.L[i]); });
-  main.appendChild($('<div class="paper">📖 Reading &amp; Writing <small>5 parts · 25 questions · 20 minutes</small></div>'));
-  [R1,R2,R3,R4,R5].forEach(function(f,i){ f(D, D.R[i]); });
-  var bar=$('<div class="bar"><div class="in"><span class="score" id="sc">45 questions</span><button class="btn" id="go">Finish &amp; check ✓</button></div></div>');
+  main.appendChild($(LH)); D.L.forEach(function(P){ LF[P.type](D, P); });
+  main.appendChild($(RH.replace(' pb',''))); D.R.forEach(function(P){ RF[P.type](D, P); });
+  var bar=$('<div class="bar"><div class="in"><span class="score" id="sc">'+TT+' questions</span><button class="btn" id="go">Finish &amp; check ✓</button></div></div>');
   document.body.appendChild(bar);
   var go=document.getElementById('go'), sc=document.getElementById('sc'), done=false;
   go.onclick=function(){
@@ -489,22 +665,22 @@ function start(D){
       } else if(!confirm('Finish the test and check your answers? / បញ្ចប់តេស្ត?')) return;
       var lr=0, rr=0, lp=[], rp=[];
       LCHK.forEach(function(c){ var x=c.check(); lr+=x; lp.push(x); }); RCHK.forEach(function(c){ var x=c.check(); rr+=x; rp.push(x); });
-      var tot=lr+rr, pct=Math.round(tot*100/45), star=pct>=90?'🌟':pct>=70?'⭐':pct>=50?'👍':'💪';
-      res.innerHTML='<div style="font-size:18px;font-weight:700;color:var(--navy)">'+star+' '+tot+' / 45'+(ME&&ME.name?' – '+esc(ME.name):'')+'</div>'
-        +'<div class="row"><div>🎧 Listening<br><b>'+lr+' / 20</b><div class="sh">'+shields(lr,20)+'</div><div class="scr">Parts: '+lp.join(' · ')+'</div></div>'
-        +'<div>📖 Reading &amp; Writing<br><b>'+rr+' / 25</b><div class="sh">'+shields(rr,25)+'</div><div class="scr">Parts: '+rp.join(' · ')+'</div></div></div>';
+      var tot=lr+rr, pct=Math.round(tot*100/TT), star=pct>=90?'🌟':pct>=70?'⭐':pct>=50?'👍':'💪';
+      res.innerHTML='<div style="font-size:18px;font-weight:700;color:var(--navy)">'+star+' '+tot+' / '+TT+(ME&&ME.name?' – '+esc(ME.name):'')+'</div>'
+        +'<div class="row"><div>🎧 Listening<br><b>'+lr+' / '+LT+'</b><div class="sh">'+shields(lr,LT)+'</div><div class="scr">Parts: '+lp.join(' · ')+'</div></div>'
+        +'<div>📖 Reading &amp; Writing<br><b>'+rr+' / '+RT+'</b><div class="sh">'+shields(rr,RT)+'</div><div class="scr">Parts: '+rp.join(' · ')+'</div></div></div>';
       res.style.display='block';
-      sc.textContent=star+' '+tot+' / 45'; go.textContent='Try again ↺'; go.className='btn alt'; done=true; window.scrollTo({top:0,behavior:'smooth'});
-      try{ if(window.parent!==window) window.parent.postMessage({type:'gameroom-score', score:tot, total:45, level:'Starters'}, '*'); }catch(e){}
+      sc.textContent=star+' '+tot+' / '+TT; go.textContent='Try again ↺'; go.className='btn alt'; done=true; window.scrollTo({top:0,behavior:'smooth'});
+      try{ if(window.parent!==window) window.parent.postMessage({type:'gameroom-score', score:tot, total:TT, level:D.level}, '*'); }catch(e){}
       var n=parseInt(store('c2p-n-'+D.id)||'0',10)+1; store('c2p-n-'+D.id, String(n));
       var now=new Date();
-      send({prefix:'yle-s', level:D.level, setId:D.id, setTitle:D.title, kind:'yle-test',
+      send({prefix:D.prefix||'yle-s', level:D.level, setId:D.id, setTitle:D.title, kind:'yle-test',
             studentId:ME.studentId||'', studentName:ME.name, cls:ME.cls||'', login:!!ME.login,
-            score:tot, total:45, pct:pct, listening:lr, readingWriting:rr, parts:{L:lp, R:rp}, attempt:n,
+            score:tot, total:TT, pct:pct, listening:lr, readingWriting:rr, parts:{L:lp, R:rp}, attempt:n,
             at:now.toISOString(), day:now.toISOString().slice(0,10)}, res);
     } else {
       if(!confirm('Start again? Your answers will be cleared. / ចាប់ផ្ដើមម្ដងទៀត?')) return;
-      LCHK.concat(RCHK).forEach(function(c){c.reset();}); res.style.display='none'; sc.textContent='45 questions'; go.textContent='Finish & check ✓'; go.className='btn'; done=false;
+      LCHK.concat(RCHK).forEach(function(c){c.reset();}); res.style.display='none'; sc.textContent=TT+' questions'; go.textContent='Finish & check ✓'; go.className='btn'; done=false;
     }
   };
 }

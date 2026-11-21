@@ -52,6 +52,7 @@ window.C2_PRACTICE_BOOKS = [
   {"name": "Empower C1 Advanced (2nd ed.)", "series": "Cambridge", "level": "Advanced", "prefix": "em6"},
   {"name": "C2-EPE Starters Test Preparation", "series": "Young Learners", "level": "Starters", "prefix": "yle-s"},
   {"name": "C2-EPE Movers Test Preparation", "series": "Young Learners", "level": "Movers", "prefix": "yle-m"},
+  {"name": "C2-EPE Flyers Test Preparation", "series": "Young Learners", "level": "Flyers", "prefix": "yle-f"},
   {"name": "Phonics & Literacy 1 (Beehive Phonics)", "series": "Phonics", "level": "K1", "prefix": "ph1"},
   {"name": "Phonics & Literacy Starter (Beehive Phonics)", "series": "Phonics", "level": "K0", "prefix": "phs"},
   {"name": "Phonics & Literacy 2 (Beehive Phonics)", "series": "Phonics", "level": "K2", "prefix": "ph2"},
@@ -59,5 +60,6 @@ window.C2_PRACTICE_BOOKS = [
   {"name": "Digital Book K0 – Phonics Starter", "series": "C2-EPE Digital Book", "level": "K0", "prefix": "kb-phs"},
   {"name": "Digital Book K1 – Phonics 1", "series": "C2-EPE Digital Book", "level": "K1", "prefix": "kb-ph1"},
   {"name": "Digital Book K2 – Phonics 2", "series": "C2-EPE Digital Book", "level": "K2", "prefix": "kb-ph2"},
-  {"name": "Digital Book K3 – C2-EPE Phonics 3", "series": "C2-EPE Digital Book", "level": "K3", "prefix": "kb-pk3"}
+  {"name": "Digital Book K3 – C2-EPE Phonics 3", "series": "C2-EPE Digital Book", "level": "K3", "prefix": "kb-pk3"},
+  {"name": "Focus on Grammar 1", "series": "Pearson", "level": "Grammar", "prefix": "fg1"}
 ];

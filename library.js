@@ -32682,6 +32682,1025 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "focus-on-grammar-2-tests",
+ "level": "Focus on Grammar 2",
+ "icon": "📝",
+ "title": "Focus on Grammar 2 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Present of Be: Statements",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-1-present-of-be-statements-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "I'm not tired.",
+      "They are at home.",
+      "She is a doctor.",
+      "It isn't expensive.",
+      "We aren't late.",
+      "You are right."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Present of Be: Questions",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-2-present-of-be-questions-ex1.mp3",
+     "secs": 79,
+     "script": [
+      "Are you ready?",
+      "Where is the bank?",
+      "Yes, they are.",
+      "How old is he?",
+      "Is she a nurse?",
+      "No, I'm not."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Past of Be",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-3-past-of-be-ex1.mp3",
+     "secs": 78,
+     "script": [
+      "I was late.",
+      "They weren't here.",
+      "Was it expensive?",
+      "Where were you?",
+      "It wasn't good.",
+      "Yes, we were."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Count Nouns and Proper Nouns",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-4-count-nouns-and-proper-nouns-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I have a watch.",
+      "There are three men.",
+      "She is an engineer.",
+      "They live in Chicago.",
+      "These are my children.",
+      "He has two brothers."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Descriptive Adjectives",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-5-descriptive-adjectives-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "It is a small house.",
+      "She is very kind.",
+      "The room was noisy.",
+      "I'm bored.",
+      "These shoes are cheap.",
+      "What was it like?"
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Prepositions of Place",
+   "info": "Test paper page 14",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-6-prepositions-of-place-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "It's on the table.",
+      "It's next to the bank.",
+      "She is at home.",
+      "The keys are in the bag.",
+      "I live in Boston.",
+      "He is between the two cars."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Imperatives; Let's and Why Don't We",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-7-imperatives-let-s-and-why-don-t-we-ex1.mp3",
+     "secs": 79,
+     "script": [
+      "Close the door.",
+      "Don't run!",
+      "Let's go home.",
+      "Why don't we stay?",
+      "Be careful.",
+      "Don't be late."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Simple Present: Affirmative and Negative Statements",
+   "info": "Test paper page 19",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-8-simple-present-affirmative-and-negative-statements-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "She works here.",
+      "He doesn't eat meat.",
+      "I take the bus.",
+      "They live in Seoul.",
+      "My dad cooks dinner.",
+      "We don't have a dog."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Simple Present: Yes/No Questions and Short Answers",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-9-simple-present-yes-no-questions-and-short-answers-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "Do you live here?",
+      "Does he play soccer?",
+      "Yes, I do.",
+      "No, she doesn't.",
+      "Do they eat meat?",
+      "Yes, it does."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 B, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Simple Present: Wh- Questions",
+   "info": "Test paper page 23",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-10-simple-present-wh-questions-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "Where do you live?",
+      "What time does it open?",
+      "Why do you study?",
+      "How often do you swim?",
+      "Who teaches the class?",
+      "When does he leave?"
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 11: There Is / There Are",
+   "info": "Test paper page 26",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-11-there-is-there-are-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "There is a bank.",
+      "There are two beds.",
+      "Is there a bus stop?",
+      "There aren't any seats.",
+      "Yes, there are.",
+      "How many are there?"
+     ],
+     "key": "1 C, 2 C, 3 B, 4 B, 5 B, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 12: Possessive Nouns and Adjectives; Pronouns; Whose",
+   "info": "Test paper page 28",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-12-possessive-nouns-and-adjectives-pronouns-whose-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "It's Tom's.",
+      "That is mine.",
+      "Whose bag is this?",
+      "It's hers.",
+      "These are my books.",
+      "Is it yours?"
+     ],
+     "key": "1 C, 2 B, 3 A, 4 A, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 13: Ability: Can or Could",
+   "info": "Test paper page 30",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-13-ability-can-or-could-ex1.mp3",
+     "secs": 79,
+     "script": [
+      "I can swim.",
+      "She couldn't come.",
+      "Can you help me?",
+      "He can't drive.",
+      "We could see it.",
+      "Yes, I could."
+     ],
+     "key": "1 C, 2 A, 3 C, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 14: Permission: Can or May",
+   "info": "Test paper page 32",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-14-permission-can-or-may-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "Can I come in?",
+      "You can sit here.",
+      "May I help you?",
+      "You can't park here.",
+      "Yes, you may.",
+      "Can we use it?"
+     ],
+     "key": "1 B, 2 C, 3 B, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 15: Present Progressive: Affirmative and Negative Statements",
+   "info": "Test paper page 34",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-15-present-progressive-affirmative-and-negative-statements-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "She is cooking.",
+      "I'm not working.",
+      "They are running.",
+      "It's snowing.",
+      "We aren't sleeping.",
+      "He is writing a letter."
+     ],
+     "key": "1 B, 2 A, 3 A, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 16: Present Progressive: Yes/No and Wh- Questions",
+   "info": "Test paper page 36",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-16-present-progressive-yes-no-and-wh-questions-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "Are you working?",
+      "What is she doing?",
+      "Where are they going?",
+      "Why is he laughing?",
+      "Yes, I am.",
+      "No, it isn't."
+     ],
+     "key": "1 A, 2 C, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 17: Simple Present and Present Progressive; Non-Action Verbs",
+   "info": "Test paper page 38",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-17-simple-present-and-present-progressive-non-action-verbs-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I know him.",
+      "She is cooking.",
+      "He likes tea.",
+      "We are studying.",
+      "I don't understand.",
+      "It is raining."
+     ],
+     "key": "1 B, 2 B, 3 A, 4 A, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 18: Simple Past: Statements with Regular Verbs",
+   "info": "Test paper page 40",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-18-simple-past-statements-with-regular-verbs-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "I watched TV.",
+      "She walked home.",
+      "We didn't play.",
+      "They stopped here.",
+      "He cooked dinner.",
+      "I didn't like it."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 19: Simple Past: Statements with Irregular Verbs",
+   "info": "Test paper page 42",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-19-simple-past-statements-with-irregular-verbs-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "I went home.",
+      "She bought a hat.",
+      "We saw a movie.",
+      "They ate lunch.",
+      "He didn't come.",
+      "I wrote a letter."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 B, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 20: Simple Past: Questions",
+   "info": "Test paper page 44",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-20-simple-past-questions-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "Did you see it?",
+      "Where did they go?",
+      "What did she buy?",
+      "When did you arrive?",
+      "Yes, I did.",
+      "No, they didn't."
+     ],
+     "key": "1 C, 2 C, 3 A, 4 C, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 21: Simple Past Review",
+   "info": "Test paper page 46",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-21-simple-past-review-ex1.mp3",
+     "secs": 78,
+     "script": [
+      "I was at home.",
+      "She didn't come.",
+      "Did you go?",
+      "They went out.",
+      "We had lunch.",
+      "It was good."
+     ],
+     "key": "1 C, 2 B, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 22: Be Going To for the Future",
+   "info": "Test paper page 48",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-22-be-going-to-for-the-future-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I'm going to study.",
+      "She's going to travel.",
+      "It's going to rain.",
+      "We aren't going to go.",
+      "Are you going to come?",
+      "What is he going to do?"
+     ],
+     "key": "1 B, 2 A, 3 A, 4 A, 5 B, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 23: Will for the Future",
+   "info": "Test paper page 51",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-23-will-for-the-future-ex1.mp3",
+     "secs": 78,
+     "script": [
+      "I will help.",
+      "It won't rain.",
+      "Will you come?",
+      "She'll be here.",
+      "We will win.",
+      "Yes, I will."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 A, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 24: May or Might for Possibility",
+   "info": "Test paper page 53",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-24-may-or-might-for-possibility-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "It might rain.",
+      "She may come.",
+      "He might go.",
+      "We may be late.",
+      "Maybe tomorrow.",
+      "I might call you."
+     ],
+     "key": "1 B, 2 A, 3 A, 4 A, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 25: Gerunds and Infinitives",
+   "info": "Test paper page 55",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-25-gerunds-and-infinitives-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I enjoy swimming.",
+      "She wants to stay.",
+      "He is good at cooking.",
+      "We decided to leave.",
+      "They finished eating.",
+      "I'd like to see him."
+     ],
+     "key": "1 B, 2 B, 3 C, 4 A, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 26: Articles with Count and Non-Count Nouns; Some and Any",
+   "info": "Test paper page 57",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-26-articles-with-count-and-non-count-nouns-some-and-any-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "I have some eggs.",
+      "We don't have any milk.",
+      "Is there any juice?",
+      "She has an orange.",
+      "I need some water.",
+      "The movie was great."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 A, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 27: How Much and How Many; Quantifiers",
+   "info": "Test paper page 59",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-27-how-much-and-how-many-quantifiers-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "How many pencils?",
+      "How much is it?",
+      "I have a few friends.",
+      "There is a little milk.",
+      "We don't have much time.",
+      "She has a lot of books."
+     ],
+     "key": "1 C, 2 C, 3 A, 4 C, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 28: Too Many and Too Much; Enough + Noun",
+   "info": "Test paper page 62",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-28-too-many-and-too-much-enough-noun-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "There are too many bikes.",
+      "I have too much homework.",
+      "We have enough time.",
+      "It's too hot.",
+      "There isn't enough milk.",
+      "She eats too much."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 C, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 29: Advice: Should and Had Better",
+   "info": "Test paper page 65",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-29-advice-should-and-had-better-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "You should rest.",
+      "He shouldn't go.",
+      "You had better hurry.",
+      "Should I call him?",
+      "We should leave.",
+      "Yes, you should."
+     ],
+     "key": "1 C, 2 C, 3 A, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 30: Necessity: Have To and Must",
+   "info": "Test paper page 67",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-30-necessity-have-to-and-must-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "I have to go.",
+      "She has to work.",
+      "You must stop.",
+      "We don't have to pay.",
+      "Do you have to leave?",
+      "You mustn't run."
+     ],
+     "key": "1 A, 2 C, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 31: The Comparative",
+   "info": "Test paper page 69",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-31-the-comparative-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "He is taller than me.",
+      "This is more expensive.",
+      "My car is faster.",
+      "It is hotter today.",
+      "English is easier than math.",
+      "She is better than me."
+     ],
+     "key": "1 C, 2 C, 3 B, 4 B, 5 B, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 32: Adverbs of Manner",
+   "info": "Test paper page 72",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-32-adverbs-of-manner-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "She sings beautifully.",
+      "He drives carefully.",
+      "Speak slowly.",
+      "They work hard.",
+      "I did it well.",
+      "She answered correctly."
+     ],
+     "key": "1 B, 2 A, 3 A, 4 B, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 33: Adjective + Enough; Too and Very; As + Adjective + As",
+   "info": "Test paper page 74",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-33-adjective-enough-too-and-very-as-adjective-as-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "It's too hot.",
+      "He isn't old enough.",
+      "It's as big as mine.",
+      "The soup is hot enough.",
+      "She is very tired.",
+      "It isn't as fast as that."
+     ],
+     "key": "1 C, 2 C, 3 A, 4 A, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 34: The Superlative",
+   "info": "Test paper page 76",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-ut-unit-test-unit-34-the-superlative-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "He is the tallest.",
+      "It's the best one.",
+      "This is the cheapest.",
+      "She is the youngest.",
+      "It was the worst day.",
+      "The biggest city."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-mt-monthly-test-1-ex1.mp3",
+     "secs": 66,
+     "script": [
+      "She is a doctor.",
+      "Yes, they are.",
+      "It wasn't good.",
+      "He has two brothers.",
+      "You are right."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-mt-monthly-test-2-ex1.mp3",
+     "secs": 67,
+     "script": [
+      "The room was noisy.",
+      "It's on the table.",
+      "Why don't we stay?",
+      "He doesn't eat meat.",
+      "Does he play soccer?"
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-mt-monthly-test-3-ex1.mp3",
+     "secs": 66,
+     "script": [
+      "Who teaches the class?",
+      "Is there a bus stop?",
+      "It's hers.",
+      "We could see it.",
+      "Can I come in?"
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-mt-monthly-test-4-ex1.mp3",
+     "secs": 66,
+     "script": [
+      "It's snowing.",
+      "No, it isn't.",
+      "I know him.",
+      "We aren't sleeping.",
+      "What is she doing?"
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-mt-monthly-test-5-ex1.mp3",
+     "secs": 65,
+     "script": [
+      "He cooked dinner.",
+      "She bought a hat.",
+      "What did she buy?",
+      "It was good.",
+      "We didn't play."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-mt-monthly-test-6-ex1.mp3",
+     "secs": 67,
+     "script": [
+      "Are you going to come?",
+      "It won't rain.",
+      "He might go.",
+      "I enjoy swimming.",
+      "It's going to rain."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-mt-monthly-test-7-ex1.mp3",
+     "secs": 67,
+     "script": [
+      "I need some water.",
+      "There is a little milk.",
+      "It's too hot.",
+      "You should rest.",
+      "Do you have to leave?"
+     ],
+     "key": "1 B, 2 C, 3 A, 4 A, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-mt-monthly-test-8-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "It is hotter today.",
+      "I did it well.",
+      "It's as big as mine.",
+      "She is the youngest.",
+      "My car is faster."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 B, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 79,
+     "script": [
+      "I'm not tired.",
+      "No, I'm not.",
+      "Where were you?",
+      "These are my children.",
+      "I'm bored.",
+      "I live in Boston."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 79,
+     "script": [
+      "I watched TV.",
+      "We saw a movie.",
+      "When did you arrive?",
+      "They went out.",
+      "What is he going to do?",
+      "It won't rain."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-fin-final-test-semester-1-ex1.mp3",
+     "secs": 103,
+     "script": [
+      "It isn't expensive.",
+      "How old is he?",
+      "It wasn't good.",
+      "He has two brothers.",
+      "She is very kind.",
+      "He is between the two cars.",
+      "Close the door.",
+      "We don't have a dog."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg2-fin-final-test-semester-2-ex1.mp3",
+     "secs": 101,
+     "script": [
+      "I watched TV.",
+      "He didn't come.",
+      "Where did they go?",
+      "She didn't come.",
+      "It's going to rain.",
+      "Yes, I will.",
+      "He might go.",
+      "We decided to leave."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

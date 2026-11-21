@@ -63,5 +63,6 @@ window.C2_PRACTICE_BOOKS = [
   {"name": "Digital Book K3 – C2-EPE Phonics 3", "series": "C2-EPE Digital Book", "level": "K3", "prefix": "kb-pk3"},
   {"name": "Focus on Grammar 1", "series": "Pearson", "level": "Grammar", "prefix": "fg1"},
   {"name": "Focus on Grammar 2", "series": "Pearson", "level": "Grammar", "prefix": "fg2"},
-  {"name": "Focus on Grammar 3", "series": "Pearson", "level": "Grammar", "prefix": "fg3"}
+  {"name": "Focus on Grammar 3", "series": "Pearson", "level": "Grammar", "prefix": "fg3"},
+  {"name": "Focus on Grammar 4", "series": "Pearson", "level": "Grammar", "prefix": "fg4"}
 ];

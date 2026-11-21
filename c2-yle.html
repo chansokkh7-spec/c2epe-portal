@@ -86,7 +86,6 @@ svg .pp.hl text.e{filter:drop-shadow(0 0 4px #c9973a)}
 .abc{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0 2px}
 .abc button{background:#fff;border:2px solid #cdd4e4;border-radius:12px;padding:8px 4px 4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px}
 .abc button .e{font-size:46px;line-height:1.1;font-family:"Noto Color Emoji","Apple Color Emoji",sans-serif}
-.abc button .e.tx{font-size:24px;line-height:46px;font-family:inherit;font-weight:700;color:#333}
 .abc button .lt{display:flex;align-items:center;gap:6px;font-weight:700;color:#555}
 .abc button .bx{width:22px;height:22px;border:2px solid #555;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;font-size:17px;color:#1e6fd9}
 .abc button.sel{border-color:var(--navy);background:#eef2fb}
@@ -383,7 +382,7 @@ function L2(D, P){
 }
 function abcRow(q, opts, cb, exAns){
   var d=$('<div class="it"><div class="q"><span>'+esc(q)+'</span></div></div>'), g=$('<div class="abc"></div>'), bs=[];
-  opts.forEach(function(o,i){ var b=$('<button type="button"><span class="e'+(/^[A-Za-z .\'-]+$/.test(o)?' tx':'')+'">'+o+'</span><span class="lt">'+'ABC'[i]+' <span class="bx">'+(exAns===i?'✓':'')+'</span></span></button>');
+  opts.forEach(function(o,i){ var b=$('<button type="button"><span class="e">'+o+'</span><span class="lt">'+'ABC'[i]+' <span class="bx">'+(exAns===i?'✓':'')+'</span></span></button>');
     if(exAns===undefined) b.onclick=function(){ cb(i, bs); }; g.appendChild(b); bs.push(b); });
   d.appendChild(g); return [d, bs];
 }

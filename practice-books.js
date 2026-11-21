@@ -64,5 +64,6 @@ window.C2_PRACTICE_BOOKS = [
   {"name": "Focus on Grammar 1", "series": "Pearson", "level": "Grammar", "prefix": "fg1"},
   {"name": "Focus on Grammar 2", "series": "Pearson", "level": "Grammar", "prefix": "fg2"},
   {"name": "Focus on Grammar 3", "series": "Pearson", "level": "Grammar", "prefix": "fg3"},
-  {"name": "Focus on Grammar 4", "series": "Pearson", "level": "Grammar", "prefix": "fg4"}
+  {"name": "Focus on Grammar 4", "series": "Pearson", "level": "Grammar", "prefix": "fg4"},
+  {"name": "Focus on Grammar 5", "series": "Pearson", "level": "Grammar", "prefix": "fg5"}
 ];

@@ -35563,6 +35563,783 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "focus-on-grammar-5-tests",
+ "level": "Focus on Grammar 5",
+ "icon": "📝",
+ "title": "Focus on Grammar 5 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Present Time",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-1-present-time-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "She has been waiting.",
+      "I have lived here since May.",
+      "They are always arguing.",
+      "He has never been abroad.",
+      "It tastes delicious.",
+      "We are meeting at noon."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Past Time",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-2-past-time-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "It had already begun.",
+      "I was walking home.",
+      "She used to live here.",
+      "He would visit often.",
+      "They had been waiting.",
+      "I hadn't seen him."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Future Time",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-3-future-time-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I'll be working.",
+      "It will have finished.",
+      "The train is due at six.",
+      "I'm about to leave.",
+      "By June, he'll have retired.",
+      "We'll have been living here."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Modals to Express Degrees of Necessity",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-4-modals-to-express-degrees-of-necessity-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "You must go.",
+      "You needn't come.",
+      "You had better leave.",
+      "They are required to sign.",
+      "You ought to apologize.",
+      "You don't have to pay."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Modals to Express Degrees of Certainty",
+   "info": "Test paper page 14",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-5-modals-to-express-degrees-of-certainty-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "He must be tired.",
+      "It can't be true.",
+      "She may have left.",
+      "They might be late.",
+      "It should arrive soon.",
+      "He can't have known."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Passives: Part 1",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-6-passives-part-1-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "It was built.",
+      "It's made in Italy.",
+      "The room is cleaned.",
+      "It will be finished.",
+      "He was given a gift.",
+      "It has been closed."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Passives: Part 2",
+   "info": "Test paper page 19",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-7-passives-part-2-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "It must be signed.",
+      "It is believed to be old.",
+      "It has to be done.",
+      "He is said to be rich.",
+      "It's being repaired.",
+      "It should be studied."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Gerunds",
+   "info": "Test paper page 22",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-8-gerunds-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "Swimming is fun.",
+      "I'm used to waking up early.",
+      "She insisted on paying.",
+      "I look forward to seeing you.",
+      "He's afraid of flying.",
+      "They apologized for being late."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Infinitives",
+   "info": "Test paper page 25",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-9-infinitives-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "I want to go.",
+      "She asked him to wait.",
+      "It's easy to learn.",
+      "He is too tired to drive.",
+      "She seems to know.",
+      "I'm happy to help."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 B, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Count and Non-Count Nouns",
+   "info": "Test paper page 27",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-10-count-and-non-count-nouns-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "I need advice.",
+      "The news is good.",
+      "Two pieces of advice.",
+      "A lot of traffic.",
+      "Some furniture.",
+      "A glass of water."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 11: Definite and Indefinite Articles",
+   "info": "Test paper page 29",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-11-definite-and-indefinite-articles-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I saw a dog.",
+      "She is an actor.",
+      "The sun is hot.",
+      "He plays the piano.",
+      "I love the music.",
+      "It's an old house."
+     ],
+     "key": "1 C, 2 C, 3 B, 4 B, 5 B, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 12: Quantifiers",
+   "info": "Test paper page 31",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-12-quantifiers-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "There are few people.",
+      "I have little time.",
+      "Most of them left.",
+      "Both of them came.",
+      "Each of us has one.",
+      "None of them knew."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 A, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 13: Modification of Nouns",
+   "info": "Test paper page 33",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-13-modification-of-nouns-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "A big red car.",
+      "A two-hour flight.",
+      "A leather jacket.",
+      "A five-star hotel.",
+      "A well-known author.",
+      "A ten-year-old boy."
+     ],
+     "key": "1 C, 2 A, 3 C, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 14: Adjective Clauses: Introduction",
+   "info": "Test paper page 35",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-14-adjective-clauses-introduction-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "The man who called.",
+      "The book that I read.",
+      "The woman whose son won.",
+      "The place where I live.",
+      "The day when we met.",
+      "The reason why I left."
+     ],
+     "key": "1 B, 2 C, 3 B, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 15: Adjective Clauses and Phrases",
+   "info": "Test paper page 38",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-15-adjective-clauses-and-phrases-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "The man standing there.",
+      "The books written by Orwell.",
+      "The car parked outside.",
+      "Anyone wanting help.",
+      "The woman interviewed.",
+      "People living near airports."
+     ],
+     "key": "1 B, 2 A, 3 A, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 16: Adverbs: Sentence, Focus, and Negative",
+   "info": "Test paper page 41",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-16-adverbs-sentence-focus-and-negative-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "Fortunately, no one was hurt.",
+      "Never have I seen it.",
+      "Hardly had we left.",
+      "She only speaks French.",
+      "Rarely do we go out.",
+      "Obviously, he was angry."
+     ],
+     "key": "1 A, 2 C, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 17: Adverb Clauses",
+   "info": "Test paper page 44",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-17-adverb-clauses-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "Although it rained, we went.",
+      "I stayed because I was ill.",
+      "I'll call as soon as I arrive.",
+      "While I was cooking.",
+      "Unless you hurry, you'll be late.",
+      "Whenever I visit, she smiles."
+     ],
+     "key": "1 B, 2 B, 3 A, 4 A, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 18: Adverb and Adverbial Phrases",
+   "info": "Test paper page 47",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-18-adverb-and-adverbial-phrases-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "Having eaten, we left.",
+      "Walking home, I fell.",
+      "Not knowing, he stayed.",
+      "While waiting, I read.",
+      "After finishing, she left.",
+      "Shocked by the news, she cried."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 19: Connectors",
+   "info": "Test paper page 50",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-19-connectors-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "However, it was late.",
+      "As a result, he failed.",
+      "In addition, she sings.",
+      "Because of the rain.",
+      "Nevertheless, we went.",
+      "Despite the cold."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 B, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 20: Noun Clauses: Subjects, Objects, and Complements",
+   "info": "Test paper page 52",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-20-noun-clauses-subjects-objects-and-complements-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "I know where he lives.",
+      "I wonder if she knows.",
+      "The problem is that it's late.",
+      "What he said was true.",
+      "It's clear that he knows.",
+      "Do you know how much it is?"
+     ],
+     "key": "1 C, 2 C, 3 A, 4 C, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 21: Direct and Indirect Speech",
+   "info": "Test paper page 55",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-21-direct-and-indirect-speech-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "He said he was late.",
+      "She said she had finished.",
+      "They said they would come.",
+      "He told me to wait.",
+      "She asked where I lived.",
+      "He told me not to go."
+     ],
+     "key": "1 C, 2 B, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 22: Conditionals; Other Ways to Express Unreality",
+   "info": "Test paper page 58",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-22-conditionals-other-ways-to-express-unreality-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "If I were you, I'd go.",
+      "I wish I had a car.",
+      "I wish I had known.",
+      "If only I had listened.",
+      "She'd have helped.",
+      "I'd rather you left."
+     ],
+     "key": "1 B, 2 A, 3 A, 4 A, 5 B, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 23: More Conditions; The Subjunctive",
+   "info": "Test paper page 60",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-ut-unit-test-unit-23-more-conditions-the-subjunctive-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I suggest that he go.",
+      "It's vital that she be here.",
+      "Had I known, I'd have gone.",
+      "Should you need help.",
+      "Provided that you pay.",
+      "Were I you, I'd stay."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 A, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-mt-monthly-test-1-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "They are always arguing.",
+      "She used to live here.",
+      "By June, he'll have retired.",
+      "We are meeting at noon.",
+      "He would visit often."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-mt-monthly-test-2-ex1.mp3",
+     "secs": 67,
+     "script": [
+      "You had better leave.",
+      "He must be tired.",
+      "It will be finished.",
+      "You needn't come.",
+      "They might be late."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-mt-monthly-test-3-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "It's being repaired.",
+      "She insisted on paying.",
+      "He is too tired to drive.",
+      "It has to be done.",
+      "Swimming is fun."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-mt-monthly-test-4-ex1.mp3",
+     "secs": 67,
+     "script": [
+      "A lot of traffic.",
+      "It's an old house.",
+      "There are few people.",
+      "Some furniture.",
+      "She is an actor."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-mt-monthly-test-5-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "A well-known author.",
+      "The book that I read.",
+      "The car parked outside.",
+      "A leather jacket.",
+      "The day when we met."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-mt-monthly-test-6-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "Rarely do we go out.",
+      "I stayed because I was ill.",
+      "Not knowing, he stayed.",
+      "Hardly had we left.",
+      "Although it rained, we went."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-mt-monthly-test-7-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "Nevertheless, we went.",
+      "What he said was true.",
+      "He told me to wait.",
+      "However, it was late.",
+      "The problem is that it's late."
+     ],
+     "key": "1 B, 2 C, 3 A, 4 A, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 8",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-mt-monthly-test-8-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "If only I had listened.",
+      "Provided that you pay.",
+      "I wish I had known.",
+      "I suggest that he go.",
+      "If I were you, I'd go."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 B, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "She has been waiting.",
+      "I hadn't seen him.",
+      "I'm about to leave.",
+      "You ought to apologize.",
+      "They might be late.",
+      "He was given a gift."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "A big red car.",
+      "The woman whose son won.",
+      "Anyone wanting help.",
+      "She only speaks French.",
+      "Whenever I visit, she smiles.",
+      "Walking home, I fell."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-fin-final-test-semester-1-ex1.mp3",
+     "secs": 106,
+     "script": [
+      "He has never been abroad.",
+      "He would visit often.",
+      "By June, he'll have retired.",
+      "You don't have to pay.",
+      "It can't be true.",
+      "It has been closed.",
+      "It must be signed.",
+      "They apologized for being late."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/fg5-fin-final-test-semester-2-ex1.mp3",
+     "secs": 106,
+     "script": [
+      "A big red car.",
+      "The day when we met.",
+      "The books written by Orwell.",
+      "Never have I seen it.",
+      "I'll call as soon as I arrive.",
+      "Shocked by the news, she cried.",
+      "In addition, she sings.",
+      "What he said was true."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

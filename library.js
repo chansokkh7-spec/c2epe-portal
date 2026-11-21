@@ -25477,6 +25477,1071 @@ window.LIBRARY = [
      "key": "kite: blue, duck: yellow, sock: pink; bag: LUNCH, bird: SONG"
     }
    ]
+  },
+  {
+   "group": "Movers Book 7",
+   "title": "Book 7 – Test 1",
+   "info": "Listening paper – 5 parts, 25 questions. Online test: c2-yle.html",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Part 1 – Listen and draw lines",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m19-listening-part1.mp3",
+     "secs": 129,
+     "script": [
+      "Woman: It's early morning on the farm. Look at the farmer with the cow.",
+      "Child: That's Aron. He's going to milk her.",
+      "Child: Who's got a glass of milk?",
+      "Woman: That's Bree. She says it's the best milk in town.",
+      "Woman: Can you see the boy with the sheep?",
+      "Child: That's Cody. He's taking them to the field.",
+      "Child: Who's picking sunflowers?",
+      "Woman: That's Dawn. They're for her mother.",
+      "Woman: And the man on the tractor?",
+      "Child: That's Evan. He's going to plough the big field.",
+      "Child: Who's the old woman at the window?",
+      "Woman: That's Faye. She's waiting for the breakfast eggs."
+     ],
+     "key": "Bree → 👩🥛, Cody → 🧒🐑, Dawn → 👧🌻, Evan → 🧔🚜, Faye → 👵"
+    },
+    {
+     "n": 2,
+     "title": "Part 2 – Listen and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m19-listening-part2.mp3",
+     "secs": 112,
+     "script": [
+      "Man: Are you coming to see Space Cat on Friday?",
+      "Woman: Yes! What time does it start?",
+      "Man: At half past five.",
+      "Woman: Which screen is it?",
+      "Man: Screen three, at the end of the corridor.",
+      "Woman: How much are the tickets?",
+      "Man: Seven pounds each.",
+      "Man: We're sitting in row F. F for fish.",
+      "Woman: Great. That's near the middle.",
+      "Woman: Shall we buy something to eat?",
+      "Man: Yes. Let's get some popcorn."
+     ],
+     "key": "1 5.30, 2 3, 3 7, 4 F, 5 popcorn"
+    },
+    {
+     "n": 3,
+     "title": "Part 3 – Listen and write a letter",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m19-listening-part3.mp3",
+     "secs": 120,
+     "script": [
+      "Child: What does Aron do?",
+      "Woman: He milks the cows before breakfast.",
+      "Child: And Bree?",
+      "Woman: She collects the eggs from the chickens.",
+      "Child: What about Cody?",
+      "Woman: He looks after the sheep.",
+      "Child: Does Evan drive?",
+      "Woman: Yes, the big tractor. It's really noisy.",
+      "Child: And Faye?",
+      "Woman: She carries the washing in a big basket.",
+      "Child: What does Glen do?",
+      "Woman: He picks the apples in autumn."
+     ],
+     "key": "Bree A, Cody E, Evan C, Faye H, Glen F"
+    },
+    {
+     "n": 4,
+     "title": "Part 4 – Listen and tick the box",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m19-listening-part4.mp3",
+     "secs": 158,
+     "script": [
+      "What does Faye give the hens?",
+      "Man: Do you give them bread, Faye?",
+      "Woman: No, I give them corn. They love it.",
+      "How many sheep are there?",
+      "Child: Dad, are there seven sheep?",
+      "Man: No, there are eight. One is behind the tree.",
+      "What is the weather going to be like?",
+      "Woman: It's going to be sunny, isn't it?",
+      "Man: No. The radio says rain, so take your coat.",
+      "Where is Dawn's hat?",
+      "Man: Dawn, is your hat on the chair?",
+      "Child: Yes, I put it there after breakfast.",
+      "What does Evan want for lunch?",
+      "Woman: Evan, shall I make some soup?",
+      "Man: No, thanks. A sandwich will be fine.",
+      "Which day is the market?",
+      "Child: Is the market on Monday?",
+      "Woman: No, it's on Wednesday. That's the third day of the week."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 B, 5 C"
+    },
+    {
+     "n": 5,
+     "title": "Part 5 – Listen and colour and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m19-listening-part5.mp3",
+     "secs": 117,
+     "script": [
+      "Woman: Look at the duck. Colour it yellow.",
+      "Child: OK. A yellow duck.",
+      "Child: What shall I do with the kite?",
+      "Woman: Make it pink.",
+      "Woman: Look at the bag. Write FARM on it.",
+      "Child: How do you spell it?",
+      "Woman: F, A, R, M.",
+      "Child: Can I do the apple?",
+      "Woman: Yes. Colour it red.",
+      "Woman: On the fish, write POND. P, O, N, D.",
+      "Child: Done.",
+      "Child: And the hat?",
+      "Woman: Colour the hat grey. Very good!"
+     ],
+     "key": "kite: pink, apple: red, hat: grey; bag: FARM, fish: POND"
+    }
+   ]
+  },
+  {
+   "group": "Movers Book 7",
+   "title": "Book 7 – Test 2",
+   "info": "Listening paper – 5 parts, 25 questions. Online test: c2-yle.html",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Part 1 – Listen and draw lines",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m20-listening-part1.mp3",
+     "secs": 121,
+     "script": [
+      "Woman: We're getting ready for the school show. Look at our teacher.",
+      "Child: That's Hana. She's the director.",
+      "Child: Who's the boy in the crown?",
+      "Woman: That's Ivo. He's playing the king.",
+      "Woman: Can you see the girl with the microphone?",
+      "Child: That's Jill. She's the singer.",
+      "Child: Who's playing the drums?",
+      "Woman: That's Karl. He's very good.",
+      "Woman: And the girl at the piano?",
+      "Child: That's Lyn. She plays beautifully.",
+      "Child: Who's got the violin?",
+      "Woman: That's Moe. He's practising his solo."
+     ],
+     "key": "Ivo → 👦👑, Jill → 👧🎤, Karl → 🧒🥁, Lyn → 👧🎹, Moe → 👦🎻"
+    },
+    {
+     "n": 2,
+     "title": "Part 2 – Listen and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m20-listening-part2.mp3",
+     "secs": 118,
+     "script": [
+      "Child: Miss, when is the school show?",
+      "Woman: It's on Thursday in the school hall.",
+      "Child: What's it called?",
+      "Woman: Pirate Island. I, S, L, A, N, D.",
+      "Child: What time does it start?",
+      "Woman: At a quarter past seven.",
+      "Child: How much are the tickets?",
+      "Woman: They're only three pounds.",
+      "Woman: Children in the show must wear a pirate costume.",
+      "Child: I've got a hat and a patch!",
+      "Child: Who sells the tickets?",
+      "Woman: Miss Dale. D, A, L, E."
+     ],
+     "key": "1 Island, 2 7.15, 3 3, 4 pirate, 5 Dale"
+    },
+    {
+     "n": 3,
+     "title": "Part 3 – Listen and write a letter",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m20-listening-part3.mp3",
+     "secs": 124,
+     "script": [
+      "Child: What will Ivo wear?",
+      "Woman: A golden crown. He's the king.",
+      "Child: And Karl?",
+      "Woman: A pirate hat and an eye patch.",
+      "Child: What about Lyn?",
+      "Woman: A long pink dress. She's the princess.",
+      "Child: Is Moe a wizard?",
+      "Woman: Yes, with a long beard and a pointed hat.",
+      "Child: What does Ned wear?",
+      "Woman: A big bear costume. He's very hot in it!",
+      "Child: And you, Jill?",
+      "Woman: A black top hat. I'm the magician."
+     ],
+     "key": "Karl C, Lyn G, Moe D, Ned F, Jill A"
+    },
+    {
+     "n": 4,
+     "title": "Part 4 – Listen and tick the box",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m20-listening-part4.mp3",
+     "secs": 153,
+     "script": [
+      "Who is Ned's favourite actor?",
+      "Child: Is your favourite actor a man, Ned?",
+      "Man: No, it's a woman. She's in all the best films.",
+      "When does the show finish?",
+      "Woman: Does the show finish at nine thirty?",
+      "Man: No, at ten. It's a long show.",
+      "How many songs are there?",
+      "Child: Are there four songs?",
+      "Woman: No, there are five. And a dance too!",
+      "Where is the costume?",
+      "Man: Is the costume in the bag?",
+      "Woman: No. It's in the basket in the hall.",
+      "What does Moe need?",
+      "Woman: Moe, do you need your violin?",
+      "Child: I've got that. I need a chair to sit on.",
+      "What will Karl eat?",
+      "Man: Karl, shall I get you a sandwich?",
+      "Child: No, thanks. A banana will be enough."
+     ],
+     "key": "1 B, 2 C, 3 B, 4 C, 5 B"
+    },
+    {
+     "n": 5,
+     "title": "Part 5 – Listen and colour and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m20-listening-part5.mp3",
+     "secs": 121,
+     "script": [
+      "Woman: Look at the cup. Colour it orange.",
+      "Child: OK. That's done.",
+      "Child: What about the book?",
+      "Woman: Make the book purple.",
+      "Woman: Now look at the hat. Write STAGE on it.",
+      "Child: How do you spell it?",
+      "Woman: S, T, A, G, E.",
+      "Child: Can I do the sock?",
+      "Woman: Yes. Colour it black.",
+      "Woman: On the fish, write SHOW. S, H, O, W.",
+      "Child: Like this?",
+      "Woman: Yes.",
+      "Child: And the flower?",
+      "Woman: Colour the flower red. Well done!"
+     ],
+     "key": "book: purple, sock: black, flower: red; hat: STAGE, fish: SHOW"
+    }
+   ]
+  },
+  {
+   "group": "Movers Book 7",
+   "title": "Book 7 – Test 3",
+   "info": "Listening paper – 5 parts, 25 questions. Online test: c2-yle.html",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Part 1 – Listen and draw lines",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m21-listening-part1.mp3",
+     "secs": 127,
+     "script": [
+      "Woman: It's the school science fair! Look at the boy with the microscope.",
+      "Child: That's Olly. He's looking at a leaf.",
+      "Child: Who's made a robot?",
+      "Woman: That's Pam. It can move and say hello.",
+      "Woman: Can you see the boy with the magnet?",
+      "Child: That's Quin. He's picking up paper clips.",
+      "Child: Who's made a volcano?",
+      "Woman: That's Ron. It's going to explode in a minute!",
+      "Woman: And the girl with the plant?",
+      "Child: That's Sia. She's measuring how fast it grows.",
+      "Child: Who's the boy who's taking notes?",
+      "Woman: That's Tom. He's one of the judges."
+     ],
+     "key": "Pam → 👩‍🔧🤖, Quin → 🧒🧲, Ron → 👦🌋, Sia → 👧🌱, Tom → 🧑"
+    },
+    {
+     "n": 2,
+     "title": "Part 2 – Listen and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m21-listening-part2.mp3",
+     "secs": 115,
+     "script": [
+      "Woman: The science fair is on Friday, in the gym.",
+      "Child: What time does it start?",
+      "Woman: At ten in the morning.",
+      "Child: Who are the judges?",
+      "Woman: The head judge is Dr Stone. S, T, O, N, E.",
+      "Child: What's the prize?",
+      "Woman: The winner gets a telescope.",
+      "Child: How many projects are there?",
+      "Woman: Twenty-four. It's the biggest fair ever.",
+      "Woman: Parents can come at two o'clock.",
+      "Child: I hope my mum can come."
+     ],
+     "key": "1 10, 2 Stone, 3 telescope, 4 24, 5 2"
+    },
+    {
+     "n": 3,
+     "title": "Part 3 – Listen and write a letter",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m21-listening-part3.mp3",
+     "secs": 131,
+     "script": [
+      "Child: What's Ron's project about?",
+      "Woman: Volcanoes. He's made a model one.",
+      "Child: And Pam's?",
+      "Woman: A robot. It's got a lot of small wheels.",
+      "Child: Is Quin's about magnets?",
+      "Woman: Yes, he tested what a magnet can pick up.",
+      "Child: What about Olly's?",
+      "Woman: He's studied water. He looked at a drop under the microscope.",
+      "Child: And Una?",
+      "Woman: Electricity. She lit a bulb with a lemon!",
+      "Child: What's Tom's project?",
+      "Woman: The stars. He made a model of the planets and used a telescope."
+     ],
+     "key": "Pam C, Quin D, Olly E, Tom H, Una F"
+    },
+    {
+     "n": 4,
+     "title": "Part 4 – Listen and tick the box",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m21-listening-part4.mp3",
+     "secs": 153,
+     "script": [
+      "What does Pam need for her robot?",
+      "Woman: Do you need new batteries, Pam?",
+      "Child: Yes. It stopped working this morning.",
+      "Who won last year?",
+      "Man: Did a boy win last year?",
+      "Woman: No, a girl won. She made a solar car.",
+      "What colour is the liquid?",
+      "Child: Is the liquid green?",
+      "Woman: No, it's purple. It changes colour when you add lemon juice.",
+      "How many people came?",
+      "Woman: Did two hundred people come?",
+      "Man: No, three hundred. It was packed.",
+      "What does Sia want to be?",
+      "Man: Sia, do you want to be a scientist?",
+      "Child: Yes. I want to discover new medicines.",
+      "Where is the next fair?",
+      "Woman: Will the next fair be at our school?",
+      "Child: No, it will be at the city museum."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    },
+    {
+     "n": 5,
+     "title": "Part 5 – Listen and colour and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m21-listening-part5.mp3",
+     "secs": 119,
+     "script": [
+      "Woman: Look at the ball. Colour it green.",
+      "Child: OK. Green is good.",
+      "Child: What shall I do with the cup?",
+      "Woman: Make it yellow.",
+      "Woman: Now look at the hat. Write IDEA on it.",
+      "Child: How do you spell idea?",
+      "Woman: I, D, E, A.",
+      "Child: Can I do the bird?",
+      "Woman: Yes. Colour it brown.",
+      "Woman: On the sock, write TEST. T, E, S, T.",
+      "Child: Done!",
+      "Child: And the kite?",
+      "Woman: Colour it orange. Excellent!"
+     ],
+     "key": "cup: yellow, bird: brown, kite: orange; hat: IDEA, sock: TEST"
+    }
+   ]
+  },
+  {
+   "group": "Movers Book 8",
+   "title": "Book 8 – Test 1",
+   "info": "Listening paper – 5 parts, 25 questions. Online test: c2-yle.html",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Part 1 – Listen and draw lines",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m22-listening-part1.mp3",
+     "secs": 128,
+     "script": [
+      "Woman: We're at the shopping centre. Look at the man with all the bags.",
+      "Child: That's Abel. He's buying presents.",
+      "Child: Who's trying on a dress?",
+      "Woman: That's Bonnie. It's for a wedding.",
+      "Woman: Can you see the boy with the video game?",
+      "Child: That's Carl. He's spent all his pocket money.",
+      "Child: Who's eating an ice cream?",
+      "Woman: That's Dee. It's her favourite flavour, mint.",
+      "Woman: And the man who's looking at the trainers?",
+      "Child: That's Eddy. He needs a new pair for running.",
+      "Child: Who's the woman by the escalator?",
+      "Woman: That's Fran. She's waiting for her friend."
+     ],
+     "key": "Bonnie → 👩‍🦰👗, Carl → 🧒🎮, Dee → 👧🍦, Eddy → 🧔👟, Fran → 👩"
+    },
+    {
+     "n": 2,
+     "title": "Part 2 – Listen and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m22-listening-part2.mp3",
+     "secs": 112,
+     "script": [
+      "Woman: Let's make a list for Saturday at Fresh Foods.",
+      "Child: OK. What do we need?",
+      "Woman: Twelve eggs. We're making a big cake.",
+      "Child: And some juice?",
+      "Woman: Yes. Apple juice. A, P, P, L, E.",
+      "Child: How much is the bread?",
+      "Woman: It's one pound fifty.",
+      "Child: Have you got any cash?",
+      "Woman: No. I'll pay by card.",
+      "Child: When shall we leave?",
+      "Woman: At nine o'clock, before it gets busy."
+     ],
+     "key": "1 12, 2 apple, 3 1.50, 4 card, 5 9"
+    },
+    {
+     "n": 3,
+     "title": "Part 3 – Listen and write a letter",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m22-listening-part3.mp3",
+     "secs": 123,
+     "script": [
+      "Child: What does Shop 1 sell?",
+      "Woman: Books and magazines.",
+      "Child: And Shop 2?",
+      "Woman: Toys. There's a huge teddy bear in the window.",
+      "Child: What about Shop 3?",
+      "Woman: Mobile phones and chargers.",
+      "Child: Is Shop 4 a florist?",
+      "Woman: Yes, they sell roses and tulips.",
+      "Child: And Shop 5?",
+      "Woman: A bakery. You can smell the cakes from here.",
+      "Child: What's in the last shop?",
+      "Woman: Medicine. It's the pharmacy."
+     ],
+     "key": "Shop 2 C, Shop 3 G, Shop 4 D, Shop 5 F, Shop 6 E"
+    },
+    {
+     "n": 4,
+     "title": "Part 4 – Listen and tick the box",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m22-listening-part4.mp3",
+     "secs": 156,
+     "script": [
+      "How much is the T-shirt?",
+      "Woman: Is the T-shirt five pounds?",
+      "Man: No, it's six pounds. It's in the sale.",
+      "What is Fran going to buy?",
+      "Man: Are you buying a handbag, Fran?",
+      "Woman: No, I need some new glasses. I broke mine.",
+      "Where is the lift?",
+      "Child: Excuse me. Is the lift on the left?",
+      "Woman: No, it's on the right, next to the café.",
+      "What colour is Carl's new game?",
+      "Woman: Is your new game blue, Carl?",
+      "Child: No, the box is red. It's really cool.",
+      "How does Bonnie pay?",
+      "Man: Will you pay in cash, Bonnie?",
+      "Woman: No, I'll use my card. I haven't got any money.",
+      "What time does the shop close?",
+      "Child: Does the shop close at seven?",
+      "Woman: No, at eight. You've got plenty of time."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 A, 5 C"
+    },
+    {
+     "n": 5,
+     "title": "Part 5 – Listen and colour and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m22-listening-part5.mp3",
+     "secs": 118,
+     "script": [
+      "Woman: Look at the book. Colour it red.",
+      "Child: OK. A red book.",
+      "Child: What shall I do with the sock?",
+      "Woman: Make it blue.",
+      "Woman: Now look at the cup. Write SALE on it.",
+      "Child: How do you spell it?",
+      "Woman: S, A, L, E.",
+      "Child: Can I do the duck?",
+      "Woman: Yes. Colour it green.",
+      "Woman: On the hat, write SHOP. S, H, O, P.",
+      "Child: Done!",
+      "Child: And the bird?",
+      "Woman: Colour the bird pink. Good!"
+     ],
+     "key": "sock: blue, duck: green, bird: pink; cup: SALE, hat: SHOP"
+    }
+   ]
+  },
+  {
+   "group": "Movers Book 8",
+   "title": "Book 8 – Test 2",
+   "info": "Listening paper – 5 parts, 25 questions. Online test: c2-yle.html",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Part 1 – Listen and draw lines",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m23-listening-part1.mp3",
+     "secs": 126,
+     "script": [
+      "Woman: We're at the zoo. Look at the man next to the giraffe.",
+      "Child: That's Hugh. He's the zookeeper.",
+      "Child: Who's eating popcorn?",
+      "Woman: That's Ines. She's sharing it with the pigeons.",
+      "Woman: Can you see the boy near the elephant?",
+      "Child: That's Jack. He's giving it some water.",
+      "Child: Who's taking pictures?",
+      "Woman: That's Kate. She's using a very big camera.",
+      "Woman: And the man who's laughing at the monkey?",
+      "Child: That's Luis. The monkey took his hat!",
+      "Child: Who's the old lady on the bench?",
+      "Woman: That's Mona. She's resting her feet."
+     ],
+     "key": "Ines → 👧🍿, Jack → 🧒🐘, Kate → 👩📸, Luis → 🧔🐒, Mona → 👵"
+    },
+    {
+     "n": 2,
+     "title": "Part 2 – Listen and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m23-listening-part2.mp3",
+     "secs": 117,
+     "script": [
+      "Man: Hello. I'm phoning about the night tour on Saturday.",
+      "Woman: Yes. It costs eight pounds.",
+      "Man: What time does it start?",
+      "Woman: At seven o'clock in the evening.",
+      "Man: Who is the guide?",
+      "Woman: Her name is Ruth. R, U, T, H.",
+      "Man: What animals can we see?",
+      "Woman: The owls, mostly. They're awake at night.",
+      "Man: What should we wear?",
+      "Woman: Warm clothes. It's cold in the evening.",
+      "Man: Where do we meet?",
+      "Woman: At the main gate. Don't be late."
+     ],
+     "key": "1 7, 2 Ruth, 3 owls, 4 clothes, 5 gate"
+    },
+    {
+     "n": 3,
+     "title": "Part 3 – Listen and write a letter",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m23-listening-part3.mp3",
+     "secs": 126,
+     "script": [
+      "Child: What does Zoe like best?",
+      "Woman: Lions. She says they're like big cats.",
+      "Child: And Ben?",
+      "Woman: He likes giraffes because they're so tall.",
+      "Child: What about Amy?",
+      "Woman: Zebras. She loves the black and white stripes.",
+      "Child: Does Ted like birds?",
+      "Woman: He likes penguins. He says they look funny when they walk.",
+      "Child: And Eva?",
+      "Woman: Monkeys. They make her laugh.",
+      "Child: What does Sam like?",
+      "Woman: Crocodiles. He's not afraid of them."
+     ],
+     "key": "Ben B, Amy F, Ted C, Eva E, Sam G"
+    },
+    {
+     "n": 4,
+     "title": "Part 4 – Listen and tick the box",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m23-listening-part4.mp3",
+     "secs": 157,
+     "script": [
+      "What time does the zoo open?",
+      "Woman: Does the zoo open at ten o'clock?",
+      "Man: No, it opens at nine. Let's go early.",
+      "What does the panda eat?",
+      "Child: Do pandas eat meat?",
+      "Woman: No. They eat bamboo. They eat it all day!",
+      "Where is the penguin pool?",
+      "Man: Is the penguin pool on the left?",
+      "Woman: No. Go straight on. You can't miss it.",
+      "What does Luis buy at the shop?",
+      "Woman: Luis, are you buying a toy?",
+      "Child: No, a cap. The monkey took my old one.",
+      "How many baby tigers are there?",
+      "Child: Are there three baby tigers?",
+      "Woman: No, only two. They were born last month.",
+      "What does the lion do all day?",
+      "Man: Is the lion running around?",
+      "Woman: No. It sleeps for about twenty hours a day!"
+     ],
+     "key": "1 A, 2 A, 3 C, 4 B, 5 B"
+    },
+    {
+     "n": 5,
+     "title": "Part 5 – Listen and colour and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m23-listening-part5.mp3",
+     "secs": 120,
+     "script": [
+      "Woman: Look at the fish. Colour it orange.",
+      "Child: OK. An orange fish.",
+      "Child: What shall I do with the ball?",
+      "Woman: Make it yellow.",
+      "Woman: Now look at the bag. Write ZOO on it.",
+      "Child: How do you spell zoo?",
+      "Woman: Z, double O.",
+      "Child: Can I do the duck?",
+      "Woman: Yes. Colour it grey.",
+      "Woman: On the cup, write WATER. W, A, T, E, R.",
+      "Child: Done.",
+      "Child: And the flower?",
+      "Woman: Colour it pink. Lovely!"
+     ],
+     "key": "ball: yellow, duck: grey, flower: pink; bag: ZOO, cup: WATER"
+    }
+   ]
+  },
+  {
+   "group": "Movers Book 8",
+   "title": "Book 8 – Test 3",
+   "info": "Listening paper – 5 parts, 25 questions. Online test: c2-yle.html",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Part 1 – Listen and draw lines",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m24-listening-part1.mp3",
+     "secs": 124,
+     "script": [
+      "Woman: We're at the campsite. Look at the man by the fire.",
+      "Child: That's Owen. He's cooking sausages.",
+      "Child: Who's got a torch?",
+      "Woman: That's Pru. She's looking for her sleeping bag.",
+      "Woman: Can you see the boy with the fishing rod?",
+      "Child: That's Quentin. He's going to the river.",
+      "Child: Who's looking at a compass?",
+      "Woman: That's Rita. She's trying to find north.",
+      "Woman: And the man with the hammer?",
+      "Child: That's Stu. He's putting up the tent.",
+      "Child: Who's the girl at the back?",
+      "Woman: That's Tina. She's waiting for her dinner."
+     ],
+     "key": "Pru → 👧🔦, Quentin → 🧒🎣, Rita → 👩🧭, Stu → 🧔🔨, Tina → 👧"
+    },
+    {
+     "n": 2,
+     "title": "Part 2 – Listen and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m24-listening-part2.mp3",
+     "secs": 116,
+     "script": [
+      "Woman: Our camping weekend is in August, in a forest.",
+      "Child: What's the campsite called?",
+      "Woman: Green Wood. G, R, E, E, N.",
+      "Child: How much does it cost?",
+      "Woman: Twelve pounds a night for each tent.",
+      "Child: How many of us are going?",
+      "Woman: Five. You, me, Dad and two friends.",
+      "Child: What should I bring?",
+      "Woman: A torch. It's very dark in the forest at night.",
+      "Child: Who is leading the trip?",
+      "Woman: Mr Reed. R, E, E, D."
+     ],
+     "key": "1 Green, 2 12, 3 5, 4 torch, 5 Reed"
+    },
+    {
+     "n": 3,
+     "title": "Part 3 – Listen and write a letter",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m24-listening-part3.mp3",
+     "secs": 124,
+     "script": [
+      "Child: What's Owen going to do?",
+      "Woman: Make breakfast. He's good at cooking eggs.",
+      "Child: And Pru?",
+      "Woman: Look at the stars. She's got a book about them.",
+      "Child: What about Quentin?",
+      "Woman: Fish in the river. He hopes to catch dinner.",
+      "Child: Is Stu going to play music?",
+      "Woman: Yes, on his guitar, around the campfire.",
+      "Child: And Tina?",
+      "Woman: Paddle a canoe on the lake.",
+      "Child: What's Vic's job?",
+      "Woman: He has to sweep the floor of the big tent."
+     ],
+     "key": "Pru D, Quentin B, Stu F, Tina E, Vic H"
+    },
+    {
+     "n": 4,
+     "title": "Part 4 – Listen and tick the box",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m24-listening-part4.mp3",
+     "secs": 154,
+     "script": [
+      "What time do we wake up?",
+      "Woman: Do we wake up at eight o'clock?",
+      "Man: No, seven. We've got a long walk.",
+      "What is for dinner?",
+      "Child: Are we having pizza tonight?",
+      "Woman: No, hot dogs. We're cooking them on the fire.",
+      "Where is the tent?",
+      "Man: Is the tent under the trees?",
+      "Woman: No. It's next to the lake. We'll see the water.",
+      "Who has the matches?",
+      "Woman: Does Vic have the matches?",
+      "Man: No, I have them. Children shouldn't use them.",
+      "What did Pru forget?",
+      "Woman: Pru, did you forget your torch?",
+      "Child: No. I forgot my socks. My feet are freezing!",
+      "How many marshmallows did Tina eat?",
+      "Child: Did Tina eat nine marshmallows?",
+      "Woman: No, five! She was ill afterwards."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 B, 5 B"
+    },
+    {
+     "n": 5,
+     "title": "Part 5 – Listen and colour and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m24-listening-part5.mp3",
+     "secs": 118,
+     "script": [
+      "Woman: Look at the sock. Colour it grey.",
+      "Child: OK. A grey sock.",
+      "Child: What shall I do with the cup?",
+      "Woman: Make it red.",
+      "Woman: Now look at the hat. Write CAMP on it.",
+      "Child: How do you spell it?",
+      "Woman: C, A, M, P.",
+      "Child: Can I do the book?",
+      "Woman: Yes. Colour it green.",
+      "Woman: On the fish, write LAKE. L, A, K, E.",
+      "Child: Done!",
+      "Child: And the apple?",
+      "Woman: Colour it yellow. Very good!"
+     ],
+     "key": "cup: red, book: green, apple: yellow; hat: CAMP, fish: LAKE"
+    }
+   ]
+  },
+  {
+   "group": "Movers Book 9",
+   "title": "Book 9 – Test 1",
+   "info": "Listening paper – 5 parts, 25 questions. Online test: c2-yle.html",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Part 1 – Listen and draw lines",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m25-listening-part1.mp3",
+     "secs": 123,
+     "script": [
+      "Woman: It's Alma's birthday party! She's the girl with the cake.",
+      "Child: She looks so happy.",
+      "Child: Who's holding a present?",
+      "Woman: That's Bert. He's got a surprise for her.",
+      "Woman: Can you see the woman with the camera?",
+      "Child: That's Cleo, Alma's mum. She's taking photos.",
+      "Child: Who's the funny man in the red nose?",
+      "Woman: That's Dirk. He's the clown.",
+      "Woman: And the girl with the balloon?",
+      "Child: That's Elle. She's going to give it to Alma.",
+      "Child: Who's playing music?",
+      "Woman: That's Finn. He's the DJ."
+     ],
+     "key": "Bert → 🧒🎁, Cleo → 👩📷, Dirk → 🤡, Elle → 👧🎈, Finn → 🧔🎶"
+    },
+    {
+     "n": 2,
+     "title": "Part 2 – Listen and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m25-listening-part2.mp3",
+     "secs": 116,
+     "script": [
+      "Woman: Alma's party is on Sunday at the café.",
+      "Child: What time does it start?",
+      "Woman: At two o'clock in the afternoon.",
+      "Child: How old is she going to be?",
+      "Woman: Ten. A big birthday!",
+      "Child: What shall I give her?",
+      "Woman: She loves reading. A book would be perfect.",
+      "Woman: You must wear a party hat. It's a rule.",
+      "Child: I'll make one myself.",
+      "Child: What's your number, in case I'm late?",
+      "Woman: It ends in three three one nine."
+     ],
+     "key": "1 2, 2 10, 3 book, 4 party, 5 3319"
+    },
+    {
+     "n": 3,
+     "title": "Part 3 – Listen and write a letter",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m25-listening-part3.mp3",
+     "secs": 122,
+     "script": [
+      "Child: What did Bert give her?",
+      "Woman: A new bicycle! It's bright red.",
+      "Child: And Cleo?",
+      "Woman: A little purse with a flower on it.",
+      "Child: What about Dirk?",
+      "Woman: A teddy bear. It's very soft.",
+      "Child: Did Finn give her something for music?",
+      "Woman: Yes, a pair of headphones.",
+      "Child: And Gus?",
+      "Woman: Some paints and brushes. Alma loves painting.",
+      "Child: What did you give her, Elle?",
+      "Woman: A book about horses."
+     ],
+     "key": "Cleo D, Dirk C, Finn E, Gus B, Elle A"
+    },
+    {
+     "n": 4,
+     "title": "Part 4 – Listen and tick the box",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m25-listening-part4.mp3",
+     "secs": 151,
+     "script": [
+      "What flavour is the cake?",
+      "Woman: Is it a strawberry cake?",
+      "Man: No, it's chocolate. It's her favourite.",
+      "How many candles are there?",
+      "Child: Are there nine candles?",
+      "Woman: No, ten. One for each year.",
+      "Who is Alma sitting next to?",
+      "Man: Is she sitting next to Bert?",
+      "Woman: No. She's next to Elle, her best friend.",
+      "What game are they playing?",
+      "Child: Are they playing darts?",
+      "Woman: No, musical chairs. When the music stops, you must sit down.",
+      "What does Alma wish for?",
+      "Woman: Alma, what's your wish?",
+      "Child: I want a puppy. I won't say any more!",
+      "When does the party end?",
+      "Man: Does it end at four o'clock?",
+      "Woman: No, five. Then the parents come."
+     ],
+     "key": "1 C, 2 B, 3 B, 4 A, 5 B"
+    },
+    {
+     "n": 5,
+     "title": "Part 5 – Listen and colour and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m25-listening-part5.mp3",
+     "secs": 119,
+     "script": [
+      "Woman: Look at the ball. Colour it pink.",
+      "Child: OK. Pink is lovely.",
+      "Child: What shall I do with the kite?",
+      "Woman: Make it yellow.",
+      "Woman: Now look at the hat. Write PARTY on it.",
+      "Child: How do you spell it?",
+      "Woman: P, A, R, T, Y.",
+      "Child: Can I do the flower?",
+      "Woman: Yes. Colour it blue.",
+      "Woman: On the bag, write GIFT. G, I, F, T.",
+      "Child: Done!",
+      "Child: And the cup?",
+      "Woman: Colour it orange. Perfect!"
+     ],
+     "key": "kite: yellow, flower: blue, cup: orange; hat: PARTY, bag: GIFT"
+    }
+   ]
+  },
+  {
+   "group": "Movers Book 9",
+   "title": "Book 9 – Test 2",
+   "info": "Listening paper – 5 parts, 25 questions. Online test: c2-yle.html",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Part 1 – Listen and draw lines",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m26-listening-part1.mp3",
+     "secs": 127,
+     "script": [
+      "Woman: It's a cooking class. Look at the chef with the big pot.",
+      "Child: That's Hazel. She's making soup.",
+      "Child: Who's breaking eggs?",
+      "Woman: That's Isaac. He's making an omelette.",
+      "Woman: Can you see the girl with the cake?",
+      "Child: That's Jess. She's decorating it with fruit.",
+      "Child: Who's cutting vegetables?",
+      "Woman: That's Kai. He's using a very sharp knife.",
+      "Woman: And the woman who's cooking spaghetti?",
+      "Child: That's Lola. It smells wonderful.",
+      "Child: Who's the boy near the window?",
+      "Woman: That's Milo. He's waiting to taste everything!"
+     ],
+     "key": "Isaac → 🧒🥚, Jess → 👧🍰, Kai → 🧑🔪, Lola → 👩🍝, Milo → 👦"
+    },
+    {
+     "n": 2,
+     "title": "Part 2 – Listen and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m26-listening-part2.mp3",
+     "secs": 111,
+     "script": [
+      "Woman: Today we're making pancakes for four people.",
+      "Child: How many eggs do we need?",
+      "Woman: Two eggs. That's enough.",
+      "Child: How much flour?",
+      "Woman: Two hundred grams.",
+      "Child: And milk?",
+      "Woman: Three hundred millilitres.",
+      "Child: How long do you cook each one?",
+      "Woman: About three minutes. Turn it over when it's golden.",
+      "Child: What goes on top?",
+      "Woman: Syrup, of course. Or honey if you prefer."
+     ],
+     "key": "1 2, 2 200, 3 300, 4 3, 5 syrup"
+    },
+    {
+     "n": 3,
+     "title": "Part 3 – Listen and write a letter",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m26-listening-part3.mp3",
+     "secs": 123,
+     "script": [
+      "Child: What did Hazel make?",
+      "Woman: A big pot of vegetable soup.",
+      "Child: And Isaac?",
+      "Woman: An omelette with cheese and tomatoes.",
+      "Child: What about Jess?",
+      "Woman: A chocolate cake with strawberries on top.",
+      "Child: Did Kai cook?",
+      "Woman: No. He made a big green salad.",
+      "Child: And what did you make, Lola?",
+      "Woman: Spaghetti with tomato sauce.",
+      "Child: What did Milo make?",
+      "Woman: Cookies. They were still warm when we ate them."
+     ],
+     "key": "Isaac C, Jess D, Kai E, Lola F, Milo G"
+    },
+    {
+     "n": 4,
+     "title": "Part 4 – Listen and tick the box",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m26-listening-part4.mp3",
+     "secs": 155,
+     "script": [
+      "How many people are in the class?",
+      "Woman: Are there nine people in the class?",
+      "Man: No, there are eight. One is ill today.",
+      "What time does the class finish?",
+      "Child: Does the class finish at twelve?",
+      "Woman: No, at one. We eat our lunch at the end.",
+      "Which spoon do you need?",
+      "Man: Is this the right fork?",
+      "Woman: You need a spoon for the soup. Take the big one.",
+      "What does Kai add to the soup?",
+      "Woman: Kai, are you adding honey?",
+      "Child: No, just some salt. Soup with honey would be strange!",
+      "Where is the sugar?",
+      "Child: Is the sugar in the fridge?",
+      "Woman: No. It's in the cupboard on the left.",
+      "What did Isaac burn?",
+      "Woman: Did you burn the pancakes, Isaac?",
+      "Child: No, it was the toast. I forgot to watch it."
+     ],
+     "key": "1 B, 2 A, 3 A, 4 B, 5 A"
+    },
+    {
+     "n": 5,
+     "title": "Part 5 – Listen and colour and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m26-listening-part5.mp3",
+     "secs": 117,
+     "script": [
+      "Woman: Look at the apple. Colour it green.",
+      "Child: OK. A green apple.",
+      "Child: What shall I do with the cup?",
+      "Woman: Make it blue.",
+      "Woman: Now look at the hat. Write CHEF on it.",
+      "Child: How do you spell it?",
+      "Woman: C, H, E, F.",
+      "Child: Can I do the fish?",
+      "Woman: Yes. Colour it red.",
+      "Woman: On the bird, write EGG. E, G, G.",
+      "Child: Done!",
+      "Child: And the book?",
+      "Woman: Colour it purple. Good job!"
+     ],
+     "key": "cup: blue, fish: red, book: purple; hat: CHEF, bird: EGG"
+    }
+   ]
+  },
+  {
+   "group": "Movers Book 9",
+   "title": "Book 9 – Test 3",
+   "info": "Listening paper – 5 parts, 25 questions. Online test: c2-yle.html",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Part 1 – Listen and draw lines",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m27-listening-part1.mp3",
+     "secs": 129,
+     "script": [
+      "Woman: We're on holiday at the seaside. Look at the girl who's surfing.",
+      "Child: That's Alba. She's learning to stand up on the board.",
+      "Child: Who's painting a picture of the sea?",
+      "Woman: That's Brad. He's an artist.",
+      "Woman: Can you see the girl who's eating watermelon?",
+      "Child: That's Cass. She's saving the seeds.",
+      "Child: Who's diving under the water?",
+      "Woman: That's Dean. He's looking for shells.",
+      "Woman: And the old lady who's knitting?",
+      "Child: That's Edna. She knits on the beach every day.",
+      "Child: Who's got a bucket?",
+      "Woman: That's Fred. He's carrying water to his sandcastle."
+     ],
+     "key": "Brad → 🧑‍🎨🎨, Cass → 👧🍉, Dean → 🤿, Edna → 👵🧶, Fred → 🧒🪣"
+    },
+    {
+     "n": 2,
+     "title": "Part 2 – Listen and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m27-listening-part2.mp3",
+     "secs": 115,
+     "script": [
+      "Woman: Welcome to the Sea View Hotel. How many nights are you staying?",
+      "Man: Seven nights, from July the first.",
+      "Woman: Your room is number thirty-one, on the third floor.",
+      "Man: What time does the pool open?",
+      "Woman: At eight in the morning.",
+      "Man: And when do you serve dinner?",
+      "Woman: At half past seven in the restaurant.",
+      "Man: What if we need something?",
+      "Woman: Just phone reception. Dial nine.",
+      "Man: Thank you very much.",
+      "Woman: Enjoy your stay!"
+     ],
+     "key": "1 7, 2 31, 3 8, 4 7.30, 5 reception"
+    },
+    {
+     "n": 3,
+     "title": "Part 3 – Listen and write a letter",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m27-listening-part3.mp3",
+     "secs": 134,
+     "script": [
+      "Child: What did you do on Monday?",
+      "Woman: We went snorkelling and saw lots of colourful fish.",
+      "Child: And Tuesday?",
+      "Woman: We visited a huge old castle on a hill.",
+      "Child: What about Wednesday?",
+      "Woman: We went up the mountain in a cable car.",
+      "Child: Did you buy souvenirs?",
+      "Woman: Yes, on Thursday, at the market in the old town.",
+      "Child: What was Friday like?",
+      "Woman: We tried the local ice cream. The mango flavour was my favourite.",
+      "Child: And on Saturday?",
+      "Woman: We walked around a volcano. It was a bit scary."
+     ],
+     "key": "Tuesday A, Wednesday C, Thursday F, Friday E, Saturday G"
+    },
+    {
+     "n": 4,
+     "title": "Part 4 – Listen and tick the box",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m27-listening-part4.mp3",
+     "secs": 159,
+     "script": [
+      "How did the family travel to the island?",
+      "Woman: Did you go by plane?",
+      "Man: No, we went by ferry. It took two hours.",
+      "What was the weather like on Monday?",
+      "Child: Was it sunny on Monday?",
+      "Woman: No, it rained all day. We played cards.",
+      "Where did Brad leave his sunglasses?",
+      "Woman: Brad, are your sunglasses in the room?",
+      "Man: No. I left them on the beach.",
+      "What did Edna buy?",
+      "Man: Did you buy a scarf, Edna?",
+      "Woman: Yes, a lovely one. It's made of silk.",
+      "Who did Gina meet?",
+      "Child: Did you meet an artist, Gina?",
+      "Woman: No. I met a firefighter. He showed me his truck.",
+      "What is Dean's favourite food?",
+      "Woman: Do you like burgers, Dean?",
+      "Man: No, I love sushi. I eat it every day on holiday."
+     ],
+     "key": "1 B, 2 B, 3 A, 4 C, 5 A"
+    },
+    {
+     "n": 5,
+     "title": "Part 5 – Listen and colour and write",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/yle-m27-listening-part5.mp3",
+     "secs": 118,
+     "script": [
+      "Woman: Look at the boat. Colour it blue.",
+      "Child: OK. Blue like the sea.",
+      "Child: What shall I do with the fish?",
+      "Woman: Make it orange.",
+      "Woman: Now look at the hat. Write SUN on it.",
+      "Child: How do you spell it?",
+      "Woman: S, U, N.",
+      "Child: Can I do the ball?",
+      "Woman: Yes. Colour it red.",
+      "Woman: On the bag, write TRIP. T, R, I, P.",
+      "Child: Done!",
+      "Child: And the duck?",
+      "Woman: Colour it yellow. Lovely!"
+     ],
+     "key": "fish: orange, ball: red, duck: yellow; hat: SUN, bag: TRIP"
+    }
+   ]
   }
  ]
 }

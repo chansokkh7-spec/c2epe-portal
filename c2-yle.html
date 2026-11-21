@@ -276,6 +276,7 @@ function openTest(id){ ID=id; LCHK=[]; RCHK=[]; var ob=document.querySelector('.
 (function load(){
   if(EMBED){ return openTest(ID && window.YLE_ALL[ID] ? ID : null); }
   if(!ID){ return listPage(); }
+  var si=document.createElement('script'); si.src='yle-index.js?v='+Date.now(); document.head.appendChild(si);
   var s=document.createElement('script'); s.src=ID+'.js?v='+Date.now();
   s.onload=function(){ start(window.YLE); };
   s.onerror=function(){ main.innerHTML='<div class="msg"><div class="big">😕</div>Test not found: '+esc(ID)+'</div>'; };
@@ -627,6 +628,17 @@ function RWS(D, P){
     key:function(){ ta.value=P.sample||''; ta.readOnly=true; }});
 }
 
+
+function nextInfo(D){
+  var m=D.id.match(/^(.*?)(\d+)$/); if(!m) return null;
+  var nid=m[1]+(parseInt(m[2],10)+1), idx=window.YLE_INDEX||[], t=null;
+  for(var i=0;i<idx.length;i++) if(idx[i].id===nid) t=idx[i];
+  if(EMBED && !(window.YLE_ALL||{})[nid]) return null;
+  if(!t && idx.length) return null;
+  var n=parseInt(m[2],10)+1, lv=D.level||'';
+  return {id:nid, label: t ? (lv+' Book '+t.book+' – Test '+t.tb) : ('Test '+n)};
+}
+function goNext(id){ if(EMBED) openTest(id); else location.href='c2-yle.html?t='+encodeURIComponent(id); }
 /* ---------------- page ---------------- */
 function shields(r,t){ var n=Math.max(1,Math.min(5,Math.round(r/t*5))); return '🛡️'.repeat(n)+'<span style="opacity:.25">'+'🛡️'.repeat(5-n)+'</span>'; }
 function start(D){
@@ -670,7 +682,12 @@ function start(D){
         +'<div class="row"><div>🎧 Listening<br><b>'+lr+' / '+LT+'</b><div class="sh">'+shields(lr,LT)+'</div><div class="scr">Parts: '+lp.join(' · ')+'</div></div>'
         +'<div>📖 Reading &amp; Writing<br><b>'+rr+' / '+RT+'</b><div class="sh">'+shields(rr,RT)+'</div><div class="scr">Parts: '+rp.join(' · ')+'</div></div></div>';
       res.style.display='block';
-      sc.textContent=star+' '+tot+' / '+TT; go.textContent='Try again ↺'; go.className='btn alt'; done=true; window.scrollTo({top:0,behavior:'smooth'});
+      sc.textContent=star+' '+tot+' / '+TT; go.textContent='↺'; go.title='Try again'; go.className='btn alt'; done=true; window.scrollTo({top:0,behavior:'smooth'});
+      var NX=nextInfo(D);
+      if(NX){ var nb=$('<button class="btn" id="nx">Next ▶</button>'); nb.title=NX.label; nb.onclick=function(){ goNext(NX.id); }; go.after(nb);
+        res.appendChild($('<button class="btn" style="margin-top:12px;font-size:16px" onclick="goNext(\''+NX.id+'\')">Next ▶ '+esc(NX.label)+'</button>'));
+        var eb=$('<div style="text-align:center;margin:18px 0 8px"><button class="btn" style="font-size:17px;padding:12px 22px" onclick="goNext(\''+NX.id+'\')">Next ▶ '+esc(NX.label)+'</button></div>'); main.appendChild(eb); res._eb=eb; }
+      else { res.appendChild($('<div style="margin-top:10px;font-weight:700;color:var(--navy)">🏁 This is the last test. Well done!</div>')); }
       try{ if(window.parent!==window) window.parent.postMessage({type:'gameroom-score', score:tot, total:TT, level:D.level}, '*'); }catch(e){}
       var n=parseInt(store('c2p-n-'+D.id)||'0',10)+1; store('c2p-n-'+D.id, String(n));
       var now=new Date();
@@ -681,6 +698,7 @@ function start(D){
     } else {
       if(!confirm('Start again? Your answers will be cleared. / ចាប់ផ្ដើមម្ដងទៀត?')) return;
       LCHK.concat(RCHK).forEach(function(c){c.reset();}); res.style.display='none'; sc.textContent=TT+' questions'; go.textContent='Finish & check ✓'; go.className='btn'; done=false;
+      var ob=document.getElementById('nx'); if(ob) ob.remove(); if(res._eb){ res._eb.remove(); res._eb=null; }
     }
   };
 }

@@ -51,6 +51,7 @@ window.C2_PRACTICE_BOOKS = [
   {"name": "Empower B2 Upper Intermediate (2nd ed.)", "series": "Cambridge", "level": "Upper-Intermediate", "prefix": "em5"},
   {"name": "Empower C1 Advanced (2nd ed.)", "series": "Cambridge", "level": "Advanced", "prefix": "em6"},
   {"name": "C2-EPE Starters Test Preparation", "series": "Young Learners", "level": "Starters", "prefix": "yle-s"},
+  {"name": "C2-EPE Movers Test Preparation", "series": "Young Learners", "level": "Movers", "prefix": "yle-m"},
   {"name": "Phonics & Literacy 1 (Beehive Phonics)", "series": "Phonics", "level": "K1", "prefix": "ph1"},
   {"name": "Phonics & Literacy Starter (Beehive Phonics)", "series": "Phonics", "level": "K0", "prefix": "phs"},
   {"name": "Phonics & Literacy 2 (Beehive Phonics)", "series": "Phonics", "level": "K2", "prefix": "ph2"},

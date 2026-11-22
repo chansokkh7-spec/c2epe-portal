@@ -44673,6 +44673,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "speakout-b1plus-tests",
+ "level": "Speakout B1+",
+ "icon": "📝",
+ "title": "Speakout B1+ – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Me and mine",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk4-ut-unit-test-unit-1-me-and-mine-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "The film had already started.",
+      "I'd rather stay at home.",
+      "Everyone came except for Tom.",
+      "She avoids wearing it in the rain.",
+      "It reminds her of a summer.",
+      "He didn't even say thank you."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Behaviour",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk4-ut-unit-test-unit-2-behaviour-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "I have been learning Spanish.",
+      "How long have you been waiting?",
+      "The man who called you.",
+      "It drives me crazy.",
+      "He has been going to the gym.",
+      "People are talking in the cinema."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Working life",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk4-ut-unit-test-unit-3-working-life-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I won't go unless you come.",
+      "Take an umbrella in case it rains.",
+      "You don't have to pay.",
+      "They aren't allowed to park here.",
+      "I'd rather work from home.",
+      "She is a freelance translator."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Fact or fiction?",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk4-ut-unit-test-unit-4-fact-or-fiction-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "I was going to call you.",
+      "Could you tell me where it is?",
+      "I wonder if it is true.",
+      "A painting was stolen.",
+      "Don't you think it's strange?",
+      "It was a joke."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Consumer",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk4-ut-unit-test-unit-5-consumer-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "I saved money to buy a laptop.",
+      "It's much cheaper than that one.",
+      "It is the best value.",
+      "I had my hair cut.",
+      "She did it herself.",
+      "Only three left!"
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Places",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk4-ut-unit-test-unit-6-places-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "It was so crowded.",
+      "I'm getting used to it.",
+      "The last tram leaves at midnight.",
+      "He travels by tram.",
+      "Could you tell me which tram?",
+      "It was such a long journey."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Connect",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk4-ut-unit-test-unit-7-connect-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "He said he was tired.",
+      "The email was sent yesterday.",
+      "The bridge is being repaired.",
+      "She asked where I lived.",
+      "I hope not.",
+      "He promised to call."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Wisdom",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk4-ut-unit-test-unit-8-wisdom-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "If I had known, I would have told you.",
+      "She would have passed.",
+      "I wish I had more time.",
+      "If I were you, I'd apologise.",
+      "My advice is to be patient.",
+      "Don't wait for the perfect moment."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk4-mt-monthly-test-1-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "Everyone came except for Tom.",
+      "The man who called you.",
+      "He didn't even say thank you.",
+      "It drives me crazy.",
+      "The film had already started."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk4-mt-monthly-test-2-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "You don't have to pay.",
+      "I was going to call you.",
+      "Take an umbrella in case it rains.",
+      "A painting was stolen.",
+      "I won't go unless you come."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk4-mt-monthly-test-3-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "She did it herself.",
+      "The last tram leaves at midnight.",
+      "It is the best value.",
+      "It was so crowded.",
+      "I had my hair cut."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk4-mt-monthly-test-4-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "She asked where I lived.",
+      "Don't wait for the perfect moment.",
+      "I hope not.",
+      "She would have passed.",
+      "The bridge is being repaired."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk4-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I have been learning Spanish.",
+      "She is a freelance translator.",
+      "People are talking in the cinema.",
+      "I won't go unless you come.",
+      "How long have you been waiting?",
+      "They aren't allowed to park here."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk4-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "It was so crowded.",
+      "The bridge is being repaired.",
+      "I'm getting used to it.",
+      "She asked where I lived.",
+      "He travels by tram.",
+      "He promised to call."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk4-fin-final-test-semester-1-ex1.mp3",
+     "secs": 108,
+     "script": [
+      "She avoids wearing it in the rain.",
+      "It drives me crazy.",
+      "I'd rather work from home.",
+      "It was a joke.",
+      "It reminds her of a summer.",
+      "People are talking in the cinema.",
+      "She is a freelance translator.",
+      "I was going to call you."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk4-fin-final-test-semester-2-ex1.mp3",
+     "secs": 107,
+     "script": [
+      "I saved money to buy a laptop.",
+      "Could you tell me which tram?",
+      "The email was sent yesterday.",
+      "She would have passed.",
+      "She did it herself.",
+      "He travels by tram.",
+      "He promised to call.",
+      "Don't wait for the perfect moment."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

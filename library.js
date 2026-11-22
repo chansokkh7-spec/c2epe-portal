@@ -47940,6 +47940,732 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "grammar-practice-1-tests",
+ "level": "Grammar Practice 1",
+ "icon": "📝",
+ "title": "Grammar Practice 1 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Everyday Verbs",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp1-ut-unit-test-unit-1-everyday-verbs-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "She makes breakfast every morning.",
+      "Please do your homework.",
+      "We took a lot of photos.",
+      "Don't make so much noise.",
+      "He took the bus to school.",
+      "She had a shower."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Prepositions of Time and Place",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp1-ut-unit-test-unit-2-prepositions-of-time-and-place-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "The film starts at eight.",
+      "My birthday is in July.",
+      "The book is on the table.",
+      "The cat is under the chair.",
+      "The bank is next to the post office.",
+      "She sat between her friends."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Quantities and Nouns",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp1-ut-unit-test-unit-3-quantities-and-nouns-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "How much milk do you want?",
+      "There aren't any apples.",
+      "I'd like some water.",
+      "She has a few friends.",
+      "We need a loaf of bread.",
+      "He has too many books."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Adjectives and Adverbs",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp1-ut-unit-test-unit-4-adjectives-and-adverbs-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "She sings beautifully.",
+      "He is a careful driver.",
+      "Drive slowly.",
+      "He speaks English well.",
+      "This bag is heavier.",
+      "He is the tallest boy."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Verb Patterns",
+   "info": "Test paper page 14",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp1-ut-unit-test-unit-5-verb-patterns-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I enjoy swimming in the sea.",
+      "She wants to go home.",
+      "He can swim very fast.",
+      "We decided to stay at home.",
+      "She is good at drawing.",
+      "I'm looking forward to seeing you."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Time Expressions",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp1-ut-unit-test-unit-6-time-expressions-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "I have already finished.",
+      "She hasn't called me yet.",
+      "He is still sleeping.",
+      "Have you ever been to Japan?",
+      "We have lived here for five years.",
+      "She has just left."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Home, Family and Food",
+   "info": "Test paper page 20",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp1-ut-unit-test-unit-7-home-family-and-food-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "My grandmother cooks soup.",
+      "We eat soup with a spoon.",
+      "Put the plates in the cupboard.",
+      "My aunt is my father's sister.",
+      "She put butter on her bread.",
+      "We keep milk in the fridge."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Travel and Shopping",
+   "info": "Test paper page 23",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp1-ut-unit-test-unit-8-travel-and-shopping-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I bought a train ticket.",
+      "The plane departs at nine.",
+      "We stayed in a hotel.",
+      "She packed a suitcase.",
+      "Can I pay by credit card?",
+      "It's cheap because it's on sale."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp1-mt-monthly-test-1-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "We took a lot of photos.",
+      "The book is on the table.",
+      "She had a shower.",
+      "The cat is under the chair.",
+      "She makes breakfast every morning."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp1-mt-monthly-test-2-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "I'd like some water.",
+      "She sings beautifully.",
+      "There aren't any apples.",
+      "He speaks English well.",
+      "How much milk do you want?"
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp1-mt-monthly-test-3-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "She is good at drawing.",
+      "He is still sleeping.",
+      "He can swim very fast.",
+      "I have already finished.",
+      "We decided to stay at home."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp1-mt-monthly-test-4-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "My aunt is my father's sister.",
+      "It's cheap because it's on sale.",
+      "She put butter on her bread.",
+      "The plane departs at nine.",
+      "Put the plates in the cupboard."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp1-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "The film starts at eight.",
+      "He has too many books.",
+      "She sat between her friends.",
+      "How much milk do you want?",
+      "My birthday is in July.",
+      "She has a few friends."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp1-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "I have already finished.",
+      "Put the plates in the cupboard.",
+      "She hasn't called me yet.",
+      "My aunt is my father's sister.",
+      "Have you ever been to Japan?",
+      "We keep milk in the fridge."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp1-fin-final-test-semester-1-ex1.mp3",
+     "secs": 107,
+     "script": [
+      "Don't make so much noise.",
+      "The cat is under the chair.",
+      "We need a loaf of bread.",
+      "He is the tallest boy.",
+      "He took the bus to school.",
+      "She sat between her friends.",
+      "He has too many books.",
+      "She sings beautifully."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp1-fin-final-test-semester-2-ex1.mp3",
+     "secs": 109,
+     "script": [
+      "I enjoy swimming in the sea.",
+      "We have lived here for five years.",
+      "We eat soup with a spoon.",
+      "The plane departs at nine.",
+      "She is good at drawing.",
+      "Have you ever been to Japan?",
+      "We keep milk in the fridge.",
+      "It's cheap because it's on sale."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
+},
+{
+ "id": "grammar-practice-2-tests",
+ "level": "Grammar Practice 2",
+ "icon": "📝",
+ "title": "Grammar Practice 2 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Mixed Tenses in Context",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp2-ut-unit-test-unit-1-mixed-tenses-in-context-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "I have lived here since",
+      "2. The film had already started.",
+      "It is raining and we have no umbrella.",
+      "She was reading when the lights went out.",
+      "The shop will have closed.",
+      "He has been waiting for an hour."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Modal Verbs in Use",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp2-ut-unit-test-unit-2-modal-verbs-in-use-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "You must wear a seat belt.",
+      "You mustn't smoke here.",
+      "She can't be at home.",
+      "We had better leave now.",
+      "You should have told me.",
+      "You needn't bring food."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Linking Words",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp2-ut-unit-test-unit-3-linking-words-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "I stayed home because it was raining.",
+      "It was cold, so I wore a coat.",
+      "Although he was tired, he worked.",
+      "Despite the rain, we went out.",
+      "She didn't go out because of the storm.",
+      "He worked hard in order to pass."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Dependent Prepositions",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp2-ut-unit-test-unit-4-dependent-prepositions-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "She is afraid of dogs.",
+      "He is interested in history.",
+      "They arrived at the airport.",
+      "I'm worried about my exam.",
+      "She is married to a doctor.",
+      "This book belongs to my sister."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Comparing and Contrasting",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp2-ut-unit-test-unit-5-comparing-and-contrasting-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "This phone is more expensive.",
+      "He is not as tall as his brother.",
+      "She is the most intelligent student.",
+      "The harder you work, the better.",
+      "It was much easier than I expected.",
+      "She runs faster and faster."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Determiners and Quantifiers",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp2-ut-unit-test-unit-6-determiners-and-quantifiers-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "Both my parents are teachers.",
+      "Neither of the books was interesting.",
+      "There are several problems.",
+      "Every student must bring a pen.",
+      "I have plenty of time.",
+      "Is there any milk left?"
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Questions and Indirect Questions",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp2-ut-unit-test-unit-7-questions-and-indirect-questions-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "Where did you go yesterday?",
+      "Do you know where he lives?",
+      "Could you tell me what time it starts?",
+      "Who wrote this letter?",
+      "You like coffee, don't you?",
+      "How long have you lived here?"
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Confusing Words",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp2-ut-unit-test-unit-8-confusing-words-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "Can you lend me your pen?",
+      "I'd like to borrow your bike.",
+      "The sun rises in the east.",
+      "She told me a secret.",
+      "He said that he was tired.",
+      "Please remind me to call her."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp2-mt-monthly-test-1-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "It is raining and we have no umbrella.",
+      "She can't be at home.",
+      "He has been waiting for an hour.",
+      "We had better leave now.",
+      "I have lived here since 2015."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp2-mt-monthly-test-2-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "Although he was tired, he worked.",
+      "She is afraid of dogs.",
+      "It was cold, so I wore a coat.",
+      "I'm worried about my exam.",
+      "I stayed home because it was raining."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp2-mt-monthly-test-3-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "It was much easier than I expected.",
+      "There are several problems.",
+      "She is the most intelligent student.",
+      "Both my parents are teachers.",
+      "The harder you work, the better."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp2-mt-monthly-test-4-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "Who wrote this letter?",
+      "Please remind me to call her.",
+      "You like coffee, don't you?",
+      "I'd like to borrow your bike.",
+      "Could you tell me what time it starts?"
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp2-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "You must wear a seat belt.",
+      "He worked hard in order to pass.",
+      "You needn't bring food.",
+      "I stayed home because it was raining.",
+      "You mustn't smoke here.",
+      "Despite the rain, we went out."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp2-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "Both my parents are teachers.",
+      "Could you tell me what time it starts?",
+      "Neither of the books was interesting.",
+      "Who wrote this letter?",
+      "Every student must bring a pen.",
+      "How long have you lived here?"
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp2-fin-final-test-semester-1-ex1.mp3",
+     "secs": 110,
+     "script": [
+      "She was reading when the lights went out.",
+      "We had better leave now.",
+      "She didn't go out because of the storm.",
+      "This book belongs to my sister.",
+      "The shop will have closed.",
+      "You needn't bring food.",
+      "He worked hard in order to pass.",
+      "She is afraid of dogs."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp2-fin-final-test-semester-2-ex1.mp3",
+     "secs": 110,
+     "script": [
+      "This phone is more expensive.",
+      "I have plenty of time.",
+      "Do you know where he lives?",
+      "I'd like to borrow your bike.",
+      "It was much easier than I expected.",
+      "Every student must bring a pen.",
+      "How long have you lived here?",
+      "Please remind me to call her."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

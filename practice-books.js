@@ -97,5 +97,6 @@ window.C2_PRACTICE_BOOKS = [
   {"name": "Scholarship Prep 3", "series": "Scholarship Prep", "level": "Advanced", "prefix": "sch3"},
   {"name": "Advanced Vocab 1", "series": "Advanced Vocab", "level": "Advanced", "prefix": "avs1"},
   {"name": "Grammar Practice 1", "series": "Grammar Practice", "level": "Elementary", "prefix": "gtp1"},
-  {"name": "Grammar Practice 2", "series": "Grammar Practice", "level": "Intermediate", "prefix": "gtp2"}
+  {"name": "Grammar Practice 2", "series": "Grammar Practice", "level": "Intermediate", "prefix": "gtp2"},
+  {"name": "Grammar Practice 3", "series": "Grammar Practice", "level": "Advanced", "prefix": "gtp3"}
 ];

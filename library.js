@@ -48666,6 +48666,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "grammar-practice-3-tests",
+ "level": "Grammar Practice 3",
+ "icon": "📝",
+ "title": "Grammar Practice 3 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Participle Clauses",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp3-ut-unit-test-unit-1-participle-clauses-ex1.mp3",
+     "secs": 99,
+     "script": [
+      "Walking along the beach, she found a shell.",
+      "Built in 1850, the bridge is still used.",
+      "Not knowing the answer, she stayed silent.",
+      "Having been warned, they stayed indoors.",
+      "The letters written by my grandfather are valuable.",
+      "Exhausted, he collapsed."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Modal Perfects",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp3-ut-unit-test-unit-2-modal-perfects-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "She must have forgotten her keys.",
+      "He can't have seen us.",
+      "You should have called me.",
+      "They might have got lost.",
+      "I needn't have bought so much.",
+      "It must have rained during the night."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Formal Writing",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp3-ut-unit-test-unit-3-formal-writing-ex1.mp3",
+     "secs": 92,
+     "script": [
+      "I am writing with reference to your advertisement.",
+      "Please find enclosed my CV.",
+      "I would be grateful if you could reply.",
+      "We apologise for any inconvenience.",
+      "The meeting has been postponed.",
+      "I look forward to hearing from you."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Ellipsis and Substitution",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp3-ut-unit-test-unit-4-ellipsis-and-substitution-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "So do I.",
+      "Neither can I.",
+      "I hope so.",
+      "He didn't pass, but his sister did.",
+      "I'll help if you want me to.",
+      "I think so."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Phrasal Verbs and Idioms",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp3-ut-unit-test-unit-5-phrasal-verbs-and-idioms-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "The meeting was called off.",
+      "She takes after her mother.",
+      "The talks broke down.",
+      "The test was a piece of cake.",
+      "We're in the same boat.",
+      "He got over his illness."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Collocations and Fixed Expressions",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp3-ut-unit-test-unit-6-collocations-and-fixed-expressions-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "She paid attention to every detail.",
+      "We need to take it into account.",
+      "He took a risk.",
+      "The company made a huge profit.",
+      "She has a good command of English.",
+      "They reached a compromise."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Hedging and Discourse Markers",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp3-ut-unit-test-unit-7-hedging-and-discourse-markers-ex1.mp3",
+     "secs": 93,
+     "script": [
+      "Broadly speaking, the plan is sound.",
+      "It is likely that prices will rise.",
+      "On the whole, it was a success.",
+      "In other words, we have no choice.",
+      "To sum up, there are three benefits.",
+      "As far as I know, the shop is closed."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Nominalisation",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp3-ut-unit-test-unit-8-nominalisation-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "The construction improved traffic.",
+      "Her decision surprised everyone.",
+      "There was a sharp increase.",
+      "The failure cost millions.",
+      "His arrival caused panic.",
+      "The introduction was welcomed."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp3-mt-monthly-test-1-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "Not knowing the answer, she stayed silent.",
+      "You should have called me.",
+      "Exhausted, he collapsed.",
+      "They might have got lost.",
+      "Walking along the beach, she found a shell."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp3-mt-monthly-test-2-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "I would be grateful if you could reply.",
+      "So do I.",
+      "Please find enclosed my CV.",
+      "He didn't pass, but his sister did.",
+      "I am writing with reference to your advertisement."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp3-mt-monthly-test-3-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "We're in the same boat.",
+      "He took a risk.",
+      "The talks broke down.",
+      "She paid attention to every detail.",
+      "The test was a piece of cake."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp3-mt-monthly-test-4-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "In other words, we have no choice.",
+      "The introduction was welcomed.",
+      "To sum up, there are three benefits.",
+      "Her decision surprised everyone.",
+      "On the whole, it was a success."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp3-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "She must have forgotten her keys.",
+      "I look forward to hearing from you.",
+      "It must have rained during the night.",
+      "I am writing with reference to your advertisement.",
+      "He can't have seen us.",
+      "We apologise for any inconvenience."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp3-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "She paid attention to every detail.",
+      "On the whole, it was a success.",
+      "We need to take it into account.",
+      "In other words, we have no choice.",
+      "The company made a huge profit.",
+      "As far as I know, the shop is closed."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp3-fin-final-test-semester-1-ex1.mp3",
+     "secs": 111,
+     "script": [
+      "Having been warned, they stayed indoors.",
+      "They might have got lost.",
+      "The meeting has been postponed.",
+      "I think so.",
+      "The letters written by my grandfather are valuable.",
+      "It must have rained during the night.",
+      "I look forward to hearing from you.",
+      "So do I."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gtp3-fin-final-test-semester-2-ex1.mp3",
+     "secs": 113,
+     "script": [
+      "The meeting was called off.",
+      "She has a good command of English.",
+      "It is likely that prices will rise.",
+      "Her decision surprised everyone.",
+      "We're in the same boat.",
+      "The company made a huge profit.",
+      "As far as I know, the shop is closed.",
+      "The introduction was welcomed."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

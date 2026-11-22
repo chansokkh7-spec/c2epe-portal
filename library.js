@@ -46488,6 +46488,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "scholarship-prep-1-tests",
+ "level": "Scholarship Prep 1",
+ "icon": "📝",
+ "title": "Scholarship Prep 1 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Present Tenses",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch1-ut-unit-test-unit-1-present-tenses-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "She drinks tea every morning.",
+      "They are playing football.",
+      "He doesn't like coffee.",
+      "I get up at six o'clock.",
+      "Does your father work in a bank?",
+      "My teacher is writing on the board."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Past Tenses",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch1-ut-unit-test-unit-2-past-tenses-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "We went to the beach.",
+      "She didn't come to school.",
+      "Did you watch the match?",
+      "It was sunny and warm.",
+      "He bought a new bag.",
+      "They were playing football."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Modal Verbs",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch1-ut-unit-test-unit-3-modal-verbs-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "I can swim very well.",
+      "You must wear a helmet.",
+      "You should drink more water.",
+      "Students must be quiet.",
+      "You don't have to pay.",
+      "She could read at five."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Questions and Tags",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch1-ut-unit-test-unit-4-questions-and-tags-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "Where do you live?",
+      "What time does the film start?",
+      "How many brothers have you got?",
+      "It's cold, isn't it?",
+      "Whose bike is blue?",
+      "She can swim, can't she?"
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Pronouns",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch1-ut-unit-test-unit-5-pronouns-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "This book is mine.",
+      "The woman who teaches us.",
+      "Please help us.",
+      "I lost my pen.",
+      "Their house is big.",
+      "She gave me hers."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Articles and Comparisons",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch1-ut-unit-test-unit-6-articles-and-comparisons-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "She eats an apple every day.",
+      "There isn't any milk.",
+      "A giraffe is taller than a horse.",
+      "It is the most expensive bag.",
+      "How many apples are there?",
+      "It costs three dollars."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Word Choice",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch1-ut-unit-test-unit-7-word-choice-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "Please listen to the teacher.",
+      "I can't hear you.",
+      "She told me a story.",
+      "The test starts at nine.",
+      "We made a cake.",
+      "They finished at ten."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Conditionals and Future",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch1-ut-unit-test-unit-8-conditionals-and-future-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "If it rains, we will stay.",
+      "I am going to visit my aunt.",
+      "It is going to rain.",
+      "If you heat ice, it melts.",
+      "He will go to a good school.",
+      "I would drive to school."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch1-mt-monthly-test-1-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "He doesn't like coffee.",
+      "Did you watch the match?",
+      "My teacher is writing on the board.",
+      "It was sunny and warm.",
+      "She drinks tea every morning."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch1-mt-monthly-test-2-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "You should drink more water.",
+      "Where do you live?",
+      "You must wear a helmet.",
+      "It's cold, isn't it?",
+      "I can swim very well."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch1-mt-monthly-test-3-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "Their house is big.",
+      "A giraffe is taller than a horse.",
+      "Please help us.",
+      "She eats an apple every day.",
+      "I lost my pen."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch1-mt-monthly-test-4-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "The test starts at nine.",
+      "I would drive to school.",
+      "We made a cake.",
+      "I am going to visit my aunt.",
+      "She told me a story."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch1-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "We went to the beach.",
+      "She could read at five.",
+      "They were playing football.",
+      "I can swim very well.",
+      "She didn't come to school.",
+      "Students must be quiet."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch1-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "She eats an apple every day.",
+      "She told me a story.",
+      "There isn't any milk.",
+      "The test starts at nine.",
+      "It is the most expensive bag.",
+      "They finished at ten."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch1-fin-final-test-semester-1-ex1.mp3",
+     "secs": 105,
+     "script": [
+      "I get up at six o'clock.",
+      "It was sunny and warm.",
+      "You don't have to pay.",
+      "She can swim, can't she?",
+      "Does your father work in a bank?",
+      "They were playing football.",
+      "She could read at five.",
+      "Where do you live?"
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch1-fin-final-test-semester-2-ex1.mp3",
+     "secs": 106,
+     "script": [
+      "This book is mine.",
+      "How many apples are there?",
+      "I can't hear you.",
+      "I am going to visit my aunt.",
+      "Their house is big.",
+      "It is the most expensive bag.",
+      "They finished at ten.",
+      "I would drive to school."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

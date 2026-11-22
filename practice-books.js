@@ -104,5 +104,6 @@ window.C2_PRACTICE_BOOKS = [
   {"name": "Challenge Papers 3", "series": "Challenge Papers", "level": "Advanced", "prefix": "chp3"},
   {"name": "Tense Master 1", "series": "Tense Master", "level": "Intermediate", "prefix": "tm1"},
   {"name": "Tense Master 2", "series": "Tense Master", "level": "Intermediate", "prefix": "tm2"},
-  {"name": "Tense Master 3", "series": "Tense Master", "level": "Advanced", "prefix": "tm3"}
+  {"name": "Tense Master 3", "series": "Tense Master", "level": "Advanced", "prefix": "tm3"},
+  {"name": "Reading Journey 1", "series": "Reading Journey", "level": "Starter", "prefix": "rj1"}
 ];

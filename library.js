@@ -50118,6 +50118,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "reading-journey-1-tests",
+ "level": "Reading Journey 1",
+ "icon": "📝",
+ "title": "Reading Journey 1 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: My Name and Me",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-ut-unit-test-unit-1-my-name-and-me-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "My name is Mia.",
+      "I am five years old.",
+      "I have two eyes.",
+      "I like to play.",
+      "This is my nose.",
+      "I can see a bird."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: My Family",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-ut-unit-test-unit-2-my-family-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "This is my mother.",
+      "My dad is tall.",
+      "I have one sister.",
+      "Mum cooks dinner.",
+      "We love our grandma.",
+      "My family is happy."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Pets",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-ut-unit-test-unit-3-pets-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "I have a cat.",
+      "The dog is big.",
+      "The fish swims in water.",
+      "The rabbit eats a carrot.",
+      "I feed my cat.",
+      "The kitten is small."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Farm Animals",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-ut-unit-test-unit-4-farm-animals-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "The cow says moo.",
+      "The hen lays an egg.",
+      "The pigs play in the mud.",
+      "The sheep has soft wool.",
+      "The ducks swim on the pond.",
+      "The farmer feeds the animals."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Colours I See",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-ut-unit-test-unit-5-colours-i-see-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "The sky is blue.",
+      "The sun is yellow.",
+      "The grass is green.",
+      "I have a red apple.",
+      "My bag is pink.",
+      "I see a rainbow."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Fruit and Food",
+   "info": "Test paper page 14",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-ut-unit-test-unit-6-fruit-and-food-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "I like apples.",
+      "She drinks milk.",
+      "We eat rice for lunch.",
+      "The cake is sweet.",
+      "A banana is yellow.",
+      "I am hungry."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: My Classroom",
+   "info": "Test paper page 16",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-ut-unit-test-unit-7-my-classroom-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "This is my desk.",
+      "The teacher writes on the board.",
+      "I have a pencil.",
+      "We read a story.",
+      "The clock is on the wall.",
+      "Please sit down."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Play at School",
+   "info": "Test paper page 19",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-ut-unit-test-unit-8-play-at-school-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "We play in the playground.",
+      "Ann jumps with a rope.",
+      "The boys kick a ball.",
+      "Mia swings high.",
+      "I share my toys.",
+      "The bell rings."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-mt-monthly-test-1-ex1.mp3",
+     "secs": 67,
+     "script": [
+      "I have two eyes.",
+      "I have one sister.",
+      "I can see a bird.",
+      "Mum cooks dinner.",
+      "My name is Mia."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-mt-monthly-test-2-ex1.mp3",
+     "secs": 67,
+     "script": [
+      "The fish swims in water.",
+      "The cow says moo.",
+      "The dog is big.",
+      "The sheep has soft wool.",
+      "I have a cat."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-mt-monthly-test-3-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "My bag is pink.",
+      "We eat rice for lunch.",
+      "The grass is green.",
+      "I like apples.",
+      "I have a red apple."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-mt-monthly-test-4-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "We read a story.",
+      "The bell rings.",
+      "The clock is on the wall.",
+      "Ann jumps with a rope.",
+      "I have a pencil."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "This is my mother.",
+      "The kitten is small.",
+      "My family is happy.",
+      "I have a cat.",
+      "My dad is tall.",
+      "The rabbit eats a carrot."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 79,
+     "script": [
+      "I like apples.",
+      "I have a pencil.",
+      "She drinks milk.",
+      "We read a story.",
+      "The cake is sweet.",
+      "Please sit down."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-fin-final-test-semester-1-ex1.mp3",
+     "secs": 103,
+     "script": [
+      "I like to play.",
+      "Mum cooks dinner.",
+      "I feed my cat.",
+      "The farmer feeds the animals.",
+      "This is my nose.",
+      "My family is happy.",
+      "The kitten is small.",
+      "The cow says moo."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-fin-final-test-semester-2-ex1.mp3",
+     "secs": 104,
+     "script": [
+      "The sky is blue.",
+      "A banana is yellow.",
+      "The teacher writes on the board.",
+      "Ann jumps with a rope.",
+      "My bag is pink.",
+      "The cake is sweet.",
+      "Please sit down.",
+      "The bell rings."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

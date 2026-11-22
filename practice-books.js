@@ -79,5 +79,6 @@ window.C2_PRACTICE_BOOKS = [
   {"name": "Great Writing 4", "series": "National Geographic", "level": "Advanced", "prefix": "gw4"},
   {"name": "Great Writing 5", "series": "National Geographic", "level": "Advanced", "prefix": "gw5"},
   {"name": "My First Grammar 1", "series": "My First Grammar", "level": "Starters", "prefix": "mfg1"},
-  {"name": "My First Grammar 2", "series": "My First Grammar", "level": "Movers", "prefix": "mfg2"}
+  {"name": "My First Grammar 2", "series": "My First Grammar", "level": "Movers", "prefix": "mfg2"},
+  {"name": "My First Grammar 3", "series": "My First Grammar", "level": "Flyers", "prefix": "mfg3"}
 ];

@@ -39856,6 +39856,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "great-writing-1-tests",
+ "level": "Great Writing 1",
+ "icon": "📝",
+ "title": "Great Writing 1 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Sentence Basics",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw1-ut-unit-test-unit-1-sentence-basics-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "My friend plays tennis.",
+      "There are two books on the desk.",
+      "The test is in the morning.",
+      "She works on Mondays.",
+      "We attend classes at a college.",
+      "He wakes up at six."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Paragraph Basics",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw1-ut-unit-test-unit-2-paragraph-basics-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "My favorite place is the library.",
+      "The first line is indented.",
+      "The topic sentence gives the main idea.",
+      "She reads every Saturday.",
+      "The library is quiet.",
+      "I like the book."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Writing about the Present",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw1-ut-unit-test-unit-3-writing-about-the-present-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "She works at a bank.",
+      "He does not drive a car.",
+      "They are studying now.",
+      "It rains a lot in July.",
+      "The baby is crying.",
+      "We eat lunch at noon."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Writing about the Past",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw1-ut-unit-test-unit-4-writing-about-the-past-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "We went to the beach.",
+      "They swam in the sea.",
+      "She took many pictures.",
+      "I was very tired.",
+      "He walked slowly.",
+      "We went home at six."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Writing about the Future",
+   "info": "Test paper page 14",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw1-ut-unit-test-unit-5-writing-about-the-future-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I am going to visit my uncle.",
+      "She will call tomorrow.",
+      "They are going to travel.",
+      "If it rains, we will stay home.",
+      "We will leave at nine.",
+      "He will bring a ball."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Sentence Variety",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw1-ut-unit-test-unit-6-sentence-variety-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I have a friend who sings.",
+      "The book that I read is long.",
+      "You should drink water.",
+      "Students must arrive early.",
+      "It might rain tonight.",
+      "She can speak three languages."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Reader Response",
+   "info": "Test paper page 20",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw1-ut-unit-test-unit-7-reader-response-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "In my opinion, it is good.",
+      "First, I read the article.",
+      "I agree with the writer.",
+      "The ending is happy.",
+      "I recommend this story.",
+      "Finally, I wrote my response."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Putting It Together",
+   "info": "Test paper page 23",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw1-ut-unit-test-unit-8-putting-it-together-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "I wrote a first draft.",
+      "Check your spelling.",
+      "My partner gave comments.",
+      "I added more details.",
+      "The checklist is useful.",
+      "The final paragraph is better."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw1-mt-monthly-test-1-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "The test is in the morning.",
+      "The topic sentence gives the main idea.",
+      "He wakes up at six.",
+      "She reads every Saturday.",
+      "My friend plays tennis."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw1-mt-monthly-test-2-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "They are studying now.",
+      "We went to the beach.",
+      "He does not drive a car.",
+      "I was very tired.",
+      "She works at a bank."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw1-mt-monthly-test-3-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "We will leave at nine.",
+      "You should drink water.",
+      "They are going to travel.",
+      "I have a friend who sings.",
+      "If it rains, we will stay home."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw1-mt-monthly-test-4-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "The ending is happy.",
+      "The final paragraph is better.",
+      "I recommend this story.",
+      "Check your spelling.",
+      "I agree with the writer."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw1-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "My friend plays tennis.",
+      "I like the book.",
+      "It rains a lot in July.",
+      "He wakes up at six.",
+      "My favorite place is the library.",
+      "They are studying now."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw1-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "I am going to visit my uncle.",
+      "You should drink water.",
+      "The ending is happy.",
+      "She will call tomorrow.",
+      "Students must arrive early.",
+      "I agree with the writer."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw1-fin-final-test-semester-1-ex1.mp3",
+     "secs": 106,
+     "script": [
+      "She works on Mondays.",
+      "She reads every Saturday.",
+      "The baby is crying.",
+      "We went home at six.",
+      "We attend classes at a college.",
+      "I like the book.",
+      "We eat lunch at noon.",
+      "We went to the beach."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw1-fin-final-test-semester-2-ex1.mp3",
+     "secs": 109,
+     "script": [
+      "I am going to visit my uncle.",
+      "It might rain tonight.",
+      "First, I read the article.",
+      "Check your spelling.",
+      "We will leave at nine.",
+      "Students must arrive early.",
+      "Finally, I wrote my response.",
+      "The final paragraph is better."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

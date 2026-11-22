@@ -45036,6 +45036,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "speakout-b2-tests",
+ "level": "Speakout B2",
+ "icon": "📝",
+ "title": "Speakout B2 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Identity",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk5-ut-unit-test-unit-1-identity-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "I have lived here since",
+      "2. She regrets not starting earlier.",
+      "I'd much rather stay at home.",
+      "My brother is reserved.",
+      "I remember locking the door.",
+      "She has just given a concert."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Different worlds",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk5-ut-unit-test-unit-2-different-worlds-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "It is likely to rain.",
+      "They are bound to win.",
+      "There is a slight chance of snow.",
+      "Only a few tourists visit.",
+      "The glacier is likely to melt.",
+      "He has made a great many friends."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Showtime",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk5-ut-unit-test-unit-3-showtime-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "The theatre opened in",
+      "2. What I love most is the music.",
+      "It was the trumpet player.",
+      "I did enjoy the concert.",
+      "The band played until midnight.",
+      "The singer whose voice I admire."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Lifestyle",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk5-ut-unit-test-unit-4-lifestyle-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "I will be flying tomorrow.",
+      "She will have finished by five.",
+      "The house is being painted.",
+      "It is said that sleep is important.",
+      "He is believed to have left.",
+      "I will be running at six."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Work",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk5-ut-unit-test-unit-5-work-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "The meeting had already started.",
+      "I had been travelling for hours.",
+      "We were about to leave.",
+      "She had hoped to get the job.",
+      "The train was delayed.",
+      "Welcome to the team!"
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Psychology",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk5-ut-unit-test-unit-6-psychology-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "You needn't pay.",
+      "He told me to be careful.",
+      "She warned us not to drink the water.",
+      "He suggested taking a break.",
+      "Ivan stays up too late.",
+      "I'd advise you to rest."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Talent",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk5-ut-unit-test-unit-7-talent-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "He must have practised.",
+      "She can't have seen us.",
+      "I wish I had started earlier.",
+      "Despite the rain, she played.",
+      "The audience clapped for ten minutes.",
+      "She gave an encore."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Community",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk5-ut-unit-test-unit-8-community-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "Having finished, she went home.",
+      "If I were rich, I would help.",
+      "The garden feeds forty families.",
+      "Unless more people help, it will close.",
+      "As long as people care, it can survive.",
+      "He joined a community garden."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk5-mt-monthly-test-1-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "I'd much rather stay at home.",
+      "There is a slight chance of snow.",
+      "She has just given a concert.",
+      "Only a few tourists visit.",
+      "I have lived here since 2016."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk5-mt-monthly-test-2-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "It was the trumpet player.",
+      "I will be flying tomorrow.",
+      "What I love most is the music.",
+      "It is said that sleep is important.",
+      "The theatre opened in 1920."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk5-mt-monthly-test-3-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "The train was delayed.",
+      "She warned us not to drink the water.",
+      "We were about to leave.",
+      "You needn't pay.",
+      "She had hoped to get the job."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk5-mt-monthly-test-4-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "Despite the rain, she played.",
+      "He joined a community garden.",
+      "The audience clapped for ten minutes.",
+      "If I were rich, I would help.",
+      "I wish I had started earlier."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk5-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "It is likely to rain.",
+      "The singer whose voice I admire.",
+      "He has made a great many friends.",
+      "The theatre opened in",
+      "5. They are bound to win.",
+      "I did enjoy the concert."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk5-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "You needn't pay.",
+      "I wish I had started earlier.",
+      "He told me to be careful.",
+      "Despite the rain, she played.",
+      "He suggested taking a break.",
+      "She gave an encore."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk5-fin-final-test-semester-1-ex1.mp3",
+     "secs": 110,
+     "script": [
+      "My brother is reserved.",
+      "Only a few tourists visit.",
+      "The band played until midnight.",
+      "I will be running at six.",
+      "I remember locking the door.",
+      "He has made a great many friends.",
+      "The singer whose voice I admire.",
+      "I will be flying tomorrow."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk5-fin-final-test-semester-2-ex1.mp3",
+     "secs": 108,
+     "script": [
+      "The meeting had already started.",
+      "Ivan stays up too late.",
+      "She can't have seen us.",
+      "If I were rich, I would help.",
+      "The train was delayed.",
+      "He suggested taking a break.",
+      "She gave an encore.",
+      "He joined a community garden."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

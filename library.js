@@ -43265,6 +43265,325 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "my-next-grammar-3-tests",
+ "level": "My Next Grammar 3",
+ "icon": "📝",
+ "title": "My Next Grammar 3 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Nouns and Pronouns",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng3-ut-unit-test-unit-1-nouns-and-pronouns-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "There is nobody in the room.",
+      "I can't find it anywhere.",
+      "She made it herself.",
+      "Is there anything to eat?",
+      "Mia is hungry.",
+      "They helped themselves."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Verbs: Tenses",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng3-ut-unit-test-unit-2-verbs-tenses-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I have lived here since",
+      "2. It started to rain.",
+      "He ran into a cafe.",
+      "I have never been to Japan.",
+      "They are going to travel.",
+      "She studies every day."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Helping Verbs",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng3-ut-unit-test-unit-3-helping-verbs-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "I could run fast.",
+      "Could you open the window?",
+      "You should eat vegetables.",
+      "You don't have to come.",
+      "It might rain tomorrow.",
+      "Visitors must not feed the animals."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Voice and Verb Derivatives",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng3-ut-unit-test-unit-4-voice-and-verb-derivatives-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "The window was broken.",
+      "English is spoken here.",
+      "The film was boring.",
+      "I enjoy swimming.",
+      "They want to visit the zoo.",
+      "It was painted in 1950."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Comparisons and Conjunctions",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng3-ut-unit-test-unit-5-comparisons-and-conjunctions-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "My bag is heavier than yours.",
+      "It is the most interesting book.",
+      "It was raining, so we stayed home.",
+      "I like tea, but he likes coffee.",
+      "Although it was cold, we swam.",
+      "Gold is more expensive."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Sentence Structure",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng3-ut-unit-test-unit-6-sentence-structure-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I like music, but he likes sports.",
+      "It is cold, isn't it?",
+      "When does the film start?",
+      "How often do you exercise?",
+      "Why were you late?",
+      "The bus was late."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng3-mt-monthly-test-1-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "She made it herself.",
+      "He ran into a cafe.",
+      "They helped themselves.",
+      "I have never been to Japan.",
+      "There is nobody in the room."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng3-mt-monthly-test-2-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "He ran into a cafe.",
+      "I could run fast.",
+      "It started to rain.",
+      "You don't have to come.",
+      "I have lived here since 2018."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng3-mt-monthly-test-3-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "They want to visit the zoo.",
+      "It was raining, so we stayed home.",
+      "The film was boring.",
+      "My bag is heavier than yours.",
+      "I enjoy swimming."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng3-mt-monthly-test-4-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "I like tea, but he likes coffee.",
+      "The bus was late.",
+      "Although it was cold, we swam.",
+      "It is cold, isn't it?",
+      "It was raining, so we stayed home."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng3-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "I have lived here since",
+      "2. Visitors must not feed the animals.",
+      "She studies every day.",
+      "I could run fast.",
+      "It started to rain.",
+      "You don't have to come."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng3-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "My bag is heavier than yours.",
+      "When does the film start?",
+      "It is the most interesting book.",
+      "How often do you exercise?",
+      "I like tea, but he likes coffee.",
+      "The bus was late."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng3-fin-final-test-semester-1-ex1.mp3",
+     "secs": 107,
+     "script": [
+      "Is there anything to eat?",
+      "I have never been to Japan.",
+      "It might rain tomorrow.",
+      "Mia is hungry.",
+      "She studies every day.",
+      "Visitors must not feed the animals.",
+      "She made it herself.",
+      "It started to rain."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng3-fin-final-test-semester-2-ex1.mp3",
+     "secs": 108,
+     "script": [
+      "The window was broken.",
+      "Although it was cold, we swam.",
+      "It is cold, isn't it?",
+      "They want to visit the zoo.",
+      "I like tea, but he likes coffee.",
+      "The bus was late.",
+      "The film was boring.",
+      "Gold is more expensive."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

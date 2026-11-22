@@ -40219,6 +40219,434 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "great-writing-2-tests",
+ "level": "Great Writing 2",
+ "icon": "📝",
+ "title": "Great Writing 2 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Paragraphs",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-ut-unit-test-unit-1-paragraphs-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "A paragraph has one main idea.",
+      "Water boils at one hundred degrees.",
+      "Cats wash themselves often.",
+      "The first line is indented.",
+      "Most adults need eight hours of sleep.",
+      "Check your paragraph carefully."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Developing Ideas for Writing",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-ut-unit-test-unit-2-developing-ideas-for-writing-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "Let's brainstorm some ideas.",
+      "The topic is in the center.",
+      "The town is small but beautiful.",
+      "I was tired, so I slept.",
+      "Fishermen sell fresh fish.",
+      "The streets are calm."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Topic Sentences",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-ut-unit-test-unit-3-topic-sentences-ex1.mp3",
+     "secs": 91,
+     "script": [
+      "The topic sentence is the main idea.",
+      "Bicycles have several advantages.",
+      "The first reason is cost.",
+      "The controlling idea limits the topic.",
+      "The sentence is too general.",
+      "More cities need bike lanes."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Supporting and Concluding Sentences",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-ut-unit-test-unit-4-supporting-and-concluding-sentences-ex1.mp3",
+     "secs": 91,
+     "script": [
+      "For example, I walk to school.",
+      "Exercise strengthens the heart.",
+      "The conclusion repeats the main idea.",
+      "People sleep better.",
+      "A walk reduces stress.",
+      "In conclusion, exercise is healthy."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Paragraph Review",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-ut-unit-test-unit-5-paragraph-review-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "I have an umbrella.",
+      "She is a university student.",
+      "The sun rises in the east.",
+      "Delete that sentence.",
+      "He works at a cafe.",
+      "Check your grammar."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Definition Paragraphs",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-ut-unit-test-unit-6-definition-paragraphs-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "A hobby is a fun activity.",
+      "A teacher is a person who teaches.",
+      "A dictionary explains words.",
+      "It means a place for study.",
+      "A true friend listens.",
+      "It is a kind of sport."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Process Paragraphs",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-ut-unit-test-unit-7-process-paragraphs-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "First, boil some water.",
+      "Then, pour the water.",
+      "Wait for three minutes.",
+      "Remove the tea bag.",
+      "Add some sugar.",
+      "Finally, serve it hot."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Opinion Paragraphs",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-ut-unit-test-unit-8-opinion-paragraphs-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "In my opinion, uniforms are good.",
+      "One reason is cost.",
+      "I strongly believe this.",
+      "Some people disagree.",
+      "It is a life skill.",
+      "Schools should teach cooking."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Narrative Paragraphs",
+   "info": "Test paper page 27",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-ut-unit-test-unit-9-narrative-paragraphs-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "I woke up late.",
+      "It started to rain.",
+      "We took a small boat.",
+      "Suddenly, a dog ran out.",
+      "She gave me an orange.",
+      "We reached home safely."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 B, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: From Paragraphs to Essays",
+   "info": "Test paper page 29",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-ut-unit-test-unit-10-from-paragraphs-to-essays-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "The essay has three parts.",
+      "The thesis states the main idea.",
+      "Begin with a hook.",
+      "Each body paragraph supports the thesis.",
+      "Use transition words.",
+      "The conclusion ends the essay."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-mt-monthly-test-1-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "Cats wash themselves often.",
+      "The town is small but beautiful.",
+      "Check your paragraph carefully.",
+      "I was tired, so I slept.",
+      "A paragraph has one main idea."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-mt-monthly-test-2-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "The first reason is cost.",
+      "For example, I walk to school.",
+      "Bicycles have several advantages.",
+      "People sleep better.",
+      "The topic sentence is the main idea."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-mt-monthly-test-3-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "He works at a cafe.",
+      "A dictionary explains words.",
+      "The sun rises in the east.",
+      "A hobby is a fun activity.",
+      "Delete that sentence."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-mt-monthly-test-4-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "Remove the tea bag.",
+      "Schools should teach cooking.",
+      "Add some sugar.",
+      "One reason is cost.",
+      "Wait for three minutes."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-mt-monthly-test-5-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "She gave me an orange.",
+      "The thesis states the main idea.",
+      "We took a small boat.",
+      "Use transition words.",
+      "Suddenly, a dog ran out."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "Let's brainstorm some ideas.",
+      "More cities need bike lanes.",
+      "People sleep better.",
+      "He works at a cafe.",
+      "The streets are calm.",
+      "The topic sentence is the main idea."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "First, boil some water.",
+      "I strongly believe this.",
+      "Suddenly, a dog ran out.",
+      "Each body paragraph supports the thesis.",
+      "Then, pour the water.",
+      "Some people disagree."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-fin-final-test-semester-1-ex1.mp3",
+     "secs": 113,
+     "script": [
+      "The first line is indented.",
+      "I was tired, so I slept.",
+      "The sentence is too general.",
+      "In conclusion, exercise is healthy.",
+      "She is a university student.",
+      "It is a kind of sport.",
+      "Most adults need eight hours of sleep.",
+      "The streets are calm."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw2-fin-final-test-semester-2-ex1.mp3",
+     "secs": 107,
+     "script": [
+      "First, boil some water.",
+      "It is a life skill.",
+      "It started to rain.",
+      "The thesis states the main idea.",
+      "Add some sugar.",
+      "Some people disagree.",
+      "We reached home safely.",
+      "The conclusion ends the essay."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

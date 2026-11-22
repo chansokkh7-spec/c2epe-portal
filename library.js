@@ -42627,6 +42627,325 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "my-next-grammar-1-tests",
+ "level": "My Next Grammar 1",
+ "icon": "📝",
+ "title": "My Next Grammar 1 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Nouns and Pronouns",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng1-ut-unit-test-unit-1-nouns-and-pronouns-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "Paris is a big city.",
+      "There are two boxes.",
+      "I like her very much.",
+      "These are our shoes.",
+      "She gives them some water.",
+      "It is an old house."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Verbs: Present and Future",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng1-ut-unit-test-unit-2-verbs-present-and-future-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "She is a nurse.",
+      "He doesn't like fish.",
+      "I always eat breakfast.",
+      "It is raining now.",
+      "They are not at home.",
+      "I will help you."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: More on Verbs and Helping Verbs",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng1-ut-unit-test-unit-3-more-on-verbs-and-helping-verbs-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "We went to the zoo.",
+      "She wrote a letter.",
+      "They were at school.",
+      "You should drink water.",
+      "I can't swim.",
+      "May I come in?"
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Adjectives and Adverbs",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng1-ut-unit-test-unit-4-adjectives-and-adverbs-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "She has a beautiful dress.",
+      "The cake tastes sweet.",
+      "He runs very fast.",
+      "She sings beautifully.",
+      "He looks tired.",
+      "He speaks softly."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Prepositions",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng1-ut-unit-test-unit-5-prepositions-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "School starts at eight.",
+      "My birthday is in June.",
+      "We have English on Monday.",
+      "The cat is under the table.",
+      "The bank is next to the shop.",
+      "The park is between two buildings."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Sentence Structure",
+   "info": "Test paper page 16",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng1-ut-unit-test-unit-6-sentence-structure-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "Does she like apples?",
+      "Where do you live?",
+      "Who is your teacher?",
+      "Why are you late?",
+      "When is your birthday?",
+      "Her mother made the cake."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng1-mt-monthly-test-1-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "I like her very much.",
+      "I always eat breakfast.",
+      "It is an old house.",
+      "It is raining now.",
+      "Paris is a big city."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng1-mt-monthly-test-2-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "I always eat breakfast.",
+      "We went to the zoo.",
+      "He doesn't like fish.",
+      "You should drink water.",
+      "She is a nurse."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng1-mt-monthly-test-3-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "He looks tired.",
+      "We have English on Monday.",
+      "He runs very fast.",
+      "School starts at eight.",
+      "She sings beautifully."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng1-mt-monthly-test-4-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "The cat is under the table.",
+      "Her mother made the cake.",
+      "The bank is next to the shop.",
+      "Where do you live?",
+      "We have English on Monday."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng1-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 79,
+     "script": [
+      "She is a nurse.",
+      "May I come in?",
+      "I will help you.",
+      "We went to the zoo.",
+      "He doesn't like fish.",
+      "You should drink water."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng1-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "School starts at eight.",
+      "Who is your teacher?",
+      "My birthday is in June.",
+      "Why are you late?",
+      "The cat is under the table.",
+      "Her mother made the cake."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng1-fin-final-test-semester-1-ex1.mp3",
+     "secs": 103,
+     "script": [
+      "These are our shoes.",
+      "It is raining now.",
+      "I can't swim.",
+      "She gives them some water.",
+      "I will help you.",
+      "May I come in?",
+      "I like her very much.",
+      "He doesn't like fish."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng1-fin-final-test-semester-2-ex1.mp3",
+     "secs": 107,
+     "script": [
+      "She has a beautiful dress.",
+      "The bank is next to the shop.",
+      "Where do you live?",
+      "He looks tired.",
+      "The cat is under the table.",
+      "Her mother made the cake.",
+      "He runs very fast.",
+      "The park is between two buildings."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

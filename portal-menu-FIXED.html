@@ -21505,7 +21505,7 @@ function closeLevelUpTest(){
       var hits = books.filter(function(b){ return (b.title + ' ' + b.level).toLowerCase().indexOf(LL.q) !== -1; });
       html += hits.length ? '<div class="ll-grid">' + hits.map(bookCard).join('') + '</div>' : '<div class="ll-empty">No book found.</div>';
     } else {
-      var SER_ORDER = ['Phonics','Beehive','Starters','Movers','Flyers','My First Grammar','Upstream','Empower','Focus on Grammar','Reading Explorer','Great Writing'];
+      var SER_ORDER = ['Phonics','Beehive','Starters','Movers','Flyers','My First Grammar','My Next Grammar','Upstream','Empower','Focus on Grammar','Reading Explorer','Great Writing'];
       var names = Object.keys(groups).sort(function(x, y){ var i = SER_ORDER.indexOf(x), j = SER_ORDER.indexOf(y); i = i < 0 ? 999 : i; j = j < 0 ? 999 : j; return (i - j) || natural(x, y); });
       if (!names.length) html += '<div class="ll-empty">No book yet.' + (isStaff() ? ' Press ⬆ Upload MP3 to add the first one.' : '') + '</div>';
       html += '<div class="ll-grid">' + names.map(function(n){

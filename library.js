@@ -44310,6 +44310,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "speakout-b1-tests",
+ "level": "Speakout B1",
+ "icon": "📝",
+ "title": "Speakout B1 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: People",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk3-ut-unit-test-unit-1-people-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "She enjoys meeting new people.",
+      "I'm working as a tour guide.",
+      "He is extremely friendly.",
+      "They don't mind working late.",
+      "This week I am starting earlier.",
+      "I hope to study history."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Tale-tellers",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk3-ut-unit-test-unit-2-tale-tellers-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "I was walking home.",
+      "It had rained all night.",
+      "We have seen that film.",
+      "They met in",
+      "5. The wind was strong.",
+      "He called the insurance company."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Questions",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk3-ut-unit-test-unit-3-questions-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "Could you tell me the time?",
+      "Do you know where it is?",
+      "I'll take the train.",
+      "She is going to see the doctor.",
+      "It opens at ten.",
+      "The cafe is on the second floor."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Winners",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk3-ut-unit-test-unit-4-winners-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "You must wear a number.",
+      "You don't have to wear a tie.",
+      "She has never won a prize.",
+      "He plays the piano.",
+      "They received a gold medal.",
+      "Practice is the key to success."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: News",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk3-ut-unit-test-unit-5-news-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "She said she was tired.",
+      "The woman who wrote it.",
+      "It might rain later.",
+      "He told me he had finished.",
+      "She asked if I was ready.",
+      "The story was fake."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Creators",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk3-ut-unit-test-unit-6-creators-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "I used to paint.",
+      "This is more colourful.",
+      "I've lived here for five years.",
+      "She has worked there since",
+      "5. It's as expensive as that one.",
+      "The more I practise, the better."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Travel",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk3-ut-unit-test-unit-7-travel-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "If it rains, we'll stay home.",
+      "If I had more time, I'd travel.",
+      "There are a few tourists.",
+      "She taught herself to dive.",
+      "We don't have much time.",
+      "Enjoy yourselves!"
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Know-how",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk3-ut-unit-test-unit-8-know-how-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "I could climb any tree.",
+      "The phone was invented long ago.",
+      "English is spoken everywhere.",
+      "It won't turn on.",
+      "She is good at fixing computers.",
+      "The shop was recommended by a friend."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk3-mt-monthly-test-1-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "He is extremely friendly.",
+      "We have seen that film.",
+      "I hope to study history.",
+      "They met in",
+      "5. She enjoys meeting new people."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk3-mt-monthly-test-2-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "I'll take the train.",
+      "You must wear a number.",
+      "Do you know where it is?",
+      "He plays the piano.",
+      "Could you tell me the time?"
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk3-mt-monthly-test-3-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "She asked if I was ready.",
+      "I've lived here for five years.",
+      "It might rain later.",
+      "I used to paint.",
+      "He told me he had finished."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk3-mt-monthly-test-4-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "She taught herself to dive.",
+      "The shop was recommended by a friend.",
+      "We don't have much time.",
+      "The phone was invented long ago.",
+      "There are a few tourists."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk3-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "I was walking home.",
+      "The cafe is on the second floor.",
+      "He called the insurance company.",
+      "Could you tell me the time?",
+      "It had rained all night.",
+      "She is going to see the doctor."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk3-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I used to paint.",
+      "There are a few tourists.",
+      "This is more colourful.",
+      "She taught herself to dive.",
+      "She has worked there since",
+      "6. Enjoy yourselves!"
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk3-fin-final-test-semester-1-ex1.mp3",
+     "secs": 110,
+     "script": [
+      "They don't mind working late.",
+      "They met in",
+      "3. It opens at ten.",
+      "Practice is the key to success.",
+      "This week I am starting earlier.",
+      "He called the insurance company.",
+      "The cafe is on the second floor.",
+      "You must wear a number."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk3-fin-final-test-semester-2-ex1.mp3",
+     "secs": 111,
+     "script": [
+      "She said she was tired.",
+      "It's as expensive as that one.",
+      "If I had more time, I'd travel.",
+      "The phone was invented long ago.",
+      "She asked if I was ready.",
+      "She has worked there since",
+      "7. Enjoy yourselves!",
+      "The shop was recommended by a friend."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

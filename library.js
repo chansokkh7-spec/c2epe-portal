@@ -42946,6 +42946,325 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "my-next-grammar-2-tests",
+ "level": "My Next Grammar 2",
+ "icon": "📝",
+ "title": "My Next Grammar 2 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Nouns and Pronouns",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng2-ut-unit-test-unit-1-nouns-and-pronouns-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "There are twenty students.",
+      "There isn't much noise.",
+      "The teacher is an honest woman.",
+      "This pen is mine.",
+      "Tim has a few books.",
+      "The notebook is hers."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Verbs: Present, Past, and Future",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng2-ut-unit-test-unit-2-verbs-present-past-and-future-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "I was at home yesterday.",
+      "She is studying right now.",
+      "When I called, he was sleeping.",
+      "I met an old friend.",
+      "It is going to rain.",
+      "She will take some flowers."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Helping Verbs",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng2-ut-unit-test-unit-3-helping-verbs-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I could swim at five.",
+      "May I use your phone?",
+      "It might rain tonight.",
+      "You should see a doctor.",
+      "Drivers must stop here.",
+      "You don't have to come."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Adjectives, Adverbs, and Comparisons",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng2-ut-unit-test-unit-4-adjectives-adverbs-and-comparisons-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "She is a careful driver.",
+      "He speaks very slowly.",
+      "Mia is taller than Sara.",
+      "This is the best film.",
+      "My bag is heavier.",
+      "It is as big as a house."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Prepositions of Time, Place, and Movement",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng2-ut-unit-test-unit-5-prepositions-of-time-place-and-movement-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "The film starts at seven.",
+      "I was born in",
+      "3. We walked across the bridge.",
+      "I have lived here since",
+      "5. The cat jumped into the box.",
+      "The bird flew over the house."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Sentence Structure",
+   "info": "Test paper page 16",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng2-ut-unit-test-unit-6-sentence-structure-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "Tom kicks the ball.",
+      "The ball is the object.",
+      "Where do you live?",
+      "How do you go to school?",
+      "Who is your teacher?",
+      "Lily loves the class."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng2-mt-monthly-test-1-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "The teacher is an honest woman.",
+      "When I called, he was sleeping.",
+      "The notebook is hers.",
+      "I met an old friend.",
+      "There are twenty students."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng2-mt-monthly-test-2-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "When I called, he was sleeping.",
+      "I could swim at five.",
+      "She is studying right now.",
+      "You should see a doctor.",
+      "I was at home yesterday."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng2-mt-monthly-test-3-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "My bag is heavier.",
+      "We walked across the bridge.",
+      "Mia is taller than Sara.",
+      "The film starts at seven.",
+      "This is the best film."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng2-mt-monthly-test-4-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "I have lived here since",
+      "2. Lily loves the class.",
+      "The cat jumped into the box.",
+      "The ball is the object.",
+      "We walked across the bridge."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng2-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I was at home yesterday.",
+      "You don't have to come.",
+      "She will take some flowers.",
+      "I could swim at five.",
+      "She is studying right now.",
+      "You should see a doctor."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng2-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "The film starts at seven.",
+      "Where do you live?",
+      "I was born in",
+      "4. How do you go to school?",
+      "I have lived here since",
+      "6. Lily loves the class."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng2-fin-final-test-semester-1-ex1.mp3",
+     "secs": 106,
+     "script": [
+      "This pen is mine.",
+      "I met an old friend.",
+      "Drivers must stop here.",
+      "Tim has a few books.",
+      "She will take some flowers.",
+      "You don't have to come.",
+      "The teacher is an honest woman.",
+      "She is studying right now."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mng2-fin-final-test-semester-2-ex1.mp3",
+     "secs": 108,
+     "script": [
+      "She is a careful driver.",
+      "The cat jumped into the box.",
+      "The ball is the object.",
+      "My bag is heavier.",
+      "I have lived here since",
+      "6. Lily loves the class.",
+      "Mia is taller than Sara.",
+      "The bird flew over the house."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

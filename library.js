@@ -49755,6 +49755,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "tense-master-3-tests",
+ "level": "Tense Master 3",
+ "icon": "📝",
+ "title": "Tense Master 3 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Will and Going to",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm3-ut-unit-test-unit-1-will-and-going-to-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "It is going to rain.",
+      "I will answer the phone.",
+      "We are going to buy a house.",
+      "She won't come tomorrow.",
+      "I promise I will help you.",
+      "Shall I open the window?"
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Present Tenses for the Future",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm3-ut-unit-test-unit-2-present-tenses-for-the-future-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "The film starts at eight.",
+      "I am meeting Jack for lunch.",
+      "We are flying to Dubai on Friday.",
+      "The shop opens at nine.",
+      "She is starting her job on Monday.",
+      "What time are you leaving?"
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Predictions, Decisions and Plans",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm3-ut-unit-test-unit-3-predictions-decisions-and-plans-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "I think the economy will improve.",
+      "It is going to snow.",
+      "I will buy some sugar.",
+      "I am going to learn Chinese.",
+      "She will call later.",
+      "It probably won't rain."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Future Continuous",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm3-ut-unit-test-unit-4-future-continuous-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "This time tomorrow, I will be flying.",
+      "We will be watching the match.",
+      "I will be sleeping.",
+      "She will be lying on a beach.",
+      "They will be waiting for us.",
+      "What will you be doing?"
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Future Continuous and Future Simple",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm3-ut-unit-test-unit-5-future-continuous-and-future-simple-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "At six I will be working.",
+      "I will call you when I arrive.",
+      "I will be seeing Tom tomorrow.",
+      "This time tomorrow, we will be skiing.",
+      "She will finish the report by Friday.",
+      "I will help you if you like."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Future Perfect",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm3-ut-unit-test-unit-6-future-perfect-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "By June I will have finished my degree.",
+      "We will have eaten.",
+      "She will have left.",
+      "Scientists will have found a cure.",
+      "They won't have arrived by noon.",
+      "The rain will have stopped."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Future Perfect Continuous and Other Forms",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm3-ut-unit-test-unit-7-future-perfect-continuous-and-other-forms-ex1.mp3",
+     "secs": 92,
+     "script": [
+      "By July I will have been working here.",
+      "In May they will have been living here.",
+      "By six she will have been studying.",
+      "How long will you have been driving?",
+      "He will have been waiting for an hour.",
+      "We will have been married for ten years."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Time Clauses",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm3-ut-unit-test-unit-8-time-clauses-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "I'll call you when I arrive.",
+      "After she finishes work, she will go home.",
+      "We'll wait until the rain stops.",
+      "As soon as he gets home, he will call.",
+      "Before you leave, lock the door.",
+      "If it rains, we'll stay home."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm3-mt-monthly-test-1-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "We are going to buy a house.",
+      "We are flying to Dubai on Friday.",
+      "Shall I open the window?",
+      "The shop opens at nine.",
+      "It is going to rain."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm3-mt-monthly-test-2-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I will buy some sugar.",
+      "This time tomorrow, I will be flying.",
+      "It is going to snow.",
+      "She will be lying on a beach.",
+      "I think the economy will improve."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm3-mt-monthly-test-3-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "She will finish the report by Friday.",
+      "She will have left.",
+      "I will be seeing Tom tomorrow.",
+      "By June I will have finished my degree.",
+      "This time tomorrow, we will be skiing."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 10",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm3-mt-monthly-test-4-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "How long will you have been driving?",
+      "If it rains, we'll stay home.",
+      "He will have been waiting for an hour.",
+      "After she finishes work, she will go home.",
+      "By six she will have been studying."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm3-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "The film starts at eight.",
+      "It probably won't rain.",
+      "What time are you leaving?",
+      "I think the economy will improve.",
+      "I am meeting Jack for lunch.",
+      "I am going to learn Chinese."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm3-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "By June I will have finished my degree.",
+      "By six she will have been studying.",
+      "We will have eaten.",
+      "How long will you have been driving?",
+      "Scientists will have found a cure.",
+      "We will have been married for ten years."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm3-fin-final-test-semester-1-ex1.mp3",
+     "secs": 107,
+     "script": [
+      "She won't come tomorrow.",
+      "The shop opens at nine.",
+      "She will call later.",
+      "What will you be doing?",
+      "I promise I will help you.",
+      "What time are you leaving?",
+      "It probably won't rain.",
+      "This time tomorrow, I will be flying."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm3-fin-final-test-semester-2-ex1.mp3",
+     "secs": 114,
+     "script": [
+      "At six I will be working.",
+      "They won't have arrived by noon.",
+      "In May they will have been living here.",
+      "After she finishes work, she will go home.",
+      "She will finish the report by Friday.",
+      "Scientists will have found a cure.",
+      "We will have been married for ten years.",
+      "If it rains, we'll stay home."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

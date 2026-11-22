@@ -40988,6 +40988,325 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "great-writing-4-tests",
+ "level": "Great Writing 4",
+ "icon": "📝",
+ "title": "Great Writing 4 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Exploring the Essay",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw4-ut-unit-test-unit-1-exploring-the-essay-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "An essay has three main parts.",
+      "The hook attracts the reader.",
+      "The thesis ends the introduction.",
+      "Make an outline first.",
+      "Each paragraph has one main point.",
+      "The library offers free classes."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Cause-Effect Essays",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw4-ut-unit-test-unit-2-cause-effect-essays-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "Sleep loss has serious effects.",
+      "Consequently, the air gets worse.",
+      "The cause is late-night phone use.",
+      "They cannot concentrate.",
+      "It is a chain of effects.",
+      "Avoid redundancy in your writing."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Comparison Essays",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw4-ut-unit-test-unit-3-comparison-essays-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "Both sports require teamwork.",
+      "Similarly, both need fitness.",
+      "The equipment is different.",
+      "A match is longer than a game.",
+      "Use the block method.",
+      "The man who lives next door."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Argument Essays",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw4-ut-unit-test-unit-4-argument-essays-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "The writer states a clear position.",
+      "A counterargument is an opposing view.",
+      "Shops gained more shoppers.",
+      "Cars harm the health of residents.",
+      "Use facts as evidence.",
+      "This claim has faulty logic."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Problem-Solution Essays",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw4-ut-unit-test-unit-5-problem-solution-essays-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "Plastic waste harms the oceans.",
+      "Although recycling helps, it is not enough.",
+      "Bag fees reduced the use of bags.",
+      "We must act now.",
+      "One solution is a ban.",
+      "Marine life will recover."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Reaction Essays and Exam Questions",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw4-ut-unit-test-unit-6-reaction-essays-and-exam-questions-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "I found the article convincing.",
+      "A farmer used a drip system.",
+      "He used half as much water.",
+      "I agree with the author.",
+      "Read the question carefully.",
+      "Answer in three sentences."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw4-mt-monthly-test-1-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "The thesis ends the introduction.",
+      "The cause is late-night phone use.",
+      "The library offers free classes.",
+      "They cannot concentrate.",
+      "An essay has three main parts."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw4-mt-monthly-test-2-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "The cause is late-night phone use.",
+      "Both sports require teamwork.",
+      "Consequently, the air gets worse.",
+      "A match is longer than a game.",
+      "Sleep loss has serious effects."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw4-mt-monthly-test-3-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "Use facts as evidence.",
+      "Bag fees reduced the use of bags.",
+      "Shops gained more shoppers.",
+      "Plastic waste harms the oceans.",
+      "Cars harm the health of residents."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw4-mt-monthly-test-4-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "We must act now.",
+      "Answer in three sentences.",
+      "One solution is a ban.",
+      "A farmer used a drip system.",
+      "Bag fees reduced the use of bags."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw4-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "Sleep loss has serious effects.",
+      "The man who lives next door.",
+      "Avoid redundancy in your writing.",
+      "Both sports require teamwork.",
+      "Consequently, the air gets worse.",
+      "A match is longer than a game."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw4-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "The writer states a clear position.",
+      "Bag fees reduced the use of bags.",
+      "A counterargument is an opposing view.",
+      "We must act now.",
+      "Cars harm the health of residents.",
+      "Marine life will recover."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw4-fin-final-test-semester-1-ex1.mp3",
+     "secs": 113,
+     "script": [
+      "Make an outline first.",
+      "They cannot concentrate.",
+      "Use the block method.",
+      "Each paragraph has one main point.",
+      "Avoid redundancy in your writing.",
+      "The man who lives next door.",
+      "The thesis ends the introduction.",
+      "Consequently, the air gets worse."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw4-fin-final-test-semester-2-ex1.mp3",
+     "secs": 110,
+     "script": [
+      "The writer states a clear position.",
+      "One solution is a ban.",
+      "A farmer used a drip system.",
+      "Use facts as evidence.",
+      "We must act now.",
+      "Answer in three sentences.",
+      "Shops gained more shoppers.",
+      "Marine life will recover."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

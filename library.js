@@ -41307,6 +41307,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "great-writing-5-tests",
+ "level": "Great Writing 5",
+ "icon": "📝",
+ "title": "Great Writing 5 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Reviewing the Essay",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw5-ut-unit-test-unit-1-reviewing-the-essay-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "The thesis states the central claim.",
+      "Support each point with evidence.",
+      "A recent survey found this.",
+      "Employees completed their tasks faster.",
+      "The conclusion synthesizes the points.",
+      "Add a reference list."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: The Writing Process",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw5-ut-unit-test-unit-2-the-writing-process-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "Writers follow four stages.",
+      "First, I make an outline.",
+      "Revise the organization.",
+      "A classmate read my draft.",
+      "The data show a clear trend.",
+      "Edit for grammar and spelling."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Using Original Sources",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw5-ut-unit-test-unit-3-using-original-sources-ex1.mp3",
+     "secs": 93,
+     "script": [
+      "A paraphrase uses your own words.",
+      "Add an in-text citation.",
+      "According to Rahman, sea levels are rising.",
+      "Plagiarism is a serious offense.",
+      "A summary is shorter than the original.",
+      "Synthesize several sources."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Cause-Effect Essays",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw5-ut-unit-test-unit-4-cause-effect-essays-ex1.mp3",
+     "secs": 93,
+     "script": [
+      "Housing prices have risen sharply.",
+      "The primary cause is a lack of homes.",
+      "Many families moved to the suburbs.",
+      "Consequently, economies slowed.",
+      "Governments should build affordable housing.",
+      "Keep the verb tense consistent."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Comparison Essays",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw5-ut-unit-test-unit-5-comparison-essays-ex1.mp3",
+     "secs": 92,
+     "script": [
+      "Private universities are more expensive.",
+      "Both offer strong research programs.",
+      "Public classes tend to be larger.",
+      "Whereas private schools give attention.",
+      "It is not as fast as a plane.",
+      "The choice depends on the budget."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Reaction Essays",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw5-ut-unit-test-unit-6-reaction-essays-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "I was deeply moved by the film.",
+      "The film follows scientists.",
+      "Plastic was inside the birds.",
+      "My attitude changed.",
+      "I carry a reusable bottle.",
+      "Films can inspire real change."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Argument Essays",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw5-ut-unit-test-unit-7-argument-essays-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "Zoos should be phased out.",
+      "Wild animals suffer in captivity.",
+      "Visitors learn very little.",
+      "This view is incomplete.",
+      "Conservation is more effective.",
+      "The risk is fairly small."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: The Research Paper",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw5-ut-unit-test-unit-8-the-research-paper-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "One hundred students were divided.",
+      "The test was given in the morning.",
+      "Sleep helps the brain store information.",
+      "Forty percent more words were remembered.",
+      "Write a literature review.",
+      "Further research is needed."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw5-mt-monthly-test-1-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "A recent survey found this.",
+      "Revise the organization.",
+      "Add a reference list.",
+      "A classmate read my draft.",
+      "The thesis states the central claim."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw5-mt-monthly-test-2-ex1.mp3",
+     "secs": 77,
+     "script": [
+      "According to Rahman, sea levels are rising.",
+      "Housing prices have risen sharply.",
+      "Add an in-text citation.",
+      "Consequently, economies slowed.",
+      "A paraphrase uses your own words."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw5-mt-monthly-test-3-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "It is not as fast as a plane.",
+      "Plastic was inside the birds.",
+      "Public classes tend to be larger.",
+      "I was deeply moved by the film.",
+      "Whereas private schools give attention."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw5-mt-monthly-test-4-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "This view is incomplete.",
+      "Further research is needed.",
+      "Conservation is more effective.",
+      "The test was given in the morning.",
+      "Visitors learn very little."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw5-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "Writers follow four stages.",
+      "Synthesize several sources.",
+      "Edit for grammar and spelling.",
+      "A paraphrase uses your own words.",
+      "First, I make an outline.",
+      "Plagiarism is a serious offense."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw5-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I was deeply moved by the film.",
+      "Visitors learn very little.",
+      "The film follows scientists.",
+      "This view is incomplete.",
+      "My attitude changed.",
+      "The risk is fairly small."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw5-fin-final-test-semester-1-ex1.mp3",
+     "secs": 116,
+     "script": [
+      "Employees completed their tasks faster.",
+      "A classmate read my draft.",
+      "A summary is shorter than the original.",
+      "Keep the verb tense consistent.",
+      "The conclusion synthesizes the points.",
+      "Edit for grammar and spelling.",
+      "Synthesize several sources.",
+      "Housing prices have risen sharply."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw5-fin-final-test-semester-2-ex1.mp3",
+     "secs": 114,
+     "script": [
+      "Private universities are more expensive.",
+      "I carry a reusable bottle.",
+      "Wild animals suffer in captivity.",
+      "The test was given in the morning.",
+      "It is not as fast as a plane.",
+      "My attitude changed.",
+      "The risk is fairly small.",
+      "Further research is needed."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

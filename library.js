@@ -38312,6 +38312,499 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "reading-explorer-4-tests",
+ "level": "Reading Explorer 4",
+ "icon": "📝",
+ "title": "Reading Explorer 4 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Images of Life",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-ut-unit-test-unit-1-images-of-life-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "The portrait was exhibited last year.",
+      "She documents daily life.",
+      "It is a rare glimpse of the past.",
+      "The villagers were suspicious.",
+      "The photographs evoke strong emotions.",
+      "The exhibition opens on Friday."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Natural Attraction",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-ut-unit-test-unit-2-natural-attraction-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "The bird performed a display.",
+      "Females chose the strongest male.",
+      "The firefly flashes at night.",
+      "The fish produces its own light.",
+      "They evolved over millions of years.",
+      "The male has a long tail."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Food and Health",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-ut-unit-test-unit-3-food-and-health-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "The crop resists disease.",
+      "He is worried about safety.",
+      "The label is unclear.",
+      "Hunger affects millions.",
+      "Pesticides kill insects.",
+      "The rules are strict."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Design and Engineering",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-ut-unit-test-unit-4-design-and-engineering-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "It is made from natural fibers.",
+      "The train is quieter now.",
+      "The seeds have tiny hooks.",
+      "Engineers imitate nature.",
+      "It reduces friction.",
+      "The material is very strong."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Human Journey",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-ut-unit-test-unit-5-human-journey-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "They traveled from Africa.",
+      "DNA reveals our origins.",
+      "The sailors followed the stars.",
+      "It was a remarkable feat.",
+      "The islands were uninhabited.",
+      "They sailed for weeks."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Money and Trade",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-ut-unit-test-unit-6-money-and-trade-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "They exchanged goods.",
+      "The currency is falling.",
+      "I paid in cash.",
+      "The coin is made of gold.",
+      "It is controlled by nobody.",
+      "Prices are rising fast."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Group Behavior",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-ut-unit-test-unit-7-group-behavior-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "The crowd moved together.",
+      "They copy each other.",
+      "It is a common reaction.",
+      "Users are anonymous.",
+      "The comments were rude.",
+      "Online groups can be supportive."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Investigations",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-ut-unit-test-unit-8-investigations-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "The suspect was arrested.",
+      "They found some evidence.",
+      "The case is still unsolved.",
+      "It was a deadly poison.",
+      "The laboratory tests samples.",
+      "Everyone has unique fingerprints."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Rediscovering the Past",
+   "info": "Test paper page 27",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-ut-unit-test-unit-9-rediscovering-the-past-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "The city was buried.",
+      "They uncovered the ruins.",
+      "The model is digital.",
+      "It was discovered in",
+      "5. Tourists have to buy tickets.",
+      "The ruins need protection."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 B, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Healthy Living",
+   "info": "Test paper page 30",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-ut-unit-test-unit-10-healthy-living-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "People are living longer.",
+      "Life expectancy is rising.",
+      "Eat plenty of vegetables.",
+      "She exercises every day.",
+      "Stress is harmful.",
+      "He quit smoking."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 11: Green Solutions",
+   "info": "Test paper page 33",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-ut-unit-test-unit-11-green-solutions-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "Fresh water is limited.",
+      "The pipes are leaking.",
+      "Farmers use drip irrigation.",
+      "Recycle your old phone.",
+      "The tank holds rainwater.",
+      "We must reduce waste."
+     ],
+     "key": "1 C, 2 C, 3 B, 4 B, 5 B, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 12: Earth and Beyond",
+   "info": "Test paper page 36",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-ut-unit-test-unit-12-earth-and-beyond-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "The planet orbits a distant star.",
+      "The telescope is very powerful.",
+      "Astronomers tracked the asteroid.",
+      "An asteroid hit the Earth.",
+      "The dinosaurs disappeared.",
+      "It could change its path."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 A, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-mt-monthly-test-1-ex1.mp3",
+     "secs": 76,
+     "script": [
+      "It is a rare glimpse of the past.",
+      "The firefly flashes at night.",
+      "The exhibition opens on Friday.",
+      "The fish produces its own light.",
+      "The portrait was exhibited last year."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-mt-monthly-test-2-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "The label is unclear.",
+      "It is made from natural fibers.",
+      "He is worried about safety.",
+      "Engineers imitate nature.",
+      "The crop resists disease."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-mt-monthly-test-3-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "The islands were uninhabited.",
+      "I paid in cash.",
+      "The sailors followed the stars.",
+      "They exchanged goods.",
+      "It was a remarkable feat."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-mt-monthly-test-4-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "Users are anonymous.",
+      "Everyone has unique fingerprints.",
+      "The comments were rude.",
+      "They found some evidence.",
+      "It is a common reaction."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-mt-monthly-test-5-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "Tourists have to buy tickets.",
+      "Life expectancy is rising.",
+      "The model is digital.",
+      "Stress is harmful.",
+      "It was discovered in 1911."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-mt-monthly-test-6-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "The tank holds rainwater.",
+      "The telescope is very powerful.",
+      "Farmers use drip irrigation.",
+      "The planet orbits a distant star.",
+      "Recycle your old phone."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "The portrait was exhibited last year.",
+      "The male has a long tail.",
+      "Hunger affects millions.",
+      "It reduces friction.",
+      "The exhibition opens on Friday.",
+      "The bird performed a display."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "The crowd moved together.",
+      "The case is still unsolved.",
+      "It was discovered in",
+      "4. She exercises every day.",
+      "They copy each other.",
+      "It was a deadly poison."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-fin-final-test-semester-1-ex1.mp3",
+     "secs": 113,
+     "script": [
+      "The villagers were suspicious.",
+      "The fish produces its own light.",
+      "Pesticides kill insects.",
+      "The material is very strong.",
+      "DNA reveals our origins.",
+      "Prices are rising fast.",
+      "The photographs evoke strong emotions.",
+      "The male has a long tail."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re4-fin-final-test-semester-2-ex1.mp3",
+     "secs": 109,
+     "script": [
+      "The crowd moved together.",
+      "The laboratory tests samples.",
+      "They uncovered the ruins.",
+      "Life expectancy is rising.",
+      "Farmers use drip irrigation.",
+      "It could change its path.",
+      "The comments were rude.",
+      "It was a deadly poison."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

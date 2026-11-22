@@ -45762,6 +45762,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "speakout-c1-tests",
+ "level": "Speakout C1",
+ "icon": "📝",
+ "title": "Speakout C1 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Learning",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk7-ut-unit-test-unit-1-learning-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "Had I known, I would have helped.",
+      "What I find hardest is motivation.",
+      "Should you need help, call me.",
+      "Whoever finishes first can leave.",
+      "Were it not for her tutor.",
+      "Progress is rarely a straight line."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Culture",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk7-ut-unit-test-unit-2-culture-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "It was nowhere near as expensive.",
+      "The more you travel, the more you learn.",
+      "She insisted on paying.",
+      "He denied having made the remark.",
+      "It is customary to remove your shoes.",
+      "The food was far better."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Work",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk7-ut-unit-test-unit-3-work-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "She must have impressed the panel.",
+      "You might have told me.",
+      "The employee is expected to start in March.",
+      "Staff are to be informed.",
+      "The policy will be reviewed.",
+      "Remote work boosts focus."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Progress",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk7-ut-unit-test-unit-4-progress-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "She managed to persuade them.",
+      "She regrets not starting sooner.",
+      "By spring she will have been working on it for a decade.",
+      "The economy is expected to grow.",
+      "She invented a solar-powered pump.",
+      "They made him resign."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Influence",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk7-ut-unit-test-unit-5-influence-ex1.mp3",
+     "secs": 91,
+     "script": [
+      "Not only did she win, but she broke the record.",
+      "Rarely does a book change opinions.",
+      "Having read her blog, he called.",
+      "What matters is integrity.",
+      "She made a confident impression.",
+      "Only after the talk did she admit it."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Classics",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk7-ut-unit-test-unit-6-classics-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "The novel was published in",
+      "2. The ending is rather weak.",
+      "Admittedly, it is slow.",
+      "She had been writing for fifty years.",
+      "The cover is timeless.",
+      "Critics were very positive."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Choices",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk7-ut-unit-test-unit-7-choices-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "It depends on your budget.",
+      "She is in favour of the change.",
+      "I'm inclined to agree.",
+      "To a large extent, it is a choice.",
+      "It appears that it has been withdrawn.",
+      "In the event of failure."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Mind and body",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk7-ut-unit-test-unit-8-mind-and-body-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "The growing number of cases is worrying.",
+      "She would draw for hours.",
+      "He will keep forgetting his keys.",
+      "That will be the postman.",
+      "Meditation improves well-being.",
+      "A much-needed break."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk7-mt-monthly-test-1-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "Should you need help, call me.",
+      "She insisted on paying.",
+      "Progress is rarely a straight line.",
+      "He denied having made the remark.",
+      "Had I known, I would have helped."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk7-mt-monthly-test-2-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "The employee is expected to start in March.",
+      "She managed to persuade them.",
+      "You might have told me.",
+      "The economy is expected to grow.",
+      "She must have impressed the panel."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk7-mt-monthly-test-3-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "She made a confident impression.",
+      "Admittedly, it is slow.",
+      "Having read her blog, he called.",
+      "The novel was published in",
+      "5. What matters is integrity."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk7-mt-monthly-test-4-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "To a large extent, it is a choice.",
+      "A much-needed break.",
+      "It appears that it has been withdrawn.",
+      "She would draw for hours.",
+      "I'm inclined to agree."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk7-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "It was nowhere near as expensive.",
+      "Remote work boosts focus.",
+      "The food was far better.",
+      "She must have impressed the panel.",
+      "The more you travel, the more you learn.",
+      "Staff are to be informed."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk7-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "The novel was published in",
+      "2. I'm inclined to agree.",
+      "The ending is rather weak.",
+      "To a large extent, it is a choice.",
+      "She had been writing for fifty years.",
+      "In the event of failure."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk7-fin-final-test-semester-1-ex1.mp3",
+     "secs": 110,
+     "script": [
+      "Whoever finishes first can leave.",
+      "He denied having made the remark.",
+      "The policy will be reviewed.",
+      "They made him resign.",
+      "Were it not for her tutor.",
+      "The food was far better.",
+      "Remote work boosts focus.",
+      "She managed to persuade them."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk7-fin-final-test-semester-2-ex1.mp3",
+     "secs": 111,
+     "script": [
+      "Not only did she win, but she broke the record.",
+      "The cover is timeless.",
+      "She is in favour of the change.",
+      "She would draw for hours.",
+      "She made a confident impression.",
+      "She had been writing for fifty years.",
+      "In the event of failure.",
+      "A much-needed break."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

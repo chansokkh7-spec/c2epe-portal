@@ -89,5 +89,6 @@ window.C2_PRACTICE_BOOKS = [
   {"name": "Speakout B1", "series": "Speakout", "level": "Intermediate", "prefix": "spk3"},
   {"name": "Speakout B1+", "series": "Speakout", "level": "Intermediate", "prefix": "spk4"},
   {"name": "Speakout B2", "series": "Speakout", "level": "Upper-Intermediate", "prefix": "spk5"},
-  {"name": "Speakout B2+", "series": "Speakout", "level": "Upper-Intermediate", "prefix": "spk6"}
+  {"name": "Speakout B2+", "series": "Speakout", "level": "Upper-Intermediate", "prefix": "spk6"},
+  {"name": "Speakout C1", "series": "Speakout", "level": "Advanced", "prefix": "spk7"}
 ];

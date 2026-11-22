@@ -38805,6 +38805,499 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "reading-explorer-5-tests",
+ "level": "Reading Explorer 5",
+ "icon": "📝",
+ "title": "Reading Explorer 5 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Rise and Fall",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-ut-unit-test-unit-1-rise-and-fall-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "The empire collapsed suddenly.",
+      "The city was abandoned.",
+      "It was a prolonged drought.",
+      "Historians offer several theories.",
+      "The reservoirs stored rainwater.",
+      "The monuments still stand today."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: High Achievers",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-ut-unit-test-unit-2-high-achievers-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "He reached the summit.",
+      "She set a new record.",
+      "It demands great endurance.",
+      "The climber trained for months.",
+      "He climbed without ropes.",
+      "The risks are considerable."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Science and Progress",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-ut-unit-test-unit-3-science-and-progress-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "The vaccine prevents infection.",
+      "Scientists test their theories.",
+      "Progress is not equal.",
+      "Some people deny the evidence.",
+      "Communication is essential.",
+      "Young leaders press governments."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Saving Cities",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-ut-unit-test-unit-4-saving-cities-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "Sea levels are rising.",
+      "The residents were evacuated.",
+      "The barrier protects the lagoon.",
+      "Cities must adapt.",
+      "Flooding is more frequent.",
+      "The damage was extensive."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Energy Choices",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-ut-unit-test-unit-5-energy-choices-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "The country imports energy.",
+      "Emissions must fall.",
+      "Solar power has become cheaper.",
+      "The grid needs modernizing.",
+      "We must store surplus energy.",
+      "Prices fell by ninety percent."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Survival and Protection",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-ut-unit-test-unit-6-survival-and-protection-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "The metal is highly toxic.",
+      "Seeds are stored in the vault.",
+      "They want to safeguard biodiversity.",
+      "The risk was underestimated.",
+      "The flood was catastrophic.",
+      "Many species may vanish."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Human Body",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-ut-unit-test-unit-7-human-body-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "The brain controls the body.",
+      "The limb is bionic.",
+      "Signals travel along nerves.",
+      "It was a medical breakthrough.",
+      "The tissue can regenerate.",
+      "He controls it by thought."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Social Behavior",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-ut-unit-test-unit-8-social-behavior-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "The ants cooperate.",
+      "The colony is enormous.",
+      "They follow a chemical trail.",
+      "The behavior emerges naturally.",
+      "Bees communicate by dancing.",
+      "Nobody is in charge."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Creativity",
+   "info": "Test paper page 27",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-ut-unit-test-unit-9-creativity-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "He was a great polymath.",
+      "The notes are in mirror writing.",
+      "The sketch shows a flying machine.",
+      "She is very curious.",
+      "Printing spread knowledge.",
+      "The tablets were made of clay."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 B, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: New Discoveries",
+   "info": "Test paper page 30",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-ut-unit-test-unit-10-new-discoveries-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "The universe is expanding.",
+      "Astronomers detected a signal.",
+      "The galaxy is very distant.",
+      "He predicted the discovery.",
+      "The table contains over a hundred elements.",
+      "The light traveled for billions of years."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 11: Cultural Encounters",
+   "info": "Test paper page 33",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-ut-unit-test-unit-11-cultural-encounters-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "He was the emperor.",
+      "The empire was diverse.",
+      "They introduced new crops.",
+      "The palace was completed in the fourteenth century.",
+      "Scholars translated the texts.",
+      "The legacy is still visible."
+     ],
+     "key": "1 C, 2 C, 3 B, 4 B, 5 B, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 12: Precious Resources",
+   "info": "Test paper page 36",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-ut-unit-test-unit-12-precious-resources-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "Gold is very scarce.",
+      "They rushed to California.",
+      "Salt preserves food.",
+      "The caravan crossed the desert.",
+      "Mining pollutes rivers.",
+      "Resources are being depleted."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 A, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-mt-monthly-test-1-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "It was a prolonged drought.",
+      "It demands great endurance.",
+      "The monuments still stand today.",
+      "The climber trained for months.",
+      "The empire collapsed suddenly."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-mt-monthly-test-2-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "Progress is not equal.",
+      "Sea levels are rising.",
+      "Scientists test their theories.",
+      "Cities must adapt.",
+      "The vaccine prevents infection."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-mt-monthly-test-3-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "We must store surplus energy.",
+      "They want to safeguard biodiversity.",
+      "Solar power has become cheaper.",
+      "The metal is highly toxic.",
+      "The grid needs modernizing."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-mt-monthly-test-4-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "It was a medical breakthrough.",
+      "Nobody is in charge.",
+      "The tissue can regenerate.",
+      "The colony is enormous.",
+      "Signals travel along nerves."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-mt-monthly-test-5-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "Printing spread knowledge.",
+      "Astronomers detected a signal.",
+      "The sketch shows a flying machine.",
+      "The table contains over a hundred elements.",
+      "She is very curious."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-mt-monthly-test-6-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "Scholars translated the texts.",
+      "They rushed to California.",
+      "They introduced new crops.",
+      "Gold is very scarce.",
+      "The palace was completed in the fourteenth century."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "The empire collapsed suddenly.",
+      "The risks are considerable.",
+      "Some people deny the evidence.",
+      "Flooding is more frequent.",
+      "The monuments still stand today.",
+      "He reached the summit."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "The brain controls the body.",
+      "They follow a chemical trail.",
+      "She is very curious.",
+      "He predicted the discovery.",
+      "The limb is bionic.",
+      "The behavior emerges naturally."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-fin-final-test-semester-1-ex1.mp3",
+     "secs": 111,
+     "script": [
+      "Historians offer several theories.",
+      "The climber trained for months.",
+      "Communication is essential.",
+      "The damage was extensive.",
+      "Emissions must fall.",
+      "Many species may vanish.",
+      "The reservoirs stored rainwater.",
+      "The risks are considerable."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re5-fin-final-test-semester-2-ex1.mp3",
+     "secs": 114,
+     "script": [
+      "The brain controls the body.",
+      "Bees communicate by dancing.",
+      "The notes are in mirror writing.",
+      "Astronomers detected a signal.",
+      "They introduced new crops.",
+      "Resources are being depleted.",
+      "The tissue can regenerate.",
+      "The behavior emerges naturally."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

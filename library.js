@@ -49029,6 +49029,732 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "tense-master-1-tests",
+ "level": "Tense Master 1",
+ "icon": "📝",
+ "title": "Tense Master 1 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Past Simple",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm1-ut-unit-test-unit-1-past-simple-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "She visited her grandmother.",
+      "When did you arrive in Paris?",
+      "They built this bridge in",
+      "4. I didn't see him yesterday.",
+      "He lost his keys on the bus.",
+      "We had a great time."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Past Continuous",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm1-ut-unit-test-unit-2-past-continuous-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "I was walking home.",
+      "We were having dinner.",
+      "She wasn't listening.",
+      "What were you doing?",
+      "The children were playing.",
+      "It was getting darker."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Past Simple and Past Continuous",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm1-ut-unit-test-unit-3-past-simple-and-past-continuous-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "I was reading when the lights went out.",
+      "He broke his leg while skiing.",
+      "The phone rang while we were eating.",
+      "What were you doing?",
+      "I saw an accident yesterday.",
+      "She was waiting for the bus."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Past Perfect",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm1-ut-unit-test-unit-4-past-perfect-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "The film had started.",
+      "She had already left.",
+      "I hadn't eaten all day.",
+      "The shop had closed.",
+      "He had seen the film.",
+      "After she had finished, she went out."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Past Simple and Past Perfect",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm1-ut-unit-test-unit-5-past-simple-and-past-perfect-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "The train had left.",
+      "She turned off the lights.",
+      "He went to bed after he had brushed his teeth.",
+      "The thief had gone.",
+      "I felt sick because I had eaten too much.",
+      "They had already eaten."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Past Perfect Continuous",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm1-ut-unit-test-unit-6-past-perfect-continuous-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "I had been running.",
+      "They had been waiting for an hour.",
+      "She had been crying.",
+      "It had been raining all night.",
+      "He had been learning English.",
+      "We hadn't been sleeping well."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Perfect and Perfect Continuous in the Past",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm1-ut-unit-test-unit-7-perfect-and-perfect-continuous-in-the-past-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "She had cleaned every room.",
+      "She had been gardening all afternoon.",
+      "By noon he had written three letters.",
+      "They had been dating for two years.",
+      "It had been snowing all night.",
+      "He had been driving since dawn."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Narrative Tenses",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm1-ut-unit-test-unit-8-narrative-tenses-ex1.mp3",
+     "secs": 94,
+     "script": [
+      "It was midnight and the wind was blowing.",
+      "She opened the door and saw a stranger.",
+      "He had never seen such a big house.",
+      "While they were walking home, it began to snow.",
+      "After he had locked the door, he went to bed.",
+      "They had been married for ten years."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm1-mt-monthly-test-1-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "They built this bridge in",
+      "2. She wasn't listening.",
+      "We had a great time.",
+      "What were you doing?",
+      "She visited her grandmother."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm1-mt-monthly-test-2-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "The phone rang while we were eating.",
+      "The film had started.",
+      "He broke his leg while skiing.",
+      "The shop had closed.",
+      "I was reading when the lights went out."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm1-mt-monthly-test-3-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I felt sick because I had eaten too much.",
+      "She had been crying.",
+      "He went to bed after he had brushed his teeth.",
+      "I had been running.",
+      "The thief had gone."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm1-mt-monthly-test-4-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "They had been dating for two years.",
+      "They had been married for ten years.",
+      "It had been snowing all night.",
+      "She opened the door and saw a stranger.",
+      "By noon he had written three letters."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm1-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I was walking home.",
+      "She was waiting for the bus.",
+      "It was getting darker.",
+      "I was reading when the lights went out.",
+      "We were having dinner.",
+      "What were you doing?"
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm1-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I had been running.",
+      "By noon he had written three letters.",
+      "They had been waiting for an hour.",
+      "They had been dating for two years.",
+      "It had been raining all night.",
+      "He had been driving since dawn."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm1-fin-final-test-semester-1-ex1.mp3",
+     "secs": 108,
+     "script": [
+      "I didn't see him yesterday.",
+      "What were you doing?",
+      "I saw an accident yesterday.",
+      "After she had finished, she went out.",
+      "He lost his keys on the bus.",
+      "It was getting darker.",
+      "She was waiting for the bus.",
+      "The film had started."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm1-fin-final-test-semester-2-ex1.mp3",
+     "secs": 112,
+     "script": [
+      "The train had left.",
+      "He had been learning English.",
+      "She had been gardening all afternoon.",
+      "She opened the door and saw a stranger.",
+      "I felt sick because I had eaten too much.",
+      "It had been raining all night.",
+      "He had been driving since dawn.",
+      "They had been married for ten years."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
+},
+{
+ "id": "tense-master-2-tests",
+ "level": "Tense Master 2",
+ "icon": "📝",
+ "title": "Tense Master 2 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Present Simple",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm2-ut-unit-test-unit-1-present-simple-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "Water boils at 100 degrees.",
+      "She works in a bank.",
+      "He doesn't like spicy food.",
+      "My brothers play football on Saturdays.",
+      "Does your sister speak French?",
+      "The train leaves at nine fifteen."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Present Continuous",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm2-ut-unit-test-unit-2-present-continuous-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "Look! It is raining.",
+      "I am studying for my exams.",
+      "They aren't working today.",
+      "What are you doing right now?",
+      "She is learning to drive.",
+      "The baby is sleeping."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Present Simple and Present Continuous",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm2-ut-unit-test-unit-3-present-simple-and-present-continuous-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I know the answer.",
+      "She is having a shower.",
+      "This soup tastes delicious.",
+      "He usually walks to work.",
+      "She wants a new bike.",
+      "We don't understand this rule."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Present Perfect",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm2-ut-unit-test-unit-4-present-perfect-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I have lost my keys.",
+      "She has never been to Italy.",
+      "They have lived here since",
+      "4. Have you ever eaten sushi?",
+      "He has just arrived.",
+      "I haven't finished my homework yet."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Present Perfect and Past Simple",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm2-ut-unit-test-unit-5-present-perfect-and-past-simple-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "I saw that film last night.",
+      "We have known each other since",
+      "3. When did you move?",
+      "She has written three emails.",
+      "He left ten minutes ago.",
+      "They got married in 2015."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Present Perfect Continuous",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm2-ut-unit-test-unit-6-present-perfect-continuous-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "I have been waiting for an hour.",
+      "She has been working here since",
+      "3. Have you been crying?",
+      "It has been raining all day.",
+      "How long have you been learning English?",
+      "They have been playing tennis."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Present Perfect Simple and Continuous",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm2-ut-unit-test-unit-7-present-perfect-simple-and-continuous-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "I have read three books.",
+      "She has been painting all morning.",
+      "They have built five houses.",
+      "He has been running.",
+      "How many emails have you written?",
+      "I have been trying to call you."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Time Expressions",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm2-ut-unit-test-unit-8-time-expressions-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I have lived here for five years.",
+      "She has worked here since January.",
+      "Have you ever been to Spain?",
+      "He hasn't called yet.",
+      "I have just finished.",
+      "They have already left."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm2-mt-monthly-test-1-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "He doesn't like spicy food.",
+      "They aren't working today.",
+      "The train leaves at nine fifteen.",
+      "What are you doing right now?",
+      "Water boils at 100 degrees."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm2-mt-monthly-test-2-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "This soup tastes delicious.",
+      "I have lost my keys.",
+      "She is having a shower.",
+      "Have you ever eaten sushi?",
+      "I know the answer."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm2-mt-monthly-test-3-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "He left ten minutes ago.",
+      "Have you been crying?",
+      "When did you move?",
+      "I have been waiting for an hour.",
+      "She has written three emails."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 10",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm2-mt-monthly-test-4-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "He has been running.",
+      "They have already left.",
+      "How many emails have you written?",
+      "She has worked here since January.",
+      "They have built five houses."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm2-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "Look! It is raining.",
+      "We don't understand this rule.",
+      "The baby is sleeping.",
+      "I know the answer.",
+      "I am studying for my exams.",
+      "He usually walks to work."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm2-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I have been waiting for an hour.",
+      "They have built five houses.",
+      "She has been working here since",
+      "4. He has been running.",
+      "It has been raining all day.",
+      "I have been trying to call you."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm2-fin-final-test-semester-1-ex1.mp3",
+     "secs": 109,
+     "script": [
+      "My brothers play football on Saturdays.",
+      "What are you doing right now?",
+      "She wants a new bike.",
+      "I haven't finished my homework yet.",
+      "Does your sister speak French?",
+      "The baby is sleeping.",
+      "We don't understand this rule.",
+      "I have lost my keys."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/tm2-fin-final-test-semester-2-ex1.mp3",
+     "secs": 110,
+     "script": [
+      "I saw that film last night.",
+      "How long have you been learning English?",
+      "She has been painting all morning.",
+      "She has worked here since January.",
+      "He left ten minutes ago.",
+      "It has been raining all day.",
+      "I have been trying to call you.",
+      "They have already left."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

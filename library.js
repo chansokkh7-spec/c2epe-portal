@@ -43584,6 +43584,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "speakout-a1-tests",
+ "level": "Speakout A1",
+ "icon": "📝",
+ "title": "Speakout A1 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Welcome!",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk1-ut-unit-test-unit-1-welcome-ex1.mp3",
+     "secs": 79,
+     "script": [
+      "I am from Peru.",
+      "She is a nurse.",
+      "I have an apple.",
+      "My name is Sam.",
+      "They are two books.",
+      "He is from Canada."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: People",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk1-ut-unit-test-unit-2-people-ex1.mp3",
+     "secs": 79,
+     "script": [
+      "We are at home.",
+      "This is my mother.",
+      "How old is your sister?",
+      "They are in the park.",
+      "Her name is Eva.",
+      "Where are you now?"
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Things",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk1-ut-unit-test-unit-3-things-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "This is Tom's bag.",
+      "I have a green notebook.",
+      "Do you have a pen?",
+      "It is eight dollars.",
+      "I don't like coffee.",
+      "My favourite colour is yellow."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Every day",
+   "info": "Test paper page 10",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk1-ut-unit-test-unit-4-every-day-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I get up at six.",
+      "She never drinks coffee.",
+      "He goes by bus.",
+      "Does he play football?",
+      "We have lunch at twelve.",
+      "The shop opens at nine."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Action",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk1-ut-unit-test-unit-5-action-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "I can swim.",
+      "She can't drive a car.",
+      "Can you help me?",
+      "It is the fifth of May.",
+      "I like her.",
+      "He can speak two languages."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Where?",
+   "info": "Test paper page 16",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk1-ut-unit-test-unit-6-where-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "The cat is under the chair.",
+      "There is a bank near here.",
+      "The station is behind the library.",
+      "There are four shops.",
+      "Is there a cafe here?",
+      "The lamp is between the desk and the bed."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Healthy lives",
+   "info": "Test paper page 19",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk1-ut-unit-test-unit-7-healthy-lives-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "I was at home yesterday.",
+      "Drink more water.",
+      "Don't eat too much sugar.",
+      "He had a headache.",
+      "Where does she live?",
+      "They were tired."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Time out",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk1-ut-unit-test-unit-8-time-out-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I visited my aunt.",
+      "She went by train.",
+      "We watched a film.",
+      "I didn't take photos.",
+      "Did you enjoy the trip?",
+      "I'd like a ticket, please."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk1-mt-monthly-test-1-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "I have an apple.",
+      "How old is your sister?",
+      "He is from Canada.",
+      "They are in the park.",
+      "I am from Peru."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk1-mt-monthly-test-2-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "Do you have a pen?",
+      "I get up at six.",
+      "I have a green notebook.",
+      "Does he play football?",
+      "This is Tom's bag."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk1-mt-monthly-test-3-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "I like her.",
+      "The station is behind the library.",
+      "Can you help me?",
+      "The cat is under the chair.",
+      "It is the fifth of May."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk1-mt-monthly-test-4-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "He had a headache.",
+      "I'd like a ticket, please.",
+      "Where does she live?",
+      "She went by train.",
+      "Don't eat too much sugar."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk1-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "We are at home.",
+      "My favourite colour is yellow.",
+      "Where are you now?",
+      "This is Tom's bag.",
+      "This is my mother.",
+      "It is eight dollars."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk1-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "The cat is under the chair.",
+      "Don't eat too much sugar.",
+      "There is a bank near here.",
+      "He had a headache.",
+      "There are four shops.",
+      "They were tired."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk1-fin-final-test-semester-1-ex1.mp3",
+     "secs": 104,
+     "script": [
+      "My name is Sam.",
+      "They are in the park.",
+      "I don't like coffee.",
+      "The shop opens at nine.",
+      "They are two books.",
+      "Where are you now?",
+      "My favourite colour is yellow.",
+      "I get up at six."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk1-fin-final-test-semester-2-ex1.mp3",
+     "secs": 102,
+     "script": [
+      "I can swim.",
+      "Is there a cafe here?",
+      "Drink more water.",
+      "She went by train.",
+      "I like her.",
+      "There are four shops.",
+      "They were tired.",
+      "I'd like a ticket, please."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

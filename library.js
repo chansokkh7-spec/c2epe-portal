@@ -41989,6 +41989,325 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "my-first-grammar-2-tests",
+ "level": "My First Grammar 2",
+ "icon": "📝",
+ "title": "My First Grammar 2 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Be-Verbs, Possessives, and Wh- Questions",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg2-ut-unit-test-unit-1-be-verbs-possessives-and-wh-questions-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "She is not at school.",
+      "Are they your friends?",
+      "That is her bag.",
+      "Whose book is this?",
+      "Who is the tall boy?",
+      "I am not late."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Nouns and Articles",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg2-ut-unit-test-unit-2-nouns-and-articles-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "There are two boxes.",
+      "I have some water.",
+      "She has an orange.",
+      "Look at the moon.",
+      "Three babies are here.",
+      "The children eat eggs."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Prepositions, Adjectives, and Comparatives",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg2-ut-unit-test-unit-3-prepositions-adjectives-and-comparatives-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "The cat is behind the sofa.",
+      "The ball is between the boxes.",
+      "Tom is taller than Ben.",
+      "A rabbit is faster.",
+      "This is more interesting.",
+      "It is a small house."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Present Simple",
+   "info": "Test paper page 10",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg2-ut-unit-test-unit-4-present-simple-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "I get up at seven.",
+      "She goes to school by bus.",
+      "He doesn't eat fish.",
+      "Do you play soccer?",
+      "My mother cooks eggs.",
+      "They study math."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Present Continuous",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg2-ut-unit-test-unit-5-present-continuous-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "She is reading a book.",
+      "They are running.",
+      "He is not sleeping.",
+      "What are you doing?",
+      "It isn't raining.",
+      "Dad is cooking dinner."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: There + Be, Can/May, and Imperatives",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg2-ut-unit-test-unit-6-there-be-can-may-and-imperatives-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "There is a cat on the sofa.",
+      "There are two birds.",
+      "May I come in?",
+      "A bird can fly.",
+      "Don't run in the hall.",
+      "Please be quiet."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg2-mt-monthly-test-1-ex1.mp3",
+     "secs": 67,
+     "script": [
+      "That is her bag.",
+      "She has an orange.",
+      "I am not late.",
+      "Look at the moon.",
+      "She is not at school."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg2-mt-monthly-test-2-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "She has an orange.",
+      "The cat is behind the sofa.",
+      "I have some water.",
+      "A rabbit is faster.",
+      "There are two boxes."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg2-mt-monthly-test-3-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "My mother cooks eggs.",
+      "He is not sleeping.",
+      "He doesn't eat fish.",
+      "She is reading a book.",
+      "Do you play soccer?"
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg2-mt-monthly-test-4-ex1.mp3",
+     "secs": 67,
+     "script": [
+      "What are you doing?",
+      "Please be quiet.",
+      "It isn't raining.",
+      "There are two birds.",
+      "He is not sleeping."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg2-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "There are two boxes.",
+      "It is a small house.",
+      "The children eat eggs.",
+      "The cat is behind the sofa.",
+      "I have some water.",
+      "A rabbit is faster."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg2-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 79,
+     "script": [
+      "She is reading a book.",
+      "May I come in?",
+      "They are running.",
+      "A bird can fly.",
+      "What are you doing?",
+      "Please be quiet."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg2-fin-final-test-semester-1-ex1.mp3",
+     "secs": 103,
+     "script": [
+      "Whose book is this?",
+      "Look at the moon.",
+      "This is more interesting.",
+      "Who is the tall boy?",
+      "The children eat eggs.",
+      "It is a small house.",
+      "That is her bag.",
+      "I have some water."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg2-fin-final-test-semester-2-ex1.mp3",
+     "secs": 103,
+     "script": [
+      "I get up at seven.",
+      "It isn't raining.",
+      "There are two birds.",
+      "My mother cooks eggs.",
+      "What are you doing?",
+      "Please be quiet.",
+      "He doesn't eat fish.",
+      "Dad is cooking dinner."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

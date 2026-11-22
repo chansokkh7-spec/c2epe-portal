@@ -37819,6 +37819,499 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "reading-explorer-3-tests",
+ "level": "Reading Explorer 3",
+ "icon": "📝",
+ "title": "Reading Explorer 3 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Sports and Fitness",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-ut-unit-test-unit-1-sports-and-fitness-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "The match was played on Sunday.",
+      "She trains six days a week.",
+      "He broke the world record.",
+      "The team needs a new coach.",
+      "Exercise reduces the risk of illness.",
+      "The final attracted millions of viewers."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Skin Deep",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-ut-unit-test-unit-2-skin-deep-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "Beauty depends on culture.",
+      "Skin protects the body.",
+      "He has a small tattoo.",
+      "The mummy is five thousand years old.",
+      "Doctors warn about infections.",
+      "Fashion changes every year."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Animals in Danger",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-ut-unit-test-unit-3-animals-in-danger-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "The koala was rescued.",
+      "They live in the mountains.",
+      "The cat is very shy.",
+      "They use hidden cameras.",
+      "The habitat is disappearing.",
+      "Volunteers helped the vets."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Violent Earth",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-ut-unit-test-unit-4-violent-earth-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "A volcano erupted.",
+      "The plates move slowly.",
+      "It is a sacred mountain.",
+      "The earthquake lasted a minute.",
+      "They gave a warning.",
+      "Experts cannot predict it."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Islands and Beaches",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-ut-unit-test-unit-5-islands-and-beaches-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "Iceland is a cold island.",
+      "There are many volcanoes.",
+      "The water is hot.",
+      "They use clean energy.",
+      "The sand is black.",
+      "The waves are strong."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Global Addictions",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-ut-unit-test-unit-6-global-addictions-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "I drink coffee every morning.",
+      "It keeps me awake.",
+      "He checks his phone constantly.",
+      "The habit is hard to break.",
+      "Turn off notifications.",
+      "Too much screen time harms sleep."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Energy Solutions",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-ut-unit-test-unit-7-energy-solutions-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "Coal is a fossil fuel.",
+      "Solar power is cheaper now.",
+      "The wind farm is large.",
+      "Engineers built a new battery.",
+      "Turn off the lights.",
+      "We need clean energy."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Epic Engineering",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-ut-unit-test-unit-8-epic-engineering-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "The canal is very long.",
+      "Workers dug it by hand.",
+      "It connects two cities.",
+      "The bridge is over a valley.",
+      "The road took twenty years.",
+      "Many tourists visit it."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: High-Tech Solutions",
+   "info": "Test paper page 27",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-ut-unit-test-unit-9-high-tech-solutions-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "It is a virtual world.",
+      "The drone carries medicine.",
+      "The headset is light.",
+      "Surgeons practice with VR.",
+      "Robots do dangerous work.",
+      "Technology is changing fast."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 B, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: All in the Mind",
+   "info": "Test paper page 30",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-ut-unit-test-unit-10-all-in-the-mind-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "The brain is very complex.",
+      "I forgot my keys.",
+      "She has a good memory.",
+      "Crows are very clever.",
+      "Dogs understand many words.",
+      "Sleep is important."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 11: Visual Pioneers",
+   "info": "Test paper page 33",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-ut-unit-test-unit-11-visual-pioneers-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "He painted sunflowers.",
+      "The colors are very bright.",
+      "He lived in poverty.",
+      "He sold few paintings.",
+      "Photography means writing with light.",
+      "Wait for the right light."
+     ],
+     "key": "1 C, 2 C, 3 B, 4 B, 5 B, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 12: Far Out",
+   "info": "Test paper page 36",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-ut-unit-test-unit-12-far-out-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "The rocket was launched.",
+      "They are floating in orbit.",
+      "It costs a lot of money.",
+      "They train for years.",
+      "The capsule returns to Earth.",
+      "It takes seven months."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 A, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-mt-monthly-test-1-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "He broke the world record.",
+      "He has a small tattoo.",
+      "The final attracted millions of viewers.",
+      "The mummy is five thousand years old.",
+      "The match was played on Sunday."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-mt-monthly-test-2-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "The cat is very shy.",
+      "A volcano erupted.",
+      "They live in the mountains.",
+      "The earthquake lasted a minute.",
+      "The koala was rescued."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-mt-monthly-test-3-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "The sand is black.",
+      "He checks his phone constantly.",
+      "The water is hot.",
+      "I drink coffee every morning.",
+      "They use clean energy."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-mt-monthly-test-4-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "Engineers built a new battery.",
+      "Many tourists visit it.",
+      "Turn off the lights.",
+      "Workers dug it by hand.",
+      "The wind farm is large."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-mt-monthly-test-5-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "Robots do dangerous work.",
+      "I forgot my keys.",
+      "The headset is light.",
+      "Dogs understand many words.",
+      "Surgeons practice with VR."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-mt-monthly-test-6-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "Photography means writing with light.",
+      "They are floating in orbit.",
+      "He lived in poverty.",
+      "The rocket was launched.",
+      "He sold few paintings."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "The match was played on Sunday.",
+      "Fashion changes every year.",
+      "They use hidden cameras.",
+      "They gave a warning.",
+      "The final attracted millions of viewers.",
+      "Beauty depends on culture."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "Coal is a fossil fuel.",
+      "It connects two cities.",
+      "Surgeons practice with VR.",
+      "Crows are very clever.",
+      "Solar power is cheaper now.",
+      "The bridge is over a valley."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-fin-final-test-semester-1-ex1.mp3",
+     "secs": 114,
+     "script": [
+      "The team needs a new coach.",
+      "The mummy is five thousand years old.",
+      "The habitat is disappearing.",
+      "Experts cannot predict it.",
+      "There are many volcanoes.",
+      "Too much screen time harms sleep.",
+      "Exercise reduces the risk of illness.",
+      "Fashion changes every year."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re3-fin-final-test-semester-2-ex1.mp3",
+     "secs": 107,
+     "script": [
+      "Coal is a fossil fuel.",
+      "The road took twenty years.",
+      "The drone carries medicine.",
+      "I forgot my keys.",
+      "He lived in poverty.",
+      "It takes seven months.",
+      "Turn off the lights.",
+      "The bridge is over a valley."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

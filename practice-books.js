@@ -71,5 +71,6 @@ window.C2_PRACTICE_BOOKS = [
   {"name": "Reading Explorer 2", "series": "National Geographic", "level": "Pre-Intermediate", "prefix": "re2"},
   {"name": "Reading Explorer 3", "series": "National Geographic", "level": "Intermediate", "prefix": "re3"},
   {"name": "Reading Explorer 4", "series": "National Geographic", "level": "Upper-Intermediate", "prefix": "re4"},
-  {"name": "Reading Explorer 5", "series": "National Geographic", "level": "Advanced", "prefix": "re5"}
+  {"name": "Reading Explorer 5", "series": "National Geographic", "level": "Advanced", "prefix": "re5"},
+  {"name": "Great Writing Foundations", "series": "National Geographic", "level": "Beginner", "prefix": "gwf"}
 ];

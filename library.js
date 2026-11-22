@@ -39298,6 +39298,564 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "great-writing-foundations-tests",
+ "level": "Great Writing Foundations",
+ "icon": "📝",
+ "title": "Great Writing Foundations – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Sentences",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-ut-unit-test-unit-1-sentences-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "I like rice.",
+      "The cat is on the bed.",
+      "My mother cooks dinner.",
+      "We study English.",
+      "A sentence has a verb.",
+      "Write a sentence."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: The Simple Present of Be",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-ut-unit-test-unit-2-the-simple-present-of-be-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "I am a student.",
+      "She is my sister.",
+      "They are at home.",
+      "We are not late.",
+      "He is twelve.",
+      "The books are on the table."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: The Simple Present",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-ut-unit-test-unit-3-the-simple-present-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "She walks to school.",
+      "He eats rice every day.",
+      "I get up at six.",
+      "They do not like milk.",
+      "My mother cooks dinner.",
+      "We study English on Monday."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Nouns",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-ut-unit-test-unit-4-nouns-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "I have two books.",
+      "There are three boxes.",
+      "The children play.",
+      "I live in Cambodia.",
+      "My friends have dogs.",
+      "A noun is a word."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Pronouns",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-ut-unit-test-unit-5-pronouns-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "She is my sister.",
+      "They are my friends.",
+      "I like him.",
+      "It is white.",
+      "We go to school together.",
+      "Please help me."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Adjectives",
+   "info": "Test paper page 16",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-ut-unit-test-unit-6-adjectives-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "She has a red bag.",
+      "My house is big.",
+      "These books are new.",
+      "The cat is white.",
+      "He is a kind boy.",
+      "That is her pen."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: The Conjunction And",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-ut-unit-test-unit-7-the-conjunction-and-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I like rice and fish.",
+      "She has a pen and a pencil.",
+      "He is tall and strong.",
+      "We play football and basketball.",
+      "My mother cooks and cleans.",
+      "I read and write."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Articles",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-ut-unit-test-unit-8-articles-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "I have a dog.",
+      "She eats an apple.",
+      "He is an old man.",
+      "Close the door.",
+      "My mother is a nurse.",
+      "I see an elephant."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Prepositions",
+   "info": "Test paper page 23",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-ut-unit-test-unit-9-prepositions-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "The book is on the table.",
+      "I get up at six.",
+      "We have class on Monday.",
+      "She lives in Cambodia.",
+      "The cat is under the chair.",
+      "He walks to school."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 B, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Simple and Compound Sentences",
+   "info": "Test paper page 26",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-ut-unit-test-unit-10-simple-and-compound-sentences-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "I am hungry, so I eat.",
+      "He is small, but he is strong.",
+      "We can walk, or we can ride.",
+      "It is hot, so I drink water.",
+      "I like tea, and she likes coffee.",
+      "She is tired, but she works."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 11: The Simple Past",
+   "info": "Test paper page 29",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-ut-unit-test-unit-11-the-simple-past-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "I played football yesterday.",
+      "We went to the market.",
+      "She did not go to school.",
+      "They ate rice and fish.",
+      "He visited his grandmother.",
+      "I had a great weekend."
+     ],
+     "key": "1 C, 2 C, 3 B, 4 B, 5 B, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 12: Complex Sentences",
+   "info": "Test paper page 32",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-ut-unit-test-unit-12-complex-sentences-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "I stay home because it is raining.",
+      "When it rains, I read.",
+      "I wash my hands before I eat.",
+      "After class, we play.",
+      "She is happy because it is Saturday.",
+      "If it is hot, I drink water."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 A, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 13: Adverbs",
+   "info": "Test paper page 35",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-ut-unit-test-unit-13-adverbs-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "She walks slowly.",
+      "I always eat breakfast.",
+      "He sometimes plays football.",
+      "They sing very well.",
+      "The weather is very hot.",
+      "He listens carefully."
+     ],
+     "key": "1 C, 2 A, 3 C, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 14: The Present Progressive",
+   "info": "Test paper page 38",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-ut-unit-test-unit-14-the-present-progressive-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "I am reading a book.",
+      "She is cooking dinner.",
+      "They are playing football.",
+      "It is raining today.",
+      "The baby is smiling.",
+      "We are studying English."
+     ],
+     "key": "1 B, 2 C, 3 B, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-mt-monthly-test-1-ex1.mp3",
+     "secs": 67,
+     "script": [
+      "My mother cooks dinner.",
+      "They are at home.",
+      "Write a sentence.",
+      "We are not late.",
+      "I like rice."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-mt-monthly-test-2-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "I get up at six.",
+      "I have two books.",
+      "He eats rice every day.",
+      "I live in Cambodia.",
+      "She walks to school."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-mt-monthly-test-3-ex1.mp3",
+     "secs": 67,
+     "script": [
+      "We go to school together.",
+      "These books are new.",
+      "I like him.",
+      "She has a red bag.",
+      "It is white."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-mt-monthly-test-4-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "We play football and basketball.",
+      "I see an elephant.",
+      "My mother cooks and cleans.",
+      "She eats an apple.",
+      "He is tall and strong."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-mt-monthly-test-5-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "The cat is under the chair.",
+      "He is small, but he is strong.",
+      "We have class on Monday.",
+      "I like tea, and she likes coffee.",
+      "She lives in Cambodia."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-mt-monthly-test-6-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "He visited his grandmother.",
+      "When it rains, I read.",
+      "She did not go to school.",
+      "I stay home because it is raining.",
+      "They ate rice and fish."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 7",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-mt-monthly-test-7-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "The weather is very hot.",
+      "It is raining today.",
+      "She walks slowly.",
+      "They are playing football.",
+      "He listens carefully."
+     ],
+     "key": "1 B, 2 C, 3 A, 4 A, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "She walks to school.",
+      "A noun is a word.",
+      "It is white.",
+      "He is a kind boy.",
+      "We study English on Monday.",
+      "I have two books."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "I am hungry, so I eat.",
+      "She did not go to school.",
+      "After class, we play.",
+      "They sing very well.",
+      "He is small, but he is strong.",
+      "They ate rice and fish."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-fin-final-test-semester-1-ex1.mp3",
+     "secs": 103,
+     "script": [
+      "We study English.",
+      "We are not late.",
+      "My mother cooks dinner.",
+      "A noun is a word.",
+      "They are my friends.",
+      "That is her pen.",
+      "I like rice and fish.",
+      "I see an elephant."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/gwf-fin-final-test-semester-2-ex1.mp3",
+     "secs": 109,
+     "script": [
+      "The book is on the table.",
+      "I like tea, and she likes coffee.",
+      "We went to the market.",
+      "When it rains, I read.",
+      "He sometimes plays football.",
+      "We are studying English.",
+      "The cat is under the chair.",
+      "It is hot, so I drink water."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

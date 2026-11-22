@@ -36340,6 +36340,499 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "reading-explorer-foundations-tests",
+ "level": "Reading Explorer Foundations",
+ "icon": "📝",
+ "title": "Reading Explorer Foundations – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Mysteries",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-ut-unit-test-unit-1-mysteries-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "The stones leave tracks.",
+      "There is no proof.",
+      "It is a famous legend.",
+      "Scientists used cameras.",
+      "The city went under the sea.",
+      "Nobody saw them move."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Eating Extremes",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-ut-unit-test-unit-2-eating-extremes-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "Chilies are very hot.",
+      "He is the champion.",
+      "The contest is on July fourth.",
+      "She ate sixty hot dogs.",
+      "Milk helps your mouth.",
+      "It can be dangerous."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Cool Jobs",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-ut-unit-test-unit-3-cool-jobs-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "She is an archaeologist.",
+      "He takes photos of animals.",
+      "It is a hard job.",
+      "They use small brushes.",
+      "Be patient.",
+      "She found an old pot."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Shipwrecks",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-ut-unit-test-unit-4-shipwrecks-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "The ship sank in",
+      "2. He found the wreck.",
+      "It hit an iceberg.",
+      "They used a robot.",
+      "The water is deep.",
+      "More than 1,500 people died."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Science Investigators",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-ut-unit-test-unit-5-science-investigators-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "The detective asks questions.",
+      "They found a fingerprint.",
+      "She tests the water.",
+      "It is a clue.",
+      "Put the item in a bag.",
+      "The police closed the street."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Plants and Trees",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-ut-unit-test-unit-6-plants-and-trees-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "Trees give us oxygen.",
+      "The roots hold the ground.",
+      "It catches insects.",
+      "Plant a tree.",
+      "The leaf closes quickly.",
+      "It grows in wet places."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Mind's Eye",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-ut-unit-test-unit-7-mind-s-eye-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "I had a strange dream.",
+      "The brain makes a guess.",
+      "They look different.",
+      "Everyone dreams.",
+      "Write it down.",
+      "It is an illusion."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Animal Wonders",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-ut-unit-test-unit-8-animal-wonders-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "Penguins live in Antarctica.",
+      "The father keeps the egg warm.",
+      "They stand close together.",
+      "Rats make a high sound.",
+      "It is a young chick.",
+      "They play with each other."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Building Beauty",
+   "info": "Test paper page 27",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-ut-unit-test-unit-9-building-beauty-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "It is made of marble.",
+      "He built it for his wife.",
+      "It took twenty years.",
+      "The dome is red.",
+      "The architect had an idea.",
+      "It is a famous cathedral."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 B, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Forces of Nature",
+   "info": "Test paper page 30",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-ut-unit-test-unit-10-forces-of-nature-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "It is a strong storm.",
+      "The wind is very fast.",
+      "There was a flood.",
+      "It has not rained for months.",
+      "Snow fell in the desert.",
+      "Stay inside."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 11: Giants of the Past",
+   "info": "Test paper page 33",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-ut-unit-test-unit-11-giants-of-the-past-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "Mammoths had long tusks.",
+      "They lived in the Ice Age.",
+      "The animal is extinct.",
+      "It was as long as a bus.",
+      "We found a fossil.",
+      "It swam in the sea."
+     ],
+     "key": "1 C, 2 C, 3 B, 4 B, 5 B, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 12: Technology",
+   "info": "Test paper page 36",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-ut-unit-test-unit-12-technology-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "Robots carry boxes.",
+      "The car drives itself.",
+      "It is a smart home.",
+      "Technology changes fast.",
+      "Some people worry.",
+      "It will be exciting."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 A, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-mt-monthly-test-1-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "It is a famous legend.",
+      "The contest is on July fourth.",
+      "Nobody saw them move.",
+      "She ate sixty hot dogs.",
+      "The stones leave tracks."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-mt-monthly-test-2-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "It is a hard job.",
+      "The ship sank in",
+      "3. He takes photos of animals.",
+      "They used a robot.",
+      "She is an archaeologist."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-mt-monthly-test-3-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "Put the item in a bag.",
+      "It catches insects.",
+      "She tests the water.",
+      "Trees give us oxygen.",
+      "It is a clue."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 10",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-mt-monthly-test-4-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "Everyone dreams.",
+      "They play with each other.",
+      "Write it down.",
+      "The father keeps the egg warm.",
+      "They look different."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-mt-monthly-test-5-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "The architect had an idea.",
+      "The wind is very fast.",
+      "It took twenty years.",
+      "Snow fell in the desert.",
+      "The dome is red."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-mt-monthly-test-6-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "We found a fossil.",
+      "The car drives itself.",
+      "The animal is extinct.",
+      "Robots carry boxes.",
+      "It was as long as a bus."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "The stones leave tracks.",
+      "It can be dangerous.",
+      "They use small brushes.",
+      "The water is deep.",
+      "Nobody saw them move.",
+      "Chilies are very hot."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "I had a strange dream.",
+      "They stand close together.",
+      "The dome is red.",
+      "It has not rained for months.",
+      "The brain makes a guess.",
+      "Rats make a high sound."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-fin-final-test-semester-1-ex1.mp3",
+     "secs": 109,
+     "script": [
+      "Scientists used cameras.",
+      "She ate sixty hot dogs.",
+      "Be patient.",
+      "More than 1,500 people died.",
+      "They found a fingerprint.",
+      "It grows in wet places.",
+      "The city went under the sea.",
+      "It can be dangerous."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re0-fin-final-test-semester-2-ex1.mp3",
+     "secs": 105,
+     "script": [
+      "I had a strange dream.",
+      "It is a young chick.",
+      "He built it for his wife.",
+      "The wind is very fast.",
+      "The animal is extinct.",
+      "It will be exciting.",
+      "Write it down.",
+      "Rats make a high sound."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

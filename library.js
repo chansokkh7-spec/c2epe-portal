@@ -47577,6 +47577,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "advanced-vocab-1-tests",
+ "level": "Advanced Vocab 1",
+ "icon": "📝",
+ "title": "Advanced Vocab 1 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Nature and Disasters",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/avs1-ut-unit-test-unit-1-nature-and-disasters-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "The earthquake struck without warning.",
+      "Rescue teams searched for survivors.",
+      "The harbour was evacuated.",
+      "The flood caused enormous damage.",
+      "The mayor asked everyone to stay calm.",
+      "Several countries donated food."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Word Formation",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/avs1-ut-unit-test-unit-2-word-formation-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "His carelessness caused the accident.",
+      "She gave a convincing speech.",
+      "It was an unforgivable mistake.",
+      "The attendance was disappointing.",
+      "Her contribution was invaluable.",
+      "He spoke enthusiastically."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Phrasal Verbs",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/avs1-ut-unit-test-unit-3-phrasal-verbs-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "The meeting was called off.",
+      "I can't put up with the noise.",
+      "She came across an old photo.",
+      "We have run out of milk.",
+      "The plan fell through.",
+      "They set off at dawn."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Prepositions",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/avs1-ut-unit-test-unit-4-prepositions-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "She is very good at puzzles.",
+      "He apologised for being late.",
+      "They are famous for their hospitality.",
+      "I'm fond of classical music.",
+      "We insisted on paying the bill.",
+      "The teacher was pleased with the results."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Meaning in Context",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/avs1-ut-unit-test-unit-5-meaning-in-context-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "The investigation was thorough.",
+      "The two reports contradict each other.",
+      "The change was gradual.",
+      "The village is remote.",
+      "They found an innovative solution.",
+      "He was reluctant to speak."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Sentence Transformation",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/avs1-ut-unit-test-unit-6-sentence-transformation-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "It is a year since I saw him.",
+      "He is so tall that he can touch it.",
+      "Hardly had he sat down.",
+      "She denied taking the money.",
+      "I would rather you didn't smoke.",
+      "He suggested that we should leave."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Health and Technology",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/avs1-ut-unit-test-unit-7-health-and-technology-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "Exercise helps to prevent disease.",
+      "The patient made a quick recovery.",
+      "Scientists made a major breakthrough.",
+      "You can download the software.",
+      "Too much sugar is harmful.",
+      "The nurse took his temperature."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Society and Environment",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/avs1-ut-unit-test-unit-8-society-and-environment-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "Pollution is a threat to wildlife.",
+      "Volunteers took part in the campaign.",
+      "The factory will employ new workers.",
+      "She earns a good salary.",
+      "Companies reduce their carbon footprint.",
+      "The gap is getting wider."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/avs1-mt-monthly-test-1-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "The harbour was evacuated.",
+      "It was an unforgivable mistake.",
+      "Several countries donated food.",
+      "The attendance was disappointing.",
+      "The earthquake struck without warning."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/avs1-mt-monthly-test-2-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "She came across an old photo.",
+      "She is very good at puzzles.",
+      "I can't put up with the noise.",
+      "I'm fond of classical music.",
+      "The meeting was called off."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/avs1-mt-monthly-test-3-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "They found an innovative solution.",
+      "Hardly had he sat down.",
+      "The change was gradual.",
+      "It is a year since I saw him.",
+      "The village is remote."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/avs1-mt-monthly-test-4-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "You can download the software.",
+      "The gap is getting wider.",
+      "Too much sugar is harmful.",
+      "Volunteers took part in the campaign.",
+      "Scientists made a major breakthrough."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/avs1-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "His carelessness caused the accident.",
+      "They set off at dawn.",
+      "He spoke enthusiastically.",
+      "The meeting was called off.",
+      "She gave a convincing speech.",
+      "We have run out of milk."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/avs1-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "It is a year since I saw him.",
+      "Scientists made a major breakthrough.",
+      "He is so tall that he can touch it.",
+      "You can download the software.",
+      "She denied taking the money.",
+      "The nurse took his temperature."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/avs1-fin-final-test-semester-1-ex1.mp3",
+     "secs": 112,
+     "script": [
+      "The flood caused enormous damage.",
+      "The attendance was disappointing.",
+      "The plan fell through.",
+      "The teacher was pleased with the results.",
+      "The mayor asked everyone to stay calm.",
+      "He spoke enthusiastically.",
+      "They set off at dawn.",
+      "She is very good at puzzles."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/avs1-fin-final-test-semester-2-ex1.mp3",
+     "secs": 112,
+     "script": [
+      "The investigation was thorough.",
+      "I would rather you didn't smoke.",
+      "The patient made a quick recovery.",
+      "Volunteers took part in the campaign.",
+      "They found an innovative solution.",
+      "She denied taking the money.",
+      "The nurse took his temperature.",
+      "The gap is getting wider."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

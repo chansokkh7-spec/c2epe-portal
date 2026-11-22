@@ -45399,6 +45399,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "speakout-b2plus-tests",
+ "level": "Speakout B2+",
+ "icon": "📝",
+ "title": "Speakout B2+ – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Connections",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk6-ut-unit-test-unit-1-connections-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "We would visit every summer.",
+      "The man sitting next to me.",
+      "We fell out over money.",
+      "They met at university.",
+      "This is a book I can't put down.",
+      "They are still close friends."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Competition",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk6-ut-unit-test-unit-2-competition-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "It was Rita who won.",
+      "What I want is peace.",
+      "She can, and her brother can too.",
+      "Sales are slightly lower.",
+      "The judges praised her creativity.",
+      "The contest was close."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Inspiration",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk6-ut-unit-test-unit-3-inspiration-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "She looks as if she had run a marathon.",
+      "No matter how hard I try.",
+      "He persuaded me to apply.",
+      "Whatever you decide.",
+      "It was her teacher who inspired her.",
+      "She is a role model."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Image",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk6-ut-unit-test-unit-4-image-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "You should wear a helmet.",
+      "I should have called you.",
+      "We have been planning this for weeks.",
+      "The logo is being redesigned.",
+      "By December she will have been selling for three years.",
+      "She is always posting photos."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Change",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk6-ut-unit-test-unit-5-change-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "If I had stayed, I would be working now.",
+      "He has been volunteering for a year.",
+      "By December he will have written a book.",
+      "It is high time we changed.",
+      "She wouldn't be happy now.",
+      "We will have planted a thousand trees."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Oops!",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk6-ut-unit-test-unit-6-oops-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "Never have I seen such a mess.",
+      "Hardly had I arrived.",
+      "It was reported that it had crashed.",
+      "The app deleted photos.",
+      "The company apologised quickly.",
+      "A bug caused the error."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Trends",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk6-ut-unit-test-unit-7-trends-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "Not only is it cheap, but tasty.",
+      "Rarely do people eat alone.",
+      "So popular was the trend.",
+      "Frankly, I don't like it.",
+      "It's absolutely fantastic.",
+      "Shops often sell out by lunchtime."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: The future",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk6-ut-unit-test-unit-8-the-future-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "The robot is due next spring.",
+      "Much as I like it, I can't.",
+      "By 2050 robots will be working.",
+      "Although it's expensive, they'll buy it.",
+      "The film is set to be released.",
+      "Despite the delay, it succeeded."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk6-mt-monthly-test-1-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "We fell out over money.",
+      "She can, and her brother can too.",
+      "They are still close friends.",
+      "Sales are slightly lower.",
+      "We would visit every summer."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk6-mt-monthly-test-2-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "He persuaded me to apply.",
+      "You should wear a helmet.",
+      "No matter how hard I try.",
+      "The logo is being redesigned.",
+      "She looks as if she had run a marathon."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk6-mt-monthly-test-3-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "She wouldn't be happy now.",
+      "It was reported that it had crashed.",
+      "By December he will have written a book.",
+      "Never have I seen such a mess.",
+      "It is high time we changed."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk6-mt-monthly-test-4-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "Frankly, I don't like it.",
+      "Despite the delay, it succeeded.",
+      "It's absolutely fantastic.",
+      "Much as I like it, I can't.",
+      "So popular was the trend."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk6-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "It was Rita who won.",
+      "She is a role model.",
+      "The contest was close.",
+      "She looks as if she had run a marathon.",
+      "What I want is peace.",
+      "Whatever you decide."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk6-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "Never have I seen such a mess.",
+      "So popular was the trend.",
+      "Hardly had I arrived.",
+      "Frankly, I don't like it.",
+      "The app deleted photos.",
+      "Shops often sell out by lunchtime."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk6-fin-final-test-semester-1-ex1.mp3",
+     "secs": 110,
+     "script": [
+      "They met at university.",
+      "Sales are slightly lower.",
+      "It was her teacher who inspired her.",
+      "She is always posting photos.",
+      "This is a book I can't put down.",
+      "The contest was close.",
+      "She is a role model.",
+      "You should wear a helmet."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk6-fin-final-test-semester-2-ex1.mp3",
+     "secs": 114,
+     "script": [
+      "If I had stayed, I would be working now.",
+      "The company apologised quickly.",
+      "Rarely do people eat alone.",
+      "Much as I like it, I can't.",
+      "She wouldn't be happy now.",
+      "The app deleted photos.",
+      "Shops often sell out by lunchtime.",
+      "Despite the delay, it succeeded."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

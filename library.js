@@ -46125,6 +46125,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "speakout-c2-tests",
+ "level": "Speakout C2",
+ "icon": "📝",
+ "title": "Speakout C2 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Language and learning",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk8-ut-unit-test-unit-1-language-and-learning-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "Had it not been for her tutor.",
+      "Were he to resign, the board would panic.",
+      "But for your warning, we would have lost.",
+      "The effects are marginal.",
+      "Translation is plainly possible.",
+      "She would have specialised earlier."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Culture and translation",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk8-ut-unit-test-unit-2-culture-and-translation-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "It was by no means simple.",
+      "It is every bit as good.",
+      "He conceded the point.",
+      "They attributed it to planning.",
+      "The humour was lost.",
+      "The more local, the harder."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Work and organisations",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk8-ut-unit-test-unit-3-work-and-organisations-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "She can't possibly have forgotten.",
+      "They ought to have consulted us.",
+      "A merger is rumoured.",
+      "The scheme is to be reviewed.",
+      "Not a single employee complained.",
+      "Reforms failed."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Society and progress",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk8-ut-unit-test-unit-4-society-and-progress-ex1.mp3",
+     "secs": 92,
+     "script": [
+      "She went on to found an institute.",
+      "It has yet to prove its worth.",
+      "The loss of species is accelerating.",
+      "By next spring she will have been leading it for twenty years.",
+      "The committee deplored the pace.",
+      "She tends to understate it."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Persuasion and influence",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk8-ut-unit-test-unit-5-persuasion-and-influence-ex1.mp3",
+     "secs": 92,
+     "script": [
+      "No sooner had she spoken than they applauded.",
+      "Under no circumstances should you share it.",
+      "So convincing was her case.",
+      "Never before had the council faced this.",
+      "Not until the vote was it clear.",
+      "The sceptics relented."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Literature and design",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk8-ut-unit-test-unit-6-literature-and-design-ex1.mp3",
+     "secs": 95,
+     "script": [
+      "The novel had been rejected by a dozen publishers.",
+      "Arguably the finest novel.",
+      "At once witty and profound.",
+      "Predictably, the sequel disappointed.",
+      "The poet revised it for a decade.",
+      "The building is undeniably a masterpiece."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Decisions and choices",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk8-ut-unit-test-unit-7-decisions-and-choices-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "It's a toss-up.",
+      "She weighed the pros and cons.",
+      "He took the plunge.",
+      "Much as I admire her.",
+      "It stands to reason.",
+      "As far as I'm concerned, it's closed."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Mind and perception",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk8-ut-unit-test-unit-8-mind-and-perception-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "The ever-growing body of research.",
+      "Her hard-won independence.",
+      "She would stare out of the window.",
+      "That will be the neighbour.",
+      "The illusion deceives the eye.",
+      "She will insist on testing every claim."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk8-mt-monthly-test-1-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "But for your warning, we would have lost.",
+      "He conceded the point.",
+      "She would have specialised earlier.",
+      "They attributed it to planning.",
+      "Had it not been for her tutor."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk8-mt-monthly-test-2-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "A merger is rumoured.",
+      "She went on to found an institute.",
+      "They ought to have consulted us.",
+      "By next spring she will have been leading it for twenty years.",
+      "She can't possibly have forgotten."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk8-mt-monthly-test-3-ex1.mp3",
+     "secs": 77,
+     "script": [
+      "Not until the vote was it clear.",
+      "At once witty and profound.",
+      "So convincing was her case.",
+      "The novel had been rejected by a dozen publishers.",
+      "Never before had the council faced this."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk8-mt-monthly-test-4-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "Much as I admire her.",
+      "She will insist on testing every claim.",
+      "It stands to reason.",
+      "Her hard-won independence.",
+      "He took the plunge."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk8-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "It was by no means simple.",
+      "Reforms failed.",
+      "The more local, the harder.",
+      "She can't possibly have forgotten.",
+      "It is every bit as good.",
+      "The scheme is to be reviewed."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk8-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "The novel had been rejected by a dozen publishers.",
+      "He took the plunge.",
+      "Arguably the finest novel.",
+      "Much as I admire her.",
+      "Predictably, the sequel disappointed.",
+      "As far as I'm concerned, it's closed."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk8-fin-final-test-semester-1-ex1.mp3",
+     "secs": 111,
+     "script": [
+      "The effects are marginal.",
+      "They attributed it to planning.",
+      "Not a single employee complained.",
+      "She tends to understate it.",
+      "Translation is plainly possible.",
+      "The more local, the harder.",
+      "Reforms failed.",
+      "She went on to found an institute."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk8-fin-final-test-semester-2-ex1.mp3",
+     "secs": 117,
+     "script": [
+      "No sooner had she spoken than they applauded.",
+      "The poet revised it for a decade.",
+      "She weighed the pros and cons.",
+      "Her hard-won independence.",
+      "Not until the vote was it clear.",
+      "Predictably, the sequel disappointed.",
+      "As far as I'm concerned, it's closed.",
+      "She will insist on testing every claim."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

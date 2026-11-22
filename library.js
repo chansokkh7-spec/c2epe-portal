@@ -36833,6 +36833,499 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "reading-explorer-1-tests",
+ "level": "Reading Explorer 1",
+ "icon": "📝",
+ "title": "Reading Explorer 1 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Amazing Animals",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-ut-unit-test-unit-1-amazing-animals-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "Dolphins live in pods.",
+      "They use clicks and whistles.",
+      "The chameleon changes color.",
+      "It has a long tongue.",
+      "The sound comes back.",
+      "It hides from enemies."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Travel and Adventure",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-ut-unit-test-unit-2-travel-and-adventure-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "They flew to Africa.",
+      "We saw lions.",
+      "The island is in the Pacific.",
+      "Darwin visited in",
+      "5. The tortoise is very slow.",
+      "Follow the rules."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: The Power of Music",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-ut-unit-test-unit-3-the-power-of-music-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "Babies move to music.",
+      "I like fast music.",
+      "The band plays tonight.",
+      "Music helps me relax.",
+      "She dances well.",
+      "He plays the guitar."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Into Space",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-ut-unit-test-unit-4-into-space-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "There is water on Mars.",
+      "Astronauts float.",
+      "They exercise every day.",
+      "Mars is red.",
+      "The robot takes pictures.",
+      "They stay six months."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: City Life",
+   "info": "Test paper page 14",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-ut-unit-test-unit-5-city-life-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "Many people live in cities.",
+      "The streets are crowded.",
+      "Take the subway.",
+      "Street food is cheap.",
+      "It is a megacity.",
+      "Tokyo is huge."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Backyard Discoveries",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-ut-unit-test-unit-6-backyard-discoveries-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "They counted the insects.",
+      "It is a tiny frog.",
+      "A volunteer helps.",
+      "The box is one foot wide.",
+      "He found a new species.",
+      "It lasts a whole day."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: When Dinosaurs Ruled",
+   "info": "Test paper page 20",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-ut-unit-test-unit-7-when-dinosaurs-ruled-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "Dinosaurs lived long ago.",
+      "They had feathers.",
+      "It was huge.",
+      "The arms were two meters long.",
+      "It ate plants and fish.",
+      "They found a skeleton."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Stories and Storytellers",
+   "info": "Test paper page 23",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-ut-unit-test-unit-8-stories-and-storytellers-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "Once upon a time.",
+      "They wrote the stories down.",
+      "The sister saved them.",
+      "They turned into ravens.",
+      "It has a happy ending.",
+      "The book was published in 1812."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Unusual Jobs",
+   "info": "Test paper page 26",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-ut-unit-test-unit-9-unusual-jobs-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "He hunts meteorites.",
+      "It fell from space.",
+      "She wears a heavy suit.",
+      "They jump from a plane.",
+      "The fire is out.",
+      "It is a dangerous job."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 B, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Uncovering the Past",
+   "info": "Test paper page 28",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-ut-unit-test-unit-10-uncovering-the-past-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "Farmers found a soldier.",
+      "There are eight thousand soldiers.",
+      "The paint faded.",
+      "The pyramid is huge.",
+      "It was built for a king.",
+      "Tourists visit Egypt."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 11: Plastic Planet",
+   "info": "Test paper page 31",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-ut-unit-test-unit-11-plastic-planet-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "Plastic lasts a long time.",
+      "Use a cloth bag.",
+      "Recycle your bottles.",
+      "Don't use plastic straws.",
+      "The ocean is full of plastic.",
+      "Bring your own bottle."
+     ],
+     "key": "1 C, 2 C, 3 B, 4 B, 5 B, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 12: Vanished!",
+   "info": "Test paper page 34",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-ut-unit-test-unit-12-vanished-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "They disappeared.",
+      "Nobody knows.",
+      "She was a pilot.",
+      "They searched for weeks.",
+      "It is a mystery.",
+      "They found his body."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 A, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-mt-monthly-test-1-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "The chameleon changes color.",
+      "The island is in the Pacific.",
+      "It hides from enemies.",
+      "Darwin visited in",
+      "5. Dolphins live in pods."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-mt-monthly-test-2-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "The band plays tonight.",
+      "There is water on Mars.",
+      "I like fast music.",
+      "Mars is red.",
+      "Babies move to music."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-mt-monthly-test-3-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "It is a megacity.",
+      "A volunteer helps.",
+      "Take the subway.",
+      "They counted the insects.",
+      "Street food is cheap."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 10",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-mt-monthly-test-4-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "The arms were two meters long.",
+      "The book was published in",
+      "3. It ate plants and fish.",
+      "They wrote the stories down.",
+      "It was huge."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-mt-monthly-test-5-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "The fire is out.",
+      "There are eight thousand soldiers.",
+      "She wears a heavy suit.",
+      "It was built for a king.",
+      "They jump from a plane."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 14",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-mt-monthly-test-6-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "The ocean is full of plastic.",
+      "Nobody knows.",
+      "Recycle your bottles.",
+      "They disappeared.",
+      "Don't use plastic straws."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "Dolphins live in pods.",
+      "Follow the rules.",
+      "Music helps me relax.",
+      "The robot takes pictures.",
+      "It hides from enemies.",
+      "They flew to Africa."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "Dinosaurs lived long ago.",
+      "The sister saved them.",
+      "They jump from a plane.",
+      "The pyramid is huge.",
+      "They had feathers.",
+      "They turned into ravens."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-fin-final-test-semester-1-ex1.mp3",
+     "secs": 104,
+     "script": [
+      "It has a long tongue.",
+      "Darwin visited in",
+      "3. She dances well.",
+      "They stay six months.",
+      "The streets are crowded.",
+      "It lasts a whole day.",
+      "The sound comes back.",
+      "Follow the rules."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re1-fin-final-test-semester-2-ex1.mp3",
+     "secs": 107,
+     "script": [
+      "Dinosaurs lived long ago.",
+      "It has a happy ending.",
+      "It fell from space.",
+      "There are eight thousand soldiers.",
+      "Recycle your bottles.",
+      "They found his body.",
+      "It ate plants and fish.",
+      "They turned into ravens."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

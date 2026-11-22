@@ -66,5 +66,6 @@ window.C2_PRACTICE_BOOKS = [
   {"name": "Focus on Grammar 3", "series": "Pearson", "level": "Grammar", "prefix": "fg3"},
   {"name": "Focus on Grammar 4", "series": "Pearson", "level": "Grammar", "prefix": "fg4"},
   {"name": "Focus on Grammar 5", "series": "Pearson", "level": "Grammar", "prefix": "fg5"},
-  {"name": "Reading Explorer Foundations", "series": "National Geographic", "level": "Pre-Intermediate", "prefix": "re0"}
+  {"name": "Reading Explorer Foundations", "series": "National Geographic", "level": "Pre-Intermediate", "prefix": "re0"},
+  {"name": "Reading Explorer 1", "series": "National Geographic", "level": "Beginner", "prefix": "re1"}
 ];

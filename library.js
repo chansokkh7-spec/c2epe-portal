@@ -41670,6 +41670,325 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "my-first-grammar-1-tests",
+ "level": "My First Grammar 1",
+ "icon": "📝",
+ "title": "My First Grammar 1 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Nouns and Pronouns",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg1-ut-unit-test-unit-1-nouns-and-pronouns-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "I have an apple.",
+      "There are two boxes.",
+      "She is my sister.",
+      "They are in the garden.",
+      "I see a bus.",
+      "Twelve books."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Be-Verbs: am, are, is",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg1-ut-unit-test-unit-2-be-verbs-am-are-is-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "I am a student.",
+      "She is not a doctor.",
+      "Are you a boy?",
+      "They are at school.",
+      "What is your name?",
+      "He is not tall."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: This/That and These/Those",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg1-ut-unit-test-unit-3-this-that-and-these-those-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "This is my bag.",
+      "Those are birds.",
+      "Is that your pen?",
+      "These are my shoes.",
+      "This is not a book.",
+      "Are those cats?"
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: More on Be-Verbs",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg1-ut-unit-test-unit-4-more-on-be-verbs-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "The cat is on the sofa.",
+      "It is a big dog.",
+      "The ball is in the box.",
+      "I see an apple.",
+      "The sun is hot.",
+      "My bag is under the chair."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Have/Has",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg1-ut-unit-test-unit-5-have-has-ex1.mp3",
+     "secs": 79,
+     "script": [
+      "I have a pen.",
+      "She has a red hat.",
+      "He doesn't have a bike.",
+      "Do you have a ruler?",
+      "They have a dog.",
+      "This is my bag."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Helping Verbs and Questions",
+   "info": "Test paper page 14",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg1-ut-unit-test-unit-6-helping-verbs-and-questions-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "A bird can fly.",
+      "A fish can't walk.",
+      "Can you swim?",
+      "I am nine years old.",
+      "What is this?",
+      "How are you?"
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg1-mt-monthly-test-1-ex1.mp3",
+     "secs": 66,
+     "script": [
+      "She is my sister.",
+      "Are you a boy?",
+      "Twelve books.",
+      "They are at school.",
+      "I have an apple."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg1-mt-monthly-test-2-ex1.mp3",
+     "secs": 67,
+     "script": [
+      "Are you a boy?",
+      "This is my bag.",
+      "She is not a doctor.",
+      "These are my shoes.",
+      "I am a student."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg1-mt-monthly-test-3-ex1.mp3",
+     "secs": 67,
+     "script": [
+      "The sun is hot.",
+      "He doesn't have a bike.",
+      "The ball is in the box.",
+      "I have a pen.",
+      "I see an apple."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg1-mt-monthly-test-4-ex1.mp3",
+     "secs": 67,
+     "script": [
+      "Do you have a ruler?",
+      "How are you?",
+      "They have a dog.",
+      "A fish can't walk.",
+      "He doesn't have a bike."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg1-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 79,
+     "script": [
+      "I am a student.",
+      "Are those cats?",
+      "He is not tall.",
+      "This is my bag.",
+      "She is not a doctor.",
+      "These are my shoes."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg1-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 79,
+     "script": [
+      "I have a pen.",
+      "Can you swim?",
+      "She has a red hat.",
+      "I am nine years old.",
+      "Do you have a ruler?",
+      "How are you?"
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg1-fin-final-test-semester-1-ex1.mp3",
+     "secs": 102,
+     "script": [
+      "They are in the garden.",
+      "They are at school.",
+      "This is not a book.",
+      "I see a bus.",
+      "He is not tall.",
+      "Are those cats?",
+      "She is my sister.",
+      "She is not a doctor."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/mfg1-fin-final-test-semester-2-ex1.mp3",
+     "secs": 102,
+     "script": [
+      "The cat is on the sofa.",
+      "They have a dog.",
+      "A fish can't walk.",
+      "The sun is hot.",
+      "Do you have a ruler?",
+      "How are you?",
+      "The ball is in the box.",
+      "This is my bag."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

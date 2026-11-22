@@ -84,5 +84,6 @@ window.C2_PRACTICE_BOOKS = [
   {"name": "My Next Grammar 1", "series": "My Next Grammar", "level": "Movers", "prefix": "mng1"},
   {"name": "My Next Grammar 2", "series": "My Next Grammar", "level": "Flyers", "prefix": "mng2"},
   {"name": "My Next Grammar 3", "series": "My Next Grammar", "level": "Pre-Intermediate", "prefix": "mng3"},
-  {"name": "Speakout A1", "series": "Speakout", "level": "Beginner", "prefix": "spk1"}
+  {"name": "Speakout A1", "series": "Speakout", "level": "Beginner", "prefix": "spk1"},
+  {"name": "Speakout A2", "series": "Speakout", "level": "Pre-Intermediate", "prefix": "spk2"}
 ];

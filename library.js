@@ -43947,6 +43947,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "speakout-a2-tests",
+ "level": "Speakout A2",
+ "icon": "📝",
+ "title": "Speakout A2 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Me and you",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk2-ut-unit-test-unit-1-me-and-you-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I work in a hotel.",
+      "She doesn't like mornings.",
+      "Does he play football?",
+      "That is my parents' house.",
+      "They study design.",
+      "We live near the park."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Lifestyle",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk2-ut-unit-test-unit-2-lifestyle-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I'd like some water.",
+      "We haven't got any bread.",
+      "I never drink coffee.",
+      "She hates waiting.",
+      "He usually has toast.",
+      "We eat out twice a week."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Home",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk2-ut-unit-test-unit-3-home-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "This is my room.",
+      "I have got a big sofa.",
+      "There is a mirror on the wall.",
+      "Those boxes are full of books.",
+      "She hasn't got a garden.",
+      "Are there any plants?"
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: This world",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk2-ut-unit-test-unit-4-this-world-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "It was a cold day.",
+      "How much is this scarf?",
+      "There were two thousand people.",
+      "You should arrive early.",
+      "You shouldn't forget your camera.",
+      "We were on holiday."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: The past",
+   "info": "Test paper page 14",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk2-ut-unit-test-unit-5-the-past-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "We stayed in a small hotel.",
+      "I saw a great film.",
+      "She didn't come to the party.",
+      "Did you have a good time?",
+      "Where did you go?",
+      "It was really hot."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Out and about",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk2-ut-unit-test-unit-6-out-and-about-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "I am wearing a blue jacket.",
+      "The train is faster.",
+      "Turn left at the lights.",
+      "The station is opposite the library.",
+      "It is raining now.",
+      "Go across the bridge."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Work and plans",
+   "info": "Test paper page 20",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk2-ut-unit-test-unit-7-work-and-plans-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "She is an engineer.",
+      "I usually work from nine to five.",
+      "I'm working from home today.",
+      "Can I speak to Anna?",
+      "I'd like to learn Italian.",
+      "She wants to work in Rome."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Travel",
+   "info": "Test paper page 23",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk2-ut-unit-test-unit-8-travel-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "It is the biggest city.",
+      "We are going to visit Rome.",
+      "I'd like to book a room.",
+      "He drives carefully.",
+      "Breakfast is from seven to ten.",
+      "The hotel is the cheapest."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk2-mt-monthly-test-1-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "Does he play football?",
+      "I never drink coffee.",
+      "We live near the park.",
+      "She hates waiting.",
+      "I work in a hotel."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk2-mt-monthly-test-2-ex1.mp3",
+     "secs": 68,
+     "script": [
+      "There is a mirror on the wall.",
+      "It was a cold day.",
+      "I have got a big sofa.",
+      "You should arrive early.",
+      "This is my room."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk2-mt-monthly-test-3-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "Where did you go?",
+      "Turn left at the lights.",
+      "She didn't come to the party.",
+      "I am wearing a blue jacket.",
+      "Did you have a good time?"
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk2-mt-monthly-test-4-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "Can I speak to Anna?",
+      "The hotel is the cheapest.",
+      "I'd like to learn Italian.",
+      "We are going to visit Rome.",
+      "I'm working from home today."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk2-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I'd like some water.",
+      "Are there any plants?",
+      "We eat out twice a week.",
+      "This is my room.",
+      "We haven't got any bread.",
+      "Those boxes are full of books."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk2-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I am wearing a blue jacket.",
+      "I'm working from home today.",
+      "The train is faster.",
+      "Can I speak to Anna?",
+      "The station is opposite the library.",
+      "She wants to work in Rome."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk2-fin-final-test-semester-1-ex1.mp3",
+     "secs": 104,
+     "script": [
+      "That is my parents' house.",
+      "She hates waiting.",
+      "She hasn't got a garden.",
+      "We were on holiday.",
+      "They study design.",
+      "We eat out twice a week.",
+      "Are there any plants?",
+      "It was a cold day."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/spk2-fin-final-test-semester-2-ex1.mp3",
+     "secs": 110,
+     "script": [
+      "We stayed in a small hotel.",
+      "It is raining now.",
+      "I usually work from nine to five.",
+      "We are going to visit Rome.",
+      "Where did you go?",
+      "The station is opposite the library.",
+      "She wants to work in Rome.",
+      "The hotel is the cheapest."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

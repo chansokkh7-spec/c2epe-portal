@@ -37326,6 +37326,499 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "reading-explorer-2-tests",
+ "level": "Reading Explorer 2",
+ "icon": "📝",
+ "title": "Reading Explorer 2 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Food and Health",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-ut-unit-test-unit-1-food-and-health-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "Babies like sweet tastes.",
+      "Sugar gives quick energy.",
+      "Insects contain a lot of protein.",
+      "They need less water.",
+      "People eat insects in Africa.",
+      "It is a healthy snack."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Call of the Wild",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-ut-unit-test-unit-2-call-of-the-wild-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "Only the males sing.",
+      "The song lasts twenty minutes.",
+      "Sound travels far in water.",
+      "They recorded the songs.",
+      "A new song spread.",
+      "Birds learn from parents."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: History Detectives",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-ut-unit-test-unit-3-history-detectives-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "He became king at nine.",
+      "The tomb was found in",
+      "3. They used a scanner.",
+      "The man died long ago.",
+      "An arrow hit him.",
+      "Nobody knows the truth."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Traditions and Rituals",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-ut-unit-test-unit-4-traditions-and-rituals-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "He is a living treasure.",
+      "The government helps them.",
+      "They train young students.",
+      "Kung fu is Chinese.",
+      "It is a martial art.",
+      "It spread around the world."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Finding Wonders",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-ut-unit-test-unit-5-finding-wonders-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "It is a hot desert.",
+      "The wind moves the sand.",
+      "The dunes are very high.",
+      "The Sahara was green.",
+      "The canyon is a mile deep.",
+      "Geologists study rocks."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Reef Encounters",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-ut-unit-test-unit-6-reef-encounters-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "Corals build reefs.",
+      "The water is too warm.",
+      "Reefs protect the coast.",
+      "The shark is six meters long.",
+      "It eats seals.",
+      "People catch many sharks."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Dollars and Scents",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-ut-unit-test-unit-7-dollars-and-scents-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "The flowers come from Kenya.",
+      "They go by plane.",
+      "The farms give people jobs.",
+      "I like this scent.",
+      "It is made from oil.",
+      "It is very expensive."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Great Explorers",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-ut-unit-test-unit-8-great-explorers-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "He left home in",
+      "2. He was twenty-one.",
+      "He saw forty countries.",
+      "He traveled with merchants.",
+      "The book describes markets.",
+      "It is a famous book."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 9: Identity",
+   "info": "Test paper page 27",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-ut-unit-test-unit-9-identity-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "The brain is still growing.",
+      "Teens take risks.",
+      "They like to be with friends.",
+      "They are identical twins.",
+      "They have the same DNA.",
+      "The environment matters."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 B, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 10: Facing Change",
+   "info": "Test paper page 30",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-ut-unit-test-unit-10-facing-change-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "The ice is melting.",
+      "The sea is rising.",
+      "The temperature is rising.",
+      "Polar bears hunt seals.",
+      "The village must move.",
+      "We must adapt."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 11: Fact or Fake?",
+   "info": "Test paper page 33",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-ut-unit-test-unit-11-fact-or-fake-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "People think they know a lot.",
+      "Check the source.",
+      "It is a fake story.",
+      "Children begin to lie at three.",
+      "We can spot a lie.",
+      "It is only an illusion."
+     ],
+     "key": "1 C, 2 C, 3 B, 4 B, 5 B, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 12: Going to Extremes",
+   "info": "Test paper page 36",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-ut-unit-test-unit-12-going-to-extremes-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "They made the first flight.",
+      "It lasted twelve seconds.",
+      "The plane had an engine.",
+      "It is completely dark.",
+      "The pressure is very high.",
+      "They went down in a ship."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 A, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-mt-monthly-test-1-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "Insects contain a lot of protein.",
+      "Sound travels far in water.",
+      "It is a healthy snack.",
+      "They recorded the songs.",
+      "Babies like sweet tastes."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-mt-monthly-test-2-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "They used a scanner.",
+      "He is a living treasure.",
+      "The tomb was found in",
+      "4. Kung fu is Chinese.",
+      "He became king at nine."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-mt-monthly-test-3-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "The canyon is a mile deep.",
+      "Reefs protect the coast.",
+      "The dunes are very high.",
+      "Corals build reefs.",
+      "The Sahara was green."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-mt-monthly-test-4-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "I like this scent.",
+      "It is a famous book.",
+      "It is made from oil.",
+      "He was twenty-one.",
+      "The farms give people jobs."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 5",
+   "info": "Test paper page 14",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-mt-monthly-test-5-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "They have the same DNA.",
+      "The sea is rising.",
+      "They like to be with friends.",
+      "The village must move.",
+      "They are identical twins."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 6",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-mt-monthly-test-6-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "We can spot a lie.",
+      "It lasted twelve seconds.",
+      "It is a fake story.",
+      "They made the first flight.",
+      "Children begin to lie at three."
+     ],
+     "key": "1 A, 2 B, 3 C, 4 A, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "Babies like sweet tastes.",
+      "Birds learn from parents.",
+      "The man died long ago.",
+      "It is a martial art.",
+      "It is a healthy snack.",
+      "Only the males sing."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "The flowers come from Kenya.",
+      "He saw forty countries.",
+      "They are identical twins.",
+      "Polar bears hunt seals.",
+      "They go by plane.",
+      "He traveled with merchants."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-fin-final-test-semester-1-ex1.mp3",
+     "secs": 107,
+     "script": [
+      "They need less water.",
+      "They recorded the songs.",
+      "An arrow hit him.",
+      "It spread around the world.",
+      "The wind moves the sand.",
+      "People catch many sharks.",
+      "People eat insects in Africa.",
+      "Birds learn from parents."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio/re2-fin-final-test-semester-2-ex1.mp3",
+     "secs": 106,
+     "script": [
+      "The flowers come from Kenya.",
+      "The book describes markets.",
+      "Teens take risks.",
+      "The sea is rising.",
+      "It is a fake story.",
+      "They went down in a ship.",
+      "It is made from oil.",
+      "He traveled with merchants."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

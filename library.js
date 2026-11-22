@@ -46851,6 +46851,732 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "scholarship-prep-2-tests",
+ "level": "Scholarship Prep 2",
+ "icon": "📝",
+ "title": "Scholarship Prep 2 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Perfect Tenses",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch2-ut-unit-test-unit-1-perfect-tenses-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "I have lived here since",
+      "2. The train had already left.",
+      "She has just left the office.",
+      "They haven't finished yet.",
+      "He had been working for hours.",
+      "Have you ever been to Japan?"
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: The Passive Voice",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch2-ut-unit-test-unit-2-the-passive-voice-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "The museum was built in",
+      "2. The roof is being repaired.",
+      "The paintings were cleaned.",
+      "English is spoken everywhere.",
+      "A new garden will be opened.",
+      "The thief was caught."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Reported Speech",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch2-ut-unit-test-unit-3-reported-speech-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "She said that she was tired.",
+      "He asked me where I lived.",
+      "The teacher told us to open our books.",
+      "They said they would come.",
+      "She asked if I was ready.",
+      "He asked us not to talk."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Conditionals and Wishes",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch2-ut-unit-test-unit-4-conditionals-and-wishes-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "If it rains, we will stay home.",
+      "If I were you, I would study.",
+      "If she had studied, she would have passed.",
+      "I wish I had more time.",
+      "Unless you hurry, you will miss it.",
+      "If you heat ice, it melts."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Modals of Deduction and Obligation",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch2-ut-unit-test-unit-5-modals-of-deduction-and-obligation-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "She must be at home.",
+      "He can't be a doctor.",
+      "You don't have to pay.",
+      "You should have called.",
+      "It might rain later.",
+      "They must have left already."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Gerunds and Infinitives",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch2-ut-unit-test-unit-6-gerunds-and-infinitives-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "She enjoys reading novels.",
+      "He promised to help me.",
+      "I look forward to meeting you.",
+      "She is good at solving problems.",
+      "They decided to leave early.",
+      "It's too hot to play."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Relative Clauses and Linking Words",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch2-ut-unit-test-unit-7-relative-clauses-and-linking-words-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "The man who lives next door.",
+      "Although it was cold, we swam.",
+      "We stayed because of the rain.",
+      "This is the village where I was born.",
+      "She studied hard; therefore, she passed.",
+      "The film was boring."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Phrasal Verbs and Idioms",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch2-ut-unit-test-unit-8-phrasal-verbs-and-idioms-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "Please turn off the light.",
+      "He gave up sweets.",
+      "We ran out of milk.",
+      "He takes after his father.",
+      "It was a piece of cake.",
+      "They put off the meeting."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch2-mt-monthly-test-1-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "She has just left the office.",
+      "The paintings were cleaned.",
+      "Have you ever been to Japan?",
+      "English is spoken everywhere.",
+      "I have lived here since 2015."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch2-mt-monthly-test-2-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "The teacher told us to open our books.",
+      "If it rains, we will stay home.",
+      "He asked me where I lived.",
+      "I wish I had more time.",
+      "She said that she was tired."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch2-mt-monthly-test-3-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "It might rain later.",
+      "I look forward to meeting you.",
+      "You don't have to pay.",
+      "She enjoys reading novels.",
+      "You should have called."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 10",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch2-mt-monthly-test-4-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "This is the village where I was born.",
+      "They put off the meeting.",
+      "She studied hard; therefore, she passed.",
+      "He gave up sweets.",
+      "We stayed because of the rain."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch2-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "The museum was built in",
+      "2. He asked us not to talk.",
+      "The thief was caught.",
+      "She said that she was tired.",
+      "The roof is being repaired.",
+      "They said they would come."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch2-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "She enjoys reading novels.",
+      "We stayed because of the rain.",
+      "He promised to help me.",
+      "This is the village where I was born.",
+      "She is good at solving problems.",
+      "The film was boring."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch2-fin-final-test-semester-1-ex1.mp3",
+     "secs": 109,
+     "script": [
+      "They haven't finished yet.",
+      "English is spoken everywhere.",
+      "She asked if I was ready.",
+      "If you heat ice, it melts.",
+      "He had been working for hours.",
+      "The thief was caught.",
+      "He asked us not to talk.",
+      "If it rains, we will stay home."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch2-fin-final-test-semester-2-ex1.mp3",
+     "secs": 107,
+     "script": [
+      "She must be at home.",
+      "They decided to leave early.",
+      "Although it was cold, we swam.",
+      "He gave up sweets.",
+      "It might rain later.",
+      "She is good at solving problems.",
+      "The film was boring.",
+      "They put off the meeting."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
+},
+{
+ "id": "scholarship-prep-3-tests",
+ "level": "Scholarship Prep 3",
+ "icon": "📝",
+ "title": "Scholarship Prep 3 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Advanced Tenses",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch3-ut-unit-test-unit-1-advanced-tenses-ex1.mp3",
+     "secs": 91,
+     "script": [
+      "By next year, I will have graduated.",
+      "They had been waiting for two hours.",
+      "This time tomorrow, we will be flying.",
+      "She is always borrowing my pens.",
+      "No sooner had she sat down.",
+      "I had never seen such a sunset."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Inversion and Emphasis",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch3-ut-unit-test-unit-2-inversion-and-emphasis-ex1.mp3",
+     "secs": 94,
+     "script": [
+      "Never have I seen such a view.",
+      "Not only did she win, but she also broke the record.",
+      "Hardly had he arrived when it rained.",
+      "What I need is a holiday.",
+      "It was his coach who persuaded him.",
+      "Under no circumstances open this door."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Advanced Conditionals",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch3-ut-unit-test-unit-3-advanced-conditionals-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "If I had known, I would have taken a taxi.",
+      "Had she studied, she would have passed.",
+      "Were he to resign, it would collapse.",
+      "If it weren't for your help.",
+      "I wish I had taken that chance.",
+      "It's high time you started."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Complex Passives and Causatives",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch3-ut-unit-test-unit-4-complex-passives-and-causatives-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "The museum is said to be the oldest.",
+      "She had her portrait painted.",
+      "The east wing is being renovated.",
+      "He is believed to have escaped.",
+      "The documents should have been signed.",
+      "He was made to apologise."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Word Formation",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch3-ut-unit-test-unit-5-word-formation-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "Her creativity impressed them.",
+      "She spoke confidently.",
+      "It was an unwise decision.",
+      "The explanation was clear.",
+      "Their disagreement lasted hours.",
+      "She is a reliable student."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Collocations and Confusing Words",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch3-ut-unit-test-unit-6-collocations-and-confusing-words-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "She made a decision.",
+      "They reached an agreement.",
+      "The storm affected the harvest.",
+      "It had a great effect.",
+      "The company launched a product.",
+      "He did his best."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Cohesion and Linking",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch3-ut-unit-test-unit-7-cohesion-and-linking-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "The meeting started on time.",
+      "She passed with distinction.",
+      "Due to a signal failure.",
+      "Nevertheless, they bought it.",
+      "Whereas she enjoys revising.",
+      "Subsequently, the manager praised them."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Error Correction and Verbal Skills",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch3-ut-unit-test-unit-8-error-correction-and-verbal-skills-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "She doesn't know the answer.",
+      "The news is good.",
+      "Neither of the boys has finished.",
+      "The number of students is growing.",
+      "I look forward to seeing you.",
+      "Each of the girls has a book."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch3-mt-monthly-test-1-ex1.mp3",
+     "secs": 76,
+     "script": [
+      "This time tomorrow, we will be flying.",
+      "Hardly had he arrived when it rained.",
+      "I had never seen such a sunset.",
+      "What I need is a holiday.",
+      "By next year, I will have graduated."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch3-mt-monthly-test-2-ex1.mp3",
+     "secs": 77,
+     "script": [
+      "Were he to resign, it would collapse.",
+      "The museum is said to be the oldest.",
+      "Had she studied, she would have passed.",
+      "He is believed to have escaped.",
+      "If I had known, I would have taken a taxi."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch3-mt-monthly-test-3-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "Their disagreement lasted hours.",
+      "The storm affected the harvest.",
+      "It was an unwise decision.",
+      "She made a decision.",
+      "The explanation was clear."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch3-mt-monthly-test-4-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "Nevertheless, they bought it.",
+      "Each of the girls has a book.",
+      "Whereas she enjoys revising.",
+      "The news is good.",
+      "Due to a signal failure."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch3-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 92,
+     "script": [
+      "Never have I seen such a view.",
+      "It's high time you started.",
+      "Under no circumstances open this door.",
+      "If I had known, I would have taken a taxi.",
+      "Not only did she win, but she also broke the record.",
+      "If it weren't for your help."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch3-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "She made a decision.",
+      "Due to a signal failure.",
+      "They reached an agreement.",
+      "Nevertheless, they bought it.",
+      "It had a great effect.",
+      "Subsequently, the manager praised them."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch3-fin-final-test-semester-1-ex1.mp3",
+     "secs": 114,
+     "script": [
+      "She is always borrowing my pens.",
+      "What I need is a holiday.",
+      "I wish I had taken that chance.",
+      "He was made to apologise.",
+      "No sooner had she sat down.",
+      "Under no circumstances open this door.",
+      "It's high time you started.",
+      "The museum is said to be the oldest."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/sch3-fin-final-test-semester-2-ex1.mp3",
+     "secs": 111,
+     "script": [
+      "Her creativity impressed them.",
+      "The company launched a product.",
+      "She passed with distinction.",
+      "The news is good.",
+      "Their disagreement lasted hours.",
+      "It had a great effect.",
+      "Subsequently, the manager praised them.",
+      "Each of the girls has a book."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

@@ -40647,6 +40647,347 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "great-writing-3-tests",
+ "level": "Great Writing 3",
+ "icon": "📝",
+ "title": "Great Writing 3 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Paragraphs",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw3-ut-unit-test-unit-1-paragraphs-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "The topic sentence states the main idea.",
+      "She is brainstorming ideas.",
+      "Supporting sentences give details.",
+      "The market sells fresh fruit juice.",
+      "Thousands of visitors attend.",
+      "Write a concluding sentence."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Features of Good Writing",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw3-ut-unit-test-unit-2-features-of-good-writing-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "Every sentence supports the topic.",
+      "Use transitions to connect ideas.",
+      "She won the prize.",
+      "Read your paragraph aloud.",
+      "The pronoun is unclear.",
+      "Check every sentence."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Types of Paragraphs",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw3-ut-unit-test-unit-3-types-of-paragraphs-ex1.mp3",
+     "secs": 91,
+     "script": [
+      "A descriptive paragraph tells what something is like.",
+      "A narrative paragraph tells a story.",
+      "An opinion paragraph gives reasons.",
+      "The library looks like a castle.",
+      "The students work hard.",
+      "She is a creative person."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Classification Essays: Moving from Paragraph to Essay",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw3-ut-unit-test-unit-4-classification-essays-moving-from-paragraph-to-essay-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "An essay has three main parts.",
+      "The thesis states the main idea.",
+      "Start with a hook.",
+      "There are three categories.",
+      "The writer sorts the things.",
+      "Revise your first draft."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Cause-Effect Essays",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw3-ut-unit-test-unit-5-cause-effect-essays-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "The road was closed because of the storm.",
+      "As a result, the game was canceled.",
+      "Students feel tired in class.",
+      "Pollution affects our health.",
+      "What was the cause?",
+      "Lack of sleep causes problems."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Comparison Essays",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw3-ut-unit-test-unit-6-comparison-essays-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "Trains are faster than buses.",
+      "Both cities are busy.",
+      "The capital is more expensive.",
+      "However, buses are cheaper.",
+      "It is the highest mountain.",
+      "Use the block method."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Problem-Solution Essays",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw3-ut-unit-test-unit-7-problem-solution-essays-ex1.mp3",
+     "secs": 91,
+     "script": [
+      "Heavy traffic is a serious problem.",
+      "The city should build bus lanes.",
+      "If buses are cheap, more people will use them.",
+      "The air will be cleaner.",
+      "Although it is slow, it is cheap.",
+      "Use different sentence types."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw3-mt-monthly-test-1-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "Supporting sentences give details.",
+      "She won the prize.",
+      "Write a concluding sentence.",
+      "Read your paragraph aloud.",
+      "The topic sentence states the main idea."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw3-mt-monthly-test-2-ex1.mp3",
+     "secs": 77,
+     "script": [
+      "An opinion paragraph gives reasons.",
+      "An essay has three main parts.",
+      "A narrative paragraph tells a story.",
+      "There are three categories.",
+      "A descriptive paragraph tells what something is like."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw3-mt-monthly-test-3-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "What was the cause?",
+      "The capital is more expensive.",
+      "Students feel tired in class.",
+      "Trains are faster than buses.",
+      "Pollution affects our health."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw3-mt-monthly-test-4-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "However, buses are cheaper.",
+      "Use different sentence types.",
+      "It is the highest mountain.",
+      "The city should build bus lanes.",
+      "The capital is more expensive."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw3-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "The topic sentence states the main idea.",
+      "Check every sentence.",
+      "The library looks like a castle.",
+      "Write a concluding sentence.",
+      "Every sentence supports the topic.",
+      "An opinion paragraph gives reasons."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw3-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "The road was closed because of the storm.",
+      "The capital is more expensive.",
+      "As a result, the game was canceled.",
+      "However, buses are cheaper.",
+      "Pollution affects our health.",
+      "Use the block method."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw3-fin-final-test-semester-1-ex1.mp3",
+     "secs": 110,
+     "script": [
+      "The market sells fresh fruit juice.",
+      "Read your paragraph aloud.",
+      "The students work hard.",
+      "Revise your first draft.",
+      "Thousands of visitors attend.",
+      "Check every sentence.",
+      "She is a creative person.",
+      "An essay has three main parts."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/gw3-fin-final-test-semester-2-ex1.mp3",
+     "secs": 111,
+     "script": [
+      "The road was closed because of the storm.",
+      "It is the highest mountain.",
+      "The city should build bus lanes.",
+      "What was the cause?",
+      "However, buses are cheaper.",
+      "Use different sentence types.",
+      "Students feel tired in class.",
+      "Use the block method."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

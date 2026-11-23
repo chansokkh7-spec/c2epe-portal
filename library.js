@@ -52296,6 +52296,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "reading-journey-7-tests",
+ "level": "Reading Journey 7",
+ "icon": "📝",
+ "title": "Reading Journey 7 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: News and Media",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj7-ut-unit-test-unit-1-news-and-media-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "The story was reported yesterday.",
+      "Journalists must check their facts.",
+      "Fake news spreads quickly.",
+      "The report was biased.",
+      "Compare several sources.",
+      "Readers need to be critical."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Social Media",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj7-ut-unit-test-unit-2-social-media-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "Teenagers spend hours online.",
+      "She regrets posting that photo.",
+      "Some feel isolated.",
+      "Companies collect personal data.",
+      "Online bullying is hurtful.",
+      "I'd rather talk face to face."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: The World of Work",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj7-ut-unit-test-unit-3-the-world-of-work-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "Remote work has become popular.",
+      "She hopes to get promoted.",
+      "A good work-life balance is important.",
+      "The company is looking into a four-day week.",
+      "The candidates were shortlisted.",
+      "She was asked to work overtime."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Money and Consumers",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj7-ut-unit-test-unit-4-money-and-consumers-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "Consumers have more choice than ever.",
+      "The shop refunded my money.",
+      "I'm saving up for a laptop.",
+      "Cheap shoes broke quickly.",
+      "Advertising persuades us to buy.",
+      "Think about value for money."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Healthy Living",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj7-ut-unit-test-unit-5-healthy-living-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "Exercise reduces the risk of disease.",
+      "A balanced diet includes fruit.",
+      "Cut down on sugar.",
+      "Experts recommend thirty minutes.",
+      "It is hard to give up junk food.",
+      "Smoking is harmful."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Sleep and Stress",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj7-ut-unit-test-unit-6-sleep-and-stress-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "Teenagers need more sleep.",
+      "Lack of sleep leads to poor concentration.",
+      "She couldn't sleep.",
+      "Avoid screens before bed.",
+      "He is under a lot of pressure.",
+      "A regular routine helps."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Education Today",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj7-ut-unit-test-unit-7-education-today-ex1.mp3",
+     "secs": 95,
+     "script": [
+      "Students are expected to take responsibility.",
+      "Online courses are accessible.",
+      "She has been studying since January.",
+      "It is high time the system was reformed.",
+      "Teachers receive regular training.",
+      "Creativity matters as much as results."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Volunteering",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj7-ut-unit-test-unit-8-volunteering-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "Thousands of people volunteer.",
+      "It is rewarding to help others.",
+      "Charities rely on donations.",
+      "Volunteers work for free.",
+      "She works at an animal shelter.",
+      "She feels proud."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj7-mt-monthly-test-1-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "Fake news spreads quickly.",
+      "Some feel isolated.",
+      "Readers need to be critical.",
+      "Companies collect personal data.",
+      "The story was reported yesterday."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj7-mt-monthly-test-2-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "A good work-life balance is important.",
+      "Consumers have more choice than ever.",
+      "She hopes to get promoted.",
+      "Cheap shoes broke quickly.",
+      "Remote work has become popular."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj7-mt-monthly-test-3-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "It is hard to give up junk food.",
+      "She couldn't sleep.",
+      "Cut down on sugar.",
+      "Teenagers need more sleep.",
+      "Experts recommend thirty minutes."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj7-mt-monthly-test-4-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "It is high time the system was reformed.",
+      "She feels proud.",
+      "Teachers receive regular training.",
+      "It is rewarding to help others.",
+      "She has been studying since January."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj7-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "Teenagers spend hours online.",
+      "She was asked to work overtime.",
+      "I'd rather talk face to face.",
+      "Remote work has become popular.",
+      "She regrets posting that photo.",
+      "The company is looking into a four-day week."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj7-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 92,
+     "script": [
+      "Teenagers need more sleep.",
+      "She has been studying since January.",
+      "Lack of sleep leads to poor concentration.",
+      "It is high time the system was reformed.",
+      "Avoid screens before bed.",
+      "Creativity matters as much as results."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj7-fin-final-test-semester-1-ex1.mp3",
+     "secs": 112,
+     "script": [
+      "The report was biased.",
+      "Companies collect personal data.",
+      "The candidates were shortlisted.",
+      "Think about value for money.",
+      "Compare several sources.",
+      "I'd rather talk face to face.",
+      "She was asked to work overtime.",
+      "Consumers have more choice than ever."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj7-fin-final-test-semester-2-ex1.mp3",
+     "secs": 115,
+     "script": [
+      "Exercise reduces the risk of disease.",
+      "He is under a lot of pressure.",
+      "Online courses are accessible.",
+      "It is rewarding to help others.",
+      "It is hard to give up junk food.",
+      "Avoid screens before bed.",
+      "Creativity matters as much as results.",
+      "She feels proud."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

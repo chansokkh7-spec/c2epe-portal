@@ -53385,6 +53385,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "reading-journey-10-tests",
+ "level": "Reading Journey 10",
+ "icon": "📝",
+ "title": "Reading Journey 10 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Planning the Modern City",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj10-ut-unit-test-unit-1-planning-the-modern-city-ex1.mp3",
+     "secs": 103,
+     "script": [
+      "Rarely do planners enjoy a blank canvas.",
+      "Affordable housing is in short supply.",
+      "Not only did the scheme reduce traffic, but it also improved air quality.",
+      "The council addressed the shortage of public transport.",
+      "Thousands would be displaced from their homes.",
+      "Green spaces are essential to wellbeing."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Architecture and Memory",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj10-ut-unit-test-unit-2-architecture-and-memory-ex1.mp3",
+     "secs": 97,
+     "script": [
+      "Buildings embody a community's memories.",
+      "The cathedral dates back to the twelfth century.",
+      "Heritage sites ought to be protected.",
+      "The square was rebuilt to its original design.",
+      "The architect was awarded a prize.",
+      "Much of the old town has been left in ruins."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: The Rule of Law",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj10-ut-unit-test-unit-3-the-rule-of-law-ex1.mp3",
+     "secs": 94,
+     "script": [
+      "No individual is above the law.",
+      "The defendant is presumed innocent.",
+      "Judges are expected to remain impartial.",
+      "Seldom has a verdict provoked such outrage.",
+      "The contract was void from the outset.",
+      "The law fails to protect whistleblowers."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Crime and Rehabilitation",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj10-ut-unit-test-unit-4-crime-and-rehabilitation-ex1.mp3",
+     "secs": 94,
+     "script": [
+      "The offender was released on parole.",
+      "Prison should rehabilitate as well as punish.",
+      "Crime rates have fallen sharply.",
+      "More money should be spent on education.",
+      "She was sentenced to community service.",
+      "Skills make reoffending less likely."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Public Health",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj10-ut-unit-test-unit-5-public-health-ex1.mp3",
+     "secs": 93,
+     "script": [
+      "Smallpox has been eradicated worldwide.",
+      "Clean water prevents many illnesses.",
+      "The campaign aims to reduce smoking.",
+      "Prevention is better than cure.",
+      "The outbreak was contained.",
+      "Hardly had the epidemic ended when a new strain appeared."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Medical Ethics",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj10-ut-unit-test-unit-6-medical-ethics-ex1.mp3",
+     "secs": 95,
+     "script": [
+      "Patients must give informed consent.",
+      "Doctors must respect confidentiality.",
+      "Participants may withdraw at any point.",
+      "The committee reviews every case.",
+      "The treatment is so costly that few can afford it.",
+      "There is a shortage of donor organs."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Polar Exploration",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj10-ut-unit-test-unit-7-polar-exploration-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "Never before had anyone crossed the ice cap.",
+      "They would have perished without the depot.",
+      "Provisions were running low.",
+      "The crew pressed on.",
+      "The South Pole was reached in",
+      "6. They navigated by the stars."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Ocean and Space Frontiers",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj10-ut-unit-test-unit-8-ocean-and-space-frontiers-ex1.mp3",
+     "secs": 98,
+     "script": [
+      "More is known about the Moon than the deep ocean.",
+      "The probe will reach Mars next year.",
+      "Astronomers have detected thousands of planets.",
+      "So vast is the universe that we may never explore it.",
+      "The engines failed after lift-off.",
+      "Settlers would need to grow their own food."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj10-mt-monthly-test-1-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "Not only did the scheme reduce traffic, but it also improved air quality.",
+      "Heritage sites ought to be protected.",
+      "Green spaces are essential to wellbeing.",
+      "The square was rebuilt to its original design.",
+      "Rarely do planners enjoy a blank canvas."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj10-mt-monthly-test-2-ex1.mp3",
+     "secs": 78,
+     "script": [
+      "Judges are expected to remain impartial.",
+      "The offender was released on parole.",
+      "The defendant is presumed innocent.",
+      "More money should be spent on education.",
+      "No individual is above the law."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj10-mt-monthly-test-3-ex1.mp3",
+     "secs": 76,
+     "script": [
+      "The outbreak was contained.",
+      "Participants may withdraw at any point.",
+      "The campaign aims to reduce smoking.",
+      "Patients must give informed consent.",
+      "Prevention is better than cure."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj10-mt-monthly-test-4-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "The crew pressed on.",
+      "Settlers would need to grow their own food.",
+      "The South Pole was reached in",
+      "4. The probe will reach Mars next year.",
+      "Provisions were running low."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj10-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 96,
+     "script": [
+      "Buildings embody a community's memories.",
+      "The law fails to protect whistleblowers.",
+      "Much of the old town has been left in ruins.",
+      "No individual is above the law.",
+      "The cathedral dates back to the twelfth century.",
+      "Seldom has a verdict provoked such outrage."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj10-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "Patients must give informed consent.",
+      "Provisions were running low.",
+      "Doctors must respect confidentiality.",
+      "The crew pressed on.",
+      "The committee reviews every case.",
+      "They navigated by the stars."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj10-fin-final-test-semester-1-ex1.mp3",
+     "secs": 123,
+     "script": [
+      "The council addressed the shortage of public transport.",
+      "The square was rebuilt to its original design.",
+      "The contract was void from the outset.",
+      "Skills make reoffending less likely.",
+      "Thousands would be displaced from their homes.",
+      "Much of the old town has been left in ruins.",
+      "The law fails to protect whistleblowers.",
+      "The offender was released on parole."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj10-fin-final-test-semester-2-ex1.mp3",
+     "secs": 118,
+     "script": [
+      "Smallpox has been eradicated worldwide.",
+      "The treatment is so costly that few can afford it.",
+      "They would have perished without the depot.",
+      "The probe will reach Mars next year.",
+      "The outbreak was contained.",
+      "The committee reviews every case.",
+      "They navigated by the stars.",
+      "Settlers would need to grow their own food."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

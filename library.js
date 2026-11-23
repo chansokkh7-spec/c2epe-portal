@@ -54111,6 +54111,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "reading-journey-12-tests",
+ "level": "Reading Journey 12",
+ "icon": "📝",
+ "title": "Reading Journey 12 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Sport and Society",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj12-ut-unit-test-unit-1-sport-and-society-ex1.mp3",
+     "secs": 98,
+     "script": [
+      "Sport can bring people together.",
+      "Fair play distinguishes sport from competition.",
+      "Spectators generate huge revenue.",
+      "The rivalry was so fierce that fans were kept apart.",
+      "Doping undermines the integrity of sport.",
+      "The team won the final without its captain."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Resilience",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj12-ut-unit-test-unit-2-resilience-ex1.mp3",
+     "secs": 93,
+     "script": [
+      "Resilience is the ability to recover from setbacks.",
+      "People rarely emerge from hardship unchanged.",
+      "What matters is how we rise.",
+      "Adversity made her stronger.",
+      "Without her coach she would have given up.",
+      "The athlete never complains."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Artificial Intelligence at Work",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj12-ut-unit-test-unit-3-artificial-intelligence-at-work-ex1.mp3",
+     "secs": 103,
+     "script": [
+      "Machines can perform tasks once reserved for humans.",
+      "Technology rarely destroys jobs without creating new ones.",
+      "Algorithms can detect patterns we miss.",
+      "Many workers would need to retrain.",
+      "Machines find empathy hardest to replicate.",
+      "Concerns about bias remain unresolved."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Genes and Identity",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj12-ut-unit-test-unit-4-genes-and-identity-ex1.mp3",
+     "secs": 93,
+     "script": [
+      "Genes determine many physical traits.",
+      "It is not genes alone that shape us.",
+      "The discovery was announced in",
+      "4. Researchers can edit faulty genes.",
+      "Embryos should be strictly regulated.",
+      "The debate shows no sign of ending."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: The Art of Translation",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj12-ut-unit-test-unit-5-the-art-of-translation-ex1.mp3",
+     "secs": 98,
+     "script": [
+      "Translation is more than replacing words.",
+      "Seldom does a word have an exact equivalent.",
+      "Nuance is hardest to capture.",
+      "A translator must know two cultures.",
+      "Idioms rarely translate word for word.",
+      "The novel has been translated into forty languages."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Music and Society",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj12-ut-unit-test-unit-6-music-and-society-ex1.mp3",
+     "secs": 96,
+     "script": [
+      "Music transcends language barriers.",
+      "Rarely has a song united so many people.",
+      "Rhythm can move an entire crowd.",
+      "Folk traditions preserve our heritage.",
+      "The anthem was composed in",
+      "6. Streaming has transformed how we discover artists."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: What Makes a Leader",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj12-ut-unit-test-unit-7-what-makes-a-leader-ex1.mp3",
+     "secs": 91,
+     "script": [
+      "A leader who listens earns respect.",
+      "Integrity inspires trust.",
+      "The best leaders delegate.",
+      "Her qualities became apparent in the crisis.",
+      "The team would be left without direction.",
+      "Leadership is a matter of example."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Lifelong Learning and Legacy",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj12-ut-unit-test-unit-8-lifelong-learning-and-legacy-ex1.mp3",
+     "secs": 98,
+     "script": [
+      "Learning does not end when school does.",
+      "Seldom does anyone master a skill without practice.",
+      "It is what we leave behind that defines our legacy.",
+      "The mentor retired last year.",
+      "She inspired generations.",
+      "The more we learn, the more we realise we do not know."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj12-mt-monthly-test-1-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "Spectators generate huge revenue.",
+      "What matters is how we rise.",
+      "The team won the final without its captain.",
+      "Adversity made her stronger.",
+      "Sport can bring people together."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj12-mt-monthly-test-2-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "Algorithms can detect patterns we miss.",
+      "Genes determine many physical traits.",
+      "Technology rarely destroys jobs without creating new ones.",
+      "Researchers can edit faulty genes.",
+      "Machines can perform tasks once reserved for humans."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj12-mt-monthly-test-3-ex1.mp3",
+     "secs": 78,
+     "script": [
+      "Idioms rarely translate word for word.",
+      "Rhythm can move an entire crowd.",
+      "Nuance is hardest to capture.",
+      "Music transcends language barriers.",
+      "A translator must know two cultures."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj12-mt-monthly-test-4-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "Her qualities became apparent in the crisis.",
+      "The more we learn, the more we realise we do not know.",
+      "The team would be left without direction.",
+      "Seldom does anyone master a skill without practice.",
+      "The best leaders delegate."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj12-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 98,
+     "script": [
+      "Resilience is the ability to recover from setbacks.",
+      "Concerns about bias remain unresolved.",
+      "The athlete never complains.",
+      "Machines can perform tasks once reserved for humans.",
+      "People rarely emerge from hardship unchanged.",
+      "Many workers would need to retrain."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj12-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 92,
+     "script": [
+      "Music transcends language barriers.",
+      "The best leaders delegate.",
+      "Rarely has a song united so many people.",
+      "Her qualities became apparent in the crisis.",
+      "Folk traditions preserve our heritage.",
+      "Leadership is a matter of example."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj12-fin-final-test-semester-1-ex1.mp3",
+     "secs": 122,
+     "script": [
+      "The rivalry was so fierce that fans were kept apart.",
+      "Adversity made her stronger.",
+      "Machines find empathy hardest to replicate.",
+      "The debate shows no sign of ending.",
+      "Doping undermines the integrity of sport.",
+      "The athlete never complains.",
+      "Concerns about bias remain unresolved.",
+      "Genes determine many physical traits."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj12-fin-final-test-semester-2-ex1.mp3",
+     "secs": 124,
+     "script": [
+      "Translation is more than replacing words.",
+      "The anthem was composed in",
+      "3. Integrity inspires trust.",
+      "Seldom does anyone master a skill without practice.",
+      "Idioms rarely translate word for word.",
+      "Folk traditions preserve our heritage.",
+      "Leadership is a matter of example.",
+      "The more we learn, the more we realise we do not know."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

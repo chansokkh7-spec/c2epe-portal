@@ -62,6 +62,7 @@ try{
 <script src="exams.js"></script>
 <script src="book.js"></script>
 <script>
+document.addEventListener('error',function(e){var a=e.target;if(a&&a.tagName==='AUDIO'&&!a.dataset.fb&&/\/audio\//.test(a.src)){a.dataset.fb='1';a.src=a.src.replace('/audio/','/');a.load();}},true);
 var AUDIO="audio/", main=document.getElementById('main'), timerEl=document.getElementById('timer');
 function $(id){return document.getElementById(id);}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}

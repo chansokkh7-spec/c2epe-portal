@@ -50136,7 +50136,7 @@ window.LIBRARY = [
     {
      "n": 1,
      "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
-     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-ut-unit-test-unit-1-my-name-and-me-ex1.mp3",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj1-ut-unit-test-unit-1-my-name-and-me-ex1.mp3",
      "secs": 80,
      "script": [
       "My name is Mia.",
@@ -50158,7 +50158,7 @@ window.LIBRARY = [
     {
      "n": 1,
      "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
-     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-ut-unit-test-unit-2-my-family-ex1.mp3",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj1-ut-unit-test-unit-2-my-family-ex1.mp3",
      "secs": 80,
      "script": [
       "This is my mother.",
@@ -50180,7 +50180,7 @@ window.LIBRARY = [
     {
      "n": 1,
      "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
-     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-ut-unit-test-unit-3-pets-ex1.mp3",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj1-ut-unit-test-unit-3-pets-ex1.mp3",
      "secs": 80,
      "script": [
       "I have a cat.",
@@ -50202,7 +50202,7 @@ window.LIBRARY = [
     {
      "n": 1,
      "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
-     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-ut-unit-test-unit-4-farm-animals-ex1.mp3",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj1-ut-unit-test-unit-4-farm-animals-ex1.mp3",
      "secs": 83,
      "script": [
       "The cow says moo.",
@@ -50224,7 +50224,7 @@ window.LIBRARY = [
     {
      "n": 1,
      "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
-     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-ut-unit-test-unit-5-colours-i-see-ex1.mp3",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj1-ut-unit-test-unit-5-colours-i-see-ex1.mp3",
      "secs": 80,
      "script": [
       "The sky is blue.",
@@ -50246,7 +50246,7 @@ window.LIBRARY = [
     {
      "n": 1,
      "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
-     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-ut-unit-test-unit-6-fruit-and-food-ex1.mp3",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj1-ut-unit-test-unit-6-fruit-and-food-ex1.mp3",
      "secs": 81,
      "script": [
       "I like apples.",
@@ -50268,7 +50268,7 @@ window.LIBRARY = [
     {
      "n": 1,
      "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
-     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-ut-unit-test-unit-7-my-classroom-ex1.mp3",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj1-ut-unit-test-unit-7-my-classroom-ex1.mp3",
      "secs": 81,
      "script": [
       "This is my desk.",
@@ -50290,7 +50290,7 @@ window.LIBRARY = [
     {
      "n": 1,
      "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
-     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-ut-unit-test-unit-8-play-at-school-ex1.mp3",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj1-ut-unit-test-unit-8-play-at-school-ex1.mp3",
      "secs": 81,
      "script": [
       "We play in the playground.",
@@ -50312,7 +50312,7 @@ window.LIBRARY = [
     {
      "n": 1,
      "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
-     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-mt-monthly-test-1-ex1.mp3",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj1-mt-monthly-test-1-ex1.mp3",
      "secs": 67,
      "script": [
       "I have two eyes.",
@@ -50333,7 +50333,7 @@ window.LIBRARY = [
     {
      "n": 1,
      "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
-     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-mt-monthly-test-2-ex1.mp3",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj1-mt-monthly-test-2-ex1.mp3",
      "secs": 67,
      "script": [
       "The fish swims in water.",
@@ -50354,7 +50354,7 @@ window.LIBRARY = [
     {
      "n": 1,
      "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
-     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-mt-monthly-test-3-ex1.mp3",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj1-mt-monthly-test-3-ex1.mp3",
      "secs": 68,
      "script": [
       "My bag is pink.",
@@ -50375,7 +50375,7 @@ window.LIBRARY = [
     {
      "n": 1,
      "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
-     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-mt-monthly-test-4-ex1.mp3",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj1-mt-monthly-test-4-ex1.mp3",
      "secs": 68,
      "script": [
       "We read a story.",
@@ -50396,7 +50396,7 @@ window.LIBRARY = [
     {
      "n": 1,
      "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
-     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-mid-mid-term-test-semester-1-ex1.mp3",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj1-mid-mid-term-test-semester-1-ex1.mp3",
      "secs": 80,
      "script": [
       "This is my mother.",
@@ -50418,7 +50418,7 @@ window.LIBRARY = [
     {
      "n": 1,
      "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
-     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-mid-mid-term-test-semester-2-ex1.mp3",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj1-mid-mid-term-test-semester-2-ex1.mp3",
      "secs": 79,
      "script": [
       "I like apples.",
@@ -50440,7 +50440,7 @@ window.LIBRARY = [
     {
      "n": 1,
      "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
-     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-fin-final-test-semester-1-ex1.mp3",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj1-fin-final-test-semester-1-ex1.mp3",
      "secs": 103,
      "script": [
       "I like to play.",
@@ -50464,7 +50464,7 @@ window.LIBRARY = [
     {
      "n": 1,
      "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
-     "file": "https://chansokkh7-spec.github.io/c2epe-audio2/rj1-fin-final-test-semester-2-ex1.mp3",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj1-fin-final-test-semester-2-ex1.mp3",
      "secs": 104,
      "script": [
       "The sky is blue.",
@@ -50475,6 +50475,732 @@ window.LIBRARY = [
       "The cake is sweet.",
       "Please sit down.",
       "The bell rings."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
+},
+{
+ "id": "reading-journey-2-tests",
+ "level": "Reading Journey 2",
+ "icon": "📝",
+ "title": "Reading Journey 2 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: My House",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj2-ut-unit-test-unit-1-my-house-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "There is a sofa in the living room.",
+      "We cook in the kitchen.",
+      "I sleep in my bedroom.",
+      "The lamp is next to the bed.",
+      "There is a small garden.",
+      "We eat dinner at the table."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Helping at Home",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj2-ut-unit-test-unit-2-helping-at-home-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "I wash the dishes.",
+      "My brother sweeps the floor.",
+      "Dad is watering the plants.",
+      "Mum is washing the clothes.",
+      "I put my toys in the box.",
+      "Please make your bed."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: What I Wear",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj2-ut-unit-test-unit-3-what-i-wear-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I wear a hat.",
+      "She wears a long dress.",
+      "It is cold, so I wear a coat.",
+      "My shoes are new.",
+      "I put on my socks.",
+      "These trousers are big."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Weather",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj2-ut-unit-test-unit-4-weather-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "It is sunny today.",
+      "Take an umbrella.",
+      "It is very cold in winter.",
+      "The wind is blowing.",
+      "It snows in the mountains.",
+      "The sky is grey."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: My Toys",
+   "info": "Test paper page 13",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj2-ut-unit-test-unit-5-my-toys-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I have a toy robot.",
+      "My doll has long hair.",
+      "The kite is flying high.",
+      "We are building a tower.",
+      "My car is fast.",
+      "Let's play a game."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: A Birthday Party",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj2-ut-unit-test-unit-6-a-birthday-party-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "Today is my birthday.",
+      "I am eight years old.",
+      "Mum is baking a cake.",
+      "My friends bring presents.",
+      "We sing a happy song.",
+      "I blow out the candles."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: My Body",
+   "info": "Test paper page 17",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj2-ut-unit-test-unit-7-my-body-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I see with my eyes.",
+      "I hear with my ears.",
+      "I have ten fingers.",
+      "My legs help me walk.",
+      "I brush my teeth.",
+      "She is waving her hand."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Staying Healthy",
+   "info": "Test paper page 19",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj2-ut-unit-test-unit-8-staying-healthy-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "I wash my hands.",
+      "Drink plenty of water.",
+      "Fruit is good for you.",
+      "I go to bed early.",
+      "Brush your teeth twice a day.",
+      "She goes to the doctor."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj2-mt-monthly-test-1-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "I sleep in my bedroom.",
+      "Dad is watering the plants.",
+      "We eat dinner at the table.",
+      "Mum is washing the clothes.",
+      "There is a sofa in the living room."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj2-mt-monthly-test-2-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "It is cold, so I wear a coat.",
+      "It is sunny today.",
+      "She wears a long dress.",
+      "The wind is blowing.",
+      "I wear a hat."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj2-mt-monthly-test-3-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "My car is fast.",
+      "Mum is baking a cake.",
+      "The kite is flying high.",
+      "Today is my birthday.",
+      "We are building a tower."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj2-mt-monthly-test-4-ex1.mp3",
+     "secs": 69,
+     "script": [
+      "My legs help me walk.",
+      "She goes to the doctor.",
+      "I brush my teeth.",
+      "Drink plenty of water.",
+      "I have ten fingers."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj2-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "I wash the dishes.",
+      "These trousers are big.",
+      "Please make your bed.",
+      "I wear a hat.",
+      "My brother sweeps the floor.",
+      "My shoes are new."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj2-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "Today is my birthday.",
+      "I have ten fingers.",
+      "I am eight years old.",
+      "My legs help me walk.",
+      "My friends bring presents.",
+      "She is waving her hand."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj2-fin-final-test-semester-1-ex1.mp3",
+     "secs": 105,
+     "script": [
+      "The lamp is next to the bed.",
+      "Mum is washing the clothes.",
+      "I put on my socks.",
+      "The sky is grey.",
+      "There is a small garden.",
+      "Please make your bed.",
+      "These trousers are big.",
+      "It is sunny today."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj2-fin-final-test-semester-2-ex1.mp3",
+     "secs": 106,
+     "script": [
+      "I have a toy robot.",
+      "We sing a happy song.",
+      "I hear with my ears.",
+      "Drink plenty of water.",
+      "My car is fast.",
+      "My friends bring presents.",
+      "She is waving her hand.",
+      "She goes to the doctor."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
+},
+{
+ "id": "reading-journey-3-tests",
+ "level": "Reading Journey 3",
+ "icon": "📝",
+ "title": "Reading Journey 3 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Around Town",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj3-ut-unit-test-unit-1-around-town-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "The library is next to the bank.",
+      "There is a park near my house.",
+      "I buy bread at the bakery.",
+      "The hospital is opposite the school.",
+      "Turn left at the corner.",
+      "The post office opens at nine."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Getting Around",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj3-ut-unit-test-unit-2-getting-around-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "I go to school by bus.",
+      "We take the train.",
+      "She rides her bicycle.",
+      "The plane flies above the clouds.",
+      "The bus leaves at 7.30.",
+      "The ship sails across the sea."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Four Seasons",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj3-ut-unit-test-unit-3-four-seasons-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "There are four seasons.",
+      "Flowers grow in spring.",
+      "Summer is hot and sunny.",
+      "The leaves fall in autumn.",
+      "We wear warm clothes in winter.",
+      "The days are longer in summer."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: In the Forest",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj3-ut-unit-test-unit-4-in-the-forest-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "A bear lives in the forest.",
+      "Birds build nests.",
+      "A river flows through the forest.",
+      "A squirrel climbs the tree.",
+      "The deer are eating grass.",
+      "We must protect the forest."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: My Hobbies",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj3-ut-unit-test-unit-5-my-hobbies-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "I love painting.",
+      "She plays the piano.",
+      "My hobby is collecting stamps.",
+      "He likes reading books.",
+      "We enjoy dancing.",
+      "I'm good at drawing."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Sports Day",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj3-ut-unit-test-unit-6-sports-day-ex1.mp3",
+     "secs": 82,
+     "script": [
+      "Tom ran very fast.",
+      "Zoe came second.",
+      "The referee blew the whistle.",
+      "The winners got gold medals.",
+      "Everyone cheered.",
+      "Our team won."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Festivals",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj3-ut-unit-test-unit-7-festivals-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "People light lamps.",
+      "We eat special food.",
+      "Children wear new clothes.",
+      "There are fireworks at night.",
+      "We visit our relatives.",
+      "We give gifts to friends."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: A Holiday Trip",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj3-ut-unit-test-unit-8-a-holiday-trip-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "We went to the beach.",
+      "We stayed in a small hotel.",
+      "My sister built a sandcastle.",
+      "I took many photos.",
+      "The weather was sunny.",
+      "It was a wonderful holiday."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj3-mt-monthly-test-1-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "I buy bread at the bakery.",
+      "She rides her bicycle.",
+      "The post office opens at nine.",
+      "The plane flies above the clouds.",
+      "The library is next to the bank."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj3-mt-monthly-test-2-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "Summer is hot and sunny.",
+      "A bear lives in the forest.",
+      "Flowers grow in spring.",
+      "A squirrel climbs the tree.",
+      "There are four seasons."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj3-mt-monthly-test-3-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "We enjoy dancing.",
+      "The referee blew the whistle.",
+      "My hobby is collecting stamps.",
+      "Tom ran very fast.",
+      "He likes reading books."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 10",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj3-mt-monthly-test-4-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "There are fireworks at night.",
+      "It was a wonderful holiday.",
+      "We visit our relatives.",
+      "We stayed in a small hotel.",
+      "Children wear new clothes."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj3-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "I go to school by bus.",
+      "The days are longer in summer.",
+      "The ship sails across the sea.",
+      "There are four seasons.",
+      "We take the train.",
+      "The leaves fall in autumn."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj3-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "Tom ran very fast.",
+      "Children wear new clothes.",
+      "Zoe came second.",
+      "There are fireworks at night.",
+      "The winners got gold medals.",
+      "We give gifts to friends."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj3-fin-final-test-semester-1-ex1.mp3",
+     "secs": 111,
+     "script": [
+      "The hospital is opposite the school.",
+      "The plane flies above the clouds.",
+      "We wear warm clothes in winter.",
+      "We must protect the forest.",
+      "Turn left at the corner.",
+      "The ship sails across the sea.",
+      "The days are longer in summer.",
+      "A bear lives in the forest."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj3-fin-final-test-semester-2-ex1.mp3",
+     "secs": 106,
+     "script": [
+      "I love painting.",
+      "Everyone cheered.",
+      "We eat special food.",
+      "We stayed in a small hotel.",
+      "We enjoy dancing.",
+      "The winners got gold medals.",
+      "We give gifts to friends.",
+      "It was a wonderful holiday."
      ],
      "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
     }

@@ -556,7 +556,6 @@ function logoImgError(img){
         <button onclick="closeClubsMenu();window.open('digital-hub.html?open=games', '_blank', 'noopener,noreferrer')" class="tools-item">🎮 <span>Game Hub</span></button>
         <button onclick="closeClubsMenu();window.open('digital-library.html', '_blank')" class="tools-item">📚 <span>SEG Digital Library</span></button>
         <button onclick="closeClubsMenu();openListeningLibrary()" id="listening-library-btn" class="tools-item">🎧 <span>Listening Library</span></button>
-        <button onclick="closeClubsMenu();window.open('https://chansokkh7-spec.github.io/c2epe-exam-prep/','_blank')" id="testing-center-btn" class="tools-item"><img src="testing-center-icon.png" alt="" style="height:24px;width:24px;flex:none" onerror="this.outerHTML='🎯'"> <span>Testing Center</span></button>
         <button onclick="closeClubsMenu();openPracticeResults()" id="practice-results-btn" class="tools-item" style="display:none">📊 <span>Practice Results</span></button>
         <button onclick="closeClubsMenu();window.open('digital-hub.html?open=practice', '_blank', 'noopener,noreferrer')" class="tools-item">🎯 <span>GEP Practice Hub</span></button>
       </div>
@@ -640,7 +639,6 @@ function logoImgError(img){
         <button onclick="closeToolsMenu();openExamGradingPage()" class="tools-item">🖋️ <span>Grade Writing &amp; Speaking</span></button>
         <button onclick="closeToolsMenu();openExamSchedulePage()" class="tools-item">🗓️ <span>Exam Schedule (open/close)</span></button>
         <button onclick="closeToolsMenu();openCertificatesPage()" class="tools-item">🏅 <span>Certificates</span></button>
-        <button onclick="closeToolsMenu();window.open('https://chansokkh7-spec.github.io/c2epe-exam-prep/','_blank')" class="tools-item"><img src="testing-center-icon.png" alt="" style="height:24px;width:24px;flex:none" onerror="this.outerHTML='🎯'"> <span>Testing Center</span></button>
         <button onclick="closeToolsMenu();openProctorCodesPage()" class="tools-item">🔒 <span>Proctor Codes</span></button>
         <button onclick="closeToolsMenu();openReportPage()" class="tools-item">📊 <span>Report Cards</span></button>
 
@@ -17420,8 +17418,6 @@ body.dash-open #ai-chat-bubble,body.dash-open #ai-chat-panel{display:none !impor
       <button onclick="sdGo(openExamPortalPage)">🎓 Examination Portal</button>
       <button onclick="sdGo(openMyTestsPage)">📚 My Tests</button>
       <button onclick="sdGo(openQuizPage)">✏️ Quiz &amp; Exams</button>
-      <button id="sd-cert-btn" onclick="sdShowCertificates()">🏅 My Certificates</button>
-      <button onclick="sdGo(function(){window.open('https://chansokkh7-spec.github.io/c2epe-exam-prep/','_blank')})"><img src="testing-center-icon.png" alt="" style="height:24px;width:24px;flex:none" onerror="this.outerHTML='🎯'"> Testing Center</button>
       <button onclick="sdGo(openReportPage)">📊 Report Cards</button>
       <button onclick="sdGo(openAttendPage)">📋 Attendance</button>
       <button onclick="sdGo(openFeePage)">💰 Fee Payment</button>
@@ -18243,25 +18239,6 @@ async function showVerify(id){
 (function(){ try { var v = new URLSearchParams(location.search).get("verify"); if(v) setTimeout(function(){ showVerify(v); }, 300); } catch(e){} })();
 
 // ---- Students: their certificates ----
-// Student menu: My Certificates (lists every certificate issued to this student, with View & Print)
-async function sdShowCertificates(){
-  document.querySelectorAll('#sd .sd-side button').forEach(function(b){ b.classList.toggle('on', b.id==='sd-cert-btn'); });
-  document.getElementById('sd').classList.remove('menu-open');
-  var box = document.getElementById('sd-content');
-  box.innerHTML = "<div class='sd-card' style='text-align:center;color:#7a84a0'>⏳ Loading your certificates…</div>";
-  var certs = await loadMyCertificates();
-  if(!studentSession || document.getElementById('sd').style.display==='none') return;
-  certs.sort(function(a,b){ return String(b.issueDate||'').localeCompare(String(a.issueDate||'')); });
-  var html = "<div class='sd-card' style='border:1.5px solid #e2c27a;background:#fffaf0'><div class='sd-h'>🏅 MY CERTIFICATES</div>";
-  if(!certs.length){
-    html += "<div style='text-align:center;padding:26px 10px'><div style='font-size:3rem'>📜</div><b style='color:#b8862b'>No certificate yet</b><div class='sd-muted' style='margin-top:6px'>Your teacher will issue a certificate when you complete a level or a full year of study. Keep going!</div></div>";
-  } else {
-    html += certs.map(function(c){
-      return "<div style='display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #f1e6c8'><div style='display:flex;gap:12px;align-items:center'><div style='font-size:2rem'>🏅</div><div><b>"+sdEsc(c.achievement)+" — "+sdEsc(c.levelLabel||c.level)+"</b><div class='sd-muted'>"+certFmt(c.issueDate)+" · "+sdEsc(c.certId)+"</div></div></div><button class='sd-btn' onclick=\"viewCertificateById('"+sdEsc(c.certId)+"')\">🏅 View &amp; Print</button></div>";
-    }).join("");
-  }
-  box.innerHTML = html + "</div>";
-}
 async function loadMyCertificates(){
   if(!studentSession) return [];
   try { return (await certGetAll("certificates","c2epe_certificates")).filter(function(c){ return c.studentId===studentSession.studentId && c.status!=="revoked"; }); } catch(e){ return []; }
@@ -21485,7 +21462,7 @@ function closeLevelUpTest(){
     document.getElementById('listening-page').style.display = 'block';
     if (typeof setAiWidgetVisible === 'function') setAiWidgetVisible(false);
     document.getElementById('ll-upload-btn').style.display = isStaff() ? '' : 'none';
-    LL.view = 'home'; LL.series = null; LL.sub = null; LL.level = 'All'; LL.q = '';
+    LL.view = 'home'; LL.series = null; LL.level = 'All'; LL.q = '';
     document.getElementById('ll-body').innerHTML = '<div class="ll-empty">Loading…</div>';
     await loadAll();
     render();
@@ -21505,22 +21482,13 @@ function closeLevelUpTest(){
   };
   window.llBack = function(){
     if (LL.view === 'book') { LL.view = LL.series ? 'series' : 'home'; render(); }
-    else if (LL.view === 'series' && LL.sub) { LL.view = 'sub'; LL.sub = null; LL.level = 'All'; render(); }
-    else if (LL.view === 'series' || LL.view === 'sub') { LL.view = 'home'; LL.series = null; LL.sub = null; LL.level = 'All'; render(); }
+    else if (LL.view === 'series') { LL.view = 'home'; LL.series = null; LL.level = 'All'; render(); }
     else closeListeningLibrary();
   };
 
-  function render(){ LL.view === 'book' ? renderBook() : LL.view === 'sub' ? renderSub() : LL.view === 'series' ? renderHome() : renderSeries(); document.getElementById('listening-page').scrollTop = 0; }
+  function render(){ LL.view === 'book' ? renderBook() : LL.view === 'series' ? renderHome() : renderSeries(); document.getElementById('listening-page').scrollTop = 0; }
   /* Series = first word of the level ("Beehive 2" -> Beehive, "Upstream B1+" -> Upstream). */
   function seriesOf(lv){ var w = String(lv || 'Other').trim().split(/\s+/)[0]; return w || 'Other'; }
-  /* Sub-series (only for the Reading series) = first two words when a level has 3+ words ("Reading Explorer 1" -> Reading Explorer, "Reading Journey 3" -> Reading Journey). */
-  function subOf(lv){ var p = String(lv || '').trim().split(/\s+/); return (p[0] === 'Reading' && p.length >= 3 && /^[A-Za-z]+$/.test(p[1])) ? p[0] + ' ' + p[1] : ''; }
-  function subsOf(series){
-    var out = [];
-    allBooks().forEach(function(b){ if (seriesOf(b.level) === series) { var x = subOf(b.level); if (x && out.indexOf(x) === -1) out.push(x); } });
-    return out.sort(natural);
-  }
-  var SUB_ICON = { 'Reading Explorer': '🧭', 'Reading Journey': '🚀' };
   /* Starter / Level 0 / K levels come first, then numbers and CEFR levels in natural order. */
   function lvRank(lv){ return /starter|pre|\b0\b|\bk\d*\b|kinder/i.test(lv) ? 0 : 1; }
   function lvSort(a, b){ return (lvRank(a) - lvRank(b)) || natural(a, b); }
@@ -21550,7 +21518,7 @@ function closeLevelUpTest(){
     body.innerHTML = html;
     var q = document.getElementById('ll-q');
     q.oninput = function(){ LL.q = q.value.trim().toLowerCase(); renderSeries(); var n = document.getElementById('ll-q'); n.focus(); n.setSelectionRange(999, 999); };
-    body.querySelectorAll('.ll-ser').forEach(function(c){ c.onclick = function(){ LL.series = c.getAttribute('data-s'); LL.sub = null; LL.level = 'All'; LL.view = subsOf(LL.series).length > 1 ? 'sub' : 'series'; render(); }; });
+    body.querySelectorAll('.ll-ser').forEach(function(c){ c.onclick = function(){ LL.series = c.getAttribute('data-s'); LL.level = 'All'; LL.view = 'series'; render(); }; });
     body.querySelectorAll('.ll-book:not(.ll-ser)').forEach(function(c){ c.onclick = function(){ LL.series = null; LL.view = 'book'; LL.bookId = c.getAttribute('data-id'); render(); }; });
   }
   function bookCard(b){
@@ -21558,25 +21526,9 @@ function closeLevelUpTest(){
       + '<div class="ll-bi"><b>' + esc(b.level) + '</b>' + b.tracks.length + ' tracks' + (b.builtin ? ' · <span class="ll-tag">C2-EPE tests</span>' : '') + '</div></div>';
   }
 
-  /* Step between a series card and its levels: e.g. Reading -> [Reading Explorer] [Reading Journey]. */
-  function renderSub(){
-    document.getElementById('ll-title').textContent = '🎧 ' + LL.series;
-    var books = allBooks().filter(function(b){ return seriesOf(b.level) === LL.series; }), groups = {}, order = subsOf(LL.series);
-    books.forEach(function(b){ var x = subOf(b.level) || b.level; (groups[x] = groups[x] || []).push(b); if (order.indexOf(x) === -1) order.push(x); });
-    var html = '<div style="font-size:.85rem;color:#6b7390;margin-bottom:8px">Choose a series:</div><div class="ll-grid">' + order.map(function(n){
-      var lvls = groups[n].map(function(b){ return b.level; }).filter(function(v, i, a){ return a.indexOf(v) === i; });
-      var tr = groups[n].reduce(function(t, b){ return t + b.tracks.length; }, 0);
-      return '<div class="ll-book ll-sub" data-s="' + esc(n) + '"><div class="ll-cov" style="height:120px"><div class="ic" style="font-size:2.3rem">' + (SUB_ICON[n] || '📚') + '</div><span style="font-size:1.2rem">' + esc(n) + '</span></div>'
-        + '<div class="ll-bi"><b>' + lvls.length + ' levels</b>' + tr + ' tracks</div></div>';
-    }).join('') + '</div>';
-    var body = document.getElementById('ll-body');
-    body.innerHTML = html;
-    body.querySelectorAll('.ll-sub').forEach(function(c){ c.onclick = function(){ LL.sub = c.getAttribute('data-s'); LL.level = 'All'; LL.view = 'series'; render(); }; });
-  }
-
   function renderHome(){
-    document.getElementById('ll-title').textContent = '🎧 ' + (LL.sub || LL.series);
-    var books = allBooks().filter(function(b){ return seriesOf(b.level) === LL.series && (!LL.sub || subOf(b.level) === LL.sub); });
+    document.getElementById('ll-title').textContent = '🎧 ' + LL.series;
+    var books = allBooks().filter(function(b){ return seriesOf(b.level) === LL.series; });
     var levels = ['All'].concat(books.map(function(b){ return b.level; }).filter(function(v, i, a){ return a.indexOf(v) === i; }).sort(lvSort));
     var list = books.filter(function(b){
       return (LL.level === 'All' || b.level === LL.level);
@@ -21843,7 +21795,6 @@ function closeLevelUpTest(){
         ['Beginner', 'Beginner / Elementary (A1)'], ['Pre-Intermediate', 'Pre-Intermediate (A2)'], ['Intermediate', 'Intermediate (B1)'],
         ['Upper-Intermediate', 'Upper-Intermediate (B2)'], ['Advanced', 'Advanced (C1)'], ['Proficiency', 'Proficiency (C2)']] },
     { name: '🎓 Academic & Professional', col: '#bf360c', levels: [['EAP / Bridge to University', 'EAP / Bridge to University'], ['IELTS & TOEFL Prep', 'IELTS & TOEFL Preparation']] },
-    { name: '📝 Testing Center', col: '#00695c', levels: [['Testing Center', 'IELTS · Testing Center']] },
     { name: '🌟 Specialized Courses', col: '#c62828', levels: [['Exam Prep', 'Standard Exam Prep'], ['Online Class', 'Online Class'], ['Grammar', 'Grammar'],
         ['Writing Skills', 'Writing Skills'], ['Computer', 'Computer Class'], ['AI', 'AI Class']] }
   ];
@@ -21893,6 +21844,7 @@ function closeLevelUpTest(){
     { name: 'Online Class – Master C2 Book1 (App)', series: 'C2-EPE App', level: 'Online Class', prefix: 'app-online-class-master-c2-book1' },
     { name: 'Online Class – Master C2 Book2 (App)', series: 'C2-EPE App', level: 'Online Class', prefix: 'app-online-class-master-c2-book2' },
             { name: 'Online Class – Master C2 Book3 (App)', series: 'C2-EPE App', level: 'Online Class', prefix: 'app-online-class-master-c2-book3' },
+            { name: 'Grammar Course – A1–C2 (App)', series: 'C2-EPE App', level: 'Grammar', prefix: 'app-grammar-course' },
             { name: 'Newspaper Class – Level 1 Current Events (App)', series: 'C2-EPE App', level: 'Newspaper Class', prefix: 'app-newspaper-class-level1-current-events' },
       { name: 'Newspaper Class – Level 2 Economics & Business (App)', series: 'C2-EPE App', level: 'Newspaper Class', prefix: 'app-newspaper-class-level2-economics-business' },
       { name: 'Newspaper Class – Level 3 Politics & Society (App)', series: 'C2-EPE App', level: 'Newspaper Class', prefix: 'app-newspaper-class-level3-politics-society' },
@@ -21920,11 +21872,6 @@ function closeLevelUpTest(){
     var fb = window._fb;
     try { var s = await fb.getDoc(fb.doc(fb.db, 'practiceConfig', 'books')); PR.books = s.exists() && Array.isArray(s.data().list) ? s.data().list : PR_DEFAULT_BOOKS.slice(); }
     catch (e) { PR.books = PR_DEFAULT_BOOKS.slice(); }
-    /* Testing Center books are always listed (even if the saved Firebase list is older) */
-    var tc = [{ name: 'IELTS Academic Practice Test 1', series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-ielts-1' }];
-    ['A1', 'A2', 'B1', 'B2', 'C1'].forEach(function(lv){ ['Listening', 'Speaking', 'Reading', 'Writing', 'Grammar'].forEach(function(sk){
-      tc.push({ name: 'IELTS ' + lv + ' ' + sk, series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-ielts-' + lv.toLowerCase() + '-' + sk.toLowerCase() }); }); });
-    tc.forEach(function(b){ if (!PR.books.some(function(x){ return x.prefix === b.prefix; })) PR.books.push(b); });
     return PR.books;
   }
   function loadSets(p){
@@ -22069,7 +22016,6 @@ function closeLevelUpTest(){
     });
     var order = Object.keys(sets).filter(function(k){ return used[k]; });
     Object.keys(used).forEach(function(k){ if (order.indexOf(k) < 0) order.push(k); });
-    if (!Object.keys(sets).length) order.sort(natural);
     var list = Object.keys(studs).map(function(k){ var s = studs[k]; s.key = k; var v = Object.keys(s.best).map(function(i){ return s.best[i].pct; });
       s.avg = v.length ? Math.round(v.reduce(function(a, c){ return a + c; }, 0) / v.length) : 0; s.done = v.length; return s; })
       .sort(function(a, c){ return natural(a.cls, c.cls) || natural(a.name, c.name); });

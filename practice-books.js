@@ -111,5 +111,6 @@ window.C2_PRACTICE_BOOKS = [
   {"name": "Reading Journey 4", "series": "Reading Journey", "level": "Elementary", "prefix": "rj4"},
   {"name": "Reading Journey 5", "series": "Reading Journey", "level": "Elementary", "prefix": "rj5"},
   {"name": "Reading Journey 6", "series": "Reading Journey", "level": "Intermediate", "prefix": "rj6"},
-  {"name": "Reading Journey 7", "series": "Reading Journey", "level": "Upper-Intermediate", "prefix": "rj7"}
+  {"name": "Reading Journey 7", "series": "Reading Journey", "level": "Upper-Intermediate", "prefix": "rj7"},
+  {"name": "Reading Journey 8", "series": "Reading Journey", "level": "Advanced", "prefix": "rj8"}
 ];

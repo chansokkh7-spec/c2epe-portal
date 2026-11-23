@@ -52659,6 +52659,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "reading-journey-8-tests",
+ "level": "Reading Journey 8",
+ "icon": "📝",
+ "title": "Reading Journey 8 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Artificial Intelligence",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj8-ut-unit-test-unit-1-artificial-intelligence-ex1.mp3",
+     "secs": 96,
+     "script": [
+      "Rarely have machines been so capable.",
+      "AI saves time and reduces errors.",
+      "It is feared that automation may replace jobs.",
+      "The system produced unfair results.",
+      "Few people understand the models.",
+      "Experts urge governments to regulate it."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Genetics and Medicine",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj8-ut-unit-test-unit-2-genetics-and-medicine-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "Scientists have mapped the genome.",
+      "Some diseases are inherited.",
+      "Gene therapy offers new hope.",
+      "It remains to be seen.",
+      "Patients should be informed of the risks.",
+      "Hardly had the trial begun."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Migration",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj8-ut-unit-test-unit-3-migration-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "Millions have been forced to leave.",
+      "They migrate in search of work.",
+      "Newcomers face prejudice.",
+      "There is a language barrier.",
+      "Migrants contribute to the economy.",
+      "He runs a small business."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Globalisation",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj8-ut-unit-test-unit-4-globalisation-ex1.mp3",
+     "secs": 91,
+     "script": [
+      "Goods travel across the world in days.",
+      "Many companies have relocated factories.",
+      "Globalisation widens the gap.",
+      "Local traditions risk being lost.",
+      "Economies are interconnected.",
+      "It depends on who you ask."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: The Power of Art",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj8-ut-unit-test-unit-5-the-power-of-art-ex1.mp3",
+     "secs": 93,
+     "script": [
+      "Art challenges our assumptions.",
+      "It is regarded as a masterpiece.",
+      "Seldom does a work attract such attention.",
+      "Visitors are moved to tears.",
+      "Its meaning is open to interpretation.",
+      "The sculpture is remarkable for its simplicity."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Preserving Heritage",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj8-ut-unit-test-unit-6-preserving-heritage-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "Many buildings have been destroyed.",
+      "The temple was restored.",
+      "It is vital that we preserve it.",
+      "Tourism can threaten ancient sites.",
+      "Funding has been cut again.",
+      "The murals are fragile."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Language and Identity",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj8-ut-unit-test-unit-7-language-and-identity-ex1.mp3",
+     "secs": 91,
+     "script": [
+      "Language is linked to identity.",
+      "Some languages are in danger.",
+      "Half the languages may vanish.",
+      "Bilingual children switch easily.",
+      "She feels at home in her mother tongue.",
+      "Language is a way of seeing the world."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: How Memory Works",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj8-ut-unit-test-unit-8-how-memory-works-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "Memories are not stored like files.",
+      "We rebuild an event each time.",
+      "Sleep consolidates memory.",
+      "Details fade over time.",
+      "Emotions can distort memories.",
+      "Eyewitness accounts can be unreliable."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj8-mt-monthly-test-1-ex1.mp3",
+     "secs": 77,
+     "script": [
+      "It is feared that automation may replace jobs.",
+      "Gene therapy offers new hope.",
+      "Experts urge governments to regulate it.",
+      "It remains to be seen.",
+      "Rarely have machines been so capable."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj8-mt-monthly-test-2-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "Newcomers face prejudice.",
+      "Goods travel across the world in days.",
+      "They migrate in search of work.",
+      "Local traditions risk being lost.",
+      "Millions have been forced to leave."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj8-mt-monthly-test-3-ex1.mp3",
+     "secs": 77,
+     "script": [
+      "Its meaning is open to interpretation.",
+      "It is vital that we preserve it.",
+      "Seldom does a work attract such attention.",
+      "Many buildings have been destroyed.",
+      "Visitors are moved to tears."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj8-mt-monthly-test-4-ex1.mp3",
+     "secs": 76,
+     "script": [
+      "Bilingual children switch easily.",
+      "Eyewitness accounts can be unreliable.",
+      "She feels at home in her mother tongue.",
+      "We rebuild an event each time.",
+      "Half the languages may vanish."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj8-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "Scientists have mapped the genome.",
+      "He runs a small business.",
+      "Hardly had the trial begun.",
+      "Millions have been forced to leave.",
+      "Some diseases are inherited.",
+      "There is a language barrier."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj8-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "Many buildings have been destroyed.",
+      "Half the languages may vanish.",
+      "The temple was restored.",
+      "Bilingual children switch easily.",
+      "Tourism can threaten ancient sites.",
+      "Language is a way of seeing the world."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj8-fin-final-test-semester-1-ex1.mp3",
+     "secs": 113,
+     "script": [
+      "The system produced unfair results.",
+      "It remains to be seen.",
+      "Migrants contribute to the economy.",
+      "It depends on who you ask.",
+      "Few people understand the models.",
+      "Hardly had the trial begun.",
+      "He runs a small business.",
+      "Goods travel across the world in days."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj8-fin-final-test-semester-2-ex1.mp3",
+     "secs": 117,
+     "script": [
+      "Art challenges our assumptions.",
+      "Funding has been cut again.",
+      "Some languages are in danger.",
+      "We rebuild an event each time.",
+      "Its meaning is open to interpretation.",
+      "Tourism can threaten ancient sites.",
+      "Language is a way of seeing the world.",
+      "Eyewitness accounts can be unreliable."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

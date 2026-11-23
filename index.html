@@ -21462,7 +21462,7 @@ function closeLevelUpTest(){
     document.getElementById('listening-page').style.display = 'block';
     if (typeof setAiWidgetVisible === 'function') setAiWidgetVisible(false);
     document.getElementById('ll-upload-btn').style.display = isStaff() ? '' : 'none';
-    LL.view = 'home'; LL.series = null; LL.level = 'All'; LL.q = '';
+    LL.view = 'home'; LL.series = null; LL.sub = null; LL.level = 'All'; LL.q = '';
     document.getElementById('ll-body').innerHTML = '<div class="ll-empty">Loading…</div>';
     await loadAll();
     render();
@@ -21482,13 +21482,22 @@ function closeLevelUpTest(){
   };
   window.llBack = function(){
     if (LL.view === 'book') { LL.view = LL.series ? 'series' : 'home'; render(); }
-    else if (LL.view === 'series') { LL.view = 'home'; LL.series = null; LL.level = 'All'; render(); }
+    else if (LL.view === 'series' && LL.sub) { LL.view = 'sub'; LL.sub = null; LL.level = 'All'; render(); }
+    else if (LL.view === 'series' || LL.view === 'sub') { LL.view = 'home'; LL.series = null; LL.sub = null; LL.level = 'All'; render(); }
     else closeListeningLibrary();
   };
 
-  function render(){ LL.view === 'book' ? renderBook() : LL.view === 'series' ? renderHome() : renderSeries(); document.getElementById('listening-page').scrollTop = 0; }
+  function render(){ LL.view === 'book' ? renderBook() : LL.view === 'sub' ? renderSub() : LL.view === 'series' ? renderHome() : renderSeries(); document.getElementById('listening-page').scrollTop = 0; }
   /* Series = first word of the level ("Beehive 2" -> Beehive, "Upstream B1+" -> Upstream). */
   function seriesOf(lv){ var w = String(lv || 'Other').trim().split(/\s+/)[0]; return w || 'Other'; }
+  /* Sub-series (only for the Reading series) = first two words when a level has 3+ words ("Reading Explorer 1" -> Reading Explorer, "Reading Journey 3" -> Reading Journey). */
+  function subOf(lv){ var p = String(lv || '').trim().split(/\s+/); return (p[0] === 'Reading' && p.length >= 3 && /^[A-Za-z]+$/.test(p[1])) ? p[0] + ' ' + p[1] : ''; }
+  function subsOf(series){
+    var out = [];
+    allBooks().forEach(function(b){ if (seriesOf(b.level) === series) { var x = subOf(b.level); if (x && out.indexOf(x) === -1) out.push(x); } });
+    return out.sort(natural);
+  }
+  var SUB_ICON = { 'Reading Explorer': '🧭', 'Reading Journey': '🚀' };
   /* Starter / Level 0 / K levels come first, then numbers and CEFR levels in natural order. */
   function lvRank(lv){ return /starter|pre|\b0\b|\bk\d*\b|kinder/i.test(lv) ? 0 : 1; }
   function lvSort(a, b){ return (lvRank(a) - lvRank(b)) || natural(a, b); }
@@ -21518,7 +21527,7 @@ function closeLevelUpTest(){
     body.innerHTML = html;
     var q = document.getElementById('ll-q');
     q.oninput = function(){ LL.q = q.value.trim().toLowerCase(); renderSeries(); var n = document.getElementById('ll-q'); n.focus(); n.setSelectionRange(999, 999); };
-    body.querySelectorAll('.ll-ser').forEach(function(c){ c.onclick = function(){ LL.series = c.getAttribute('data-s'); LL.level = 'All'; LL.view = 'series'; render(); }; });
+    body.querySelectorAll('.ll-ser').forEach(function(c){ c.onclick = function(){ LL.series = c.getAttribute('data-s'); LL.sub = null; LL.level = 'All'; LL.view = subsOf(LL.series).length > 1 ? 'sub' : 'series'; render(); }; });
     body.querySelectorAll('.ll-book:not(.ll-ser)').forEach(function(c){ c.onclick = function(){ LL.series = null; LL.view = 'book'; LL.bookId = c.getAttribute('data-id'); render(); }; });
   }
   function bookCard(b){
@@ -21526,9 +21535,25 @@ function closeLevelUpTest(){
       + '<div class="ll-bi"><b>' + esc(b.level) + '</b>' + b.tracks.length + ' tracks' + (b.builtin ? ' · <span class="ll-tag">C2-EPE tests</span>' : '') + '</div></div>';
   }
 
-  function renderHome(){
+  /* Step between a series card and its levels: e.g. Reading -> [Reading Explorer] [Reading Journey]. */
+  function renderSub(){
     document.getElementById('ll-title').textContent = '🎧 ' + LL.series;
-    var books = allBooks().filter(function(b){ return seriesOf(b.level) === LL.series; });
+    var books = allBooks().filter(function(b){ return seriesOf(b.level) === LL.series; }), groups = {}, order = subsOf(LL.series);
+    books.forEach(function(b){ var x = subOf(b.level) || b.level; (groups[x] = groups[x] || []).push(b); if (order.indexOf(x) === -1) order.push(x); });
+    var html = '<div style="font-size:.85rem;color:#6b7390;margin-bottom:8px">Choose a series:</div><div class="ll-grid">' + order.map(function(n){
+      var lvls = groups[n].map(function(b){ return b.level; }).filter(function(v, i, a){ return a.indexOf(v) === i; });
+      var tr = groups[n].reduce(function(t, b){ return t + b.tracks.length; }, 0);
+      return '<div class="ll-book ll-sub" data-s="' + esc(n) + '"><div class="ll-cov" style="height:120px"><div class="ic" style="font-size:2.3rem">' + (SUB_ICON[n] || '📚') + '</div><span style="font-size:1.2rem">' + esc(n) + '</span></div>'
+        + '<div class="ll-bi"><b>' + lvls.length + ' levels</b>' + tr + ' tracks</div></div>';
+    }).join('') + '</div>';
+    var body = document.getElementById('ll-body');
+    body.innerHTML = html;
+    body.querySelectorAll('.ll-sub').forEach(function(c){ c.onclick = function(){ LL.sub = c.getAttribute('data-s'); LL.level = 'All'; LL.view = 'series'; render(); }; });
+  }
+
+  function renderHome(){
+    document.getElementById('ll-title').textContent = '🎧 ' + (LL.sub || LL.series);
+    var books = allBooks().filter(function(b){ return seriesOf(b.level) === LL.series && (!LL.sub || subOf(b.level) === LL.sub); });
     var levels = ['All'].concat(books.map(function(b){ return b.level; }).filter(function(v, i, a){ return a.indexOf(v) === i; }).sort(lvSort));
     var list = books.filter(function(b){
       return (LL.level === 'All' || b.level === LL.level);

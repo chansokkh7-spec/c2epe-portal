@@ -65,13 +65,13 @@
     if (!(total > 0)) return;
     st = st || {};
     activity = String(activity || 'Activity').replace(/^[^A-Za-z0-9]+/, '').trim();
-    var unit = st.unit != null ? st.unit : '', setId = PREFIX + '-u' + unit + '-' + slug(activity);
+    var unit = st.unit != null ? st.unit : '', lv = (/grammar/.test(PREFIX) && st.level) ? String(st.level) : '', setId = PREFIX + (lv ? '-' + slug(lv) : '') + '-u' + unit + '-' + slug(activity);
     if (last[setId] && Date.now() - last[setId] < 4000) return; last[setId] = Date.now();
     var go = function (me) {
       if (!me) return;
       var n = parseInt(ls('c2p-n-' + setId) || '0', 10) + 1; ls('c2p-n-' + setId, String(n));
       var now = new Date();
-      send({ prefix: PREFIX, level: BOOK, setId: setId, setTitle: (unit !== '' ? 'Unit ' + unit + ' – ' : '') + activity, kind: 'app',
+      send({ prefix: PREFIX, level: BOOK, setId: setId, setTitle: (lv ? lv + ' ' : '') + (unit !== '' ? 'Unit ' + unit + ' – ' : '') + activity, kind: 'app',
         studentId: me.studentId || '', studentName: me.name, cls: me.cls || '', login: !!me.login,
         score: score, total: total, pct: Math.round(score * 100 / total), attempt: n, at: now.toISOString(), day: now.toISOString().slice(0, 10) });
     };

@@ -21893,12 +21893,6 @@ function closeLevelUpTest(){
     { name: 'Online Class – Master C2 Book1 (App)', series: 'C2-EPE App', level: 'Online Class', prefix: 'app-online-class-master-c2-book1' },
     { name: 'Online Class – Master C2 Book2 (App)', series: 'C2-EPE App', level: 'Online Class', prefix: 'app-online-class-master-c2-book2' },
             { name: 'Online Class – Master C2 Book3 (App)', series: 'C2-EPE App', level: 'Online Class', prefix: 'app-online-class-master-c2-book3' },
-            { name: 'Grammar A1 (App)', series: 'C2-EPE App', level: 'Grammar', prefix: 'app-grammar-a1' },
-            { name: 'Grammar A2 (App)', series: 'C2-EPE App', level: 'Grammar', prefix: 'app-grammar-a2' },
-            { name: 'Grammar B1 (App)', series: 'C2-EPE App', level: 'Grammar', prefix: 'app-grammar-b1' },
-            { name: 'Grammar B2 (App)', series: 'C2-EPE App', level: 'Grammar', prefix: 'app-grammar-b2' },
-            { name: 'Grammar C1 (App)', series: 'C2-EPE App', level: 'Grammar', prefix: 'app-grammar-c1' },
-            { name: 'Grammar C2 (App)', series: 'C2-EPE App', level: 'Grammar', prefix: 'app-grammar-c2' },
             { name: 'Newspaper Class – Level 1 Current Events (App)', series: 'C2-EPE App', level: 'Newspaper Class', prefix: 'app-newspaper-class-level1-current-events' },
       { name: 'Newspaper Class – Level 2 Economics & Business (App)', series: 'C2-EPE App', level: 'Newspaper Class', prefix: 'app-newspaper-class-level2-economics-business' },
       { name: 'Newspaper Class – Level 3 Politics & Society (App)', series: 'C2-EPE App', level: 'Newspaper Class', prefix: 'app-newspaper-class-level3-politics-society' },
@@ -21928,7 +21922,7 @@ function closeLevelUpTest(){
     catch (e) { PR.books = PR_DEFAULT_BOOKS.slice(); }
     /* Testing Center books are always listed (even if the saved Firebase list is older) */
     var tc = [{ name: 'IELTS Academic Practice Test 1', series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-ielts-1' }];
-    ['A1', 'A2', 'B1', 'B2', 'C1'].forEach(function(lv){ ['Listening', 'Speaking', 'Reading', 'Writing', 'Grammar'].forEach(function(sk){
+    ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].forEach(function(lv){ ['Listening', 'Speaking', 'Reading', 'Writing', 'Grammar'].forEach(function(sk){
       tc.push({ name: 'IELTS ' + lv + ' ' + sk, series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-ielts-' + lv.toLowerCase() + '-' + sk.toLowerCase() }); }); });
     tc.forEach(function(b){ if (!PR.books.some(function(x){ return x.prefix === b.prefix; })) PR.books.push(b); });
     return PR.books;

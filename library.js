@@ -51207,6 +51207,732 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "reading-journey-4-tests",
+ "level": "Reading Journey 4",
+ "icon": "📝",
+ "title": "Reading Journey 4 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: A New School Year",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj4-ut-unit-test-unit-1-a-new-school-year-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "It was the first day of school.",
+      "Lena met her new teacher.",
+      "There were thirty students.",
+      "The teacher gave everyone a timetable.",
+      "She wants to join the choir.",
+      "The choir meets on Wednesday."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Making Friends",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj4-ut-unit-test-unit-2-making-friends-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "Sam invited Lena to lunch.",
+      "He was friendly and smiling.",
+      "They had the same hobbies.",
+      "Sam is taller than Lena.",
+      "They talked about football.",
+      "A good friend listens to you."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: A Day in My Life",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj4-ut-unit-test-unit-3-a-day-in-my-life-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I get up at six.",
+      "We catch the bus at 7.30.",
+      "School starts at eight.",
+      "Ben plays football after school.",
+      "Dad cooks dinner.",
+      "We go to bed at ten."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Weekend Fun",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj4-ut-unit-test-unit-4-weekend-fun-ex1.mp3",
+     "secs": 81,
+     "script": [
+      "We went to the lake.",
+      "My cousins came with us.",
+      "We had a picnic.",
+      "It was sunny and warm.",
+      "Dad taught me to fish.",
+      "We caught three fish."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: At the Market",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj4-ut-unit-test-unit-5-at-the-market-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "How much is a kilo of mangoes?",
+      "I'd like some vegetables.",
+      "The oranges are cheaper.",
+      "Here is your change.",
+      "It costs two dollars.",
+      "The market is busy."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Eating Out",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj4-ut-unit-test-unit-6-eating-out-ex1.mp3",
+     "secs": 83,
+     "script": [
+      "We booked a table for six.",
+      "The waiter brought the menu.",
+      "I'll have the grilled chicken.",
+      "The soup was delicious.",
+      "Dad asked for the bill.",
+      "He left a tip."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Wild Animals",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj4-ut-unit-test-unit-7-wild-animals-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "The elephant is the biggest.",
+      "The cheetah runs faster than a lion.",
+      "Giraffes have long necks.",
+      "Wolves live in packs.",
+      "Bats sleep during the day.",
+      "Many animals are in danger."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Protecting Nature",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj4-ut-unit-test-unit-8-protecting-nature-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "We should recycle plastic.",
+      "Plastic bags harm sea animals.",
+      "If we plant trees, the air will be cleaner.",
+      "Don't throw rubbish on the ground.",
+      "We can save water.",
+      "They cleaned the beach."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj4-mt-monthly-test-1-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "There were thirty students.",
+      "They had the same hobbies.",
+      "The choir meets on Wednesday.",
+      "Sam is taller than Lena.",
+      "It was the first day of school."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj4-mt-monthly-test-2-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "School starts at eight.",
+      "We went to the lake.",
+      "We catch the bus at 7.30.",
+      "It was sunny and warm.",
+      "I get up at six."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj4-mt-monthly-test-3-ex1.mp3",
+     "secs": 70,
+     "script": [
+      "It costs two dollars.",
+      "I'll have the grilled chicken.",
+      "The oranges are cheaper.",
+      "We booked a table for six.",
+      "Here is your change."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 11",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj4-mt-monthly-test-4-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "Wolves live in packs.",
+      "They cleaned the beach.",
+      "Bats sleep during the day.",
+      "Plastic bags harm sea animals.",
+      "Giraffes have long necks."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj4-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "Sam invited Lena to lunch.",
+      "We go to bed at ten.",
+      "A good friend listens to you.",
+      "I get up at six.",
+      "He was friendly and smiling.",
+      "Ben plays football after school."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj4-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "We booked a table for six.",
+      "Giraffes have long necks.",
+      "The waiter brought the menu.",
+      "Wolves live in packs.",
+      "The soup was delicious.",
+      "Many animals are in danger."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj4-fin-final-test-semester-1-ex1.mp3",
+     "secs": 107,
+     "script": [
+      "The teacher gave everyone a timetable.",
+      "Sam is taller than Lena.",
+      "Dad cooks dinner.",
+      "We caught three fish.",
+      "She wants to join the choir.",
+      "A good friend listens to you.",
+      "We go to bed at ten.",
+      "We went to the lake."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj4-fin-final-test-semester-2-ex1.mp3",
+     "secs": 111,
+     "script": [
+      "How much is a kilo of mangoes?",
+      "Dad asked for the bill.",
+      "The cheetah runs faster than a lion.",
+      "Plastic bags harm sea animals.",
+      "It costs two dollars.",
+      "The soup was delicious.",
+      "Many animals are in danger.",
+      "They cleaned the beach."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
+},
+{
+ "id": "reading-journey-5-tests",
+ "level": "Reading Journey 5",
+ "icon": "📝",
+ "title": "Reading Journey 5 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Jobs People Do",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj5-ut-unit-test-unit-1-jobs-people-do-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "A nurse looks after patients.",
+      "A farmer grows rice.",
+      "My uncle is a mechanic.",
+      "Pilots fly planes.",
+      "Chefs cook in restaurants.",
+      "Firefighters have a dangerous job."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: A Day at Work",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj5-ut-unit-test-unit-2-a-day-at-work-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "Dr Lee has been a vet for ten years.",
+      "She is examining a sick dog.",
+      "The shop opens at nine.",
+      "Staff have to wear a uniform.",
+      "I have worked here since",
+      "6. My boss is kind."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Going to the Doctor",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj5-ut-unit-test-unit-3-going-to-the-doctor-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "I have a terrible headache.",
+      "The doctor took my temperature.",
+      "You should rest.",
+      "I'm going to take some medicine.",
+      "She has a high fever.",
+      "I feel much better."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Staying Safe",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj5-ut-unit-test-unit-4-staying-safe-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "You must wear a helmet.",
+      "You mustn't cross on red.",
+      "Look both ways.",
+      "It is dangerous to play near a river.",
+      "Never share your password.",
+      "Leave the building at once."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Planning a Trip",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj5-ut-unit-test-unit-5-planning-a-trip-ex1.mp3",
+     "secs": 84,
+     "script": [
+      "We are going to visit Japan.",
+      "I've booked the flights.",
+      "We are staying five nights.",
+      "You need a passport.",
+      "We haven't packed yet.",
+      "It takes about six hours."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Famous Places",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj5-ut-unit-test-unit-6-famous-places-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "The Eiffel Tower was built in",
+      "2. Millions of tourists visit Paris.",
+      "You can see a beautiful view.",
+      "The Great Wall is very long.",
+      "Angkor Wat was built by a king.",
+      "It is the largest religious building."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Computers and Phones",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj5-ut-unit-test-unit-7-computers-and-phones-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "I use my laptop.",
+      "She is texting her friend.",
+      "You can search the internet.",
+      "My phone has a good camera.",
+      "I have downloaded an app.",
+      "My battery is low."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Inventions",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj5-ut-unit-test-unit-8-inventions-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "The telephone was invented by Bell.",
+      "The first plane flew in",
+      "3. Paper was made in China.",
+      "Light bulbs are used everywhere.",
+      "It was invented by accident.",
+      "Inventions make life easier."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj5-mt-monthly-test-1-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "My uncle is a mechanic.",
+      "The shop opens at nine.",
+      "Firefighters have a dangerous job.",
+      "Staff have to wear a uniform.",
+      "A nurse looks after patients."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 5",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj5-mt-monthly-test-2-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "You should rest.",
+      "You must wear a helmet.",
+      "The doctor took my temperature.",
+      "It is dangerous to play near a river.",
+      "I have a terrible headache."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj5-mt-monthly-test-3-ex1.mp3",
+     "secs": 71,
+     "script": [
+      "We haven't packed yet.",
+      "You can see a beautiful view.",
+      "We are staying five nights.",
+      "The Eiffel Tower was built in",
+      "5. You need a passport."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj5-mt-monthly-test-4-ex1.mp3",
+     "secs": 73,
+     "script": [
+      "My phone has a good camera.",
+      "Inventions make life easier.",
+      "I have downloaded an app.",
+      "The first plane flew in",
+      "5. You can search the internet."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj5-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "Dr Lee has been a vet for ten years.",
+      "I feel much better.",
+      "My boss is kind.",
+      "I have a terrible headache.",
+      "She is examining a sick dog.",
+      "I'm going to take some medicine."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj5-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "The Eiffel Tower was built in",
+      "2. You can search the internet.",
+      "Millions of tourists visit Paris.",
+      "My phone has a good camera.",
+      "The Great Wall is very long.",
+      "My battery is low."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj5-fin-final-test-semester-1-ex1.mp3",
+     "secs": 106,
+     "script": [
+      "Pilots fly planes.",
+      "Staff have to wear a uniform.",
+      "She has a high fever.",
+      "Leave the building at once.",
+      "Chefs cook in restaurants.",
+      "My boss is kind.",
+      "I feel much better.",
+      "You must wear a helmet."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj5-fin-final-test-semester-2-ex1.mp3",
+     "secs": 110,
+     "script": [
+      "We are going to visit Japan.",
+      "Angkor Wat was built by a king.",
+      "She is texting her friend.",
+      "The first plane flew in",
+      "5. We haven't packed yet.",
+      "The Great Wall is very long.",
+      "My battery is low.",
+      "Inventions make life easier."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

@@ -53022,6 +53022,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "reading-journey-9-tests",
+ "level": "Reading Journey 9",
+ "icon": "📝",
+ "title": "Reading Journey 9 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Freedom and Responsibility",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj9-ut-unit-test-unit-1-freedom-and-responsibility-ex1.mp3",
+     "secs": 96,
+     "script": [
+      "Liberty is not an absolute right.",
+      "Freedom ends where another's begins.",
+      "Little did they suspect the difficulty.",
+      "Citizens must be held accountable.",
+      "The fabric of democracy is at stake.",
+      "No sooner had the law passed than critics condemned it."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: The Ethics of Technology",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj9-ut-unit-test-unit-2-the-ethics-of-technology-ex1.mp3",
+     "secs": 93,
+     "script": [
+      "Technology is neither good nor bad.",
+      "Innovation has outpaced legislation.",
+      "Privacy is eroding.",
+      "Surveillance poses a threat.",
+      "Developers cannot disclaim responsibility.",
+      "It raises profound questions."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Inequality",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj9-ut-unit-test-unit-3-inequality-ex1.mp3",
+     "secs": 91,
+     "script": [
+      "The wealthiest own most of the wealth.",
+      "Inequality shapes health and education.",
+      "The disparity is widening.",
+      "Growth alone will not close the gap.",
+      "Opportunities should be distributed equitably.",
+      "Talent is spread evenly."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Sustainable Development",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj9-ut-unit-test-unit-4-sustainable-development-ex1.mp3",
+     "secs": 91,
+     "script": [
+      "Development must be sustainable.",
+      "Resources are being depleted.",
+      "It is incumbent on governments.",
+      "Profit should not take precedence.",
+      "Emissions must fall rapidly.",
+      "A circular economy reuses waste."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: Why Stories Matter",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj9-ut-unit-test-unit-5-why-stories-matter-ex1.mp3",
+     "secs": 92,
+     "script": [
+      "Stories have shaped human cultures.",
+      "We make sense of the world through narrative.",
+      "Fiction fosters empathy.",
+      "Her prose is renowned for its economy.",
+      "Storytelling is the oldest art.",
+      "Reading broadens one's sympathies."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Truth and Perception",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj9-ut-unit-test-unit-6-truth-and-perception-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "Reality is filtered through perception.",
+      "No two people perceive an event alike.",
+      "Objectivity is not certain.",
+      "Perception is shaped by expectation.",
+      "We overlook much.",
+      "Appearances can be deceptive."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Exploring the Limits",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj9-ut-unit-test-unit-7-exploring-the-limits-ex1.mp3",
+     "secs": 92,
+     "script": [
+      "The urge to explore shows no sign of abating.",
+      "Little is known about the ocean.",
+      "The expedition was fraught with danger.",
+      "The universe is vast.",
+      "To venture is to risk failure.",
+      "Scarcely had the rocket landed."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Wisdom and Legacy",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj9-ut-unit-test-unit-8-wisdom-and-legacy-ex1.mp3",
+     "secs": 91,
+     "script": [
+      "Wisdom involves judgement.",
+      "Seldom does one grasp the value of time.",
+      "The elders' experience is invaluable.",
+      "What we leave behind matters.",
+      "To be wise is to know one's limits.",
+      "Small deeds add up to a life."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj9-mt-monthly-test-1-ex1.mp3",
+     "secs": 77,
+     "script": [
+      "Little did they suspect the difficulty.",
+      "Privacy is eroding.",
+      "No sooner had the law passed than critics condemned it.",
+      "Surveillance poses a threat.",
+      "Liberty is not an absolute right."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj9-mt-monthly-test-2-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "The disparity is widening.",
+      "Development must be sustainable.",
+      "Inequality shapes health and education.",
+      "Profit should not take precedence.",
+      "The wealthiest own most of the wealth."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj9-mt-monthly-test-3-ex1.mp3",
+     "secs": 76,
+     "script": [
+      "Storytelling is the oldest art.",
+      "Objectivity is not certain.",
+      "Fiction fosters empathy.",
+      "Reality is filtered through perception.",
+      "Her prose is renowned for its economy."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj9-mt-monthly-test-4-ex1.mp3",
+     "secs": 76,
+     "script": [
+      "The universe is vast.",
+      "Small deeds add up to a life.",
+      "To venture is to risk failure.",
+      "Seldom does one grasp the value of time.",
+      "The expedition was fraught with danger."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj9-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 91,
+     "script": [
+      "Technology is neither good nor bad.",
+      "Talent is spread evenly.",
+      "It raises profound questions.",
+      "The wealthiest own most of the wealth.",
+      "Innovation has outpaced legislation.",
+      "Growth alone will not close the gap."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj9-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 90,
+     "script": [
+      "Reality is filtered through perception.",
+      "The expedition was fraught with danger.",
+      "No two people perceive an event alike.",
+      "The universe is vast.",
+      "Perception is shaped by expectation.",
+      "Scarcely had the rocket landed."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj9-fin-final-test-semester-1-ex1.mp3",
+     "secs": 118,
+     "script": [
+      "Citizens must be held accountable.",
+      "Surveillance poses a threat.",
+      "Opportunities should be distributed equitably.",
+      "A circular economy reuses waste.",
+      "The fabric of democracy is at stake.",
+      "It raises profound questions.",
+      "Talent is spread evenly.",
+      "Development must be sustainable."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj9-fin-final-test-semester-2-ex1.mp3",
+     "secs": 115,
+     "script": [
+      "Stories have shaped human cultures.",
+      "We overlook much.",
+      "Little is known about the ocean.",
+      "Seldom does one grasp the value of time.",
+      "Storytelling is the oldest art.",
+      "Perception is shaped by expectation.",
+      "Scarcely had the rocket landed.",
+      "Small deeds add up to a life."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

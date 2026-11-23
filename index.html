@@ -17418,6 +17418,7 @@ body.dash-open #ai-chat-bubble,body.dash-open #ai-chat-panel{display:none !impor
       <button onclick="sdGo(openExamPortalPage)">🎓 Examination Portal</button>
       <button onclick="sdGo(openMyTestsPage)">📚 My Tests</button>
       <button onclick="sdGo(openQuizPage)">✏️ Quiz &amp; Exams</button>
+      <button id="sd-cert-btn" onclick="sdShowCertificates()">🏅 My Certificates</button>
       <button onclick="sdGo(openReportPage)">📊 Report Cards</button>
       <button onclick="sdGo(openAttendPage)">📋 Attendance</button>
       <button onclick="sdGo(openFeePage)">💰 Fee Payment</button>
@@ -18239,6 +18240,25 @@ async function showVerify(id){
 (function(){ try { var v = new URLSearchParams(location.search).get("verify"); if(v) setTimeout(function(){ showVerify(v); }, 300); } catch(e){} })();
 
 // ---- Students: their certificates ----
+// Student menu: My Certificates (lists every certificate issued to this student, with View & Print)
+async function sdShowCertificates(){
+  document.querySelectorAll('#sd .sd-side button').forEach(function(b){ b.classList.toggle('on', b.id==='sd-cert-btn'); });
+  document.getElementById('sd').classList.remove('menu-open');
+  var box = document.getElementById('sd-content');
+  box.innerHTML = "<div class='sd-card' style='text-align:center;color:#7a84a0'>⏳ Loading your certificates…</div>";
+  var certs = await loadMyCertificates();
+  if(!studentSession || document.getElementById('sd').style.display==='none') return;
+  certs.sort(function(a,b){ return String(b.issueDate||'').localeCompare(String(a.issueDate||'')); });
+  var html = "<div class='sd-card' style='border:1.5px solid #e2c27a;background:#fffaf0'><div class='sd-h'>🏅 MY CERTIFICATES</div>";
+  if(!certs.length){
+    html += "<div style='text-align:center;padding:26px 10px'><div style='font-size:3rem'>📜</div><b style='color:#b8862b'>No certificate yet</b><div class='sd-muted' style='margin-top:6px'>Your teacher will issue a certificate when you complete a level or a full year of study. Keep going!</div></div>";
+  } else {
+    html += certs.map(function(c){
+      return "<div style='display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #f1e6c8'><div style='display:flex;gap:12px;align-items:center'><div style='font-size:2rem'>🏅</div><div><b>"+sdEsc(c.achievement)+" — "+sdEsc(c.levelLabel||c.level)+"</b><div class='sd-muted'>"+certFmt(c.issueDate)+" · "+sdEsc(c.certId)+"</div></div></div><button class='sd-btn' onclick=\"viewCertificateById('"+sdEsc(c.certId)+"')\">🏅 View &amp; Print</button></div>";
+    }).join("");
+  }
+  box.innerHTML = html + "</div>";
+}
 async function loadMyCertificates(){
   if(!studentSession) return [];
   try { return (await certGetAll("certificates","c2epe_certificates")).filter(function(c){ return c.studentId===studentSession.studentId && c.status!=="revoked"; }); } catch(e){ return []; }

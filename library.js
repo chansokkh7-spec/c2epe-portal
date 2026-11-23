@@ -53748,6 +53748,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "reading-journey-11-tests",
+ "level": "Reading Journey 11",
+ "icon": "📝",
+ "title": "Reading Journey 11 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: The Energy Transition",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj11-ut-unit-test-unit-1-the-energy-transition-ex1.mp3",
+     "secs": 95,
+     "script": [
+      "Fossil fuels are being phased out.",
+      "Renewable capacity has expanded rapidly.",
+      "Solar power would struggle without subsidies.",
+      "Hardly any country has met its target.",
+      "The grid must be upgraded.",
+      "The transition is moving too slowly."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Biodiversity in Peril",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj11-ut-unit-test-unit-2-biodiversity-in-peril-ex1.mp3",
+     "secs": 98,
+     "script": [
+      "Habitat loss is the main threat to wildlife.",
+      "Species are disappearing at an alarming rate.",
+      "Bees pollinate crops.",
+      "Many amphibians face extinction.",
+      "The ecosystem is so fragile that a small change can upset it.",
+      "Poaching undermines conservation."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: The Entrepreneurial Spirit",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj11-ut-unit-test-unit-3-the-entrepreneurial-spirit-ex1.mp3",
+     "secs": 93,
+     "script": [
+      "Entrepreneurs thrive on risk.",
+      "Few start-ups succeed without a clear model.",
+      "Competition drives firms to innovate.",
+      "The company struggled to keep up with demand.",
+      "The firm secured funding.",
+      "Investors want potential for growth."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Supply Chains in a Global Economy",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj11-ut-unit-test-unit-4-supply-chains-in-a-global-economy-ex1.mp3",
+     "secs": 98,
+     "script": [
+      "Goods are produced across many countries.",
+      "A port closure would delay deliveries worldwide.",
+      "Shortages showed how fragile supply chains were.",
+      "Tariffs make goods dearer.",
+      "Costs were rising and delays lengthening.",
+      "Firms prefer to source parts closer to home."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: The Rise and Fall of Empires",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj11-ut-unit-test-unit-5-the-rise-and-fall-of-empires-ex1.mp3",
+     "secs": 98,
+     "script": [
+      "The empire stretched from coast to coast.",
+      "It was trade that made the empire prosperous.",
+      "Historians blame corruption and overspending.",
+      "The army was overstretched.",
+      "The rebellion strengthened the empire's resolve.",
+      "The more it expanded, the harder it was to defend."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Revolutions and Reform",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj11-ut-unit-test-unit-6-revolutions-and-reform-ex1.mp3",
+     "secs": 94,
+     "script": [
+      "Revolutions rarely occur without a crisis.",
+      "The crowd stormed the palace.",
+      "The reforms came too late.",
+      "The government might concede.",
+      "The constitution limited the monarch's power.",
+      "Revolution is sudden and often violent."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Knowledge and Truth",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj11-ut-unit-test-unit-7-knowledge-and-truth-ex1.mp3",
+     "secs": 94,
+     "script": [
+      "Knowledge requires justification.",
+      "Few would deny that evidence matters.",
+      "Falsehoods would spread unchecked.",
+      "We advance by questioning assumptions.",
+      "Scientists revise theories in the light of new evidence.",
+      "The claim proved unfounded."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Happiness and Meaning",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj11-ut-unit-test-unit-8-happiness-and-meaning-ex1.mp3",
+     "secs": 95,
+     "script": [
+      "Happiness is hard to define.",
+      "Money cannot guarantee contentment.",
+      "Strong relationships contribute to wellbeing.",
+      "Many people find meaning in helping others.",
+      "Achievements seldom satisfy us for long.",
+      "The pursuit of happiness can benefit others."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj11-mt-monthly-test-1-ex1.mp3",
+     "secs": 77,
+     "script": [
+      "Solar power would struggle without subsidies.",
+      "Bees pollinate crops.",
+      "The transition is moving too slowly.",
+      "Many amphibians face extinction.",
+      "Fossil fuels are being phased out."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj11-mt-monthly-test-2-ex1.mp3",
+     "secs": 77,
+     "script": [
+      "Competition drives firms to innovate.",
+      "Goods are produced across many countries.",
+      "Few start-ups succeed without a clear model.",
+      "Tariffs make goods dearer.",
+      "Entrepreneurs thrive on risk."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj11-mt-monthly-test-3-ex1.mp3",
+     "secs": 79,
+     "script": [
+      "The rebellion strengthened the empire's resolve.",
+      "The reforms came too late.",
+      "Historians blame corruption and overspending.",
+      "Revolutions rarely occur without a crisis.",
+      "The army was overstretched."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj11-mt-monthly-test-4-ex1.mp3",
+     "secs": 80,
+     "script": [
+      "We advance by questioning assumptions.",
+      "The pursuit of happiness can benefit others.",
+      "Scientists revise theories in the light of new evidence.",
+      "Money cannot guarantee contentment.",
+      "Falsehoods would spread unchecked."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj11-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 95,
+     "script": [
+      "Habitat loss is the main threat to wildlife.",
+      "Investors want potential for growth.",
+      "Poaching undermines conservation.",
+      "Entrepreneurs thrive on risk.",
+      "Species are disappearing at an alarming rate.",
+      "The company struggled to keep up with demand."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj11-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "Revolutions rarely occur without a crisis.",
+      "Falsehoods would spread unchecked.",
+      "The crowd stormed the palace.",
+      "We advance by questioning assumptions.",
+      "The government might concede.",
+      "The claim proved unfounded."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj11-fin-final-test-semester-1-ex1.mp3",
+     "secs": 117,
+     "script": [
+      "Hardly any country has met its target.",
+      "Many amphibians face extinction.",
+      "The firm secured funding.",
+      "Firms prefer to source parts closer to home.",
+      "The grid must be upgraded.",
+      "Poaching undermines conservation.",
+      "Investors want potential for growth.",
+      "Goods are produced across many countries."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj11-fin-final-test-semester-2-ex1.mp3",
+     "secs": 119,
+     "script": [
+      "The empire stretched from coast to coast.",
+      "The constitution limited the monarch's power.",
+      "Few would deny that evidence matters.",
+      "Money cannot guarantee contentment.",
+      "The rebellion strengthened the empire's resolve.",
+      "The government might concede.",
+      "The claim proved unfounded.",
+      "The pursuit of happiness can benefit others."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

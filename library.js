@@ -51933,6 +51933,369 @@ window.LIBRARY = [
    ]
   }
  ]
+},
+{
+ "id": "reading-journey-6-tests",
+ "level": "Reading Journey 6",
+ "icon": "📝",
+ "title": "Reading Journey 6 – Tests",
+ "subtitle": "Unit, Monthly, Mid-term and Final tests",
+ "folder": "",
+ "note": "Each item is said twice with a pause. Exercise numbers match the gold numbers on the test paper.",
+ "sections": [
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 1: Around the World",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj6-ut-unit-test-unit-1-around-the-world-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "Customs vary from country to country.",
+      "People take off their shoes.",
+      "They greet each other with a wai.",
+      "Arriving late is rude.",
+      "Visitors should dress modestly.",
+      "She has lived abroad for ten years."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 B, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 2: Customs and Festivals",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj6-ut-unit-test-unit-2-customs-and-festivals-ex1.mp3",
+     "secs": 88,
+     "script": [
+      "Pchum Ben honours ancestors.",
+      "It lasts fifteen days.",
+      "People give food to the monks.",
+      "Many people travel to their villages.",
+      "The pagoda is decorated.",
+      "Families share meals together."
+     ],
+     "key": "1 C, 2 C, 3 C, 4 C, 5 C, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 3: Our Changing Planet",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj6-ut-unit-test-unit-3-our-changing-planet-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "The temperature has risen.",
+      "Glaciers are melting.",
+      "Burning coal produces carbon dioxide.",
+      "Sea levels will rise.",
+      "Droughts have become more common.",
+      "It is caused by humans."
+     ],
+     "key": "1 C, 2 A, 3 B, 4 C, 5 A, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 4: Saving Energy and Water",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj6-ut-unit-test-unit-4-saving-energy-and-water-ex1.mp3",
+     "secs": 87,
+     "script": [
+      "Turn off the lights.",
+      "Solar panels use the sun.",
+      "A shower uses less water.",
+      "A dripping tap wastes water.",
+      "Good insulation keeps the house warm.",
+      "We collect rainwater."
+     ],
+     "key": "1 B, 2 A, 3 C, 4 C, 5 A, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 5: The Solar System",
+   "info": "Test paper page 15",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj6-ut-unit-test-unit-5-the-solar-system-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "The Sun is a star.",
+      "There are eight planets.",
+      "Jupiter is the largest planet.",
+      "Mars is the Red Planet.",
+      "The Moon orbits the Earth.",
+      "Astronauts have visited the Moon."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 B, 5 C, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 6: Scientists and Discoveries",
+   "info": "Test paper page 18",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj6-ut-unit-test-unit-6-scientists-and-discoveries-ex1.mp3",
+     "secs": 91,
+     "script": [
+      "Marie Curie discovered two elements.",
+      "Galileo used a telescope.",
+      "Penicillin was discovered in",
+      "4. Mould had killed the bacteria.",
+      "Fleming won a Nobel Prize.",
+      "It has saved millions of lives."
+     ],
+     "key": "1 A, 2 C, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 7: Life Goals",
+   "info": "Test paper page 21",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj6-ut-unit-test-unit-7-life-goals-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "I'd like to become a doctor.",
+      "If I work hard, I'll pass.",
+      "She hopes to study abroad.",
+      "He is determined to succeed.",
+      "I've been learning for three years.",
+      "It takes hard work."
+     ],
+     "key": "1 B, 2 C, 3 C, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Unit Tests",
+   "title": "Unit Test – Unit 8: Cities of the Future",
+   "info": "Test paper page 24",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj6-ut-unit-test-unit-8-cities-of-the-future-ex1.mp3",
+     "secs": 89,
+     "script": [
+      "More people will live in cities.",
+      "Cities will be more crowded.",
+      "Electric cars will replace petrol cars.",
+      "Buildings will be covered with plants.",
+      "Robots might deliver food.",
+      "Smart cities save energy."
+     ],
+     "key": "1 A, 2 B, 3 B, 4 C, 5 B, 6 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj6-mt-monthly-test-1-ex1.mp3",
+     "secs": 75,
+     "script": [
+      "They greet each other with a wai.",
+      "People give food to the monks.",
+      "She has lived abroad for ten years.",
+      "Many people travel to their villages.",
+      "Customs vary from country to country."
+     ],
+     "key": "1 A, 2 C, 3 B, 4 A, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 2",
+   "info": "Test paper page 6",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj6-mt-monthly-test-2-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "Burning coal produces carbon dioxide.",
+      "Turn off the lights.",
+      "Glaciers are melting.",
+      "A dripping tap wastes water.",
+      "The temperature has risen."
+     ],
+     "key": "1 B, 2 B, 3 B, 4 C, 5 A"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 3",
+   "info": "Test paper page 9",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj6-mt-monthly-test-3-ex1.mp3",
+     "secs": 74,
+     "script": [
+      "The Moon orbits the Earth.",
+      "Penicillin was discovered in",
+      "3. Jupiter is the largest planet.",
+      "Marie Curie discovered two elements.",
+      "Mars is the Red Planet."
+     ],
+     "key": "1 A, 2 A, 3 A, 4 B, 5 B"
+    }
+   ]
+  },
+  {
+   "group": "Monthly Tests",
+   "title": "Monthly Test 4",
+   "info": "Test paper page 12",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj6-mt-monthly-test-4-ex1.mp3",
+     "secs": 72,
+     "script": [
+      "He is determined to succeed.",
+      "Smart cities save energy.",
+      "I've been learning for three years.",
+      "Cities will be more crowded.",
+      "She hopes to study abroad."
+     ],
+     "key": "1 A, 2 A, 3 B, 4 A, 5 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj6-mid-mid-term-test-semester-1-ex1.mp3",
+     "secs": 85,
+     "script": [
+      "Pchum Ben honours ancestors.",
+      "It is caused by humans.",
+      "Families share meals together.",
+      "The temperature has risen.",
+      "It lasts fifteen days.",
+      "Sea levels will rise."
+     ],
+     "key": "1 C, 2 B, 3 A, 4 B, 5 A, 6 C"
+    }
+   ]
+  },
+  {
+   "group": "Mid-term Tests",
+   "title": "Mid-term Test · Semester 2",
+   "info": "Test paper page 7",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj6-mid-mid-term-test-semester-2-ex1.mp3",
+     "secs": 86,
+     "script": [
+      "Marie Curie discovered two elements.",
+      "She hopes to study abroad.",
+      "Galileo used a telescope.",
+      "He is determined to succeed.",
+      "Mould had killed the bacteria.",
+      "It takes hard work."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 B, 6 A"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 1",
+   "info": "Test paper page 3",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj6-fin-final-test-semester-1-ex1.mp3",
+     "secs": 110,
+     "script": [
+      "Arriving late is rude.",
+      "Many people travel to their villages.",
+      "Droughts have become more common.",
+      "We collect rainwater.",
+      "Visitors should dress modestly.",
+      "Families share meals together.",
+      "It is caused by humans.",
+      "Turn off the lights."
+     ],
+     "key": "1 A, 2 B, 3 A, 4 C, 5 A, 6 C, 7 B, 8 B"
+    }
+   ]
+  },
+  {
+   "group": "Final Tests",
+   "title": "Final Test · Semester 2",
+   "info": "Test paper page 8",
+   "tracks": [
+    {
+     "n": 1,
+     "title": "Exercise 1 – Listen and tick (✓) the sentence you hear.",
+     "file": "https://chansokkh7-spec.github.io/c2epe-reading-journey/rj6-fin-final-test-semester-2-ex1.mp3",
+     "secs": 109,
+     "script": [
+      "The Sun is a star.",
+      "Fleming won a Nobel Prize.",
+      "If I work hard, I'll pass.",
+      "Cities will be more crowded.",
+      "The Moon orbits the Earth.",
+      "Mould had killed the bacteria.",
+      "It takes hard work.",
+      "Smart cities save energy."
+     ],
+     "key": "1 C, 2 A, 3 A, 4 A, 5 A, 6 C, 7 B, 8 C"
+    }
+   ]
+  }
+ ]
 }
 /* ---------------- TEMPLATE: copy, remove the comment marks, fill in ----------------
 ,{

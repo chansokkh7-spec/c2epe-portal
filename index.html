@@ -639,6 +639,7 @@ function logoImgError(img){
         <button onclick="closeToolsMenu();openExamGradingPage()" class="tools-item">🖋️ <span>Grade Writing &amp; Speaking</span></button>
         <button onclick="closeToolsMenu();openExamSchedulePage()" class="tools-item">🗓️ <span>Exam Schedule (open/close)</span></button>
         <button onclick="closeToolsMenu();openCertificatesPage()" class="tools-item">🏅 <span>Certificates</span></button>
+        <button onclick="closeToolsMenu();window.open('https://chansokkh7-spec.github.io/c2epe-exam-prep/','_blank')" class="tools-item"><img src="testing-center-icon.png" alt="" style="height:24px;width:24px;flex:none" onerror="this.outerHTML='🎯'"> <span>Testing Center</span></button>
         <button onclick="closeToolsMenu();openProctorCodesPage()" class="tools-item">🔒 <span>Proctor Codes</span></button>
         <button onclick="closeToolsMenu();openReportPage()" class="tools-item">📊 <span>Report Cards</span></button>
 
@@ -17419,6 +17420,7 @@ body.dash-open #ai-chat-bubble,body.dash-open #ai-chat-panel{display:none !impor
       <button onclick="sdGo(openMyTestsPage)">📚 My Tests</button>
       <button onclick="sdGo(openQuizPage)">✏️ Quiz &amp; Exams</button>
       <button id="sd-cert-btn" onclick="sdShowCertificates()">🏅 My Certificates</button>
+      <button onclick="sdGo(function(){window.open('https://chansokkh7-spec.github.io/c2epe-exam-prep/','_blank')})"><img src="testing-center-icon.png" alt="" style="height:24px;width:24px;flex:none" onerror="this.outerHTML='🎯'"> Testing Center</button>
       <button onclick="sdGo(openReportPage)">📊 Report Cards</button>
       <button onclick="sdGo(openAttendPage)">📋 Attendance</button>
       <button onclick="sdGo(openFeePage)">💰 Fee Payment</button>

@@ -21924,6 +21924,8 @@ function closeLevelUpTest(){
     var tc = [1, 2, 3, 4, 5].map(function(n){ return { name: 'IELTS Academic Practice Test ' + n, series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-ielts-' + n }; });
     ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].forEach(function(lv){ ['Listening', 'Speaking', 'Reading', 'Writing', 'Grammar'].forEach(function(sk){
       tc.push({ name: 'IELTS ' + lv + ' ' + sk, series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-ielts-' + lv.toLowerCase() + '-' + sk.toLowerCase() }); }); });
+    [1, 2, 3].forEach(function(n){ ['Reading', 'Listening', 'Speaking', 'Writing'].forEach(function(sk){
+      tc.push({ name: 'TOEFL Practice Test ' + n + ' ' + sk, series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-toefl-' + n + '-' + sk.toLowerCase() }); }); });
     tc.forEach(function(b){ if (!PR.books.some(function(x){ return x.prefix === b.prefix; })) PR.books.push(b); });
     return PR.books;
   }

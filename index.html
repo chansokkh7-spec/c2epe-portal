@@ -252,7 +252,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
 .empty{text-align:center;padding:44px 20px;color:#ccc;}
 .empty .ico{font-size:2.8rem;margin-bottom:9px;}
 /* right */
-.rside{width:360px;flex-shrink:0;padding-left:14px;box-sizing:border-box;}
+.rside{width:360px;flex-shrink:0;padding-left:14px;box-sizing:border-box;position:sticky;top:68px;align-self:flex-start;max-height:calc(100vh - 80px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;}
 .widget{background:#fff;border-radius:10px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:12px;margin-bottom:10px;}
 .widget h4{font-size:.71rem;color:#bbb;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
 .stat-r{display:flex;justify-content:space-between;font-size:.78rem;padding:3px 0;border-bottom:1px solid #f5f5f5;}
@@ -4518,6 +4518,7 @@ var currentAdminDeptHead = null; // "finance" | "hr" | "admissions" | null — n
 
 function setTeacherUI(){
   isTeacher = true;
+  try{ if(typeof renderMediaSlots==='function') setTimeout(renderMediaSlots,300); }catch(e){}
   if(typeof hideStudentDashboard === 'function') hideStudentDashboard();
   // teachers start on their Dashboard (School News & Posts is one tap away in its menu)
   setTimeout(function(){ if(typeof showTeacherDashboard === 'function') showTeacherDashboard(); }, 0);
@@ -5441,7 +5442,12 @@ function renderMediaSlots(){
     var d = mediaSlotsData[id];
     var h = '';
     if(d && d.url){
-      if(d.type === 'video') h += '<video src="'+mEsc(d.url)+'" controls playsinline preload="metadata" style="width:100%;aspect-ratio:16/9;max-height:320px;border-radius:8px;background:#000;display:block"></video>';
+      if(d.type === 'video'){
+        h += '<video class="mslot-vid" data-sound="'+(d.sound?'1':'0')+'" src="'+mEsc(d.url)+'" autoplay loop muted playsinline preload="auto" disablepictureinpicture style="width:100%;aspect-ratio:16/9;max-height:320px;border-radius:8px;background:#000;display:block;pointer-events:none"></video>';
+        if(typeof currentUser !== 'undefined' && currentUser && currentUser.email === ADMIN_EMAIL){
+          h += '<button onclick="toggleMediaSound(\''+id+'\')" style="width:100%;margin-top:6px;padding:6px;background:'+(d.sound?'#e8f5e9':'#f0f2f5')+';color:#000080;border:1px solid #e0e0e0;border-radius:7px;font-size:.72rem;font-weight:700;cursor:pointer">'+(d.sound?'🔊 Sound ON (tap to mute)':'🔇 Sound OFF (tap to turn on)')+'</button>';
+        }
+      }
       else h += '<a href="'+mEsc(d.url)+'" target="_blank" rel="noopener"><img src="'+mEsc(d.url)+'" alt="Poster" style="width:100%;height:auto;border-radius:8px;display:block;background:#f0f2f5"></a>';
       if(d.caption) h += '<div style="font-size:.72rem;color:#666;margin-top:6px;text-align:center">'+mEsc(d.caption)+'</div>';
     } else {
@@ -5454,7 +5460,22 @@ function renderMediaSlots(){
         + '</div>';
     }
     box.innerHTML = h;
+    var v = box.querySelector('video.mslot-vid');
+    if(v){
+      var wantSound = v.getAttribute('data-sound') === '1';
+      v.muted = !wantSound;
+      var pr = v.play();
+      if(pr && pr.catch) pr.catch(function(){ v.muted = true; try{ v.play(); }catch(e){} });
+    }
   });
+}
+async function toggleMediaSound(id){
+  if(!(currentUser && currentUser.email === ADMIN_EMAIL)) return;
+  var d = Object.assign({}, mediaSlotsData[id] || {});
+  if(!d.url) return;
+  d.sound = !d.sound;
+  try { await saveMediaSlot(id, d); } catch(err){ alert('Failed: '+err.message); }
+  renderMediaSlots();
 }
 function pickMediaSlot(id){
   var inp = document.createElement('input');

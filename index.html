@@ -21936,10 +21936,9 @@ function closeLevelUpTest(){
       tc.push({ name: 'Grade 12 English Practice Test ' + n, series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-grade12-' + n + '-reading' }); });
     [1, 2, 3].forEach(function(n){
       tc.push({ name: 'Teacher & Civil Service English Practice Test ' + n, series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-teacher-' + n + '-reading' }); });
-    [1, 2, 3].forEach(function(n){ ['reading', 'writing'].forEach(function(sk){
-      tc.push({ name: 'NIE Teacher Entrance Test ' + n + ' ' + (sk === 'reading' ? 'Sections I-IV' : 'Writing'), series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-nie-' + n + '-' + sk }); }); });
-    [1, 2, 3, 4, 5].forEach(function(n){ ['reading', 'writing'].forEach(function(sk){
-      tc.push({ name: 'Grade 12 Bac II Exam-Style Test ' + n + ' ' + (sk === 'reading' ? 'Reading-Grammar-Vocabulary' : 'Writing'), series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-grade12-bac-' + n + '-' + sk }); }); });
+    [1, 2, 3].forEach(function(n){
+      tc.push({ name: 'NIE Teacher Entrance Test ' + n, series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-nie-' + n + '-reading' }); });
+        for (var yr = 2007; yr <= 2025; yr++) { tc.push({ name: 'Grade 12 Bac II English ' + yr, series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-grade12-y' + yr + '-reading' }); }
     tc.forEach(function(b){ if (!PR.books.some(function(x){ return x.prefix === b.prefix; })) PR.books.push(b); });
     return PR.books;
   }

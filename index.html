@@ -21939,6 +21939,7 @@ function closeLevelUpTest(){
     [1, 2, 3].forEach(function(n){
       tc.push({ name: 'NIE Teacher Entrance Test ' + n, series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-nie-' + n + '-reading' }); });
         for (var yr = 2007; yr <= 2025; yr++) { tc.push({ name: 'Grade 12 Bac II English ' + yr, series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-grade12-y' + yr + '-reading' }); }
+    for (var yg = 2007; yg <= 2026; yg++) { tc.push({ name: 'Grade 9 English ' + yg, series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-grade9-y' + yg + '-reading' }); }
     tc.forEach(function(b){ if (!PR.books.some(function(x){ return x.prefix === b.prefix; })) PR.books.push(b); });
     return PR.books;
   }

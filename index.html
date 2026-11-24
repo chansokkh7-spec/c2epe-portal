@@ -21921,7 +21921,7 @@ function closeLevelUpTest(){
     try { var s = await fb.getDoc(fb.doc(fb.db, 'practiceConfig', 'books')); PR.books = s.exists() && Array.isArray(s.data().list) ? s.data().list : PR_DEFAULT_BOOKS.slice(); }
     catch (e) { PR.books = PR_DEFAULT_BOOKS.slice(); }
     /* Testing Center books are always listed (even if the saved Firebase list is older) */
-    var tc = [{ name: 'IELTS Academic Practice Test 1', series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-ielts-1' }];
+    var tc = [1, 2, 3, 4, 5].map(function(n){ return { name: 'IELTS Academic Practice Test ' + n, series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-ielts-' + n }; });
     ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].forEach(function(lv){ ['Listening', 'Speaking', 'Reading', 'Writing', 'Grammar'].forEach(function(sk){
       tc.push({ name: 'IELTS ' + lv + ' ' + sk, series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-ielts-' + lv.toLowerCase() + '-' + sk.toLowerCase() }); }); });
     tc.forEach(function(b){ if (!PR.books.some(function(x){ return x.prefix === b.prefix; })) PR.books.push(b); });

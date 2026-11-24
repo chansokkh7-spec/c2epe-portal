@@ -142,7 +142,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
 .role-banner{padding:5px 16px;text-align:center;font-size:.8rem;font-weight:600;background:#fff3e0;border-bottom:2px solid var(--gold);color:#c65a00;}
 
 /* LAYOUT */
-.layout{display:flex;max-width:1080px;margin:0 auto;padding:14px 10px;gap:0;}
+.layout{display:flex;max-width:1340px;margin:0 auto;padding:14px 10px;gap:0;}
 
 /* SIDEBAR */
 .sidebar{width:210px;flex-shrink:0;position:sticky;top:68px;height:fit-content;max-height:calc(100vh - 80px);overflow-y:auto;scroll-behavior:smooth;}
@@ -252,7 +252,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);font-size:15px
 .empty{text-align:center;padding:44px 20px;color:#ccc;}
 .empty .ico{font-size:2.8rem;margin-bottom:9px;}
 /* right */
-.rside{width:175px;flex-shrink:0;}
+.rside{width:360px;flex-shrink:0;padding-left:14px;box-sizing:border-box;}
 .widget{background:#fff;border-radius:10px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:12px;margin-bottom:10px;}
 .widget h4{font-size:.71rem;color:#bbb;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
 .stat-r{display:flex;justify-content:space-between;font-size:.78rem;padding:3px 0;border-bottom:1px solid #f5f5f5;}
@@ -953,15 +953,16 @@ function logoImgError(img){
     <div class="stat-r"><span>❤️ Likes</span><span class="stat-n" id="s-likes">—</span></div>
     <div class="stat-r"><span>💬 Comments</span><span class="stat-n" id="s-cmts">—</span></div>
   </div>
-  <div class="widget">
-    <h4>Recent</h4>
-    <div id="recent" style="font-size:.75rem;color:#555;line-height:1.9"><span style="color:#ccc">No posts yet</span></div>
+  <div class="widget" id="media-slot-vid0-widget">
+    <h4>🎬 Featured Video</h4>
+    <div class="mslot" id="mslot-vid0"></div>
   </div>
+  <div style="display:none"><h4>Recent</h4><div id="recent"></div></div>
   <div class="widget" style="font-size:.72rem;color:#888;line-height:1.7">
     <h4>🌟 Featured Photo</h4>
     <div id="featured-photo-box" style="text-align:center;">
       <div id="featured-photo-empty" style="padding:14px 4px;color:#bbb;font-size:.72rem;">No featured photo yet</div>
-      <img id="featured-photo-img" src="" alt="Featured photo preview" style="display:none;width:100%;height:auto;max-height:150px;border-radius:8px;object-fit:contain;background:#f0f2f5;margin-bottom:6px;">
+      <img id="featured-photo-img" onclick="if(this.src)window.open(this.src,'_blank')" src="" alt="Featured photo preview" style="display:none;width:100%;height:auto;max-height:460px;border-radius:8px;object-fit:contain;background:#f0f2f5;margin-bottom:6px;cursor:zoom-in;">
       <div id="featured-photo-caption" style="font-size:.72rem;color:#666;margin-bottom:6px;"></div>
     </div>
     <input type="file" id="featured-photo-input" accept="image/*" style="display:none" onchange="uploadFeaturedPhoto(event)">
@@ -970,6 +971,11 @@ function logoImgError(img){
       🔄 Change Featured Photo
     </button>
   </div>
+  <div class="widget" id="media-slot-s1-widget"><h4>📌 Poster / Video 1</h4><div class="mslot" id="mslot-s1"></div></div>
+  <div class="widget" id="media-slot-s2-widget"><h4>📌 Poster / Video 2</h4><div class="mslot" id="mslot-s2"></div></div>
+  <div class="widget" id="media-slot-s3-widget"><h4>📌 Poster / Video 3</h4><div class="mslot" id="mslot-s3"></div></div>
+  <div class="widget" id="media-slot-s4-widget"><h4>📌 Poster / Video 4</h4><div class="mslot" id="mslot-s4"></div></div>
+  <div class="widget" id="media-slot-s5-widget"><h4>📌 Poster / Video 5</h4><div class="mslot" id="mslot-s5"></div></div>
 </div>
 </div>
 
@@ -5336,6 +5342,7 @@ var featuredPhotoUnsub = null;
 function initFeaturedPhoto(){
   var btn = document.getElementById('featured-photo-btn');
   if(btn) btn.style.display = isTeacher ? 'block' : 'none';
+  try{ initMediaSlots(); }catch(e){ console.warn(e); }
 
   var isLocal = window.location.protocol === 'file:';
   if(isLocal || !window._fb){
@@ -5404,6 +5411,82 @@ async function uploadFeaturedPhoto(e){
   }
   btn.disabled = false;
   btn.textContent = origText;
+}
+
+// ── MEDIA SLOTS (video + 5 poster/video boxes) ─────────
+// Teachers can put a poster (image) or a video in each box. Stored in
+// Firestore settings/mediaSlots (or localStorage when opened as a file).
+var MEDIA_SLOT_IDS = ['vid0','s1','s2','s3','s4','s5'];
+var mediaSlotsData = {};
+var mediaSlotsUnsub = null;
+function initMediaSlots(){
+  var isLocal = window.location.protocol === 'file:';
+  if(isLocal || !window._fb){
+    try { mediaSlotsData = JSON.parse(localStorage.getItem('c2epe_media_slots')||'{}') || {}; } catch(e){ mediaSlotsData = {}; }
+    renderMediaSlots(); return;
+  }
+  renderMediaSlots();
+  if(mediaSlotsUnsub){ mediaSlotsUnsub(); mediaSlotsUnsub = null; }
+  var fb = window._fb;
+  mediaSlotsUnsub = fb.onSnapshot(fb.doc(fb.db,'settings','mediaSlots'), function(snap){
+    mediaSlotsData = snap.exists() ? (snap.data() || {}) : {};
+    renderMediaSlots();
+  }, function(err){ console.warn('media slots:', err && err.message); renderMediaSlots(); });
+}
+function mEsc(x){ return String(x==null?'':x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function renderMediaSlots(){
+  MEDIA_SLOT_IDS.forEach(function(id){
+    var box = document.getElementById('mslot-'+id);
+    if(!box) return;
+    var d = mediaSlotsData[id];
+    var h = '';
+    if(d && d.url){
+      if(d.type === 'video') h += '<video src="'+mEsc(d.url)+'" controls playsinline preload="metadata" style="width:100%;aspect-ratio:16/9;max-height:320px;border-radius:8px;background:#000;display:block"></video>';
+      else h += '<a href="'+mEsc(d.url)+'" target="_blank" rel="noopener"><img src="'+mEsc(d.url)+'" alt="Poster" style="width:100%;height:auto;border-radius:8px;display:block;background:#f0f2f5"></a>';
+      if(d.caption) h += '<div style="font-size:.72rem;color:#666;margin-top:6px;text-align:center">'+mEsc(d.caption)+'</div>';
+    } else {
+      h += '<div style="padding:18px 6px;color:#bbb;font-size:.72rem;text-align:center;border:1px dashed #dde1e7;border-radius:8px">'+(id==='vid0'?'No video yet':'No poster / video yet')+'</div>';
+    }
+    if(typeof isTeacher !== 'undefined' && isTeacher){
+      h += '<div style="display:flex;gap:6px;margin-top:6px">'
+        + '<button onclick="pickMediaSlot(\''+id+'\')" style="flex:1;padding:6px;background:#f0f2f5;color:#000080;border:1px solid #e0e0e0;border-radius:7px;font-size:.72rem;font-weight:700;cursor:pointer">'+(d&&d.url?'🔄 Change':'⬆️ Upload poster / video')+'</button>'
+        + (d&&d.url?'<button onclick="clearMediaSlot(\''+id+'\')" style="padding:6px 9px;background:#fff;color:#c0392b;border:1px solid #e0e0e0;border-radius:7px;font-size:.72rem;font-weight:700;cursor:pointer">✕</button>':'')
+        + '</div>';
+    }
+    box.innerHTML = h;
+  });
+}
+function pickMediaSlot(id){
+  var inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = 'image/*,video/*';
+  inp.onchange = function(e){ uploadMediaSlot(id, e.target.files[0]); };
+  inp.click();
+}
+async function saveMediaSlot(id, data){
+  mediaSlotsData[id] = data;
+  var isLocal = window.location.protocol === 'file:';
+  if(isLocal || !window._fb){ localStorage.setItem('c2epe_media_slots', JSON.stringify(mediaSlotsData)); renderMediaSlots(); return; }
+  var fb = window._fb; var patch = {}; patch[id] = data;
+  await fb.setDoc(fb.doc(fb.db,'settings','mediaSlots'), patch, {merge:true});
+}
+async function uploadMediaSlot(id, file){
+  if(!file || !isTeacher) return;
+  var isVid = file.type.startsWith('video/');
+  if(!isVid && !file.type.startsWith('image/')){ alert('Please choose an image (poster) or a video.'); return; }
+  if(file.size > 100*1024*1024){ alert('File is too large (max 100 MB).'); return; }
+  var box = document.getElementById('mslot-'+id);
+  if(box) box.insertAdjacentHTML('afterbegin','<div id="mslot-up-'+id+'" style="font-size:.72rem;color:#000080;text-align:center;padding:6px">⏳ Uploading...</div>');
+  try {
+    var r = await uploadToCloudinary(file, function(p){ var u=document.getElementById('mslot-up-'+id); if(u&&typeof p==='number') u.textContent='⏳ Uploading '+Math.round(p*100)+'%'; });
+    var caption = prompt('Add a short caption (optional):','') || '';
+    await saveMediaSlot(id, {url:r.url, type:isVid?'video':'image', caption:caption, updatedAt:new Date().toISOString(), updatedBy:(typeof currentTeacherName!=='undefined'&&currentTeacherName)||'Teacher'});
+  } catch(err){ alert('Upload failed: '+err.message); }
+  renderMediaSlots();
+}
+async function clearMediaSlot(id){
+  if(!isTeacher || !confirm('Remove this item?')) return;
+  try { await saveMediaSlot(id, {url:'', type:'', caption:''}); } catch(err){ alert('Failed: '+err.message); }
+  renderMediaSlots();
 }
 
 // ── COMPOSER FUNCTIONS ───────────────────────
@@ -6273,7 +6356,7 @@ function applyLang(){
   const statKeys = ['stats_posts','stats_likes','stats_comments'];
   statRows.forEach((s,i) => { if(statKeys[i]) s.textContent = t(statKeys[i]); });
   // Recent widget
-  const recH = document.querySelectorAll('.widget h4')[1];
+  const recH = (document.getElementById('recent')||{}).previousElementSibling;
   if(recH) recH.textContent = t('recent_title');
   // Re-render feed to update post buttons
   renderFeed();
@@ -21892,6 +21975,12 @@ function closeLevelUpTest(){
     { name: 'Online Class – Master C1 Book4 (App)', series: 'C2-EPE App', level: 'Online Class', prefix: 'app-online-class-master-c1-book4' },
     { name: 'Online Class – Master C2 Book1 (App)', series: 'C2-EPE App', level: 'Online Class', prefix: 'app-online-class-master-c2-book1' },
     { name: 'Online Class – Master C2 Book2 (App)', series: 'C2-EPE App', level: 'Online Class', prefix: 'app-online-class-master-c2-book2' },
+            { name: 'Grammar A1 (App)', series: 'C2-EPE App', level: 'Grammar', prefix: 'app-grammar-a1' },
+            { name: 'Grammar A2 (App)', series: 'C2-EPE App', level: 'Grammar', prefix: 'app-grammar-a2' },
+            { name: 'Grammar B1 (App)', series: 'C2-EPE App', level: 'Grammar', prefix: 'app-grammar-b1' },
+            { name: 'Grammar B2 (App)', series: 'C2-EPE App', level: 'Grammar', prefix: 'app-grammar-b2' },
+            { name: 'Grammar C1 (App)', series: 'C2-EPE App', level: 'Grammar', prefix: 'app-grammar-c1' },
+            { name: 'Grammar C2 (App)', series: 'C2-EPE App', level: 'Grammar', prefix: 'app-grammar-c2' },
             { name: 'Online Class – Master C2 Book3 (App)', series: 'C2-EPE App', level: 'Online Class', prefix: 'app-online-class-master-c2-book3' },
             { name: 'Newspaper Class – Level 1 Current Events (App)', series: 'C2-EPE App', level: 'Newspaper Class', prefix: 'app-newspaper-class-level1-current-events' },
       { name: 'Newspaper Class – Level 2 Economics & Business (App)', series: 'C2-EPE App', level: 'Newspaper Class', prefix: 'app-newspaper-class-level2-economics-business' },

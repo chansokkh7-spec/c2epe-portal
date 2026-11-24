@@ -1114,6 +1114,12 @@
                 <button type="button" class="filter-btn app-practices-toggle" id="gameRoomToggle" aria-expanded="false" aria-controls="gameRoomBody" onclick="toggleGameRoom('games')"><span>🎮 Game Room</span></button>
                 <button type="button" class="filter-btn app-practices-toggle" id="practiceRoomToggle" aria-expanded="false" aria-controls="gameRoomBody" onclick="toggleGameRoom('practice')"><span>🎯 GEP Practice</span></button>
                 <button type="button" class="filter-btn app-practices-toggle" id="testingCenterBtn" onclick="window.open('https://chansokkh7-spec.github.io/c2epe-exam-prep/','_blank','noopener')"><span>📝 Testing Center</span></button>
+                <button type="button" class="filter-btn app-practices-toggle" id="course_ieltsBtn" onclick="openCourse('ielts')"><span>🎯 IELTS</span></button>
+                <button type="button" class="filter-btn app-practices-toggle" id="course_toeflBtn" onclick="openCourse('toefl')"><span>🌎 TOEFL</span></button>
+                <button type="button" class="filter-btn app-practices-toggle" id="course_toeicBtn" onclick="openCourse('toeic')"><span>💼 TOEIC</span></button>
+                <button type="button" class="filter-btn app-practices-toggle" id="course_cambridgeBtn" onclick="openCourse('cambridge')"><span>🎓 Cambridge</span></button>
+                <button type="button" class="filter-btn app-practices-toggle" id="course_grade9Btn" onclick="openCourse('grade9')"><span>📗 Grade 9 English</span></button>
+                <button type="button" class="filter-btn app-practices-toggle" id="course_grade12Btn" onclick="openCourse('grade12')"><span>📘 Grade 12 English</span></button>
                 <button class="manage-students-btn admin-only" onclick="openManageStudents()">👥 Manage Students & Access</button>
                 <button class="manage-students-btn admin-only" onclick="openManageTeachers()">👩‍🏫 Manage Teachers</button>
                 <button class="manage-students-btn admin-only" onclick="downloadBackup()" title="Download all Hub data as a JSON file">💾 Backup Data</button>
@@ -4993,5 +4999,30 @@
         updateAdminLockIcon();
         initData();
     </script>
+<script>
+        // ===== COURSES REGISTRY (IELTS, TOEFL, TOEIC, Cambridge, Grade 9, Grade 12) =====
+        // One place to add, move or remove a course. Each course is a self-contained app
+        // (lessons + videos) hosted at its own URL, so a course can later be split into
+        // its own site or department by changing only the url here.
+        const COURSES = {
+            ielts:     { name: 'IELTS',                     url: 'https://chansokkh7-spec.github.io/c2epe-apps/IELTS-app.html' },
+            toefl:     { name: 'TOEFL',                     url: 'https://chansokkh7-spec.github.io/c2epe-apps/TOEFL-app.html' },
+            toeic:     { name: 'TOEIC',                     url: 'https://chansokkh7-spec.github.io/c2epe-apps/TOEIC-app.html' },
+            cambridge: { name: 'Cambridge English',         url: 'https://chansokkh7-spec.github.io/c2epe-apps/Cambridge-app.html' },
+            grade9:    { name: 'Cambodia Grade 9 English',  url: 'https://chansokkh7-spec.github.io/c2epe-apps/Cambodia-Grade9-app.html' },
+            grade12:   { name: 'Cambodia Grade 12 English', url: 'https://chansokkh7-spec.github.io/c2epe-apps/Cambodia-Grade12-app.html' }
+        };
+        async function openCourse(id) {
+            const c = COURSES[id]; if (!c) return;
+            try {
+                const r = await fetch(c.url, { cache: 'no-cache' });
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                openViewer(c.name, await r.text());
+            } catch (e) {
+                window.open(c.url, '_blank', 'noopener'); // fallback: open the course directly
+            }
+        }
+
+</script>
 </body>
 </html>

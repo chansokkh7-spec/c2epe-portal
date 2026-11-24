@@ -21930,6 +21930,8 @@ function closeLevelUpTest(){
       tc.push({ name: 'TOEIC Practice Test ' + n + ' ' + sk, series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-toeic-' + n + '-' + sk.toLowerCase() }); }); });
     ['KET', 'PET', 'FCE', 'CAE'].forEach(function(lv){ ['Reading', 'Listening', 'Writing', 'Speaking'].forEach(function(sk){
       tc.push({ name: 'Cambridge ' + lv + ' ' + sk, series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-cambridge-' + lv.toLowerCase() + '-' + sk.toLowerCase() }); }); });
+    [1, 2, 3].forEach(function(n){
+      tc.push({ name: 'Grade 9 English Practice Test ' + n, series: 'C2-EPE Testing Center', level: 'Testing Center', prefix: 'tc-grade9-' + n + '-reading' }); });
     tc.forEach(function(b){ if (!PR.books.some(function(x){ return x.prefix === b.prefix; })) PR.books.push(b); });
     return PR.books;
   }

@@ -5650,6 +5650,40 @@ function filterCls(el,cls){
   document.querySelectorAll('.chip').forEach(b=>b.classList.remove('active'));
   document.querySelectorAll('.cls-item,.cefr-item').forEach(b=>b.classList.remove('active'));
   el.classList.add('active'); renderFeed();
+  // Visitors (not a teacher, not a signed-in family): tapping a level opens the enrollment form with that level chosen.
+  // Real enrollment is confirmed only after the placement test (shown right after the form is sent).
+  try{ if(!isTeacher && !studentSession && String(cls).indexOf('all-')!==0) askEnrollForLevel(cls); }catch(e){}
+}
+var SB_LEVEL_TO_OPTION = {'Starters':'Starters (Pre-A1)','Movers':'Movers (A1)','Flyers':'Flyers (A2)','Beginner':'Beginner / Elementary (A1)','Pre-Intermediate':'Pre-Intermediate (A2)','Intermediate':'Intermediate (B1)','Upper-Intermediate':'Upper-Intermediate (B2)','Advanced':'Advanced (C1)','Proficiency':'Proficiency (C2)','EAP / Bridge to University':'EAP / Bridge to University','IELTS & TOEFL Prep':'IELTS & TOEFL Prep','Exam Prep':'Standard Exam Prep','Online Class':'Online Class','Grammar':'Grammar','Writing Skills':'Writing Skills','Computer':'Computer Class','AI':'AI Class','K0':'K0','K1':'K1','K2':'K2','K3':'K3'};
+function askEnrollForLevel(cls){
+  var want = SB_LEVEL_TO_OPTION[cls]; if(!want) return;
+  var old = document.getElementById('enr-ask'); if(old) old.remove();
+  var d = document.createElement('div'); d.id = 'enr-ask';
+  d.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2500;display:flex;align-items:center;justify-content:center;padding:16px;';
+  d.innerHTML = '<div style="background:#fff;border-radius:14px;max-width:340px;width:100%;padding:20px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.3)">'
+    + '<div style="font-size:2rem">📝</div>'
+    + '<div style="font-weight:800;color:#000080;font-size:1rem;margin:6px 0 4px">'+mEsc(want)+'</div>'
+    + '<div style="font-size:.9rem;font-weight:700;margin-bottom:4px">Would you like to register? · ចង់ចុះឈ្មោះទេ?</div>'
+    + '<div style="font-size:.74rem;color:#777;line-height:1.5;margin-bottom:14px">Final enrollment is confirmed after the placement test.<br>ការចូលរៀនពិតប្រាកដត្រូវឆ្លងកាត់តេស្តកំណត់កម្រិតជាមុន។</div>'
+    + '<button id="enr-ask-yes" style="width:100%;padding:10px;background:#000080;color:#FFD700;border:none;border-radius:9px;font-weight:700;cursor:pointer;margin-bottom:7px">✅ Yes, register · ចុះឈ្មោះ</button>'
+    + '<button id="enr-ask-no" style="width:100%;padding:9px;background:#f0f2f5;color:#555;border:none;border-radius:9px;font-weight:600;cursor:pointer">Not now · មើលសិន</button></div>';
+  document.body.appendChild(d);
+  document.getElementById('enr-ask-yes').onclick = function(){ d.remove(); openEnrollForLevel(cls); };
+  document.getElementById('enr-ask-no').onclick = function(){ d.remove(); };
+  d.onclick = function(e){ if(e.target === d) d.remove(); };
+}
+function openEnrollForLevel(cls){
+  var want = SB_LEVEL_TO_OPTION[cls]; if(!want) return;
+  openEnrollApplyPage();
+  var sel = document.getElementById('enr-level'); if(!sel) return;
+  for(var i=0;i<sel.options.length;i++){ if(sel.options[i].text === want || sel.options[i].value === want){ sel.selectedIndex = i; break; } }
+  var n = document.getElementById('enr-test-note');
+  if(!n){
+    n = document.createElement('div'); n.id = 'enr-test-note';
+    n.style.cssText = 'background:#fff3e0;border:1px solid #ffb74d;color:#c65a00;font-size:.76rem;line-height:1.5;padding:8px 11px;border-radius:7px;margin-bottom:12px;';
+    n.innerHTML = '📝 You can register for this level now. <b>Final enrollment is confirmed after the student takes the placement test.</b><br><span style="color:#8a5a00">អ្នកអាចចុះឈ្មោះកម្រិតនេះបានភ្លាម ប៉ុន្តែការចូលរៀនពិតប្រាកដត្រូវឆ្លងកាត់តេស្តកំណត់កម្រិតជាមុន។</span>';
+    sel.parentNode.insertBefore(n, sel.previousElementSibling || sel);
+  }
 }
 
 // setFilter()/filterCls() only ever mark the exact element the person

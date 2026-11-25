@@ -702,6 +702,18 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
+
+        /* dark, tidy admin modal */
+        .modal, .modal *{scrollbar-width:thin;scrollbar-color:#d4a017 #0a1430}
+        .modal{color-scheme:dark;scrollbar-gutter:stable}
+        .modal ::-webkit-scrollbar{width:8px;height:8px}
+        .modal ::-webkit-scrollbar-track{background:#0a1430;border-radius:8px}
+        .modal ::-webkit-scrollbar-thumb{background:#d4a017;border-radius:8px}
+        #c2ClassesList{max-height:none !important;overflow:visible !important}
+        .modal input[type=file]{color:#e8ecf7}
+        .modal input[type=file]::file-selector-button{background:#d4a017;color:#0a1430;border:0;border-radius:6px;padding:6px 12px;margin-right:10px;font-weight:700;cursor:pointer}
+        .modal #btnSave{position:sticky;bottom:-25px;z-index:5;box-shadow:0 -10px 14px #132a5a}
+
         .modal-header {
             display: flex;
             justify-content: space-between;

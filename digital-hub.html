@@ -2771,15 +2771,16 @@
             el.style.cssText = 'display:block;max-width:1200px;margin:6px auto 14px;padding:10px 16px;border-radius:12px;background:rgba(232,199,102,0.14);border:1px solid rgba(232,199,102,0.55);color:inherit;font-size:0.9rem;line-height:1.5;text-align:center;';
             el.innerHTML = '';
             const warn = [];
+            const KM_EXP = 'សុពលភាពទឹកប្រាក់របស់អ្នកអស់ហើយ សូមបង់ប្រាក់ដើម្បីបន្តការសិក្សា។';
+            const KM_SOON = 'សុពលភាពទឹកប្រាក់របស់អ្នកជិតអស់ហើយ សូមបង់ប្រាក់ដើម្បីបន្តការសិក្សា។';
+            // Shown only for students whose fees are about to run out (7 days before), already past the date, or locked.
             [['Classroom', st.classroom !== false ? st.paidUntil : ''], ['Online', st.online ? st.onlineUntil : '']].forEach(([label, until]) => {
+                if (!until) return;
                 const ps = c2PayState(until);
-                if (ps === 'grace') warn.push('⚠️ ' + label + ' fees were due on ' + escapeHtml(until) + ' — lessons stay open <b>' + c2GraceDaysLeft(until) + ' more day(s)</b>. Please pay in the Portal → 💰 Fee Payment. · សូមបង់ថ្លៃសិក្សា');
-                if (ps === 'locked' && !c2StudentActive(st)) warn.push('🔒 ' + label + ' lessons are locked: fees were due on ' + escapeHtml(until) + '. Pay in the Portal → 💰 Fee Payment — they open again as soon as the school confirms. · មេរៀនត្រូវបានចាក់សោ');
+                if (ps === 'locked') { if (!c2StudentActive(st)) warn.push('🔒 ' + KM_EXP + '<br>Your fee validity has expired. Please pay to continue your studies.'); }
+                else if (ps === 'grace') warn.push('⚠️ ' + KM_EXP + '<br>Your fee validity has expired. Please pay to continue your studies. <span style="font-weight:400">(Lessons stay open ' + c2GraceDaysLeft(until) + ' more day(s) — Portal → 💰 Fee Payment.)</span>');
+                else if (c2AddDays(c2Today(), 7) >= until) warn.push('⚠️ ' + KM_SOON + '<br>Your fee validity is about to expire (' + escapeHtml(until) + '). Please pay to continue your studies.');
             });
-            // The green "all levels open" line shows only while fees are fully paid (not in the grace period, not when locked)
-            if (!warn.length && ['Classroom','Online'].every(l => true) && [st.classroom !== false ? st.paidUntil : '', st.online ? st.onlineUntil : ''].every(u => c2PayState(u) === 'ok')) {
-                el.innerHTML = 'មេរៀនគ្រប់កម្រិតបើកសម្រាប់អ្នក ពេលនៅទូទាត់ប្រាក់ · All levels are open while your fees are paid: ' + parts.join(' &nbsp;|&nbsp; ');
-            }
             if (warn.length) {
                 const locked = warn.some(w => w.startsWith('🔒'));
                 el.innerHTML += '<div style="margin-top:8px;padding:9px 12px;border-radius:10px;font-weight:600;text-align:left;' + (locked ? 'background:#fdecec;color:#8a1c1c;border:1px solid #f5b5b5;' : 'background:#fff1e0;color:#7c2d12;border:1px solid #f5b27a;') + '">' + warn.join('<br>') + '</div>';
@@ -3793,10 +3794,19 @@
         let activeViewerSystemId = null;
         let activeViewerSystemTitle = '';
 
+        function hubComingSoon() {
+            var old = document.getElementById('hubSoon'); if (old) old.remove();
+            var d = document.createElement('div'); d.id = 'hubSoon';
+            d.style.cssText = 'position:fixed;left:50%;bottom:36px;transform:translateX(-50%);z-index:30000;background:#132a5a;color:#fff;border:1.5px solid #d4a017;border-radius:14px;padding:14px 22px;font-weight:700;box-shadow:0 8px 28px rgba(0,0,0,.5);text-align:center;max-width:90vw';
+            d.innerHTML = '\u2728 Coming Soon<div style="font-weight:400;font-size:.85rem;margin-top:3px;color:#9db4de">\u1798\u17c1\u179a\u17c0\u1793\u1793\u17c1\u17c7\u1793\u17b9\u1784\u1785\u17c1\u1789\u1799\u17c9\u17b6\u1784\u178a\u179b\u17cb\u17d4 This lesson will be available soon.</div>';
+            document.body.appendChild(d); setTimeout(function(){ if (d.parentNode) d.remove(); }, 3200);
+        }
+
         function onCardClick(id) {
             const sys = systemsData[id];
             if (!sys || (!sys.content && !sys.video)) {
-                openModal(id);
+                if (isAdmin()) { openModal(id); return; }          // only the admin edits empty cards
+                hubComingSoon();                                   // students just see a friendly note
                 return;
             }
 

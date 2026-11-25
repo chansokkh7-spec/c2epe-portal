@@ -2695,6 +2695,9 @@
         // A portal student with fees still paid (classroom OR online, 7-day grace) may open every level in the Hub; when both are over, the Hub is closed to them.
         function c2StudentActive(st) {
             if (!st || !st.fromPortal) return true;
+            // Only lock when the fee dates were read from the school's database in the last 10 minutes.
+            // Slow / cut internet or old saved data never locks a student by mistake.
+            if (!st.freshAt || Date.now() - st.freshAt > 600000) return true;
             const classOk = st.classroom !== false && c2PayState(st.paidUntil) !== 'locked';
             return classOk || c2OnlineActive(st);
         }
@@ -2734,7 +2737,7 @@
         function c2StudentFromFound(found) {
             return { id: found.id, name: found.name, allowedSystems: found.allowedSystems || [], fromPortal: !!found.fromPortal,
                      cls: found.cls || '', paidUntil: found.paidUntil || '', classroom: found.classroom !== false, online: !!found.online,
-                     onlineCourse: found.onlineCourse || '', onlineUntil: found.onlineUntil || '', allowReview: !!found.allowReview };
+                     onlineCourse: found.onlineCourse || '', onlineUntil: found.onlineUntil || '', allowReview: !!found.allowReview, freshAt: found.fromPortal ? Date.now() : 0 };
         }
         function c2AccessNote() {
             let el = document.getElementById('c2AccessNote');
@@ -2754,17 +2757,22 @@
             if (st.classroom !== false && st.cls) parts.push('🏫 ' + escapeHtml(st.cls));
             if (st.online) parts.push('💻 ' + escapeHtml(st.onlineCourse || 'Online') + (st.onlineUntil ? ' · until ' + escapeHtml(st.onlineUntil) : ''));
             el.style.cssText = 'display:block;max-width:1200px;margin:6px auto 14px;padding:10px 16px;border-radius:12px;background:rgba(232,199,102,0.14);border:1px solid rgba(232,199,102,0.55);color:inherit;font-size:0.9rem;line-height:1.5;text-align:center;';
-            el.innerHTML = 'មេរៀនគ្រប់កម្រិតបើកសម្រាប់អ្នក ពេលនៅទូទាត់ប្រាក់ · All levels are open while your fees are paid: ' + parts.join(' &nbsp;|&nbsp; ');
+            el.innerHTML = '';
             const warn = [];
             [['Classroom', st.classroom !== false ? st.paidUntil : ''], ['Online', st.online ? st.onlineUntil : '']].forEach(([label, until]) => {
                 const ps = c2PayState(until);
                 if (ps === 'grace') warn.push('⚠️ ' + label + ' fees were due on ' + escapeHtml(until) + ' — lessons stay open <b>' + c2GraceDaysLeft(until) + ' more day(s)</b>. Please pay in the Portal → 💰 Fee Payment. · សូមបង់ថ្លៃសិក្សា');
-                if (ps === 'locked') warn.push('🔒 ' + label + ' lessons are locked: fees were due on ' + escapeHtml(until) + '. Pay in the Portal → 💰 Fee Payment — they open again as soon as the school confirms. · មេរៀនត្រូវបានចាក់សោ');
+                if (ps === 'locked' && !c2StudentActive(st)) warn.push('🔒 ' + label + ' lessons are locked: fees were due on ' + escapeHtml(until) + '. Pay in the Portal → 💰 Fee Payment — they open again as soon as the school confirms. · មេរៀនត្រូវបានចាក់សោ');
             });
+            // The green "all levels open" line shows only while fees are fully paid (not in the grace period, not when locked)
+            if (!warn.length && ['Classroom','Online'].every(l => true) && [st.classroom !== false ? st.paidUntil : '', st.online ? st.onlineUntil : ''].every(u => c2PayState(u) === 'ok')) {
+                el.innerHTML = 'មេរៀនគ្រប់កម្រិតបើកសម្រាប់អ្នក ពេលនៅទូទាត់ប្រាក់ · All levels are open while your fees are paid: ' + parts.join(' &nbsp;|&nbsp; ');
+            }
             if (warn.length) {
                 const locked = warn.some(w => w.startsWith('🔒'));
                 el.innerHTML += '<div style="margin-top:8px;padding:9px 12px;border-radius:10px;font-weight:600;text-align:left;' + (locked ? 'background:#fdecec;color:#8a1c1c;border:1px solid #f5b5b5;' : 'background:#fff1e0;color:#7c2d12;border:1px solid #f5b27a;') + '">' + warn.join('<br>') + '</div>';
             }
+            if (!el.innerHTML) el.style.display = 'none';
         }
 
         // ===== C2 ACCESS: classes a teacher teaches (Portal "assigned classes", else the Hub staff list) =====

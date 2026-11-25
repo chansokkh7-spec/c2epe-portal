@@ -8547,42 +8547,35 @@ function hubStudentActive(s){
   var onl = !!s.online && hubFeeState(s.onlineUntil) !== "locked";
   return cls || onl;
 }
-function hubLockedModal(st){
-  var old = document.getElementById("hub-lock-modal"); if(old) old.remove();
-  var due = []; if(st.classroom !== false && st.paidUntil) due.push("🏫 Classroom: "+st.paidUntil); if(st.online && st.onlineUntil) due.push("💻 Online: "+st.onlineUntil);
-  var d = document.createElement("div"); d.id = "hub-lock-modal";
-  d.style.cssText = "position:fixed;inset:0;background:rgba(8,16,40,.72);z-index:100001;display:flex;align-items:center;justify-content:center;padding:16px";
-  d.innerHTML = "<div style='background:#fff;border-radius:22px;max-width:440px;width:100%;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);text-align:center;font-family:inherit'>"
-    + "<div style='background:linear-gradient(135deg,#b71c1c,#e53935);color:#fff;padding:22px 18px'><div style='font-size:3rem;line-height:1'>🔒</div><div style='font-weight:800;font-size:1.15rem;margin-top:6px'>SEG Digital Hub is locked</div><div style='font-size:.95rem;opacity:.95'>SEG Hub ត្រូវបានចាក់សោ</div></div>"
-    + "<div style='padding:18px 20px;color:#222;line-height:1.6;font-size:.92rem'>"
-    + "<p style='margin:0 0 8px'>Your fee period has ended. <b>Please pay your fees to continue learning in the Hub.</b></p>"
-    + "<p style='margin:0 0 12px;color:#444'>រយៈពេលបង់ប្រាក់របស់អ្នកបានផុតកំណត់។ <b>សូមបង់ប្រាក់ ដើម្បីបន្តការសិក្សាក្នុង Hub។</b></p>"
-    + (due.length ? "<div style='background:#fdecec;border:1px solid #f5b5b5;color:#8a1c1c;border-radius:12px;padding:8px 12px;font-weight:700;margin-bottom:12px'>Paid until · បង់ដល់៖<br>"+due.join("<br>")+"</div>" : "")
-    + "<p style='margin:0 0 14px;font-size:.82rem;color:#666'>After the school confirms your payment, the Hub opens again.<br>ពេលសាលាបញ្ជាក់ការបង់ប្រាក់ Hub នឹងបើកវិញ។</p>"
-    + "<button onclick=\"document.getElementById('hub-lock-modal').remove();try{openFeePage();}catch(e){}\" style='width:100%;background:#2e7d32;color:#fff;border:0;border-radius:14px;padding:13px;font-weight:800;font-size:1rem;cursor:pointer;margin-bottom:8px'>💰 Pay now · បង់ប្រាក់ឥឡូវនេះ</button>"
-    + "<button onclick=\"document.getElementById('hub-lock-modal').remove()\" style='width:100%;background:#eef1f7;color:#333;border:0;border-radius:14px;padding:11px;font-weight:700;cursor:pointer'>Close · បិទ</button>"
-    + "</div></div>";
-  document.body.appendChild(d);
+// Read the student's newest fee dates from the school's database (max 4 seconds). Slow or cut internet = no answer = never lock.
+async function hubRefreshStudent(){
+  try {
+    if(!navigator.onLine || xLocal() || !studentSession || !studentSession.docId) return false;
+    var f = await xFb();
+    var sn = await Promise.race([ f.getDoc(f.doc(window._fb.db, "students", studentSession.docId)), new Promise(function(_, rej){ setTimeout(function(){ rej(new Error("timeout")); }, 4000); }) ]);
+    if(!sn.exists()) return false;
+    var d = sn.data();
+    studentSession.online = !!d.online; studentSession.onlineCourse = d.onlineCourse || ""; studentSession.onlineUntil = d.onlineUntil || "";
+    studentSession.classroom = d.classroom !== false; studentSession.paidUntil = d.paidUntil || ""; studentSession.allowReview = !!d.allowReview;
+    try { localStorage.setItem("c2epe_student_session", JSON.stringify(studentSession)); } catch(e){}
+    return true;
+  } catch(e){ return false; }
 }
-function openDigitalHubPage(){
+async function openDigitalHubPage(){
+  var fresh = false;
   try {
     if(typeof studentSession !== "undefined" && studentSession && !isTeacher){
-      if(!hubStudentActive(studentSession)){
-        hubLockedModal(studentSession);
-        return;
-      }
+      fresh = await hubRefreshStudent();
+      if(fresh && !hubStudentActive(studentSession)){ hubLockedModal(studentSession); return; }   // locked only on a confirmed, up-to-date answer
       var segKey = studentSession.studentId + "|" + (studentSession.paidUntil||"") + "|" + (studentSession.onlineUntil||"");
       sessionStorage.setItem("seg_student", JSON.stringify({ id: studentSession.studentId, name: studentSession.name, allowedSystems: [], fromPortal: true, cls: studentSession.cls || "", paidUntil: studentSession.paidUntil || "",
-        classroom: studentSession.classroom !== false, online: !!studentSession.online, onlineCourse: studentSession.onlineCourse || "", onlineUntil: studentSession.onlineUntil || "", allowReview: !!studentSession.allowReview }));
+        classroom: studentSession.classroom !== false, online: !!studentSession.online, onlineCourse: studentSession.onlineCourse || "", onlineUntil: studentSession.onlineUntil || "", allowReview: !!studentSession.allowReview, freshAt: fresh ? Date.now() : 0 }));
       if(digitalHubLoaded && window.__hubFor !== segKey){ document.getElementById("digital-hub-frame").src = "digital-hub.html"; }
       window.__hubFor = segKey;
     }
   } catch(e){ console.error(e); }
   document.getElementById("digital-hub-page").style.display = "block";
-  // Hide the chat bot immediately while the Hub is open (don't wait for the poller)
   setAiWidgetVisible(false);
-  // Lazy-load: only fetch digital-hub.html the first time it's opened,
-  // not on every Portal page load, since it's a separate ~400KB app.
   if (!digitalHubLoaded) {
     document.getElementById("digital-hub-frame").src = "digital-hub.html";
     digitalHubLoaded = true;
@@ -18547,10 +18540,15 @@ async function loadMyCertificates(){
 .tt-slot{display:grid;grid-template-columns:96px 1fr auto;gap:10px;align-items:center;padding:9px 10px;border-radius:9px;background:#f5f7fb;margin-bottom:6px;font-size:.83rem}
 .tt-slot.now{background:#fff8e1;border:1.5px solid #e2bb55}
 .tt-time{font-weight:800;color:#1a1a2e;font-size:.8rem}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;text-align:center}
 .cal-grid .h{font-size:.68rem;font-weight:800;color:#7a84a0;padding:4px 0}
 .cal-grid .d{aspect-ratio:1/1;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.8rem;cursor:pointer;position:relative;background:#fff;border:1px solid #eef0f5}
 .cal-grid .d.o{opacity:.35}.cal-grid .d.t{border:2px solid #000080;font-weight:800}.cal-grid .d.s{background:#000080;color:#FFD700}
+.cal-grid .d.we,.cal-grid .d.hol{background:#ffebee;color:#c62828;border-color:#f1b5b5;font-weight:700}
+.cal-grid .d.hol{background:#ffcdd2;border-color:#e57373}
+.cal-grid .d.s.we,.cal-grid .d.s.hol{background:#c62828;color:#fff;border-color:#c62828}
+.cal-grid .ctt{display:none;width:92%;margin-top:2px;font-size:.6rem;font-weight:700;line-height:1.25;border-radius:4px;padding:1px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+@media(min-width:640px){.cal-grid .d{aspect-ratio:auto;min-height:104px;justify-content:flex-start;padding-top:8px}.cal-grid .ctt{display:block}.cal-grid .d .dots{display:none}.cal-grid .d{font-size:.95rem}}
 .cal-grid .dots{display:flex;gap:2px;position:absolute;bottom:4px}.cal-grid .dots i{width:5px;height:5px;border-radius:50%;display:block}
 .ev-row{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid #f0f2f5;font-size:.83rem}
 .ev-date{min-width:46px;text-align:center;border-radius:8px;padding:4px 2px;font-weight:800;font-size:.72rem;line-height:1.2}
@@ -18628,7 +18626,7 @@ async function loadMyCertificates(){
         <button class="x-btn ghost" onclick="calMove(-1)">‹</button><b id="cal-title" style="color:#000080"></b><button class="x-btn ghost" onclick="calMove(1)">›</button>
       </div>
       <div class="cal-grid" id="cal-grid"></div>
-      <div class="dx-legend"><span><i style="background:#2557a7"></i>Event</span><span><i style="background:#c62828"></i>Exam</span><span><i style="background:#8d6e00"></i>Meeting</span><span><i style="background:#2e7d32"></i>Holiday</span><span><i style="background:#7b1fa2"></i>Homework due</span></div>
+      <div class="dx-legend"><span><i style="background:#2557a7"></i>Event</span><span><i style="background:#ef6c00"></i>Exam</span><span><i style="background:#8d6e00"></i>Meeting</span><span><i style="background:#d32f2f"></i>Holiday / no class</span><span><i style="background:#7b1fa2"></i>Homework due</span><span><i style="background:#ffcdd2;border:1px solid #d32f2f"></i>Sat · Sun · Holiday = no class</span></div>
     </div>
     <div class="x-card"><b id="cal-day-title" style="font-size:.88rem;color:#000080"></b><div id="cal-day-list"></div></div>
   </div>
@@ -18715,7 +18713,7 @@ async function ttSave(){
 }
 
 // ══════════════ SCHOOL CALENDAR (events: {title,date,time,type,cls,note,createdBy}) ══════════════
-var EV_COL = {event:"#2557a7", exam:"#c62828", meeting:"#8d6e00", holiday:"#2e7d32", homework:"#7b1fa2"};
+var EV_COL = {event:"#2557a7", exam:"#ef6c00", meeting:"#8d6e00", holiday:"#d32f2f", homework:"#7b1fa2"};
 var EV_IC = {event:"🎉", exam:"📝", meeting:"👥", holiday:"🏖️", homework:"📚"};
 var calMonth = new Date(), calSel = "", calItems = [];
 async function evList(){
@@ -18729,6 +18727,12 @@ function evVisible(e){
 async function calLoadItems(){
   var items = [];
   try { items = (await evList()).filter(evVisible); } catch(e){ console.error("events", e); }
+  // Cambodian public holidays with a fixed date (school closed). Moving (lunar) holidays such as Pchum Ben or Water Festival: the Admin adds them as 🏖️ Holiday.
+  try {
+    var CBH = {"01-01":"New Year's Day · ទិវាចូលឆ្នាំសកល","01-07":"Victory over Genocide Day · ទិវាជ័យជម្នះ ៧ មករា","03-08":"Women's Day · ទិវានារីអន្តរជាតិ","04-14":"Khmer New Year · បុណ្យចូលឆ្នាំខ្មែរ","04-15":"Khmer New Year · បុណ្យចូលឆ្នាំខ្មែរ","04-16":"Khmer New Year · បុណ្យចូលឆ្នាំខ្មែរ","05-01":"Labour Day · ទិវាពលកម្ម","05-14":"King's Birthday · ព្រះរាជពិធីចម្រើនព្រះជន្មព្រះមហាក្សត្រ","06-18":"Queen Mother's Birthday · ព្រះរាជពិធីចម្រើនព្រះជន្មព្រះមហាក្សត្រី","09-24":"Constitution Day · ទិវារដ្ឋធម្មនុញ្ញ","10-15":"King Father's Memorial Day · ទិវាព្រះបរមរតនកោដ្ឋ","10-29":"Coronation Day · ព្រះរាជពិធីគ្រងព្រះបរមរាជសម្បត្តិ","11-09":"Independence Day · បុណ្យឯករាជ្យជាតិ"};
+    var yy = new Date().getFullYear();
+    [yy-1, yy, yy+1].forEach(function(y){ Object.keys(CBH).forEach(function(k){ items.push({ title: CBH[k], date: y+"-"+k, type:"holiday", cls:"", note:"Public holiday – no class", hw:true, pub:true }); }); });
+  } catch(e){}
   // homework due dates appear on the calendar too
   try {
     var hw = [];
@@ -18756,9 +18760,11 @@ function calRender(){
   var today = new Date().toISOString().split("T")[0], html = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(function(d){ return "<div class='h'>"+d+"</div>"; }).join("");
   for(var i=0;i<42;i++){
     var dt = new Date(y, mo, 1 - start + i), ds = dt.getFullYear()+"-"+String(dt.getMonth()+1).padStart(2,"0")+"-"+String(dt.getDate()).padStart(2,"0");
-    var its = calItems.filter(function(e){ return e.date===ds; });
-    html += "<div class='d"+(dt.getMonth()!==mo?" o":"")+(ds===today?" t":"")+(ds===calSel?" s":"")+"' onclick=\"calSel='"+ds+"';calRender()\">"+dt.getDate()
-      + (its.length ? "<div class='dots'>"+its.slice(0,4).map(function(e){ return "<i style='background:"+(EV_COL[e.type]||"#2557a7")+"'></i>"; }).join("")+"</div>" : "") + "</div>";
+    var its = calItems.filter(function(e){ return e.date===ds; }).sort(function(a,b){ return (b.type==="holiday") - (a.type==="holiday"); });
+    var isWe = (i % 7) >= 5, isHol = its.some(function(e){ return e.type==="holiday"; });
+    var chips = its.slice(0,2).map(function(e){ var c = EV_COL[e.type]||"#2557a7"; return "<div class='ctt' title='"+escapeHtml(e.title)+"' style='background:"+c+"1f;color:"+c+"'>"+(EV_IC[e.type]||"")+" "+escapeHtml(e.title)+"</div>"; }).join("") + (its.length>2 ? "<div class='ctt' style='color:#667'>+"+(its.length-2)+" more</div>" : "");
+    html += "<div class='d"+(dt.getMonth()!==mo?" o":"")+(ds===today?" t":"")+(ds===calSel?" s":"")+(isHol?" hol":isWe?" we":"")+"' onclick=\"calSel='"+ds+"';calRender()\">"+dt.getDate()
+      + (its.length ? "<div class='dots'>"+its.slice(0,4).map(function(e){ return "<i style='background:"+(EV_COL[e.type]||"#2557a7")+"'></i>"; }).join("")+"</div>" + chips : "") + "</div>";
     if(i>=34 && dt.getMonth()!==mo) break;
   }
   document.getElementById("cal-grid").innerHTML = html;

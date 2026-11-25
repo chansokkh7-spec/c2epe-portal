@@ -1120,6 +1120,7 @@
                 <button type="button" class="filter-btn app-practices-toggle" id="course_cambridgeBtn" onclick="openCourse('cambridge')"><span>🎓 Cambridge</span></button>
                 <button type="button" class="filter-btn app-practices-toggle" id="course_grade9Btn" onclick="openCourse('grade9')"><span>📗 Grade 9 English</span></button>
                 <button type="button" class="filter-btn app-practices-toggle" id="course_grade12Btn" onclick="openCourse('grade12')"><span>📘 Grade 12 English</span></button>
+                <button type="button" class="filter-btn app-practices-toggle" id="course_eapBtn" onclick="openCourse('eap')"><span>🏛️ EAP / Bridge to University</span></button>
                 <button class="manage-students-btn admin-only" onclick="openManageStudents()">👥 Manage Students & Access</button>
                 <button class="manage-students-btn admin-only" onclick="openManageTeachers()">👩‍🏫 Manage Teachers</button>
                 <button class="manage-students-btn admin-only" onclick="downloadBackup()" title="Download all Hub data as a JSON file">💾 Backup Data</button>
@@ -5010,7 +5011,8 @@
             toeic:     { name: 'TOEIC',                     url: 'https://chansokkh7-spec.github.io/c2epe-apps/TOEIC-app.html' },
             cambridge: { name: 'Cambridge English',         url: 'https://chansokkh7-spec.github.io/c2epe-apps/Cambridge-app.html' },
             grade9:    { name: 'Cambodia Grade 9 English',  url: 'https://chansokkh7-spec.github.io/c2epe-apps/Cambodia-Grade9-app.html' },
-            grade12:   { name: 'Cambodia Grade 12 English', url: 'https://chansokkh7-spec.github.io/c2epe-apps/Cambodia-Grade12-app.html' }
+            grade12:   { name: 'Cambodia Grade 12 English', url: 'https://chansokkh7-spec.github.io/c2epe-apps/Cambodia-Grade12-app.html' },
+            eap:       { name: 'EAP / Bridge to University', url: 'https://chansokkh7-spec.github.io/c2epe-apps/EAP-app.html' }
         };
         async function openCourse(id) {
             const c = COURSES[id]; if (!c) return;

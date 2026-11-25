@@ -18308,6 +18308,8 @@ async function saveCertificate(){
   var st = ciStudent, msg = document.getElementById("ci-msg"), btn = document.getElementById("ci-save");
   var from = document.getElementById("ci-from").value, to = document.getElementById("ci-to").value;
   if(!from || !to || to < from){ msg.style.cssText="display:block;background:#ffebee;color:#c62828;margin-top:8px;padding:7px 10px;border-radius:6px"; msg.textContent="Please choose a valid study period."; return; }
+  var dup = (certIssued||[]).filter(function(x){ return x.status!=="revoked" && x.studentId===(st.studentId||"") && x.level===document.getElementById("ci-level").value && x.achievement===(document.getElementById("ci-what").value.trim()||"One Year of English Study"); });
+  if(dup.length && !confirm("This student already has "+dup.length+" valid certificate"+(dup.length>1?"s":"")+" for this level ("+dup[0].certId+").\n\nIssue ANOTHER one? (Cancel = keep the existing one. You can also Revoke the old one first.)")) return;
   btn.disabled = true;
   try {
     var id; do { id = newCertId(); } while(await certGet(id));
@@ -18839,6 +18841,93 @@ function attCalendarHTML(map, hol){
     + "<div class='dx-muted' style='margin-top:8px;text-align:center'><span style='color:#c62828;font-weight:800'>■</span> Red = Saturday, Sunday or holiday (no class)</div>";
 }
 // ---- student ----
+// ===== Coming Soon · New Term banner (settings/newTerm) =====
+var NT_CFG = null;
+async function ntLoad(){
+  var cfg = null;
+  try {
+    if(xLocal()) cfg = JSON.parse(localStorage.getItem("c2epe_new_term")||"null");
+    else {
+      var f = await xFb();
+      var sn = await Promise.race([ f.getDoc(f.doc(window._fb.db,"settings","newTerm")), new Promise(function(_,rj){ setTimeout(function(){ rj(new Error("timeout")); }, 5000); }) ]);
+      cfg = sn.exists() ? sn.data() : null;
+    }
+  } catch(e){ try { cfg = JSON.parse(localStorage.getItem("c2epe_new_term")||"null"); } catch(e2){} }
+  NT_CFG = cfg; return cfg;
+}
+function ntState(cfg){
+  if(!cfg || !cfg.enabled || !cfg.startAt) return null;
+  var start = new Date(cfg.startAt).getTime(); if(isNaN(start)) return null;
+  var now = Date.now(), days = +cfg.showDays || 14;
+  if(now >= start) return (now - start < 3*86400000) ? {started:true, start:start} : null;
+  if(start - now > days*86400000) return null;
+  return {started:false, start:start, left:start-now};
+}
+function ntBannerHTML(cfg){
+  var st = ntState(cfg); if(!st) return "";
+  var d = new Date(st.start);
+  var when = d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"}) + " · " + d.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});
+  var title = escapeHtml(cfg.title || "New Term");
+  var box = function(id,l){ return "<div style='background:rgba(255,255,255,.16);border-radius:10px;padding:8px 4px;min-width:54px;text-align:center'><b id='"+id+"' style='display:block;font-size:1.35rem;line-height:1.1'>0</b><span style='font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;opacity:.85'>"+l+"</span></div>"; };
+  return "<div id='nt-banner' style='background:linear-gradient(135deg,#0b1a3b,#2557a7 60%,#d6aa4c);color:#fff;border-radius:16px;padding:16px 16px 14px;margin-bottom:14px;box-shadow:0 4px 16px rgba(11,26,59,.25)'>"
+    + "<div style='font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;opacity:.9'>"+(st.started?"🎉 Now open":"✨ Coming Soon")+"</div>"
+    + "<div style='font-size:1.25rem;font-weight:800;margin:2px 0 4px'>"+title+"</div>"
+    + "<div style='font-size:.85rem;opacity:.95'>"+(st.started?"The new term has started. Welcome!":"Starts "+escapeHtml(when))+"</div>"
+    + (st.started ? "" : "<div style='display:flex;gap:8px;margin-top:10px;flex-wrap:wrap'>"+box("nt-d","Days")+box("nt-h","Hours")+box("nt-m","Min")+box("nt-s","Sec")+"</div>")
+    + (cfg.note ? "<div style='margin-top:10px;font-size:.82rem;opacity:.95;white-space:pre-line'>"+escapeHtml(cfg.note)+"</div>" : "")
+    + "</div>";
+}
+function ntTick(){
+  var st = ntState(NT_CFG), el = document.getElementById("nt-d");
+  if(!el){ if(window.__ntTimer){ clearInterval(window.__ntTimer); window.__ntTimer = null; } return; }
+  if(!st || st.started){ var b = document.getElementById("nt-banner"); if(b){ b.outerHTML = ntBannerHTML(NT_CFG); } if(!st || st.started){ clearInterval(window.__ntTimer); window.__ntTimer = null; } return; }
+  var s = Math.floor(st.left/1000);
+  document.getElementById("nt-d").textContent = Math.floor(s/86400);
+  document.getElementById("nt-h").textContent = Math.floor(s%86400/3600);
+  document.getElementById("nt-m").textContent = Math.floor(s%3600/60);
+  document.getElementById("nt-s").textContent = s%60;
+}
+function ntAdminCardHTML(cfg){
+  cfg = cfg || {};
+  var v = function(x){ return escapeHtml(x==null?"":String(x)); };
+  var lbl = "display:block;font-size:.72rem;font-weight:700;color:#5a6580;margin:8px 0 3px";
+  var inp = "width:100%;box-sizing:border-box;padding:9px;border:1.5px solid #d5dbe8;border-radius:9px;font:inherit";
+  return "<div id='nt-admin' class='dx-card' style='margin-bottom:14px'><h3>✨ Coming Soon · New Term <button onclick=\"var b=document.getElementById('nt-form');b.style.display=b.style.display==='none'?'block':'none'\">Edit ›</button></h3>"
+    + "<div class='dx-muted'>"+(cfg.enabled && cfg.startAt ? "On — shows "+(+cfg.showDays||14)+" days before "+v(new Date(cfg.startAt).toLocaleString("en-GB"))+"." : "Off. Set the start date and time, and students/teachers see a countdown.")+"</div>"
+    + "<div id='nt-form' style='display:none'>"
+    + "<label style='"+lbl+"'>Term name</label><input id='nt-title' style='"+inp+"' value='"+v(cfg.title||"")+"' placeholder='e.g. New Term 2027 – Term 1'>"
+    + "<label style='"+lbl+"'>Start date &amp; time</label><input id='nt-start' type='datetime-local' style='"+inp+"' value='"+v(cfg.startLocal||"")+"'>"
+    + "<label style='"+lbl+"'>Show banner how many days before</label><input id='nt-days' type='number' min='1' max='90' style='"+inp+"' value='"+v(cfg.showDays||14)+"'>"
+    + "<label style='"+lbl+"'>Note (optional)</label><textarea id='nt-note' rows='2' style='"+inp+"' placeholder='e.g. Registration is open. Bring your ID card.'>"+v(cfg.note||"")+"</textarea>"
+    + "<label style='display:flex;gap:8px;align-items:center;margin:10px 0;font-weight:700'><input id='nt-on' type='checkbox' "+(cfg.enabled?"checked":"")+"> Show this banner</label>"
+    + "<button class='td-gold' onclick='ntSave()'>💾 Save</button> <span id='nt-msg' style='font-size:.8rem;margin-left:8px'></span>"
+    + "</div></div>";
+}
+async function ntSave(){
+  var msg = document.getElementById("nt-msg");
+  var local = document.getElementById("nt-start").value;
+  var on = document.getElementById("nt-on").checked;
+  if(on && !local){ msg.style.color="#c62828"; msg.textContent="Choose the start date and time."; return; }
+  var data = { enabled:on, title:document.getElementById("nt-title").value.trim(), startLocal:local, startAt: local ? new Date(local).toISOString() : "",
+    showDays: Math.max(1, Math.min(90, +document.getElementById("nt-days").value || 14)), note:document.getElementById("nt-note").value.trim(), updatedAt:new Date().toISOString() };
+  try {
+    if(xLocal()) localStorage.setItem("c2epe_new_term", JSON.stringify(data));
+    else { var f = await xFb(); await f.setDoc(f.doc(window._fb.db,"settings","newTerm"), data); }
+    NT_CFG = data; msg.style.color="#2e7d32"; msg.textContent="Saved ✓";
+    var box = document.getElementById("td-content"); if(box) ntInject(box, true);
+  } catch(e){ msg.style.color="#c62828"; msg.textContent="Could not save: "+(e&&e.message||e); }
+}
+async function ntInject(box, isAdm){
+  try {
+    var cfg = await ntLoad();
+    ["nt-banner","nt-admin"].forEach(function(i){ var o = document.getElementById(i); if(o) o.remove(); });
+    var h = (isAdm ? ntAdminCardHTML(cfg) : "") + ntBannerHTML(cfg);
+    if(h) box.insertAdjacentHTML("afterbegin", h);
+    if(window.__ntTimer){ clearInterval(window.__ntTimer); window.__ntTimer = null; }
+    if(document.getElementById("nt-d")){ ntTick(); window.__ntTimer = setInterval(ntTick, 1000); }
+  } catch(e){ console.warn("new term banner", e); }
+}
+
 async function sdEnhance(d){
   setTimeout(clinicParentAlert, 1200);
   var box = document.getElementById("sd-content"); if(!box || !studentSession) return;
@@ -18890,6 +18979,7 @@ async function sdEnhance(d){
     + "<div class='dx-card'><h3>⏰ Upcoming <button onclick='sdGo(openCalendar)'>Calendar ›</button></h3>"+upcomingHTML(items, "Nothing coming up.")+"</div></div>"
     + "<div class='dx-two'><div class='dx-card'><h3>✅ Attendance this month <button onclick='sdGo(openAttendPage)'>Details ›</button></h3>"+attCalendarHTML(d.attMap||{}, (function(){ var h = {}; try { (items||[]).forEach(function(e){ if(e && e.type==="holiday" && e.date) h[e.date] = e.title||"Holiday"; }); } catch(x){} return h; })())+"</div>"
     + "<div class='dx-card'><h3>💬 Messages <button onclick='sdGo(openMsgPage)'>Open ›</button></h3><div class='dx-muted'>Chat with your teachers and the school office.</div><button class='sd-btn' style='margin-top:10px' onclick='sdGo(openMsgPage)'>💬 Open messages</button></div></div>");
+  ntInject(box, false);
   // bottom navigation (phones)
   if(!document.getElementById("sd-bottom")){
     document.getElementById("sd").insertAdjacentHTML("beforeend", "<nav class='dx-bottom' id='sd-bottom'>"
@@ -18947,6 +19037,7 @@ async function tdEnhance(run){
     + "<div class='dx-two'><div class='dx-card'><h3>📚 Today's classes <button onclick='tdGo(openTimetable)'>Timetable ›</button></h3>"+todayClassesHTML(mine, all.length ? "No classes today." : "No timetable yet — open 🗓️ Timetable to add your classes.")+"</div>"
     + "<div class='dx-card'><h3>⏰ Upcoming <button onclick='tdGo(openCalendar)'>＋ Add / Calendar ›</button></h3>"+upcomingHTML(items, "No upcoming events. Add exams, meetings and holidays in the calendar.")+"</div></div>");
   var ann = document.getElementById("td-ann-card"); if(ann) box.prepend(ann);
+  ntInject(box, isAdm);
 }
 </script>
 

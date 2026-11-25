@@ -1123,6 +1123,7 @@
                 <button type="button" class="filter-btn app-practices-toggle" id="course_eapBtn" onclick="openCourse('eap')"><span>🏛️ EAP / Bridge to University</span></button>
                 <button type="button" class="filter-btn app-practices-toggle" id="course_writingBtn" onclick="openCourse('writing')"><span>✍️ Writing Skills</span></button>
                 <button type="button" class="filter-btn app-practices-toggle" id="course_computerBtn" onclick="openCourse('computer')"><span>💻 Computer Class</span></button>
+                <button type="button" class="filter-btn app-practices-toggle" id="course_aiBtn" onclick="openCourse('ai')"><span>🤖 AI Class</span></button>
                 <button class="manage-students-btn admin-only" onclick="openManageStudents()">👥 Manage Students & Access</button>
                 <button class="manage-students-btn admin-only" onclick="openManageTeachers()">👩‍🏫 Manage Teachers</button>
                 <button class="manage-students-btn admin-only" onclick="downloadBackup()" title="Download all Hub data as a JSON file">💾 Backup Data</button>
@@ -5016,7 +5017,8 @@
             grade12:   { name: 'Cambodia Grade 12 English', url: 'https://chansokkh7-spec.github.io/c2epe-apps/Cambodia-Grade12-app.html' },
             eap:       { name: 'EAP / Bridge to University', url: 'https://chansokkh7-spec.github.io/c2epe-apps/EAP-app.html' },
             writing:   { name: 'Writing Skills', url: 'https://chansokkh7-spec.github.io/c2epe-apps/Writing-app.html' },
-            computer:  { name: 'Computer Class', url: 'https://chansokkh7-spec.github.io/c2epe-apps/Computer-app.html' }
+            computer:  { name: 'Computer Class', url: 'https://chansokkh7-spec.github.io/c2epe-apps/Computer-app.html' },
+            ai:        { name: 'AI Class', url: 'https://chansokkh7-spec.github.io/c2epe-apps/AI-app.html' }
         };
         async function openCourse(id) {
             const c = COURSES[id]; if (!c) return;

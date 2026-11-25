@@ -17547,6 +17547,7 @@ body.dash-open #ai-chat-bubble,body.dash-open #ai-chat-panel{display:none !impor
       <h4>MAIN MENU</h4>
       <button class="on" onclick="sdShowDashboard()">🏠 Dashboard</button>
       <button onclick="sdGo(openTimetable)">📚 My Classes (Timetable)</button>
+      <button onclick="sdGo(openDigitalHubPage)">🧭 SEG Digital Hub</button>
       <button onclick="sdGo(openCalendar)">📅 School Calendar</button>
       <button onclick="sdGo(openHwPage)">📝 Homework</button>
       <button onclick="sdGo(openClassworkPage)">🗂️ Classwork &amp; Scores</button>
@@ -18768,7 +18769,8 @@ function todayClassesHTML(entries, emptyText){
     return "<div class='dx-item' style='"+(done?"opacity:.55":"")+"'><div class='dx-ic' style='background:#e8eaf6;color:#000080;font-size:.68rem;font-weight:800;width:auto;padding:0 8px'>"+escapeHtml(s.start)+"</div><div style='flex:1;min-width:0'><b>"+escapeHtml(s.subject||"Lesson")+"</b>"+(now?" <span style='color:#c9a227;font-weight:800;font-size:.7rem'>● NOW</span>":"")+"<div class='dx-muted'>"+escapeHtml([s.start+"–"+s.end, s.cls, s.teacher, s.room?"Room "+s.room:""].filter(Boolean).join(" · "))+"</div></div></div>";
   }).join("");
 }
-function attCalendarHTML(map){
+function attCalendarHTML(map, hol){
+  hol = hol || {};
   var t = new Date(), y = t.getFullYear(), mo = t.getMonth(), first = new Date(y,mo,1), start = (first.getDay()+6)%7, days = new Date(y,mo+1,0).getDate();
   var col = {present:"#2e7d32", late:"#f39c12", leaveEarly:"#8d6e00", permission:"#1976d2", absent:"#c62828"};
   var cnt = {present:0,late:0,absent:0};
@@ -18777,13 +18779,15 @@ function attCalendarHTML(map){
   for(var d=1; d<=days; d++){
     var ds = y+"-"+String(mo+1).padStart(2,"0")+"-"+String(d).padStart(2,"0"), st = map[ds];
     if(st==="present"||st==="leaveEarly") cnt.present++; else if(st==="late") cnt.late++; else if(st==="absent") cnt.absent++;
-    html += "<div class='d"+(d===t.getDate()?" t":"")+"' style='cursor:default;aspect-ratio:auto;padding:5px 0;"+(st?"background:"+col[st]+";color:#fff;border-color:"+col[st]:"")+"' title='"+(st||"")+"'>"+d+"</div>";
+    var off = ((start + d - 1) % 7) >= 5, hd = hol[ds], red = !st && (off || hd);
+    html += "<div class='d"+(d===t.getDate()?" t":"")+"' style='cursor:default;aspect-ratio:auto;padding:5px 0;"+(st?"background:"+col[st]+";color:#fff;border-color:"+col[st]:(red?"background:#ffebee;color:#c62828;border-color:#f1b5b5;font-weight:800":""))+"' title='"+(st||hd||(off?"No class (weekend)":""))+"'>"+d+"</div>";
   }
   return "<div style='font-weight:700;font-size:.8rem;margin-bottom:6px;color:#555'>"+t.toLocaleDateString("en-GB",{month:"long",year:"numeric"})+"</div>"+html+"</div>"
     + "<div style='display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px;text-align:center'>"
     + "<div style='background:#e8f5e9;border-radius:8px;padding:6px'><b style='color:#2e7d32;font-size:1.1rem'>"+cnt.present+"</b><div class='dx-muted'>Present</div></div>"
     + "<div style='background:#ffebee;border-radius:8px;padding:6px'><b style='color:#c62828;font-size:1.1rem'>"+cnt.absent+"</b><div class='dx-muted'>Absent</div></div>"
-    + "<div style='background:#fff3e0;border-radius:8px;padding:6px'><b style='color:#f39c12;font-size:1.1rem'>"+cnt.late+"</b><div class='dx-muted'>Late</div></div></div>";
+    + "<div style='background:#fff3e0;border-radius:8px;padding:6px'><b style='color:#f39c12;font-size:1.1rem'>"+cnt.late+"</b><div class='dx-muted'>Late</div></div></div>"
+    + "<div class='dx-muted' style='margin-top:8px;text-align:center'><span style='color:#c62828;font-weight:800'>■</span> Red = Saturday, Sunday or holiday (no class)</div>";
 }
 // ---- student ----
 async function sdEnhance(d){
@@ -18793,6 +18797,10 @@ async function sdEnhance(d){
   try {
     if(xLocal()) me = JSON.parse(localStorage.getItem("c2epe_local_students")||"[]").find(function(x){ return x.id===studentSession.docId || x.studentId===studentSession.studentId; }) || {};
     else if(studentSession.docId){ var f = await xFb(); var sn = await f.getDoc(f.doc(window._fb.db,"students",studentSession.docId)); me = sn.exists() ? sn.data() : {}; }
+  } catch(e){}
+  try {
+    if(!xLocal() && studentSession.docId){ var f2 = await xFb(); var sp = await f2.getDoc(f2.doc(window._fb.db,"studentProfiles",studentSession.docId)); var spd = sp.exists() ? sp.data() : null;
+      if(spd && spd.photo && (!me.photo || (spd.updatedAt||"") > (me.photoUpdatedAt||""))) me.photo = spd.photo; }
   } catch(e){}
   window.__sdMe = me;
   var slots = []; try { slots = await ttGet(studentSession.cls); } catch(e){}
@@ -18812,8 +18820,9 @@ async function sdEnhance(d){
   var initials = String(studentSession.name||"S").split(/\s+/).map(function(w){ return w.charAt(0); }).join("").slice(0,2).toUpperCase();
   var tile = function(ic, label, bg, fn){ return "<button class='dx-tile' style='background:"+bg+"' onclick='sdGo("+fn+")'><span>"+ic+"</span>"+label+"</button>"; };
   box.insertAdjacentHTML("afterbegin", annBlock +
-    "<div class='dx-hello'>"+(me.photo ? "<img src='"+escapeHtml(me.photo)+"' alt=''>" : "<div class='av'>"+escapeHtml(initials)+"</div>")
+    "<div class='dx-hello'>"+myAvatarHTML(me.photo, "<div class='av'>"+escapeHtml(initials)+"</div>")
     + "<div style='flex:1;min-width:0'><span>"+greetWord()+",</span><b>"+escapeHtml(studentSession.name)+"</b><span>"+escapeHtml(classDisplayLabel(studentSession.cls)||studentSession.cls)+" · ID "+escapeHtml(studentSession.studentId)+"</span></div></div>"
+    + "<button class='dx-hubbtn' onclick='sdGo(openDigitalHubPage)'><span style='font-size:1.7rem'>🧭</span><span style='flex:1;text-align:left'><b>SEG Digital Hub</b><small>Grammar · Exam courses · Videos · Games · Practice</small></span><span style='font-size:1.3rem'>›</span></button>"
     + "<div class='dx-tiles'>"
     + tile("📚","My Classes","linear-gradient(135deg,#3949ab,#5c6bc0)","openTimetable")
     + tile("📝","Homework","linear-gradient(135deg,#00897b,#26a69a)","openHwPage")
@@ -18830,7 +18839,7 @@ async function sdEnhance(d){
     + "</div>"
     + "<div class='dx-two'><div class='dx-card'><h3>📚 Today's classes <button onclick='sdGo(openTimetable)'>Full week ›</button></h3>"+todayClassesHTML(todays.map(function(s){ s.cls=""; return s; }), slots.length ? "No classes today 🎉" : "Your timetable will appear here when the school adds it.")+"</div>"
     + "<div class='dx-card'><h3>⏰ Upcoming <button onclick='sdGo(openCalendar)'>Calendar ›</button></h3>"+upcomingHTML(items, "Nothing coming up.")+"</div></div>"
-    + "<div class='dx-two'><div class='dx-card'><h3>✅ Attendance this month <button onclick='sdGo(openAttendPage)'>Details ›</button></h3>"+attCalendarHTML(d.attMap||{})+"</div>"
+    + "<div class='dx-two'><div class='dx-card'><h3>✅ Attendance this month <button onclick='sdGo(openAttendPage)'>Details ›</button></h3>"+attCalendarHTML(d.attMap||{}, (function(){ var h = {}; try { (items||[]).forEach(function(e){ if(e && e.type==="holiday" && e.date) h[e.date] = e.title||"Holiday"; }); } catch(x){} return h; })())+"</div>"
     + "<div class='dx-card'><h3>💬 Messages <button onclick='sdGo(openMsgPage)'>Open ›</button></h3><div class='dx-muted'>Chat with your teachers and the school office.</div><button class='sd-btn' style='margin-top:10px' onclick='sdGo(openMsgPage)'>💬 Open messages</button></div></div>");
   // bottom navigation (phones)
   if(!document.getElementById("sd-bottom")){
@@ -18842,6 +18851,7 @@ async function sdEnhance(d){
 function sdProfile(){
   var me = window.__sdMe || {}, s = studentSession || {};
   document.getElementById("sdp-photo").innerHTML = me.photo ? "<img src='"+escapeHtml(me.photo)+"' alt='' style='width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid #d6aa4c'>" : "<div style='width:84px;height:84px;border-radius:50%;background:#2f55a4;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:2rem'>👤</div>";
+  document.getElementById("sdp-photo").insertAdjacentHTML("beforeend", "<div style='margin-top:8px'><button onclick='myPhotoPick()' style='background:#d6aa4c;color:#0b1a3b;border:0;border-radius:20px;padding:6px 14px;font-weight:800;font-size:.8rem;cursor:pointer'>📷 Change my photo</button></div>");
   document.getElementById("sdp-name").textContent = s.name || "";
   document.getElementById("sdp-sub").textContent = (classDisplayLabel(s.cls)||s.cls||"") + " · Student ID " + (s.studentId||"");
   var row = function(k,v){ return v ? "<div style='display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid #f0f2f5'><span style='color:#7a84a0'>"+k+"</span><b style='text-align:right'>"+escapeHtml(v)+"</b></div>" : ""; };
@@ -18861,6 +18871,7 @@ async function tdEnhance(run){
   if(!isAdm && currentTeacherName){ var own = mine.filter(function(s){ return String(s.teacher||"").toLowerCase()===String(currentTeacherName).toLowerCase(); }); if(own.length) mine = own; }
   var items = await calLoadItems();
   var wait = await c2pWaitingCounts();
+  try { await myStaffPhotoLoad(); } catch(e){}
   if(!document.getElementById("td-content") || document.getElementById("td").style.display === "none") return;
   var tile = function(ic, label, bg, fn){ return "<button class='dx-tile' style='background:"+bg+"' onclick='tdGo("+fn+")'><span>"+ic+"</span>"+label+"</button>"; };
   var displayName = (currentTeacherName && currentTeacherName.indexOf("@") < 0) ? currentTeacherName : (isAdm ? "Admin" : "Teacher");
@@ -18868,7 +18879,7 @@ async function tdEnhance(run){
   setTimeout(hrRenderClockCard, 0);
   var annCard = document.getElementById("td-ann-card");
   (annCard ? function(h){ annCard.insertAdjacentHTML("afterend", h); } : function(h){ box.insertAdjacentHTML("afterbegin", h); })("<div id='hr-clock-card'></div>" +
-    "<div class='dx-hello'><div class='av'>👩‍🏫</div><div style='flex:1'><span>"+greetWord()+",</span><b>"+escapeHtml(displayName)+"</b><span>"+new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})+"</span></div></div>"
+    "<div class='dx-hello'>"+myAvatarHTML(window.__myStaffPhoto, "<div class='av'>👩‍🏫</div>")+"<div style='flex:1'><span>"+greetWord()+",</span><b>"+escapeHtml(displayName)+"</b><span>"+new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})+"</span></div></div>"
     + "<div class='dx-tiles'>"
     + tile("✅","Attendance","linear-gradient(135deg,#2e7d32,#43a047)","openAttendPage")
     + tile("📝","Homework","linear-gradient(135deg,#00897b,#26a69a)","openHwPage")
@@ -22333,5 +22344,61 @@ function closeLevelUpTest(){
 })();
 </script>
 <!-- ================= /PRACTICE RESULTS ================= -->
+<style>
+.dx-hello .my-av{position:relative;cursor:pointer;flex-shrink:0;display:block}
+.my-cam{position:absolute;right:-4px;bottom:-4px;background:#d6aa4c;color:#0b1a3b;border-radius:50%;width:22px;height:22px;font-size:12px;display:flex;align-items:center;justify-content:center;font-style:normal;border:2px solid #0b1a3b}
+.my-toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#0b1a3b;color:#fff;padding:10px 18px;border-radius:24px;z-index:100000;font:600 .85rem sans-serif;box-shadow:0 6px 20px #0006}
+</style>
+<script>
+// ── My photo: students, teachers and the admin can set their own photo ──
+function myAvatarHTML(photo, fallback){
+  return "<div class='my-av' title='Tap to change your photo' onclick='myPhotoPick()'>" + (photo ? "<img src='"+escapeHtml(photo)+"' alt=''>" : fallback) + "<i class='my-cam'>📷</i></div>";
+}
+function myToast(t){ var d = document.createElement("div"); d.className = "my-toast"; d.textContent = t; document.body.appendChild(d); setTimeout(function(){ d.remove(); }, 2600); }
+function myPhotoPick(){
+  var i = document.getElementById("my-photo-input");
+  if(!i){ i = document.createElement("input"); i.type = "file"; i.accept = "image/*"; i.id = "my-photo-input"; i.style.display = "none"; i.onchange = function(){ myPhotoChosen(i); }; document.body.appendChild(i); }
+  i.value = ""; i.click();
+}
+async function myStaffPhotoLoad(){
+  if(window.__myStaffPhoto) return window.__myStaffPhoto;
+  var ph = "";
+  try {
+    if(xLocal()) ph = localStorage.getItem("c2epe_staff_photo") || "";
+    else if(currentUser && currentUser.uid){ var f = await xFb(); var sn = await f.getDoc(f.doc(window._fb.db,"staffPhotos",currentUser.uid)); ph = sn.exists() ? (sn.data().photo||"") : ""; }
+  } catch(e){}
+  window.__myStaffPhoto = ph; return ph;
+}
+async function myPhotoChosen(inp){
+  var file = inp.files && inp.files[0]; if(!file) return;
+  try {
+    var photo = await attResizePhoto(file), now = new Date().toISOString();
+    if(typeof studentSession !== "undefined" && studentSession){
+      var sid = studentSession.docId || studentSession.studentId;
+      if(xLocal()){
+        var list = JSON.parse(localStorage.getItem("c2epe_local_students")||"[]");
+        list.forEach(function(x){ if(x.id===studentSession.docId || x.studentId===studentSession.studentId){ x.photo = photo; x.photoUpdatedAt = now; } });
+        localStorage.setItem("c2epe_local_students", JSON.stringify(list));
+      } else {
+        var f = await xFb();
+        await f.setDoc(f.doc(window._fb.db,"studentProfiles",sid), { studentId: studentSession.studentId||"", studentName: studentSession.name||"", photo: photo, updatedAt: now }, { merge: true });
+        try { await f.updateDoc(f.doc(window._fb.db,"students",sid), { photo: photo, photoUpdatedAt: now }); } catch(e){}
+      }
+      window.__sdMe = window.__sdMe || {}; window.__sdMe.photo = photo; window.__sdMe.photoUpdatedAt = now;
+    } else if(typeof currentUser !== "undefined" && currentUser){
+      if(xLocal()) localStorage.setItem("c2epe_staff_photo", photo);
+      else { var g = await xFb(); await g.setDoc(g.doc(window._fb.db,"staffPhotos",currentUser.uid), { photo: photo, name: (typeof currentTeacherName !== "undefined" && currentTeacherName) || currentUser.email || "", updatedAt: now }, { merge: true }); }
+      window.__myStaffPhoto = photo;
+    } else { alert("Please log in first."); return; }
+    document.querySelectorAll(".my-av").forEach(function(el){
+      var im = el.querySelector("img"), av = el.querySelector(".av");
+      if(im) im.src = photo; else { if(av) av.remove(); var n = document.createElement("img"); n.alt = ""; n.src = photo; el.insertBefore(n, el.firstChild); }
+    });
+    var sp = document.getElementById("sd-profile"); if(sp && sp.style.display !== "none" && typeof sdProfile === "function") sdProfile();
+    myToast("📷 Photo saved");
+  } catch(e){ console.error("My photo error:", e); alert("Could not save the photo: " + (e && e.message ? e.message : e)); }
+}
+</script>
+<style>.dx-hubbtn{display:flex;align-items:center;gap:12px;width:100%;border:0;border-radius:16px;padding:14px 16px;margin:0 0 12px;background:linear-gradient(135deg,#6a1b9a,#3949ab);color:#fff;cursor:pointer;box-shadow:0 6px 16px rgba(57,73,171,.35);font-family:inherit}.dx-hubbtn b{display:block;font-size:1rem;color:#ffe27a}.dx-hubbtn small{display:block;font-size:.72rem;color:#e6e9ff;font-weight:500;margin-top:2px}</style>
 </body>
 </html>

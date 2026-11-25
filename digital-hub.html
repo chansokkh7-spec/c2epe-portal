@@ -2692,6 +2692,12 @@
             if (!st || !st.online) return false;
             return c2PayState(st.onlineUntil) !== 'locked';
         }
+        // A portal student with fees still paid (classroom OR online, 7-day grace) may open every level in the Hub; when both are over, the Hub is closed to them.
+        function c2StudentActive(st) {
+            if (!st || !st.fromPortal) return true;
+            const classOk = st.classroom !== false && c2PayState(st.paidUntil) !== 'locked';
+            return classOk || c2OnlineActive(st);
+        }
         function c2ClassIndex(list, c) { return list.indexOf(c); }
         // true when this signed-in student may open this card (staff and the old "restricted" rule are handled by the caller)
         function c2LevelRule(sys, st) {
@@ -2748,8 +2754,7 @@
             if (st.classroom !== false && st.cls) parts.push('🏫 ' + escapeHtml(st.cls));
             if (st.online) parts.push('💻 ' + escapeHtml(st.onlineCourse || 'Online') + (st.onlineUntil ? ' · until ' + escapeHtml(st.onlineUntil) : ''));
             el.style.cssText = 'display:block;max-width:1200px;margin:6px auto 14px;padding:10px 16px;border-radius:12px;background:rgba(232,199,102,0.14);border:1px solid rgba(232,199,102,0.55);color:inherit;font-size:0.9rem;line-height:1.5;text-align:center;';
-            el.innerHTML = 'បង្ហាញតែមេរៀនរបស់អ្នក · Showing only your lessons: ' + parts.join(' &nbsp;|&nbsp; ') +
-                (st.allowReview ? ' · <i>earlier levels open for review</i>' : '');
+            el.innerHTML = 'មេរៀនគ្រប់កម្រិតបើកសម្រាប់អ្នក ពេលនៅទូទាត់ប្រាក់ · All levels are open while your fees are paid: ' + parts.join(' &nbsp;|&nbsp; ');
             const warn = [];
             [['Classroom', st.classroom !== false ? st.paidUntil : ''], ['Online', st.online ? st.onlineUntil : '']].forEach(([label, until]) => {
                 const ps = c2PayState(until);
@@ -2795,6 +2800,7 @@
             if (staffRole === 'teacher') return c2TeacherRule(sys);      // teachers: only their classes
             if (!currentStudent) return !!sys.public;                     // guests: only cards marked public
             if (sys.restricted) return (currentStudent.allowedSystems || []).includes(sys._id);
+            if (currentStudent.fromPortal) return c2StudentActive(currentStudent);   // paid students: every level, classroom and online
             return c2LevelRule(sys, currentStudent);
         }
 
@@ -2813,6 +2819,10 @@
         function renderGrid() {
             const grid = document.getElementById('systemGrid');
             grid.innerHTML = ''; c2AccessNote();
+            if (currentStudent && !staffRole && currentStudent.fromPortal && !c2StudentActive(currentStudent)) {
+                grid.innerHTML = '<div style="grid-column:1/-1;max-width:640px;margin:40px auto;padding:28px 24px;border-radius:18px;background:#fdecec;color:#8a1c1c;border:2px solid #f5b5b5;text-align:center;font-weight:600;line-height:1.6"><div style="font-size:3rem">🔒</div><div style="font-size:1.15rem;font-weight:800;margin-bottom:6px">SEG Digital Hub is locked · SEG Hub ត្រូវបានចាក់សោ</div>Your fee period has ended. <b>Please pay your fees to continue learning in the Hub.</b> The Hub opens again as soon as the school confirms.<br>រយៈពេលបង់ប្រាក់របស់អ្នកបានផុតកំណត់។ <b>សូមបង់ប្រាក់ ដើម្បីបន្តការសិក្សាក្នុង Hub។</b> Hub នឹងបើកវិញភ្លាមៗ ពេលសាលាបញ្ជាក់។<br><button onclick="try{parent.closeDigitalHubPage();parent.openFeePage();}catch(e){}" style="margin-top:14px;background:#2e7d32;color:#fff;border:0;border-radius:14px;padding:12px 24px;font-weight:800;font-size:1rem;cursor:pointer">💰 Pay now · បង់ប្រាក់ឥឡូវនេះ</button></div>';
+                return;
+            }
 
             Object.keys(carouselIntervals).forEach(key => clearInterval(carouselIntervals[key]));
             carouselIntervals = {};

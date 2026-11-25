@@ -8534,7 +8534,50 @@ var attendStudents = [];
 var attendDocId = null;
 
 var digitalHubLoaded = false;
+// Students: the Hub is open to every level while fees are paid (classroom or online, 7-day grace). When both are over it stays closed.
+function hubFeeState(until){
+  if(!until) return "ok";
+  var t = new Date().toISOString().slice(0,10); if(until >= t) return "ok";
+  var g = new Date(until+"T00:00:00"); g.setDate(g.getDate()+7);
+  return g.toISOString().slice(0,10) >= t ? "grace" : "locked";
+}
+function hubStudentActive(s){
+  if(!s) return true;
+  var cls = s.classroom !== false && hubFeeState(s.paidUntil) !== "locked";
+  var onl = !!s.online && hubFeeState(s.onlineUntil) !== "locked";
+  return cls || onl;
+}
+function hubLockedModal(st){
+  var old = document.getElementById("hub-lock-modal"); if(old) old.remove();
+  var due = []; if(st.classroom !== false && st.paidUntil) due.push("🏫 Classroom: "+st.paidUntil); if(st.online && st.onlineUntil) due.push("💻 Online: "+st.onlineUntil);
+  var d = document.createElement("div"); d.id = "hub-lock-modal";
+  d.style.cssText = "position:fixed;inset:0;background:rgba(8,16,40,.72);z-index:100001;display:flex;align-items:center;justify-content:center;padding:16px";
+  d.innerHTML = "<div style='background:#fff;border-radius:22px;max-width:440px;width:100%;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);text-align:center;font-family:inherit'>"
+    + "<div style='background:linear-gradient(135deg,#b71c1c,#e53935);color:#fff;padding:22px 18px'><div style='font-size:3rem;line-height:1'>🔒</div><div style='font-weight:800;font-size:1.15rem;margin-top:6px'>SEG Digital Hub is locked</div><div style='font-size:.95rem;opacity:.95'>SEG Hub ត្រូវបានចាក់សោ</div></div>"
+    + "<div style='padding:18px 20px;color:#222;line-height:1.6;font-size:.92rem'>"
+    + "<p style='margin:0 0 8px'>Your fee period has ended. <b>Please pay your fees to continue learning in the Hub.</b></p>"
+    + "<p style='margin:0 0 12px;color:#444'>រយៈពេលបង់ប្រាក់របស់អ្នកបានផុតកំណត់។ <b>សូមបង់ប្រាក់ ដើម្បីបន្តការសិក្សាក្នុង Hub។</b></p>"
+    + (due.length ? "<div style='background:#fdecec;border:1px solid #f5b5b5;color:#8a1c1c;border-radius:12px;padding:8px 12px;font-weight:700;margin-bottom:12px'>Paid until · បង់ដល់៖<br>"+due.join("<br>")+"</div>" : "")
+    + "<p style='margin:0 0 14px;font-size:.82rem;color:#666'>After the school confirms your payment, the Hub opens again.<br>ពេលសាលាបញ្ជាក់ការបង់ប្រាក់ Hub នឹងបើកវិញ។</p>"
+    + "<button onclick=\"document.getElementById('hub-lock-modal').remove();try{openFeePage();}catch(e){}\" style='width:100%;background:#2e7d32;color:#fff;border:0;border-radius:14px;padding:13px;font-weight:800;font-size:1rem;cursor:pointer;margin-bottom:8px'>💰 Pay now · បង់ប្រាក់ឥឡូវនេះ</button>"
+    + "<button onclick=\"document.getElementById('hub-lock-modal').remove()\" style='width:100%;background:#eef1f7;color:#333;border:0;border-radius:14px;padding:11px;font-weight:700;cursor:pointer'>Close · បិទ</button>"
+    + "</div></div>";
+  document.body.appendChild(d);
+}
 function openDigitalHubPage(){
+  try {
+    if(typeof studentSession !== "undefined" && studentSession && !isTeacher){
+      if(!hubStudentActive(studentSession)){
+        hubLockedModal(studentSession);
+        return;
+      }
+      var segKey = studentSession.studentId + "|" + (studentSession.paidUntil||"") + "|" + (studentSession.onlineUntil||"");
+      sessionStorage.setItem("seg_student", JSON.stringify({ id: studentSession.studentId, name: studentSession.name, allowedSystems: [], fromPortal: true, cls: studentSession.cls || "", paidUntil: studentSession.paidUntil || "",
+        classroom: studentSession.classroom !== false, online: !!studentSession.online, onlineCourse: studentSession.onlineCourse || "", onlineUntil: studentSession.onlineUntil || "", allowReview: !!studentSession.allowReview }));
+      if(digitalHubLoaded && window.__hubFor !== segKey){ document.getElementById("digital-hub-frame").src = "digital-hub.html"; }
+      window.__hubFor = segKey;
+    }
+  } catch(e){ console.error(e); }
   document.getElementById("digital-hub-page").style.display = "block";
   // Hide the chat bot immediately while the Hub is open (don't wait for the poller)
   setAiWidgetVisible(false);

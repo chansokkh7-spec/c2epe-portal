@@ -204,6 +204,7 @@
             background: #c19012;
         }
 
+        #appPracticesToggle, #appPracticesBody { display: none !important; }
         .app-practices-box {
             background: linear-gradient(135deg, #1a2456, #0f1638);
             border: 1px solid #2c3e6e;
@@ -1756,6 +1757,7 @@
         let allStudentsCache = {}; // id -> {name, allowedSystems}
         let editingStudentId = null; // which student the admin form is currently editing
 
+        const HIDE_APP_PRACTICES = true;
         const TOTAL_SYSTEMS = 186; // English 12 + Health 12 + Technology 12 + Online Class 88-63=25 more + 1 extra Kindergarten slot + 3 extra Primary slots + 4 extra Secondary slots + 5 extra Master Level slots + 1 Online Class Bridge Course slot + 25 extra Online Class CEFR sub-level slots + 2 more Master Level Online Class slots (C1.4, C2.3) appended at 89-90 + 4 Pronunciation & Speaking slots appended at 91-94 + 4 Listening & Comprehension slots appended at 95-98 + 16 App Practices slots (Games 99-102, Reading 103-106, Roleplay 107-110, Weekly Mini-Test 111-114) + 8 new slots: Public Speaking 115-118, Debate 119-122 (each 4 levels Kindergarten/Primary/Secondary/Master Level) — split out of the original combined Roleplay/Public Speaking/Debate feature per admin request
 
         // Blank/unassigned slots default into fixed groups — 1-12 English,
@@ -2907,6 +2909,7 @@
             const searchInput = document.getElementById('searchInput').value.toLowerCase();
 
             for (let i = 1; i <= TOTAL_SYSTEMS; i++) {
+                if (HIDE_APP_PRACTICES && apInfo(i)) continue;   // App Practices hidden from the Hub (set HIDE_APP_PRACTICES=false to bring them back)
                 const sys = systemsData[i] || { title: defaultTitleFor(i), icon: '' };
                 sys._id = i;
                 // Category is always derived from the slot position — never

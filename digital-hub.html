@@ -1756,7 +1756,7 @@
         let allStudentsCache = {}; // id -> {name, allowedSystems}
         let editingStudentId = null; // which student the admin form is currently editing
 
-        const TOTAL_SYSTEMS = 122; // English 12 + Health 12 + Technology 12 + Online Class 88-63=25 more + 1 extra Kindergarten slot + 3 extra Primary slots + 4 extra Secondary slots + 5 extra Master Level slots + 1 Online Class Bridge Course slot + 25 extra Online Class CEFR sub-level slots + 2 more Master Level Online Class slots (C1.4, C2.3) appended at 89-90 + 4 Pronunciation & Speaking slots appended at 91-94 + 4 Listening & Comprehension slots appended at 95-98 + 16 App Practices slots (Games 99-102, Reading 103-106, Roleplay 107-110, Weekly Mini-Test 111-114) + 8 new slots: Public Speaking 115-118, Debate 119-122 (each 4 levels Kindergarten/Primary/Secondary/Master Level) — split out of the original combined Roleplay/Public Speaking/Debate feature per admin request
+        const TOTAL_SYSTEMS = 186; // English 12 + Health 12 + Technology 12 + Online Class 88-63=25 more + 1 extra Kindergarten slot + 3 extra Primary slots + 4 extra Secondary slots + 5 extra Master Level slots + 1 Online Class Bridge Course slot + 25 extra Online Class CEFR sub-level slots + 2 more Master Level Online Class slots (C1.4, C2.3) appended at 89-90 + 4 Pronunciation & Speaking slots appended at 91-94 + 4 Listening & Comprehension slots appended at 95-98 + 16 App Practices slots (Games 99-102, Reading 103-106, Roleplay 107-110, Weekly Mini-Test 111-114) + 8 new slots: Public Speaking 115-118, Debate 119-122 (each 4 levels Kindergarten/Primary/Secondary/Master Level) — split out of the original combined Roleplay/Public Speaking/Debate feature per admin request
 
         // Blank/unassigned slots default into fixed groups — 1-12 English,
         // 13-24 Health, 25-36 Technology, 37-49 Online Class (13: 37-40
@@ -1781,6 +1781,7 @@
         // locked to slot position (see the disabled dropdown in the edit
         // modal) so this grouping can never drift out of balance.
         function defaultCategoryFor(i) {
+            { const _ap = apInfo(i); if (_ap) return _ap.cat; }
             if (i === 50) return 'english';
             if (i >= 51 && i <= 53) return 'english';
             if (i >= 54 && i <= 57) return 'english';
@@ -1842,6 +1843,48 @@
         const WEEKLYTEST_LEVELS = ['Kindergarten', 'Primary', 'Secondary', 'Master Level'];
         const PUBLICSPEAKING_LEVELS = ['Kindergarten', 'Primary', 'Secondary', 'Master Level'];
         const DEBATE_LEVELS = ['Kindergarten', 'Primary', 'Secondary', 'Master Level'];
+
+        // ── App Practices split by sub-level ──────────────────────────────
+        // Each of the 8 App Practice categories now has 12 cards instead of 4:
+        //   Kindergarten : K0, K1, K2, K3
+        //   Primary      : A1, A2, B1, B2
+        //   Secondary    : C1, C2
+        //   Master Level : C1, C2
+        // The original 4 slots of each category (91-122) are KEPT (and keep any
+        // saved data): they become K0 / A1 / Secondary C1 / Master C1. The 8 new
+        // cards of each category live in slots 123-186 (8 per category, in the
+        // order of AP_CATS below) so no existing slot number ever changes.
+        const AP_CATS = [
+            { cat: 'pronunciation',  label: 'Pronunciation & Speaking',           base: 91  },
+            { cat: 'listening',      label: 'Listening & Comprehension',          base: 95  },
+            { cat: 'games',          label: 'Interactive English Games & Practice', base: 99  },
+            { cat: 'reading',        label: 'Reading & Interactive Exercises',    base: 103 },
+            { cat: 'roleplay',       label: 'Roleplay',                           base: 107 },
+            { cat: 'weeklytest',     label: 'Weekly Mini-Test',                   base: 111 },
+            { cat: 'publicspeaking', label: 'Public Speaking',                    base: 115 },
+            { cat: 'debate',         label: 'Debate',                             base: 119 }
+        ];
+        const AP_BASE_SUBS = ['K0', 'A1', 'Secondary C1', 'Master C1'];          // offsets 0-3 of each base block
+        const AP_EXT_SUBS  = ['K1', 'K2', 'K3', 'A2', 'B1', 'B2', 'Secondary C2', 'Master C2'];
+        const AP_GROUPS    = ['Kindergarten', 'Primary', 'Secondary', 'Master Level'];
+        const AP_EXT_GROUP_IDX = [0, 0, 0, 1, 1, 1, 2, 3];
+        const AP_EXT_START = 123;
+        // → { cat, label, group, groupIdx, sub, baseSlot } for any App Practice slot, else null.
+        function apInfo(i) {
+            for (const c of AP_CATS) {
+                if (i >= c.base && i <= c.base + 3) {
+                    const k = i - c.base;
+                    return { cat: c.cat, label: c.label, group: AP_GROUPS[k], groupIdx: k, sub: AP_BASE_SUBS[k], baseSlot: i };
+                }
+            }
+            if (i >= AP_EXT_START && i < AP_EXT_START + AP_CATS.length * 8) {
+                const n = i - AP_EXT_START, c = AP_CATS[Math.floor(n / 8)], j = n % 8, g = AP_EXT_GROUP_IDX[j];
+                return { cat: c.cat, label: c.label, group: AP_GROUPS[g], groupIdx: g, sub: AP_EXT_SUBS[j], baseSlot: c.base + g };
+            }
+            return null;
+        }
+        // New slots reuse the description / icon of their level's original slot.
+        function apBaseSlot(i) { const a = apInfo(i); return a ? a.baseSlot : i; }
 
         const ONLINE_LEVELLED_STRUCTURE = [
             // Primary — 6 seats, A1.1 through A2.3
@@ -1909,6 +1952,7 @@
         }
 
         function defaultLevelFor(i) {
+            { const _ap = apInfo(i); if (_ap) return _ap.group; }
             if (i === 50) return 'Kindergarten';
             if (i >= 51 && i <= 53) return 'Primary';
             if (i >= 54 && i <= 57) return 'Secondary';
@@ -1942,6 +1986,7 @@
         // numbering needed; slot 63 (Bridge Course) likewise gets its own
         // fixed title.
         function defaultTitleFor(i) {
+            { const _ap = apInfo(i); if (_ap) return `${_ap.label} — ${_ap.sub}`; }
             if (i === 50) return 'Kindergarten 4';
             if (i >= 51 && i <= 53) return `Primary ${i - 47}`; // 51->4, 52->5, 53->6
             if (i >= 54 && i <= 57) return `Secondary ${i - 50}`; // 54->4, 55->5, 56->6, 57->7
@@ -1992,6 +2037,7 @@
         // blank the first time the Hub loads — same as any other system,
         // the admin can still overwrite these later via the edit modal.
         function defaultDescFor(i) {
+            i = apBaseSlot(i);
             if (i === 89) return 'Corporate strategy, financial analysis, marketing, leadership and entrepreneurship — 19 units of advanced business English for the strategic thinker.';
             if (i === 90) return 'Complex adaptive systems, network theory, behavioral economics and interdisciplinary science — 19 units connecting how modern ideas fit together.';
             if (i === 91) return 'Fun, no-mic-required pronunciation and speaking games for our youngest learners — sounds, rhymes, and simple words with clear native-speaker audio.';
@@ -2029,6 +2075,7 @@
             return '';
         }
         function defaultIconFor(i) {
+            i = apBaseSlot(i);
             if (i === 89) return 'data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2760%27%20height%3D%2760%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%23FFD700%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Crect%20x%3D%272%27%20y%3D%277%27%20width%3D%2720%27%20height%3D%2713%27%20rx%3D%272%27/%3E%3Cpath%20d%3D%27M8%207V5a2%202%200%200%201%202-2h4a2%202%200%200%201%202%202v2%27/%3E%3Cline%20x1%3D%272%27%20y1%3D%2713%27%20x2%3D%2722%27%20y2%3D%2713%27/%3E%3Cline%20x1%3D%2712%27%20y1%3D%2712%27%20x2%3D%2712%27%20y2%3D%2714%27/%3E%3C/svg%3E';
             if (i === 90) return 'data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2760%27%20height%3D%2760%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%2338bdf8%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Ccircle%20cx%3D%275%27%20cy%3D%276%27%20r%3D%272.2%27/%3E%3Ccircle%20cx%3D%2719%27%20cy%3D%276%27%20r%3D%272.2%27/%3E%3Ccircle%20cx%3D%2712%27%20cy%3D%2712%27%20r%3D%272.4%27%20fill%3D%27%23FFD700%27%20stroke%3D%27%23FFD700%27/%3E%3Ccircle%20cx%3D%275%27%20cy%3D%2718%27%20r%3D%272.2%27/%3E%3Ccircle%20cx%3D%2719%27%20cy%3D%2718%27%20r%3D%272.2%27/%3E%3Cline%20x1%3D%276.8%27%20y1%3D%277.3%27%20x2%3D%2710.2%27%20y2%3D%2710.7%27/%3E%3Cline%20x1%3D%2717.2%27%20y1%3D%277.3%27%20x2%3D%2713.8%27%20y2%3D%2710.7%27/%3E%3Cline%20x1%3D%2710.2%27%20y1%3D%2713.3%27%20x2%3D%276.8%27%20y2%3D%2716.7%27/%3E%3Cline%20x1%3D%2713.8%27%20y1%3D%2713.3%27%20x2%3D%2717.2%27%20y2%3D%2716.7%27/%3E%3C/svg%3E';
             if (i >= 91 && i <= 94) return 'data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2024%2024%27%20fill=%27none%27%20stroke=%27%23EF4444%27%20stroke-width=%272%27%20stroke-linecap=%27round%27%20stroke-linejoin=%27round%27%20style=%27width:100%25%3Bheight:100%25%3B%27%3E%0A%3Cpath%20d=%27M12%201a3%203%200%200%200-3%203v8a3%203%200%200%200%206%200V4a3%203%200%200%200-3-3z%27/%3E%0A%3Cpath%20d=%27M19%2010v2a7%207%200%200%201-14%200v-2%27/%3E%0A%3Cline%20x1=%2712%27%20y1=%2719%27%20x2=%2712%27%20y2=%2723%27/%3E%0A%3Cline%20x1=%278%27%20y1=%2723%27%20x2=%2716%27%20y2=%2723%27/%3E%0A%3C/svg%3E';
@@ -2042,6 +2089,7 @@
             return '';
         }
         function defaultSlidesFor(i) {
+            i = apBaseSlot(i);
             if (i === 89) return ['data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22400%22%20height%3D%22240%22%20viewBox%3D%220%200%20400%20240%22%3E%0A%3Crect%20width%3D%22400%22%20height%3D%22240%22%20fill%3D%22%230d1b4c%22/%3E%0A%3Crect%20width%3D%22400%22%20height%3D%22240%22%20fill%3D%22url%28%23bgGrad%29%22/%3E%0A%3Cdefs%3E%0A%3ClinearGradient%20id%3D%22bgGrad%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%22400%22%20y2%3D%22240%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23000080%22/%3E%0A%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231a2f7a%22/%3E%0A%3C/linearGradient%3E%0A%3C/defs%3E%0A%3C%21--%20rising%20bars%20--%3E%0A%3Crect%20x%3D%22230%22%20y%3D%22150%22%20width%3D%2226%22%20height%3D%2260%22%20rx%3D%223%22%20fill%3D%22%23FFD700%22%20opacity%3D%220.85%22/%3E%0A%3Crect%20x%3D%22266%22%20y%3D%22120%22%20width%3D%2226%22%20height%3D%2290%22%20rx%3D%223%22%20fill%3D%22%23FFD700%22%20opacity%3D%220.92%22/%3E%0A%3Crect%20x%3D%22302%22%20y%3D%2285%22%20width%3D%2226%22%20height%3D%22125%22%20rx%3D%223%22%20fill%3D%22%23FFD700%22/%3E%0A%3Crect%20x%3D%22338%22%20y%3D%2255%22%20width%3D%2226%22%20height%3D%22155%22%20rx%3D%223%22%20fill%3D%22%23FFEA80%22/%3E%0A%3C%21--%20trend%20arrow%20--%3E%0A%3Cpolyline%20points%3D%22235%2C145%20271%2C113%20307%2C78%20343%2C48%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%223%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.9%22/%3E%0A%3Cpolygon%20points%3D%22343%2C48%20355%2C50%20349%2C60%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.9%22/%3E%0A%3C%21--%20briefcase%20--%3E%0A%3Cg%20transform%3D%22translate%2846%2C90%29%22%3E%0A%3Crect%20x%3D%220%22%20y%3D%2226%22%20width%3D%22120%22%20height%3D%2284%22%20rx%3D%2210%22%20fill%3D%22%23FFD700%22/%3E%0A%3Crect%20x%3D%220%22%20y%3D%2226%22%20width%3D%22120%22%20height%3D%2284%22%20rx%3D%2210%22%20fill%3D%22none%22%20stroke%3D%22%23000080%22%20stroke-width%3D%223%22/%3E%0A%3Crect%20x%3D%2240%22%20y%3D%224%22%20width%3D%2240%22%20height%3D%2226%22%20rx%3D%226%22%20fill%3D%22none%22%20stroke%3D%22%23FFD700%22%20stroke-width%3D%227%22/%3E%0A%3Crect%20x%3D%220%22%20y%3D%2258%22%20width%3D%22120%22%20height%3D%2218%22%20fill%3D%22%23000080%22%20opacity%3D%220.25%22/%3E%0A%3Ccircle%20cx%3D%2260%22%20cy%3D%2267%22%20r%3D%226%22%20fill%3D%22%23000080%22/%3E%0A%3C/g%3E%0A%3Ctext%20x%3D%2230%22%20y%3D%22215%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20fill%3D%22%23FFD700%22%3EBusiness%20Strategy%3C/text%3E%0A%3C/svg%3E'];
             if (i === 90) return ['data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22400%22%20height%3D%22240%22%20viewBox%3D%220%200%20400%20240%22%3E%0A%3Crect%20width%3D%22400%22%20height%3D%22240%22%20fill%3D%22url%28%23bgGrad2%29%22/%3E%0A%3Cdefs%3E%0A%3ClinearGradient%20id%3D%22bgGrad2%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%22400%22%20y2%3D%22240%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230a0f3d%22/%3E%0A%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e2a6b%22/%3E%0A%3C/linearGradient%3E%0A%3C/defs%3E%0A%3Cline%20x1%3D%2260%22%20y1%3D%2260%22%20x2%3D%22200%22%20y2%3D%22110%22%20stroke%3D%22%238ab4ff%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22/%3E%0A%3Cline%20x1%3D%22170%22%20y1%3D%2240%22%20x2%3D%22200%22%20y2%3D%22110%22%20stroke%3D%22%238ab4ff%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22/%3E%0A%3Cline%20x1%3D%22300%22%20y1%3D%2270%22%20x2%3D%22200%22%20y2%3D%22110%22%20stroke%3D%22%238ab4ff%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22/%3E%0A%3Cline%20x1%3D%22300%22%20y1%3D%2270%22%20x2%3D%22360%22%20y2%3D%22150%22%20stroke%3D%22%238ab4ff%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22/%3E%0A%3Cline%20x1%3D%22360%22%20y1%3D%22150%22%20x2%3D%22250%22%20y2%3D%22180%22%20stroke%3D%22%238ab4ff%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22/%3E%0A%3Cline%20x1%3D%22250%22%20y1%3D%22180%22%20x2%3D%22200%22%20y2%3D%22110%22%20stroke%3D%22%238ab4ff%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22/%3E%0A%3Cline%20x1%3D%22120%22%20y1%3D%22190%22%20x2%3D%22200%22%20y2%3D%22110%22%20stroke%3D%22%238ab4ff%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22/%3E%0A%3Cline%20x1%3D%22120%22%20y1%3D%22190%22%20x2%3D%2240%22%20y2%3D%22140%22%20stroke%3D%22%238ab4ff%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22/%3E%0A%3Cline%20x1%3D%2240%22%20y1%3D%22140%22%20x2%3D%2260%22%20y2%3D%2260%22%20stroke%3D%22%238ab4ff%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22/%3E%0A%3Cline%20x1%3D%22170%22%20y1%3D%2240%22%20x2%3D%22300%22%20y2%3D%2270%22%20stroke%3D%22%238ab4ff%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22/%3E%0A%3Cline%20x1%3D%22250%22%20y1%3D%22180%22%20x2%3D%22120%22%20y2%3D%22190%22%20stroke%3D%22%238ab4ff%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22/%3E%0A%3Cline%20x1%3D%2260%22%20y1%3D%2260%22%20x2%3D%2240%22%20y2%3D%22140%22%20stroke%3D%22%238ab4ff%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22/%3E%0A%3Ccircle%20cx%3D%2260%22%20cy%3D%2260%22%20r%3D%229%22%20fill%3D%22%2366aaff%22%20stroke%3D%22%230d1b4c%22%20stroke-width%3D%222%22/%3E%0A%3Ccircle%20cx%3D%22170%22%20cy%3D%2240%22%20r%3D%229%22%20fill%3D%22%2366aaff%22%20stroke%3D%22%230d1b4c%22%20stroke-width%3D%222%22/%3E%0A%3Ccircle%20cx%3D%22300%22%20cy%3D%2270%22%20r%3D%229%22%20fill%3D%22%2366aaff%22%20stroke%3D%22%230d1b4c%22%20stroke-width%3D%222%22/%3E%0A%3Ccircle%20cx%3D%22360%22%20cy%3D%22150%22%20r%3D%229%22%20fill%3D%22%2366aaff%22%20stroke%3D%22%230d1b4c%22%20stroke-width%3D%222%22/%3E%0A%3Ccircle%20cx%3D%22250%22%20cy%3D%22180%22%20r%3D%229%22%20fill%3D%22%2366aaff%22%20stroke%3D%22%230d1b4c%22%20stroke-width%3D%222%22/%3E%0A%3Ccircle%20cx%3D%22120%22%20cy%3D%22190%22%20r%3D%229%22%20fill%3D%22%2366aaff%22%20stroke%3D%22%230d1b4c%22%20stroke-width%3D%222%22/%3E%0A%3Ccircle%20cx%3D%2240%22%20cy%3D%22140%22%20r%3D%229%22%20fill%3D%22%2366aaff%22%20stroke%3D%22%230d1b4c%22%20stroke-width%3D%222%22/%3E%0A%3Ccircle%20cx%3D%22200%22%20cy%3D%22110%22%20r%3D%2213%22%20fill%3D%22%23FFD700%22%20stroke%3D%22%230d1b4c%22%20stroke-width%3D%222%22/%3E%0A%3Ctext%20x%3D%2230%22%20y%3D%22215%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20fill%3D%22%23FFD700%22%3EComplexity%20Science%3C/text%3E%0A%3C/svg%3E'];
             return [];

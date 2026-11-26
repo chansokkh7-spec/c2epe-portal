@@ -1884,6 +1884,14 @@
             return null;
         }
         // New slots reuse the description / icon of their level's original slot.
+        // Default lesson + video for Kindergarten App Practice cards (K0-K3 x 8 categories).
+        const AP_PRACTICE_BASE = 'https://chansokkh7-spec.github.io/c2epe-practice/';
+        function apDefaults(i) {
+            const a = apInfo(i);
+            if (!a || a.group !== 'Kindergarten') return null;
+            const f = AP_PRACTICE_BASE + 'PR-' + a.cat + '-' + a.sub.toLowerCase();
+            return { type: 'url', content: f + '.html', video: f + '.mp4', title: a.label + ' · ' + a.sub };
+        }
         function apBaseSlot(i) { const a = apInfo(i); return a ? a.baseSlot : i; }
 
         const ONLINE_LEVELLED_STRUCTURE = [
@@ -3851,7 +3859,9 @@
         }
 
         function onCardClick(id) {
-            const sys = systemsData[id];
+            let sys = systemsData[id];
+            const apd = apDefaults(id);                           // built-in Kindergarten lesson + video
+            if (apd && (!sys || (!sys.content && !sys.video))) sys = Object.assign({}, sys || {}, apd);
             if (!sys || (!sys.content && !sys.video)) {
                 if (isAdmin()) { openModal(id); return; }          // only the admin edits empty cards
                 hubComingSoon();                                   // students just see a friendly note

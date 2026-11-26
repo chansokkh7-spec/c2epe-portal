@@ -2946,11 +2946,11 @@
 
                 if (sys.slides && sys.slides.length > 0) {
                     let slidesImg = sys.slides.map((img, idx) => 
-                        `<img src="${img}" class="carousel-slide ${idx === 0 ? 'active' : ''}" alt="Slide ${idx}">`
+                        `<img loading="lazy" decoding="async" src="${img}" class="carousel-slide ${idx === 0 ? 'active' : ''}" alt="Slide ${idx}">`
                     ).join('');
                     contentHtml += `<div class="carousel-container" id="carousel-${i}">${slidesImg}</div>`;
                 } else {
-                    contentHtml += `<div class="carousel-container" style="display:flex; justify-content:center; align-items:center;"><img src="${iconSrc}" style="width:70px; height:70px; object-fit:contain;" alt="System Icon"></div>`;
+                    contentHtml += `<div class="carousel-container" style="display:flex; justify-content:center; align-items:center;"><img loading="lazy" decoding="async" src="${iconSrc}" style="width:70px; height:70px; object-fit:contain;" alt="System Icon"></div>`;
                 }
 
                 const CAT_LABEL_KEYS = { english: 'filterEnglish', health: 'filterHealth', tech: 'filterTech', pronunciation: 'filterPronunciation', listening: 'filterListening', games: 'filterGames', reading: 'filterReading', roleplay: 'filterRoleplay', weeklytest: 'filterWeeklyTest', publicspeaking: 'filterPublicSpeaking', debate: 'filterDebate' };
@@ -2959,7 +2959,7 @@
 
                 contentHtml += `
                     <div class="card-category">${catLabel}${levelBadge}</div>
-                    <img src="${iconSrc}" class="card-header-logo" alt="Logo">
+                    <img loading="lazy" decoding="async" src="${iconSrc}" class="card-header-logo" alt="Logo">
                     <span class="card-title">${escapeHtml(sys.title)}</span>
                     <span class="card-desc">${escapeHtml(sys.desc)}</span>
                     ${(!unlocked) ? '<span class="lock-reason">🔒 Student ID required</span>' : ''}

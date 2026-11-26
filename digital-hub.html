@@ -1890,7 +1890,7 @@
             const a = apInfo(i);
             if (!a || a.group !== 'Kindergarten') return null;
             const f = AP_PRACTICE_BASE + 'PR-' + a.cat + '-' + a.sub.toLowerCase();
-            return { type: 'url', content: f + '.html', video: f + '.mp4', title: a.label + ' · ' + a.sub };
+            return { type: 'url', content: f + '.html', title: a.label + ' · ' + a.sub };
         }
         function apBaseSlot(i) { const a = apInfo(i); return a ? a.baseSlot : i; }
 
